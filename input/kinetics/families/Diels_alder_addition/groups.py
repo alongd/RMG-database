@@ -1530,3 +1530,137 @@ u"""
 
 """,
 )
+
+forbidden(
+    label = "benzene_diene1",
+    group = 
+"""
+1 *3 Cd u0 {2,D} {6,S} 
+2 *4 Cd u0 {1,D} {3,S}
+3 *5 Cd u0 {2,S} {4,D}
+4 *6 Cd u0 {3,D} {5,S} 
+5    Cd ux {4,S} {6,D}
+6    Cd ux {5,D} {1,S} 
+""",
+    shortDesc = u"""""",
+    longDesc = 
+u"""
+
+""",
+)
+
+forbidden(
+    label = "benzene_diene2",
+    group = 
+"""
+1 *3 Cd u0 {2,D} {6,S} 
+2 *4 Cd u0 {1,D} {3,S}
+3 *5 Cd u0 {2,S} {4,D}
+4 *6 Cd u0 {3,D} {5,S} 
+5 *8 Cd ux {4,S} {6,D}
+6 *7 Cd ux {5,D} {1,S}
+""",
+    shortDesc = u"""""",
+    longDesc = 
+u"""
+
+""",
+)
+
+forbidden(
+    label = "benzene_monoSub1",
+    group = 
+"""
+1 *3 Cd u0 {2,D} {6,S} {7,S}
+2 *4 Cd u0 {1,D} {3,S}
+3 *5 Cd u0 {2,S} {4,D}
+4 *6 Cd u0 {3,D} {5,S} {7,S}
+5 *7 Cd ux {4,S} {6,D}
+6 *8 Cd ux {5,D} {1,S} 
+8 *9 R  ux {4,S}
+""",
+    shortDesc = u"""""",
+    longDesc = 
+u"""
+
+""",
+)
+
+forbidden(
+    label = "benzene_monoSub2",
+    group = 
+"""
+1 *3 Cd u0 {2,D}, {5,S}, {6,S}
+2 *4 Cd u0 {1,D}, {3,S}
+3 *5 Cd u0 {2,S}, {4,D}
+4 *6 Cd u0 {3,D}, {7,S}, {8,S}
+5 H u0 {1,S}
+6 *7 Cd ux {1,S} {8,D}
+7 *8 R ux {4,S}
+8 *9 Cd ux {4,S} {6,D}
+""",
+    shortDesc = u"""""",
+    longDesc = 
+u"""
+
+""",
+)
+
+forbidden(
+    label = "benzene_twoSub1",
+    group = 
+"""
+1 *3 Cd u0 {2,D}, {5,S}, {6,S}
+2 *4 Cd u0 {1,D}, {3,S}
+3 *5 Cd u0 {2,S}, {4,D}
+4 *6 Cd u0 {3,D}, {7,S}, {8,S}
+5 H u0 {1,S}
+6 *7 Cd ux {1,S} {8,D}
+7 *8 R ux {4,S}
+8 *9 Cd ux {4,S} {6,D}
+""",
+    shortDesc = u"""""",
+    longDesc = 
+u"""
+
+""",
+)
+
+forbidden(
+    label = "benzene_twoSub2",
+    group = 
+"""
+1 *3 Cd u0 {2,D}, {5,S}, {6,S}
+2 *4 Cd u0 {1,D}, {3,S}
+3 *5 Cd u0 {2,S}, {4,D}
+4 *6 Cd u0 {3,D}, {7,S}, {8,S}
+5 H u0 {1,S}
+6 *7 Cd ux {1,S} {8,D}
+7 *8 R ux {4,S}
+8 *9 Cd ux {4,S} {6,D}
+""",
+    shortDesc = u"""""",
+    longDesc = 
+u"""
+
+""",
+)
+
+
+forbidden(
+    label = "benzene_ene",
+    group = 
+"""
+1 *1 Cd u0 {2,D} {6,S}
+2 *2 Cd u0 {1,D} {3,S}
+3    Cd u0 {2,S} {4,D}
+4    Cd u0 {3,D} {5,S}
+5    Cd u0 {4,S} {6,D}
+6    Cd u0 {5,D} {1,S}
+""",
+    shortDesc = u"""""",
+    longDesc = 
+u"""
+
+""",
+)

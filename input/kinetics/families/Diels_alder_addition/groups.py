@@ -23,7 +23,12 @@ recipe(actions=[
 entry(
     index = 1,
     label = "diene_out",
-    group = "OR{diene_unsub_unsub_out, diene_unsub_monosub_out, diene_unsub_disub_out, diene_monosub_monosub_out, diene_monosub_disub_out, diene_disub_disub_out, diene_5ring_out}",
+    group = """
+1 *3 Cd u0 {2,D}
+2 *4 Cd u0 {1,D} {3,S}
+3 *5 Cd u0 {2,S} {4,D}
+4 *6 Cd u0 {3,D}
+""",
     kinetics = None,
 )
 

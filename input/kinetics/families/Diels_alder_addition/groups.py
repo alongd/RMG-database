@@ -1695,10 +1695,10 @@ forbidden(
 """
 1 *1 Cd u0 {2,D} {6,S}
 2 *2 Cd u0 {1,D} {3,S}
-3    Cd u0 {2,S} {4,D}
-4    Cd u0 {3,D} {5,S}
-5    Cd u0 {4,S} {6,D}
-6    Cd u0 {5,D} {1,S}
+3    Cd ux {2,S} {4,D}
+4    Cd ux {3,D} {5,S}
+5    Cd ux {4,S} {6,D}
+6    Cd ux {5,D} {1,S}
 """,
     shortDesc = u"""""",
     longDesc = 

@@ -37,73 +37,73 @@ entry(
 
 entry(
     index = 4,
-    label = "NCC + OH <=> CH2CH2NH2 + H2O",
+    label = "NCC + CH3 <=> CH2CH2NH2 + CH4",
     degeneracy = 1,
-    kinetics = Arrhenius(A=(7.94e+02, 'cm^3/(mol*s)'), n=2.97, Ea=(-1040, 'cal/mol'), T0=(1, 'K')),
+    kinetics = Arrhenius(A=(3.28e-04, 'cm^3/(mol*s)'), n=4.85, Ea=(7000, 'cal/mol'), T0=(1, 'K')),
     shortDesc = u"""Table 2, R4: EA H abstraction""",
 )
 
 entry(
     index = 5,
-    label = "NCC + OH <=> CH3CHNH2 + H2O",
+    label = "NCC + CH3 <=> CH3CHNH2 + CH4",
     degeneracy = 1,
-    kinetics = Arrhenius(A=(3.28e+05, 'cm^3/(mol*s)'), n=2.24, Ea=(-3040, 'cal/mol'), T0=(1, 'K')),
+    kinetics = Arrhenius(A=(2.76e-02, 'cm^3/(mol*s)'), n=4.23, Ea=(4200, 'cal/mol'), T0=(1, 'K')),
     shortDesc = u"""Table 2, R5: EA H abstraction""",
 )
 
 entry(
     index = 6,
-    label = "NCC + OH <=> CH3CH2NH + H2O",
+    label = "NCC + CH3 <=> CH3CH2NH + CH4",
     degeneracy = 1,
-    kinetics = Arrhenius(A=(1.12e+05, 'cm^3/(mol*s)'), n=2.36, Ea=(-2860, 'cal/mol'), T0=(1, 'K')),
+    kinetics = Arrhenius(A=(1.27e-02, 'cm^3/(mol*s)'), n=4.41, Ea=(4800, 'cal/mol'), T0=(1, 'K')),
     shortDesc = u"""Table 2, R6: EA H abstraction""",
 )
 
 entry(
     index = 7,
-    label = "NCC + CH3 <=> CH2CH2NH2 + CH4",
+    label = "NCC + NH2 <=> CH2CH2NH2 + NH3",
     degeneracy = 1,
-    kinetics = Arrhenius(A=(3.28e-04, 'cm^3/(mol*s)'), n=4.85, Ea=(7000, 'cal/mol'), T0=(1, 'K')),
+    kinetics = Arrhenius(A=(1.44e-02, 'cm^3/(mol*s)'), n=4.43, Ea=(3600, 'cal/mol'), T0=(1, 'K')),
     shortDesc = u"""Table 2, R7: EA H abstraction""",
 )
 
 entry(
     index = 8,
-    label = "NCC + CH3 <=> CH3CHNH2 + CH4",
+    label = "NCC + NH2 <=> CH3CHNH2 + NH3",
     degeneracy = 1,
-    kinetics = Arrhenius(A=(2.76e-02, 'cm^3/(mol*s)'), n=4.23, Ea=(4200, 'cal/mol'), T0=(1, 'K')),
+    kinetics = Arrhenius(A=(1.28e+00, 'cm^3/(mol*s)'), n=3.75, Ea=(1000, 'cal/mol'), T0=(1, 'K')),
     shortDesc = u"""Table 2, R8: EA H abstraction""",
 )
 
 entry(
     index = 9,
-    label = "NCC + CH3 <=> CH3CH2NH + CH4",
+    label = "NCC + NH2 <=> CH3CH2NH + NH3",
     degeneracy = 1,
-    kinetics = Arrhenius(A=(1.27e-02, 'cm^3/(mol*s)'), n=4.41, Ea=(4800, 'cal/mol'), T0=(1, 'K')),
+    kinetics = Arrhenius(A=(9.73e-02, 'cm^3/(mol*s)'), n=4.03, Ea=(1900, 'cal/mol'), T0=(1, 'K')),
     shortDesc = u"""Table 2, R9: EA H abstraction""",
 )
 
 entry(
     index = 10,
-    label = "NCC + NH2 <=> CH2CH2NH2 + NH3",
+    label = "NCC + OH <=> CH2CH2NH2 + H2O",
     degeneracy = 1,
-    kinetics = Arrhenius(A=(1.44e-02, 'cm^3/(mol*s)'), n=4.43, Ea=(3600, 'cal/mol'), T0=(1, 'K')),
+    kinetics = Arrhenius(A=(7.94e+02, 'cm^3/(mol*s)'), n=2.97, Ea=(-1040, 'cal/mol'), T0=(1, 'K')),
     shortDesc = u"""Table 2, R10: EA H abstraction""",
 )
 
 entry(
     index = 11,
-    label = "NCC + NH2 <=> CH3CHNH2 + NH3",
+    label = "NCC + OH <=> CH3CHNH2 + H2O",
     degeneracy = 1,
-    kinetics = Arrhenius(A=(1.28e+00, 'cm^3/(mol*s)'), n=3.75, Ea=(1000, 'cal/mol'), T0=(1, 'K')),
+    kinetics = Arrhenius(A=(3.28e+05, 'cm^3/(mol*s)'), n=2.24, Ea=(-3040, 'cal/mol'), T0=(1, 'K')),
     shortDesc = u"""Table 2, R11: EA H abstraction""",
 )
 
 entry(
     index = 12,
-    label = "NCC + NH2 <=> CH3CH2NH + NH3",
+    label = "NCC + OH <=> CH3CH2NH + H2O",
     degeneracy = 1,
-    kinetics = Arrhenius(A=(9.73e-02, 'cm^3/(mol*s)'), n=4.03, Ea=(1900, 'cal/mol'), T0=(1, 'K')),
+    kinetics = Arrhenius(A=(1.12e+05, 'cm^3/(mol*s)'), n=2.36, Ea=(-2860, 'cal/mol'), T0=(1, 'K')),
     shortDesc = u"""Table 2, R12: EA H abstraction""",
 )
 

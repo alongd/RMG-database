@@ -17758,7 +17758,7 @@ forbidden(
     label = "birad_singlet",
     group = 
 """
-1 *3 [C,N,Si] u0 p1
+1 *3 [C,Si] u0 p1
 """,
     shortDesc = u"""""",
     longDesc = 

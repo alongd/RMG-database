@@ -350,3 +350,16 @@ u"""
 """,
 )
 
+entry(
+    label = "N_rad_charged",
+    group = 
+"""
+1 N u1 p0 c+1
+""",
+    shortDesc = u"""""",
+    longDesc = 
+u"""
+
+""",
+)
+

@@ -363,3 +363,17 @@ u"""
 """,
 )
 
+entry(
+    label = "N-N_P2",
+    group = 
+"""
+1 N3d u0 p1 {2,S}
+2 N   u0 p2 (1,S)
+""",
+    shortDesc = u"""""",
+    longDesc = 
+u"""
+to avoid generating C(=N[N])=C=O, which probably has two lone pairs, and gives the error: Unexpected type of path reaction "H(5) + C(=N[N])=C=O(18295) <=> C(=C=O)[N][N](12538)"
+""",
+)
+

@@ -160,6 +160,28 @@ u"""
 )
 
 entry(
+    index = 171,
+    label = "Cycloethylaminediene",
+    group = 
+"""
+1 * R!H  u0 {2,S} {3,D}
+2   R!H  u0 p1 {1,S} {3,D}
+3   R!H u0 {1,D} {2,D}
+""",
+    thermo = ThermoData(
+        Tdata = ([300,400,500,600,800,1000,1500],'K'),
+        Cpdata = ([-0.469,-0.789,-0.953,-1.107,-1.45,-1.696,-1.716],'cal/(mol*K)'),
+        H298 = (73.04,'kcal/mol'),
+        S298 = (33.3257,'cal/(mol*K)'),
+    ),
+    shortDesc = u"""data taken as is from Cyclopropadiene for estimation purposes only""",
+    longDesc = 
+u"""
+
+""",
+)
+
+entry(
     index = 126,
     label = "Cyclopropatriene",
     group = 
@@ -3718,6 +3740,7 @@ L1: Ring
         L3: Cyclopropane
         L3: Cyclopropene
         L3: Cyclopropadiene
+        L3: Cycloethylaminediene
 		L3: oxirene
         L3: Cyclopropatriene
         L3: Ethylene_oxide

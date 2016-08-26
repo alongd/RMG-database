@@ -1164,7 +1164,7 @@ u"""
 entry(
     index = 44,
     label = "sided3memberedring",
-    group = "OR{bicyclo-(1.1.0)-butane, bicyclo-(2.1.0)-pentane, bicyclo-(3.1.0)-hexane, bicyclo-(4.1.0)-hept{a/e}ne, bicyclo-(5.1.0)-octane, bicyclo-(6.1.0)-nonane}",
+    group = "OR{bicyclo-(1.1.0)-butane, bicyclo-(2.1.0)-pentane, fused3-4, bicyclo-(3.1.0)-hexane, bicyclo-(4.1.0)-hept{a/e}ne, bicyclo-(5.1.0)-octane, bicyclo-(6.1.0)-nonane, bicyclo-propenamine-1, bicyclo-propenamine-2, bicyclo-propenamine-3}",
     thermo = u'bicyclo-(1.1.0)-butane',
     shortDesc = u"""""",
     longDesc = 
@@ -1197,6 +1197,75 @@ u"""
 )
 
 entry(
+    index = 124,
+    label = "bicyclo-propenamine-1",
+    group = 
+"""
+1 * Cd u0 {2,D} {3,S} {4,S}
+2   Cd u0 {1,D} {3,S} {4,S}
+3   R!H ux px {1,S} {2,S}
+4   R!H ux px {1,S} {2,S}
+""",
+    thermo = ThermoData(
+        Tdata = ([300,400,500,600,800,1000,1500],'K'),
+        Cpdata = ([-4.74,-5.18,-4.85,-4.17,-3.61,-4.01,-3.22],'cal/(mol*K)'),
+        H298 = (65.52,'kcal/mol'),
+        S298 = (69.9,'cal/(mol*K)'),
+    ),
+    shortDesc = u"""data taken as is from bicyclo-(1.1.0)-butane for estimation purposes only""",
+    longDesc = 
+u"""
+
+""",
+)
+
+entry(
+    index = 125,
+    label = "bicyclo-propenamine-2",
+    group = 
+"""
+1 * N u0 p1 {2,S} {3,S} {4,S}
+2   Cd u0 {1,S} {3,D} {4,S}
+3   Cd u1 {1,S} {2,D}
+4   R!H u0 px {1,S} {2,S}
+""",
+    thermo = ThermoData(
+        Tdata = ([300,400,500,600,800,1000,1500],'K'),
+        Cpdata = ([-4.74,-5.18,-4.85,-4.17,-3.61,-4.01,-3.22],'cal/(mol*K)'),
+        H298 = (65.52,'kcal/mol'),
+        S298 = (69.9,'cal/(mol*K)'),
+    ),
+    shortDesc = u"""data taken as is from bicyclo-(1.1.0)-butane for estimation purposes only""",
+    longDesc = 
+u"""
+
+""",
+)
+
+entry(
+    index = 126,
+    label = "bicyclo-propenamine-3",
+    group = 
+"""
+1 * Cd u0 {2,S} {3,D} {4,S}
+2   Cd u0 {1,S} {3,S} {4,D}
+3   R!H u0 px {1,D} {2,S}
+4   Cd u0 {1,S} {2,D}
+""",
+    thermo = ThermoData(
+        Tdata = ([300,400,500,600,800,1000,1500],'K'),
+        Cpdata = ([-4.74,-5.18,-4.85,-4.17,-3.61,-4.01,-3.22],'cal/(mol*K)'),
+        H298 = (65.52,'kcal/mol'),
+        S298 = (69.9,'cal/(mol*K)'),
+    ),
+    shortDesc = u"""data taken as is from bicyclo-(1.1.0)-butane for estimation purposes only""",
+    longDesc = 
+u"""
+
+""",
+)
+
+entry(
     index = 46,
     label = "bicyclo-(2.1.0)-pentane",
     group = 
@@ -1214,6 +1283,30 @@ entry(
         S298 = (64.73,'cal/(mol*K)'),
     ),
     shortDesc = u"""""",
+    longDesc = 
+u"""
+
+""",
+)
+
+entry(
+    index = 46,
+    label = "fused3-4",
+    group = 
+"""
+1 * Cd u0 {2,D} {5,S}
+2   Cd u0 {1,D} {3,S} {4,S}
+3   R!H u0 px {2,S} {4,D}
+4   Cd u0 {2,S} {3,D} {5,S}
+5   R!H u0 px {1,S} {4,S}
+""",
+    thermo = ThermoData(
+        Tdata = ([300,400,500,600,800,1000,1500],'K'),
+        Cpdata = ([-6.7,-6.66,-5.78,-4.57,-3.31,-3.56,-2.35],'cal/(mol*K)'),
+        H298 = (55.38,'kcal/mol'),
+        S298 = (64.73,'cal/(mol*K)'),
+    ),
+    shortDesc = u"""data taken as is from bicyclo-(2.1.0)-pentane for estimation purposes only""",
     longDesc = 
 u"""
 
@@ -3261,7 +3354,11 @@ L1: PolycyclicRing
             L4: C12CCC=C1CC=C2
     L2: sided3memberedring
         L3: bicyclo-(1.1.0)-butane
+        L3: bicyclo-propenamine-1
+        L3: bicyclo-propenamine-2
+        L3: bicyclo-propenamine-3
         L3: bicyclo-(2.1.0)-pentane
+        L3: fused3-4
         L3: bicyclo-(3.1.0)-hexane
         L3: bicyclo-(4.1.0)-hept{a/e}ne
             L4: bicyclo-(4.1.0)-heptane

@@ -279,3 +279,25 @@ u"""
 """,
 )
 
+entry(
+    label = "[CH2]CO[C]=O",
+    group = 
+"""
+multiplicity 3
+1 C u1 p0 c0 {2,S} {3,S} {4,S}
+2 H u0 p0 c0 {1,S}
+3 H u0 p0 c0 {1,S}
+4 C u0 p0 c0 {1,S} {5,S} {8,S} {9,S}
+5 O u0 p2 c0 {4,S} {6,S}
+6 C u1 p0 c0 {5,S} {7,D}
+7 O u0 p2 c0 {6,D}
+8 H u0 p0 c0 {4,S}
+9 H u0 p0 c0 {4,S}
+""",
+    shortDesc = u"""""",
+    longDesc = 
+u"""
+Added to avoid getteing the error as in xa1442: Unexpected type of path reaction "[CH2][CH2](103) + CO2(30) <=> [CH2]CO[C]=O(4145)"
+""",
+)
+

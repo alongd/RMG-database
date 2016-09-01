@@ -283,7 +283,7 @@ entry(
     label = "[CH2]CO[C]=O",
     group = 
 """
-multiplicity 3
+multiplicity [3]
 1 C u1 p0 c0 {2,S} {3,S} {4,S}
 2 H u0 p0 c0 {1,S}
 3 H u0 p0 c0 {1,S}

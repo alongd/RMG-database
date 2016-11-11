@@ -13933,6 +13933,17 @@ entry(
 )
 
 entry(
+    index = 337,
+    label = "N5d",
+    group = 
+"""
+1 *1 N5d       u0 {2,D}
+2 *2 [N5d,N3d] u0 {1,D}
+""",
+    kinetics = None,
+)
+
+entry(
     index = 314,
     label = "Nt_R",
     group = "OR{N3t_R, N5t_R}",
@@ -17508,6 +17519,7 @@ L1: R_R
                     L6: N3d-NonDe_N3d
                     L6: N3d-OneDe_N3d
                 L5: N3d_N5d
+            L4: N5d
     L2: Nt_R
         L3: N3t_R
             L4: N3t_Ct

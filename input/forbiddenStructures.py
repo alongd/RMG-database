@@ -441,3 +441,32 @@ Invalid k(E) values computed for path reaction "C(=[CH])[O-][N+]#N(6454) <=> c1c
 """,
 )
 
+entry(
+    label = "[NH+](=[NH+][O-])[O-]",
+    group = 
+"""
+1 N u0 p0 c+1 {2,S} {3,D} {6,S}
+2 H u0 p0 c0 {1,S}
+3 N u0 p0 c+1 {1,D} {4,S} {5,S}
+4 H u0 p0 c0 {3,S}
+5 O u0 p3 c-1 {3,S}
+6 O u0 p3 c-1 {1,S}
+""",
+    shortDesc = u"""""",
+    longDesc = 
+u"""
+Temporeraly removed due to error.
+Eventually, R_Add_Mul_Bond should allow N5d
+
+Exploring isomer [NH2+](N[O])[O-](2538) in pressure-dependent network #1197
+
+    raise UndeterminableKineticsError(reaction, message=msg)
+UndeterminableKineticsError: (Reaction(reactants=[Molecule(SMILES="[NH+](=[NH+][O-])[O-]"), Molecule(SMILES="[H]")],
+products=[Molecule(SMILES="[NH2+]([NH+][O-])[O-]")], degeneracy=2, pairs=[[Molecule(SMILES="[NH+](=[NH+][O-])[O-]"),
+Molecule(SMILES="[NH2+]([NH+][O-])[O-]")], [Molecule(SMILES="[H]"), Molecule(SMILES="[NH2+]([NH+][O-])[O-]")]]),
+'Kinetics could not be determined. Unable to find matching template for reaction <Molecule "[NH+](=[NH+][O-])[O-]"> +
+<Molecule "[H]"> <=> <Molecule "[NH2+]([NH+][O-])[O-]"> in reaction family <KineticsGroups "R_Addition_MultipleBond/groups">.
+Trying to match [<Entry index=1 label="R_R">, <Entry index=2 label="YJ">] but matched [<Entry index=915 label="HJ">]')
+""",
+)
+

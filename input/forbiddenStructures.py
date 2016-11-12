@@ -470,3 +470,18 @@ Trying to match [<Entry index=1 label="R_R">, <Entry index=2 label="YJ">] but ma
 """,
 )
 
+entry(
+    label = "cyclo-N-propene",
+    group = 
+"""
+multiplicity [1,2,3]
+1 C ux p0 c0 {2,[S,D,T]} {3,[S,D,T]}
+2 N ux p1 c0 {1,[S,D,T]} {3,[S,D,T]}
+3 C ux p0 c0 {2,[S,D,T]} {1,[S,D,T]}
+""",
+    shortDesc = u"""""",
+    longDesc = 
+u"""
+""",
+)
+

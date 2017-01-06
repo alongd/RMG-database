@@ -42008,7 +42008,7 @@ Nitrogen with three lone pairs and a single bond
 )
 
 entry(
-    index = 10001,
+    index = 10002,
     label = "N1s",
     group = 
 """
@@ -42024,7 +42024,7 @@ Nitrogen with two lone pairs and a single bond
 )
 
 entry(
-    index = 10002,
+    index = 10003,
     label = "N1s-H",
     group = 
 """
@@ -42045,7 +42045,7 @@ Data base on species NH(S), source: GRIMech3.0-N
 )
 
 entry(
-    index = 10002,
+    index = 10004,
     label = "N1s-N1s",
     group = 
 """
@@ -42061,7 +42061,7 @@ Pointing to NH(S), so far no better alternative
 )
 
 entry(
-    index = 10003,
+    index = 10005,
     label = "N1s-Cs",
     group = 
 """
@@ -42085,7 +42085,7 @@ subtracting the Cs-N2sHHH group
 )
 
 entry(
-    index = 10004,
+    index = 10006,
     label = "N1s-N3s",
     group = 
 """
@@ -42108,7 +42108,7 @@ subtracting the N3s-N3sFF group
 )
 
 entry(
-    index = 10005,
+    index = 10007,
     label = "N1s-Os",
     group = 
 """
@@ -42712,6 +42712,24 @@ u"""
 )
 
 entry(
+    index = 1812,
+    label = "N3s-N3dHH",
+    group =
+"""
+1 * N3s u0 {2,S} {3,S} {4,S}
+2   H   u0 {1,S}
+3   H   u0 {1,S}
+4   N3d u0 {1,S}
+""",
+    thermo = u'N3s-N3sHH',
+    shortDesc = u"""""",
+    longDesc =
+u"""
+Currently points to N3s-N3sHH with no better estimate available
+""",
+)
+
+entry(
     index = 1940,
     label = "N3s-NCH",
     group = 
@@ -43123,6 +43141,23 @@ entry(
     longDesc = 
 u"""
 
+""",
+)
+
+entry(
+    index = 1907,
+    label = "N3d-CdN3s",
+    group =
+"""
+1 * N3d  u0 {2,D} {3,S}
+2   Cd   u0 {1,D}
+3   N3s  u0 {1,S}
+""",
+    thermo = u'N3d-CdH',
+    shortDesc = u"""""",
+    longDesc =
+u"""
+Currently references to N3d-CdH with no better data
 """,
 )
 
@@ -45520,6 +45555,7 @@ L1: R
                 L5: N3s-(CtN3t)CsCs
                 L5: N3s-(CdCd)CsCs
             L4: N3s-N3sHH
+            L4: N3s-N3dHH
             L4: N3s-NCH
                 L5: N3s-N3sCsH
                 L5: N3s-N3sCbH
@@ -45538,6 +45574,7 @@ L1: R
             L4: N3s-OsHH
         L3: N3d
             L4: N3d-CdH
+            L4: N3d-CdN3s
             L4: N3d-N3dH
             L4: N3d-N3dN3s
             L4: N3d-OdOs

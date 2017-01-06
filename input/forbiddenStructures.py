@@ -448,7 +448,6 @@ multiplicity [2]
 5 N u0 p0 c+1 {4,S} {6,T}
 6 N u0 p1 c0 {5,T}
 7 H u0 p0 c0 {1,S}
-
 """,
     shortDesc = u"""""",
     longDesc = 

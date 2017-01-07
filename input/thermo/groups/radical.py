@@ -5833,7 +5833,7 @@ u"""
 entry(
     index = 3000,
     label = "RJ2_singlet",
-    group = "OR{CJ2_singlet, Oa_singlet, SiJ2_singlet, SJ2_singlet, NJ2_singlet, CO}",
+    group = "OR{CJ2_singlet, Oa_singlet, SiJ2_singlet, SJ2_singlet, CO}",
     thermo = u'CJ2_singlet',
     shortDesc = u"""""",
     longDesc = 
@@ -6128,21 +6128,6 @@ entry(
     longDesc = 
 u"""
 This probably should be run as I doubt it's that close to the triplet. -nyee
-""",
-)
-
-entry(
-    index = 3004,
-    label = "NJ2_singlet",
-    group = 
-"""
-1 * N u0
-""",
-    thermo = u'CH2_singlet',
-    shortDesc = u"""""",
-    longDesc = 
-u"""
-This probably should be run as I doubt it's that close to the carbon -nyee
 """,
 )
 
@@ -6470,7 +6455,6 @@ L1: Radical
         L3: Oa_singlet
         L3: SiJ2_singlet
         L3: SJ2_singlet
-        L3: NJ2_singlet
     L2: RJ3
         L3: CJ3
         L3: SiJ3

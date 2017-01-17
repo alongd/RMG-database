@@ -41996,14 +41996,14 @@ entry(
     label = "N1sc",
     group = 
 """
-1 * N1sc u0 p3 {2,S}
-2   R    ux px {1,S}
+1 * N1sc u0 p3 c-2 {2,S}
+2   R    ux px     {1,S}
 """,
     thermo = u'N1s',
     shortDesc = u"""""",
     longDesc = 
 u"""
-Nitrogen with three lone pairs and a single bond
+Nitrogen with three lone pairs and a single bond (e.g., [NH+]#[N+][N-2])
 """,
 )
 

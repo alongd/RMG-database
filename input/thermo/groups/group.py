@@ -42012,8 +42012,7 @@ entry(
     label = "N1s",
     group = 
 """
-1 * N1s u0 p2 {2,S}
-2   R   ux px {1,S}
+1 * N1s u0 p2
 """,
     thermo = u'N1s-H',
     shortDesc = u"""""",
@@ -42166,7 +42165,7 @@ entry(
     label = "N3s",
     group = 
 """
-1 * N3s u0
+1 * N3s u0 p1
 """,
     thermo = u'N3s-CsHH',
     shortDesc = u"""""",

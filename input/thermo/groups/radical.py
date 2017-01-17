@@ -5261,6 +5261,202 @@ u"""
 )
 
 entry(
+    index = 110,
+    label = "NJ",
+    group = 
+"""
+1 * N u1
+""",
+    thermo = u'N3sJ',
+    shortDesc = u"""""",
+    longDesc = 
+u"""
+
+""",
+)
+
+entry(
+    index = 111,
+    label = "N3sJ",
+    group = 
+"""
+1 * N3s u1 p1
+""",
+    thermo = u'NH_C',
+    shortDesc = u"""""",
+    longDesc = 
+u"""
+
+""",
+)
+
+entry(
+    index = 112,
+    label = "NH2",
+    group = 
+"""
+1 * N3s u1 p1 {2,S} {3,S}
+2   H   u0 p0 {1,S}
+3   H   u0 p0 {1,S}
+""",
+    thermo = ThermoData(
+        Tdata = ([300,400,500,600,800,1000,1500],'K'),
+        Cpdata = ([-0.43,-0.82,-1.27,-1.72,-2.48,-3.08,-4.1],'cal/(mol*K)'),
+        H298 = (55.05,'kcal/mol'),
+        S298 = (0.53,'cal/(mol*K)'),
+    ),
+    shortDesc = u"""Calculated in relation to ammonia from thermo_DFT_CCSDTF12_BAC values""",
+    longDesc = 
+u"""
+
+""",
+)
+
+entry(
+    index = 113,
+    label = "NH_C",
+    group = 
+"""
+1 * N3s u1 p1 {2,S} {3,S}
+2   C   u0 p0 {1,S}
+3   H   u0 p0 {1,S}
+""",
+    thermo = ThermoData(
+        Tdata = ([300,400,500,600,800,1000,1500],'K'),
+        Cpdata = ([-0.79,-1.23,-1.64,-2.02,-2.66,-3.2,-4.16],'cal/(mol*K)'),
+        H298 = (47.55,'kcal/mol'),
+        S298 = (0.92,'cal/(mol*K)'),
+    ),
+    shortDesc = u"""Calculated in relation to CH3NH2 from thermo_DFT_CCSDTF12_BAC values""",
+    longDesc = 
+u"""
+
+""",
+)
+
+entry(
+    index = 114,
+    label = "NH_O",
+    group = 
+"""
+1 * N3s u1 p1 {2,S} {3,S}
+2   O   u0 p2 {1,S}
+3   H   u0 p0 {1,S}
+""",
+    thermo = ThermoData(
+        Tdata = ([300,400,500,600,800,1000,1500],'K'),
+        Cpdata = ([-1.26,-1.89,-2.4,-2.79,-3.17,-3.37,-3.65],'cal/(mol*K)'),
+        H298 = (32.92,'kcal/mol'),
+        S298 = (-0.27,'cal/(mol*K)'),
+    ),
+    shortDesc = u"""Calculated in relation to NH2OH from thermo_DFT_CCSDTF12_BAC values""",
+    longDesc = 
+u"""
+
+""",
+)
+
+entry(
+    index = 115,
+    label = "NH_N",
+    group = 
+"""
+1 * N3s u1 p1 {2,S} {3,S}
+2   N   u0 px {1,S}
+3   H   u0 p0 {1,S}
+""",
+    thermo = ThermoData(
+        Tdata = ([300,400,500,600,800,1000,1500],'K'),
+        Cpdata = ([-1.77,-2.62,-3.28,-3.79,-4.56,-5.11,-5.85],'cal/(mol*K)'),
+        H298 = (30.18,'kcal/mol'),
+        S298 = (-0.33,'cal/(mol*K)'),
+    ),
+    shortDesc = u"""Calculated in relation to NH2NH2 from thermo_DFT_CCSDTF12_BAC values""",
+    longDesc = 
+u"""
+
+""",
+)
+
+entry(
+    index = 116,
+    label = "N3dJ",
+    group = 
+"""
+1 * N3d u1 p1
+""",
+    thermo = u'N3d_Cs',
+    shortDesc = u"""""",
+    longDesc = 
+u"""
+
+""",
+)
+
+entry(
+    index = 117,
+    label = "N3d_C",
+    group = 
+"""
+1 * N3d u1 p1 {2,D}
+2   C   u0 p0 {1,D}
+""",
+    thermo = ThermoData(
+        Tdata = ([300,400,500,600,800,1000,1500],'K'),
+        Cpdata = ([-0.2,-0.6,-1.07,-1.56,-2.44,-3.15,-4.26],'cal/(mol*K)'),
+        H298 = (36.24,'kcal/mol'),
+        S298 = (-0.71,'cal/(mol*K)'),
+    ),
+    shortDesc = u"""Calculated in relation to CH2NH from thermo_DFT_CCSDTF12_BAC values""",
+    longDesc = 
+u"""
+
+""",
+)
+
+entry(
+    index = 118,
+    label = "N3d_O",
+    group = 
+"""
+1 * N3d u1 p1 {2,D}
+2   O   u0 p2 {1,D}
+""",
+    thermo = ThermoData(
+        Tdata = ([300,400,500,600,800,1000,1500],'K'),
+        Cpdata = ([-1.12,-1.36,-1.67,-2.0,-2.62,-3.11,-3.89],'cal/(mol*K)'),
+        H298 = (-3.49,'kcal/mol'),
+        S298 = (-3.69,'cal/(mol*K)'),
+    ),
+    shortDesc = u"""Calculated in relation to HNO from thermo_DFT_CCSDTF12_BAC values""",
+    longDesc = 
+u"""
+
+""",
+)
+
+entry(
+    index = 119,
+    label = "N3d_N",
+    group = 
+"""
+1 * N3d u1 p1 {2,D}
+2   N   u0 px {1,D}
+""",
+    thermo = ThermoData(
+        Tdata = ([300,400,500,600,800,1000,1500],'K'),
+        Cpdata = ([-0.14,-0.51,-0.97,-1.46,-2.33,-3.02,-4.16],'cal/(mol*K)'),
+        H298 = (11.98,'kcal/mol'),
+        S298 = (1.49,'cal/(mol*K)'),
+    ),
+    shortDesc = u"""Calculated in relation to HNNH from thermo_DFT_CCSDTF12_BAC values""",
+    longDesc = 
+u"""
+
+""",
+)
+
+entry(
     index = 134,
     label = "SiJ",
     group = 
@@ -5769,6 +5965,99 @@ entry(
         S298 = (-3.31,'cal/(mol*K)'),
     ),
     shortDesc = u"""CBS-QB3 GA 1D-HR Aaron Vandeputte 2009""",
+    longDesc = 
+u"""
+
+""",
+)
+
+entry(
+    index = 270,
+    label = "NJ2_triplet",
+    group = 
+"""
+1 * N u2 px
+""",
+    thermo = u'N3sJ2',
+    shortDesc = u"""""",
+    longDesc = 
+u"""
+
+""",
+)
+
+entry(
+    index = 271,
+    label = "N3sJ2",
+    group = 
+"""
+1 * N3s u2 p1
+""",
+    thermo = u'NJ2_C',
+    shortDesc = u"""""",
+    longDesc = 
+u"""
+
+""",
+)
+
+entry(
+    index = 272,
+    label = "NHJ2",
+    group = 
+"""
+1 * N3s u2 p1 {2,S}
+2   H   u0 p0 {1,S}
+""",
+    thermo = ThermoData(
+        Tdata = ([300,400,500,600,800,1000,1500],'K'),
+        Cpdata = ([-1.54,-2.1,-2.78,-3.47,-4.75,-5.77,-7.61],'cal/(mol*K)'),
+        H298 = (96.43,'kcal/mol'),
+        S298 = (-2.72,'cal/(mol*K)'),
+    ),
+    shortDesc = u"""Calculated in relation to ammonia from thermo_DFT_CCSDTF12_BAC values""",
+    longDesc = 
+u"""
+
+""",
+)
+
+entry(
+    index = 273,
+    label = "NJ2_C",
+    group = 
+"""
+1 * N3s u2 p1 {2,S}
+2   C   u0 p0 {1,S}
+""",
+    thermo = ThermoData(
+        Tdata = ([300,400,500,600,800,1000,1500],'K'),
+        Cpdata = ([-2.36,-2.97,-3.51,-4.0,-5.0,-5.96,-7.75],'cal/(mol*K)'),
+        H298 = (80.61,'kcal/mol'),
+        S298 = (-3.04,'cal/(mol*K)'),
+    ),
+    shortDesc = u"""Calculated in relation to CH3NH2 from thermo_DFT_CCSDTF12_BAC values""",
+    longDesc = 
+u"""
+
+""",
+)
+
+entry(
+    index = 274,
+    label = "NJ2_O",
+    group = 
+"""
+1 * N3s u2 p1 {2,S}
+2   O   u0 p2 {1,S}
+""",
+    thermo = ThermoData(
+        Tdata = ([300,400,500,600,800,1000,1500],'K'),
+        Cpdata = ([-2.05,-3.22,-4.34,-5.36,-6.88,-7.91,-9.25],'cal/(mol*K)'),
+        H298 = (61.95,'kcal/mol'),
+        S298 = (-0.91,'cal/(mol*K)'),
+    ),
+    shortDesc = u"""Calculated in relation to NH2OH from thermo_DFT_CCSDTF12_BAC values""",
     longDesc = 
 u"""
 
@@ -6408,6 +6697,16 @@ L1: Radical
                     L6: C(=O)OOJ
                     L6: C3COOJ
                 L5: HOOJ
+        L3: NJ
+            L4: N3sJ
+                L5: NH2
+                L5: NH_C
+                L5: NH_O
+                L5: NH_N
+            L4: N3dJ
+                L5: N3d_C
+                L5: N3d_O
+                L5: N3d_N
         L3: SiJ
         L3: SJ
             L4: SJ-H
@@ -6435,6 +6734,11 @@ L1: Radical
             L4: CdJ2_triplet
                 L5: CCdJ2_triplet
             L4: CdJ2-Sd_triplet
+        L3: NJ2_triplet
+            L4: N3sJ2
+                L5: NHJ2
+                L5: NJ2_C
+                L5: NJ2_O
         L3: Oa_triplet
         L3: SiJ2_triplet
         L3: SJ2_triplet

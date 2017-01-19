@@ -41999,7 +41999,7 @@ entry(
 1 * N1sc u0 p3 c-2 {2,S}
 2   R    ux px     {1,S}
 """,
-    thermo = u'N1s',
+    thermo = u'N1s-H',
     shortDesc = u"""""",
     longDesc = 
 u"""
@@ -42180,7 +42180,7 @@ entry(
     label = "N3s-CHH",
     group = 
 """
-1 * N3s u0 {2,S} {3,S} {4,S}
+1 * N3s u0 p1 {2,S} {3,S} {4,S}
 2   C   u0 {1,S}
 3   H   u0 {1,S}
 4   H   u0 {1,S}
@@ -42203,7 +42203,7 @@ entry(
     label = "N3s-CsHH",
     group = 
 """
-1 * N3s u0 {2,S} {3,S} {4,S}
+1 * N3s u0 p1 {2,S} {3,S} {4,S}
 2   Cs  u0 {1,S}
 3   H   u0 {1,S}
 4   H   u0 {1,S}
@@ -42226,7 +42226,7 @@ entry(
     label = "N3s-CbHH",
     group = 
 """
-1 * N3s u0 {2,S} {3,S} {4,S}
+1 * N3s u0 p1 {2,S} {3,S} {4,S}
 2   Cb  u0 {1,S}
 3   H   u0 {1,S}
 4   H   u0 {1,S}
@@ -42249,7 +42249,7 @@ entry(
     label = "N3s-(CO)HH",
     group = 
 """
-1 * N3s u0 {2,S} {3,S} {4,S}
+1 * N3s u0 p1 {2,S} {3,S} {4,S}
 2   CO  u0 {1,S}
 3   H   u0 {1,S}
 4   H   u0 {1,S}
@@ -42272,7 +42272,7 @@ entry(
     label = "N3s-CdHH",
     group = 
 """
-1 * N3s u0 {2,S} {3,S} {4,S}
+1 * N3s u0 p1 {2,S} {3,S} {4,S}
 2   Cd  u0 {1,S}
 3   H   u0 {1,S}
 4   H   u0 {1,S}
@@ -42295,7 +42295,7 @@ entry(
     label = "N3s-CCH",
     group = 
 """
-1 * N3s u0 {2,S} {3,S} {4,S}
+1 * N3s u0 p1 {2,S} {3,S} {4,S}
 2   C   u0 {1,S}
 3   C   u0 {1,S}
 4   H   u0 {1,S}
@@ -42318,7 +42318,7 @@ entry(
     label = "N3s-CsCsH",
     group = 
 """
-1 * N3s u0 {2,S} {3,S} {4,S}
+1 * N3s u0 p1 {2,S} {3,S} {4,S}
 2   Cs  u0 {1,S}
 3   Cs  u0 {1,S}
 4   H   u0 {1,S}
@@ -42341,7 +42341,7 @@ entry(
     label = "N3s-CbCsH",
     group = 
 """
-1 * N3s u0 {2,S} {3,S} {4,S}
+1 * N3s u0 p1 {2,S} {3,S} {4,S}
 2   Cb  u0 {1,S}
 3   Cs  u0 {1,S}
 4   H   u0 {1,S}
@@ -42364,7 +42364,7 @@ entry(
     label = "N3s-CbCbH",
     group = 
 """
-1 * N3s u0 {2,S} {3,S} {4,S}
+1 * N3s u0 p1 {2,S} {3,S} {4,S}
 2   Cb  u0 {1,S}
 3   Cb  u0 {1,S}
 4   H   u0 {1,S}
@@ -42387,7 +42387,7 @@ entry(
     label = "N3s-(CO)CsH",
     group = 
 """
-1 * N3s u0 {2,S} {3,S} {4,S}
+1 * N3s u0 p1 {2,S} {3,S} {4,S}
 2   CO  u0 {1,S}
 3   Cs  u0 {1,S}
 4   H   u0 {1,S}
@@ -42410,7 +42410,7 @@ entry(
     label = "N3s-(CO)CbH",
     group = 
 """
-1 * N3s u0 {2,S} {3,S} {4,S}
+1 * N3s u0 p1 {2,S} {3,S} {4,S}
 2   CO  u0 {1,S}
 3   Cb  u0 {1,S}
 4   H   u0 {1,S}
@@ -42433,7 +42433,7 @@ entry(
     label = "N3s-(CO)(CO)H",
     group = 
 """
-1 * N3s u0 {2,S} {3,S} {4,S}
+1 * N3s u0 p1 {2,S} {3,S} {4,S}
 2   CO  u0 {1,S}
 3   CO  u0 {1,S}
 4   H   u0 {1,S}
@@ -42456,7 +42456,7 @@ entry(
     label = "N3s-(CtN3t)CsH",
     group = 
 """
-1 * N3s u0 {2,S} {4,S} {5,S}
+1 * N3s u0 p1 {2,S} {4,S} {5,S}
 2   Ct  u0 {1,S} {3,T}
 3   N3t u0 {2,T}
 4   Cs  u0 {1,S}
@@ -42480,7 +42480,7 @@ entry(
     label = "N3s-(CdCd)CsH",
     group = 
 """
-1 * N3s u0 {2,S} {5,S} {6,S}
+1 * N3s u0 p1 {2,S} {5,S} {6,S}
 2   Cd  u0 {1,S} {3,D} {4,S}
 3   Cd  u0 {2,D}
 4   R   u0 {2,S}
@@ -42505,7 +42505,7 @@ entry(
     label = "N3s-CCC",
     group = 
 """
-1 * N3s u0 {2,S} {3,S} {4,S}
+1 * N3s u0 p1 {2,S} {3,S} {4,S}
 2   C   u0 {1,S}
 3   C   u0 {1,S}
 4   C   u0 {1,S}
@@ -42528,7 +42528,7 @@ entry(
     label = "N3s-CsCsCs",
     group = 
 """
-1 * N3s u0 {2,S} {3,S} {4,S}
+1 * N3s u0 p1 {2,S} {3,S} {4,S}
 2   Cs  u0 {1,S}
 3   Cs  u0 {1,S}
 4   Cs  u0 {1,S}
@@ -42551,7 +42551,7 @@ entry(
     label = "N3s-CbCsCs",
     group = 
 """
-1 * N3s u0 {2,S} {3,S} {4,S}
+1 * N3s u0 p1 {2,S} {3,S} {4,S}
 2   Cb  u0 {1,S}
 3   Cs  u0 {1,S}
 4   Cs  u0 {1,S}
@@ -42574,7 +42574,7 @@ entry(
     label = "N3s-(CO)CsCs",
     group = 
 """
-1 * N3s u0 {2,S} {3,S} {4,S}
+1 * N3s u0 p1 {2,S} {3,S} {4,S}
 2   CO  u0 {1,S}
 3   Cs  u0 {1,S}
 4   Cs  u0 {1,S}
@@ -42597,7 +42597,7 @@ entry(
     label = "N3s-(CO)(CO)Cs",
     group = 
 """
-1 * N3s u0 {2,S} {3,S} {4,S}
+1 * N3s u0 p1 {2,S} {3,S} {4,S}
 2   CO  u0 {1,S}
 3   CO  u0 {1,S}
 4   Cs  u0 {1,S}
@@ -42620,7 +42620,7 @@ entry(
     label = "N3s-(CO)(CO)Cb",
     group = 
 """
-1 * N3s u0 {2,S} {3,S} {4,S}
+1 * N3s u0 p1 {2,S} {3,S} {4,S}
 2   CO  u0 {1,S}
 3   CO  u0 {1,S}
 4   Cb  u0 {1,S}
@@ -42643,7 +42643,7 @@ entry(
     label = "N3s-(CtN3t)CsCs",
     group = 
 """
-1 * N3s u0 {2,S} {4,S} {5,S}
+1 * N3s u0 p1 {2,S} {4,S} {5,S}
 2   Ct  u0 {1,S} {3,T}
 3   N3t u0 {2,T}
 4   Cs  u0 {1,S}
@@ -42667,7 +42667,7 @@ entry(
     label = "N3s-(CdCd)CsCs",
     group = 
 """
-1 * N3s u0 {2,S} {5,S} {6,S}
+1 * N3s u0 p1 {2,S} {5,S} {6,S}
 2   Cd  u0 {1,S} {3,D} {4,S}
 3   Cd  u0 {2,D}
 4   R   u0 {2,S}
@@ -42692,10 +42692,10 @@ entry(
     label = "N3s-N3sHH",
     group = 
 """
-1 * N3s u0 {2,S} {3,S} {4,S}
+1 * N3s u0 p1 {2,S} {3,S} {4,S}
 2   H   u0 {1,S}
 3   H   u0 {1,S}
-4   N3s u0 {1,S}
+4   N3s u0 p1 {1,S}
 """,
     thermo = ThermoData(
         Tdata = ([300,400,500,600,800,1000,1500],'K'),
@@ -42715,10 +42715,10 @@ entry(
     label = "N3s-N3dHH",
     group =
 """
-1 * N3s u0 {2,S} {3,S} {4,S}
+1 * N3s u0 p1 {2,S} {3,S} {4,S}
 2   H   u0 {1,S}
 3   H   u0 {1,S}
-4   N3d u0 {1,S}
+4   N3d u0 p1 {1,S}
 """,
     thermo = u'N3s-N3sHH',
     shortDesc = u"""""",
@@ -42733,7 +42733,7 @@ entry(
     label = "N3s-NCH",
     group = 
 """
-1 * N3s u0 {2,S} {3,S} {4,S}
+1 * N3s u0 p1 {2,S} {3,S} {4,S}
 2   N   u0 {1,S}
 3   C   u0 {1,S}
 4   H   u0 {1,S}
@@ -42756,10 +42756,10 @@ entry(
     label = "N3s-N3sCsH",
     group = 
 """
-1 * N3s u0 {2,S} {3,S} {4,S}
+1 * N3s u0 p1 {2,S} {3,S} {4,S}
 2   Cs  u0 {1,S}
 3   H   u0 {1,S}
-4   N3s u0 {1,S}
+4   N3s u0 p1 {1,S}
 """,
     thermo = ThermoData(
         Tdata = ([300,400,500,600,800,1000,1500],'K'),
@@ -42779,8 +42779,8 @@ entry(
     label = "N3s-N3sCbH",
     group = 
 """
-1 * N3s u0 {2,S} {3,S} {4,S}
-2   N3s u0 {1,S}
+1 * N3s u0 p1 {2,S} {3,S} {4,S}
+2   N3s u0 p1 {1,S}
 3   Cb  u0 {1,S}
 4   H   u0 {1,S}
 """,
@@ -42802,10 +42802,10 @@ entry(
     label = "N3s-CsH(N3dOd)",
     group = 
 """
-1 * N3s u0 {2,S} {3,S} {4,S}
+1 * N3s u0 p1 {2,S} {3,S} {4,S}
 2   Cs  u0 {1,S}
 3   H   u0 {1,S}
-4   N3d u0 {1,S} {5,D}
+4   N3d u0 p1 {1,S} {5,D}
 5   Od  u0 {4,D}
 """,
     thermo = ThermoData(
@@ -42826,7 +42826,7 @@ entry(
     label = "N3s-CsH(N5dOdOs)",
     group = 
 """
-1 * N3s u0 {2,S} {3,S} {4,S}
+1 * N3s u0 p1 {2,S} {3,S} {4,S}
 2   Cs  u0 {1,S}
 3   H   u0 {1,S}
 4   N5d u0 {1,S} {5,D} {6,S}
@@ -42851,12 +42851,12 @@ entry(
     label = "N3s-(CdCd)HN3s",
     group = 
 """
-1 * N3s u0 {2,S} {5,S} {6,S}
+1 * N3s u0 p1 {2,S} {5,S} {6,S}
 2   Cd  u0 {1,S} {3,D} {4,S}
 3   Cd  u0 {2,D}
 4   R   u0 {2,S}
 5   H   u0 {1,S}
-6   N3s u0 {1,S}
+6   N3s u0 p1 {1,S}
 """,
     thermo = ThermoData(
         Tdata = ([300,400,500,600,800,1000,1500],'K'),
@@ -42876,7 +42876,7 @@ entry(
     label = "N3s-NCC",
     group = 
 """
-1 * N3s u0 {2,S} {3,S} {4,S}
+1 * N3s u0 p1 {2,S} {3,S} {4,S}
 2   N   u0 {1,S}
 3   C   u0 {1,S}
 4   C   u0 {1,S}
@@ -42899,7 +42899,7 @@ entry(
     label = "N3s-NCsCs",
     group = 
 """
-1 * N3s u0 {2,S} {3,S} {4,S}
+1 * N3s u0 p1 {2,S} {3,S} {4,S}
 2   N   u0 {1,S}
 3   Cs  u0 {1,S}
 4   Cs  u0 {1,S}
@@ -42922,10 +42922,10 @@ entry(
     label = "N3s-CsCsN3s",
     group = 
 """
-1 * N3s u0 {2,S} {3,S} {4,S}
+1 * N3s u0 p1 {2,S} {3,S} {4,S}
 2   Cs  u0 {1,S}
 3   Cs  u0 {1,S}
-4   N3s u0 {1,S}
+4   N3s u0 p1 {1,S}
 """,
     thermo = ThermoData(
         Tdata = ([300,400,500,600,800,1000,1500],'K'),
@@ -42945,10 +42945,10 @@ entry(
     label = "N3s-CsCs(N3dOd)",
     group = 
 """
-1 * N3s u0 {2,S} {3,S} {4,S}
+1 * N3s u0 p1 {2,S} {3,S} {4,S}
 2   Cs  u0 {1,S}
 3   Cs  u0 {1,S}
-4   N3d u0 {1,S} {5,D}
+4   N3d u0 p1 {1,S} {5,D}
 5   Od  u0 {4,D}
 """,
     thermo = ThermoData(
@@ -42969,7 +42969,7 @@ entry(
     label = "N3s-CsCs(N5dOdOs)",
     group = 
 """
-1 * N3s u0 {2,S} {3,S} {4,S}
+1 * N3s u0 p1 {2,S} {3,S} {4,S}
 2   Cs  u0 {1,S}
 3   Cs  u0 {1,S}
 4   N5d u0 {1,S} {5,D} {6,S}
@@ -42994,7 +42994,7 @@ entry(
     label = "N3s-NCdCs",
     group = 
 """
-1 * N3s u0 {2,S} {3,S} {4,S}
+1 * N3s u0 p1 {2,S} {3,S} {4,S}
 2   N   u0 {1,S}
 3   Cd  u0 {1,S}
 4   Cs  u0 {1,S}
@@ -43017,12 +43017,12 @@ entry(
     label = "N3s-(CdCd)CsN3s",
     group = 
 """
-1 * N3s u0 {2,S} {5,S} {6,S}
+1 * N3s u0 p1 {2,S} {5,S} {6,S}
 2   Cd  u0 {1,S} {3,D} {4,S}
 3   Cd  u0 {2,D}
 4   R   u0 {2,S}
 5   Cs  u0 {1,S}
-6   N3s u0 {1,S}
+6   N3s u0 p1 {1,S}
 """,
     thermo = ThermoData(
         Tdata = ([300,400,500,600,800,1000,1500],'K'),
@@ -43042,7 +43042,7 @@ entry(
     label = "N3s-CsHOs",
     group = 
 """
-1 * N3s u0 {2,S} {3,S} {4,S}
+1 * N3s u0 p1 {2,S} {3,S} {4,S}
 2   Cs  u0 {1,S}
 3   H   u0 {1,S}
 4   Os  u0 {1,S}
@@ -43065,7 +43065,7 @@ entry(
     label = "N3s-CsCsOs",
     group = 
 """
-1 * N3s u0 {2,S} {3,S} {4,S}
+1 * N3s u0 p1 {2,S} {3,S} {4,S}
 2   Cs  u0 {1,S}
 3   Cs  u0 {1,S}
 4   Os  u0 {1,S}
@@ -43088,7 +43088,7 @@ entry(
     label = "N3s-OsHH",
     group = 
 """
-1 * N3s u0 {2,S} {3,S} {4,S}
+1 * N3s u0 p1 {2,S} {3,S} {4,S}
 2   Os  u0 {1,S}
 3   H   u0 {1,S}
 4   H   u0 {1,S}

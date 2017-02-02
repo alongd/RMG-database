@@ -43178,7 +43178,7 @@ entry(
     label = "N3s",
     group = 
 """
-1 * N3s u0 p1
+1 * N3s u0
 """,
     thermo = u'N3s-CsHH',
     shortDesc = u"""""",

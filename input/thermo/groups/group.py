@@ -43141,7 +43141,7 @@ entry(
     group = 
 """
 1 * N1d u0 p2 {2,D}
-2   R   ux px {1,D}
+2   R!H ux px {1,D}
 """,
     thermo = ThermoData(
         Tdata = ([300,400,500,600,800,1000,1500],'K'),

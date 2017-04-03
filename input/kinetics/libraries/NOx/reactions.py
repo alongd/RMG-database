@@ -89,6 +89,7 @@ Reference legend:
 [Lin2004] Z.F. Xu, M.C. Lin, Int. J. Chem. Kin., 2004, 36(4), 205-215, doi: 10.1002/kin.10178
 [Lin2005a] R.S. Zhu, M.C. Lin, Int. J. Chem. Kin., 2005, 37(10), 593-598, doi: 10.1002/kin.20066
 [Lin2005b] R.S. Zhu, M.C. Lin, Ab initio study on the oxidation of NCN by O and HO radicals: Prediction of the total rate constant and product branching ratios, in: 6th International Conference of Chemical Kinetics, NIST, Gaithersberg, MD, 2005
+[Lin2005c] Z.F. Xu, C.-H. Hsu, M.C. Lin, J. Chem. Phys., 2005, 122, 234308, doi: 10.1063/1.1917834
 [Lin2007a] R.S. Zhu, M.C. Lin, J. Phys. Chem. A, 2007, 111, 6766-6771, doi: 10.1021/jp068991b
 [Lin2007b] S. Xu, M.C. Lin, J. Phys. Chem. A, 2007, 111, 6730-6740, doi: 10.1021/jp069038+
 [Lin2009a] S. Xu, M.C. Lin, Proceedings of the Combustion Institute, 2009, 32, 99-106, doi: 10.1016/j.proci.2008.07.011
@@ -3488,6 +3489,24 @@ u"""
 Part of the "HCN" subset
 T range: 298-2840 K
 Review and reccomendation, p. 656, 13,5(c)
+""",
+)
+
+entry(
+     index = 199,
+     label = "HCO + NO <=> HNO + CO",
+     degeneracy = 1,
+     kinetics = Arrhenius(A=(1.04e+08, 'cm^3/(mol*s)'), n=1.47, Ea=(-1765, 'cal/mol'), T0=(1, 'K')),
+     shortDesc = u"""[Lin2005c]""",
+     longDesc =
+u"""
+Part of the "NOx" subset
+T range: 500-3000 K
+calculations done at the G2M(CC5)//B3LYP/6-311G(d, p) level of theory
+k(HNO+CO), p. 234308-10
+
+The Low T (200-500 K) rate is:
+    kinetics = Arrhenius(A=(1.85e+12, 'cm^3/(mol*s)'), n=0.10, Ea=(-481, 'cal/mol'), T0=(1, 'K')),
 """,
 )
 

@@ -94,19 +94,19 @@ restricts [C], see RMG-Py issue #514
 """,
 )
 
-entry(
-    label = "CH_doublet",
-    group = 
-"""
-1 C u1 p1 {2,S}
-2 H u0 {1,S}
-""",
-    shortDesc = u"""""",
-    longDesc = 
-u"""
+#entry(
+#    label = "CH_doublet",
+#    group = 
+#"""
+#1 C u1 p1 {2,S}
+#2 H u0 {1,S}
+#""",
+#    shortDesc = u"""""",
+#    longDesc = 
+#u"""
 
-""",
-)
+#""",
+#)
 
 entry(
     label = "C8H7S2J",
@@ -196,48 +196,48 @@ restricts H2CC, see RMG-Py issue #514
 """,
 )
 
-entry(
-    label = "Carbene_S_triplet",
-    group = 
-"""
-1 C   u2 p0 {2,S}
-2 R!H u0 {1,S}
-""",
-    shortDesc = u"""""",
-    longDesc = 
-u"""
+#entry(
+#    label = "Carbene_S_triplet",
+#    group = 
+#"""
+#1 C   u2 p0 {2,S}
+#2 R!H u0 {1,S}
+#""",
+#    shortDesc = u"""""",
+#    longDesc = 
+#u"""
 
-""",
-)
+#""",
+#)
 
-entry(
-    label = "Carbene_S_singlet",
-    group = 
-"""
-1 C   u0 p1 {2,S}
-2 R!H u0 {1,S}
-""",
-    shortDesc = u"""""",
-    longDesc = 
-u"""
-restricts HCOH, see RMG-Py issue #514
-""",
-)
+#entry(
+#    label = "Carbene_S_singlet",
+#    group = 
+#"""
+#1 C   u0 p1 {2,S}
+#2 R!H u0 {1,S}
+#""",
+#    shortDesc = u"""""",
+#    longDesc = 
+#u"""
+#restricts HCOH, see RMG-Py issue #514
+#""",
+#)
 
-entry(
-    label = "O3",
-    group = 
-"""
-1 O u0 {2,S}
-2 O u0 {1,S} {3,S}
-3 O u0 {2,S}
-""",
-    shortDesc = u"""""",
-    longDesc = 
-u"""
+#entry(
+#    label = "O3",
+#    group = 
+#"""
+#1 O u0 {2,S}
+#2 O u0 {1,S} {3,S}
+#3 O u0 {2,S}
+#""",
+#    shortDesc = u"""""",
+#    longDesc = 
+#u"""
 
-""",
-)
+#""",
+#)
 
 entry(
     label = "O3.",
@@ -370,90 +370,4 @@ See RMG-Py issue #253
 """,
 )
 
-entry(
-    label = "C=N[N]C#[C]",
-    group = 
-"""
-multiplicity [3]
-1 C u0 p0 c0 {2,D} {6,S} {7,S}
-2 N u0 p1 c0 {1,D} {3,S}
-3 N u1 p1 c0 {2,S} {4,S}
-4 C u0 p0 c0 {3,S} {5,T}
-5 C u1 p0 c0 {4,T}
-6 H u0 p0 c0 {1,S}
-7 H u0 p0 c0 {1,S}
-""",
-    shortDesc = u"""""",
-    longDesc = 
-u"""
-EA sims (xa1456-xa1459) crashed with error:
-Did not find reverse reaction in reaction family H_Abstraction for reaction <Molecule "N(=C=[CH])N=[CH]"> + <Molecule "C=N[N]C#[C]"> <=> <Molecule "C=N[N]C#C"> + <Molecule "N(=C=[C])N=[CH]">.
-See RMG-Py issue #806
-""",
-)
-
-entry(
-    label = "C1=CO[N][N]1",
-    group = 
-"""
-multiplicity [3]
-1 C u0 p0 c0 {2,D} {5,S} {6,S}
-2 C u0 p0 c0 {1,D} {3,S} {7,S}
-3 O u0 p2 c0 {2,S} {4,S}
-4 N u1 p1 c0 {3,S} {5,S}
-5 N u1 p1 c0 {1,S} {4,S}
-6 H u0 p0 c0 {1,S}
-7 H u0 p0 c0 {2,S}
-""",
-    shortDesc = u"""""",
-    longDesc = 
-u"""
-EA sims (xa1462-xa1465) crashed with error:
-Invalid k(E) values computed for path reaction "C(=[CH])N=[N+][O-](2989) <=> C1=CO[N][N]1(3358)".
-""",
-)
-
-entry(
-    label = "C1N[C](N1)[O]",
-    group = 
-"""
-multiplicity [3]
-1 C u0 p0 c0 {2,S} {4,S} {6,S} {7,S}
-2 N u0 p1 c0 {1,S} {3,S} {8,S}
-3 C u1 p0 c0 {2,S} {4,S} {5,S}
-4 N u0 p1 c0 {1,S} {3,S} {9,S}
-5 O u1 p2 c0 {3,S}
-6 H u0 p0 c0 {1,S}
-7 H u0 p0 c0 {1,S}
-8 H u0 p0 c0 {2,S}
-9 H u0 p0 c0 {4,S}
-""",
-    shortDesc = u"""""",
-    longDesc = 
-u"""
-EA sim (xa1467) crashed with error:
-Mcoll = numpy.zeros((Nisom,Ngrains,NJ,Ngrains,NJ), numpy.float64)
-""",
-)
-
-entry(
-    label = "C(=[CH])[O-][N+]#N",
-    group = 
-"""
-multiplicity [2]
-1 C u0 p0 c0 {2,D} {4,S} {7,S}
-2 C u1 p0 c0 {1,D} {3,S}
-3 H u0 p0 c0 {2,S}
-4 O u0 p2 c-1 {1,S} {5,S}
-5 N u0 p0 c+1 {4,S} {6,T}
-6 N u0 p1 c0 {5,T}
-7 H u0 p0 c0 {1,S}
-""",
-    shortDesc = u"""""",
-    longDesc = 
-u"""
-EA sim (xa1479) crashed with error:
-Invalid k(E) values computed for path reaction "C(=[CH])[O-][N+]#N(6454) <=> c1cn[n+][o-]1(6594)".
-""",
-)
 

@@ -150,6 +150,9 @@ entry(
 u"""
 Part of the "Thermal (Zeldovich) NO" mechanism
 See [Hanson1990b] R1; p. 856
+
+Uncertainty: +/-20% at 1400 K to +/- 10% at 3500 K
+
 [DeanBozz2000] reccomend using [Hanson1990b]'s value, which shock-tube measurements are in close agreement with 5 other studies (see Fig 2.1 in [DeanBozz2000] p. 142)
 [GRI] fitted to the data of 3 of the sources in [DeanBozz2000]
 Also available in RMG's libraries as:
@@ -2439,7 +2442,7 @@ entry(
     index = 133,
     label = "NH2 + NO <=> N2 + H2O",
     degeneracy = 1,
-    kinetics = Arrhenius(A=(1.20e+17, 'cm^3/(mol*s)'), n=1.61, Ea=(298, 'cal/mol'), T0=(1, 'K')),
+    kinetics = Arrhenius(A=(1.20e+17, 'cm^3/(mol*s)'), n=-1.61, Ea=(298, 'cal/mol'), T0=(1, 'K')),
     shortDesc = u"""[Lin1999a]""",
     longDesc =
 u"""
@@ -2983,18 +2986,15 @@ entry(
     index = 165,
     label = "NH + NO2 <=> HNNO2",
     degeneracy = 1,
-    kinetics = Troe(
-        arrheniusHigh = Arrhenius(A=(1.42e+16, 'cm^3/(mol*s)'), n=-0.75, Ea=(1226, 'cal/mol'), T0=(1, 'K')),
-        arrheniusLow = Arrhenius(A=(0, 'cm^6/(mol^2*s)'), n=0, Ea=(0, 'cal/mol'), T0=(1, 'K')),
-        alpha=1, T3=(1e-30, 'K'), T1=(1e+30, 'K'), efficiencies={}),
+    kinetics = Arrhenius(A=(1.42e+16, 'cm^3/(mol*s)'), n=-0.75, Ea=(1226, 'cal/mol'), T0=(1, 'K')),
     shortDesc = u"""[Lin1998d]""",
     longDesc =
 u"""
 Part of the "NOx" subset
 T range: 500-3000 K
 calculations done at the B3LYP/6-311D(d,p)//B3LYP/6-311D(d,p) level of theory
-No stabilization at low pressures
 k3a, p. 8893
+No stabilization at low pressures, only K3a_inf is given (k3a_low = 0)
 reverse rate also available from the same study (k1a)
 Added as a training reaction to Birad_R_Recombination
 """,
@@ -3004,18 +3004,16 @@ entry(
     index = 166,
     label = "NH + NO2 <=> N2O + OH",
     degeneracy = 1,
-    kinetics = Troe(
-        arrheniusHigh = Arrhenius(A=(0, 'cm^3/(mol*s)'), n=0, Ea=(0, 'cal/mol'), T0=(1, 'K')),
-        arrheniusLow = Arrhenius(A=(2.08e+13, 'cm^6/(mol^2*s)'), n=-0.49, Ea=(715, 'cal/mol'), T0=(1, 'K')),
-        alpha=1, T3=(1e-30, 'K'), T1=(1e+30, 'K'), efficiencies={}),
+    kinetics = ThirdBody(
+        arrheniusLow = Arrhenius(A=(2.08e+13, 'cm^6/(mol^2*s)'), n=-0.49, Ea=(715, 'cal/mol'), T0 = (1, 'K'))),
     shortDesc = u"""[Lin1998d]""",
     longDesc =
 u"""
 Part of the "NOx" subset
 T range: 500-3000 K
 calculations done at the B3LYP/6-311D(d,p)//B3LYP/6-311D(d,p) level of theory
-No production of N2O at the high pressure limit
 k3b, p. 8893
+No production of N2O at the high pressure limit (k3b_inf = 0)
 """,
 )
 
@@ -3117,13 +3115,14 @@ entry(
     index = 173,
     label = "CH2O + NO2 <=> CHO + HONO",
     degeneracy = 3,
-    kinetics = Arrhenius(A=(8.55e+16, 'cm^3/(mol*s)'), n=5.64, Ea=(9221, 'cal/mol'), T0=(1, 'K')),
+    kinetics = Arrhenius(A=(1.42e-07, 'cm^3/(mol*s)'), n=5.64, Ea=(9221, 'cal/mol'), T0=(1, 'K')),
     shortDesc = u"""[Lin2003c]""",
     longDesc =
 u"""
 Part of the "NOx" subset
 T range: 200-3000 K
 calculations done at the G2M//B3LYP/6−311+G(d,p) and G2M//MPW1PW91/6−311+G(3df,2p) levels of theory
+k1
 * There are two other pathways for the formation of these products, this is the fastest one. k_tot was also given in the paper.
 Added as a training reaction to H_Abstraction
 """,
@@ -3133,13 +3132,14 @@ entry(
     index = 174,
     label = "CH2O + NO2 <=> CHO + HNO2",
     degeneracy = 1,
-    kinetics = Arrhenius(A=(6.44e+22, 'cm^3/(mol*s)'), n=4.22, Ea=(19852, 'cal/mol'), T0=(1, 'K')),
+    kinetics = Arrhenius(A=(1.07e-01, 'cm^3/(mol*s)'), n=4.22, Ea=(19852, 'cal/mol'), T0=(1, 'K')),
     shortDesc = u"""[Lin2003c]""",
     longDesc =
 u"""
 Part of the "NOx" subset
 T range: 200-3000 K
 calculations done at the G2M//B3LYP/6−311+G(d,p) and G2M//MPW1PW91/6−311+G(3df,2p) levels of theory
+k2
 """,
 )
 

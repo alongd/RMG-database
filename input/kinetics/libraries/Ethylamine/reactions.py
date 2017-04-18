@@ -233,3 +233,35 @@ entry(
     shortDesc = u"""Table 2, R27: 1,2-elimination""",
 )
 
+entry(
+    index = 28,
+    label = "CH3NH2 <=> CH3 + NH2",
+    degeneracy = 1,
+    kinetics = ThirdBody(
+        arrheniusLow = Arrhenius(A=(2.51e+16, 'cm^3/(mol*s)'), n=0, Ea=(56500, 'cal/mol'), T0 = (1, 'K'), Tmin=(1550, 'K'), Tmax=(1900, 'K'))),
+    longDesc = 
+u"""
+M. Votsmeier, S. Song, D.F. Davidson, R.K. Hanson
+Shock Tube Study of Monomethylamine Thermal Decomposition and NH2 High Temperature Absorption Coefficient
+Int. J. Chem. Kin., 1999, 31(5), 323-330
+doi: 10.1002/(SICI)1097-4601(1999)31:5<323::AID-KIN1>3.0.CO;2-X
+""",
+)
+
+entry(
+    index = 29,
+    label = "NCC <=> CH3CH2 + NH2",
+    degeneracy = 1,
+    kinetics = ThirdBody(
+        arrheniusLow = Arrhenius(A=(2.51e+16, 'cm^3/(mol*s)'), n=0, Ea=(56500, 'cal/mol'), T0 = (1, 'K'), Tmin=(1550, 'K'), Tmax=(1900, 'K'))),
+    longDesc = 
+u"""
+Same kinetics as for CH3NH2 <=> CH3 + NH2 were taken
+
+M. Votsmeier, S. Song, D.F. Davidson, R.K. Hanson
+Shock Tube Study of Monomethylamine Thermal Decomposition and NH2 High Temperature Absorption Coefficient
+Int. J. Chem. Kin., 1999, 31(5), 323-330
+doi: 10.1002/(SICI)1097-4601(1999)31:5<323::AID-KIN1>3.0.CO;2-X
+""",
+)
+

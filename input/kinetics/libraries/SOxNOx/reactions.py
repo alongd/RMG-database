@@ -1343,22 +1343,6 @@ Shock Tube
 )
 
 entry(
-    index = 63,
-    label = "NCO <=> CO + N",
-    degeneracy = 1,
-    kinetics = ThirdBody(
-        arrheniusLow = Arrhenius(A=(6.31e+16, 'cm^3/(mol*s)'), n=-0.5, Ea=(47700, 'cal/mol'), T0 = (1, 'K'), Tmin=(2150, 'K'), Tmax=(2400, 'K'))),
-    shortDesc = u"""[Hanson1984b]""",
-    longDesc =
-u"""
-Part of the "Prompt NO, NCN subset" mechanism
-k4
-T range: 2150-2400 K
-Shock Tube
-""",
-)
-
-entry(
     index = 64,
     label = "CN + O2 <=> NCO + O",
     degeneracy = 1,
@@ -3768,22 +3752,6 @@ calculations done at the CCSD(T)-F12a/cc-pVTZ-F12//M06-2X/MG3S level of theory
 )
 
 entry(
-    index = 208,
-    label = "HCN + O <=> CN + OH",
-    degeneracy = 1,
-    kinetics = Arrhenius(A=(2.0e+08, 'cm^3/(mol*s)'), n=1.47, Ea=(7550, 'cal/mol'), T0=(1, 'K'), Tmin=(500, 'K'), Tmax=(2500, 'K')),
-    shortDesc = u"""[Herron1991]""",
-    longDesc =
-u"""
-Part of the "HCN" subset
-T range: 500-2500 K
-Review and reccomendation, p. 653, 13,3(a)
-
-Added as a training reaction to H_Abstraction
-""",
-)
-
-entry(
     index = 209,
     label = "CN + OH <=> NCO + H",
     degeneracy = 1,
@@ -3809,20 +3777,6 @@ u"""
 Part of the "HCN" subset
 T range: 500-2500 K
 Review and reccomendation, p. 653, 13,3(b)
-""",
-)
-
-entry(
-    index = 211,
-    label = "HCN + O <=> NCO + H",
-    degeneracy = 1,
-    kinetics = Arrhenius(A=(2.7e+11, 'cm^3/(mol*s)'), n=1.58, Ea=(26600, 'cal/mol'), T0=(1, 'K'), Tmin=(500, 'K'), Tmax=(2500, 'K')),
-    shortDesc = u"""[Herron1991]""",
-    longDesc =
-u"""
-Part of the "HCN" subset
-T range: 500-2500 K
-Review and reccomendation, p. 653, 13,3(c)
 """,
 )
 

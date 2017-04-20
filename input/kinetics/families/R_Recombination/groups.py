@@ -42,17 +42,17 @@ entry(
     label = "S_rad",
     group = 
 """
-1 * S u1
+1 * S u1 px
 """,
     kinetics = None,
 )
 
 entry(
     index = 4,
-    label = "SJ",
+    label = "S2sJ",
     group = 
 """
-1 * S2s u1
+1 * S2s u1 p2
 """,
     kinetics = None,
 )
@@ -62,8 +62,8 @@ entry(
     label = "SsJ-H",
     group = 
 """
-1 * S2s u1 {2,S}
-2   H  u0 {1,S}
+1 * S2s u1 p2 {2,S}
+2   H   u0    {1,S}
 """,
     kinetics = None,
 )
@@ -73,8 +73,8 @@ entry(
     label = "SsJ-C",
     group = 
 """
-1 * S2s u1 {2,S}
-2   C  u0 {1,S}
+1 * S2s u1 p2 {2,S}
+2   C   u0    {1,S}
 """,
     kinetics = None,
 )
@@ -84,8 +84,8 @@ entry(
     label = "SsJ-Cs",
     group = 
 """
-1 * S2s u1 {2,S}
-2   Cs u0 {1,S}
+1 * S2s u1 p2 {2,S}
+2   Cs  u0    {1,S}
 """,
     kinetics = None,
 )
@@ -95,8 +95,8 @@ entry(
     label = "SsJ-Ct",
     group = 
 """
-1 * S2s u1 {2,S}
-2   Ct u0 {1,S}
+1 * S2s u1 p2 {2,S}
+2   Ct  u0    {1,S}
 """,
     kinetics = None,
 )
@@ -106,8 +106,8 @@ entry(
     label = "SsJ-Cb",
     group = 
 """
-1 * S2s u1 {2,S}
-2   Cb u0 {1,S}
+1 * S2s u1 p2 {2,S}
+2   Cb  u0    {1,S}
 """,
     kinetics = None,
 )
@@ -117,9 +117,9 @@ entry(
     label = "SsJ-Cd",
     group = 
 """
-1 * S2s u1 {2,S}
-2   Cd u0 {1,S} {3,D}
-3   C  u0 {2,D}
+1 * S2s u1 p2 {2,S}
+2   Cd  u0    {1,S} {3,D}
+3   C   u0    {2,D}
 """,
     kinetics = None,
 )
@@ -129,8 +129,8 @@ entry(
     label = "SsJ-C=S",
     group = 
 """
-1 * S2s u1 {2,S}
-2   CS u0 {1,S}
+1 * S2s u1 p2 {2,S}
+2   CS  u0    {1,S}
 """,
     kinetics = None,
 )
@@ -140,8 +140,8 @@ entry(
     label = "SsJ-S2s",
     group = 
 """
-1 * S2s u1 {2,S}
-2   S2s u0 {1,S}
+1 * S2s u1 p2 {2,S}
+2   S2s u0 p2 {1,S}
 """,
     kinetics = None,
 )
@@ -151,8 +151,19 @@ entry(
     label = "SsJ-Os",
     group = 
 """
-1 * S2s u1 {2,S}
-2   Os u0 {1,S}
+1 * S2s u1 p2 {2,S}
+2   Os  u0 p2 {1,S}
+""",
+    kinetics = None,
+)
+ 
+entry(
+    index = 14,
+    label = "S2_birad",
+    group = 
+"""
+1 * S2s u1 p2 {2,S}
+2   S2s u1 p2 {1,S}
 """,
     kinetics = None,
 )
@@ -1506,7 +1517,7 @@ tree(
 L1: Y_rad
     L2: H_rad
     L2: S_rad
-        L3: SJ
+        L3: S2sJ
             L4: SsJ-H
             L4: SsJ-C
                 L5: SsJ-Cs
@@ -1516,6 +1527,7 @@ L1: Y_rad
                 L5: SsJ-C=S
             L4: SsJ-S2s
             L4: SsJ-Os
+            L4: S2_birad
     L2: Ct_rad
         L3: Ct_rad/Ct
         L3: Ct_rad/Nt

@@ -329,8 +329,8 @@ entry(
     label = "S_rad",
     group = 
 """
-1 *1 S u1 {2,S}
-2    R u0 {1,S}
+1 *1 S u1 px {2,S}
+2    R u0    {1,S}
 """,
     kinetics = None,
 )
@@ -340,8 +340,8 @@ entry(
     label = "S2b",
     group = 
 """
-1 *1 S u1 {2,S}
-2    S u1 {1,S}
+1 *1 S u1 p2 {2,S}
+2    S u1 p2 {1,S}
 """,
     kinetics = None,
 )
@@ -351,8 +351,8 @@ entry(
     label = "S_pri_rad",
     group = 
 """
-1 *1 S u1 {2,S}
-2    H u0 {1,S}
+1 *1 S u1 p2 {2,S}
+2    H u0    {1,S}
 """,
     kinetics = None,
 )
@@ -362,8 +362,8 @@ entry(
     label = "S_sec_rad",
     group = 
 """
-1 *1 S   u1 {2,S}
-2    R!H u0 {1,S}
+1 *1 S   u1 p2 {2,S}
+2    R!H u0    {1,S}
 """,
     kinetics = None,
 )
@@ -373,8 +373,8 @@ entry(
     label = "S_rad/NonDeC",
     group = 
 """
-1 *1 S  u1 {2,S}
-2    Cs u0 {1,S}
+1 *1 S  u1 p2 {2,S}
+2    Cs u0    {1,S}
 """,
     kinetics = None,
 )
@@ -384,8 +384,8 @@ entry(
     label = "S_rad/NonDeS",
     group = 
 """
-1 *1 S u1 {2,S}
-2    S u0 {1,S}
+1 *1 S u1 p2 {2,S}
+2    S u0    {1,S}
 """,
     kinetics = None,
 )
@@ -395,8 +395,8 @@ entry(
     label = "S_rad/OneDe",
     group = 
 """
-1 *1 S             u1 {2,S}
-2    [Cd,Ct,Cb,CO] u0 {1,S}
+1 *1 S             u1 p2 {2,S}
+2    [Cd,Ct,Cb,CO] u0    {1,S}
 """,
     kinetics = None,
 )
@@ -1443,6 +1443,45 @@ entry(
 1 *2 O u0 {2,S} {3,S}
 2 *3 N u1 {1,S}
 3 *4 H u0 {1,S}
+""",
+    kinetics = None,
+)
+ 
+ entry(
+    index = 240,
+    label = "O_Srad",
+    group = 
+"""
+1 *2 O u0 {2,S} {3,S}
+2 *3 S u1 {1,S}
+3 *4 H u0 {1,S}
+""",
+    kinetics = None,
+)
+
+entry(
+    index = 241,
+    label = "O_SradOd",
+    group = 
+"""
+1 *2 O  u0        {2,S} {3,S}
+2 *3 S  u1 p[0,1] {1,S} {4,D}
+3 *4 H  u0        {1,S}
+4    Od u0        {2,D}
+""",
+    kinetics = None,
+)
+
+entry(
+    index = 242,
+    label = "O_SradOdOd",
+    group = 
+"""
+1 *2 O     u0    {2,S} {3,S}
+2 *3 S6dd  u1 p0 {1,S} {4,D} {5,D}
+3 *4 H     u0    {1,S}
+4    Od    u0    {2,D}
+5    Od    u0    {2,D}
 """,
     kinetics = None,
 )
@@ -2811,6 +2850,9 @@ L1: XH_Rrad_birad
                 L5: O_COrad
                 L5: O_Orad
                 L5: O_Nrad
+                L5: O_Srad
+                    L6: O_SradOd
+                        L7: O_SradOdOd
             L4: S_Rrad
                 L5: S_Csrad
                 L5: S_Cdrad

@@ -1447,7 +1447,7 @@ entry(
     kinetics = None,
 )
  
- entry(
+entry(
     index = 240,
     label = "O_Srad",
     group = 
@@ -3012,8 +3012,8 @@ forbidden(
     group = 
 """
 1 *3 [C,Si] u0 p2 {2,[S,D,T]}
-2 *2 R!H      ux {1,[S,D,T]} {3,S}
-3 *4 H        u0 {2,S}
+2 *2 R!H    ux    {1,[S,D,T]} {3,S}
+3 *4 H      u0    {2,S}
 """,
     shortDesc = u"""""",
     longDesc = 
@@ -3026,9 +3026,9 @@ forbidden(
     label = "XH_N_birad_singlet",
     group = 
 """
-1 *3 N u0 p2 {2,[S,D]}
-2 *2 R!H      ux {1,[S,D]} {3,S}
-3 *4 H        u0 {2,S}
+1 *3 N    u0 p2 {2,[S,D]}
+2 *2 R!H  ux    {1,[S,D]} {3,S}
+3 *4 H    u0    {2,S}
 """,
     shortDesc = u"""""",
     longDesc = 

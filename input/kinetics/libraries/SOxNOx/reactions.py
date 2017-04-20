@@ -4,7 +4,11 @@
 name = "SOxNOx"
 shortDesc = u""
 longDesc =u"""
-This library includes important SOx and NOx reactions.
+This library includes important SOx and NOx related reactions.
+It is by no means comprehensive: Reactions with kinetics in agreement with DeanBozz2000 were not duplicated here
+(although some reactions that do appear in DeanBozz2000 are given here with better rate estimates)
+This library should be used conjointly with other RMG library as detailed below, yet it should be given priority
+
 Prepared by Alon Grinberg Dana
 
 Notes for users:
@@ -150,6 +154,7 @@ Reference legend:
 [Tezaki2003] N. Isshiki, Y. Murakami, K. Tsuchiya, A. Tezaki, H. Matsui, J. Phys. Chem. A, 2003, 107(14), 2464–2469, doi: 10.1021/jp0200829
 [Varandas2005] P.J.S.B. Caridade, S.P.J. Rodrigues, F. Sousa, A.J.C. Varandas, J. Phys. Chem. A ,2005, 109, 2356-2363, doi: 10.1021/jp045102g
 [Wang1982] O.I. Smith, S. Tseregounis, S-N. Wang, Int. J. Chem. Kin., 1982, 14(6), 679-697, doi: 10.1002/kin.550140610
+[Yang2012] Y. Guan, B. Yang, J. Comp. Chem., 2012, 33(23), 1870-1879, doi: 10.1002/jcc.23020
 """
 
 entry(
@@ -4879,6 +4884,55 @@ The overall rate "S + NO <=> products" was determined, and the branching ratio f
 A branching ratio of 10% was ASSUMED here.
 """,
 )
+
+entry(
+    index = 283,
+    label = "CH4 + NO2 <=> HONO + CH3",
+    degeneracy = 1,
+    kinetics = Arrhenius(A=(1.71e+13, 'cm^3/(mol*s)'), n=0, Ea=(32450, 'cal/mol'), T0=(1, 'K'), Tmin=(500, 'K'), Tmax=(1650, 'K')),
+    shortDesc = u"""[Yang2012]""",
+    longDesc =
+u"""
+Part of the "C1-oxygenates" subset
+
+k1a + k1b
+
+originally given for 400-4000 K in a custom Arrhenius form with T-dependent Ea.
+Manually converted to a normal modified Arrhenius form here for a smaller T range with coefficients of determination 0.9985
+T range: 500-1650 K
+
+calculated at the B3LYP/6-311G(2d,d,p)//M06-2X/MG3S level of theory
+
+conformer-dup: rates summed for trans/cis-HONO
+
+Train!
+""",
+)
+
+entry(
+    index = 283,
+    label = "CH4 + NO2 <=> HNO2 + CH3",
+    degeneracy = 1,
+    kinetics = Arrhenius(A=(1.985e+13, 'cm^3/(mol*s)'), n=0, Ea=(36685, 'cal/mol'), T0=(1, 'K'), Tmin=(500, 'K'), Tmax=(1650, 'K')),
+    shortDesc = u"""[Yang2012]""",
+    longDesc =
+u"""
+Part of the "C1-oxygenates" subset
+
+k1c
+
+originally given for 400-4000 K in a custom Arrhenius form with T-dependent Ea.
+Manually converted to a normal modified Arrhenius form here for a smaller T range with coefficients of determination 0.9995
+T range: 500-1650 K
+
+calculated at the B3LYP/6-311G(2d,d,p)//M06-2X/MG3S level of theory
+
+Train!
+""",
+)
+
+
+
 
 
 

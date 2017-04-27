@@ -7216,6 +7216,28 @@ u"""
 )
 
 entry(
+    index = 125,
+    label = "SsOJ",
+    group = 
+"""
+1   S2s u0 {2,S} {3,S}
+2 * Os  u1 {1,S}
+3   H   u0 {1,S}
+""",
+    thermo = ThermoData(
+        Tdata = ([300,400,500,600,800,1000,1500],'K'),
+        Cpdata = ([2.12,1.47,1.34,0.97,0.79,0.64,0.22],'cal/(mol*K)'),
+        H298 = (103.18,'kcal/mol'),
+        S298 = (20.56,'cal/(mol*K)'),
+    ),
+    shortDesc = u"""Calculated from SOxNOx values for HSOH, HSO (and H from BurkeH2O2)""",
+    longDesc = 
+u"""
+
+""",
+)
+
+entry(
     index = 110,
     label = "NJ",
     group = 
@@ -7705,6 +7727,27 @@ entry(
         S298 = (0.6,'cal/(mol*K)'),
     ),
     shortDesc = u"""CBS-QB3 GA 1D-HR Aaron Vandeputte 2010""",
+    longDesc = 
+u"""
+
+""",
+)
+
+entry(
+    index = 129,
+    label = "SJ-O",
+    group = 
+"""
+1 * S2s u1 p2 {2,S}
+2   O u0 p2 {1,S}
+""",
+    thermo = ThermoData(
+        Tdata = ([300,400,500,600,800,1000,1500],'K'),
+        Cpdata = ([1.81,0.96,0.61,0.06,-0.35,-0.56,-0.79],'cal/(mol*K)'),
+        H298 = (108.58,'kcal/mol'),
+        S298 = (19.91,'cal/(mol*K)'),
+    ),
+    shortDesc = u"""Calculated from SOxNOx values for HSOH, HOS (and H from BurkeH2O2)""",
     longDesc = 
 u"""
 
@@ -8750,6 +8793,7 @@ L1: Radical
                     L6: C(=O)OOJ
                     L6: C3COOJ
                 L5: HOOJ
+                L5: SsOJ
         L3: NJ
             L4: N3sJ
                 L5: NH2J
@@ -8775,6 +8819,7 @@ L1: Radical
                 L5: SJ-S2s-H
                 L5: SJ-S2s-Cs
                 L5: SJ-S2s-S2s
+            L4: SJ-O
     L2: RJ2_triplet
         L3: CJ2_triplet
             L4: CsJ2_triplet

@@ -3,7 +3,7 @@
 
 name = "SOxNOx"
 shortDesc = u""
-longDesc =u"""last updated: 05/09/17
+longDesc =u"""last updated: May 15, 2017
 This library includes important SOx and NOx related reactions.
 Prepared by Alon Grinberg Dana
 
@@ -151,6 +151,7 @@ Reference legend:
 [Tezaki2003] N. Isshiki, Y. Murakami, K. Tsuchiya, A. Tezaki, H. Matsui, J. Phys. Chem. A, 2003, 107(14), 2464–2469, doi: 10.1021/jp0200829
 [Varandas2005] P.J.S.B. Caridade, S.P.J. Rodrigues, F. Sousa, A.J.C. Varandas, J. Phys. Chem. A ,2005, 109, 2356-2363, doi: 10.1021/jp045102g
 [Wang1982] O.I. Smith, S. Tseregounis, S-N. Wang, Int. J. Chem. Kin., 1982, 14(6), 679-697, doi: 10.1002/kin.550140610
+[Yamaguchi1999] Y. Yamaguchi, Y. Teng, S. Shimomura, K. Tabata, E. Suzuki, J. Phys. Chem. A, 1999, 103(41), 8272–8278, doi: 10.1021/jp990985a
 [Yang2012] Y. Guan, B. Yang, J. Comp. Chem., 2012, 33(23), 1870-1879, doi: 10.1002/jcc.23020
 """
 
@@ -2408,6 +2409,141 @@ T range: 300-3000 K
 calculations done at the UCCSD(T)/CBS//UB3LYP/6-311+G(3df,2p) level of theory
 The high pressure limit rate is giving here. A 1 atm rate is akso available from the same source.
 Added as a training reaction to R_Recombination
+""",
+)
+
+entry(
+    index = 801,
+    label = "CH3 + NO2 <=> CH2(T) + HNO2",
+    degeneracy = 1,
+    kinetics = Arrhenius(A=(4.8e+13, 'cm^3/(mol*s)'), n=0, Ea=(39600, 'cal/mol'), T0=(1, 'K')),
+    shortDesc = u"""[Yamaguchi1999]""",
+    longDesc =
+u"""
+Part of the "CH3NO2" subset
+p. 8275, Table 3
+T: 800 K
+calculations done at the MP2(frozen core)/6-311++G(2d,p) level of theory
+""",
+)
+
+entry(
+    index = 802,
+    label = "CH3 + NO2 <=> CH2(T) + HONO",
+    degeneracy = 1,
+    kinetics = Arrhenius(A=(2.0e+14, 'cm^3/(mol*s)'), n=0, Ea=(46900, 'cal/mol'), T0=(1, 'K')),
+    shortDesc = u"""[Yamaguchi1999]""",
+    longDesc =
+u"""
+Part of the "CH3NO2" subset
+p. 8275, Table 3
+T: 800 K
+calculations done at the MP2(frozen core)/6-311++G(2d,p) level of theory
+""",
+)
+
+entry(
+    index = 803,
+    label = "CH3ONO <=> CH3O + NO",
+    degeneracy = 1,
+    kinetics = Arrhenius(A=(1.3e+15, 's^-1'), n=0, Ea=(35600, 'cal/mol'), T0=(1, 'K')),
+    shortDesc = u"""[Yamaguchi1999]""",
+    longDesc =
+u"""
+Part of the "CH3NO2" subset
+p. 8275, Table 3
+T: 800 K
+calculations done at the MP2(frozen core)/6-311++G(2d,p) level of theory
+""",
+)
+
+entry(
+    index = 804,
+    label = "CH3O + CH4 <=> CH3OH + CH3",
+    degeneracy = 1,
+    kinetics = Arrhenius(A=(4.5e+13, 'cm^3/(mol*s)'), n=0, Ea=(16900, 'cal/mol'), T0=(1, 'K')),
+    shortDesc = u"""[Yamaguchi1999]""",
+    longDesc =
+u"""
+Part of the "CH3NO2" subset
+p. 8275, Table 3
+T: 800 K
+calculations done at the MP2(frozen core)/6-311++G(2d,p) level of theory
+""",
+)
+
+entry(
+    index = 805,
+    label = "CH3ONO <=> CH3O + NO",
+    degeneracy = 1,
+    kinetics = Arrhenius(A=(7.2e+13, 's^-1'), n=0, Ea=(27500, 'cal/mol'), T0=(1, 'K')),
+    shortDesc = u"""[Yamaguchi1999]""",
+    longDesc =
+u"""
+Part of the "CH3NO2" subset
+p. 8275, Table 3
+T: 800 K
+calculations done at the MP2(frozen core)/6-311++G(2d,p) level of theory
+""",
+)
+
+entry(
+    index = 806,
+    label = "CH3O + NO2 <=> CH2O + HNO2",
+    degeneracy = 1,
+    kinetics = Arrhenius(A=(4.5e+10, 'cm^3/(mol*s)'), n=0, Ea=(6700, 'cal/mol'), T0=(1, 'K')),
+    shortDesc = u"""[Yamaguchi1999]""",
+    longDesc =
+u"""
+Part of the "CH3NO2" subset
+p. 8275, Table 3
+T: 800 K
+calculations done at the MP2(frozen core)/6-311++G(2d,p) level of theory
+""",
+)
+
+entry(
+    index = 807,
+    label = "CH3O + NO <=> CH2O + HNO",
+    degeneracy = 1,
+    kinetics = Arrhenius(A=(6.3e+11, 'cm^3/(mol*s)'), n=0, Ea=(5600, 'cal/mol'), T0=(1, 'K')),
+    shortDesc = u"""[Yamaguchi1999]""",
+    longDesc =
+u"""
+Part of the "CH3NO2" subset
+p. 8275, Table 3
+T: 800 K
+calculations done at the MP2(frozen core)/6-311++G(2d,p) level of theory
+""",
+)
+
+entry(
+    index = 808,
+    label = "CH4 + NO <=> CH3 + HNO",
+    degeneracy = 1,
+    kinetics = Arrhenius(A=(7.0e+14, 'cm^3/(mol*s)'), n=0, Ea=(65600, 'cal/mol'), T0=(1, 'K')),
+    shortDesc = u"""[Yamaguchi1999]""",
+    longDesc =
+u"""
+Part of the "CH3NO2" subset
+p. 8275, Table 3
+T: 800 K
+calculations done at the MP2(frozen core)/6-311++G(2d,p) level of theory
+""",
+)
+
+entry(
+    index = 809,
+    label = "CH4 + NO <=> CH3 + HON",
+    degeneracy = 1,
+    kinetics = Arrhenius(A=(1.8e+15, 'cm^3/(mol*s)'), n=0, Ea=(76300, 'cal/mol'), T0=(1, 'K')),
+    shortDesc = u"""[Yamaguchi1999]""",
+    longDesc =
+u"""
+Part of the "CH3NO2" subset
+p. 8275, Table 3
+T: 800 K
+calculations done at the MP2(frozen core)/6-311++G(2d,p) level of theory
 """,
 )
 

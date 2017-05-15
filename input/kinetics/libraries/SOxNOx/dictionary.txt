@@ -138,6 +138,12 @@ HNO
 2 O u0 p2 c0 {1,D}
 3 H u0 p0 c0 {1,S}
 
+HON
+multiplicity 3
+1 O u0 p2 c0 {2,S} {3,S}
+2 H u0 p0 c0 {1,S}
+3 N u2 p1 c0 {1,S}
+
 HNOH
 multiplicity 2
 1 N u1 p1 c0 {2,S} {3,S}
@@ -562,6 +568,14 @@ NCOH
 2 C u0 p0 c0 {1,S} {3,T}
 3 N u0 p1 c0 {2,T}
 4 H u0 p0 c0 {1,S}
+
+CH3OH
+1 C u0 p0 c0 {2,S} {3,S} {4,S} {5,S}
+2 O u0 p2 c0 {1,S} {6,S}
+3 H u0 p0 c0 {1,S}
+4 H u0 p0 c0 {1,S}
+5 H u0 p0 c0 {1,S}
+6 H u0 p0 c0 {2,S}
 
 CH3NO2
 1 C u0 p0 c0 {2,S} {5,S} {6,S} {7,S}

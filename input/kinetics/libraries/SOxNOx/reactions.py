@@ -2459,21 +2459,6 @@ calculations done at the MP2(frozen core)/6-311++G(2d,p) level of theory
 
 entry(
     index = 804,
-    label = "CH3ONO <=> CH3O + NO",
-    degeneracy = 1,
-    kinetics = Arrhenius(A=(7.2e+13, 's^-1'), n=0, Ea=(27500, 'cal/mol'), T0=(1, 'K')),
-    shortDesc = u"""[Yamaguchi1999]""",
-    longDesc =
-u"""
-Part of the "CH3NO2" subset
-p. 8275, Table 3
-T: 800 K
-calculations done at the MP2(frozen core)/6-311++G(2d,p) level of theory
-""",
-)
-
-entry(
-    index = 805,
     label = "CH3O + NO2 <=> CH2O + HNO2",
     degeneracy = 1,
     kinetics = Arrhenius(A=(4.5e+10, 'cm^3/(mol*s)'), n=0, Ea=(6700, 'cal/mol'), T0=(1, 'K')),
@@ -2488,7 +2473,7 @@ calculations done at the MP2(frozen core)/6-311++G(2d,p) level of theory
 )
 
 entry(
-    index = 806,
+    index = 805,
     label = "CH3O + NO <=> CH2O + HNO",
     degeneracy = 1,
     kinetics = Arrhenius(A=(6.3e+11, 'cm^3/(mol*s)'), n=0, Ea=(5600, 'cal/mol'), T0=(1, 'K')),
@@ -2503,7 +2488,7 @@ calculations done at the MP2(frozen core)/6-311++G(2d,p) level of theory
 )
 
 entry(
-    index = 807,
+    index = 806,
     label = "CH4 + NO <=> CH3 + HNO",
     degeneracy = 1,
     kinetics = Arrhenius(A=(7.0e+14, 'cm^3/(mol*s)'), n=0, Ea=(65600, 'cal/mol'), T0=(1, 'K')),
@@ -2518,7 +2503,7 @@ calculations done at the MP2(frozen core)/6-311++G(2d,p) level of theory
 )
 
 entry(
-    index = 808,
+    index = 807,
     label = "CH4 + NO <=> CH3 + HON",
     degeneracy = 1,
     kinetics = Arrhenius(A=(1.8e+15, 'cm^3/(mol*s)'), n=0, Ea=(76300, 'cal/mol'), T0=(1, 'K')),

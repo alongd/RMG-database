@@ -985,7 +985,6 @@ entry(
     index = 88,
     label = "CH3 + OH <=> CH2(S) + H2O",
     degeneracy = 1,
-    duplicate = True,
     kinetics = PDepArrhenius(
         pressures = ([0.01, 0.1, 1, 10, 100], 'atm'),
         arrhenius = [
@@ -1196,7 +1195,6 @@ entry(
     index = 93,
     label = "CH3 + OH <=> CH2 + H2O",
     degeneracy = 1,
-    duplicate = True,
     kinetics = Arrhenius(
         A = (42930, 'cm^3/(mol*s)'),
         n = 2.568,

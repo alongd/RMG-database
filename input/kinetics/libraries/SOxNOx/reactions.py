@@ -4954,3 +4954,43 @@ Train!
 """,
 )
 
+entry(
+    index = 286,
+    label = "HOSO2 + O2 <=> SO3 + HO2",
+    degeneracy = 1,
+    duplicate=True,
+    kinetics = Arrhenius(A=(1.84751e-06, 'cm^3/(mol*s)','*|/',5.17556), n=5.40472, Ea=(94.0211, 'kJ/mol'), T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(2000, 'K')),
+    shortDesc = u"""CBS-QB3""",
+    longDesc =
+u"""
+Calculated by Yi-Pei Li
+HOSO2 + O2 -> TS2 -> SO3 + HO2
+Disproportionation reaction
+Bath gas: N2
+""",
+)
+
+entry(
+    index = 287,
+    label = "O2 + HOSO2 <=> SO3 + HO2",
+    degeneracy = 1,
+    duplicate=True,
+    kinetics = Chebyshev(
+        coeffs = [
+            [12.2121, -0.0588331, -0.0369469, -0.0170237],
+            [-0.966321, 0.0601562, 0.0379397, 0.0176167],
+            [-0.198689, 0.00650242, 0.00363656, 0.00127762],
+            [0.0023904, -0.00384118, -0.00232335, -0.000985026],
+            [0.0234029, -0.00579278, -0.0033169, -0.0012383],
+            [0.0162687, 3.28822e-06, -5.07497e-05, -7.44263e-05],
+        ],
+        kunits = 'cm^3/(mol*s)',Tmin = (300, 'K'),Tmax = (2000, 'K'),Pmin = (0.01, 'bar'),Pmax = (100, 'bar')),
+    shortDesc = u"""CBS-QB3""",
+    longDesc =
+u"""
+Calculated by Yi-Pei Li
+HO + O2 -> SOSO4 -> TS1 -> SO3-HO2 (VDW complex) -> SO3 + HO2
+Bath gas: N2
+""",
+)
+

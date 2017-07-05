@@ -3998,7 +3998,7 @@ Experimental data also available from [Rabinowitz2010]:
 
 entry(
     index = 226,
-    label = "SO2 + O + N2 <=> SO3 + N2",
+    label = "SO2 + O (+N2) <=> SO3 (+N2)",
     degeneracy = 1,
     kinetics = Troe(
         arrheniusHigh = Arrhenius(A=(3.7e+11, 'cm^6/(mol^2*s)'), n=0, Ea=(1689, 'cal/mol'), T0=(1, 'K')),

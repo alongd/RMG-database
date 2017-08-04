@@ -233,3 +233,21 @@ entry(
     shortDesc = u"""Table 2, R27: 1,2-elimination""",
 )
 
+entry(
+    index = 28,
+    label = "CH3 + CH2NH2 <=> NCC",
+    degeneracy = 1,
+    kinetics = Arrhenius(A=(1.23e+15, 'cm^3/(mol*s)'), n=-0.562, Ea=(20.5, 'cal/mol'), T0=(1, 'K'), Tmin=(200, 'K'), Tmax=(2000, 'K')),
+    shortDesc = u"""CASPT2/cc-pvdz""",
+    longDesc = 
+u"""
+S.J. Klippenstein, Y. Georgievskiia, L.B. Hardingb
+Predictive theory for the combination kinetics of two alkyl radicals
+Phys. Chem. Chem. Phys., 2006, 8, 1133-1147
+doi: 10.1039/B515914H
+
+originally was:
+CH3 + C2H5 <=> C3H8
+""",
+)
+

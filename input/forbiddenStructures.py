@@ -443,3 +443,30 @@ Invalid k(E) values computed for path reaction "C(=[CH])[O-][N+]#N(6454) <=> c1c
 """,
 )
 
+entry(
+    label = "[CH2]C1[CH]OC=C1",
+    group = 
+"""
+multiplicity [3]
+1  C u1 p0 c0 {2,S} {3,S} {4,S}
+2  H u0 p0 c0 {1,S}
+3  H u0 p0 c0 {1,S}
+4  C u0 p0 c0 {1,S} {5,S} {9,S} {10,S}
+5  C u1 p0 c0 {4,S} {6,S} {7,S}
+6  H u0 p0 c0 {5,S}
+7  O u0 p2 c0 {5,S} {8,S}
+8  C u0 p0 c0 {7,S} {9,D} {11,S}
+9  C u0 p0 c0 {4,S} {8,D} {12,S}
+10 H u0 p0 c0 {4,S}
+11 H u0 p0 c0 {8,S}
+12 H u0 p0 c0 {9,S}
+""",
+    shortDesc = u"""""",
+    longDesc = 
+u"""
+xo1507 crashed with error:
+IError: Invalid k(E) values computed for path reaction "[CH]=CC([CH2])C=O(6520) <=> [CH2]C1[CH]OC=C1(6626)".
+Error: Increasing number of grains did not decrease error enough (Current badness: 7.9, previous 8.2). Something must be wrong with network 856
+""",
+)
+

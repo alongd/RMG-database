@@ -9,8 +9,8 @@ calculated by alongd
 """
 
 entry(
-    index = 138,
-    label = "CH3CH2NH2",
+    index = 1,
+    label = "NCC",
     molecule = 
 """
 1  N u0 p1 c0 {2,S} {4,S} {5,S}
@@ -43,10 +43,5 @@ entry(
         Cp0 = (33.2579, 'J/(mol*K)'),
         CpInf = (224.491, 'J/(mol*K)'),
     ),
-    shortDesc = u"""ethylamine""",
-    longDesc = 
-u"""
-UCCSD(T)-F12A/cc-pVTZ-F12//UM06-2x/cc-pVTZ
-""",
 )
 

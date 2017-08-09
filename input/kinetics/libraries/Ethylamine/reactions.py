@@ -17,12 +17,28 @@ The Journal of Physical Chemistry A, 2014, 118, 70-77, http://dx.doi.org/10.1021
 (with geometries from http://dx.doi.org/10.1021/ct7002786 CCSD(T)/6-311++G(2d,2p) single-point calculations)
 """
 
+#entry(
+#    index = 1,
+#    label = "NCC + H <=> CH2CH2NH2 + H2",
+#    degeneracy = 1,
+#    kinetics = Arrhenius(A=(9.07e+04, 'cm^3/(mol*s)'), n=2.75, Ea=(6800, 'cal/mol'), T0=(1, 'K')),
+#    shortDesc = u"""Table 2, R1: EA H abstraction""",
+#)
+
 entry(
     index = 1,
     label = "NCC + H <=> CH2CH2NH2 + H2",
     degeneracy = 1,
-    kinetics = Arrhenius(A=(9.07e+04, 'cm^3/(mol*s)'), n=2.75, Ea=(6800, 'cal/mol'), T0=(1, 'K')),
-    shortDesc = u"""Table 2, R1: EA H abstraction""",
+    kinetics = Arrhenius(
+        A = (56286.8, 'cm^3/(mol*s)'),
+        n = 4.85642,
+        Ea = (33.8903, 'kJ/mol'),
+        T0 = (1, 'K'),
+        Tmin = (303.03, 'K'),
+        Tmax = (2500, 'K'),
+        comment = 'Fitted to 59 data points; dA = *|/ 1.19312, dn = +|- 0.0231731, dEa = +|- 0.127475 kJ/mol',
+    ),
+    shortDesc = u"""UCCSD(T)-F12A/cc-pVTZ-F12//UM06-2x/cc-pVTZ""",
 )
 
 entry(
@@ -225,12 +241,34 @@ entry(
     shortDesc = u"""Table 2, R26: intra H transfer""",
 )
 
+#entry(
+#    index = 27,
+#    label = "NCC <=> C2H4 + NH3",
+#    degeneracy = 1,
+#    kinetics = Arrhenius(A=(4.90e+04, 's^-1'), n=2.65, Ea=(65100, 'cal/mol'), T0=(1, 'K')),
+#    shortDesc = u"""Table 2, R27: 1,2-elimination""",
+#)
+
 entry(
     index = 27,
     label = "NCC <=> C2H4 + NH3",
     degeneracy = 1,
-    kinetics = Arrhenius(A=(4.90e+04, 's^-1'), n=2.65, Ea=(65100, 'cal/mol'), T0=(1, 'K')),
-    shortDesc = u"""Table 2, R27: 1,2-elimination""",
+    kinetics = Chebyshev(
+        coeffs = [
+            [-15.6261, 0.0107349, -0.00100118, 3.27324e-05],
+            [21.1554, 0.0205816, -0.00189315, 5.87942e-05],
+            [0.141493, 0.0181139, -0.0015943, 4.11837e-05],
+            [-0.00902084, 0.0145878, -0.00118066, 1.8634e-05],
+            [-0.0110477, 0.0106779, -0.000745006, -2.0711e-06],
+            [-0.014586, 0.00701698, -0.00036793, -1.61048e-05],
+        ],
+        kunits = 's^-1',
+        Tmin = (298, 'K'),
+        Tmax = (2000, 'K'),
+        Pmin = (0.5, 'bar'),
+        Pmax = (3, 'bar'),
+    ),
+    shortDesc = u"""UCCSD(T)-F12A/cc-pVTZ-F12//UM06-2x/cc-pVTZ""",
 )
 
 entry(
@@ -238,6 +276,26 @@ entry(
     label = "CH3 + CH2NH2 <=> NCC",
     degeneracy = 1,
     kinetics = Arrhenius(A=(1.23e+15, 'cm^3/(mol*s)'), n=-0.562, Ea=(20.5, 'cal/mol'), T0=(1, 'K'), Tmin=(200, 'K'), Tmax=(2000, 'K')),
+    #kinetics = Arrhenius(A=(1.23e+14, 'cm^3/(mol*s)'), n=-0.562, Ea=(20.5, 'cal/mol'), T0=(1, 'K'), Tmin=(200, 'K'), Tmax=(2000, 'K')),
+    shortDesc = u"""CASPT2/cc-pvdz""",
+    longDesc = 
+u"""
+S.J. Klippenstein, Y. Georgievskiia, L.B. Hardingb
+Predictive theory for the combination kinetics of two alkyl radicals
+Phys. Chem. Chem. Phys., 2006, 8, 1133-1147
+doi: 10.1039/B515914H
+
+originally was:
+CH3 + C2H5 <=> C3H8
+""",
+)
+
+entry(
+    index = 29,
+    label = "NH2 + CH2CH3 <=> NCC",
+    degeneracy = 1,
+    kinetics = Arrhenius(A=(1.23e+15, 'cm^3/(mol*s)'), n=-0.562, Ea=(20.5, 'cal/mol'), T0=(1, 'K'), Tmin=(200, 'K'), Tmax=(2000, 'K')),
+    #kinetics = Arrhenius(A=(1.23e+14, 'cm^3/(mol*s)'), n=-0.562, Ea=(20.5, 'cal/mol'), T0=(1, 'K'), Tmin=(200, 'K'), Tmax=(2000, 'K')),
     shortDesc = u"""CASPT2/cc-pvdz""",
     longDesc = 
 u"""

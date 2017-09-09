@@ -767,3 +767,52 @@ Forbid a singlet carbene and a radical group in the same molecule from being sep
 """,
 )
 
+entry(
+    label = "C(=[CH+]=[N+]=O)=O",
+    group =
+"""
+1 *2 C u0 p0 c0 {2,D}
+2 *1 C u0 p0 c+1 {1,D} {3,D} {4,S}
+3    N u0 p0 c+1 {2,D}
+4 *3 H u0 p0 c0 {2,S}
+""",
+    shortDesc = u"""""",
+    longDesc =
+u"""
+xp1036 crashed with
+
+Error: Could not update atomtypes for <Molecule "C(=[CH+]=[N+]=O)=O">.
+multiplicity -187
+1 *2 C u0 p0 c0 {2,D} {4,D}
+2 *1 C u0 p0 c+1 {1,D} {3,D} {5,S}
+3    N u0 p0 c+1 {2,D} {6,D}
+4    O u0 p2 c0 {1,D}
+5 *3 H u0 p0 c0 {2,S}
+6    O u0 p2 c0 {3,D}
+
+""",
+)
+
+entry(
+    label = "[O]C1[CH]OC=C1",
+    group =
+"""
+multiplicity [3]
+1  O u1 p2 c0 {2,S}
+2  C u0 p0 c0 {1,S} {3,S} {7,S}
+3  C u1 p0 c0 {2,S} {4,S} {5,S}
+4  H u0 p0 c0 {3,S}
+5  O u0 p2 c0 {3,S} {6,S}
+6  C u0 p0 c0 {5,S} {7,D}
+7  C u0 p0 c0 {2,S} {6,D}
+""",
+    shortDesc = u"""""",
+    longDesc =
+u"""
+xo1512 crashed with
+
+Error: Invalid k(E) values computed for path reaction "[CH]=CC([O])C=O(1822) <=> [O]C1[CH]OC=C1(8451)".
+""",
+)
+
+

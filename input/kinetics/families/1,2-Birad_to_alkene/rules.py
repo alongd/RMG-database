@@ -288,3 +288,17 @@ entry(
     rank = 5,
     shortDesc = u"""see description above""",
 )
+
+entry(
+    index = 17,
+    label = "NOS",
+    kinetics = Arrhenius(A=(1.e+10, 's^-1'), n=0, Ea=(0, 'kcal/mol')),
+    rank = 5,
+    longDesc =
+u"""
+Estimated based on SO2(T) + M -> SO2(S) + M
+taken from
+F.B. Wampler, K. Otsuka, J.G. Calvert, E.K. Damon, Int. J. Chem. Kin., 1973, 5(4), 669-690, doi: 10.1002/kin.550050417
+and adjusted to a first order reaction at 1 atm
+""",
+)

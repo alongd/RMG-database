@@ -6,7 +6,7 @@
 
 recommendedFamilies = {
 '1+2_Cycloaddition':True,
-'1,2-Birad_to_alkene':True,
+'1,2-Birad_to_alkene':False,
 '1,2_Insertion_CO':True,
 '1,2_Insertion_carbene':True,
 '1,2_shiftS':True,
@@ -53,6 +53,7 @@ recommendedFamilies = {
 'ketoenol':True,
 'lone_electron_pair_bond':False,
 'Singlet_Carbene_Intra_Disproportionation':True,
+'Singlet_O2_to_triplet':False,
 'Intra_5_membered_conjugated_C=C_C=C_addition':True,
 'Intra_Diels_alder_monocyclic':True,
 'Concerted_Intra_Diels_alder_monocyclic_1,2_shiftH':True,

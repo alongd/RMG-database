@@ -7591,13 +7591,14 @@ forbidden(
     label = "disprop1",
     group = 
 """
-1 *1 R u0 {2,S} {3,S}
-2    C u1 {1,S}
-3 *2 H u0 {1,S}
+1 *1 R       u0 {2,S} {3,S}
+2    [C,N,S] u1 {1,S}
+3 *2 H       u0 {1,S}
 """,
     shortDesc = u"""""",
     longDesc = 
 u"""
+atom2 should not be O, so we don't forbid HO2 here
 """,
 )
 

@@ -1297,12 +1297,14 @@ entry(
     kinetics = Arrhenius(A=(2.4e+08, 'cm^3/(mol*s)'), n=1.5, Ea=(-894, 'cal/mol'), T0=(1, 'K')),
 )
 
-entry(
-    index = 164,
-    label = "CH3CHN + H <=> CH2CHN + H2",
-    degeneracy = 1,
-    kinetics = Arrhenius(A=(9e+13, 'cm^3/(mol*s)'), n=0, Ea=(15100, 'cal/mol'), T0=(1, 'K')),
-)
+# CH2CHN (where N has 2 unpaired electrons) quickly transitions into CH2CHN(S), in RMG they are resonance structures,
+#  where only the singlet structure is reactive.
+# entry(
+#     index = 164,
+#     label = "CH3CHN + H <=> CH2CHN + H2",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(A=(9e+13, 'cm^3/(mol*s)'), n=0, Ea=(15100, 'cal/mol'), T0=(1, 'K')),
+# )
 
 entry(
     index = 165,
@@ -1325,12 +1327,14 @@ entry(
     kinetics = Arrhenius(A=(1.2e+06, 'cm^3/(mol*s)'), n=2, Ea=(-1192, 'cal/mol'), T0=(1, 'K')),
 )
 
-entry(
-    index = 168,
-    label = "CH3CHN + OH <=> CH2CHN + H2O",
-    degeneracy = 1,
-    kinetics = Arrhenius(A=(1100, 'cm^3/(mol*s)'), n=3, Ea=(2780, 'cal/mol'), T0=(1, 'K')),
-)
+# CH2CHN (where N has 2 unpaired electrons) quickly transitions into CH2CHN(S), in RMG they are resonance structures,
+#  where only the singlet structure is reactive.
+# entry(
+#     index = 168,
+#     label = "CH3CHN + OH <=> CH2CHN + H2O",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(A=(1100, 'cm^3/(mol*s)'), n=3, Ea=(2780, 'cal/mol'), T0=(1, 'K')),
+# )
 
 entry(
     index = 169,
@@ -1511,12 +1515,14 @@ entry(
     kinetics = Arrhenius(A=(920000, 'cm^3/(mol*s)'), n=1.94, Ea=(4441, 'cal/mol'), T0=(1, 'K')),
 )
 
-entry(
-    index = 191,
-    label = "CH2CHN + H <=> CH3 + HCN",
-    degeneracy = 1,
-    kinetics = Arrhenius(A=(1e+13, 'cm^3/(mol*s)'), n=0, Ea=(0, 'cal/mol'), T0=(1, 'K')),
-)
+# CH2CHN (where N has 2 unpaired electrons) quickly transitions into CH2CHN(S), in RMG they are resonance structures,
+#  where only the singlet structure is reactive.
+# entry(
+#     index = 191,
+#     label = "CH2CHN + H <=> CH3 + HCN",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(A=(1e+13, 'cm^3/(mol*s)'), n=0, Ea=(0, 'cal/mol'), T0=(1, 'K')),
+# )
 
 entry(
     index = 192,
@@ -1532,12 +1538,14 @@ entry(
     kinetics = Arrhenius(A=(1e+12, 'cm^3/(mol*s)'), n=0, Ea=(0, 'cal/mol'), T0=(1, 'K')),
 )
 
-entry(
-    index = 194,
-    label = "CH2CHN(S) + H <=> CH2CHN + H",
-    degeneracy = 1,
-    kinetics = Arrhenius(A=(1e+14, 'cm^3/(mol*s)'), n=0, Ea=(0, 'cal/mol'), T0=(1, 'K')),
-)
+# CH2CHN (where N has 2 unpaired electrons) quickly transitions into CH2CHN(S), in RMG they are resonance structures,
+#  where only the singlet structure is reactive.
+# entry(
+#     index = 194,
+#     label = "CH2CHN(S) + H <=> CH2CHN + H",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(A=(1e+14, 'cm^3/(mol*s)'), n=0, Ea=(0, 'cal/mol'), T0=(1, 'K')),
+# )
 
 entry(
     index = 195,

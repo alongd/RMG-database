@@ -19,7 +19,6 @@ This library consists of the following subsets:
 
 Reference legend:
 [Baulch1992a] D.L. Baulch, C.J. Cobos, R.A. Cox, C. Esser, P. Frank, Th. Just, J.A. Kerr, M.J. Philling, J. Troe, R.W. Walker, J. Warnatz, "Evaluated Kinetic Data for Combustion Modelling", Journal of Physical and Chemical Reference Data, 1992, 21(3), 411, doi: 10.1063/1.555908
-[Calvert1973] F.B. Wampler, K. Otsuka, J.G. Calvert, E.K. Damon, Int. J. Chem. Kin., 1973, 5(4), 669-690, doi: 10.1002/kin.550050417
 [Dupre1993] K. Tsuchiya, H. Matsui, M. Oya, G. Dupre, in: R. Burn, L.Z. Dumitrescu (Ed.) Shock Waves @ Marseille II (Proceedings Marseille France), 1993, 71-76, doi: 10.1007/978-3-642-78832-1
 [GlarBozz] (RMG's Sulfur/GlarborgBozzelli library) P. Glarborg, D. Kubel, K. Dam-Johansen, H-M. Chiang, J.W. Bozzelli, Int. J. Chem. Kin., 1996, 28, 773-790, doi: 10.1002/(SICI)1097-4601(1996)28:10<773::AID-KIN8>3.0.CO;2-K
 [Lin2003a] C-W. Lu, Y-J. Wu, Y-P. Lee, R.S. Zhu, M.C. Lin, J. Phys. Chem. A, 2003, 107(50), 11020-11029, doi: 10.1021/jp036025c
@@ -1092,22 +1091,5 @@ u"""
 Calculated by Yi-Pei Li
 HO + O2 -> SOSO4 -> TS1 -> SO3-HO2 (VDW complex) -> SO3 + HO2
 Bath gas: N2
-""",
-)
-
-entry(
-    index = 66,
-    label = "SO2(T) <=> SO2",
-    degeneracy = 1,
-    duplicate=True,
-    kinetics = ThirdBody(
-        arrheniusLow = Arrhenius(A=(1.82e+16, 'cm^3/(mol*s)'), n=0, Ea=(2800, 'cal/mol'), T0 = (1, 'K'), Tmin=(298, 'K'), Tmax=(400, 'K'))),
-    shortDesc = u"""[Calvert1973]""",
-    longDesc =
-u"""
-Experimental measurement
-Value for CO2 as third body collider was taken here
-p. 680, Table V
-T range: 298-400 K
 """,
 )

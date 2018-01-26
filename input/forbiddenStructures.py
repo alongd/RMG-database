@@ -183,9 +183,10 @@ entry(
     label = "O3",
     group = 
 """
-1 O u0 {2,S}
-2 O u0 {1,S} {3,S}
-3 O u0 {2,S}
+1 O u0 px c0 {2,S}
+2 O u0 px c0 {1,S} {3,S}
+3 O u0 px c0 {2,S} {4,S}
+4 R!H ux px cx {3,S}
 """,
     shortDesc = u"""""",
     longDesc = 

@@ -540,8 +540,8 @@ forbidden(
     label = "O2",
     group =
 """
-1 *1 O2s u1 {2,S}
-2 *2 O2s u1 {1,S}
+1 *1 O2s u1 p2 c0 {2,S}
+2 *2 O2s u1 p2 c0 {1,S}
 """,
     shortDesc = u"""""",
     longDesc =
@@ -555,8 +555,8 @@ forbidden(
     label = "S2",
     group =
 """
-1 *1 S2s u1 {2,S}
-2 *2 S2s u1 {1,S}
+1 *1 S2s u1 p2 c0 {2,S}
+2 *2 S2s u1 p2 c0 {1,S}
 """,
     shortDesc = u"""""",
     longDesc =
@@ -568,8 +568,8 @@ forbidden(
     label = "SO",
     group =
 """
-1 *1 S2s u1 {2,S}
-2 *2 O2s u1 {1,S}
+1 *1 S2s u1 p2 c0 {2,S}
+2 *2 O2s u1 p2 c0 {1,S}
 """,
     shortDesc = u"""""",
     longDesc =

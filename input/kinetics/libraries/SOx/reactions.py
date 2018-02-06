@@ -24,6 +24,7 @@ Reference legend:
 [GlarBozz] (RMG's Sulfur/GlarborgBozzelli library) P. Glarborg, D. Kubel, K. Dam-Johansen, H-M. Chiang, J.W. Bozzelli, Int. J. Chem. Kin., 1996, 28, 773-790, doi: 10.1002/(SICI)1097-4601(1996)28:10<773::AID-KIN8>3.0.CO;2-K
 [Lin2003a] C-W. Lu, Y-J. Wu, Y-P. Lee, R.S. Zhu, M.C. Lin, J. Phys. Chem. A, 2003, 107(50), 11020-11029, doi: 10.1021/jp036025c
 [Lin2004] C-W. Lu, Y-J. Wu, Y-P. Lee, R.S. Zhu, M.C. Lin, J. Chem. Phys., 2004, 121(17), 8271-8278, doi: 10.1063/1.1792611
+[Marshall1995] A. Goumri, D. Laakso, J‐D.R. Rocha, C.E. Smith, P. Marshall, J. Chem. Phys., 1995, 102, 161-169, doi: 10.1063/1.469387
 [Marshall1999a] A. Goumri, J-D.R. Rocha, D. Laakso, C.E. Smith, P. Marshall, J. Phys. Chem. A, 1999, 103(51), 11328-11335 doi: 10.1021/jp9924070
 [Marshall1999b] J. Peng, X. Hu, P. Marshall, J. Phys. Chem. A, 1999, 103, 5307-5311, doi: 10.1021/jp984242l
 [Marshall2004] A. Goumri, D.D. Shao, P. Marshall, J. Chem. Phys., 2004, 121, 9999, doi: 10.1063/1.1806419
@@ -31,7 +32,8 @@ Reference legend:
 [Marshall2006] A. Yilmaz, L. Hindiyarti, A.D. Jensen, P. Glarbotg, P. Marshall, J. Phys. Chem. A, 2006, 110 (21), 6654-6659, doi: 10.1021/jp0557215
 [Marshall2007a] L. Hindiyarti, P. Glarborg, P. Marshall, J. Phys. Chem. A, 2007, 111(19), 3984-3991, doi: 10.1021/jp067499p
 [Marshall2007b] C.L. Rasmussen, P. Glarborg, P. Marshall, Proceedings of the Combustion Institute, 2007, 31, 339-347, doi: 10.1016/j.proci.2006.07.249
-[Marshall2011] Y. Gao, P. Marshall, J. Chem. Phys., 2011, 135, 144306, doi: 10.1063/1.3644773
+[Marshall2011a] Y. Gao, P. Marshall, J. Chem. Phys., 2011, 135, 144306, doi: 10.1063/1.3644773
+[Marshall2011b] Y. Gao, C.R. Zhou, K. Sendt, B.S. Haynes, P. Marshall, Proc. Comb. Inst., 2011, 33, 459-465, doi: 10.1016/j.proci.2010.05.020
 [Marshall2012] K.M. Thompson, Y. Gao, P. Marshall, Int. J. Chem. Kin., 2012, 44(1), 90-99, doi: 10.1002/kin.20612
 [Marshall2015a] S. Ayling, Y. Gao, P. Marshall, Proceedings of the Combustion Institute, 2015, 35(1), 215-222, doi: 10.1016/j.proci.2014.05.079
 [Marshall2015b] K.E. Kerr, I.M. Alecu, K.M. Thompson, Y. Gao, P. Marshall, J. Phys. CHem. A, 2015, 119, 7352-7360, doi: 10.1021/jp512966a
@@ -42,7 +44,8 @@ Reference legend:
 [Molina1997] J.T. Jayne, U. Poschl, Y-m. Chen, D. Dai, L.T. Molina, D.R. Worsnop, C.E. Kolb, M.J. Molina, J. Phys. Chem. A, 1997, 101(51), 10000-10011, doi: 10.1021/jp972549z
 [Mukarami1979] T. Higashihara, K. Saito, I. Murakami, Bulletin of the Chemical Society of Japan, 1980, 53(1), 15-18, doi: 10.1246/bcsj.53.15
 [Palmer1977] H. Freund, H.B. Palmer, Int. J. Chem. Kin., 1977, 9(6), 887-905, doi: 10.1002/kin.550090605
-[Pilling2002] M.A. Blitz, K.W. McKee, M.J. Pilling, J. Phys. Chem. A, 2002, 106(36), 8406-8410, doi: 10.1021/jp025508y
+[Pilling2002a] M.A. Blitz, K.W. McKee, M.J. Pilling, J. Phys. Chem. A, 2002, 106(36), 8406-8410, doi: 10.1021/jp025508y
+[Pilling2002b] K.J. Hughes, M.A. Blitz, M.J. Pilling, S.H. Robertson, Proc. Comb. Inst., 2002, 29(2), 2431-2437, doi: 10.1016/S1540-7489(02)80296-6
 [Pilling2003] M.A. Blitz, K.J. Hughes, M.J. Pilling, J. Phys. Chem. A, 2003, 107(12), 1971-1978, doi: 10.1021/jp026524y
 [Pilling2006] M.A. Blitz, K.J. Hughes, M.J. Pilling, S.H. Robertson, J. Phys. Chem. A, 2006, 110(9), 2996-3009, doi: 10.1021/jp054722u
 [Roth1993] D. Woiki, P. Roth, in: R. Burn, L.Z. Dumitrescu (Ed.) Shock Waves @ Marseille II (Proceedings Marseille France), 1993, 53-58, doi: 10.1007/978-3-642-78832-1_9
@@ -50,6 +53,7 @@ Reference legend:
 [Roth1996b] D. Woiki, P. Roth, Symposium (International) on Combustion, 1996, 26(1), 583-588, doi: 10.1016/S0082-0784(96)80263-3
 [Sendt2002] K. Sendt, M. Jazbec, B.S. Haynes, Proceedings of the Combustion Institute, 2002, 29, 2439-2446, doi: 10.1016/S1540-7489(02)80297-8
 [Sendt2008] C.R. Zhou, K. Sendt, B.S. Haynes, J. Phys. Chem. A, 2008, 112, 3239-3247, doi: 10.1021/jp710488d
+[Sendt2009] C.R. Zhou, K. Sendt, B.S. Haynes, J. Phys. Chem. A, 2009, 113, 2975-2981, doi: 10.1021/jp810105e
 [Somnitz2004] H. Somnitz, Phys. Chem. Chem. Phys., 2004, 6(14), 3844-3851, doi: 10.1039/B317055A
 [Tezaki2003] N. Isshiki, Y. Murakami, K. Tsuchiya, A. Tezaki, H. Matsui, J. Phys. Chem. A, 2003, 107(14), 2464-2469, doi: 10.1021/jp0200829
 [Troe1984] H.J. Plach, J. Troe, Int. J. Chem. Kin., 1984, 16(12), 1531-1542, doi: 10.1002/kin.550161207
@@ -60,7 +64,7 @@ entry(
     label = "S + S <=> S2",
     degeneracy = 1,
     kinetics = ThirdBody(
-        arrheniusLow = Arrhenius(A=(3.98e+14, 'cm^6/(mol^2*s)'), n=0, Ea=(-22455, 'cal/mol'), T0 = (1, 'K'),
+        arrheniusLow = Arrhenius(A=(3.98e+14, 'cm^6/(mol^2*s)'), n=0, Ea=(-22455, 'cal/mol'), T0=(1, 'K'),
                                  Tmin=(4500, 'K'), Tmax=(6000, 'K'))),
     shortDesc = u"""[Mukarami1979]""",
     longDesc =
@@ -74,24 +78,33 @@ As reported by [Lin2003a] as k26
 
 entry(
     index = 2,
-    label = "SO2 <=> SO + O",
+    label = "SO + O <=> SO2",
     degeneracy = 1,
-    kinetics = Arrhenius(A=(2.84e+16, 'cm^3/(mol*s)'), n=0, Ea=(109674, 'cal/mol'), T0=(1, 'K')),
+    kinetics = ThirdBody(
+        arrheniusLow = Arrhenius(A=(1.75e+17, 'cm^6/(mol^2*s)'), n=-2.17, Ea=(0, 'cal/mol'), T0=(298, 'K')),
+        efficiencies = {'O=S=O': 10, 'O': 10, 'N#N': 1.5},
+    ),
     shortDesc = u"""[Lin2003a]""",
     longDesc =
 u"""
 Part of the "SOx" mechanism
-k1a p. 11028
+k10a
 calculations done at the G2M(RCC2)//B3LYP/6-311+(3df) level of theory
 also validated experimentally in the same study
+efficiencies from: Y. Song, H. Hashemi, J.M. Christensen, C. Zou, B.S. Haynes, P. Marshall, P. Glarborg
+International Journal of Chemical Kinetics 49(1), 2017, 37-52
+doi: 10.1002/kin.21055
+Also available from [Lin2003a] in reverse:
+    label = "SO2 <=> SO + O",
+    kinetics = Arrhenius(A=(2.84e+16, 'cm^3/(mol*s)'), n=0, Ea=(109674, 'cal/mol'), T0=(1, 'K')),
 """,
 )
 
 entry(
     index = 3,
-    label = "S + O2 <=> O + SO",
+    label = "S + O2 <=> SO + O",
     degeneracy = 1,
-    kinetics=Arrhenius(A=(5.43e+05, 'cm^3/(mol*s)', '+|-', 1.63E+04), n=2.11, Ea=(1451, 'cal/mol', '+|-', 238),
+    kinetics=Arrhenius(A=(5.43e+05, 'cm^3/(mol*s)', '+|-', 1.63E+04), n=2.11, Ea=(-1451, 'cal/mol', '+|-', 238),
                        T0=(1, 'K'), Tmin=(298, 'K'), Tmax=(3460, 'K')),
     shortDesc = u"""[Lin2004]""",
     longDesc =
@@ -190,8 +203,10 @@ entry(
 u"""
 Part of the "SOx" mechanism
 T range: 300-1700 K
+k2, Table 3
 As reported by Gimenez-Lopez, M. Martinez, A. Millera, R. Bilbao, M.U. Alzueta, Comb. Flame 2011, 158(1), 48-56, doi: 10.1016/j.combustflame.2010.07.017
 Added as a training reaction to R_Addition_MultipleBond
+Also available from [Pilling2002b]
 """,
 )
 
@@ -208,7 +223,9 @@ entry(
 u"""
 Part of the "SOx" mechanism
 T range: 200-1000 K
+k1, Table 3
 As reported by Gimenez-Lopez, M. Martinez, A. Millera, R. Bilbao, M.U. Alzueta, Comb. Flame 2011, 158(1), 48-56, doi: 10.1016/j.combustflame.2010.07.017
+Also available from [Pilling2002b]
 """,
 )
 
@@ -225,7 +242,9 @@ entry(
 u"""
 Part of the "SOx" mechanism
 T range: 900-1800 K
+k3, Table 3
 As reported by Gimenez-Lopez, M. Martinez, A. Millera, R. Bilbao, M.U. Alzueta, Comb. Flame 2011, 158(1), 48-56, doi: 10.1016/j.combustflame.2010.07.017
+Also available from [Pilling2002b]
 """,
 )
 
@@ -367,16 +386,52 @@ Added as a training reaction to R_Recombination
 )
 
 entry(
-    index = 19,
-    label = "HOSO <=> OH + SO",
+    index = 68,
+    label = "SH + O2 <=> SO + OH",
     degeneracy = 1,
-    kinetics = Lindemann(
-        arrheniusHigh = Arrhenius(A=(1.65e+16, 's^-1'), n=-0.32, Ea=(67720, 'cal/mol'), T0=(1, 'K'), Tmin=(200, 'K'), Tmax=(2000, 'K')),
-        arrheniusLow = Arrhenius(A=(1.25e+32, 'cm^3/(mol*s)'), n=-4.33, Ea=(69115, 'cal/mol'), T0=(1, 'K'), Tmin=(200, 'K'), Tmax=(2000, 'K'))),
-    shortDesc = u"""[Marshall1999a]""",
+    kinetics = Arrhenius(A=(7.5e+04, 'cm^3/(mol*s)'), n=2.052, Ea=(16.4, 'kJ/mol'), T0=(1, 'K'),
+                         Tmin=(300, 'K'), Tmax=(2000, 'K')),
+    shortDesc = u"""[Sendt2009]""",
     longDesc =
 u"""
 Part of the "SOx" subset
+k1b
+Table 7 on p. 11333
+calculations done at the MRCI/aug-cc-pV(Q+d)Z//CASSCF/cc-pVTZ level of theory
+""",
+)
+
+entry(
+    index = 69,
+    label = "SH + O2 <=> HSO + O",
+    degeneracy = 1,
+    kinetics = Arrhenius(A=(2.3e+06, 'cm^3/(mol*s)'), n=1.816, Ea=(20.0, 'kJ/mol'), T0=(1, 'K'),
+                         Tmin=(300, 'K'), Tmax=(2000, 'K')),
+    shortDesc = u"""[Sendt2009]""",
+    longDesc =
+u"""
+Part of the "SOx" subset
+k1c
+calculations done at the MRCI/aug-cc-pV(Q+d)Z//CASSCF/cc-pVTZ level of theory
+""",
+)
+
+entry(
+    index = 19,
+    label = "HOSO <=> SO + OH",
+    degeneracy = 1,
+    kinetics = Lindemann(
+        arrheniusHigh = Arrhenius(A=(9.94e+21, 's^-1'), n=-2.54, Ea=(75891, 'cal/mol'), T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(2000, 'K')),
+        arrheniusLow = Arrhenius(A=(1.16e+46, 'cm^3/(mol*s)'), n=-9.02, Ea=(52953, 'cal/mol'), T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(2000, 'K'))),
+    shortDesc = u"""[Pilling2002b]""",
+    longDesc =
+u"""
+Part of the "SOx" subset
+RRKM
+Also available from [Marshall1999a]:
+    kinetics = Lindemann(
+        arrheniusHigh = Arrhenius(A=(1.65e+16, 's^-1'), n=-0.32, Ea=(67720, 'cal/mol'), T0=(1, 'K'), Tmin=(200, 'K'), Tmax=(2000, 'K')),
+        arrheniusLow = Arrhenius(A=(1.25e+32, 'cm^3/(mol*s)'), n=-4.33, Ea=(69115, 'cal/mol'), T0=(1, 'K'), Tmin=(200, 'K'), Tmax=(2000, 'K'))),
 T range: 200-2000 K
 Table 7 on p. 11333
 calculations done at the QCISD(T)/6-311+G(3df,2p)//MP2=FULL/6-31G(d) level of theory
@@ -434,7 +489,7 @@ As reported by [GlarBozz] (14)
 
 entry(
     index = 23,
-    label = "S + SO2 <=> SO + SO",
+    label = "SO2 + S <=> SO + SO",
     degeneracy = 1,
     kinetics = Arrhenius(A=(5.89e+12, 'cm^3/(mol*s)'), n=0, Ea=(9034, 'cal/mol'), T0=(1, 'K'),
                          Tmin=(1120, 'K'), Tmax=(1540, 'K')),
@@ -452,15 +507,54 @@ entry(
     index = 24,
     label = "H2S + O <=> HSO + H",
     degeneracy = 1,
-    kinetics = Arrhenius(A=(4.0e+13, 'cm^3/(mol*s)','+|-',1.52e+13), n=0, Ea=(7650, 'cal/mol','+|-',482), T0=(1, 'K'),
-                         Tmin=(1520, 'K'), Tmax=(1820, 'K')),
-    shortDesc = u"""[Dupre1993]""",
+    kinetics = Arrhenius(A=(1.4e+09, 'cm^3/(mol*s)'), n=1.10, Ea=(5099, 'cal/mol'), T0=(1, 'K')),
+    shortDesc = u"""[Marshall1995]""",
     longDesc =
 u"""
 Part of the "SOx" subset
-Sock Tube
-T range: 1520-1820 K
-Uncertainty: A 38%, Ea 6.3%
+RRKM
+QCISD(T)/6-311+G(3df,2p)//MP2=FULL/6-31G(d)
+k1b
+As reported by:
+Y. Song, H. Hashemi, J.M. Christensen, C. Zou, B.S. Haynes, P. Marshall, P. Glarborg
+International Journal of Chemical Kinetics 49(1), 2017, 37-52
+doi: 10.1002/kin.21055
+
+Also available from [Dupre1993]:
+    kinetics = Arrhenius(A=(4.0e+13, 'cm^3/(mol*s)','+|-',1.52e+13), n=0, Ea=(7650, 'cal/mol','+|-',482), T0=(1, 'K'),
+                         Tmin=(1520, 'K'), Tmax=(1820, 'K')),
+Sock Tube, Uncertainty: A 38%, Ea 6.3%
+""",
+)
+
+entry(
+    index = 66,
+    label = "H2S + O <=> SH + OH",
+    degeneracy = 1,
+    duplicate=True,
+    kinetics = Arrhenius(A=(7.47e+07, 'cm^3/(mol*s)','+|-',4.48e+06), n=1.746, Ea=(2895, 'cal/mol'), T0=(1, 'K'),
+                         Tmin=(200, 'K'), Tmax=(2000, 'K')),
+    shortDesc = u"""[Marshall1995]""",
+    longDesc =
+u"""
+RRKM
+QCISD(T)/6-311+G(3df,2p)//MP2=FULL/6-31G(d)
+k1a
+""",
+)
+
+entry(
+    index = 67,
+    label = "HOS + H <=> SO + H2",
+    degeneracy = 1,
+    duplicate=True,
+    kinetics = Arrhenius(A=(1.79e+07, 'cm^3/(mol*s)'), n=1.94, Ea=(1590, 'cal/mol'), T0=(1, 'K'),
+                         Tmin=(298, 'K'), Tmax=(2000, 'K')),
+    shortDesc = u"""[Marshall1995]""",
+    longDesc =
+u"""
+RRKM
+QCISD(T)/6-311+G(3df,2p)//MP2=FULL/6-31G(d)
 """,
 )
 
@@ -648,6 +742,12 @@ k_abstraction, (R4a)
 T range: 300-3000 K
 calculations done at the MRCI/aug-cc-pV(Q+d)Z//MRCI/aug-cc-pVTZ level of theory
 Added as a training reaction to H_Abstraction
+
+* Note that this special reaction has two paths: a direct H-abstraction path (which rate is reported here),
+as well as a P-Dep rate described by [Marshall2011b], with zero high-P rate.
+The PDep path is found in the Sulfur/H2S+S=2SH_1bar reported for 1 bar.
+These paths are also described by the [Sulfur/GlarborgH2S] library, but they use a fitted high-P rate for the PDep path,
+which theoretically should be zero.
 """,
 )
 
@@ -1011,7 +1111,7 @@ entry(
     degeneracy = 1,
     kinetics = Arrhenius(A=(6.87e+13, 'cm^3/(mol*s)'), n=0.00, Ea=(8843, 'cal/mol'), T0=(1, 'K'),
                          Tmin=(690, 'K'), Tmax=(1040, 'K')),
-    shortDesc = u"""[Marshall2011]""",
+    shortDesc = u"""[Marshall2011a]""",
     longDesc =
 u"""
 Part of the "C-S" mechanism
@@ -1024,7 +1124,7 @@ entry(
     label = "NS + NO2 <=> N2 + SO2",
     degeneracy = 1,
     kinetics = Arrhenius(A=(1.55e+13, 'cm^3/(mol*s)'), n=-1.10, Ea=(0, 'cal/mol'), T0=(295, 'K')),
-    shortDesc = u"""[Pilling2002]""",
+    shortDesc = u"""[Pilling2002a]""",
     longDesc =
 u"""
 Part of the "SOx-NOx" direct interactions subset
@@ -1153,23 +1253,5 @@ u"""
 Calculated by Yi-Pei Li
 HO + O2 -> SOSO4 -> TS1 -> SO3-HO2 (VDW complex) -> SO3 + HO2
 Bath gas: N2
-""",
-)
-
-entry(
-    index = 66,
-    label = "SO2(T) <=> SO2",
-    degeneracy = 1,
-    duplicate=True,
-    kinetics = ThirdBody(
-        arrheniusLow = Arrhenius(A=(1.82e+16, 'cm^3/(mol*s)'), n=0, Ea=(2800, 'cal/mol'), T0 = (1, 'K'),
-                                 Tmin=(298, 'K'), Tmax=(400, 'K'))),
-    shortDesc = u"""[Calvert1973]""",
-    longDesc =
-u"""
-Experimental measurement
-Value for CO2 as third body collider was taken here
-p. 680, Table V
-T range: 298-400 K
 """,
 )

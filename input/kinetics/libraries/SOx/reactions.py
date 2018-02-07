@@ -54,6 +54,7 @@ Reference legend:
 [Sendt2002] K. Sendt, M. Jazbec, B.S. Haynes, Proceedings of the Combustion Institute, 2002, 29, 2439-2446, doi: 10.1016/S1540-7489(02)80297-8
 [Sendt2008] C.R. Zhou, K. Sendt, B.S. Haynes, J. Phys. Chem. A, 2008, 112, 3239-3247, doi: 10.1021/jp710488d
 [Sendt2009] C.R. Zhou, K. Sendt, B.S. Haynes, J. Phys. Chem. A, 2009, 113, 2975-2981, doi: 10.1021/jp810105e
+[Sitha2011] S. Sitha, L.L. Jewell, S.J. Piketh, G. Fourie, Atmospheric Rnvironment, 2011, 45, 745-754, doi: 10.1016/j.atmosenv.2010.09.018
 [Somnitz2004] H. Somnitz, Phys. Chem. Chem. Phys., 2004, 6(14), 3844-3851, doi: 10.1039/B317055A
 [Tezaki2003] N. Isshiki, Y. Murakami, K. Tsuchiya, A. Tezaki, H. Matsui, J. Phys. Chem. A, 2003, 107(14), 2464-2469, doi: 10.1021/jp0200829
 [Troe1984] H.J. Plach, J. Troe, Int. J. Chem. Kin., 1984, 16(12), 1531-1542, doi: 10.1002/kin.550161207
@@ -195,8 +196,8 @@ entry(
     label = "SO2 + H <=> HOSO",
     degeneracy = 1,
     kinetics = Troe(
-        arrheniusHigh = Arrhenius(A=(2.37e+08, 'cm^3/(mol*s)'), n=1.63, Ea=(7339, 'cal/mol'), T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(1700, 'K')),
-        arrheniusLow = Arrhenius(A=(1.85e+37, 'cm^6/(mol^2*s)'), n=-6.14, Ea=(11075, 'cal/mol'), T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(1700, 'K')),
+        arrheniusHigh = Arrhenius(A=(2.59e+12, 'cm^3/(mol*s)'), n=1.63, Ea=(7339, 'cal/mol'), T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(1700, 'K')),
+        arrheniusLow = Arrhenius(A=(1.14e+22, 'cm^6/(mol^2*s)'), n=-6.14, Ea=(11075, 'cal/mol'), T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(1700, 'K')),
         alpha=0.283, T3=(272, 'K'), T1=(3995, 'K'), efficiencies={'O=S=O': 10, 'O': 10, 'O=C=O': 2.5}),
     shortDesc = u"""[Pilling2006]""",
     longDesc =
@@ -204,7 +205,7 @@ u"""
 Part of the "SOx" mechanism
 T range: 300-1700 K
 k2, Table 3
-As reported by Gimenez-Lopez, M. Martinez, A. Millera, R. Bilbao, M.U. Alzueta, Comb. Flame 2011, 158(1), 48-56, doi: 10.1016/j.combustflame.2010.07.017
+efficiencies taken from Gimenez-Lopez, M. Martinez, A. Millera, R. Bilbao, M.U. Alzueta, Comb. Flame 2011, 158(1), 48-56, doi: 10.1016/j.combustflame.2010.07.017
 Added as a training reaction to R_Addition_MultipleBond
 Also available from [Pilling2002b]
 """,
@@ -215,16 +216,16 @@ entry(
     label = "SO2 + H <=> HSO2",
     degeneracy = 1,
     kinetics = Troe(
-        arrheniusHigh = Arrhenius(A=(5.31e+08, 'cm^3/(mol*s)'), n=1.59, Ea=(2472, 'cal/mol'), T0=(1, 'K'), Tmin=(200, 'K'), Tmax=(1000, 'K')),
-        arrheniusLow = Arrhenius(A=(1.41e+31, 'cm^6/(mol^2*s)'), n=-5.19, Ea=(4513, 'cal/mol'), T0=(1, 'K'), Tmin=(200, 'K'), Tmax=(1000, 'K')),
-        alpha=0.39, T3=(167, 'K'), T1=(2191, 'K'), efficiencies={'O=S=O': 10, 'O': 10, 'O=C=O': 2.5}),
+        arrheniusHigh = Arrhenius(A=(4.61e+12, 'cm^3/(mol*s)'), n=1.59, Ea=(2472, 'cal/mol'), T0=(1, 'K'), Tmin=(200, 'K'), Tmax=(1000, 'K')),
+        arrheniusLow = Arrhenius(A=(1.97e+18, 'cm^6/(mol^2*s)'), n=-5.19, Ea=(4513, 'cal/mol'), T0=(1, 'K'), Tmin=(200, 'K'), Tmax=(1000, 'K')),
+        alpha=0.390, T3=(167, 'K'), T1=(2191, 'K'), efficiencies={'O=S=O': 10, 'O': 10, 'O=C=O': 2.5}),
     shortDesc = u"""[Pilling2006]""",
     longDesc =
 u"""
 Part of the "SOx" mechanism
 T range: 200-1000 K
 k1, Table 3
-As reported by Gimenez-Lopez, M. Martinez, A. Millera, R. Bilbao, M.U. Alzueta, Comb. Flame 2011, 158(1), 48-56, doi: 10.1016/j.combustflame.2010.07.017
+efficiencies taken from Gimenez-Lopez, M. Martinez, A. Millera, R. Bilbao, M.U. Alzueta, Comb. Flame 2011, 158(1), 48-56, doi: 10.1016/j.combustflame.2010.07.017
 Also available from [Pilling2002b]
 """,
 )
@@ -234,16 +235,16 @@ entry(
     label = "SO2 + H <=> SO + OH",
     degeneracy = 1,
     kinetics = Troe(
-        arrheniusHigh = Arrhenius(A=(9.19e+25, 'cm^3/(mol*s)'), n=2.77, Ea=(20850, 'cal/mol'), T0=(1, 'K'), Tmin=(900, 'K'), Tmax=(1800, 'K')),
-        arrheniusLow = Arrhenius(A=(1.35e+22, 'cm^6/(mol^2*s)'), n=-2.30, Ea=(30965, 'cal/mol'), T0=(1, 'K'), Tmin=(900, 'K'), Tmax=(1800, 'K')),
-        alpha=0.283, T3=(272, 'K'), T1=(3995, 'K'), efficiencies={'O=S=O': 10, 'O': 10, 'O=C=O': 2.5}),
+        arrheniusHigh = Arrhenius(A=(6.68e+32, 'cm^3/(mol*s)'), n=2.77, Ea=(20848, 'cal/mol'), T0=(1, 'K'), Tmin=(900, 'K'), Tmax=(1800, 'K')),
+        arrheniusLow = Arrhenius(A=(1.64e+40, 'cm^6/(mol^2*s)'), n=-2.30, Ea=(30965, 'cal/mol'), T0=(1, 'K'), Tmin=(900, 'K'), Tmax=(1800, 'K')),
+        alpha=1, T3=(272, 'K'), T1=(27617, 'K'), efficiencies={'O=S=O': 10, 'O': 10, 'O=C=O': 2.5}),
     shortDesc = u"""[Pilling2006]""",
     longDesc =
 u"""
 Part of the "SOx" mechanism
 T range: 900-1800 K
 k3, Table 3
-As reported by Gimenez-Lopez, M. Martinez, A. Millera, R. Bilbao, M.U. Alzueta, Comb. Flame 2011, 158(1), 48-56, doi: 10.1016/j.combustflame.2010.07.017
+efficiencies taken from Gimenez-Lopez, M. Martinez, A. Millera, R. Bilbao, M.U. Alzueta, Comb. Flame 2011, 158(1), 48-56, doi: 10.1016/j.combustflame.2010.07.017
 Also available from [Pilling2002b]
 """,
 )
@@ -389,7 +390,7 @@ entry(
     index = 68,
     label = "SH + O2 <=> SO + OH",
     degeneracy = 1,
-    kinetics = Arrhenius(A=(7.5e+04, 'cm^3/(mol*s)'), n=2.052, Ea=(16.4, 'kJ/mol'), T0=(1, 'K'),
+    kinetics = Arrhenius(A=(7.5e+04, 'cm^3/(mol*s)'), n=2.052, Ea=(16396, 'cal/mol'), T0=(1, 'K'),
                          Tmin=(300, 'K'), Tmax=(2000, 'K')),
     shortDesc = u"""[Sendt2009]""",
     longDesc =
@@ -405,7 +406,7 @@ entry(
     index = 69,
     label = "SH + O2 <=> HSO + O",
     degeneracy = 1,
-    kinetics = Arrhenius(A=(2.3e+06, 'cm^3/(mol*s)'), n=1.816, Ea=(20.0, 'kJ/mol'), T0=(1, 'K'),
+    kinetics = Arrhenius(A=(2.3e+06, 'cm^3/(mol*s)'), n=1.816, Ea=(20005, 'cal/mol'), T0=(1, 'K'),
                          Tmin=(300, 'K'), Tmax=(2000, 'K')),
     shortDesc = u"""[Sendt2009]""",
     longDesc =
@@ -422,7 +423,8 @@ entry(
     degeneracy = 1,
     kinetics = Lindemann(
         arrheniusHigh = Arrhenius(A=(9.94e+21, 's^-1'), n=-2.54, Ea=(75891, 'cal/mol'), T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(2000, 'K')),
-        arrheniusLow = Arrhenius(A=(1.16e+46, 'cm^3/(mol*s)'), n=-9.02, Ea=(52953, 'cal/mol'), T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(2000, 'K'))),
+        arrheniusLow = Arrhenius(A=(1.16e+46, 'cm^3/(mol*s)'), n=-9.02, Ea=(52953, 'cal/mol'), T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(2000, 'K')),
+        alpha=0.95, T3=(2989, 'K'), T1=(1.1, 'K'), efficiencies={'O=S=O': 10, 'O': 10, 'O=C=O': 2.5}),
     shortDesc = u"""[Pilling2002b]""",
     longDesc =
 u"""
@@ -577,22 +579,31 @@ Measured in 100-760 torr N2
 
 entry(
     index = 26,
-    label = "HOSO2 <=> SO2 + OH",
+    label = "SO2 + OH <=> HOSO2",
     degeneracy = 1,
-    kinetics = Arrhenius(A=(4.34e+14, 's^-1'), n=0, Ea=(25832, 'cal/mol'), T0=(1, 'K'),
-                         Tmin=(150, 'K'), Tmax=(1500, 'K')),
-    shortDesc = u"""[Somnitz2004]""",
+    kinetics = Arrhenius(A=(1.26e+06, 'cm^3/(mol*s)','*|/',1.12511), n=1.97952, Ea=(153.0, 'cal/mol','+|-',14.4),
+                         T0=(1, 'K'), Tmin=(200, 'K'), Tmax=(1025, 'K')),
+    shortDesc = u"""[Sitha2011]""",
     longDesc =
 u"""
 Part of the "SOx" subset
-T range: 150-1500 K
-k_dec_inf, p. 3847 in Fig. 2
-calculated at the B3LYP/apVTZþ1//UB3LYP/apVTZþ1 level of theory
-Also available in reverse from [Pilling2003], but for a relatively low T range (up to 673):
+Calculated at QCISD/6-31++G(2df,2p)
+Arrhenius parameters generated from discrete values given in the paper
+
+Also available from [Pilling2003], but for a relatively low T range (up to 673):
     kinetics = Lindemann(
         arrheniusHigh = Arrhenius(A=(1.23e+12, 'cm^3/(mol*s)'), n=-0.27, Ea=(0, 'cal/mol'), T0=(300, 'K')),
         arrheniusLow = Arrhenius(A=(1.25e+17, 'cm^6/(mol^2*s)'), n=-4.09, Ea=(0, 'cal/mol'), T0=(300, 'K'))),
     Collider efficiencies taken from: Gimenez-Lopez, M. Martinez, A. Millera, R. Bilbao, M.U. Alzueta, Comb. Flame 2011, 158(1), 48-56, doi: 10.1016/j.combustflame.2010.07.017
+
+Also available (in reverse) from [Somnitz2004]:
+    kinetics = Arrhenius(A=(4.34e+14, 's^-1'), n=0, Ea=(25832, 'cal/mol'), T0=(1, 'K'),
+                         Tmin=(150, 'K'), Tmax=(1500, 'K')),
+    k_dec_inf, p. 3847 in Fig. 2
+    calculated at the B3LYP/apVTZþ1//UB3LYP/apVTZþ1 level of theory
+
+Also available from doi: 10.1039/A901596E
+Also available from doi: 10.1039/B317055A
 """,
 )
 
@@ -1253,5 +1264,7 @@ u"""
 Calculated by Yi-Pei Li
 HO + O2 -> SOSO4 -> TS1 -> SO3-HO2 (VDW complex) -> SO3 + HO2
 Bath gas: N2
+
+The energetics of this reaction are available at doi: 10.1063/1.480605 (were not used in the above calculation)
 """,
 )

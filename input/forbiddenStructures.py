@@ -531,3 +531,163 @@ u"""
 N#N can be excited to [N]=[N], but we shouldn't allow it to reach [N][N]
 """,
 )
+
+entry(
+    label = "SOO2_a",
+    group =
+"""
+multiplicity [3]
+1 S u0 p2 c0 {2,S} {3,S}
+2 O u0 p2 c0 {1,S} {4,S}
+3 O u1 p2 c0 {1,S}
+4 O u1 p2 c0 {2,S}
+""",
+    shortDesc = u"""""",
+    longDesc =
+u"""
+The SO--O2 complex isn't a sable species (i.e., its geometry cannot be optimized with a reasonable SO--OO bond length),
+yet it is predicted by RMG, e.g, by R_Recombination of [S][O] and [O][O].
+""",
+)
+
+entry(
+    label = "SOO2_b",
+    group =
+"""
+multiplicity [3]
+1 S u1 p1 c0 {2,S} {3,D}
+2 O u0 p2 c0 {1,S} {4,S}
+3 O u0 p2 c0 {1,D}
+4 O u1 p2 c0 {2,S}
+""",
+    shortDesc = u"""""",
+    longDesc =
+u"""
+This is a resonance structure of SOO2_a
+""",
+)
+
+entry(
+    label = "SO2O2_a",
+    group =
+"""
+multiplicity [3]
+1 S u0 p1 c0 {2,S} {3,S} {4,D}
+2 O u0 p2 c0 {1,S} {5,S}
+3 O u1 p2 c0 {1,S}
+4 O u0 p2 c0 {1,D}
+5 O u1 p2 c0 {2,S}
+""",
+    shortDesc = u"""""",
+    longDesc =
+u"""
+The SO2--O2 complex isn't a sable species (i.e., its geometry cannot be optimized with a reasonable O2S--OO bond length),
+yet it is predicted by RMG, e.g, by R_Addition_Multiple_Bond of O=S=O and [O][O].
+Also, it is described as a TS in doi: 10.1021/jp067499p (Fig. 1 structure 5, Fig. 2)
+""",
+)
+
+entry(
+    label = "SO2O2_b",
+    group =
+"""
+multiplicity [3]
+1 S u1 p0 c0 {2,S} {3,D} {4,D}
+2 O u0 p2 c0 {1,S} {5,S}
+3 O u0 p2 c0 {1,D}
+4 O u0 p2 c0 {1,D}
+5 O u1 p2 c0 {2,S}
+""",
+    shortDesc = u"""""",
+    longDesc =
+u"""
+This is a resonance structure of SO2O2_a
+""",
+)
+
+entry(
+    label = "S2O2_a",
+    group =
+"""
+multiplicity [3]
+1 O u0 p2 c0 {2,S} {3,S}
+2 S u0 p2 c0 {1,S} {4,S}
+3 O u1 p2 c0 {1,S}
+4 S u1 p2 c0 {2,S}
+""",
+    shortDesc = u"""""",
+    longDesc =
+u"""
+The S2--O2 complex isn't a sable species (has an imaginary frequency),
+yet it is predicted by RMG, e.g, by R_Recombination of [S][S] and [O][O].
+""",
+)
+
+entry(
+    label = "S2O2_b",
+    group =
+"""
+multiplicity [3]
+1 O u0 p2 c0 {2,S} {3,S}
+2 S u1 p1 c0 {1,S} {4,D}
+3 O u1 p2 c0 {1,S}
+4 S u0 p2 c0 {2,D}
+""",
+    shortDesc = u"""""",
+    longDesc =
+u"""
+This is a resonance structure of S2O2_a
+""",
+)
+
+entry(
+    label = "N2SH_a",
+    group =
+"""
+multiplicity [2]
+1 N u0 p0 c+1 {2,D} {3,D}
+2 S u1 p1 c0 {1,D} {4,S}
+3 N u0 p2 c-1 {1,D}
+4 H u0 p0 c0 {2,S}
+""",
+    shortDesc = u"""""",
+    longDesc =
+u"""
+The S2--SH complex isn't a sable species (i.e., its geometry cannot be optimized with a reasonable NN--SH bond length),
+yet it is predicted by RMG, e.g, by R_Addition_Multiple_Bond of [SH] to N#N.
+""",
+)
+
+entry(
+    label = "N2SH_b",
+    group =
+"""
+multiplicity [2]
+1 N u0 p1 c0 {2,S} {3,D}
+2 S u0 p2 c0 {1,S} {4,S}
+3 N u1 p1 c0 {1,D}
+4 H u0 p0 c0 {2,S}
+""",
+    shortDesc = u"""""",
+    longDesc =
+u"""
+This is a resonance structure of N2SH_a
+""",
+)
+
+entry(
+    label = "N2SH_c",
+    group =
+"""
+multiplicity [2]
+1 N u1 p0 c+1 {2,S} {3,D}
+2 S u0 p2 c0 {1,S} {4,S}
+3 N u0 p2 c-1 {1,D}
+4 H u0 p0 c0 {2,S}
+""",
+    shortDesc = u"""""",
+    longDesc =
+u"""
+This is a resonance structure of N2SH_a
+""",
+)

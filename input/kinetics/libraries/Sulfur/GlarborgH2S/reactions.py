@@ -1177,21 +1177,21 @@ MA Blitz KJ Hughes MJ Pilling J Phys Chem A 107 (2003) 1971-1978
 """,
 )
 
-entry(
-    index = 70,
-    label = "SO2 + H2O <=> VDW1",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+14, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
+# entry(
+#     index = 70,
+#     label = "SO2 + H2O <=> VDW1",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+14, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
 
 entry(
     index = 71,
@@ -4338,21 +4338,21 @@ Zhou est (2009)
 """,
 )
 
-entry(
-    index = 261,
-    label = "H2S2O2 + H2O <=> H2S + VDW1",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (390000, 'cm^3/(mol*s)'),
-        n = 1.66,
-        Ea = (3740, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Sendt K Haynes BS J PHYS CHEM A 109 8180-8186 2005
-""",
-)
+# entry(
+#     index = 261,
+#     label = "H2S2O2 + H2O <=> H2S + VDW1",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (390000, 'cm^3/(mol*s)'),
+#         n = 1.66,
+#         Ea = (3740, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Sendt K Haynes BS J PHYS CHEM A 109 8180-8186 2005
+# """,
+# )
 
 entry(
     index = 262,

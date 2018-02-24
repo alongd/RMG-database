@@ -171,7 +171,7 @@ H298 is taken from Table 7 in P.A. Denis, J. Sulfur Chem. 2008, 29(3-4), 327-352
 )
 
 entry(
-    index = 25,
+    index = 7,
     label = "HSS",
     molecule =
 """
@@ -199,7 +199,7 @@ H298 is taken from Table 7 in P.A. Denis, J. Sulfur Chem. 2008, 29(3-4), 327-352
 )
 
 entry(
-    index = 26,
+    index = 8,
     label = "HSSH",
     molecule =
 """
@@ -227,7 +227,7 @@ H298 (updated uncertainty) is taken from Table 7 in P.A. Denis, J. Sulfur Chem. 
 )
 
 entry(
-    index = 7,
+    index = 9,
     label = "H2SO",
     molecule = 
 """
@@ -253,7 +253,7 @@ H298 is taken from Table 7 in P.A. Denis, J. Sulfur Chem. 2008, 29(3-4), 327-352
 )
 
 entry(
-    index = 8,
+    index = 10,
     label = "HSO2",
     molecule = 
 """
@@ -281,7 +281,7 @@ A. Goumri, J-D.R. Rocha, D. Laakso, C.E. Smith, P. Marshall, J. Phys. Chem. A, 1
 )
 
 entry(
-    index = 9,
+    index = 11,
     label = "HOSHO",
     molecule = 
 """
@@ -306,7 +306,7 @@ As reported by: P. Glarborg, D. Kubel, K Dam-Johansen, H-M. Chiang, J.W. Bozzell
 )
 
 entry(
-    index = 10,
+    index = 12,
     label = "HOSO2",
     molecule = 
 """
@@ -333,7 +333,7 @@ H298 is calculated at fc-CCSD(T)/cc-pV(T+d)Z and taken from W. Klopper, D.P. Tew
 )
 
 # entry(
-#     index = 11,
+#     index = 13,
 #     label = "HSOO",
 #     molecule =
 # """
@@ -363,7 +363,7 @@ H298 is calculated at fc-CCSD(T)/cc-pV(T+d)Z and taken from W. Klopper, D.P. Tew
 # )
 
 entry(
-    index = 13,
+    index = 14,
     label = "HOSO",
     molecule =
 """
@@ -394,7 +394,7 @@ As reported by: P. Glarborg, D. Kubel, K Dam-Johansen, H-M. Chiang, J.W. Bozzell
 )
 
 entry(
-    index = 14,
+    index = 15,
     label = "NS",
     molecule = 
 """
@@ -423,7 +423,7 @@ Division, 2005. http://garfield.chem.elte.hu/Burcat/burcat.html
 )
 
 entry(
-    index = 15,
+    index = 16,
     label = "NH(S)",
     molecule = 
 """
@@ -446,7 +446,7 @@ doi: 10.1007/978-1-4612-1310-9_2
 )
 
 entry(
-    index = 16,
+    index = 17,
     label = "NNOH",
     molecule = 
 """
@@ -472,7 +472,7 @@ doi: 10.1007/978-1-4612-1310-9_2
 )
 
 entry(
-    index = 17,
+    index = 18,
     label = "CH2NN",
     molecule = 
 """
@@ -498,7 +498,7 @@ doi: 10.1007/978-1-4612-1310-9_2
 )
 
 entry(
-    index = 18,
+    index = 19,
     label = "HCNN",
     molecule = 
 """
@@ -524,7 +524,7 @@ doi: 10.1007/978-1-4612-1310-9_2
 )
 
 entry(
-    index = 19,
+    index = 20,
     label = "HCN2",
     molecule = 
 """
@@ -550,7 +550,7 @@ doi: 10.1007/978-1-4612-1310-9_2
 )
 
 entry(
-    index = 20,
+    index = 21,
     label = "CH2NNH2",
     molecule = 
 """
@@ -578,7 +578,7 @@ doi: 10.1007/978-1-4612-1310-9_2
 )
 
 entry(
-    index = 21,
+    index = 22,
     label = "CH3NNH",
     molecule = 
 """
@@ -606,7 +606,7 @@ doi: 10.1007/978-1-4612-1310-9_2
 )
 
 entry(
-    index = 22,
+    index = 23,
     label = "NCHOH",
     molecule = 
 """
@@ -633,7 +633,7 @@ doi: 10.1007/978-1-4612-1310-9_2
 )
 
 entry(
-    index = 23,
+    index = 24,
     label = "N",
     molecule =
 """
@@ -654,7 +654,7 @@ Taken from the GRI-Mech3.0-N library
 )
 
 entry(
-    index = 24,
+    index = 25,
     label = "H2SO4",
     molecule =
 """
@@ -687,7 +687,7 @@ Cp @ 6000 K 0.25%. Calculated from original tables.
 )
 
 entry(
-    index = 27,
+    index = 26,
     label = "NSO",
     molecule =
 """
@@ -711,7 +711,7 @@ H298 is updated from Table 7 in P.A. Denis, J. Sulfur Chem. 2008, 29(3-4), 327-3
 )
 
 entry(
-    index = 28,
+    index = 27,
     label = "O2ScycOO",
     molecule =
 """
@@ -770,7 +770,7 @@ Thermodynamics for O2ScycOO:
 )
 
 entry(
-    index = 29,
+    index = 28,
     label = "SO2(T)",
     molecule =
 """
@@ -828,7 +828,7 @@ Thermodynamics for SO2(T):
 )
 
 entry(
-    index = 30,
+    index = 29,
     label = "OOS(T)",
     molecule =
 """
@@ -886,7 +886,7 @@ Thermodynamics for OOS(T):
 )
 
 entry(
-    index = 31,
+    index = 30,
     label = "HSOS",
     molecule =
 """
@@ -945,7 +945,7 @@ Thermodynamics for HSOS:
 )
 
 entry(
-    index = 32,
+    index = 31,
     label = "cycOOS",
     molecule =
 """
@@ -1001,7 +1001,7 @@ Thermodynamics for cycOOS:
 )
 
 entry(
-    index = 33,
+    index = 32,
     label = "cycOOSS",
     molecule =
 """
@@ -1054,5 +1054,65 @@ Thermodynamics for cycOOSS:
           2000      19.579      90.438     102.111    -113.784
           2400      19.817      98.317     105.702    -155.367
    =========== =========== =========== =========== ===========
+""",
+)
+
+entry(
+    index = 33,
+    label = "OdSjOSH",
+    molecule =
+"""
+multiplicity 2
+1 O u0 p2 c0 {2,D}
+2 S u1 p1 c0 {1,D} {3,S}
+3 O u0 p2 c0 {2,S} {4,S}
+4 S u0 p2 c0 {3,S} {5,S}
+5 H u0 p0 c0 {4,S}
+""",
+    thermo = NASA(
+        polynomials = [
+            NASAPolynomial(
+                coeffs = [3.79888, 0.0153752, 7.53812e-05, -3.07948e-07, 2.99236e-10, -17643.1, 10.6141],
+                Tmin = (10, 'K'),
+                Tmax = (404.32, 'K'),
+            ),
+            NASAPolynomial(
+                coeffs = [7.28039, 0.00934552, -7.66111e-06, 2.78665e-09, -3.68766e-13, -18156.8, -5.90153],
+                Tmin = (404.32, 'K'),
+                Tmax = (3000, 'K'),
+            ),
+        ],
+        Tmin = (10, 'K'),
+        Tmax = (3000, 'K'),
+        E0 = (-146.688, 'kJ/mol'),
+        Cp0 = (33.2579, 'J/(mol*K)'),
+        CpInf = (99.7737, 'J/(mol*K)'),
+    ),
+    shortDesc = u"""CBS-QB3""",
+    longDesc =
+u"""
+SMILES: O=[S]OS
+
+calculated by alongd (xq1109, xc1060) at CBS-QB3
+rotors calculated at ub3lyp/6-311++g(df,pd)
+BAC for 'S-O' wasn't available / wasn't applied
+
+# Thermodynamics for OdSjOSH:
+#   Enthalpy of formation (298 K)   =   -31.060 kcal/mol
+#   Entropy of formation (298 K)    =    75.631 cal/(mol*K)
+#    =========== =========== =========== =========== ===========
+#    Temperature Heat cap.   Enthalpy    Entropy     Free energy
+#    (K)         (cal/mol*K) (kcal/mol)  (cal/mol*K) (kcal/mol)
+#    =========== =========== =========== =========== ===========
+#            300      18.491     -31.023      75.755     -53.749
+#            400      19.796     -29.099      81.279     -61.611
+#            500      20.594     -27.079      85.785     -69.971
+#            600      21.231     -24.986      89.598     -78.745
+#            800      22.116     -20.644      95.838     -97.314
+#           1000      22.620     -16.165     100.833    -116.998
+#           1500      23.050      -4.719     110.110    -169.883
+#           2000      23.290       6.860     116.770    -226.680
+#           2400      23.587      16.235     121.042    -274.267
+#    =========== =========== =========== =========== ===========
 """,
 )

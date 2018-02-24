@@ -889,10 +889,8 @@ entry(
     label = "HSSH <=> SH + SH",
     degeneracy = 1,
     kinetics = ThirdBody(
-        arrheniusLow = Arrhenius(A=(2.31e+14, 'cm^3/(mol*s)'), n=1, Ea=(57030, 'cal/mol'), T0 = (1, 'K'),
-                                 Tmin=(873, 'K'), Tmax=(1423, 'K')),
-        efficiencies={'N#N': 1, 'S': 1.1, '[Ar]': 0.88, '[He]': 1.39}),
-    shortDesc = u"""[Sendt2002]""",
+        arrheniusLow = Arrhenius(A=(1.59e+18, 'cm^3/(mol*s)'), n=-0.957, Ea=(267, 'kJ/mol'), T0 = (1, 'K'))),
+    shortDesc = u"""[Sendt2009b]""",
     longDesc =
 u"""
 Part of the "HxSy" subset
@@ -905,8 +903,6 @@ Also available from [Sendt2002] as a third body reaction:
 k9
 UNIMOL calculation
 Validated in T range: 873-1423 K
-
-Also available in reverse from [Sendt2009b]
 """,
 )
 
@@ -1240,7 +1236,7 @@ calculations done at the MRCI/aug-cc-pV(Q+d)Z//CASSCF/cc-pVTZ level of theory
 )
 
 entry(
-    index = 67,
+    index = 66,
     label = "H2SS <=> HSS + H",
     degeneracy = 2,
     kinetics = Arrhenius(A=(1.46e+15, 'cm^3/(mol*s)'), n=-0.026, Ea=(191, 'kJ/mol'), T0=(1, 'K')),
@@ -1254,7 +1250,7 @@ calculations done at the MRCI/aug-cc-pV(Q+d)Z//CASSCF/cc-pVTZ level of theory
 )
 
 entry(
-    index = 68,
+    index = 67,
     label = "H2SS <=> H2S + S",
     degeneracy = 1,
     kinetics = Arrhenius(A=(4.53e+11, 's^-1'), n=0.468, Ea=(127, 'kJ/mol'), T0=(1, 'K')),
@@ -1269,7 +1265,7 @@ calculations done at the MRCI/aug-cc-pV(Q+d)Z//CASSCF/cc-pVTZ level of theory
 )
 
 entry(
-    index = 69,
+    index = 68,
     label = "H2SS <=> S2 + H2",
     degeneracy = 1,
     kinetics = Arrhenius(A=(1.36e+10, 's^-1'), n=1.125, Ea=(158, 'kJ/mol'), T0=(1, 'K')),

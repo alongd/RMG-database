@@ -889,20 +889,18 @@ entry(
     label = "HSSH <=> SH + SH",
     degeneracy = 1,
     kinetics = ThirdBody(
-        arrheniusLow = Arrhenius(A=(1.59e+18, 'cm^3/(mol*s)'), n=-0.957, Ea=(267, 'kJ/mol'), T0 = (1, 'K'))),
-    shortDesc = u"""[Sendt2009b]""",
-    longDesc =
-u"""
-Part of the "HxSy" subset
-
-Also available from [Sendt2002] as a third body reaction:
-    kinetics = ThirdBody(
         arrheniusLow = Arrhenius(A=(2.31e+14, 'cm^3/(mol*s)'), n=1, Ea=(57030, 'cal/mol'), T0 = (1, 'K'),
                                  Tmin=(873, 'K'), Tmax=(1423, 'K')),
         efficiencies={'N#N': 1, 'S': 1.1, '[Ar]': 0.88, '[He]': 1.39}),
+    shortDesc = u"""[Sendt2002]""",
+    longDesc =
+u"""
+Part of the "HxSy" subset
 k9
 UNIMOL calculation
 Validated in T range: 873-1423 K
+
+Also available from [Sendt2009b]
 """,
 )
 
@@ -926,19 +924,15 @@ entry(
     index = 48,
     label = "HSS + H <=> S2 + H2",
     degeneracy = 1,
-    kinetics = Arrhenius(A=(1.05e+08, 'cm^3/(mol*s)'), n=1.750, Ea=(-4, 'kJ/mol'), T0=(1, 'K'),
-                         Tmin=(300, 'K'), Tmax=(2000, 'K')),
-    shortDesc = u"""[Sendt2009b]""",
+    kinetics = Arrhenius(A=(1.23e+08, 'cm^3/(mol*s)'), n=1.653, Ea=(-1105, 'cal/mol'), T0 = (1, 'K'),
+                         Tmin=(873, 'K'), Tmax=(1423, 'K')),
+    shortDesc = u"""[Sendt2002]""",
     longDesc =
 u"""
 Part of the "SOx" subset
-Table 2, R10
-calculations done at the MRCI/aug-cc-pV(Q+d)Z//CASSCF/cc-pVTZ level of theory
-Added as a training reaction to H_Abstraction
+k11
 
-Also available from [Sendt2002], k11:
-    kinetics = Arrhenius(A=(1.23e+08, 'cm^3/(mol*s)'), n=1.653, Ea=(-1105, 'cal/mol'), T0 = (1, 'K'),
-                         Tmin=(873, 'K'), Tmax=(1423, 'K')),
+Also available from [Sendt2009b]
 """,
 )
 
@@ -946,19 +940,17 @@ entry(
     index = 49,
     label = "HSS + H <=> H2S + S",
     degeneracy = 1,
-    kinetics = Arrhenius(A=(1.50e+08, 'cm^3/(mol*s)'), n=1.551, Ea=(9, 'kJ/mol'), T0 = (1, 'K'),
-                         Tmin=(300, 'K'), Tmax=(2000, 'K')),
-    shortDesc = u"""[Sendt2009b]""",
+    kinetics = Arrhenius(A=(4.41e+13, 'cm^3/(mol*s)'), n=0, Ea=(6326, 'cal/mol'), T0 = (1, 'K'),
+                         Tmin=(873, 'K'), Tmax=(1423, 'K')),
+    shortDesc = u"""[Sendt2002]""",
     longDesc =
 u"""
 Part of the "HxSy" subset
-
-Also available from [Sendt2002]
-    kinetics = Arrhenius(A=(4.41e+13, 'cm^3/(mol*s)'), n=0, Ea=(6326, 'cal/mol'), T0 = (1, 'K'),
-                         Tmin=(873, 'K'), Tmax=(1423, 'K')),
 k12
 TST
 Validated in T range: 873-1423 K
+
+Also available from [Sendt2009b]
 """,
 )
 

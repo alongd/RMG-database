@@ -199,7 +199,7 @@ H298 is taken from Table 7 in P.A. Denis, J. Sulfur Chem. 2008, 29(3-4), 327-352
 )
 
 entry(
-    index = 8,
+    index = 26,
     label = "HSSH",
     molecule =
 """
@@ -221,7 +221,6 @@ Taken from the SulfurGlarborgH2S library with comment:
 Zhou - K. Sendt, B.S. Haynes, J. Phys. Chem. A 109 (2005) 8180 to 8186;
 K. Sendt, M. Jazbec, B.S. Haynes, Proc. Combust. Inst. 29 (2003) 2439-2446.
 3.70  61.61
-
 H298 (updated uncertainty) is taken from Table 7 in P.A. Denis, J. Sulfur Chem. 2008, 29(3-4), 327-352, doi: 10.1080/17415990802047352
 """,
 )
@@ -740,13 +739,13 @@ entry(
         Cp0 = (33.2579, 'J/(mol*K)'),
         CpInf = (108.088, 'J/(mol*K)'),
     ),
-    shortDesc = u"""UCCSD(T)-F12a/cc-pVTZ-f12//UM06-2x/cc-pVTZ""",
+    shortDesc = u"""CCSD(T)-F12a/cc-pVTZ-f12//M06-2x/cc-pVTZ""",
     longDesc =
 u"""
 SMILES: O=S1(=O)OO1
 
-calculated by alongd (xq1112, xc1063) at the UCCSD(T)-F12a/cc-pVTZ-f12//UM06-2x/cc-pVTZ level of theory
-frequencies calculated at UM06-2x/cc-pVTZ
+calculated by alongd (xq1112, xc1063) at the CCSD(T)-F12a/cc-pVTZ-f12//M06-2x/cc-pVTZ level of theory
+frequencies calculated at M06-2x/cc-pVTZ
 (no rotors)
 
 Thermodynamics for O2ScycOO:
@@ -972,7 +971,7 @@ entry(
         Cp0 = (33.2579, 'J/(mol*K)'),
         CpInf = (58.2013, 'J/(mol*K)'),
     ),
-    shortDesc = u"""UCCSD(T)-F12a/cc-pVTZ-f12//UM06-2x/cc-pVTZ""",
+    shortDesc = u"""CCSD(T)-F12a/cc-pVTZ-f12//M06-2x/cc-pVTZ""",
     longDesc =
 u"""
 SMILES: O1OS1
@@ -1029,7 +1028,7 @@ entry(
         Cp0 = (33.2579, 'J/(mol*K)'),
         CpInf = (83.1447, 'J/(mol*K)'),
     ),
-    shortDesc = u"""UCCSD(T)-F12a/cc-pVTZ-f12//UM06-2x/cc-pVTZ""",
+    shortDesc = u"""CCSD(T)-F12a/cc-pVTZ-f12//M06-2x/cc-pVTZ""",
     longDesc =
 u"""
 SMILES: O1OSS1
@@ -1054,65 +1053,5 @@ Thermodynamics for cycOOSS:
           2000      19.579      90.438     102.111    -113.784
           2400      19.817      98.317     105.702    -155.367
    =========== =========== =========== =========== ===========
-""",
-)
-
-entry(
-    index = 33,
-    label = "OdSjOSH",
-    molecule =
-"""
-multiplicity 2
-1 O u0 p2 c0 {2,D}
-2 S u1 p1 c0 {1,D} {3,S}
-3 O u0 p2 c0 {2,S} {4,S}
-4 S u0 p2 c0 {3,S} {5,S}
-5 H u0 p0 c0 {4,S}
-""",
-    thermo = NASA(
-        polynomials = [
-            NASAPolynomial(
-                coeffs = [3.79888, 0.0153752, 7.53812e-05, -3.07948e-07, 2.99236e-10, -17643.1, 10.6141],
-                Tmin = (10, 'K'),
-                Tmax = (404.32, 'K'),
-            ),
-            NASAPolynomial(
-                coeffs = [7.28039, 0.00934552, -7.66111e-06, 2.78665e-09, -3.68766e-13, -18156.8, -5.90153],
-                Tmin = (404.32, 'K'),
-                Tmax = (3000, 'K'),
-            ),
-        ],
-        Tmin = (10, 'K'),
-        Tmax = (3000, 'K'),
-        E0 = (-146.688, 'kJ/mol'),
-        Cp0 = (33.2579, 'J/(mol*K)'),
-        CpInf = (99.7737, 'J/(mol*K)'),
-    ),
-    shortDesc = u"""CBS-QB3""",
-    longDesc =
-u"""
-SMILES: O=[S]OS
-
-calculated by alongd (xq1109, xc1060) at CBS-QB3
-rotors calculated at ub3lyp/6-311++g(df,pd)
-BAC for 'S-O' wasn't available / wasn't applied
-
-# Thermodynamics for OdSjOSH:
-#   Enthalpy of formation (298 K)   =   -31.060 kcal/mol
-#   Entropy of formation (298 K)    =    75.631 cal/(mol*K)
-#    =========== =========== =========== =========== ===========
-#    Temperature Heat cap.   Enthalpy    Entropy     Free energy
-#    (K)         (cal/mol*K) (kcal/mol)  (cal/mol*K) (kcal/mol)
-#    =========== =========== =========== =========== ===========
-#            300      18.491     -31.023      75.755     -53.749
-#            400      19.796     -29.099      81.279     -61.611
-#            500      20.594     -27.079      85.785     -69.971
-#            600      21.231     -24.986      89.598     -78.745
-#            800      22.116     -20.644      95.838     -97.314
-#           1000      22.620     -16.165     100.833    -116.998
-#           1500      23.050      -4.719     110.110    -169.883
-#           2000      23.290       6.860     116.770    -226.680
-#           2400      23.587      16.235     121.042    -274.267
-#    =========== =========== =========== =========== ===========
 """,
 )

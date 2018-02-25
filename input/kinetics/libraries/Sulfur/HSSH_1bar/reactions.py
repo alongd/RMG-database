@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
+# rename to original
+
 name = "Sulfur/HSSH_1bar"
 shortDesc = u"H2S + S = SH + SH at 1bar"
 longDesc =u"""
@@ -52,56 +54,5 @@ u"""
 DKCCSD(T)/cc-PVQZ_DK
 The H2S+S PES passes through an inter-system crossing with a low barrier, and is infact P-Dep at low T (below 800 K)
 The rate here is computed at 1 bar. Bath gas: Ar.
-""",
-)
-
-entry(
-    index = 3,
-    label = "HSS + H <=> SH + SH",
-    degeneracy = 1,
-    kinetics = Arrhenius(A=(1.63e+18, 'cm^3/(mol*s)'), n=-0.983, Ea=(1, 'kJ/mol'), T0=(1, 'K'),
-                         Tmin=(300, 'K'), Tmax=(2000, 'K')),
-    shortDesc = u"""[Sendt2009b]""",
-    longDesc =
-u"""
-Part of the "SOx" subset
-This reaction is on the same surface as the SH+SH case,
-it is given in this library since the rate constant was calculated for 1 bar only
-Table 2, -R1d
-calculations done at the MRCI/aug-cc-pV(Q+d)Z//CASSCF/cc-pVTZ level of theory
-""",
-)
-
-entry(
-    index = 4,
-    label = "HSS + H <=> H2S + S",
-    degeneracy = 1,
-    kinetics = Arrhenius(A=(4.19e+18, 'cm^3/(mol*s)'), n=-1.563, Ea=(2, 'kJ/mol'), T0=(1, 'K'),
-                         Tmin=(300, 'K'), Tmax=(2000, 'K')),
-    shortDesc = u"""[Sendt2009b]""",
-    longDesc =
-u"""
-Part of the "SOx" subset
-This reaction is on the same surface as the SH+SH case,
-it is given in this library since the rate constant was calculated for 1 bar only
-Table 2
-calculations done at the MRCI/aug-cc-pV(Q+d)Z//CASSCF/cc-pVTZ level of theory
-""",
-)
-
-entry(
-    index = 5,
-    label = "HSS + H <=> S2 + H2",
-    degeneracy = 1,
-    kinetics = Arrhenius(A=(2.91e+16, 'cm^3/(mol*s)'), n=-0.894, Ea=(0, 'kJ/mol'), T0=(1, 'K'),
-                         Tmin=(300, 'K'), Tmax=(2000, 'K')),
-    shortDesc = u"""[Sendt2009b]""",
-    longDesc =
-u"""
-Part of the "SOx" subset
-This reaction is on the same surface as the SH+SH case,
-it is given in this library since the rate constant was calculated for 1 bar only
-Table 2
-calculations done at the MRCI/aug-cc-pV(Q+d)Z//CASSCF/cc-pVTZ level of theory
 """,
 )

@@ -2377,9 +2377,8 @@ entry(
     index = 1041,
     label = "H + HSS_r12 <=> H2_p + S2_p1",
     degeneracy = 1,
-    kinetics = Arrhenius(A=(1.05e+08, 'cm^3/(mol*s)'), n=1.750, Ea=(-4, 'kJ/mol'), T0=(1, 'K'),
-                         Tmin=(300, 'K'), Tmax=(2000, 'K')),
-    rank = 2,
+    kinetics = Arrhenius(A=(1.23e+08, 'cm^3/(mol*s)'), n=1.653, Ea=(-1105, 'cal/mol'), T0=(1, 'K'), Tmin = (873, 'K'), Tmax = (1423, 'K')),
+    rank = 3,
     shortDesc = u"""Training reaction from kinetics library: SOx""",
     longDesc = 
 u"""

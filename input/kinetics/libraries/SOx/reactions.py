@@ -889,8 +889,13 @@ entry(
     label = "HSSH <=> SH + SH",
     degeneracy = 1,
     kinetics = ThirdBody(
-        arrheniusLow = Arrhenius(A=(1.59e+18, 'cm^3/(mol*s)'), n=-0.957, Ea=(267, 'kJ/mol'), T0 = (1, 'K'))),
-    shortDesc = u"""[Sendt2009b]""",
+        arrheniusLow = Arrhenius(A=(2.31e+14, 'cm^3/(mol*s)'), n=1, Ea=(57030, 'cal/mol'), T0 = (1, 'K'),
+                                 Tmin=(873, 'K'), Tmax=(1423, 'K')),
+        efficiencies={'N#N': 1, 'S': 1.1, '[Ar]': 0.88, '[He]': 1.39}),
+    shortDesc = u"""[Sendt2002]""",
+    # kinetics = ThirdBody(
+    #     arrheniusLow = Arrhenius(A=(1.59e+18, 'cm^3/(mol*s)'), n=-0.957, Ea=(267, 'kJ/mol'), T0 = (1, 'K'))),
+    # shortDesc = u"""[Sendt2009b]""",
     longDesc =
 u"""
 Part of the "HxSy" subset
@@ -926,9 +931,11 @@ entry(
     index = 48,
     label = "HSS + H <=> S2 + H2",
     degeneracy = 1,
-    kinetics = Arrhenius(A=(1.05e+08, 'cm^3/(mol*s)'), n=1.750, Ea=(-4, 'kJ/mol'), T0=(1, 'K'),
-                         Tmin=(300, 'K'), Tmax=(2000, 'K')),
-    shortDesc = u"""[Sendt2009b]""",
+    kinetics = Arrhenius(A=(1.23e+08, 'cm^3/(mol*s)'), n=1.653, Ea=(-1105, 'cal/mol'), T0 = (1, 'K'),
+                         Tmin=(873, 'K'), Tmax=(1423, 'K')),
+    # kinetics = Arrhenius(A=(1.05e+08, 'cm^3/(mol*s)'), n=1.750, Ea=(-4, 'kJ/mol'), T0=(1, 'K'),
+    #                      Tmin=(300, 'K'), Tmax=(2000, 'K')),
+    # shortDesc = u"""[Sendt2009b]""",
     longDesc =
 u"""
 Part of the "SOx" subset
@@ -946,9 +953,11 @@ entry(
     index = 49,
     label = "HSS + H <=> H2S + S",
     degeneracy = 1,
-    kinetics = Arrhenius(A=(1.50e+08, 'cm^3/(mol*s)'), n=1.551, Ea=(9, 'kJ/mol'), T0 = (1, 'K'),
-                         Tmin=(300, 'K'), Tmax=(2000, 'K')),
-    shortDesc = u"""[Sendt2009b]""",
+    kinetics = Arrhenius(A=(4.41e+13, 'cm^3/(mol*s)'), n=0, Ea=(6326, 'cal/mol'), T0 = (1, 'K'),
+                         Tmin=(873, 'K'), Tmax=(1423, 'K')),
+    # kinetics = Arrhenius(A=(1.50e+08, 'cm^3/(mol*s)'), n=1.551, Ea=(9, 'kJ/mol'), T0 = (1, 'K'),
+    #                      Tmin=(300, 'K'), Tmax=(2000, 'K')),
+    # shortDesc = u"""[Sendt2009b]""",
     longDesc =
 u"""
 Part of the "HxSy" subset

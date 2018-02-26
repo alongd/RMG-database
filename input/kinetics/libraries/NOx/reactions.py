@@ -53,6 +53,7 @@ Reference legend:
 [Friedrichs2015]  N. Faßheber,  N. Lamoureux,  G. Friedrichs, Phys. Chem. Chem. Phys., 2015, 17, 15876-15886, doi: 10.1039/C5CP01414J
 [GlarGim] (RMG's Nitrogen_Glarborg_Gimenez_et_al library) Gimenez Lopeza et al., Proceedings of the Combustion Institute, 2009, 32(1), 367-375, doi: 10.1016/j.proci.2008.06.188
 [GlarZha] (RMG's Nitrogen_Glarborg_Zhang_et_al library) Kuiwen Zhang et al. Proceedings of the Combustion Institute, 2013, 34, 617-624, doi: 10.1016/j.proci.2012.06.010
+[Green2014] K. Prozument, Y.V. Suleimanov, B. Buesser, J.M. Oldham, W.H. Green, A.G. Suits, R.W. Field, J. Phys. Chem. Lett. 2014, 5(21), 3641-3648, doi: 10.1021/jz501758p
 [GRI] (RMG's GRI-Mech3.0-N library) GRI-Mech 3.0, http://www.me.berkeley.edu/gri_mech/
 [Hanson1981] T.R. Roose, R.K. Hanson, C.H. Kruger, Symposium (International) on Combustion, 1981, 18(1), 853-862, doi: 10.1016/S0082-0784(81)80089-6
 [Hanson1984a] M.Y. Louge, R.K. Hanson, Int. J. Chem. Kin., 1984, 16(3), 231-250, doi: 10.1002/kin.550160306
@@ -3956,3 +3957,47 @@ Train!
 """,
 )
 
+entry(
+    index = 225,
+    label = "C2H5ONO <=> CH3CHO + HNO",
+    degeneracy = 1,
+    kinetics = Arrhenius(A=(9.85e+15, 'cm^3/(mol*s)'), n=0, Ea=(41760, 'cal/mol'), T0=(1, 'K'),
+                         Tmin=(300, 'K'), Tmax=(2000, 'K')),
+    shortDesc = u"""estimated by alongd""",
+    longDesc =
+u"""
+This is the RTS reaction from [Green2014]
+
+In that paper its rate was fitted to agree with experimental results.
+
+Here, the rate was established as follows:
+
+The A factor is taken from the reaction C2H5ONO <=> C2H5O + NO
+The latter is given in reverse in the Nitrogen_Glarborg_Zhang_et_al library:
+    entry(
+        index = 669,
+        label = "CH3CH2O + NO <=> CH3CH2ONO",
+        degeneracy = 1,
+        kinetics = Troe(
+            arrheniusHigh = Arrhenius(A=(1.2e+13, 'cm^3/(mol*s)'), n=0, Ea=(-143, 'cal/mol'), T0=(1, 'K')),
+            arrheniusLow = Arrhenius(A=(9.43e+19, 'cm^6/(mol^2*s)'), n=0, Ea=(0, 'cal/mol'), T0=(1, 'K')),
+            alpha = 0.6,
+            T3 = (1e-30, 'K'),
+            T1 = (1e+30, 'K'),
+            T2 = (1e+30, 'K'),
+            efficiencies = {},
+        ),
+    )
+Reversing the high-P limit rate of this reaction using thermo for CH3CH2O from FFCM-1, NO from NitrogenCurran,
+and CH3CH2ONO from NitrogenCurran gives in 300-2000 K:
+K(T) = 9.85E+15 * exp(46 kcal/mol / RT) cm3/mol*s    (negative Ea)
+A = 9.85E+15 cm3/mol*s
+
+The Ea is taken as the bond energy of C2H5O-NO
+Ea = H(NO) + H(C2H5O) - H(CH3CH2ONO)     (values taken at 1000 K)
+Ea = 26.93 + 14.52 - (-0.31) = 41.76 kcal/mol
+
+This is in close agreement with the rate reported by [Green2014]:
+K(T) = 1.0E+16 * exp(42 kcal/mol / RT) cm3/mol*s
+""",
+)

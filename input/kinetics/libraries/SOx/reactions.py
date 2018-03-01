@@ -847,10 +847,10 @@ T range: 900-3600 K
 
 entry(
     index = 44,
-    label = "H + S2 <=> HSS",
+    label = "S2 + H <=> HSS",
     degeneracy = 1,
     kinetics = ThirdBody(
-        arrheniusLow = Arrhenius(A=(1.60e+24, 'cm^6/(mol^2*s)'), n=-2.613, Ea=(89173, 'cal/mol'), T0 = (1, 'K'),
+        arrheniusLow = Arrhenius(A=(1.15e+25, 'cm^6/(mol^2*s)'), n=-2.840, Ea=(1665, 'cal/mol'), T0 = (1, 'K'),
                                  Tmin=(873, 'K'), Tmax=(1423, 'K')),
         efficiencies={'N#N': 1, 'S': 1.1, '[Ar]': 0.88, '[He]': 1.39}),
     shortDesc = u"""[Sendt2002]""",
@@ -881,6 +881,7 @@ Part of the "HxSy" subset
 k7 + k8
 TST\QRRK
 Validated in T range: 873-1423 K
+The original paper adjusted the second Arrhenius to 3E14 cm^3/(mol*s) to achieve a better agreement with experimens
 """,
 )
 
@@ -1042,7 +1043,7 @@ entry(
     index = 55,
     label = "HSSH + S <=> HSS + SH",
     degeneracy = 1,
-    kinetics = Arrhenius(A=(2.85e+06, 'cm^3/(mol*s)'), n=2.310, Ea=(-1204, 'cal/mol'), T0 = (1, 'K'),
+    kinetics = Arrhenius(A=(2.85e+06, 'cm^3/(mol*s)'), n=2.310, Ea=(1204, 'cal/mol'), T0 = (1, 'K'),
                          Tmin=(873, 'K'), Tmax=(1423, 'K')),
     shortDesc = u"""[Sendt2002]""",
     longDesc =

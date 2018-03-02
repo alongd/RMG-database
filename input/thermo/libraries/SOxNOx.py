@@ -1055,3 +1055,59 @@ Thermodynamics for cycOOSS:
    =========== =========== =========== =========== ===========
 """,
 )
+
+entry(
+    index = 33,
+    label = "NNS",
+    molecule =
+"""
+1 N u0 p1 c0 {2,T}
+2 N u0 p0 c+1 {1,T} {3,S}
+3 S u0 p3 c-1 {2,S}
+""",
+    thermo = NASA(
+        polynomials = [
+            NASAPolynomial(
+                coeffs = [3.48496, 0.00087841, 1.61418e-05, -3.21583e-08, 1.89692e-11, 23801.9, 6.98879],
+                Tmin = (10, 'K'),
+                Tmax = (573.927, 'K'),
+            ),
+            NASAPolynomial(
+                coeffs = [3.41668, 0.00484707, -3.35932e-06, 1.09773e-09, -1.35956e-13, 23752.2, 6.77912],
+                Tmin = (573.927, 'K'),
+                Tmax = (3000, 'K'),
+            ),
+        ],
+        Tmin = (10, 'K'),
+        Tmax = (3000, 'K'),
+        E0 = (197.894, 'kJ/mol'),
+        Cp0 = (29.1007, 'J/(mol*K)'),
+        CpInf = (54.0441, 'J/(mol*K)'),
+    ),
+    shortDesc = u"""CCSD(T)-F12a/cc-pVTZ-f12//M06-2x/cc-pVTZ""",
+    longDesc =
+u"""
+SMILES: N#[N+][S-]
+
+calculated by alongd (xq1161, xc1074) at the CCSD(T)-F12a/cc-pVTZ-f12//M06-2x/cc-pVTZ level of theory
+frequencies calculated at M06-2x/cc-pVTZ
+
+Thermodynamics for NNS:
+  Enthalpy of formation (298 K)   =    49.615 kcal/mol
+  Entropy of formation (298 K)    =    54.798 cal/(mol*K)
+   =========== =========== =========== =========== ===========
+   Temperature Heat cap.   Enthalpy    Entropy     Free energy
+   (K)         (cal/mol*K) (kcal/mol)  (cal/mol*K) (kcal/mol)
+   =========== =========== =========== =========== ===========
+           300       8.916      49.633      54.857      33.176
+           400       9.631      50.562      57.523      27.552
+           500      10.185      51.554      59.735      21.686
+           600      10.602      52.594      61.630      15.616
+           800      11.229      54.781      64.772       2.963
+          1000      11.657      57.072      67.327     -10.254
+          1500      12.212      63.062      72.176     -45.202
+          2000      12.480      69.239      75.728     -82.218
+          2400      12.647      74.266      78.019    -112.980
+   =========== =========== =========== =========== ===========
+""",
+)

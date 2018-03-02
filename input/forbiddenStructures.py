@@ -639,3 +639,55 @@ u"""
 This is a resonance structure of S2O2_a
 """,
 )
+
+entry(
+    label = "N2SH_a",
+    group =
+"""
+multiplicity [2]
+1 N u0 p0 c+1 {2,D} {3,D}
+2 S u1 p1 c0 {1,D} {4,S}
+3 N u0 p2 c-1 {1,D}
+4 H u0 p0 c0 {2,S}
+""",
+    shortDesc = u"""""",
+    longDesc =
+u"""
+The S2--SH complex isn't a sable species (i.e., its geometry cannot be optimized with a reasonable NN--SH bond length),
+yet it is predicted by RMG, e.g, by R_Addition_Multiple_Bond of [SH] to N#N.
+""",
+)
+
+entry(
+    label = "N2SH_b",
+    group =
+"""
+multiplicity [2]
+1 N u0 p1 c0 {2,S} {3,D}
+2 S u0 p2 c0 {1,S} {4,S}
+3 N u1 p1 c0 {1,D}
+4 H u0 p0 c0 {2,S}
+""",
+    shortDesc = u"""""",
+    longDesc =
+u"""
+This is a resonance structure of N2SH_a
+""",
+)
+
+entry(
+    label = "N2SH_c",
+    group =
+"""
+multiplicity [2]
+1 N u1 p0 c+1 {2,S} {3,D}
+2 S u0 p2 c0 {1,S} {4,S}
+3 N u0 p2 c-1 {1,D}
+4 H u0 p0 c0 {2,S}
+""",
+    shortDesc = u"""""",
+    longDesc =
+u"""
+This is a resonance structure of N2SH_a
+""",
+)

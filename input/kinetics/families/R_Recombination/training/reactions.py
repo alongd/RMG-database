@@ -481,3 +481,33 @@ R2
 Calculated at the QCISD(T)/CBS//B3LYP/6-311++G(d,p) level
 """,
 )
+
+# entry(
+#     index = 41,
+#     label = "HSSH <=> SH + SH",
+#     degeneracy = 1,
+#     rank = 2,
+#     kinetics = Arrhenius(A=(1.59e+18, 'cm^3/(mol*s)'), n=-0.957, Ea=(267, 'kJ/mol'), T0=(1, 'K')),
+#     shortDesc = u"""Sendt2009""",
+#     longDesc =
+# u"""
+# C.R. Zhou, K. Sendt, B.S. Haynes, J. Phys. Chem. A, 2009, 113, 8299-8306, doi: 10.1021/jp903185k
+# Table 1, R2
+# calculations done at the MRCI/aug-cc-pV(Q+d)Z//CASSCF/cc-pVTZ level of theory
+# """,
+# )
+#
+# entry(
+#     index = 42,
+#     label = "HSSH <=> HSS + H",
+#     degeneracy = 2,
+#     rank = 2,
+#     kinetics = Arrhenius(A=(4.70e+17, 'cm^3/(mol*s)'), n=-0.076, Ea=(310, 'kJ/mol'), T0=(1, 'K')),
+#     shortDesc = u"""Sendt2009""",
+#     longDesc =
+# u"""
+# C.R. Zhou, K. Sendt, B.S. Haynes, J. Phys. Chem. A, 2009, 113, 8299-8306, doi: 10.1021/jp903185k
+# Table 1, R3
+# calculations done at the MRCI/aug-cc-pV(Q+d)Z//CASSCF/cc-pVTZ level of theory
+# """,
+# )

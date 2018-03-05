@@ -571,21 +571,22 @@ GOU/MAR05
 """,
 )
 
-entry(
-    index = 63,
-    label = "SH + SH <=> S2 + H2",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+12, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-ALZ/GLA01 estimated kinetics
-""",
-)
+# entry(
+#     index = 63,
+#     label = "SH + SH <=> S2 + H2",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+12, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# commented out since the network is now given by various PDep reactions in the SOx library
+# ALZ/GLA01 estimated kinetics
+# """,
+# )
 
 entry(
     index = 64,

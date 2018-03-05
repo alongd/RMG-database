@@ -18,6 +18,7 @@ This reaction behaves as P-Dep at low P, while its high-P limit is zero(!).
 This library should not be used at higher pressures.
 
 [Marshall2011b] Y. Gao, C.(R) Z., K. Sendt, B.S. Haynes, P. Marshall, Proc. Comb. Inst., 2011, 33, 459-465, doi: 10.1016/j.proci.2010.05.020
+[Sendt2002] K. Sendt, M. Jazbec, B.S. Haynes, Proceedings of the Combustion Institute, 2002, 29, 2439-2446, doi: 10.1016/S1540-7489(02)80297-8
 [Sendt2008] C.R. Zhou, K. Sendt, B.S. Haynes, J. Phys. Chem. A, 2008, 112, 3239-3247, doi: 10.1021/jp710488d
 [Sendt2009b] C.R. Zhou, K. Sendt, B.S. Haynes, J. Phys. Chem. A, 2009, 113, 8299-8306, doi: 10.1021/jp903185k
 """
@@ -52,7 +53,49 @@ entry(
     longDesc =
 u"""
 DKCCSD(T)/cc-PVQZ_DK
-The H2S+S PES passes through an inter-system crossing with a low barrier, and is infact P-Dep at low T (below 800 K)
+The H2S+S PES passes through an inter-system crossing with a low barrier, and is in fact P-Dep at low T (below 800 K)
 The rate here is computed at 1 bar. Bath gas: Ar.
+""",
+)
+
+entry(
+    index = 3,
+    label = "HSS + H <=> H2S + S",
+    degeneracy = 1,
+    duplicate = True,
+    kinetics = MultiArrhenius(
+        arrhenius = [
+            Arrhenius(A=(4.19e+18, 'cm^3/(mol*s)'), n=-1.563, Ea=(2, 'kJ/mol'), T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(2000, 'K')),
+            Arrhenius(A=(1.50e+08, 'cm^3/(mol*s)'), n=1.551, Ea=(9, 'kJ/mol'), T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(2000, 'K')),
+        ],
+    ),
+    shortDesc = u"""[Sendt2009b]""",
+    longDesc =
+u"""
+R9
+calculations done at the MRCI/aug-cc-pV(Q+d)Z//CASSCF/cc-pVTZ level of theory
+One rate is not PDep, the other is PDep given at 1 bar
+also available from [Sendt2002]
+""",
+)
+
+entry(
+    index = 4,
+    label = "HSS + H <=> S2 + H2",
+    degeneracy = 1,
+    duplicate = True,
+    kinetics = MultiArrhenius(
+        arrhenius = [
+            Arrhenius(A=(2.91e+16, 'cm^3/(mol*s)'), n=-0.894, Ea=(0, 'cal/mol'), T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(2000, 'K')),
+            Arrhenius(A=(1.05e+08, 'cm^3/(mol*s)'), n=1.750, Ea=(-4, 'kJ/mol'), T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(2000, 'K')),
+        ],
+    ),
+    shortDesc = u"""[Sendt2009b]""",
+    longDesc =
+u"""
+R10
+calculations done at the MRCI/aug-cc-pV(Q+d)Z//CASSCF/cc-pVTZ level of theory
+One rate is not PDep, the other is PDep given at 1 bar
+also available from [Sendt2002]
 """,
 )

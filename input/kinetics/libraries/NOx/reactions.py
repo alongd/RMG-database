@@ -43,6 +43,7 @@ Reference legend:
 [Baulch2009] D.L. Baulch et al., Journal of Physical and Chemical Reference Data, 2009
 [Bozzelli1994] J.W. Bozzelli, A.Y. Chang, A.M. Dean, Symp. (Int.) Comb., 1994, 25(1), 965-974, doi: 10.1016/S0082-0784(06)80733-2
 [Bozzelli1996] P. Glarborg, D. Kubel, K. Dam-Johansen, H-M. Chiang, J.W. Bozzelli, Int. J. Chem. Kin., 1996, 28(10), 773-790, doi: 10.1002/(SICI)1097-4601(1996)28:10<773::AID-KIN8>3.0.CO;2-K
+[Carl2002] S.A. Carl, Q. Sun, L. Vereecken, J. Peeters, J. Phys. Chem. A 2002, 106(51), 12242-12247, doi: 10.1021/jp014135i
 [Cohen1991] N. Cohen, K. R. Westberg, Journal of Physical and Chemical Reference Data, 1991, 20, 1211,; doi: 10.1063/1.555901
 [Cohen1992] Cohen, N. (1992). Chemical Kinetic Data Sheets for High-Temperature Chemical Reactions, Vol. III., Aerospace Corporation Report ATR-91 (7189)-2.
 [DeanBozz2000] (RMG's Nitrogen_Dean_and_Bozzelli library) Anthony M. Dean, Joseph W. Bozzelli, Combustion Chemistry of Nitrogen, in: Gas-Phase Combustion Chemistry, Editor: W.C. Gardiner, 2000, 125-341, doi: 10.1007/978-1-4612-1310-9_2
@@ -92,6 +93,7 @@ Reference legend:
 [Lin2000b] X. Lu, J. Park, M.C. Lin, J. Phys. Chem. A, 2000, 104(38), 8730-8738, doi: 10.1021/jp001610o
 [Lin2000c] X. Lu, R.N. Musin, M.C. Lin, J. Phys. Chem. A, 2000, 104(21), 5141-5148, doi: 10.1021/jp000464j
 [Lin2001] W.S. Xia, M.C. Lin, J. Chem. Phys., 2001, 114, 4522-4532, doi: 10.1063/1.1337061
+[Lin2003a] I.V. Tokmakov, L.V. Moskaleva, D.V. Paschenko, M.C. Lin, J. Phys. Chem. A, 2003, 107(7), 1066-1076, doi: 10.1021/jp022024t
 [Lin2003b] R.S. Zhu, M.C. Lin, J. Chem. Phys., 2003, 119, 10667, doi: 10.1063/1.1619373
 [Lin2003c] Z.F. Xu, M.C. Lin, Int. J. Chem. Kin., 2003, 35(5), 184-190, doi: 10.1002/kin.10115
 [Lin2004] Z.F. Xu, M.C. Lin, Int. J. Chem. Kin., 2004, 36(4), 205-215, doi: 10.1002/kin.10178
@@ -3999,5 +4001,37 @@ Ea = 26.93 + 14.52 - (-0.31) = 41.76 kcal/mol
 
 This is in close agreement with the rate reported by [Green2014]:
 K(T) = 1.0E+16 * exp(42 kcal/mol / RT) cm3/mol*s
+""",
+)
+
+entry(
+    index = 226,
+    label = "HCCO + NO <=> HCNO + CO",
+    degeneracy = 1,
+    kinetics = Arrhenius(A=(8.43e+12, 'cm^3/(mol*s)','+|-',1.2e+12), n=0, Ea=(636, 'cal/mol','+|-',60),
+                         T0=(1, 'K'), Tmin=(296, 'K'), Tmax=(2000, 'K')),
+    shortDesc = u"""[Carl2002]""",
+    longDesc =
+u"""
+Experimental + RRKM
+P = 720 Pa
+x5 slower than the respective Dean & Bozzelli rate
+""",
+)
+
+entry(
+    index = 227,
+    label = "HCCO + NO <=> HCN + CO2",
+    degeneracy = 1,
+    kinetics = Arrhenius(A=(3.45e+17, 'cm^3/(mol*s)','*|/',1.56), n=-1.65, Ea=(782, 'cal/mol','+|-',75),
+                         T0=(1, 'K'), Tmin=(250, 'K'), Tmax=(2500, 'K')),
+    shortDesc = u"""[Lin2003a]""",
+    longDesc =
+u"""
+Calculated at the QCISD(T)/6-311+G(3df,2p)//B3LYP/6-311G(d,p) level of theory
+Overall HCCO + NO rate is k = 1.37e+16 * T^(-0.98) * exp(-190/T) cm^3/(mol*s)
+and the branching ratio to the HCN + CO2 products is: 0.5 * exp(-T/67.1) + 0.3 * exp(-T/2592) in the 250-2500 range
+Arrhenius was calculated by alongd from the above data, uncertainty reflects fitting error only
+x4 slower than the respective Dean & Bozzelli rate at 1000 K
 """,
 )

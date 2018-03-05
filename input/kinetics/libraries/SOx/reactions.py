@@ -774,8 +774,6 @@ which theoretically should be zero, but isn't in that library.
 
 (note that this source has a CORRECTION, doi: 10.1021/jp810800a, and the original rate should is multiplied by a factor
 of x2: i.e., A = 7.4e+06 cm^3/(mol*s), NOT 3.7e+06 cm^3/(mol*s))
-
-Also available in reverse from [Sendt2009b]
 """,
 )
 
@@ -921,39 +919,45 @@ Validated in T range: 873-1423 K
 """,
 )
 
-entry(
-    index = 48,
-    label = "HSS + H <=> S2 + H2",
-    degeneracy = 1,
-    kinetics = Arrhenius(A=(1.23e+08, 'cm^3/(mol*s)'), n=1.653, Ea=(-1105, 'cal/mol'), T0 = (1, 'K'),
-                         Tmin=(873, 'K'), Tmax=(1423, 'K')),
-    shortDesc = u"""[Sendt2002]""",
-    longDesc =
-u"""
-Part of the "SOx" subset
-k11
+# entry(
+#     index = 48,
+#     label = "HSS + H <=> S2 + H2",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(A=(1.23e+08, 'cm^3/(mol*s)'), n=1.653, Ea=(-1105, 'cal/mol'), T0 = (1, 'K'),
+#                          Tmin=(873, 'K'), Tmax=(1423, 'K')),
+#     shortDesc = u"""[Sendt2002]""",
+#     longDesc =
+# u"""
+# commented out: This reaction has two pathways. THe current entry only describes one.
+# The other one is PDep and is given at 1 bar in the Sulfur/HSSH_1bar library
+#
+# Part of the "SOx" subset
+# k11
+#
+# Also available from [Sendt2009b]
+# """,
+# )
 
-Also available from [Sendt2009b]
-""",
-)
-
-entry(
-    index = 49,
-    label = "HSS + H <=> H2S + S",
-    degeneracy = 1,
-    kinetics = Arrhenius(A=(4.41e+13, 'cm^3/(mol*s)'), n=0, Ea=(6326, 'cal/mol'), T0 = (1, 'K'),
-                         Tmin=(873, 'K'), Tmax=(1423, 'K')),
-    shortDesc = u"""[Sendt2002]""",
-    longDesc =
-u"""
-Part of the "HxSy" subset
-k12
-TST
-Validated in T range: 873-1423 K
-
-Also available from [Sendt2009b]
-""",
-)
+# entry(
+#     index = 49,
+#     label = "HSS + H <=> H2S + S",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(A=(4.41e+13, 'cm^3/(mol*s)'), n=0, Ea=(6326, 'cal/mol'), T0 = (1, 'K'),
+#                          Tmin=(873, 'K'), Tmax=(1423, 'K')),
+#     shortDesc = u"""[Sendt2002]""",
+#     longDesc =
+# u"""
+# commented out: This reaction has two pathways. THe current entry only describes one.
+# The other one is PDep and is given at 1 bar in the Sulfur/HSSH_1bar library
+#
+# Part of the "HxSy" subset
+# k12
+# TST
+# Validated in T range: 873-1423 K
+#
+# Also available from [Sendt2009b]
+# """,
+# )
 
 entry(
     index = 50,

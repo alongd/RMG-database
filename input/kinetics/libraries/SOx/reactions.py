@@ -928,7 +928,7 @@ Validated in T range: 873-1423 K
 #     shortDesc = u"""[Sendt2002]""",
 #     longDesc =
 # u"""
-# commented out: This reaction has two pathways. THe current entry only describes one.
+# commented out: This reaction has two pathways. The current entry only describes one.
 # The other one is PDep and is given at 1 bar in the Sulfur/HSSH_1bar library
 #
 # Part of the "SOx" subset
@@ -947,7 +947,7 @@ Validated in T range: 873-1423 K
 #     shortDesc = u"""[Sendt2002]""",
 #     longDesc =
 # u"""
-# commented out: This reaction has two pathways. THe current entry only describes one.
+# commented out: This reaction has two pathways. The current entry only describes one.
 # The other one is PDep and is given at 1 bar in the Sulfur/HSSH_1bar library
 #
 # Part of the "HxSy" subset

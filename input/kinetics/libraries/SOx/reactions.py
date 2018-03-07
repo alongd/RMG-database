@@ -499,8 +499,8 @@ Part of the "SOx" subset
 High T range (2570-2980 K) rate taken from experimental shock tube measurement: D. Woiki, P. Roth, Int. J. Chem. Kin., 1995, 27(1), 59-71, doi: 10.1002/kin.550270108
 Low T range (230-420 K) rate taken from: [Baulch1992a]
 As reported by [GlarBozz] (14)
-Also available from doi: 10.1002/(SICI)1097-4601(1997)29:1<57::AID-KIN7>3.0.CO;2-K for 1130-1640 K
-Also available from doi: 10.1016/S0009-2614(98)00553-3 without product determination
+Also available from [Matsui1997]
+Also available from doi: 10.1016/S0009-2614(98)00553-3 (without product distribution)
 """,
 )
 

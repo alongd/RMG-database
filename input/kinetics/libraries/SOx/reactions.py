@@ -873,30 +873,32 @@ entry(
     longDesc =
 u"""
 Part of the "HxSy" subset
-k7 + k8
-TST\QRRK
-Validated in T range: 873-1423 K
-The original paper adjusted the second Arrhenius to 3E14 cm^3/(mol*s) to achieve a better agreement with experimens
+Table 2 -R1d
+High P limit taken from [Sendt2002] Table 1 reaction (8) *adjusted, see comment (e)
+calculations done at the MRCI/aug-cc-pV(Q+d)Z//CASSCF/cc-pVTZ level of theory
+Also available from [Sendt2002] k7 + k8
 """,
 )
 
 entry(
     index = 46,
-    label = "HSSH <=> SH + SH",
+    label = "SH + SH <=> HSSH",
     degeneracy = 1,
-    kinetics = ThirdBody(
-        arrheniusLow = Arrhenius(A=(2.31e+14, 'cm^3/(mol*s)'), n=1, Ea=(57030, 'cal/mol'), T0 = (1, 'K'),
-                                 Tmin=(873, 'K'), Tmax=(1423, 'K')),
-        efficiencies={'N#N': 1, 'S': 1.1, '[Ar]': 0.88, '[He]': 1.39}),
-    shortDesc = u"""[Sendt2002]""",
+    kinetics = Troe(
+        arrheniusHigh = Arrhenius(A=(3.37e+12, 's^-1'), n=0.158, Ea=(-6.01, 'kJ/mol'), T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(2000, 'K')),
+        arrheniusLow = Arrhenius(A=(2.33e+31, 'cm^3/(mol*s)'), n=-4.943, Ea=(8, 'kJ/mol'), T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(2000, 'K')),
+        alpha=1, T3=(254, 'K'), T1=(2373, 'K'), efficiencies={'N#N': 1, 'S': 1.1, '[Ar]': 0.88, '[He]': 1.39}),
+    shortDesc = u"""[Sendt2009b]""",
     longDesc =
 u"""
 Part of the "HxSy" subset
-k9
-UNIMOL calculation
-Validated in T range: 873-1423 K
+Table 1, R4 & Table 2 R1a
+high P rate was fitted in reverse using the supplied Keq with average errors:
+dA = *|/ 1.01857, dn = +|- 0.00238486, dEa = +|- 0.013582 kJ/mol
+calculations done at the MRCI/aug-cc-pV(Q+d)Z//CASSCF/cc-pVTZ level of theory
+efficiencies from [Sendt2002]
 
-Also available from [Sendt2009b]
+Also available from [Sendt2002] k9
 """,
 )
 

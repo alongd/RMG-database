@@ -1218,6 +1218,22 @@ This rate constant is reported to have an unusual temperature dependence, see [T
 
 entry(
     index = 65,
+    label = "HSSH <=> HSS + H",
+    degeneracy = 1,
+    kinetics = Arrhenius(A=(4.70e+17, 's^-1'), n=-0.076, Ea=(310, 'kJ/mol'), T0=(1, 'K'),
+                         Tmin=(300, 'K'), Tmax=(2000, 'K')),
+    shortDesc = u"""[Sendt2009b]""",
+    longDesc =
+u"""
+Part of the "SOx" subset
+Table 1, R3
+high P rate is given
+calculations done at the MRCI/aug-cc-pV(Q+d)Z//CASSCF/cc-pVTZ level of theory
+""",
+)
+
+entry(
+    index = 66,
     label = "HSSH <=> H2SS",
     degeneracy = 2,
     kinetics = Arrhenius(A=(6.74e+12, 's^-1'), n=0.213, Ea=(193, 'kJ/mol'), T0=(1, 'K')),
@@ -1232,7 +1248,7 @@ calculations done at the MRCI/aug-cc-pV(Q+d)Z//CASSCF/cc-pVTZ level of theory
 )
 
 entry(
-    index = 66,
+    index = 67,
     label = "H2SS <=> HSS + H",
     degeneracy = 2,
     kinetics = Arrhenius(A=(1.46e+15, 'cm^3/(mol*s)'), n=-0.026, Ea=(191, 'kJ/mol'), T0=(1, 'K')),
@@ -1246,7 +1262,7 @@ calculations done at the MRCI/aug-cc-pV(Q+d)Z//CASSCF/cc-pVTZ level of theory
 )
 
 entry(
-    index = 67,
+    index = 68,
     label = "H2SS <=> H2S + S",
     degeneracy = 1,
     kinetics = Arrhenius(A=(4.53e+11, 's^-1'), n=0.468, Ea=(127, 'kJ/mol'), T0=(1, 'K')),
@@ -1261,7 +1277,7 @@ calculations done at the MRCI/aug-cc-pV(Q+d)Z//CASSCF/cc-pVTZ level of theory
 )
 
 entry(
-    index = 68,
+    index = 69,
     label = "H2SS <=> S2 + H2",
     degeneracy = 1,
     kinetics = Arrhenius(A=(1.36e+10, 's^-1'), n=1.125, Ea=(158, 'kJ/mol'), T0=(1, 'K')),

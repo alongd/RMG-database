@@ -39,6 +39,7 @@ Reference legend:
 [Matsui1994] M. Oya, H. Shiina, K. Tsuchiya, H. Matsui, Bulletin of the Chemical Society of Japan, 1994, 67(8), 2311-2313, doi: 10.1246/bcsj.67.2311
 [Matsui1996a] H. Shiina, M. Oya, K. Yamashita, A. Miyoshi, H. Matsui, J. Phys. Chem., 1996, 100(6), 2136-2140, doi: 10.1021/jp952472j
 [Matsui1996b] K. Tsuchiya, K. Yamashita, A. Miyoshi, H. Matsui, J. Phys. Chem., 1996, 100(43), 17202-17206, doi: 10.1021/jp961252i
+[Matsui1997] K. Tsuchiya, K. Kamiya, H. Matsui, Int. J. Chem. Kin., 1997, 29(1), 57-66, doi: 10.1002/(SICI)1097-4601(1997)29:1<57::AID-KIN7>3.0.CO;2-K
 [Matsui1998] H. Shiina, A. Miyoshi, H. Matsui, J. Phys. Chem. A, 1998, 102(20), 3556-3559, doi: 10.1021/jp980650d
 [Molina1997] J.T. Jayne, U. Poschl, Y-m. Chen, D. Dai, L.T. Molina, D.R. Worsnop, C.E. Kolb, M.J. Molina, J. Phys. Chem. A, 1997, 101(51), 10000-10011, doi: 10.1021/jp972549z
 [Mukarami1979] T. Higashihara, K. Saito, I. Murakami, Bulletin of the Chemical Society of Japan, 1980, 53(1), 15-18, doi: 10.1246/bcsj.53.15
@@ -489,7 +490,7 @@ entry(
     index = 24,
     label = "SO + O2 <=> SO2 + O",
     degeneracy = 1,
-    kinetics = Arrhenius(A=(3.2e+03, 'cm^3/(mol*s)'), n=2.42, Ea=(3050, 'cal/mol'), T0=(1, 'K'),
+    kinetics = Arrhenius(A=(6.2e+03, 'cm^3/(mol*s)'), n=2.42, Ea=(3050, 'cal/mol'), T0=(1, 'K'),
                          Tmin=(230, 'K'), Tmax=(2980, 'K')),
     shortDesc = u"""[GlarBozz]""",
     longDesc =

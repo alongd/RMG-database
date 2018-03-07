@@ -744,7 +744,7 @@ entry(
 u"""
 SMILES: O=S1(=O)OO1
 
-calculated by alongd (xq1112, xc1063) at the CCSD(T)-F12a/cc-pVTZ-f12//M06-2x/cc-pVTZ level of theory
+calculated by alongd (xq1113, xc1064) at the CCSD(T)-F12a/cc-pVTZ-f12//M06-2x/cc-pVTZ level of theory
 frequencies calculated at M06-2x/cc-pVTZ
 (no rotors)
 
@@ -919,7 +919,7 @@ multiplicity 2
 u"""
 SMILES: SO[S]
 
-calculated by alongd (xq1112, xc1063) at the UCCSD(T)-F12a/cc-pVTZ-f12//UM06-2x/cc-pVTZ level of theory
+calculated by alongd (xq1114, xc1065) at the UCCSD(T)-F12a/cc-pVTZ-f12//UM06-2x/cc-pVTZ level of theory
 frequencies calculated at UM06-2x/cc-pVTZ
 rotor calculated at ub3lyp/6-311++g(df,pd)
 

@@ -571,22 +571,26 @@ GOU/MAR05
 """,
 )
 
-# entry(
-#     index = 63,
-#     label = "SH + SH <=> S2 + H2",
-#     degeneracy = 1,
-#     kinetics = Arrhenius(
-#         A = (1e+12, 'cm^3/(mol*s)'),
-#         n = 0,
-#         Ea = (0, 'cal/mol'),
-#         T0 = (1, 'K'),
-#     ),
-#     longDesc =
-# u"""
-# commented out since the network is now given by various PDep reactions in the SOx library
-# ALZ/GLA01 estimated kinetics
-# """,
-# )
+entry(
+    index = 63,
+    label = "SH + SH <=> S2 + H2",
+    degeneracy = 1,
+    kinetics = Arrhenius(
+        A = (1e+12, 'cm^3/(mol*s)'),
+        n = 0,
+        Ea = (0, 'cal/mol'),
+        T0 = (1, 'K'),
+    ),
+    longDesc =
+u"""
+ALZ/GLA01 estimated kinetics
+
+alongd comment:
+Fig. 1 from [Sendt2009b] C.R. Zhou, K. Sendt, B.S. Haynes, J. Phys. Chem. A, 2009, 113, 8299-8306, doi: 10.1021/jp903185k
+suggests that H Abstraction SH + SH has an ISC to form H2 + S2, independent of the PDep network via SH+SH=SHH...
+With no better estimate, I'm leaving this rate
+""",
+)
 
 entry(
     index = 64,

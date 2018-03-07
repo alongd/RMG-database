@@ -866,14 +866,10 @@ entry(
     index = 45,
     label = "HSS + H <=> SH + SH",
     degeneracy = 1,
-    duplicate = True,
-    kinetics = MultiArrhenius(
-        arrhenius = [
-            Arrhenius(A=(9.72e+07, 'cm^3/(mol*s)'), n=1.620, Ea=(-1030, 'cal/mol'), T0=(1, 'K'), Tmin=(873, 'K'), Tmax=(1423, 'K')),
-            Arrhenius(A=(1.10e+13, 'cm^3/(mol*s)'), n=0.353, Ea=(210, 'cal/mol'), T0=(1, 'K'), Tmin=(873, 'K'), Tmax=(1423, 'K')),
-        ],
-    ),
-    shortDesc = u"""[Sendt2002]""",
+    kinetics = Lindemann(
+        arrheniusHigh=Arrhenius(A=(3.00e+14, 'cm^3/(mol*s)'), n=0, Ea=(0, 'kJ/mol'), T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(2000, 'K')),
+        arrheniusLow=Arrhenius(A=(1.63e+18, 'cm^6/(mol^2*s)'), n=-0.983, Ea=(1, 'kJ/mol'), T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(2000, 'K'))),
+    shortDesc = u"""[Sendt2009b]""",
     longDesc =
 u"""
 Part of the "HxSy" subset

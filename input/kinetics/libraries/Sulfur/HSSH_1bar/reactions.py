@@ -64,7 +64,6 @@ entry(
     index = 1,
     label = "HSS + H <=> S2 + H2",
     degeneracy = 1,
-    duplicate = True,
     kinetics = MultiArrhenius(
         arrhenius = [
             Arrhenius(A=(2.91e+16, 'cm^3/(mol*s)'), n=-0.894, Ea=(0, 'kJ/mol'), T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(2000, 'K')),
@@ -85,7 +84,6 @@ entry(
     index = 3,
     label = "HSS + H <=> H2S + S",
     degeneracy = 1,
-    duplicate = True,
     kinetics = MultiArrhenius(
         arrhenius = [
             Arrhenius(A=(4.19e+18, 'cm^3/(mol*s)'), n=-1.563, Ea=(2, 'kJ/mol'), T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(2000, 'K')),
@@ -106,7 +104,6 @@ entry(
     index = 4,
     label = "HSS + H <=> S2 + H2",
     degeneracy = 1,
-    duplicate = True,
     kinetics = MultiArrhenius(
         arrhenius = [
             Arrhenius(A=(2.91e+16, 'cm^3/(mol*s)'), n=-0.894, Ea=(0, 'cal/mol'), T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(2000, 'K')),

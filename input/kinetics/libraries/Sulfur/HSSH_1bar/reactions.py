@@ -81,7 +81,7 @@ also available from [Sendt2008] and [Marshall2011b]
 )
 
 entry(
-    index = 3,
+    index = 2,
     label = "HSS + H <=> H2S + S",
     degeneracy = 1,
     kinetics = MultiArrhenius(
@@ -94,26 +94,6 @@ entry(
     longDesc =
 u"""
 R9
-calculations done at the MRCI/aug-cc-pV(Q+d)Z//CASSCF/cc-pVTZ level of theory
-One rate is not PDep, the other is PDep given at 1 bar
-also available from [Sendt2002]
-""",
-)
-
-entry(
-    index = 4,
-    label = "HSS + H <=> S2 + H2",
-    degeneracy = 1,
-    kinetics = MultiArrhenius(
-        arrhenius = [
-            Arrhenius(A=(2.91e+16, 'cm^3/(mol*s)'), n=-0.894, Ea=(0, 'cal/mol'), T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(2000, 'K')),
-            Arrhenius(A=(1.05e+08, 'cm^3/(mol*s)'), n=1.750, Ea=(-4, 'kJ/mol'), T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(2000, 'K')),
-        ],
-    ),
-    shortDesc = u"""[Sendt2009b]""",
-    longDesc =
-u"""
-R10
 calculations done at the MRCI/aug-cc-pV(Q+d)Z//CASSCF/cc-pVTZ level of theory
 One rate is not PDep, the other is PDep given at 1 bar
 also available from [Sendt2002]

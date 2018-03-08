@@ -1232,7 +1232,6 @@ entry(
     shortDesc = u"""[Sendt2009b]""",
     longDesc =
 u"""
-Part of the "SOx" subset
 Table 1, R3
 high P rate is given
 calculations done at the MRCI/aug-cc-pV(Q+d)Z//CASSCF/cc-pVTZ level of theory
@@ -1247,7 +1246,6 @@ entry(
     shortDesc = u"""[Sendt2009b]""",
     longDesc =
 u"""
-Part of the "SOx" subset
 Table 1, R4
 high P rate is given
 calculations done at the MRCI/aug-cc-pV(Q+d)Z//CASSCF/cc-pVTZ level of theory
@@ -1276,7 +1274,6 @@ entry(
     shortDesc = u"""[Sendt2009b]""",
     longDesc =
 u"""
-Part of the "SOx" subset
 Table 1, R6
 high P rate is given
 calculations done at the MRCI/aug-cc-pV(Q+d)Z//CASSCF/cc-pVTZ level of theory
@@ -1291,9 +1288,24 @@ entry(
     shortDesc = u"""[Sendt2009b]""",
     longDesc =
 u"""
-Part of the "SOx" subset
 Table 1, R7
 high P rate is given
+calculations done at the MRCI/aug-cc-pV(Q+d)Z//CASSCF/cc-pVTZ level of theory
+""",
+)
+
+entry(
+    index = 70,
+    label = "H2S + S <=> HSSH",
+    degeneracy = 1,
+    kinetics = Troe(
+        arrheniusHigh = Arrhenius(A=(6.38e+07, 'cm^3/(mol*s)'), n=1.280, Ea=(-2, 'kJ/mol'), T0=(1, 'K')),
+        arrheniusLow = Arrhenius(A=(2.40e+21, 'cm^6/(mol^2*s)'), n=--1.612, Ea=(7, 'kJ/mol'), T0=(1, 'K')),
+        alpha = 0.5, T3=(726, 'K'), T1=(726, 'K'), efficiencies={}),
+    shortDesc = u"""[Marshall2011b]""",
+    longDesc =
+u"""
+Table 1
 calculations done at the MRCI/aug-cc-pV(Q+d)Z//CASSCF/cc-pVTZ level of theory
 """,
 )

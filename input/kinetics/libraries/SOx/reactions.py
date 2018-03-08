@@ -885,14 +885,14 @@ entry(
     label = "SH + SH <=> HSSH",
     degeneracy = 1,
     kinetics = Troe(
-        arrheniusHigh = Arrhenius(A=(3.37e+12, 's^-1'), n=0.158, Ea=(-6.01, 'kJ/mol'), T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(2000, 'K')),
-        arrheniusLow = Arrhenius(A=(2.33e+31, 'cm^3/(mol*s)'), n=-4.943, Ea=(8, 'kJ/mol'), T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(2000, 'K')),
+        arrheniusHigh = Arrhenius(A=(3.37e+12, 'cm^3/(mol*s)'), n=0.158, Ea=(-6.01, 'kJ/mol'), T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(2000, 'K')),
+        arrheniusLow = Arrhenius(A=(2.33e+31, 'cm^6/(mol^2*s)'), n=-4.943, Ea=(8, 'kJ/mol'), T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(2000, 'K')),
         alpha=1, T3=(254, 'K'), T1=(2373, 'K'), efficiencies={'N#N': 1, 'S': 1.1, '[Ar]': 0.88, '[He]': 1.39}),
     shortDesc = u"""[Sendt2009b]""",
     longDesc =
 u"""
 Part of the "HxSy" subset
-Table 1, R4 & Table 2 R1a
+Table 1, R2 & Table 2 R1a
 high P rate was fitted in reverse using the supplied Keq with average errors:
 dA = *|/ 1.01857, dn = +|- 0.00238486, dEa = +|- 0.013582 kJ/mol
 calculations done at the MRCI/aug-cc-pV(Q+d)Z//CASSCF/cc-pVTZ level of theory

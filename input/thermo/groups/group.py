@@ -46877,7 +46877,7 @@ L1: R
                     L6: Cb-(CtN3t)
                 L5: Cb-Cb
                 L5: Cb-C=S
-	    L4: Cb-Cl
+            L4: Cb-Cl
         L3: Ct
             L4: Ct-CtN3s
             L4: Ct-N3tN3s
@@ -47422,8 +47422,8 @@ L1: R
             L4: CS-OsH
             L4: CS-CsOs
             L4: CS-OsOs
-	    L4: Cds-CdClH
-	    L4: Cds-CdClCl
+            L4: Cds-CdClH
+            L4: Cds-CdClCl
         L3: Cs
             L4: Cs-NHHH
                 L5: Cs-N3sHHH
@@ -48748,14 +48748,14 @@ L1: R
                 L5: Cs-CtSsHH
                 L5: Cs-CbSsHH
                 L5: Cs-C=SSsHH
-	    L4: Cs-ClClHH
-	    L4: Cs-ClClClH
-	    L4: Cs-ClClClCl
-	    L4: Cs-CClHH
-	    L4: Cs-CClClH
-	    L4: Cs-CClClCl
-	    L4: Cs-CCClH
-	    L4: Cs-CCCCl
+            L4: Cs-ClClHH
+            L4: Cs-ClClClH
+            L4: Cs-ClClClCl
+            L4: Cs-CClHH
+            L4: Cs-CClClH
+            L4: Cs-CClClCl
+            L4: Cs-CCClH
+            L4: Cs-CCCCl
     L2: O
         L3: Oa(S)
         L3: O2d

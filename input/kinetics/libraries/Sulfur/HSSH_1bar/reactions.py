@@ -28,15 +28,15 @@ entry(
     degeneracy = 1,
     kinetics = MultiArrhenius(
         arrhenius = [
-            Arrhenius(A=(3.7e+06, 'cm^3/(mol*s)'), n=2.297, Ea=(9011, 'cal/mol'), T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(3000, 'K')),
-            Arrhenius(A=(3.7e+13, 'cm^3/(mol*s)'), n=0.000, Ea=(6262, 'cal/mol'), T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(3000, 'K')),
+            Arrhenius(A=(1.18e+18, 'cm^3/(mol*s)'), n=-1.685, Ea=(5975, 'cal/mol'), T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(2000, 'K')),
+            Arrhenius(A=(3.70e+06, 'cm^3/(mol*s)'), n=2.297, Ea=(9011, 'cal/mol'), T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(2000, 'K')),
         ],
     ),
     shortDesc = u"""[Marshall2011b]""",
     longDesc =
 u"""
-k_abstraction and k_ins
-T range: 300-3000 K
+computed at 1 bar, Table 1, 3rd entry
+k_abstraction
 calculations done at the MRCI/aug-cc-pV(Q+d)Z//MRCI/aug-cc-pVTZ level of theory
 
 Also available from [Sendt2008]. NOTE that [Sendt2008] has a correction to this rate (!): doi: 10.1021/jp810800a

@@ -23,45 +23,45 @@ This library should not be used at higher pressures.
 [Sendt2009b] C.R. Zhou, K. Sendt, B.S. Haynes, J. Phys. Chem. A, 2009, 113, 8299-8306, doi: 10.1021/jp903185k
 """
 
-# entry(
-#     index = 1,
-#     label = "H2S + S <=> SH + SH",
-#     degeneracy = 1,
-#     duplicate = True,
-#     kinetics = Arrhenius(A=(7.4e+06, 'cm^3/(mol*s)'), n=2.297, Ea=(9011, 'cal/mol'), T0=(1, 'K'),
-#                          Tmin=(300, 'K'), Tmax=(3000, 'K')),
-#     shortDesc = u"""[Sendt2008]""",
-#     longDesc =
-# u"""
-# k_abstraction, (R4a)
-# T range: 300-3000 K
-# calculations done at the MRCI/aug-cc-pV(Q+d)Z//MRCI/aug-cc-pVTZ level of theory
-#
-# (note that this source has a CORRECTION, doi: 10.1021/jp810800a, and the original rate should is multiplied by a factor
-# of x2: i.e., A = 7.4e+06 cm^3/(mol*s), NOT 3.7e+06 cm^3/(mol*s))
-# """,
-# )
-#
-# entry(
-#     index = 2,
-#     label = "H2S + S <=> SH + SH",
-#     degeneracy = 1,
-#     duplicate = True,
-#     kinetics = Arrhenius(A=(1.18e+18, 'cm^3/(mol*s)'), n=-1.685, Ea=(5975, 'cal/mol'), T0=(1, 'K'),
-#                          Tmin=(300, 'K'), Tmax=(1040, 'K')),
-#     shortDesc = u"""[Marshall2011b]""",
-#     longDesc =
-# u"""
-# DKCCSD(T)/cc-PVQZ_DK
-# The H2S+S PES passes through an inter-system crossing with a low barrier, and is in fact P-Dep at low T (below 800 K)
-# The rate here is computed at 1 bar. Bath gas: Ar.
-#
-# Also available from [Sendt2009b] R1c Table 2 (at different pressures in the Supporting Information)
-# """,
-# )
-
 entry(
     index = 1,
+    label = "H2S + S <=> SH + SH",
+    degeneracy = 1,
+    duplicate = True,
+    kinetics = Arrhenius(A=(7.4e+06, 'cm^3/(mol*s)'), n=2.297, Ea=(9011, 'cal/mol'), T0=(1, 'K'),
+                         Tmin=(300, 'K'), Tmax=(3000, 'K')),
+    shortDesc = u"""[Sendt2008]""",
+    longDesc =
+u"""
+k_abstraction, (R4a)
+T range: 300-3000 K
+calculations done at the MRCI/aug-cc-pV(Q+d)Z//MRCI/aug-cc-pVTZ level of theory
+
+(note that this source has a CORRECTION, doi: 10.1021/jp810800a, and the original rate should is multiplied by a factor
+of x2: i.e., A = 7.4e+06 cm^3/(mol*s), NOT 3.7e+06 cm^3/(mol*s))
+""",
+)
+
+entry(
+    index = 2,
+    label = "H2S + S <=> SH + SH",
+    degeneracy = 1,
+    duplicate = True,
+    kinetics = Arrhenius(A=(1.18e+18, 'cm^3/(mol*s)'), n=-1.685, Ea=(5975, 'cal/mol'), T0=(1, 'K'),
+                         Tmin=(300, 'K'), Tmax=(1040, 'K')),
+    shortDesc = u"""[Marshall2011b]""",
+    longDesc =
+u"""
+DKCCSD(T)/cc-PVQZ_DK
+The H2S+S PES passes through an inter-system crossing with a low barrier, and is in fact P-Dep at low T (below 800 K)
+The rate here is computed at 1 bar. Bath gas: Ar.
+
+Also available from [Sendt2009b] R1c Table 2 (at different pressures in the Supporting Information)
+""",
+)
+
+entry(
+    index = 3,
     label = "HSS + H <=> S2 + H2",
     degeneracy = 1,
     kinetics = MultiArrhenius(
@@ -81,7 +81,7 @@ also available from [Sendt2008] and [Marshall2011b]
 )
 
 entry(
-    index = 2,
+    index = 4,
     label = "HSS + H <=> H2S + S",
     degeneracy = 1,
     kinetics = MultiArrhenius(

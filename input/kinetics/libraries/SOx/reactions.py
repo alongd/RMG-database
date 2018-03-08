@@ -1235,21 +1235,21 @@ This rate constant is reported to have an unusual temperature dependence, see [T
 """,
 )
 
-# entry(
-#     index = 65,
-#     label = "HSSH <=> HSS + H",
-#     degeneracy = 1,
-#     kinetics = Arrhenius(A=(4.70e+17, 's^-1'), n=-0.076, Ea=(310, 'kJ/mol'), T0=(1, 'K'),
-#                          Tmin=(300, 'K'), Tmax=(2000, 'K')),
-#     shortDesc = u"""[Sendt2009b]""",
-#     longDesc =
-# u"""
-# Part of the "SOx" subset
-# Table 1, R3
-# high P rate is given
-# calculations done at the MRCI/aug-cc-pV(Q+d)Z//CASSCF/cc-pVTZ level of theory
-# """,
-# )
+entry(
+    index = 65,
+    label = "HSSH <=> HSS + H",
+    degeneracy = 1,
+    kinetics = Arrhenius(A=(4.70e+17, 's^-1'), n=-0.076, Ea=(310, 'kJ/mol'), T0=(1, 'K'),
+                         Tmin=(300, 'K'), Tmax=(2000, 'K')),
+    shortDesc = u"""[Sendt2009b]""",
+    longDesc =
+u"""
+Part of the "SOx" subset
+Table 1, R3
+high P rate is given
+calculations done at the MRCI/aug-cc-pV(Q+d)Z//CASSCF/cc-pVTZ level of theory
+""",
+)
 
 entry(
     index = 66,

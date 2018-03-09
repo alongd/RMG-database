@@ -20,6 +20,7 @@ Reference legend:
 [Baulch1992a] D.L. Baulch, C.J. Cobos, R.A. Cox, C. Esser, P. Frank, Th. Just, J.A. Kerr, M.J. Philling, J. Troe, R.W. Walker, J. Warnatz, "Evaluated Kinetic Data for Combustion Modelling", Journal of Physical and Chemical Reference Data, 1992, 21(3), 411, doi: 10.1063/1.555908
 [Calvert1973] F.B. Wampler, K. Otsuka, J.G. Calvert, E.K. Damon, Int. J. Chem. Kin., 1973, 5(4), 669-690, doi: 10.1002/kin.550050417
 [Dupre1993] K. Tsuchiya, H. Matsui, M. Oya, G. Dupre, in: R. Burn, L.Z. Dumitrescu (Ed.) Shock Waves @ Marseille II (Proceedings Marseille France), 1993, 71-76, doi: 10.1007/978-3-642-78832-1
+[Garland1998] N.L. Garland, Chem. Phys. Lett., 1998, 290(4-6), 385-390, doi: 10.1016/S0009-2614(98)00553-3
 [GlarBozz] (RMG's Sulfur/GlarborgBozzelli library) P. Glarborg, D. Kubel, K. Dam-Johansen, H-M. Chiang, J.W. Bozzelli, Int. J. Chem. Kin., 1996, 28, 773-790, doi: 10.1002/(SICI)1097-4601(1996)28:10<773::AID-KIN8>3.0.CO;2-K
 [Lin2003a] C-W. Lu, Y-J. Wu, Y-P. Lee, R.S. Zhu, M.C. Lin, J. Phys. Chem. A, 2003, 107(50), 11020-11029, doi: 10.1021/jp036025c
 [Lin2004] C-W. Lu, Y-J. Wu, Y-P. Lee, R.S. Zhu, M.C. Lin, J. Chem. Phys., 2004, 121(17), 8271-8278, doi: 10.1063/1.1792611
@@ -490,17 +491,15 @@ entry(
     index = 24,
     label = "SO + O2 <=> SO2 + O",
     degeneracy = 1,
-    kinetics = Arrhenius(A=(6.2e+03, 'cm^3/(mol*s)'), n=2.42, Ea=(3050, 'cal/mol'), T0=(1, 'K'),
-                         Tmin=(230, 'K'), Tmax=(2980, 'K')),
-    shortDesc = u"""[GlarBozz]""",
+    kinetics = Arrhenius(A=(9.03e+06, 'cm^3/(mol*s)'), n=1.4, Ea=(3712, 'cal/mol'), T0=(1, 'K'),
+                         Tmin=(250, 'K'), Tmax=(3500, 'K')),
+    shortDesc = u"""[Garland1998]""",
     longDesc =
 u"""
 Part of the "SOx" subset
-High T range (2570-2980 K) rate taken from experimental shock tube measurement: D. Woiki, P. Roth, Int. J. Chem. Kin., 1995, 27(1), 59-71, doi: 10.1002/kin.550270108
-Low T range (230-420 K) rate taken from: [Baulch1992a]
-As reported by [GlarBozz] (14)
+
+Also available from [GlarBozz] (14) combining low T from [Baulch1992a] and high T from: D. Woiki, P. Roth, Int. J. Chem. Kin., 1995, 27(1), 59-71, doi: 10.1002/kin.550270108
 Also available from [Matsui1997]
-Also available from doi: 10.1016/S0009-2614(98)00553-3 (without product distribution)
 """,
 )
 

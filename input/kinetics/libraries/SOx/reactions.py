@@ -22,6 +22,7 @@ Reference legend:
 [Dupre1993] K. Tsuchiya, H. Matsui, M. Oya, G. Dupre, in: R. Burn, L.Z. Dumitrescu (Ed.) Shock Waves @ Marseille II (Proceedings Marseille France), 1993, 71-76, doi: 10.1007/978-3-642-78832-1
 [Garland1998] N.L. Garland, Chem. Phys. Lett., 1998, 290(4-6), 385-390, doi: 10.1016/S0009-2614(98)00553-3
 [GlarBozz] (RMG's Sulfur/GlarborgBozzelli library) P. Glarborg, D. Kubel, K. Dam-Johansen, H-M. Chiang, J.W. Bozzelli, Int. J. Chem. Kin., 1996, 28, 773-790, doi: 10.1002/(SICI)1097-4601(1996)28:10<773::AID-KIN8>3.0.CO;2-K
+[Haynes2013] Chenlai (Ryan) Zhou, Karina Sendt, Brian S. Haynes, Proceedings of the Combustion Institute 2013, 34(1), 625-632, doi: 10.1016/j.proci.2012.05.083
 [Lin2003a] C-W. Lu, Y-J. Wu, Y-P. Lee, R.S. Zhu, M.C. Lin, J. Phys. Chem. A, 2003, 107(50), 11020-11029, doi: 10.1021/jp036025c
 [Lin2004] C-W. Lu, Y-J. Wu, Y-P. Lee, R.S. Zhu, M.C. Lin, J. Chem. Phys., 2004, 121(17), 8271-8278, doi: 10.1063/1.1792611
 [Marshall1995] A. Goumri, D. Laakso, J‐D.R. Rocha, C.E. Smith, P. Marshall, J. Chem. Phys., 1995, 102, 161-169, doi: 10.1063/1.469387
@@ -43,8 +44,9 @@ Reference legend:
 [Matsui1997] K. Tsuchiya, K. Kamiya, H. Matsui, Int. J. Chem. Kin., 1997, 29(1), 57-66, doi: 10.1002/(SICI)1097-4601(1997)29:1<57::AID-KIN7>3.0.CO;2-K
 [Matsui1998] H. Shiina, A. Miyoshi, H. Matsui, J. Phys. Chem. A, 1998, 102(20), 3556-3559, doi: 10.1021/jp980650d
 [Molina1997] J.T. Jayne, U. Poschl, Y-m. Chen, D. Dai, L.T. Molina, D.R. Worsnop, C.E. Kolb, M.J. Molina, J. Phys. Chem. A, 1997, 101(51), 10000-10011, doi: 10.1021/jp972549z
-[Mukarami1979] T. Higashihara, K. Saito, I. Murakami, Bulletin of the Chemical Society of Japan, 1980, 53(1), 15-18, doi: 10.1246/bcsj.53.15
+[Mukarami1980] T. Higashihara, K. Saito, I. Murakami, Bulletin of the Chemical Society of Japan, 1980, 53(1), 15-18, doi: 10.1246/bcsj.53.15
 [Palmer1977] H. Freund, H.B. Palmer, Int. J. Chem. Kin., 1977, 9(6), 887-905, doi: 10.1002/kin.550090605
+[Peterson2008] S. Du, J.S. Francisco, B.C. Shepler, K.A. Peterson, J. Chem. Phys., 2008, 128, 204306, doi: 10.1063/1.2919569
 [Pilling2002a] M.A. Blitz, K.W. McKee, M.J. Pilling, J. Phys. Chem. A, 2002, 106(36), 8406-8410, doi: 10.1021/jp025508y
 [Pilling2002b] K.J. Hughes, M.A. Blitz, M.J. Pilling, S.H. Robertson, Proc. Comb. Inst., 2002, 29(2), 2431-2437, doi: 10.1016/S1540-7489(02)80296-6
 [Pilling2003] M.A. Blitz, K.J. Hughes, M.J. Pilling, J. Phys. Chem. A, 2003, 107(12), 1971-1978, doi: 10.1021/jp026524y
@@ -54,6 +56,7 @@ Reference legend:
 [Roth1996a] D. Woiki, P. Roth, Israel Journal of Chemistry, 1996, 36(3), 279-283, doi: 10.1002/ijch.199600039
 [Roth1996b] D. Woiki, P. Roth, Symposium (International) on Combustion, 1996, 26(1), 583-588, doi: 10.1016/S0082-0784(96)80263-3
 [Sendt2002] K. Sendt, M. Jazbec, B.S. Haynes, Proceedings of the Combustion Institute, 2002, 29, 2439-2446, doi: 10.1016/S1540-7489(02)80297-8
+[Sendt2007] K. Sendt, B.S. Haynes, Proceedings of the Combustion Institute, 2007, 31(1), 257-265, doi: 10.1016/j.proci.2006.08.067
 [Sendt2008] C.R. Zhou, K. Sendt, B.S. Haynes, J. Phys. Chem. A, 2008, 112, 3239-3247, doi: 10.1021/jp710488d
 [Sendt2009a] C.R. Zhou, K. Sendt, B.S. Haynes, J. Phys. Chem. A, 2009, 113, 2975-2981, doi: 10.1021/jp810105e
 [Sendt2009b] C.R. Zhou, K. Sendt, B.S. Haynes, J. Phys. Chem. A, 2009, 113, 8299-8306, doi: 10.1021/jp903185k
@@ -69,15 +72,17 @@ entry(
     label = "S + S <=> S2",
     degeneracy = 1,
     kinetics = ThirdBody(
-        arrheniusLow = Arrhenius(A=(3.98e+14, 'cm^6/(mol^2*s)'), n=0, Ea=(-22455, 'cal/mol'), T0=(1, 'K'),
-                                 Tmin=(4500, 'K'), Tmax=(6000, 'K'))),
-    shortDesc = u"""[Mukarami1979]""",
+        arrheniusLow = Arrhenius(A=(1.40e+14, 'cm^6/(mol^2*s)'), n=-0.09, Ea=(-331, 'cal/mol'), T0=(1, 'K'),
+                                 Tmin=(100, 'K'), Tmax=(6000, 'K'))),
+    shortDesc = u"""[Mukarami1980],[Peterson2008]""",
     longDesc =
 u"""
 Part of the "SOx" mechanism
-Shock tube experimental study, done in Ar.
-T range: 4500-6000 K
-As reported by [Lin2003a] as k26
+The rate here was determined by combining low and high T experimental data.
+Low T data was taken from [Peterson2008] in the 100-500 K range (theoretical - quasiclassical trajectory)
+High T data was taken from [Mukarami1980] in the 4500-6000 K (experimental)
+The rate by [Mukarami1980] was first reversed using thermo from [Haynes2013]
+([Lin2003a] reports [Mukarami1980]'s rate as k26, which is probably problematic for combustion temperatures)
 """,
 )
 

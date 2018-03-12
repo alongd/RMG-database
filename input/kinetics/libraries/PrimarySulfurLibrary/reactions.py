@@ -1,12 +1,11 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
-name = "SOx"
-shortDesc = u"SOx"
+name = "PrimarySulfurLibrary"
+shortDesc = u"PrimarySulfurLibrary"
 longDesc =u"""
-This library includes important SOx-related reactions.
+This library includes important sulfur-related reactions.
 Prepared by Alon Grinberg Dana
-
 
 This library consists of the following subsets:
 * SOx

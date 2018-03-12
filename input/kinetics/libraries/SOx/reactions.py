@@ -1308,3 +1308,87 @@ Table 1
 calculations done at the MRCI/aug-cc-pV(Q+d)Z//CASSCF/cc-pVTZ level of theory
 """,
 )
+
+entry(
+    index = 71,
+    label = "HSO <=> H + SO",
+    degeneracy = 1,
+    kinetics = Arrhenius(A=(3.68e+14, 's^-1'), n=0.0, Ea=(244, 'kJ/mol'), T0=(1, 'K'),
+                         Tmin=(300, 'K'), Tmax=(2000, 'K')),
+    shortDesc = u"""[Sendt2007]""",
+    longDesc =
+u"""
+Table 2
+calculated at MRCI/aug-cc-pV5Z
+""",
+)
+
+entry(
+    index = 72,
+    label = "HOS <=> H + SO",
+    degeneracy = 1,
+    kinetics = Arrhenius(A=(3.27e+10, 's^-1'), n=1.051, Ea=(231, 'kJ/mol'), T0=(1, 'K'),
+                         Tmin=(300, 'K'), Tmax=(2000, 'K')),
+    shortDesc = u"""[Sendt2007]""",
+    longDesc =
+u"""
+Table 2
+calculated at MRCI/aug-cc-pV5Z
+""",
+)
+
+entry(
+    index = 73,
+    label = "HSO <=> HOS",
+    degeneracy = 1,
+    kinetics = Arrhenius(A=(4.08e+11, 's^-1'), n=0.547, Ea=(192, 'kJ/mol'), T0=(1, 'K'),
+                         Tmin=(300, 'K'), Tmax=(2000, 'K')),
+    shortDesc = u"""[Sendt2007]""",
+    longDesc =
+u"""
+Table 2
+calculated at MRCI/aug-cc-pV5Z
+""",
+)
+
+entry(
+    index = 74,
+    label = "HSO <=> SH + O",
+    degeneracy = 1,
+    kinetics = Arrhenius(A=(1.89e+14, 's^-1'), n=0.286, Ea=(410, 'kJ/mol'), T0=(1, 'K'),
+                         Tmin=(300, 'K'), Tmax=(2000, 'K')),
+    shortDesc = u"""[Sendt2007]""",
+    longDesc =
+u"""
+Table 2
+calculated at MRCI/aug-cc-pV5Z
+""",
+)
+
+entry(
+    index = 75,
+    label = "HOS <=> OH + S",
+    degeneracy = 1,
+    kinetics = Arrhenius(A=(1.07e+15, 's^-1'), n=-0.013, Ea=(315, 'kJ/mol'), T0=(1, 'K'),
+                         Tmin=(300, 'K'), Tmax=(2000, 'K')),
+    shortDesc = u"""[Sendt2007]""",
+    longDesc =
+u"""
+Table 2
+calculated at MRCI/aug-cc-pV5Z
+""",
+)
+
+entry(
+    index = 76,
+    label = "SH + O <=> OH + S",
+    degeneracy = 1,
+    kinetics = Arrhenius(A=(4.32e+06, 'cm^3/(mol*s)'), n=2.103, Ea=(15, 'kJ/mol'), T0=(1, 'K'),
+                         Tmin=(300, 'K'), Tmax=(2000, 'K')),
+    shortDesc = u"""[Sendt2007]""",
+    longDesc =
+u"""
+Table 2
+calculated at MRCI/aug-cc-pV5Z
+""",
+)

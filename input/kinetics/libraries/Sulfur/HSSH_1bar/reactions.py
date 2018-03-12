@@ -19,6 +19,7 @@ This library should not be used at higher pressures.
 
 [Marshall2011b] Y. Gao, C.(R) Z., K. Sendt, B.S. Haynes, P. Marshall, Proc. Comb. Inst., 2011, 33, 459-465, doi: 10.1016/j.proci.2010.05.020
 [Sendt2008] C.R. Zhou, K. Sendt, B.S. Haynes, J. Phys. Chem. A, 2008, 112, 3239-3247, doi: 10.1021/jp710488d
+[Sendt2009a] C.R. Zhou, K. Sendt, B.S. Haynes, J. Phys. Chem. A, 2009, 113, 2975-2981, doi: 10.1021/jp810105e
 [Sendt2009b] C.R. Zhou, K. Sendt, B.S. Haynes, J. Phys. Chem. A, 2009, 113, 8299-8306, doi: 10.1021/jp903185k
 """
 
@@ -32,11 +33,11 @@ entry(
             Arrhenius(A=(3.70e+06, 'cm^3/(mol*s)'), n=2.297, Ea=(9011, 'cal/mol'), T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(2000, 'K')),
         ],
     ),
-    shortDesc = u"""[Marshall2011b]""",
+    shortDesc = u"""[Marshall2011b],[Sendt2008]""",
     longDesc =
 u"""
-computed at 1 bar, Table 1, 3rd entry
-k_abstraction
+computed at 1 bar, Table 1, 3rd entry from [Marshall2011b]
+k_abstraction from [Sendt2008] p. 3242
 calculations done at the MRCI/aug-cc-pV(Q+d)Z//MRCI/aug-cc-pVTZ level of theory
 
 Also available from [Sendt2008]. NOTE that [Sendt2008] has a correction to this rate (!): doi: 10.1021/jp810800a

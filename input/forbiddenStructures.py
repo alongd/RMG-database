@@ -53,7 +53,7 @@ u"""
 
 entry(
     label = "C_quintet",
-    group = 
+    molecule =
 """
 1 C u4 p0
 """,
@@ -483,9 +483,9 @@ to crash.
 
 entry(
     label = "CO_birad",
-    group =
+    species =
 """
-multiplicity [3]
+multiplicity 3
 1 C u2 p0 c0 {2,D}
 2 O u0 p2 c0 {1,D}
 """,
@@ -501,9 +501,9 @@ reaction families (CO_Disprop, R_Add_COm).
 
 entry(
     label = "CS_birad",
-    group =
+    species =
 """
-multiplicity [3]
+multiplicity 3
 1 C u2 p0 c0 {2,D}
 2 S u0 p2 c0 {1,D}
 """,
@@ -519,11 +519,11 @@ reaction families (CO_Disprop [also deals with CS], R_Add_CSm).
 
 entry(
     label = "[N][N]",
-    group =
+    species =
 """
-multiplicity [5]
-1 N u2 p0 c0 {2,S}
-2 N u2 p0 c0 {1,S}
+multiplicity 5
+1 N u2 p1 c0 {2,S}
+2 N u2 p1 c0 {1,S}
 """,
     shortDesc = u"""""",
     longDesc =
@@ -533,10 +533,10 @@ N#N can be excited to [N]=[N], but we shouldn't allow it to reach [N][N]
 )
 
 entry(
-    label = "SOO2_a",
-    group =
+    label = "SOO2",
+    species =
 """
-multiplicity [3]
+multiplicity 3
 1 S u0 p2 c0 {2,S} {3,S}
 2 O u0 p2 c0 {1,S} {4,S}
 3 O u1 p2 c0 {1,S}
@@ -547,31 +547,21 @@ multiplicity [3]
 u"""
 The SO--O2 complex isn't a sable species (i.e., its geometry cannot be optimized with a reasonable SO--OO bond length),
 yet it is predicted by RMG, e.g, by R_Recombination of [S][O] and [O][O].
-""",
-)
 
-entry(
-    label = "SOO2_b",
-    group =
-"""
-multiplicity [3]
+Another resonance structure of it which is forbidden as well via this entry is:
+multiplicity 3
 1 S u1 p1 c0 {2,S} {3,D}
 2 O u0 p2 c0 {1,S} {4,S}
 3 O u0 p2 c0 {1,D}
 4 O u1 p2 c0 {2,S}
 """,
-    shortDesc = u"""""",
-    longDesc =
-u"""
-This is a resonance structure of SOO2_a
-""",
 )
 
 entry(
-    label = "SO2O2_a",
-    group =
+    label = "SO2O2",
+    species =
 """
-multiplicity [3]
+multiplicity 3
 1 S u0 p1 c0 {2,S} {3,S} {4,D}
 2 O u0 p2 c0 {1,S} {5,S}
 3 O u1 p2 c0 {1,S}
@@ -584,32 +574,22 @@ u"""
 The SO2--O2 complex isn't a sable species (i.e., its geometry cannot be optimized with a reasonable O2S--OO bond length),
 yet it is predicted by RMG, e.g, by R_Addition_Multiple_Bond of O=S=O and [O][O].
 Also, it is described as a TS in doi: 10.1021/jp067499p (Fig. 1 structure 5, Fig. 2)
-""",
-)
 
-entry(
-    label = "SO2O2_b",
-    group =
-"""
-multiplicity [3]
+Another resonance structure of it which is forbidden as well via this entry is:
+multiplicity 3
 1 S u1 p0 c0 {2,S} {3,D} {4,D}
 2 O u0 p2 c0 {1,S} {5,S}
 3 O u0 p2 c0 {1,D}
 4 O u0 p2 c0 {1,D}
 5 O u1 p2 c0 {2,S}
 """,
-    shortDesc = u"""""",
-    longDesc =
-u"""
-This is a resonance structure of SO2O2_a
-""",
 )
 
 entry(
-    label = "S2O2_a",
-    group =
+    label = "S2O2",
+    species =
 """
-multiplicity [3]
+multiplicity 3
 1 O u0 p2 c0 {2,S} {3,S}
 2 S u0 p2 c0 {1,S} {4,S}
 3 O u1 p2 c0 {1,S}
@@ -620,31 +600,21 @@ multiplicity [3]
 u"""
 The S2--O2 complex isn't a sable species (has an imaginary frequency),
 yet it is predicted by RMG, e.g, by R_Recombination of [S][S] and [O][O].
-""",
-)
 
-entry(
-    label = "S2O2_b",
-    group =
-"""
-multiplicity [3]
+Another resonance structure of it which is forbidden as well via this entry is:
+multiplicity 3
 1 O u0 p2 c0 {2,S} {3,S}
 2 S u1 p1 c0 {1,S} {4,D}
 3 O u1 p2 c0 {1,S}
 4 S u0 p2 c0 {2,D}
 """,
-    shortDesc = u"""""",
-    longDesc =
-u"""
-This is a resonance structure of S2O2_a
-""",
 )
 
 entry(
-    label = "N2SH_a",
-    group =
+    label = "N2SH",
+    species =
 """
-multiplicity [2]
+multiplicity 2
 1 N u0 p0 c+1 {2,D} {3,D}
 2 S u1 p1 c0 {1,D} {4,S}
 3 N u0 p2 c-1 {1,D}
@@ -655,39 +625,18 @@ multiplicity [2]
 u"""
 The S2--SH complex isn't a sable species (i.e., its geometry cannot be optimized with a reasonable NN--SH bond length),
 yet it is predicted by RMG, e.g, by R_Addition_Multiple_Bond of [SH] to N#N.
-""",
-)
 
-entry(
-    label = "N2SH_b",
-    group =
-"""
-multiplicity [2]
+Other resonance structures of it which are forbidden as well via this entry are:
+multiplicity 2
 1 N u0 p1 c0 {2,S} {3,D}
 2 S u0 p2 c0 {1,S} {4,S}
 3 N u1 p1 c0 {1,D}
 4 H u0 p0 c0 {2,S}
-""",
-    shortDesc = u"""""",
-    longDesc =
-u"""
-This is a resonance structure of N2SH_a
-""",
-)
 
-entry(
-    label = "N2SH_c",
-    group =
-"""
-multiplicity [2]
+multiplicity 2
 1 N u1 p0 c+1 {2,S} {3,D}
 2 S u0 p2 c0 {1,S} {4,S}
 3 N u0 p2 c-1 {1,D}
 4 H u0 p0 c0 {2,S}
-""",
-    shortDesc = u"""""",
-    longDesc =
-u"""
-This is a resonance structure of N2SH_a
 """,
 )

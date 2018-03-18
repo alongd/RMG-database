@@ -7159,57 +7159,57 @@ L10/90.
 """,
 )
 
-entry(
-    index = 186,
-    label = "OH*",
-    molecule = 
-"""
-multiplicity 2
-1 O u1 p2 c0 {2,S}
-2 H u0 p0 c0 {1,S}
-""",
-    thermo = NASA(
-        polynomials = [
-            NASAPolynomial(coeffs=[3.46084,0.000501872,-2.00254e-06,3.18902e-09,-1.35452e-12,50734.9,1.73976], Tmin=(200,'K'), Tmax=(1000,'K')),
-            NASAPolynomial(coeffs=[2.75583,0.00139849,-4.19428e-07,6.33453e-11,-3.56042e-15,50975.2,5.62581], Tmin=(1000,'K'), Tmax=(6000,'K')),
-        ],
-        Tmin = (200,'K'),
-        Tmax = (6000,'K'),
-    ),
-    shortDesc = u"""ATcT A""",
-    longDesc = 
-u"""
-ATcT A.
-Duplicate of species OH (i.e. same molecular structure according to RMG)
-[OH]
-""",
-)
+# entry(
+    # index = 186,
+    # label = "OH*",
+    # molecule = 
+# """
+# multiplicity 2
+# 1 O u1 p2 c0 {2,S}
+# 2 H u0 p0 c0 {1,S}
+# """,
+    # thermo = NASA(
+        # polynomials = [
+            # NASAPolynomial(coeffs=[3.46084,0.000501872,-2.00254e-06,3.18902e-09,-1.35452e-12,50734.9,1.73976], Tmin=(200,'K'), Tmax=(1000,'K')),
+            # NASAPolynomial(coeffs=[2.75583,0.00139849,-4.19428e-07,6.33453e-11,-3.56042e-15,50975.2,5.62581], Tmin=(1000,'K'), Tmax=(6000,'K')),
+        # ],
+        # Tmin = (200,'K'),
+        # Tmax = (6000,'K'),
+    # ),
+    # shortDesc = u"""ATcT A""",
+    # longDesc = 
+# u"""
+# ATcT A.
+# Duplicate of species OH (i.e. same molecular structure according to RMG)
+# [OH]
+# """,
+# )
 
-entry(
-    index = 187,
-    label = "CH*",
-    molecule = 
-"""
-multiplicity 4
-1 C u3 p0 c0 {2,S}
-2 H u0 p0 c0 {1,S}
-""",
-    thermo = NASA(
-        polynomials = [
-            NASAPolynomial(coeffs=[3.4725,0.000426444,-1.95182e-06,3.51755e-09,-1.60436e-12,104335,1.448], Tmin=(200,'K'), Tmax=(1000,'K')),
-            NASAPolynomial(coeffs=[2.78221,0.00147247,-4.63436e-07,7.32736e-11,-4.19705e-15,104547,5.17421], Tmin=(1000,'K'), Tmax=(3500,'K')),
-        ],
-        Tmin = (200,'K'),
-        Tmax = (3500,'K'),
-    ),
-    shortDesc = u"""TPIS79""",
-    longDesc = 
-u"""
-TPIS79.
-Duplicate of species CH (i.e. same molecular structure according to RMG)
-[CH]
-""",
-)
+# entry(
+    # index = 187,
+    # label = "CH*",
+    # molecule = 
+# """
+# multiplicity 4
+# 1 C u3 p0 c0 {2,S}
+# 2 H u0 p0 c0 {1,S}
+# """,
+    # thermo = NASA(
+        # polynomials = [
+            # NASAPolynomial(coeffs=[3.4725,0.000426444,-1.95182e-06,3.51755e-09,-1.60436e-12,104335,1.448], Tmin=(200,'K'), Tmax=(1000,'K')),
+            # NASAPolynomial(coeffs=[2.78221,0.00147247,-4.63436e-07,7.32736e-11,-4.19705e-15,104547,5.17421], Tmin=(1000,'K'), Tmax=(3500,'K')),
+        # ],
+        # Tmin = (200,'K'),
+        # Tmax = (3500,'K'),
+    # ),
+    # shortDesc = u"""TPIS79""",
+    # longDesc = 
+# u"""
+# TPIS79.
+# Duplicate of species CH (i.e. same molecular structure according to RMG)
+# [CH]
+# """,
+# )
 
 entry(
     index = 188,
@@ -11646,32 +11646,32 @@ Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 """,
 )
 
-entry(
-    index = 283,
-    label = "CH2*",
-    molecule = 
-"""
-multiplicity 3
-1 C u2 p0 c0 {2,S} {3,S}
-2 H u0 p0 c0 {1,S}
-3 H u0 p0 c0 {1,S}
-""",
-    thermo = NASA(
-        polynomials = [
-            NASAPolynomial(coeffs=[4.1986,-0.00236661,8.23296e-06,-6.68816e-09,1.94315e-12,50496.8,-0.769119], Tmin=(200,'K'), Tmax=(1000,'K')),
-            NASAPolynomial(coeffs=[2.29204,0.00465589,-2.01192e-06,4.17906e-10,-3.39716e-14,50926,8.6265], Tmin=(1000,'K'), Tmax=(3500,'K')),
-        ],
-        Tmin = (200,'K'),
-        Tmax = (3500,'K'),
-    ),
-    shortDesc = u"""L S/93""",
-    longDesc = 
-u"""
-L S/93.
-Duplicate of species CH2 (i.e. same molecular structure according to RMG)
-[CH2]
-""",
-)
+# entry(
+    # index = 283,
+    # label = "CH2*",
+    # molecule = 
+# """
+# multiplicity 3
+# 1 C u2 p0 c0 {2,S} {3,S}
+# 2 H u0 p0 c0 {1,S}
+# 3 H u0 p0 c0 {1,S}
+# """,
+    # thermo = NASA(
+        # polynomials = [
+            # NASAPolynomial(coeffs=[4.1986,-0.00236661,8.23296e-06,-6.68816e-09,1.94315e-12,50496.8,-0.769119], Tmin=(200,'K'), Tmax=(1000,'K')),
+            # NASAPolynomial(coeffs=[2.29204,0.00465589,-2.01192e-06,4.17906e-10,-3.39716e-14,50926,8.6265], Tmin=(1000,'K'), Tmax=(3500,'K')),
+        # ],
+        # Tmin = (200,'K'),
+        # Tmax = (3500,'K'),
+    # ),
+    # shortDesc = u"""L S/93""",
+    # longDesc = 
+# u"""
+# L S/93.
+# Duplicate of species CH2 (i.e. same molecular structure according to RMG)
+# [CH2]
+# """,
+# )
 
 entry(
     index = 284,

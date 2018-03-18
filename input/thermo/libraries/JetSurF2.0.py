@@ -2,16 +2,16 @@
 # encoding: utf-8
 
 name = "JetSurF2.0"
-shortDesc = u""
+shortDesc = u"JetSurF2.0"
 longDesc = u"""
 JetSurF - A Jet Surrogate Fuel Model
 JetSurF is a detailed chemical reaction model for the combustion of jet-fuel surrogate.
 
 H. Wang, E. Dames, B. Sirjean, D. A. Sheen, R. Tango, A. Violi, J. Y. W. Lai, F. N. Egolfopoulos,
- D. F. Davidson, R. K. Hanson, C. T. Bowman, C. K. Law, W. Tsang, N. P. Cernansky, D. L. Miller, R. P. Lindstedt,
- A high-temperature chemical kinetic model of n-alkane (up to n-dodecane), cyclohexane, and methyl-, ethyl-,
- n-propyl and n-butyl-cyclohexane oxidation at high temperatures, JetSurF version 2.0,
- September 19, 2010 (http://web.stanford.edu/group/haiwanglab/JetSurF/JetSurF2.0/index.html).
+D. F. Davidson, R. K. Hanson, C. T. Bowman, C. K. Law, W. Tsang, N. P. Cernansky, D. L. Miller, R. P. Lindstedt,
+A high-temperature chemical kinetic model of n-alkane (up to n-dodecane), cyclohexane, and methyl-, ethyl-,
+n-propyl and n-butyl-cyclohexane oxidation at high temperatures, JetSurF version 2.0,
+September 19, 2010 (http://web.stanford.edu/group/haiwanglab/JetSurF/JetSurF2.0/index.html).
 """
 
 entry(
@@ -70,7 +70,6 @@ u"""
 1/22/ 7 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C=CCCCCCCCCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -104,7 +103,6 @@ u"""
 A 8/83
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C=C=CC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -166,7 +164,6 @@ u"""
 1/ 2/ 7 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]CCCCCCCCCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -207,7 +204,6 @@ u"""
 1/ 2/ 7 THERG
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C[CH]CCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -236,7 +232,6 @@ entry(
 u"""
 L 8/88.
 CO
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -296,7 +291,6 @@ u"""
 1/22/ 7 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]CCCCCCCCCC=C
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -358,7 +352,6 @@ u"""
 1/ 2/ 7 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C[CH]CCCCCCCCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -388,7 +381,6 @@ multiplicity 2
 u"""
 T 9/92.
 C[C]=O
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -414,7 +406,6 @@ multiplicity 3
 u"""
 TPIS89.
 [O][O]
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -453,7 +444,6 @@ u"""
 P 1/93
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CC1[CH]C=C=CC=1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -515,7 +505,6 @@ u"""
 1/ 2/ 7 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CCCC[CH]CCCCCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -565,7 +554,6 @@ u"""
 1/ 2/ 7 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C[CH]CCCCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -594,7 +582,6 @@ u"""
 SRI91
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C#CO
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -635,7 +622,6 @@ u"""
 1/ 2/ 7 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CCCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -685,7 +671,6 @@ u"""
 1/ 2/ 7 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]CCCCCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -741,7 +726,6 @@ u"""
 1/ 2/ 7 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CCC[CH]CCCCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -777,7 +761,6 @@ u"""
 HWZD99
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 OC1C=CC=C1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -824,7 +807,6 @@ u"""
 1/ 2/ 7 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CCCCCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -871,7 +853,6 @@ u"""
 1/ 2/ 7 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C[CH]CCCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -898,7 +879,6 @@ multiplicity 3
 u"""
 L S/93.
 [CH2]
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -926,7 +906,6 @@ multiplicity 2
 u"""
 L11/89.
 [CH3]
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -954,7 +933,6 @@ entry(
 u"""
 L 8/88.
 C
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -981,7 +959,6 @@ multiplicity 2
 u"""
 L 1/91.
 [C]#C
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -1008,7 +985,6 @@ multiplicity 3
 u"""
 RUS 79.
 [C]=C=O
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -1041,7 +1017,6 @@ u"""
 PD5/98
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH]=CC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -1097,7 +1072,6 @@ u"""
 1/ 2/ 7 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CC[CH]CCCCCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -1142,7 +1116,6 @@ u"""
 1/ 2/ 7 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C=CCCCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -1177,7 +1150,6 @@ u"""
 A 8/83
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C=CC1CO1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -1202,7 +1174,6 @@ multiplicity 2
 u"""
 L 7/88.
 [H]
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -1255,7 +1226,6 @@ u"""
 1/ 2/ 7 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CCCCCCCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -1293,7 +1263,6 @@ u"""
 P11/94
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -1327,7 +1296,6 @@ u"""
 T 6/92
 Low T polynomial Tmin changed from 298.15 to 298.0 K when importing to RMG.
 CC1CO1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -1377,7 +1345,6 @@ u"""
 1/ 2/ 7 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CCC[CH]CCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -1413,7 +1380,6 @@ u"""
 T 6/83
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C=CCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -1439,7 +1405,6 @@ multiplicity 2
 u"""
 S 9/01.
 [OH]
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -1495,7 +1460,6 @@ u"""
 1/ 2/ 7 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CCCCCCCCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -1548,7 +1512,6 @@ u"""
 1/ 2/ 7 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CCCC[CH]CCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -1573,7 +1536,6 @@ entry(
 u"""
 TPIS78.
 [H][H]
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -1603,7 +1565,6 @@ entry(
 u"""
 T 2/90.
 C#CC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -1662,7 +1623,6 @@ u"""
 1/22/ 7 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CCCC[CH]CCCCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -1701,7 +1661,6 @@ u"""
 8/29/ 8 G
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C=C[CH]CC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -1743,7 +1702,6 @@ u"""
 9/01/7THERG
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C=CCCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -1777,7 +1735,6 @@ u"""
 USC/07
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CCC=O
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -1810,7 +1767,6 @@ u"""
 120186
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C=CC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -1863,7 +1819,6 @@ u"""
 1/ 2/ 7 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CC[CH]CCCCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -1897,7 +1852,6 @@ u"""
 H6W/94
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C#CC#CC=C
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -1927,7 +1881,6 @@ multiplicity 2
 u"""
 T 5/97.
 C#C[CH2]
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -1986,7 +1939,6 @@ u"""
 1/22/ 7 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CC[CH]CCCCCCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -2021,7 +1973,6 @@ u"""
 P11/94
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -2052,7 +2003,6 @@ u"""
 T 6/92
 Low T polynomial Tmin changed from 298.15 to 298.0 K when importing to RMG.
 C1CO1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -2092,7 +2042,6 @@ u"""
 8/29/ 8 G
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C=CC=CCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -2119,7 +2068,6 @@ entry(
 u"""
 L 8/88.
 C=O
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -2148,7 +2096,6 @@ multiplicity 2
 u"""
 IU2/03.
 [CH2]O
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -2205,7 +2152,6 @@ u"""
 1/ 2/ 7 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C=CCCCCCCCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -2235,7 +2181,6 @@ entry(
 u"""
 L 8/89.
 C=C=C
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -2268,7 +2213,6 @@ u"""
 PD5/98
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]C=C
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -2295,7 +2239,6 @@ entry(
 u"""
 L 7/88.
 OO
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -2334,7 +2277,6 @@ entry(
 u"""
 L 7/87.
 OCC1C=CC=CC=1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -2369,7 +2311,6 @@ u"""
 USC/07
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CC=C[C]=O
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -2407,7 +2348,6 @@ u"""
 USC/07
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]CCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -2466,7 +2406,6 @@ u"""
 1/22/ 7 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C[CH]CCCCCCCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -2502,7 +2441,6 @@ u"""
 T 6/83
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CC=CC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -2546,7 +2484,6 @@ u"""
 1/ 2/ 7 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C[CH]CCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -2585,7 +2522,6 @@ u"""
 1/ 2/ 7 THERG
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C=CCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -2627,7 +2563,6 @@ u"""
 THERGAS G
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C=CCC[CH]C
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -2658,7 +2593,6 @@ u"""
 T12/81
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C1=CC1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -2687,7 +2621,6 @@ u"""
 SRIC91
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C#C[O]
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -2728,7 +2661,6 @@ u"""
 1/ 2/ 7 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]CCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -2752,7 +2684,6 @@ entry(
 u"""
 L11/88.
 [C]
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -2783,7 +2714,6 @@ u"""
 A12/04
 Low T polynomial Tmin changed from 298.15 to 298.0 K when importing to RMG.
 [CH]1CO1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -2818,7 +2748,6 @@ u"""
 USC/07
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]C=CC=O
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -2865,7 +2794,6 @@ u"""
 1/ 2/ 7 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CCC[CH]CCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -2890,7 +2818,6 @@ multiplicity 3
 u"""
 L 1/90.
 [O]
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -2922,7 +2849,6 @@ u"""
 USC/07
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C#CC=C
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -2979,7 +2905,6 @@ u"""
 1/ 2/ 7 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]CCCCCCCCC=C
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -3038,7 +2963,6 @@ u"""
 1/22/ 7 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]CCCCCCCCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -3086,7 +3010,6 @@ u"""
 1/ 2/ 7 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C=CCCCCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -3121,7 +3044,6 @@ u"""
 P11/94
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C[CH]C
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -3152,7 +3074,6 @@ entry(
 u"""
 L 8/88.
 CC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -3186,7 +3107,6 @@ entry(
 u"""
 T 3/97.
 C1=CCOC1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -3215,7 +3135,6 @@ entry(
 u"""
 L 1/91.
 C=C
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -3249,7 +3168,6 @@ entry(
 u"""
 T 3/97.
 C1=COCC1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -3286,7 +3204,6 @@ u"""
 L 4/84
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 OC1C=CC=CC=1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -3322,7 +3239,6 @@ u"""
 PUML96
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 O=C1C=CC(=O)C=C1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -3357,7 +3273,6 @@ u"""
 P11/94
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]CC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -3399,7 +3314,6 @@ u"""
 THERG
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C=C[CH]CCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -3458,7 +3372,6 @@ u"""
 1/22/ 7 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CCC[CH]CCCCCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -3508,7 +3421,6 @@ u"""
 1/ 2/ 7 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CCCCCCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -3540,7 +3452,6 @@ u"""
 D11/99
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C#CC#CC#C
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -3587,7 +3498,6 @@ u"""
 1/ 2/ 7 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CC[CH]CCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -3623,7 +3533,6 @@ u"""
 D11/99
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C1=CC=CC=C1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -3659,7 +3568,6 @@ u"""
 D11/99
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [C]1=CC=CC=C1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -3712,7 +3620,6 @@ u"""
 1/ 2/ 7 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CCC[CH]CCCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -3746,7 +3653,6 @@ u"""
 PUPM3
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH]1C=CC1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -3794,7 +3700,6 @@ u"""
 1/ 2/ 7 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]CCCCCC=C
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -3825,7 +3730,6 @@ u"""
 USC/07
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C=C=C=C=O
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -3870,7 +3774,6 @@ u"""
 1/ 2/ 7 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]CCCCC=C
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -3903,7 +3806,6 @@ entry(
 u"""
 T 8/99.
 O=C1C=CC=C1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -3950,7 +3852,6 @@ u"""
 1/ 2/ 7 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]CCCCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -3984,7 +3885,6 @@ u"""
 A 8/83
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CC#CC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -4046,7 +3946,6 @@ u"""
 1/ 2/ 7 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CCC[CH]CCCCCCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -4080,7 +3979,6 @@ entry(
 u"""
 T 1/90.
 C1C=CCC=1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -4116,7 +4014,6 @@ u"""
 D 9/97
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [O]C1C=CC=C1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -4155,7 +4052,6 @@ u"""
 THERGAS G
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C=CC[CH]C
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -4185,7 +4081,6 @@ entry(
 u"""
 L 8/88.
 CC=O
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -4214,7 +4109,6 @@ multiplicity 2
 u"""
 IU1/03.
 C[O]
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -4243,7 +4137,6 @@ multiplicity 2
 u"""
 L 2/92.
 [CH]=C
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -4299,7 +4192,6 @@ u"""
 1/ 2/ 7 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C[CH]CCCCCCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -4326,7 +4218,6 @@ multiplicity 2
 u"""
 L12/89.
 [CH]=O
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -4385,7 +4276,6 @@ u"""
 1/22/ 7 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CCCCCCCCCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -4424,7 +4314,6 @@ u"""
 1/ 2/ 7 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]CCC=C
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -4455,7 +4344,6 @@ multiplicity 2
 u"""
 T05/99.
 C=C[C]=O
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -4488,7 +4376,6 @@ entry(
 u"""
 T 5/92.
 CC(C)=O
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -4514,7 +4401,6 @@ multiplicity 4
 u"""
 TPIS79.
 [CH]
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -4539,7 +4425,6 @@ entry(
 u"""
 TPIS79.
 [C-]#[O+]
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -4575,7 +4460,6 @@ entry(
 u"""
 T03/97.
 C1=CCCC1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -4608,7 +4492,6 @@ u"""
 PD5/98
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C=[C]C
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -4643,7 +4526,6 @@ u"""
 D11/99
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C1#CC=C[CH][CH]1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -4694,7 +4576,6 @@ u"""
 1/ 2/ 7 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C=CCCCCCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -4726,7 +4607,6 @@ u"""
 USC/07
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C=CC=O
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -4764,7 +4644,6 @@ u"""
 P11/94
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CC(C)C
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -4790,7 +4669,6 @@ u"""
 121286
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 N#N
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -4822,7 +4700,6 @@ u"""
 USC/07
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C#C[C]=C
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -4848,7 +4725,6 @@ entry(
 u"""
 L 7/88.
 O=C=O
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -4882,7 +4758,6 @@ u"""
 USC/07
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C=[C]C=C
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -4918,7 +4793,6 @@ u"""
 USC/07
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]C(=C)C
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -4956,7 +4830,6 @@ u"""
 USC/07
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]C(C)C
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -4992,7 +4865,6 @@ u"""
 T 6/83
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C=C(C)C
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -5048,7 +4920,6 @@ u"""
 1/ 2/ 7 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CCCC[CH]CCCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -5074,7 +4945,6 @@ entry(
 u"""
 L 8/89.
 O
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -5125,7 +4995,6 @@ u"""
 1/ 3/ 7 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]CCCCCCC=C
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -5167,7 +5036,6 @@ u"""
 THERG
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH]1CCCCC1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -5207,7 +5075,6 @@ u"""
 THERGA
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C1=CCCCC1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -5238,7 +5105,6 @@ multiplicity 2
 u"""
 L12/92.
 C[CH2]
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -5274,7 +5140,6 @@ multiplicity 2
 u"""
 T05/02.
 O=C1C=C[CH]C=C1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -5316,7 +5181,6 @@ u"""
 THERGAS G
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C=CC[CH]CC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -5352,7 +5216,6 @@ u"""
 DU0997
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 O=C1C=C[CH]C1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -5396,7 +5259,6 @@ u"""
 1/ 2/ 7 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CC[CH]CCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -5435,7 +5297,6 @@ entry(
 u"""
 AVG CRESOL6/87.
 CC1=CC=CC(O)=C1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -5477,7 +5338,6 @@ u"""
 1/22/ 7 THERG
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]CCCC=C
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -5521,7 +5381,6 @@ u"""
 1/ 2/ 7 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]CCCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -5559,7 +5418,6 @@ multiplicity 2
 u"""
 T08/90.
 [CH2]C1C=CC=CC=1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -5597,7 +5455,6 @@ entry(
 u"""
 L 6/87.
 CC1C=CC=CC=1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -5634,7 +5491,6 @@ u"""
 HWZD99
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]C=CC=C
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -5675,7 +5531,6 @@ u"""
 1/ 2/ 7 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CC[CH]CC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -5713,7 +5568,6 @@ u"""
 P11/94
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C[CH]CC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -5776,7 +5630,6 @@ u"""
 7/23/ 7 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CCCCCCCCCCC(=O)COO
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -5830,7 +5683,6 @@ u"""
 1/22/ 7 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]CCCCCCCC=C
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -5894,7 +5746,6 @@ u"""
 7/23/ 7 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CCCCCCCCCCCCO[O]
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -5948,7 +5799,6 @@ u"""
 1/22/ 7 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C=CCCCCCCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -5979,7 +5829,6 @@ u"""
 D05/83
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C=C[O]
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -6017,7 +5866,6 @@ u"""
 P11/94
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C[C](C)C
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -6051,7 +5899,6 @@ u"""
 H6W/94
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]C#CC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -6085,7 +5932,6 @@ u"""
 H6W/94
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH]=CC#CC#C
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -6123,7 +5969,6 @@ multiplicity 2
 u"""
 T03/97.
 [CH]1CCCC1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -6185,7 +6030,6 @@ u"""
 1/ 2/ 7 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CCCCCCCCCCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -6212,7 +6056,6 @@ multiplicity 2
 u"""
 L 5/89.
 [O]O
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -6252,7 +6095,6 @@ u"""
 EST/BUR P 1/93
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CC1[CH]C=CC(=O)C=1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -6284,7 +6126,6 @@ u"""
 USC/07
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH]=CC#C
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -6318,7 +6159,6 @@ u"""
 USC/07
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH]=CC=C
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -6380,7 +6220,6 @@ u"""
 1/ 2/ 7 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CCCCC[CH]CCCCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -6444,7 +6283,6 @@ u"""
 7/23/ 7 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CCCCCCCCC[CH]CCOO
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -6479,7 +6317,6 @@ u"""
 T12/89
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH]1C=CC=C1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -6523,7 +6360,6 @@ u"""
 1/ 2/ 7 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CCCCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -6582,7 +6418,6 @@ u"""
 1/22/ 7 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CCCCC[CH]CCCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -6619,7 +6454,6 @@ u"""
 THERGAS G
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C=CC=CC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -6649,7 +6483,6 @@ u"""
 D11/99
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C#CC#C
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -6686,7 +6519,6 @@ u"""
 8/29/ 8 G
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C=CCC=C
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -6722,7 +6554,6 @@ u"""
 USC/07
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]CC=C
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -6756,7 +6587,6 @@ u"""
 H6W/94
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C=CC=C
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -6788,7 +6618,6 @@ entry(
 u"""
 T03/97.
 C1C=COC=1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -6815,7 +6644,6 @@ entry(
 u"""
 L 1/91.
 C#C
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -6850,7 +6678,6 @@ multiplicity 2
 u"""
 T 8/99.
 OC1[CH]C=CC=1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -6903,7 +6730,6 @@ u"""
 1/ 2/ 7 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C[CH]CCCCCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -6959,7 +6785,6 @@ u"""
 1/ 2/ 7 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]CCCCCCCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -6994,7 +6819,6 @@ u"""
 T 5/92
 Low T polynomial Tmin changed from 298.15 to 298.0 K when importing to RMG.
 CC=CC=O
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -7044,7 +6868,6 @@ u"""
 1/ 2/ 7 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CC[CH]CCCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -7097,7 +6920,6 @@ u"""
 1/ 2/ 7 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]CCCCCCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -7125,7 +6947,6 @@ multiplicity 3
 u"""
 L12/89.
 [C]=C
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -7163,7 +6984,6 @@ u"""
 L 3/86
 Low T polynomial Tmin changed from 298.15 to 298.0 K when importing to RMG.
 O=CC1C=CC=CC=1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -7191,7 +7011,6 @@ entry(
 u"""
 D05/90.
 C=C=O
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -7253,7 +7072,6 @@ u"""
 1/ 2/ 7 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CC[CH]CCCCCCCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -7291,7 +7109,6 @@ u"""
 EST/BUR P 1/93
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 O=[C]C1C=CC=CC=1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -7316,7 +7133,6 @@ u"""
 120186
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [Ar]
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -7340,7 +7156,6 @@ entry(
 u"""
 L10/90.
 [He]
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -7367,7 +7182,6 @@ u"""
 ATcT A.
 Duplicate of species OH (i.e. same molecular structure according to RMG)
 [OH]
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -7394,7 +7208,6 @@ u"""
 TPIS79.
 Duplicate of species CH (i.e. same molecular structure according to RMG)
 [CH]
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -7430,7 +7243,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C=C[CH]C
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -7475,7 +7287,6 @@ u"""
 7/28/ 9 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CC1CCCCC1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -7520,7 +7331,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]C1CCCCC1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -7562,7 +7372,6 @@ u"""
 THERG
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C1CCCCC1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -7604,7 +7413,6 @@ u"""
 THERG
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]C1CCCC1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -7648,7 +7456,6 @@ u"""
 therm
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 OOC1[CH]CCCC1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -7692,7 +7499,6 @@ u"""
 therm
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [O]OC1CCCCC1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -7735,7 +7541,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C=CCCCC=C
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -7780,7 +7585,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CC=CCCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -7828,7 +7632,6 @@ u"""
 THERG
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CCC=CCCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -7874,7 +7677,6 @@ u"""
 therm
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [O]OC1CCCCC1OO
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -7919,7 +7721,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]C=CC(C)CC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -7964,7 +7765,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]C(C)CCC=C
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -8012,7 +7812,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]C(CC)CCC=C
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -8063,7 +7862,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]C(CCC)CCC=C
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -8117,7 +7915,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]C(CCC=C)CCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -8166,7 +7963,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C=CCC1CCCCC1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -8208,7 +8004,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]CCC=CC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -8250,7 +8045,6 @@ u"""
 9/ 8 G
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]C(C)CC=C
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -8298,7 +8092,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]CCC=CCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -8340,7 +8133,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]C(C=C)CC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -8379,7 +8171,6 @@ u"""
 9/ 8 G
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]C(C)C=C
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -8416,7 +8207,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C=CC(=C)C
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -8462,7 +8252,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C=CC1CCCCC1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -8505,7 +8294,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C=CC=CCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -8556,7 +8344,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CCCC1[CH]CCCC1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -8610,7 +8397,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CCCCC1[CH]CCCC1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -8655,7 +8441,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]CC=CCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -8703,7 +8488,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]CC(CC)CC=C
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -8757,7 +8541,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CCCC=C[CH]CCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -8805,7 +8588,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CC=C[CH]CCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -8853,7 +8635,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]CCCCC=CC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -8895,7 +8676,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CC1C[CH]CC1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -8949,7 +8729,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CCCCC1CC[CH]CC1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -8997,7 +8776,6 @@ u"""
 THERG
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CCC1CCCCC1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -9045,7 +8823,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]C=CCC(C)CC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -9096,7 +8873,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CCCC1CC[CH]CC1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -9144,7 +8920,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]C=CC(CC)CC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -9198,7 +8973,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CCCCC1CCCCC1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -9249,7 +9023,6 @@ u"""
 THERG
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CCCC1CCCCC1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -9294,7 +9067,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]C=CCC(C)C
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -9345,7 +9117,6 @@ u"""
 THERG
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CCCC=CCCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -9385,7 +9156,6 @@ u"""
 THERG
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C=CCCC=C
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -9439,7 +9209,6 @@ u"""
 7/31/ 9 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CCCCC=CCCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -9476,7 +9245,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]C(=C)C=C
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -9524,7 +9292,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C=CCCC[CH]CC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -9575,7 +9342,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C=CCCC[CH]CCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -9629,7 +9395,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C=CCCC[CH]CCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -9677,7 +9442,6 @@ u"""
 THERG
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C=C(CC)CCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -9731,7 +9495,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C=C(CCCC)CCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -9785,7 +9548,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]CCC(C=C)CCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -9836,7 +9598,6 @@ u"""
 THERG
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C=C(CCC)CCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -9884,7 +9645,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CCC1C[CH]CCC1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -9932,7 +9692,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CCC1CC[CH]CC1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -9986,7 +9745,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CC[CH]CC1CCCCC1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -10040,7 +9798,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CCCCC1C[CH]CCC1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -10085,7 +9842,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CC1CC[CH]CC1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -10133,7 +9889,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C[CH]C1CCCCC1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -10184,7 +9939,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CCCC1C[CH]CCC1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -10235,7 +9989,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]CCC1CCCCC1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -10286,7 +10039,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C[CH]CC1CCCCC1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -10340,7 +10092,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C[CH]CCC1CCCCC1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -10394,7 +10145,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CCC[CH]C1CCCCC1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -10448,7 +10198,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]CCCC1CCCCC1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -10502,7 +10251,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]CCCCC=CCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -10550,7 +10298,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]CC1CCCCC1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -10604,7 +10351,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]C=CCC(C)CCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -10655,7 +10401,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]C=CCC(C)CCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -10709,7 +10454,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CCCC[C]1CCCCC1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -10757,7 +10501,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CCC1[CH]CCCC1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -10808,7 +10551,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CC[CH]C1CCCCC1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -10859,7 +10601,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CCC[C]1CCCCC1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -10910,7 +10651,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]CCCCC=CCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -10950,7 +10690,6 @@ u"""
 7/28/  THERGA
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C=C[CH]CC=C
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -10993,7 +10732,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C=C1CCCCC1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -11041,7 +10779,6 @@ u"""
 THERG
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CC[C]1CCCCC1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -11089,7 +10826,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]CCC(C=C)CC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -11134,7 +10870,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]C(=C)CCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -11173,7 +10908,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]CC(=C)C
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -11218,7 +10952,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C=C[C](C)CCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -11272,7 +11005,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]C=CC(CC)CCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -11323,7 +11055,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]C=CC(CC)CCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -11365,7 +11096,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]C(=C)CCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -11413,7 +11143,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CCC=C[CH]CCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -11458,7 +11187,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CC=C[CH]CCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -11497,7 +11225,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]C(=C)CC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -11545,7 +11272,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]C(C=C)CCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -11587,7 +11313,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]CC=CCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -11632,7 +11357,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]C(C=C)CCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -11680,7 +11404,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C=CC[CH]CCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -11727,7 +11450,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]C(C)CCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -11768,7 +11490,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]C(C)CC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -11822,7 +11543,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]CCCC=CCCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -11876,7 +11596,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]CCCC(=C)CCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -11924,7 +11643,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]CCCC(=C)CC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -11952,7 +11670,6 @@ u"""
 L S/93.
 Duplicate of species CH2 (i.e. same molecular structure according to RMG)
 [CH2]
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -12006,7 +11723,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]CC(CC=C)CCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -12057,7 +11773,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]CC(CC=C)CCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -12102,7 +11817,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]CC(C)CC=C
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -12147,7 +11861,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CC1C[CH]CCC1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -12192,7 +11905,6 @@ u"""
 THERG
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]CCCC=CC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -12237,7 +11949,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CC1[CH]CCCC1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -12282,7 +11993,6 @@ u"""
 THERG
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]CCC(C)C=C
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -12327,7 +12037,6 @@ u"""
 THERG
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C[C]1CCCCC1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -12367,7 +12076,6 @@ u"""
 7/28/  CBSQB3
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH]1C=CCCC1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -12412,7 +12120,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C=CCCC[CH]C
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -12459,7 +12166,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C[CH]CCC(C)C
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -12510,7 +12216,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]CCC(C=C)CCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -12561,7 +12266,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]CCCC=CCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -12607,7 +12311,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C=CC=CCCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -12652,7 +12355,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]CCCC(=C)C
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -12690,7 +12392,6 @@ u"""
 7/31/ 9 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH]1C=CCC=C1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -12735,7 +12436,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C=CC[CH]CCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -12780,7 +12480,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C=C[CH]CCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -12831,7 +12530,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]CCCC(=C)CCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -12879,7 +12577,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]CC=CCCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -12927,7 +12624,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]CC(=C)CCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -12969,7 +12665,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]CC(=C)CC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -13023,7 +12718,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C=C[C](CCC)CCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -13074,7 +12768,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CCC=C[CH]CCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -13125,7 +12818,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CCC[CH]C=CCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -13176,7 +12868,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C=C[C](CCC)CCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -13224,7 +12915,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]CCCC=CCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -13262,7 +12952,6 @@ u"""
 CBSQB3
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C1C=CCCC=1
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -13310,7 +12999,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]C(=CCCC)CC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -13355,7 +13043,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]C(C)=CCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -13395,7 +13082,6 @@ u"""
 8/29/ 8 G
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C=C=CCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -13438,7 +13124,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C=CC(=C)CCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -13484,7 +13169,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C=CC(=C)CCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -13524,7 +13208,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C=CC(=C)CC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -13572,7 +13255,6 @@ u"""
 THERG
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C=C[C](CC)CCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -13617,7 +13299,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C=C(C)CCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -13662,7 +13343,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]CC(=C)CCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -13703,7 +13383,6 @@ THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 Duplicate of species C2H3-2-1C4H7 (i.e. same molecular structure according to RMG)
 C=CC(=C)CC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -13757,7 +13436,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CCC[C]=CCCCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -13794,7 +13472,6 @@ u"""
 8/29/ 8 G
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C=C=CCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -13848,7 +13525,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]C(=CCCC)CCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -13899,7 +13575,6 @@ u"""
 THERG
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]C(=CCCC)CCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -13953,7 +13628,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C=C[CH]CCCCCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -14004,7 +13678,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C=C[CH]CCCCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -14052,7 +13725,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C=C[CH]CCCCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -14097,7 +13769,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [CH2]C(=CCC)CC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -14141,7 +13812,6 @@ u"""
 therm
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 [O]OC1CCCCC1[O]
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -14190,7 +13860,6 @@ multiplicity 2
 u"""
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CCC1CCC(CC1)O[O]
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -14236,7 +13905,6 @@ multiplicity 2
 u"""
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CC1CCC(CC1)O[O]
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -14291,7 +13959,6 @@ multiplicity 2
 u"""
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CCCCC1CCC(CC1)O[O]
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -14340,7 +14007,6 @@ multiplicity 2
 u"""
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CCC1C[CH]C(CC1)OO
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -14381,7 +14047,6 @@ THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 Duplicate of species C2H3-2-1C4H7 (i.e. same molecular structure according to RMG)
 C=CC(=C)CC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -14436,7 +14101,6 @@ multiplicity 2
 u"""
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CCCCC1C[CH]C(CC1)OO
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -14482,7 +14146,6 @@ multiplicity 2
 u"""
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CC1C[CH]C(CC1)OO
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -14534,7 +14197,6 @@ multiplicity 2
 u"""
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CCCC1CCC(CC1)O[O]
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -14576,7 +14238,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C=C(C)CCC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -14615,7 +14276,6 @@ u"""
 THERM
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 C=C(C)CC
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -14667,7 +14327,6 @@ multiplicity 2
 u"""
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CCCC1[CH]CC(CC1)OO
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -14713,7 +14372,6 @@ multiplicity 3
 u"""
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CC1CC([O])CC(C1)O[O]
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -14762,7 +14420,6 @@ multiplicity 3
 u"""
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CCC1CC([O])CC(C1)O[O]
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -14814,7 +14471,6 @@ multiplicity 3
 u"""
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CCCC1CC([O])CC(C1)O[O]
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 
@@ -14869,7 +14525,6 @@ multiplicity 3
 u"""
 Low T polynomial Tmin changed from 300.0 to 298.0 K when importing to RMG.
 CCCCC1CC([O])CC(C1)O[O]
-Imported from /home/alongd/Code/RMG-Py/importer/JetSurF2.0/Thermdat.txt.
 """,
 )
 

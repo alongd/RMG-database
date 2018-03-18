@@ -1111,3 +1111,190 @@ Thermodynamics for NNS:
    =========== =========== =========== =========== ===========
 """,
 )
+
+entry(
+    index = 34,
+    label = "HSO2OO",
+    molecule =
+"""
+multiplicity 2
+1 O u0 p2 c0 {2,D}
+2 S u0 p0 c0 {1,D} {3,S} {4,D} {5,S}
+3 H u0 p0 c0 {2,S}
+4 O u0 p2 c0 {2,D}
+5 O u0 p2 c0 {2,S} {6,S}
+6 O u1 p2 c0 {5,S}
+""",
+    thermo = NASA(
+        polynomials = [
+            NASAPolynomial(
+                coeffs = [3.75059, 0.0216355, 1.76241e-06, -4.61447e-08, 3.74784e-11, -27987.7, 11.8361],
+                Tmin = (10, 'K'),
+                Tmax = (552.227, 'K'),
+            ),
+            NASAPolynomial(
+                coeffs = [5.9391, 0.016133, -1.14039e-05, 3.68865e-09, -4.46187e-13, -28387.2, 1.14856],
+                Tmin = (552.227, 'K'),
+                Tmax = (3000, 'K'),
+            ),
+        ],
+        Tmin = (10, 'K'),
+        Tmax = (3000, 'K'),
+        E0 = (-232.734, 'kJ/mol'),
+        Cp0 = (33.2579, 'J/(mol*K)'),
+        CpInf = (128.874, 'J/(mol*K)'),
+    ),
+    shortDesc = u"""CCSD(T)-F12a/cc-pVTZ-f12//M06-2x/cc-pVTZ""",
+    longDesc =
+u"""
+SMILES: [O]O[SH](=O)=O
+
+calculated by alongd (xq1167, xc1079) at the CCSD(T)-F12a/cc-pVTZ-f12//M06-2x/cc-pVTZ level of theory
+frequencies calculated at M06-2x/cc-pVTZ
+rotor calculated at ub3lyp/6-311++g(df,pd)
+
+Thermodynamics for HSO2OO:
+  Enthalpy of formation (298 K)   =   -51.602 kcal/mol
+  Entropy of formation (298 K)    =    78.288 cal/(mol*K)
+   =========== =========== =========== =========== ===========
+   Temperature Heat cap.   Enthalpy    Entropy     Free energy
+   (K)         (cal/mol*K) (kcal/mol)  (cal/mol*K) (kcal/mol)
+   =========== =========== =========== =========== ===========
+           300      18.794     -51.565      78.414     -75.089
+           400      21.249     -49.556      84.175     -83.226
+           500      23.018     -47.338      89.117     -91.896
+           600      24.348     -44.967      93.436    -101.029
+           800      26.336     -39.886     100.732    -120.471
+          1000      27.643     -34.478     106.759    -141.237
+          1500      29.153     -20.205     118.313    -197.675
+          2000      29.728      -5.474     126.785    -259.044
+          2400      30.126       6.498     132.241    -310.880
+   =========== =========== =========== =========== ===========
+""",
+)
+
+entry(
+    index = 35,
+    label = "HSO3",
+    molecule =
+"""
+multiplicity 2
+1 S u0 p0 c0 {2,S} {3,D} {4,D} {5,S}
+2 H u0 p0 c0 {1,S}
+3 O u0 p2 c0 {1,D}
+4 O u0 p2 c0 {1,D}
+5 O u1 p2 c0 {1,S}
+""",
+    thermo = NASA(
+        polynomials = [
+            NASAPolynomial(
+                coeffs = [3.97441, 0.0014975, 4.12806e-05, -7.6082e-08, 4.326e-11, -14344.2, 8.14728],
+                Tmin = (10, 'K'),
+                Tmax = (557.004, 'K'),
+            ),
+            NASAPolynomial(
+                coeffs = [2.8953, 0.0148492, -9.76199e-06, 3.06694e-09, -3.68988e-13, -14310.9, 11.9417],
+                Tmin = (557.004, 'K'),
+                Tmax = (3000, 'K'),
+            ),
+        ],
+        Tmin = (10, 'K'),
+        Tmax = (3000, 'K'),
+        E0 = (-119.275, 'kJ/mol'),
+        Cp0 = (33.2579, 'J/(mol*K)'),
+        CpInf = (108.088, 'J/(mol*K)'),
+    ),
+    shortDesc = u"""CCSD(T)-F12a/cc-pVTZ-f12//M06-2x/cc-pVTZ""",
+    longDesc =
+u"""
+SMILES: [O][SH](=O)=O
+
+calculated by alongd (xq1168, xc1080) at the CCSD(T)-F12a/cc-pVTZ-f12//M06-2x/cc-pVTZ level of theory
+frequencies calculated at M06-2x/cc-pVTZ
+
+Thermodynamics for HSO3:
+  Enthalpy of formation (298 K)   =   -25.553 kcal/mol
+  Entropy of formation (298 K)    =    64.551 cal/(mol*K)
+   =========== =========== =========== =========== ===========
+   Temperature Heat cap.   Enthalpy    Entropy     Free energy
+   (K)         (cal/mol*K) (kcal/mol)  (cal/mol*K) (kcal/mol)
+   =========== =========== =========== =========== ===========
+           300      12.788     -25.528      64.636     -44.919
+           400      14.738     -24.149      68.588     -51.585
+           500      16.368     -22.591      72.059     -58.620
+           600      17.696     -20.886      75.164     -65.984
+           800      19.765     -17.128      80.555     -81.572
+          1000      21.224     -13.020      85.132     -98.152
+          1500      23.225      -1.836      94.175    -143.098
+          2000      24.199      10.040     101.001    -191.962
+          2400      24.759      19.837     105.465    -233.279
+   =========== =========== =========== =========== ===========
+""",
+)
+
+
+
+
+
+
+
+
+entry(
+    index = 37,
+    label = "HOSO2O",
+    molecule =
+"""
+multiplicity 2
+1 O u1 p2 c0 {2,S}
+2 S u0 p0 c0 {1,S} {3,D} {4,D} {5,S}
+3 O u0 p2 c0 {2,D}
+4 O u0 p2 c0 {2,D}
+5 O u0 p2 c0 {2,S} {6,S}
+6 H u0 p0 c0 {5,S}
+""",
+    thermo = NASA(
+        polynomials = [
+            NASAPolynomial(
+                coeffs = [3.877, 0.00752148, 8.66459e-05, -2.06179e-07, 1.36421e-10, -60894.5, 9.03159],
+                Tmin = (10, 'K'),
+                Tmax = (547.31, 'K'),
+            ),
+            NASAPolynomial(
+                coeffs = [6.19876, 0.0172594, -1.32365e-05, 4.64135e-09, -6.01853e-13, -61548.6, -4.42435],
+                Tmin = (547.31, 'K'),
+                Tmax = (3000, 'K'),
+            ),
+        ],
+        Tmin = (10, 'K'),
+        Tmax = (3000, 'K'),
+        E0 = (-506.348, 'kJ/mol'),
+        Cp0 = (33.2579, 'J/(mol*K)'),
+        CpInf = (133.032, 'J/(mol*K)'),
+    ),
+    shortDesc = u"""CCSD(T)-F12a/cc-pVTZ-f12//M06-2x/cc-pVTZ""",
+    longDesc =
+u"""
+SMILES: [O]S(=O)(=O)O
+
+calculated by alongd (xq1170, xc1082) at the CCSD(T)-F12a/cc-pVTZ-f12//M06-2x/cc-pVTZ level of theory
+frequencies calculated at M06-2x/cc-pVTZ
+
+Thermodynamics for HOSO2O:
+  Enthalpy of formation (298 K)   =  -117.212 kcal/mol
+  Entropy of formation (298 K)    =    70.860 cal/(mol*K)
+   =========== =========== =========== =========== ===========
+   Temperature Heat cap.   Enthalpy    Entropy     Free energy
+   (K)         (cal/mol*K) (kcal/mol)  (cal/mol*K) (kcal/mol)
+   =========== =========== =========== =========== ===========
+           300      18.818    -117.174      70.986    -138.470
+           400      21.950    -115.126      76.856    -145.868
+           500      23.952    -112.823      81.988    -153.817
+           600      25.265    -110.359      86.476    -162.245
+           800      27.155    -105.103      94.023    -180.322
+          1000      28.340     -99.544     100.221    -199.765
+          1500      29.656     -84.982     112.012    -253.000
+          2000      30.350     -69.981     120.638    -311.257
+          2400      30.947     -57.720     126.225    -360.660
+   =========== =========== =========== =========== ===========
+""",
+)

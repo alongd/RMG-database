@@ -640,3 +640,21 @@ multiplicity 2
 4 H u0 p0 c0 {2,S}
 """,
 )
+
+entry(
+    label = "SO3(T)",
+    species =
+"""
+multiplicity 3
+1 O u0 p2 c0 {2,D}
+2 S u1 p0 c0 {1,D} {3,D} {4,S}
+3 O u0 p2 c0 {2,D}
+4 O u1 p2 c0 {2,S}
+""",
+    shortDesc = u"""""",
+    longDesc =
+u"""
+The geometry of SO3(T) could not be stabilized at either B3LYP/6-311G(2d,d,p) nor M06-2x
+without getting negative frequency/ies.
+""",
+)

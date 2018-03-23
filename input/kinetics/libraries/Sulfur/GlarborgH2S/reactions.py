@@ -144,21 +144,21 @@ Zhou TST (2009)
 """,
 )
 
-entry(
-    index = 9,
-    label = "H2S + O2 <=> HSO + OH",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+11, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (49100, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
+# entry(
+#     index = 9,
+#     label = "H2S + O2 <=> HSO + OH",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+11, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (49100, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
 
 entry(
     index = 10,
@@ -213,54 +213,54 @@ entry(
     ),
 )
 
-entry(
-    index = 13,
-    label = "HSO + SH <=> SO + H2S",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-H2S+SO=HSO+SH                        5.4E03  3.209    26824 !
-Zhou TST (2009) rv too fast
-""",
-)
+# entry(
+#     index = 13,
+#     label = "HSO + SH <=> SO + H2S",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# H2S+SO=HSO+SH                        5.4E03  3.209    26824 !
+# Zhou TST (2009) rv too fast
+# """,
+# )
 
-entry(
-    index = 14,
-    label = "H2S + SO <=> HOS + SH",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (36500, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-   index = 15,
-   label = "H2S + SO(S) <=> HSO + SH",
-   degeneracy = 1,
-   kinetics = Arrhenius(
-       A = (1e+13, 'cm^3/(mol*s)'),
-       n = 0,
-       Ea = (11000, 'cal/mol'),
-       T0 = (1, 'K'),
-   ),
-   longDesc =
-u"""
-Zhou est (2009)
-""",
-)
+# entry(
+#     index = 14,
+#     label = "H2S + SO <=> HOS + SH",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (36500, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#    index = 15,
+#    label = "H2S + SO(S) <=> HSO + SH",
+#    degeneracy = 1,
+#    kinetics = Arrhenius(
+#        A = (1e+13, 'cm^3/(mol*s)'),
+#        n = 0,
+#        Ea = (11000, 'cal/mol'),
+#        T0 = (1, 'K'),
+#    ),
+#    longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
 
 entry(
     index = 16,
@@ -294,37 +294,37 @@ Sendt K Haynes BS JPCA 109 8180-8186 2005
 """,
 )
 
-entry(
-    index = 18,
-    label = "H2S + HSO <=> SH + HSOH",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (17300, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 19,
-    label = "H2S + HOS <=> SH + HSOH",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (12500, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
+# entry(
+#     index = 18,
+#     label = "H2S + HSO <=> SH + HSOH",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (17300, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 19,
+#     label = "H2S + HOS <=> SH + HSOH",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (12500, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
 
 entry(
     index = 20,
@@ -456,21 +456,21 @@ Zhou TST (2009)
 """,
 )
 
-entry(
-    index = 28,
-    label = "SH + OH <=> HOS + H",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (7400, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est
-""",
-)
+# entry(
+#     index = 28,
+#     label = "SH + OH <=> HOS + H",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (7400, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est
+# """,
+# )
 
 entry(
     index = 29,
@@ -634,165 +634,165 @@ Zhou QRRK (2009)
 """,
 )
 
-entry(
-    index = 39,
-    label = "SH + SO <=> HSO + S",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (25000, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 40,
-    label = "SH + SO <=> HOS + S",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (30000, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 41,
-    label = "SH + HSO <=> S + HSOH",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+11, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (11000, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 42,
-    label = "SH + HSO <=> S2O + H2",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+14, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (14250, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 43,
-    label = "S2O + H2 <=> SH + HOS",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (46000, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 44,
-    label = "SH + SO <=> S2O + H",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+12, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (5000, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 45,
-    label = "SH + SO2 <=> HSO + SO",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+14, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (32000, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 46,
-    label = "SH + SO2 <=> HOS + SO",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+14, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (36000, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 47,
-    label = "SH + SO2 <=> OH + S2O",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+14, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (32000, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 48,
-    label = "SH + SO2 <=> HSSO2",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (33000, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
+# entry(
+#     index = 39,
+#     label = "SH + SO <=> HSO + S",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (25000, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 40,
+#     label = "SH + SO <=> HOS + S",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (30000, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 41,
+#     label = "SH + HSO <=> S + HSOH",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+11, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (11000, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 42,
+#     label = "SH + HSO <=> S2O + H2",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+14, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (14250, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 43,
+#     label = "S2O + H2 <=> SH + HOS",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (46000, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 44,
+#     label = "SH + SO <=> S2O + H",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+12, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (5000, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 45,
+#     label = "SH + SO2 <=> HSO + SO",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+14, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (32000, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 46,
+#     label = "SH + SO2 <=> HOS + SO",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+14, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (36000, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 47,
+#     label = "SH + SO2 <=> OH + S2O",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+14, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (32000, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 48,
+#     label = "SH + SO2 <=> HSSO2",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (33000, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
 
 # entry(
 #     index = 259,
@@ -847,21 +847,21 @@ Ballester MY VArandas, AJC IJCK 40 533-540 2008
 """,
 )
 
-entry(
-    index = 51,
-    label = "S + HO2 <=> HOS + O",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
+# entry(
+#     index = 51,
+#     label = "S + HO2 <=> HOS + O",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
 
 entry(
     index = 52,
@@ -895,21 +895,21 @@ Atkinson R Baulch DL Cox RA Crowley JN Hampson RF Hynes RG Jenkin ME Rossi MJ Tr
 """,
 )
 
-entry(
-    index = 54,
-    label = "S + H2O2 <=> HOS + OH",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+12, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
+# entry(
+#     index = 54,
+#     label = "S + H2O2 <=> HOS + OH",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+12, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
 
 entry(
     index = 55,
@@ -940,7 +940,7 @@ entry(
     ),
     longDesc = 
 u"""
-Rasmussen CL GlArborg P MArshall P Proc Combust Inst 2007, 31, 339-347
+Rasmussen CL Glarborg P MArshall P Proc Combust Inst 2007, 31, 339-347
 """,
 )
 
@@ -975,7 +975,7 @@ entry(
     ),
     longDesc = 
 u"""
-pw bArrierless
+pw barrierless
 """,
 )
 
@@ -1031,22 +1031,22 @@ est as SO+O+M
 """,
 )
 
-entry(
-    index = 62,
-    label = "SO + SH <=> S2 + OH",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+12, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (4320, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-est
-Zhou est (2009)
-""",
-)
+# entry(
+#     index = 62,
+#     label = "SO + SH <=> S2 + OH",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+12, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (4320, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# est
+# Zhou est (2009)
+# """,
+# )
 
 entry(
    index = 63,
@@ -1058,7 +1058,7 @@ entry(
    ),
    longDesc =
 u"""
-Rasmussen CL GlArborg P MArshall P Proc Combust Inst 2007, 31, 339-347
+Rasmussen CL Glarborg P MArshall P Proc Combust Inst 2007, 31, 339-347
 """,
 )
 
@@ -1074,7 +1074,7 @@ entry(
    ),
    longDesc =
 u"""
-Rasmussen CL GlArborg P MArshall P Proc Combust Inst 2007, 31, 339-347
+Rasmussen CL Glarborg P MArshall P Proc Combust Inst 2007, 31, 339-347
 """,
 )
 
@@ -1170,7 +1170,7 @@ entry(
     longDesc = 
 u"""
 N2
-A Yilmaz L HindiyArti AD Jensen P GlArborg P MArshall J. Phys. Chem. A 110 (2006) 6654-6659.
+A Yilmaz L HindiyArti AD Jensen P Glarborg P MArshall J. Phys. Chem. A 110 (2006) 6654-6659.
 """,
 )
 
@@ -1197,21 +1197,21 @@ MA Blitz KJ Hughes MJ Pilling J Phys Chem A 107 (2003) 1971-1978
 """,
 )
 
-entry(
-    index = 70,
-    label = "SO2 + H2O <=> VDW1",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+14, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
+# entry(
+#     index = 70,
+#     label = "SO2 + H2O <=> VDW1",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+14, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
 
 entry(
     index = 71,
@@ -1273,7 +1273,7 @@ entry(
     ),
     longDesc = 
 u"""
-L HindiyArti P GlArborg P MArshall J. Phys. Chem. A 111 (2007) 3984-3991
+L HindiyArti P Glarborg P MArshall J. Phys. Chem. A 111 (2007) 3984-3991
 """,
 )
 
@@ -1289,7 +1289,7 @@ entry(
     ),
     longDesc = 
 u"""
-L HindiyArti P GlArborg P MArshall J. Phys. Chem. A 111 (2007) 3984-3991
+L HindiyArti P Glarborg P MArshall J. Phys. Chem. A 111 (2007) 3984-3991
 """,
 )
 
@@ -1305,7 +1305,7 @@ entry(
     ),
     longDesc = 
 u"""
-P GlArborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790
+P Glarborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790
 """,
 )
 
@@ -1321,7 +1321,7 @@ entry(
     ),
     longDesc = 
 u"""
-L HindiyArti P GlArborg P MArshall J. Phys. Chem. A 111 (2007) 3984-3991
+L HindiyArti P Glarborg P MArshall J. Phys. Chem. A 111 (2007) 3984-3991
 """,
 )
 
@@ -1337,57 +1337,57 @@ entry(
     ),
     longDesc = 
 u"""
-L HindiyArti P GlArborg P MArshall J. Phys. Chem. A 111 (2007) 3984-3991
+L HindiyArti P Glarborg P MArshall J. Phys. Chem. A 111 (2007) 3984-3991
 """,
 )
 
-entry(
-    index = 79,
-    label = "SO3 + S <=> SO + SO2",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
+# entry(
+#     index = 79,
+#     label = "SO3 + S <=> SO + SO2",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
 
-entry(
-    index = 80,
-    label = "HSO + H <=> SO + H2",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Rasmussen CL GlArborg P MArshall P Proc Combust Inst 2007, 31, 339-347 est
-""",
-)
+# entry(
+#     index = 80,
+#     label = "HSO + H <=> SO + H2",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Rasmussen CL Glarborg P MArshall P Proc Combust Inst 2007, 31, 339-347 est
+# """,
+# )
 
-entry(
-    index = 81,
-    label = "HSO + H <=> HOS + H",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+14, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (4000, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
+# entry(
+#     index = 81,
+#     label = "HSO + H <=> HOS + H",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+14, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (4000, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
 
 entry(
     index = 82,
@@ -1401,7 +1401,7 @@ entry(
     ),
     longDesc = 
 u"""
-P GlArborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790
+P Glarborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790
 """,
 )
 
@@ -1417,7 +1417,7 @@ entry(
     ),
     longDesc = 
 u"""
-P GlArborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790
+P Glarborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790
 """,
 )
 
@@ -1433,7 +1433,7 @@ entry(
     ),
     longDesc = 
 u"""
-P GlArborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790
+P Glarborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790
 """,
 )
 
@@ -1449,7 +1449,7 @@ entry(
     ),
     longDesc = 
 u"""
-P GlArborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790
+P Glarborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790
 """,
 )
 
@@ -1468,7 +1468,7 @@ entry(
     ),
     longDesc = 
 u"""
-P GlArborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790
+P Glarborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790
 """,
 )
 
@@ -1484,7 +1484,7 @@ entry(
     ),
     longDesc = 
 u"""
-P GlArborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790
+P Glarborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790
 """,
 )
 
@@ -1503,7 +1503,7 @@ entry(
     ),
     longDesc = 
 u"""
-P GlArborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790
+P Glarborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790
 """,
 )
 
@@ -1519,7 +1519,7 @@ entry(
     ),
     longDesc = 
 u"""
-P GlArborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790
+P Glarborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790
 """,
 )
 
@@ -1535,7 +1535,7 @@ entry(
     ),
     longDesc = 
 u"""
-P GlArborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790
+P Glarborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790
 """,
 )
 
@@ -1551,7 +1551,7 @@ entry(
     ),
     longDesc = 
 u"""
-P GlArborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790
+P Glarborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790
 """,
 )
 
@@ -1567,7 +1567,7 @@ entry(
     ),
     longDesc = 
 u"""
-P GlArborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790
+P Glarborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790
 """,
 )
 
@@ -1583,41 +1583,41 @@ entry(
     ),
     longDesc = 
 u"""
-P GlArborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790
+P Glarborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790
 """,
 )
 
-entry(
-    index = 94,
-    label = "HSO + OH <=> H2 + SO2",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+11, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 95,
-    label = "HSO + HO2 <=> SO + H2O2",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
+# entry(
+#     index = 94,
+#     label = "HSO + OH <=> H2 + SO2",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+11, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 95,
+#     label = "HSO + HO2 <=> SO + H2O2",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
 
 entry(
     index = 96,
@@ -1671,7 +1671,7 @@ entry(
     ),
     longDesc = 
 u"""
-Rasmussen CL GlArborg P MArshall P Proc Combust Inst 2007, 31, 339-347
+Rasmussen CL Glarborg P MArshall P Proc Combust Inst 2007, 31, 339-347
 """,
 )
 
@@ -1723,37 +1723,37 @@ pw (PM 151027)
 """,
 )
 
-entry(
-    index = 102,
-    label = "HSO + HSO <=> SO + HSOH",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
+# entry(
+#     index = 102,
+#     label = "HSO + HSO <=> SO + HSOH",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
 
-entry(
-    index = 103,
-    label = "HSO + S2 <=> HSS + SO",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+12, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (3000, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
+# entry(
+#     index = 103,
+#     label = "HSO + S2 <=> HSS + SO",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+12, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (3000, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
 
 entry(
     index = 104,
@@ -1812,181 +1812,181 @@ Sendt K Haynes BS Proc Combust Inst 2007, 31, 257-265
 """,
 )
 
-entry(
-    index = 108,
-    label = "HOS + H <=> H2 + SO",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 109,
-    label = "HOS + O <=> OH + SO",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+14, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 110,
-    label = "HOS + O <=> H + SO2",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+14, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 111,
-    label = "HOS + OH <=> SO + H2O",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 112,
-    label = "HOS + OH <=> H2 + SO2",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+11, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 113,
-    label = "HOS + O2 <=> HO2 + SO",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (640000, 'cm^3/(mol*s)'),
-        n = 2.627,
-        Ea = (19013, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 114,
-    label = "HOS + O2 <=> SO2 + OH",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (37, 'cm^3/(mol*s)'),
-        n = 2.764,
-        Ea = (6575, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 115,
-    label = "HOS + HO2 <=> SO + H2O2",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 116,
-    label = "HOS + HOS <=> SO + HSOH",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 117,
-    label = "HOS + S2 <=> HSS + SO",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+12, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (1000, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 118,
-    label = "HOS + S2 <=> S3 + OH",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (13000, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
+# entry(
+#     index = 108,
+#     label = "HOS + H <=> H2 + SO",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 109,
+#     label = "HOS + O <=> OH + SO",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+14, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 110,
+#     label = "HOS + O <=> H + SO2",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+14, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 111,
+#     label = "HOS + OH <=> SO + H2O",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 112,
+#     label = "HOS + OH <=> H2 + SO2",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+11, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 113,
+#     label = "HOS + O2 <=> HO2 + SO",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (640000, 'cm^3/(mol*s)'),
+#         n = 2.627,
+#         Ea = (19013, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 114,
+#     label = "HOS + O2 <=> SO2 + OH",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (37, 'cm^3/(mol*s)'),
+#         n = 2.764,
+#         Ea = (6575, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 115,
+#     label = "HOS + HO2 <=> SO + H2O2",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 116,
+#     label = "HOS + HOS <=> SO + HSOH",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 117,
+#     label = "HOS + S2 <=> HSS + SO",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+12, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (1000, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 118,
+#     label = "HOS + S2 <=> S3 + OH",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (13000, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
 
 entry(
     index = 119,
@@ -2000,7 +2000,7 @@ entry(
     ),
     longDesc = 
 u"""
-P GlArborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790
+P Glarborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790
 """,
 )
 
@@ -2016,7 +2016,7 @@ entry(
     ),
     longDesc = 
 u"""
-P GlArborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790
+P Glarborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790
 """,
 )
 
@@ -2032,169 +2032,169 @@ entry(
     ),
     longDesc = 
 u"""
-P GlArborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790
+P Glarborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790
 """,
 )
 
-entry(
-    index = 122,
-    label = "HSOH + HO2 <=> HSO + H2O2",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 123,
-    label = "HSOH + HO2 <=> HOS + H2O2",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 124,
-    label = "HSOH + O2 <=> HSO + HO2",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (26000, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 125,
-    label = "HSOH + O2 <=> HOS + HO2",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (30000, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 126,
-    label = "HSOH + O <=> HSO + OH",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+14, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 127,
-    label = "HSOH + O <=> HOS + OH",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+14, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 128,
-    label = "HSOH + H <=> HSO + H2",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+14, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 129,
-    label = "HSOH + H <=> HOS + H2",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+14, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 130,
-    label = "HSOH + OH <=> HSO + H2O",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+14, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 131,
-    label = "HSOH + OH <=> HOS + H2O",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+14, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
+# entry(
+#     index = 122,
+#     label = "HSOH + HO2 <=> HSO + H2O2",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 123,
+#     label = "HSOH + HO2 <=> HOS + H2O2",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 124,
+#     label = "HSOH + O2 <=> HSO + HO2",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (26000, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 125,
+#     label = "HSOH + O2 <=> HOS + HO2",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (30000, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 126,
+#     label = "HSOH + O <=> HSO + OH",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+14, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 127,
+#     label = "HSOH + O <=> HOS + OH",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+14, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 128,
+#     label = "HSOH + H <=> HSO + H2",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+14, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 129,
+#     label = "HSOH + H <=> HOS + H2",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+14, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 130,
+#     label = "HSOH + OH <=> HSO + H2O",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+14, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 131,
+#     label = "HSOH + OH <=> HOS + H2O",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+14, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
 
 entry(
     index = 132,
@@ -2257,7 +2257,7 @@ entry(
     ),
     longDesc = 
 u"""
-P GlArborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790
+P Glarborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790
 """,
 )
 
@@ -2293,21 +2293,21 @@ X Hu P MArshall, poster presented at the 18th International Symposium on Gas Kin
 """,
 )
 
-entry(
-    index = 137,
-    label = "HOSO + O <=> SO2 + OH",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
+# entry(
+#     index = 137,
+#     label = "HOSO + O <=> SO2 + OH",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
 
 entry(
     index = 138,
@@ -2321,25 +2321,25 @@ entry(
     ),
     longDesc = 
 u"""
-Rasmussen CL GlArborg P MArshall P Proc Combust Inst 2007, 31, 339-347 est
+Rasmussen CL Glarborg P MArshall P Proc Combust Inst 2007, 31, 339-347 est
 """,
 )
 
-entry(
-    index = 139,
-    label = "HOSO + HO2 <=> SO2 + H2O2",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
+# entry(
+#     index = 139,
+#     label = "HOSO + HO2 <=> SO2 + H2O2",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
 
 entry(
     index = 140,
@@ -2354,137 +2354,137 @@ entry(
     longDesc = 
 u"""
 (T>400K)
-Rasmussen CL GlArborg P MArshall P Proc Combust Inst 2007, 31, 339-347
+Rasmussen CL Glarborg P MArshall P Proc Combust Inst 2007, 31, 339-347
 """,
 )
 
-entry(
-    index = 141,
-    label = "HOSO + SH <=> SO2 + H2S",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 142,
-    label = "HOSO + S <=> SO2 + SH",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 143,
-    label = "HOSO + SO <=> SO2 + HSO",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 144,
-    label = "HOSO + SO <=> SO2 + HOS",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 145,
-    label = "HOSO + HSO <=> SO2 + HSOH",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 146,
-    label = "HOSO + HOS <=> SO2 + HSOH",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 147,
-    label = "HOSO + HSS <=> SO2 + HSSH",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 148,
-    label = "HOSO + S2 <=> SO2 + HSS",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
+# entry(
+#     index = 141,
+#     label = "HOSO + SH <=> SO2 + H2S",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 142,
+#     label = "HOSO + S <=> SO2 + SH",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 143,
+#     label = "HOSO + SO <=> SO2 + HSO",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 144,
+#     label = "HOSO + SO <=> SO2 + HOS",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 145,
+#     label = "HOSO + HSO <=> SO2 + HSOH",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 146,
+#     label = "HOSO + HOS <=> SO2 + HSOH",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 147,
+#     label = "HOSO + HSS <=> SO2 + HSSH",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 148,
+#     label = "HOSO + S2 <=> SO2 + HSS",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
 
 entry(
     index = 149,
@@ -2502,53 +2502,53 @@ X Hu P MArshall, poster presented at the 18th International Symposium on Gas Kin
 """,
 )
 
-entry(
-    index = 150,
-    label = "HSO2 + O <=> SO2 + OH",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 151,
-    label = "HSO2 + OH <=> SO2 + H2O",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 152,
-    label = "HSO2 + HO2 <=> SO2 + H2O2",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
+# entry(
+#     index = 150,
+#     label = "HSO2 + O <=> SO2 + OH",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 151,
+#     label = "HSO2 + OH <=> SO2 + H2O",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 152,
+#     label = "HSO2 + HO2 <=> SO2 + H2O2",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
 
 entry(
     index = 153,
@@ -2562,137 +2562,137 @@ entry(
     ),
     longDesc = 
 u"""
-Rasmussen CL GlArborg P MArshall P Proc Combust Inst 2007, 31, 339-347
+Rasmussen CL Glarborg P MArshall P Proc Combust Inst 2007, 31, 339-347
 """,
 )
 
-entry(
-    index = 154,
-    label = "HSO2 + O3 <=> SO2 + OH + O2",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-est
-""",
-)
-
-entry(
-    index = 155,
-    label = "HSO2 + SH <=> SO2 + H2S",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 156,
-    label = "HSO2 + S <=> SO2 + SH",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 157,
-    label = "HSO2 + SO <=> SO2 + HSO",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 158,
-    label = "HSO2 + SO <=> SO2 + HOS",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 159,
-    label = "HSO2 + HSO <=> SO2 + HSOH",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 160,
-    label = "HSO2 + HSS <=> SO2 + HSSH",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 161,
-    label = "HSO2 + S2 <=> SO2 + HSS",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
+# entry(
+#     index = 154,
+#     label = "HSO2 + O3 <=> SO2 + OH + O2",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# est
+# """,
+# )
+#
+# entry(
+#     index = 155,
+#     label = "HSO2 + SH <=> SO2 + H2S",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 156,
+#     label = "HSO2 + S <=> SO2 + SH",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 157,
+#     label = "HSO2 + SO <=> SO2 + HSO",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 158,
+#     label = "HSO2 + SO <=> SO2 + HOS",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 159,
+#     label = "HSO2 + HSO <=> SO2 + HSOH",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 160,
+#     label = "HSO2 + HSS <=> SO2 + HSSH",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 161,
+#     label = "HSO2 + S2 <=> SO2 + HSS",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
 
 entry(
     index = 162,
@@ -2751,7 +2751,7 @@ entry(
     ),
     longDesc = 
 u"""
-P GlArborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790
+P Glarborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790
 """,
 )
 
@@ -2767,7 +2767,7 @@ entry(
     ),
     longDesc = 
 u"""
-P GlArborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790
+P Glarborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790
 """,
 )
 
@@ -2783,57 +2783,57 @@ entry(
     ),
     longDesc = 
 u"""
-P GlArborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790
+P Glarborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790
 """,
 )
 
-entry(
-    index = 167,
-    label = "HOSHO + H <=> HOSO + H2",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+12, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-P GlArborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790
-""",
-)
-
-entry(
-    index = 168,
-    label = "HOSHO + O <=> HOSO + OH",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (5e+12, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-P GlArborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790
-""",
-)
-
-entry(
-    index = 169,
-    label = "HOSHO + OH <=> HOSO + H2O",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+12, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-P GlArborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790
-""",
-)
+# entry(
+#     index = 167,
+#     label = "HOSHO + H <=> HOSO + H2",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+12, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc = 
+# u"""
+# P Glarborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790
+# """,
+# )
+# 
+# entry(
+#     index = 168,
+#     label = "HOSHO + O <=> HOSO + OH",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (5e+12, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc = 
+# u"""
+# P Glarborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790
+# """,
+# )
+# 
+# entry(
+#     index = 169,
+#     label = "HOSHO + OH <=> HOSO + H2O",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+12, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc = 
+# u"""
+# P Glarborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790
+# """,
+# )
 
 entry(
     index = 170,
@@ -2847,7 +2847,7 @@ entry(
     ),
     longDesc = 
 u"""
-P GlArborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790
+P Glarborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790
 """,
 )
 
@@ -2863,7 +2863,7 @@ entry(
     ),
     longDesc = 
 u"""
-P GlArborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790
+P Glarborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790
 """,
 )
 
@@ -2879,41 +2879,41 @@ entry(
     ),
     longDesc = 
 u"""
-P GlArborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790
+P Glarborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790
 """,
 )
 
-entry(
-    index = 173,
-    label = "HOSO2 + O <=> SO3 + OH",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (5e+12, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-P GlArborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790
-""",
-)
-
-entry(
-    index = 174,
-    label = "HOSO2 + OH <=> SO3 + H2O",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+12, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-P GlArborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790
-""",
-)
+# entry(
+#     index = 173,
+#     label = "HOSO2 + O <=> SO3 + OH",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (5e+12, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# P Glarborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790
+# """,
+# )
+#
+# entry(
+#     index = 174,
+#     label = "HOSO2 + OH <=> SO3 + H2O",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+12, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# P Glarborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790
+# """,
+# )
 
 entry(
     index = 175,
@@ -2931,21 +2931,21 @@ Atkinson R Baulch DL Cox RA Crowley JN Hampson RF Hynes RG Jenkin ME Rossi MJ Tr
 """,
 )
 
-entry(
-    index = 176,
-    label = "HOSO2 + S <=> SH + SO3",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
+# entry(
+#     index = 176,
+#     label = "HOSO2 + S <=> SH + SO3",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
 
 entry(
     index = 177,
@@ -3036,85 +3036,85 @@ Sendt K Jazbec M Haynes BS PCI 29:2439-2446 2002
 """,
 )
 
-entry(
-    index = 181,
-    label = "HSSH + O <=> HSS + OH",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+14, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 182,
-    label = "HSSH + O <=> HSO + SH",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+14, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 183,
-    label = "HSSH + OH <=> HSS + H2O",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 184,
-    label = "HSSH + HO2 <=> HSS + H2O2",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 185,
-    label = "HSSH + O2 <=> HSS + HO2",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (26000, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
+# entry(
+#     index = 181,
+#     label = "HSSH + O <=> HSS + OH",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+14, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 182,
+#     label = "HSSH + O <=> HSO + SH",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+14, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 183,
+#     label = "HSSH + OH <=> HSS + H2O",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 184,
+#     label = "HSSH + HO2 <=> HSS + H2O2",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 185,
+#     label = "HSSH + O2 <=> HSS + HO2",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (26000, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
 
 entry(
     index = 186,
@@ -3148,69 +3148,69 @@ Sendt K Jazbec M Haynes BS PCI 29:2439-2446 2002
 """,
 )
 
-entry(
-    index = 188,
-    label = "HSSH + SO <=> HSS + HSO",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (15000, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 189,
-    label = "HSSH + SO <=> HSS + HOS",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (19000, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 190,
-    label = "HSSH + HSO <=> HSS + HSOH",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (2000, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 191,
-    label = "HSSH + HOS <=> HSS + HSOH",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (2000, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
+# entry(
+#     index = 188,
+#     label = "HSSH + SO <=> HSS + HSO",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (15000, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 189,
+#     label = "HSSH + SO <=> HSS + HOS",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (19000, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 190,
+#     label = "HSSH + HSO <=> HSS + HSOH",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (2000, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 191,
+#     label = "HSSH + HOS <=> HSS + HSOH",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (2000, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
 
 entry(
     index = 192,
@@ -3295,85 +3295,85 @@ entry(
     ),
 )
 
-entry(
-    index = 196,
-    label = "HSS + O <=> S2 + OH",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+14, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 197,
-    label = "HSS + O <=> SH + SO",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+14, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 198,
-    label = "HSS + OH <=> S2 + H2O",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+14, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 199,
-    label = "HSS + HO2 <=> S2 + H2O2",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 200,
-    label = "HSS + O2 <=> HSSO + O",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (26000, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
+# entry(
+#     index = 196,
+#     label = "HSS + O <=> S2 + OH",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+14, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 197,
+#     label = "HSS + O <=> SH + SO",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+14, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 198,
+#     label = "HSS + OH <=> S2 + H2O",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+14, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 199,
+#     label = "HSS + HO2 <=> S2 + H2O2",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 200,
+#     label = "HSS + O2 <=> HSSO + O",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (26000, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
 
 entry(
     index = 201,
@@ -3439,85 +3439,85 @@ Sendt K Jazbec M Haynes BS PCI 29:2439-2446 2002
 """,
 )
 
-entry(
-    index = 205,
-    label = "HSS + SO <=> S3 + OH",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (14900, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 206,
-    label = "HSS + SO3 <=> HSSO + SO2",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (10000, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 207,
-    label = "HSS + HSO <=> HSSO + SH",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (7000, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 208,
-    label = "HSS + HSO <=> S2 + HSOH",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 209,
-    label = "HSS + HOS <=> S2 + HSOH",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
+# entry(
+#     index = 205,
+#     label = "HSS + SO <=> S3 + OH",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (14900, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 206,
+#     label = "HSS + SO3 <=> HSSO + SO2",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (10000, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 207,
+#     label = "HSS + HSO <=> HSSO + SH",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (7000, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 208,
+#     label = "HSS + HSO <=> S2 + HSOH",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 209,
+#     label = "HSS + HOS <=> S2 + HSOH",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
 
 entry(
     index = 210,
@@ -3551,19 +3551,19 @@ alongd comment: the above reference is only valid between 100-500 K
 """,
 )
 
-entry(
-    index = 212,
-    label = "S2 + O <=> S2O",
-    degeneracy = 1,
-    kinetics = ThirdBody(
-        arrheniusLow = Arrhenius(A=(1.9e+21, 'cm^6/(mol^2*s)'), n=-2.8, Ea=(0, 'cal/mol'), T0=(1, 'K')),
-        efficiencies = {},
-    ),
-    longDesc = 
-u"""
-Zhou (2009) est O+O+M
-""",
-)
+# entry(
+#     index = 212,
+#     label = "S2 + O <=> S2O",
+#     degeneracy = 1,
+#     kinetics = ThirdBody(
+#         arrheniusLow = Arrhenius(A=(1.9e+21, 'cm^6/(mol^2*s)'), n=-2.8, Ea=(0, 'cal/mol'), T0=(1, 'K')),
+#         efficiencies = {},
+#     ),
+#     longDesc =
+# u"""
+# Zhou (2009) est O+O+M
+# """,
+# )
 
 entry(
     index = 213,
@@ -3614,43 +3614,43 @@ Zhou TST (2009)
 """,
 )
 
-entry(
-    index = 216,
-    label = "S2 + S <=> S3",
-    degeneracy = 1,
-    kinetics = ThirdBody(
-        arrheniusLow = Arrhenius(
-            A = (1.9e+15, 'cm^6/(mol^2*s)'),
-            n = 0,
-            Ea = (-1788, 'cal/mol'),
-            T0 = (1, 'K'),
-        ),
-        efficiencies = {},
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 217,
-    label = "S2 + S2 <=> S4",
-    degeneracy = 1,
-    kinetics = ThirdBody(
-        arrheniusLow = Arrhenius(
-            A = (1.9e+15, 'cm^6/(mol^2*s)'),
-            n = 0,
-            Ea = (-1788, 'cal/mol'),
-            T0 = (1, 'K'),
-        ),
-        efficiencies = {},
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
+# entry(
+#     index = 216,
+#     label = "S2 + S <=> S3",
+#     degeneracy = 1,
+#     kinetics = ThirdBody(
+#         arrheniusLow = Arrhenius(
+#             A = (1.9e+15, 'cm^6/(mol^2*s)'),
+#             n = 0,
+#             Ea = (-1788, 'cal/mol'),
+#             T0 = (1, 'K'),
+#         ),
+#         efficiencies = {},
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 217,
+#     label = "S2 + S2 <=> S4",
+#     degeneracy = 1,
+#     kinetics = ThirdBody(
+#         arrheniusLow = Arrhenius(
+#             A = (1.9e+15, 'cm^6/(mol^2*s)'),
+#             n = 0,
+#             Ea = (-1788, 'cal/mol'),
+#             T0 = (1, 'K'),
+#         ),
+#         efficiencies = {},
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
 
 entry(
     index = 218,
@@ -3671,345 +3671,345 @@ Zhou (2009) est HSO+M
 """,
 )
 
-entry(
-    index = 219,
-    label = "S2O + H <=> OH + S2",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 220,
-    label = "S2O + O <=> SO + SO",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (9.3e+11, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Singleton DL Cvetanovic RJ JPCRD 17:1377 1988
-S2O+OH=S2+HO2                        1.0E13   0.000   40000 !
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 221,
-    label = "S2O + S <=> SO + S2",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 222,
-    label = "S2O + SH <=> HSO + S2",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+12, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (5000, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 223,
-    label = "S2O + SH <=> HSS + SO",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (8000, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 224,
-    label = "S2O + SH <=> S3 + OH",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (21450, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 225,
-    label = "S2O + SO2 <=> S2 + SO3",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (20000, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 226,
-    label = "S2O + HSO2 <=> HSSO + SO2",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (32000, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-S2O+S2=S3+SO                         1.0E14   0.000   18000 !
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 227,
-    label = "S2O + S2O <=> S3 + SO2",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+12, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (2600, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 228,
-    label = "HSSO + H <=> S2O + H2",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 229,
-    label = "HSSO + H <=> HSS + OH",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 230,
-    label = "HSSO + O <=> S2O + OH",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 231,
-    label = "HSSO + O <=> SH + SO2",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 232,
-    label = "HSSO + OH <=> S2O + H2O",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 233,
-    label = "HSSO + OH <=> HSS + HO2",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (27000, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 234,
-    label = "HSSO + HO2 <=> S2O + H2O2",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 235,
-    label = "HSSO + S <=> HSS + SO",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 236,
-    label = "HSSO + S <=> S2O + SH",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 237,
-    label = "HSSO + SH <=> S2O + H2S",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 238,
-    label = "HSSO + HSS <=> S2O + HSSH",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 239,
-    label = "HSSO + S2 <=> S2O + HSS",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
+# entry(
+#     index = 219,
+#     label = "S2O + H <=> OH + S2",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 220,
+#     label = "S2O + O <=> SO + SO",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (9.3e+11, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Singleton DL Cvetanovic RJ JPCRD 17:1377 1988
+# S2O+OH=S2+HO2                        1.0E13   0.000   40000 !
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 221,
+#     label = "S2O + S <=> SO + S2",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 222,
+#     label = "S2O + SH <=> HSO + S2",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+12, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (5000, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 223,
+#     label = "S2O + SH <=> HSS + SO",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (8000, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 224,
+#     label = "S2O + SH <=> S3 + OH",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (21450, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 225,
+#     label = "S2O + SO2 <=> S2 + SO3",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (20000, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 226,
+#     label = "S2O + HSO2 <=> HSSO + SO2",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (32000, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# S2O+S2=S3+SO                         1.0E14   0.000   18000 !
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 227,
+#     label = "S2O + S2O <=> S3 + SO2",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+12, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (2600, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 228,
+#     label = "HSSO + H <=> S2O + H2",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 229,
+#     label = "HSSO + H <=> HSS + OH",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 230,
+#     label = "HSSO + O <=> S2O + OH",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 231,
+#     label = "HSSO + O <=> SH + SO2",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 232,
+#     label = "HSSO + OH <=> S2O + H2O",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 233,
+#     label = "HSSO + OH <=> HSS + HO2",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (27000, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 234,
+#     label = "HSSO + HO2 <=> S2O + H2O2",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 235,
+#     label = "HSSO + S <=> HSS + SO",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 236,
+#     label = "HSSO + S <=> S2O + SH",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 237,
+#     label = "HSSO + SH <=> S2O + H2S",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 238,
+#     label = "HSSO + HSS <=> S2O + HSSH",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 239,
+#     label = "HSSO + S2 <=> S2O + HSS",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
 
 entry(
     index = 240,
@@ -4036,69 +4036,69 @@ Zhou est (2009)
 """,
 )
 
-entry(
-    index = 241,
-    label = "SSO2 + H <=> SH + SO2",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-est pw
-""",
-)
-
-entry(
-    index = 242,
-    label = "SSO2 + O <=> SO + SO2",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-est pw
-""",
-)
-
-entry(
-    index = 243,
-    label = "SSO2 + OH <=> HOS + SO2",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-est pw
-""",
-)
-
-entry(
-    index = 244,
-    label = "SSO2 + S <=> S2 + SO2",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
+# entry(
+#     index = 241,
+#     label = "SSO2 + H <=> SH + SO2",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# est pw
+# """,
+# )
+#
+# entry(
+#     index = 242,
+#     label = "SSO2 + O <=> SO + SO2",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# est pw
+# """,
+# )
+#
+# entry(
+#     index = 243,
+#     label = "SSO2 + OH <=> HOS + SO2",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# est pw
+# """,
+# )
+#
+# entry(
+#     index = 244,
+#     label = "SSO2 + S <=> S2 + SO2",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
 
 entry(
     index = 245,
@@ -4119,229 +4119,229 @@ Zhou TST (2009)
 """,
 )
 
-entry(
-    index = 246,
-    label = "OSSO + H <=> OH + S2O",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 247,
-    label = "OSSO + H <=> SO + HSO",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 248,
-    label = "OSSO + H <=> SO + HOS",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 249,
-    label = "OSSO + H <=> HO2 + S2",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (12570, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 250,
-    label = "OSSO + O <=> SO + SO2",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 251,
-    label = "OSSO + O <=> O2 + S2O",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 252,
-    label = "OSSO + OH <=> HO2 + S2O",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (11350, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 253,
-    label = "OSSO + OH <=> HOSO + SO",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+12, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 254,
-    label = "OSSO + SO <=> SO2 + S2O",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+10, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 255,
-    label = "OSSO + S <=> S2O + SO",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 256,
-    label = "OSSO + S <=> S2 + SO2",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 257,
-    label = "OSSO + SH <=> HSO + S2O",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 258,
-    label = "OSSO + S2 <=> S2O + S2O",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+12, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 260,
-    label = "HSSO2 <=> S2O + OH",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+13, 's^-1'),
-        n = 0,
-        Ea = (33700, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
+# entry(
+#     index = 246,
+#     label = "OSSO + H <=> OH + S2O",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 247,
+#     label = "OSSO + H <=> SO + HSO",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 248,
+#     label = "OSSO + H <=> SO + HOS",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 249,
+#     label = "OSSO + H <=> HO2 + S2",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (12570, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 250,
+#     label = "OSSO + O <=> SO + SO2",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 251,
+#     label = "OSSO + O <=> O2 + S2O",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 252,
+#     label = "OSSO + OH <=> HO2 + S2O",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (11350, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 253,
+#     label = "OSSO + OH <=> HOSO + SO",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+12, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 254,
+#     label = "OSSO + SO <=> SO2 + S2O",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+10, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 255,
+#     label = "OSSO + S <=> S2O + SO",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 256,
+#     label = "OSSO + S <=> S2 + SO2",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 257,
+#     label = "OSSO + SH <=> HSO + S2O",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 258,
+#     label = "OSSO + S2 <=> S2O + S2O",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+12, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 260,
+#     label = "HSSO2 <=> S2O + OH",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+13, 's^-1'),
+#         n = 0,
+#         Ea = (33700, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
 
 entry(
     index = 261,
@@ -4391,111 +4391,110 @@ Sendt K Haynes BS J PHYS CHEM A 109 8180-8186 2005
 """,
 )
 
-entry(
-    index = 264,
-    label = "S3 + H2O <=> HSSSOH",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+14, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (25000, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 265,
-    label = "S3 + S2 <=> S5",
-    degeneracy = 1,
-    kinetics = ThirdBody(
-        arrheniusLow = Arrhenius(
-            A = (1.9e+15, 'cm^6/(mol^2*s)'),
-            n = 0,
-            Ea = (-1788, 'cal/mol'),
-            T0 = (1, 'K'),
-        ),
-        efficiencies = {},
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 266,
-    label = "S3 + S3 <=> S6",
-    degeneracy = 1,
-    kinetics = ThirdBody(
-        arrheniusLow = Arrhenius(
-            A = (1.9e+15, 'cm^6/(mol^2*s)'),
-            n = 0,
-            Ea = (-1788, 'cal/mol'),
-            T0 = (1, 'K'),
-        ),
-        efficiencies = {},
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 267,
-    label = "S3 + S2O <=> S4 + SO",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+14, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (16000, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 268,
-    label = "S3 + S4 <=> S7",
-    degeneracy = 1,
-    kinetics = ThirdBody(
-        arrheniusLow = Arrhenius(
-            A = (1.9e+15, 'cm^6/(mol^2*s)'),
-            n = 0,
-            Ea = (-1788, 'cal/mol'),
-            T0 = (1, 'K'),
-        ),
-        efficiencies = {},
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
-entry(
-    index = 269,
-    label = "S4 + S4 <=> S8",
-    degeneracy = 1,
-    kinetics = ThirdBody(
-        arrheniusLow = Arrhenius(
-            A = (1.9e+15, 'cm^6/(mol^2*s)'),
-            n = 0,
-            Ea = (-1788, 'cal/mol'),
-            T0 = (1, 'K'),
-        ),
-        efficiencies = {},
-    ),
-    longDesc = 
-u"""
-Zhou est (2009)
-""",
-)
-
+# entry(
+#     index = 264,
+#     label = "S3 + H2O <=> HSSSOH",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+14, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (25000, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 265,
+#     label = "S3 + S2 <=> S5",
+#     degeneracy = 1,
+#     kinetics = ThirdBody(
+#         arrheniusLow = Arrhenius(
+#             A = (1.9e+15, 'cm^6/(mol^2*s)'),
+#             n = 0,
+#             Ea = (-1788, 'cal/mol'),
+#             T0 = (1, 'K'),
+#         ),
+#         efficiencies = {},
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 266,
+#     label = "S3 + S3 <=> S6",
+#     degeneracy = 1,
+#     kinetics = ThirdBody(
+#         arrheniusLow = Arrhenius(
+#             A = (1.9e+15, 'cm^6/(mol^2*s)'),
+#             n = 0,
+#             Ea = (-1788, 'cal/mol'),
+#             T0 = (1, 'K'),
+#         ),
+#         efficiencies = {},
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 267,
+#     label = "S3 + S2O <=> S4 + SO",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+14, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (16000, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 268,
+#     label = "S3 + S4 <=> S7",
+#     degeneracy = 1,
+#     kinetics = ThirdBody(
+#         arrheniusLow = Arrhenius(
+#             A = (1.9e+15, 'cm^6/(mol^2*s)'),
+#             n = 0,
+#             Ea = (-1788, 'cal/mol'),
+#             T0 = (1, 'K'),
+#         ),
+#         efficiencies = {},
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )
+#
+# entry(
+#     index = 269,
+#     label = "S4 + S4 <=> S8",
+#     degeneracy = 1,
+#     kinetics = ThirdBody(
+#         arrheniusLow = Arrhenius(
+#             A = (1.9e+15, 'cm^6/(mol^2*s)'),
+#             n = 0,
+#             Ea = (-1788, 'cal/mol'),
+#             T0 = (1, 'K'),
+#         ),
+#         efficiencies = {},
+#     ),
+#     longDesc =
+# u"""
+# Zhou est (2009)
+# """,
+# )

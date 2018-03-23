@@ -313,61 +313,61 @@ Also available from [Rabinowitz2010]
 """,
 )
 
-entry(
-    index = 13,
-    label = "SO + HO2 <=> SO2 + OH",
-    degeneracy = 1,
-    kinetics = Arrhenius(A=(3.7e+03, 'cm^3/(mol*s)'), n=2.42, Ea=(7660, 'cal/mol'), T0=(1, 'K')),
-    shortDesc = u"""[Marshall2007b]""",
-    longDesc =
-u"""
-Part of the "SOx" mechanism
-calculations done at the CBS-QB3 level
-* Consider improving if a higher level of theory is available
-""",
-)
+# entry(
+#     index = 13,
+#     label = "SO + HO2 <=> SO2 + OH",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(A=(3.7e+03, 'cm^3/(mol*s)'), n=2.42, Ea=(7660, 'cal/mol'), T0=(1, 'K')),
+#     shortDesc = u"""[Marshall2007b]""",
+#     longDesc =
+# u"""
+# Part of the "SOx" mechanism
+# calculations done at the CBS-QB3 level
+# * Consider improving if a higher level of theory is available
+# """,
+# )
 
-entry(
-    index = 14,
-    label = "HSO + O2 <=> HSO2 + O",
-    degeneracy = 1,
-    kinetics = Arrhenius(A=(8.4e-07, 'cm^3/(mol*s)'), n=5.10, Ea=(11312, 'cal/mol'), T0=(1, 'K')),
-    shortDesc = u"""[Marshall2007b]""",
-    longDesc =
-u"""
-Part of the "SOx" mechanism
-calculations done at the CBS-QB3 level
-* Consider improving if a higher level of theory is available
-""",
-)
+# entry(
+#     index = 14,
+#     label = "HSO + O2 <=> HSO2 + O",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(A=(8.4e-07, 'cm^3/(mol*s)'), n=5.10, Ea=(11312, 'cal/mol'), T0=(1, 'K')),
+#     shortDesc = u"""[Marshall2007b]""",
+#     longDesc =
+# u"""
+# Part of the "SOx" mechanism
+# calculations done at the CBS-QB3 level
+# * Consider improving if a higher level of theory is available
+# """,
+# )
 
-entry(
-    index = 15,
-    label = "HOSO + O2 <=> SO2 + HO2",
-    degeneracy = 1,
-    kinetics = Arrhenius(A=(9.6e+01, 'cm^3/(mol*s)'), n=2.36, Ea=(-10130, 'cal/mol'), T0=(1, 'K')),
-    shortDesc = u"""[Marshall2007b]""",
-    longDesc =
-u"""
-Part of the "SOx" mechanism
-calculations done at the CBS-QB3 level
-* Consider improving if a higher level of theory is available
-""",
-)
+# entry(
+#     index = 15,
+#     label = "HOSO + O2 <=> SO2 + HO2",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(A=(9.6e+01, 'cm^3/(mol*s)'), n=2.36, Ea=(-10130, 'cal/mol'), T0=(1, 'K')),
+#     shortDesc = u"""[Marshall2007b]""",
+#     longDesc =
+# u"""
+# Part of the "SOx" mechanism
+# calculations done at the CBS-QB3 level
+# * Consider improving if a higher level of theory is available
+# """,
+# )
 
-entry(
-    index = 16,
-    label = "HSO2 + O2 <=> SO2 + HO2",
-    degeneracy = 1,
-    kinetics = Arrhenius(A=(1.1e+03, 'cm^3/(mol*s)'), n=3.20, Ea=(-235, 'cal/mol'), T0=(1, 'K')),
-    shortDesc = u"""[Marshall2007b]""",
-    longDesc =
-u"""
-Part of the "SOx" mechanism
-calculations done at the CBS-QB3 level
-* Consider improving if a higher level of theory is available
-""",
-)
+# entry(
+#     index = 16,
+#     label = "HSO2 + O2 <=> SO2 + HO2",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(A=(1.1e+03, 'cm^3/(mol*s)'), n=3.20, Ea=(-235, 'cal/mol'), T0=(1, 'K')),
+#     shortDesc = u"""[Marshall2007b]""",
+#     longDesc =
+# u"""
+# Part of the "SOx" mechanism
+# calculations done at the CBS-QB3 level
+# * Consider improving if a higher level of theory is available
+# """,
+# )
 
 entry(
     index = 17,
@@ -1298,7 +1298,7 @@ calculations done at the MRCI/aug-cc-pV(Q+d)Z//CASSCF/cc-pVTZ level of theory
 
 entry(
     index = 71,
-    label = "HSO <=> H + SO",
+    label = "HSO <=> SO + H",
     degeneracy = 1,
     kinetics = Arrhenius(A=(3.68e+14, 's^-1'), n=0.0, Ea=(244, 'kJ/mol'), T0=(1, 'K'),
                          Tmin=(300, 'K'), Tmax=(2000, 'K')),

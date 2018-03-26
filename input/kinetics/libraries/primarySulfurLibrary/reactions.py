@@ -1424,3 +1424,18 @@ Table 2
 calculated at MRCI/aug-cc-pV5Z
 """,
 )
+
+entry(
+    index = 78,
+    label = "SH + O2 <=> SO2 + H",
+    degeneracy = 1,
+    kinetics = Arrhenius(A=(1.5e+05, 'cm^3/(mol*s)'), n=2.123, Ea=(11020, 'cal/mol'), T0=(1, 'K')),
+    shortDesc = u"""from the GlarborgH2S library""",
+    longDesc =
+u"""
+Taken from the GlarborgH2S library, which relays on:
+J.D. GArrido, M.Y. Ballester, Y. Orozco-Gonzalez, S. Canuto, J. Phys. Chem. A 2011, 115, 1453-1461, doi: 10.1021/jp108460v
+The later explored the PES and gives all geometries (inc. TSs).
+We should Cantherm this if we're sensitive to it.
+""",
+)

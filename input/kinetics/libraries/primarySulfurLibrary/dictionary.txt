@@ -31,6 +31,12 @@ H2O
 2 H u0 p0 c0 {1,S}
 3 H u0 p0 c0 {1,S}
 
+H2O2
+1 O u0 p2 c0 {2,S} {3,S}
+2 O u0 p2 c0 {1,S} {4,S}
+3 H u0 p0 c0 {1,S}
+4 H u0 p0 c0 {2,S}
+
 N
 multiplicity 4
 1 N u3 p1 c0

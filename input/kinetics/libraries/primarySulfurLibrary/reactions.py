@@ -1490,19 +1490,6 @@ PES search inspired by doi: 10.1021/jp108460v
 
 entry(
     index = 80,
-    label = "SH + O2 <=> SO2 + H",
-    degeneracy = 2,
-    kinetics = Arrhenius(A=(1.5e+05, 'cm^3/(mol*s)'), n=2.123, Ea=(11020, 'cal/mol'), T0=(1, 'K')),
-    shortDesc = u"""from the GlarborgH2S library""",
-    longDesc =
-u"""
-GlarborgH2S library, doi: 10.1002/kin.21055
-J.D. GArrido, M.Y. Ballester, Y. Orozco-Gonzalez, S. Canuto, J. Phys. Chem. A 2011, 115, 1453-1461, doi: 10.1021/jp108460v
-The later explored the PES and gives all geometries (inc. TSs).
-""",
-)
-entry(
-    index = 81,
     label = "SH + O2 <=> HSO2",
     degeneracy = 1,
     kinetics = Lindemann(
@@ -1543,6 +1530,20 @@ but this 1995 study discusses SH + O2 = HSOO, not HSO2
 
 
 
+
+entry(
+    index = 1999,
+    label = "SH + O2 <=> SO2 + H",
+    degeneracy = 2,
+    kinetics = Arrhenius(A=(1.5e+05, 'cm^3/(mol*s)'), n=2.123, Ea=(11020, 'cal/mol'), T0=(1, 'K')),
+    shortDesc = u"""from the GlarborgH2S library""",
+    longDesc =
+u"""
+GlarborgH2S library, doi: 10.1002/kin.21055
+J.D. GArrido, M.Y. Ballester, Y. Orozco-Gonzalez, S. Canuto, J. Phys. Chem. A 2011, 115, 1453-1461, doi: 10.1021/jp108460v
+The later explored the PES and gives all geometries (inc. TSs).
+""",
+)
 
 entry(
     index = 200,

@@ -1428,35 +1428,35 @@ calculated at MRCI/aug-cc-pV5Z
 """,
 )
 
-entry(
-    index = 78,
-    label = "HSO2 <=> HSOO",
-    degeneracy = 2,
-    kinetics = Chebyshev(
-        coeffs = [
-            [-31.9934, 2.99994, -3.65706e-05, -1.72728e-05],
-            [28.0564, -2.45045e-05, -1.50276e-05, -7.09681e-06],
-            [0.343431, -2.64681e-05, -1.6232e-05, -7.66578e-06],
-            [0.142123, -1.70786e-05, -1.04736e-05, -4.94614e-06],
-            [0.0704471, -1.04975e-05, -6.43758e-06, -3.04003e-06],
-            [0.0318695, -5.92402e-06, -3.63279e-06, -1.71544e-06],
-        ],
-        kunits = 's^-1',
-        Tmin = (300, 'K'),
-        Tmax = (2500, 'K'),
-        Pmin = (0.1, 'bar'),
-        Pmax = (100, 'bar'),
-    ),
-    shortDesc = u"""CCSD(T)-F12/cc-pVTZ//B3LYP/6-311G(2d,d,p)""",
-    longDesc =
-u"""
-calculated by alongd (xc1088) at the CCSD(T)-F12a/cc-pVTZ-f12//B3LYP/6-311G(2d,d,p) level of theory
-frequencies calculated at B3LYP/6-311G(2d,d,p) in Molpro
-rotor for HSOO calculated at B3LYP/6-311G(2d,pd) in G03
-BAC wasn't used; frequencyScaleFactor = 0.975
-PES search inspired by doi: 10.1021/jp108460v
-""",
-)
+# entry(
+#     index = 78,
+#     label = "HSO2 <=> HSOO",
+#     degeneracy = 2,
+#     kinetics = Chebyshev(
+#         coeffs = [
+#             [-31.9934, 2.99994, -3.65706e-05, -1.72728e-05],
+#             [28.0564, -2.45045e-05, -1.50276e-05, -7.09681e-06],
+#             [0.343431, -2.64681e-05, -1.6232e-05, -7.66578e-06],
+#             [0.142123, -1.70786e-05, -1.04736e-05, -4.94614e-06],
+#             [0.0704471, -1.04975e-05, -6.43758e-06, -3.04003e-06],
+#             [0.0318695, -5.92402e-06, -3.63279e-06, -1.71544e-06],
+#         ],
+#         kunits = 's^-1',
+#         Tmin = (300, 'K'),
+#         Tmax = (2500, 'K'),
+#         Pmin = (0.1, 'bar'),
+#         Pmax = (100, 'bar'),
+#     ),
+#     shortDesc = u"""CCSD(T)-F12/cc-pVTZ//B3LYP/6-311G(2d,d,p)""",
+#     longDesc =
+# u"""
+# calculated by alongd (xc1088) at the CCSD(T)-F12a/cc-pVTZ-f12//B3LYP/6-311G(2d,d,p) level of theory
+# frequencies calculated at B3LYP/6-311G(2d,d,p) in Molpro
+# rotor for HSOO calculated at B3LYP/6-311G(2d,pd) in G03
+# BAC wasn't used; frequencyScaleFactor = 0.975
+# PES search inspired by doi: 10.1021/jp108460v
+# """,
+# )
 
 # entry(
 #     index = 79,
@@ -1488,65 +1488,65 @@ PES search inspired by doi: 10.1021/jp108460v
 # """,
 # )
 
-entry(
-    index = 80,
-    label = "SH + O2 <=> HSO2",
-    degeneracy = 2,
-    kinetics = Chebyshev(
-        coeffs = [
-            [-0.181448, 1.49994, -3.5053e-05, -1.65561e-05],
-            [5.579, -2.15336e-05, -1.32057e-05, -6.2365e-06],
-            [0.269018, -2.43786e-05, -1.49507e-05, -7.06075e-06],
-            [0.110477, -1.58463e-05, -9.71794e-06, -4.58937e-06],
-            [0.0644965, -9.76741e-06, -5.98989e-06, -2.82868e-06],
-            [0.0382941, -5.53581e-06, -3.39478e-06, -1.60309e-06],
-        ],
-        kunits = 'cm^3/(mol*s)',
-        Tmin = (300, 'K'),
-        Tmax = (2500, 'K'),
-        Pmin = (0.1, 'bar'),
-        Pmax = (100, 'bar'),
-    ),
-    shortDesc = u"""CCSD(T)-F12/cc-pVTZ//B3LYP/6-311G(2d,d,p)""",
-    longDesc =
-u"""
-calculated by alongd (xc1088) at the CCSD(T)-F12a/cc-pVTZ-f12//B3LYP/6-311G(2d,d,p) level of theory
-frequencies calculated at B3LYP/6-311G(2d,d,p) in Molpro
-rotor for HSOO calculated at B3LYP/6-311G(2d,pd) in G03
-BAC wasn't used; frequencyScaleFactor = 0.975
-PES search inspired by doi: 10.1021/jp108460v
-""",
-)
+# entry(
+#     index = 80,
+#     label = "SH + O2 <=> HSO2",
+#     degeneracy = 2,
+#     kinetics = Chebyshev(
+#         coeffs = [
+#             [-0.181448, 1.49994, -3.5053e-05, -1.65561e-05],
+#             [5.579, -2.15336e-05, -1.32057e-05, -6.2365e-06],
+#             [0.269018, -2.43786e-05, -1.49507e-05, -7.06075e-06],
+#             [0.110477, -1.58463e-05, -9.71794e-06, -4.58937e-06],
+#             [0.0644965, -9.76741e-06, -5.98989e-06, -2.82868e-06],
+#             [0.0382941, -5.53581e-06, -3.39478e-06, -1.60309e-06],
+#         ],
+#         kunits = 'cm^3/(mol*s)',
+#         Tmin = (300, 'K'),
+#         Tmax = (2500, 'K'),
+#         Pmin = (0.1, 'bar'),
+#         Pmax = (100, 'bar'),
+#     ),
+#     shortDesc = u"""CCSD(T)-F12/cc-pVTZ//B3LYP/6-311G(2d,d,p)""",
+#     longDesc =
+# u"""
+# calculated by alongd (xc1088) at the CCSD(T)-F12a/cc-pVTZ-f12//B3LYP/6-311G(2d,d,p) level of theory
+# frequencies calculated at B3LYP/6-311G(2d,d,p) in Molpro
+# rotor for HSOO calculated at B3LYP/6-311G(2d,pd) in G03
+# BAC wasn't used; frequencyScaleFactor = 0.975
+# PES search inspired by doi: 10.1021/jp108460v
+# """,
+# )
 
-entry(
-    index = 81,
-    label = "HSOO <=> SO2 + H",
-    degeneracy = 1,
-    kinetics = Chebyshev(
-        coeffs = [
-            [-0.921081, 1.49994, -3.52997e-05, -1.66726e-05],
-            [6.50453, -2.13448e-05, -1.309e-05, -6.18179e-06],
-            [0.308965, -2.41071e-05, -1.47842e-05, -6.9821e-06],
-            [0.113769, -1.54981e-05, -9.50439e-06, -4.4885e-06],
-            [0.0372183, -9.48494e-06, -5.81666e-06, -2.74686e-06],
-            [0.0053142, -5.31802e-06, -3.26122e-06, -1.54001e-06],
-        ],
-        kunits = 's^-1',
-        Tmin = (300, 'K'),
-        Tmax = (2500, 'K'),
-        Pmin = (0.1, 'bar'),
-        Pmax = (100, 'bar'),
-    ),
-    shortDesc = u"""CCSD(T)-F12/cc-pVTZ//B3LYP/6-311G(2d,d,p)""",
-    longDesc =
-u"""
-calculated by alongd (xc1088) at the CCSD(T)-F12a/cc-pVTZ-f12//B3LYP/6-311G(2d,d,p) level of theory
-frequencies calculated at B3LYP/6-311G(2d,d,p) in Molpro
-rotor for HSOO calculated at B3LYP/6-311G(2d,pd) in G03
-BAC wasn't used; frequencyScaleFactor = 0.975
-PES search inspired by doi: 10.1021/jp108460v
-""",
-)
+# entry(
+#     index = 81,
+#     label = "HSOO <=> SO2 + H",
+#     degeneracy = 1,
+#     kinetics = Chebyshev(
+#         coeffs = [
+#             [-0.921081, 1.49994, -3.52997e-05, -1.66726e-05],
+#             [6.50453, -2.13448e-05, -1.309e-05, -6.18179e-06],
+#             [0.308965, -2.41071e-05, -1.47842e-05, -6.9821e-06],
+#             [0.113769, -1.54981e-05, -9.50439e-06, -4.4885e-06],
+#             [0.0372183, -9.48494e-06, -5.81666e-06, -2.74686e-06],
+#             [0.0053142, -5.31802e-06, -3.26122e-06, -1.54001e-06],
+#         ],
+#         kunits = 's^-1',
+#         Tmin = (300, 'K'),
+#         Tmax = (2500, 'K'),
+#         Pmin = (0.1, 'bar'),
+#         Pmax = (100, 'bar'),
+#     ),
+#     shortDesc = u"""CCSD(T)-F12/cc-pVTZ//B3LYP/6-311G(2d,d,p)""",
+#     longDesc =
+# u"""
+# calculated by alongd (xc1088) at the CCSD(T)-F12a/cc-pVTZ-f12//B3LYP/6-311G(2d,d,p) level of theory
+# frequencies calculated at B3LYP/6-311G(2d,d,p) in Molpro
+# rotor for HSOO calculated at B3LYP/6-311G(2d,pd) in G03
+# BAC wasn't used; frequencyScaleFactor = 0.975
+# PES search inspired by doi: 10.1021/jp108460v
+# """,
+# )
 
 # entry(
 #     index = 82,
@@ -1578,32 +1578,46 @@ PES search inspired by doi: 10.1021/jp108460v
 # """,
 # )
 
+# entry(
+#     index = 83,
+#     label = "SH + O2 <=> SO2 + H",
+#     degeneracy = 1,
+#     kinetics = Chebyshev(
+#         coeffs = [
+#             [5.17295, -5.52311e-05, -3.38734e-05, -1.5999e-05],
+#             [5.6744, -1.86605e-05, -1.14438e-05, -5.40444e-06],
+#             [0.23023, -2.2297e-05, -1.36742e-05, -6.45795e-06],
+#             [0.0681712, -1.4477e-05, -8.87827e-06, -4.19288e-06],
+#             [0.0247849, -8.90538e-06, -5.46129e-06, -2.57909e-06],
+#             [0.00897834, -5.0269e-06, -3.08273e-06, -1.45576e-06],
+#         ],
+#         kunits = 'cm^3/(mol*s)',
+#         Tmin = (300, 'K'),
+#         Tmax = (2500, 'K'),
+#         Pmin = (0.1, 'bar'),
+#         Pmax = (100, 'bar'),
+#     ),
+#     shortDesc = u"""CCSD(T)-F12/cc-pVTZ//B3LYP/6-311G(2d,d,p)""",
+#     longDesc =
+# u"""
+# calculated by alongd (xc1088) at the CCSD(T)-F12a/cc-pVTZ-f12//B3LYP/6-311G(2d,d,p) level of theory
+# frequencies calculated at B3LYP/6-311G(2d,d,p) in Molpro
+# rotor for HSOO calculated at B3LYP/6-311G(2d,pd) in G03
+# BAC wasn't used; frequencyScaleFactor = 0.975
+# PES search inspired by doi: 10.1021/jp108460v
+# """,
+# )
+
 entry(
-    index = 83,
+    index = 78,
     label = "SH + O2 <=> SO2 + H",
-    degeneracy = 1,
-    kinetics = Chebyshev(
-        coeffs = [
-            [5.17295, -5.52311e-05, -3.38734e-05, -1.5999e-05],
-            [5.6744, -1.86605e-05, -1.14438e-05, -5.40444e-06],
-            [0.23023, -2.2297e-05, -1.36742e-05, -6.45795e-06],
-            [0.0681712, -1.4477e-05, -8.87827e-06, -4.19288e-06],
-            [0.0247849, -8.90538e-06, -5.46129e-06, -2.57909e-06],
-            [0.00897834, -5.0269e-06, -3.08273e-06, -1.45576e-06],
-        ],
-        kunits = 'cm^3/(mol*s)',
-        Tmin = (300, 'K'),
-        Tmax = (2500, 'K'),
-        Pmin = (0.1, 'bar'),
-        Pmax = (100, 'bar'),
-    ),
-    shortDesc = u"""CCSD(T)-F12/cc-pVTZ//B3LYP/6-311G(2d,d,p)""",
+    degeneracy = 2,
+    kinetics = Arrhenius(A=(1.5e+05, 'cm^3/(mol*s)'), n=2.123, Ea=(11020, 'cal/mol'), T0=(1, 'K')),
+    shortDesc = u"""from the GlarborgH2S library""",
     longDesc =
 u"""
-calculated by alongd (xc1088) at the CCSD(T)-F12a/cc-pVTZ-f12//B3LYP/6-311G(2d,d,p) level of theory
-frequencies calculated at B3LYP/6-311G(2d,d,p) in Molpro
-rotor for HSOO calculated at B3LYP/6-311G(2d,pd) in G03
-BAC wasn't used; frequencyScaleFactor = 0.975
-PES search inspired by doi: 10.1021/jp108460v
+Taken from the GlarborgH2S library, which relays on:
+J.D. GArrido, M.Y. Ballester, Y. Orozco-Gonzalez, S. Canuto, J. Phys. Chem. A 2011, 115, 1453-1461, doi: 10.1021/jp108460v
+The later explored the PES and gives all geometries (inc. TSs).
 """,
 )

@@ -21,6 +21,7 @@ Reference legend:
 [Dupre1993] K. Tsuchiya, H. Matsui, M. Oya, G. Dupre, in: R. Burn, L.Z. Dumitrescu (Ed.) Shock Waves @ Marseille II (Proceedings Marseille France), 1993, 71-76, doi: 10.1007/978-3-642-78832-1
 [Garland1998] N.L. Garland, Chem. Phys. Lett., 1998, 290(4-6), 385-390, doi: 10.1016/S0009-2614(98)00553-3
 [GlarBozz] (RMG's Sulfur/GlarborgBozzelli library) P. Glarborg, D. Kubel, K. Dam-Johansen, H-M. Chiang, J.W. Bozzelli, Int. J. Chem. Kin., 1996, 28, 773-790, doi: 10.1002/(SICI)1097-4601(1996)28:10<773::AID-KIN8>3.0.CO;2-K
+[Haynes2005] A. Montoya, K. Sendt, B.S. Haynes, J. Phys. Chem. A 2005, 109(6), 1057-1062, doi: 10.1021/jp047903p
 [Haynes2013] Chenlai (Ryan) Zhou, Karina Sendt, Brian S. Haynes, Proceedings of the Combustion Institute 2013, 34(1), 625-632, doi: 10.1016/j.proci.2012.05.083
 [Lin2003a] C-W. Lu, Y-J. Wu, Y-P. Lee, R.S. Zhu, M.C. Lin, J. Phys. Chem. A, 2003, 107(50), 11020-11029, doi: 10.1021/jp036025c
 [Lin2004] C-W. Lu, Y-J. Wu, Y-P. Lee, R.S. Zhu, M.C. Lin, J. Chem. Phys., 2004, 121(17), 8271-8278, doi: 10.1063/1.1792611
@@ -64,6 +65,7 @@ Reference legend:
 [Tezaki2003] N. Isshiki, Y. Murakami, K. Tsuchiya, A. Tezaki, H. Matsui, J. Phys. Chem. A, 2003, 107(14), 2464-2469, doi: 10.1021/jp0200829
 [Troe1984] H.J. Plach, J. Troe, Int. J. Chem. Kin., 1984, 16(12), 1531-1542, doi: 10.1002/kin.550161207
 [Truhlar2007] B.A. Ellingson, D.G. Truhlar, JACS 2007, 129(42), 12765-12771, doi: 10.1021/ja072538b
+[Varandas2009] M.Y. Ballester, A.J.C. Varandas, Int. J. Chem. Kin 2009, 41(7), 455-462, doi: 10.1002/kin.20418
 """
 
 entry(
@@ -476,50 +478,79 @@ Added as a training reaction to Birad_R_Recombination
 """,
 )
 
-entry(
-    index = 77,
-    label = "HSO2 <=> HSO + O",
-    degeneracy = 2,
-    kinetics = Arrhenius(A=(2.02e+13, 's^-1'), n=0, Ea=(88, 'kcal/mol'), T0=(1, 'K')),
-    shortDesc = u"""estimated by alongd""",
-    longDesc =
-u"""
-The rate was estimated as follows:
-
-The A factor is taken from the reaction HSO2 <=> SO2 + H
-which is taken from [Pilling2006] where the reverse reaction SO2 + H <=> HSO2 (k1) and Keq are given.
-(k1 high-P):  3.76e+07 * T^1.59 * exp(-2472 cal/mol / RT), cm^3/mol*s  (originally fitted only in 200-1000K)
-(Keq,1):      4.72e-02 * T^0.28 * exp(-16273 cal/mol / RT), cm^3/mol
-High-P limit k(-1) is calculated and fitted here into a two parameter Arrhenius form:
-(k-1, highP): 2.02e+13 * exp(-11963 cal/mol / RT), s^-1
-A = 2.02e+13 s^-1
-
-The Ea is taken as the bond energy of S=O in HSO2:
-Ea = H(HSO) + H(O) - H(HSO2)     (values taken at 1000 K)
-Ea = 2.19 + 63.12 - (-22.66) =~ 88.0 kcal/mol
-
-k(T) = 2.02e+13 * exp(-88 kcal/mol / RT) cm3/mol*s
-
-Also available in reverse from the GlarborgH2S library (doi: 10.1002/kin.21055):
-    entry(
-        index = 86,
-        label = "HSO + O <=> HSO2",
-        degeneracy = 1,
-        kinetics = ThirdBody(
-            arrheniusLow = Arrhenius(
-                A = (1.1e+19, 'cm^6/(mol^2*s)'),
-                n = -1.73,
-                Ea = (-50, 'cal/mol'),
-                T0 = (1, 'K'),
-            ),
-            efficiencies = {},
-        ),
-        longDesc = u"P Glarborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790",
-    The source P Glarborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790
-    directs to ref 35 in that paper which could not be found.
-)
-""",
-)
+# entry(
+#     index = 77,
+#     label = "HSO2 <=> HSO + O",
+#     degeneracy = 2,
+#     kinetics = Arrhenius(A=(2.02e+13, 's^-1'), n=0, Ea=(88, 'kcal/mol'), T0=(1, 'K')),
+#     shortDesc = u"""estimated by alongd""",
+#     longDesc =
+# u"""
+# The rate was estimated as follows:
+#
+# The A factor is taken from the reaction HSO2 <=> SO2 + H
+# which is taken from [Pilling2006] where the reverse reaction SO2 + H <=> HSO2 (k1) and Keq are given.
+# (k1 high-P):  3.76e+07 * T^1.59 * exp(-2472 cal/mol / RT), cm^3/mol*s  (originally fitted only in 200-1000K)
+# (Keq,1):      4.72e-02 * T^0.28 * exp(-16273 cal/mol / RT), cm^3/mol
+# High-P limit k(-1) is calculated and fitted here into a two parameter Arrhenius form:
+# (k-1, highP): 2.02e+13 * exp(-11963 cal/mol / RT), s^-1
+# A = 2.02e+13 s^-1
+#
+# The Ea is taken as the bond energy of S=O in HSO2:
+# Ea = H(HSO) + H(O) - H(HSO2)     (values taken at 1000 K)
+# Ea = 2.19 + 63.12 - (-22.66) =~ 88.0 kcal/mol
+#
+# k(T) = 2.02e+13 * exp(-88 kcal/mol / RT) cm3/mol*s
+#
+# Also available in reverse from the GlarborgH2S library (doi: 10.1002/kin.21055):
+#     entry(
+#         index = 86,
+#         label = "HSO + O <=> HSO2",
+#         degeneracy = 1,
+#         kinetics = ThirdBody(
+#             arrheniusLow = Arrhenius(
+#                 A = (1.1e+19, 'cm^6/(mol^2*s)'),
+#                 n = -1.73,
+#                 Ea = (-50, 'cal/mol'),
+#                 T0 = (1, 'K'),
+#             ),
+#             efficiencies = {},
+#         ),
+#         longDesc = u"P Glarborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790",
+#     The source P Glarborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790
+#     directs to ref 35 in that paper which could not be found.
+# )
+#
+#
+#
+#
+# Sulfur/GlarborgH2S
+# T/[K] 	                         500	1000	1500	2000
+# log10(k(1 bar)/[mole,m,s]) 	    +3.8	+2.9	+2.5	+2.1
+# log10(k(10 bar)/[mole,m,s]) 	+4.8	+3.9	+3.5	+3.1
+# ThirdBody(arrheniusLow=Arrhenius(A=(1.1e+19,'cm^6/(mol^2*s)'), n=-1.73, Ea=(-0.05,'kcal/mol'), T0=(1,'K')), efficiencies={})
+#
+# PDepNetwork
+# T/[K] 	                         500	1000	1500	2000
+# log10(k(1 bar)/[mole,m,s])   	+4.9	+5.1	+5.0	+4.9
+# log10(k(10 bar)/[mole,m,s]) 	+4.9	+5.1	+5.2	+5.3
+#
+# ! Library reaction: Sulfur/GlarborgH2S
+# O(7)+HSO(18)+M=HSO2(17)+M         1.100e+19 -1.730    -0.050
+#
+# ! PDep reaction: PDepNetwork #221
+# HSO(21)+O(6)(+M)=HSO2(20)(+M)                       1.000e+00 0.000     0.000
+#     TCHEB/ 298.000   2000.000 /
+#     PCHEB/ 0.099     9.869    /
+#     CHEB/ 6 4/
+#     CHEB/ 1.086e+01    1.123e-01    -1.984e-02   1.505e-03   /
+#     CHEB/ 1.241e-01    1.804e-01    -2.588e-02   1.826e-04   /
+#     CHEB/ -3.750e-02   1.097e-01    -9.214e-03   -1.540e-03  /
+#     CHEB/ -4.346e-02   5.228e-02    1.050e-04    -1.328e-03  /
+#     CHEB/ -2.945e-02   1.833e-02    2.953e-03    -6.245e-04  /
+#     CHEB/ -1.584e-02   5.293e-03    1.744e-03    7.713e-05   /
+# """,
+# )
 
 entry(
     index = 23,
@@ -1511,6 +1542,21 @@ but this 1995 study discusses SH + O2 = HSOO, not HSO2
 """,
 )
 
+entry(
+    index = 82,
+    label = "HSO + O <=> SO2 + H",
+    degeneracy = 4,
+    kinetics = Arrhenius(A=(1.98e+13, 'cm^3/(mol*s)'), n=0.07, Ea=(-0.567, 'kJ/mol'), T0=(1, 'K'),
+                         Tmin=(300, 'K'), Tmax=(3000, 'K')),
+    shortDesc = u"""[Varandas2009]""",
+    longDesc =
+u"""
+Calculated at the FVCAS/aug-cc-pVTZ level of theory
+Figure 5
+Fitted into an Arrhenius form by alongd with the following averaging errors:
+dA = *|/ 1.07844, dn = +|- 0.00980355, dEa = +|- 0.0556134 kJ/mol
+""",
+)
 
 
 
@@ -1521,8 +1567,35 @@ but this 1995 study discusses SH + O2 = HSOO, not HSO2
 
 
 
+# entry(
+#     index = 81,
+#     label = "H2S + O2 <=> SH + HO2",
+#     degeneracy = 4,
+#     kinetics = Arrhenius(A=(2.77e+05, 'cm^3/(mol*s)'), n=2.76, Ea=(38.2, 'kcal/mol'), T0=(1, 'K'),
+#                          Tmin=(300, 'K'), Tmax=(3000, 'K')),
+#     shortDesc = u"""[Haynes2005]""",
+#     longDesc =
+# u"""
+# Calculated at the G2//B3LYP/6-311+G(3df,2p) level of theory
+# """,
+# )
 
-
+entry(
+    index = 81,
+    label = "SH + HO2 <=> H2S + O2",
+    degeneracy = 1,
+    kinetics = Arrhenius(
+        A = (38000, 'cm^3/(mol*s)'),
+        n = 2.775,
+        Ea = (-1529, 'cal/mol'),
+        T0 = (1, 'K'),
+    ),
+    longDesc =
+u"""
+GlarborgH2S library, doi: 10.1002/kin.21055
+Zhou TST (2009)
+""",
+)
 
 
 
@@ -1532,7 +1605,7 @@ but this 1995 study discusses SH + O2 = HSOO, not HSO2
 
 
 entry(
-    index = 199,
+    index = 200,
     label = "SH + O2 <=> SO2 + H",
     degeneracy = 1,
     kinetics = Arrhenius(A=(1.5e+05, 'cm^3/(mol*s)'), n=2.123, Ea=(11020, 'cal/mol'), T0=(1, 'K')),
@@ -1542,28 +1615,7 @@ u"""
 GlarborgH2S library, doi: 10.1002/kin.21055
 J.D. GArrido, M.Y. Ballester, Y. Orozco-Gonzalez, S. Canuto, J. Phys. Chem. A 2011, 115, 1453-1461, doi: 10.1021/jp108460v
 The later explored the PES and gives all geometries (inc. TSs).
-""",
-)
-
-entry(
-    index = 200,
-    label = "SH + HO2 <=> HSO + OH",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (2.5e+08, 'cm^3/(mol*s)'),
-        n = 1.477,
-        Ea = (-2169, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc =
-u"""
-GlarborgH2S library, doi: 10.1002/kin.21055
-Zhou TST (2009)
-
-- consider calculating
-
-R10 in https://pubs.acs.org/doi/pdf/10.1021/j100301a035
-additional investigation of this interesting reaction is  warranted
+unavailable on NIST
 """,
 )
 
@@ -1583,30 +1635,12 @@ GlarborgH2S library, doi: 10.1002/kin.21055
 P GlArborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790 - only estimated
 
 - consider calculating
+unavailable on NIST
 """,
 )
 
 entry(
     index = 202,
-    label = "HSO + O <=> SO2 + H",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (4.5e+14, 'cm^3/(mol*s)'),
-        n = -0.4,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc =
-u"""
-GlarborgH2S library, doi: 10.1002/kin.21055
-P GlArborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790 - QRRK estimate for 1 atm
-
-- consider calculating
-""",
-)
-
-entry(
-    index = 203,
     label = "HSO + O <=> HOSO",
     degeneracy = 1,
     kinetics = ThirdBody(
@@ -1624,11 +1658,12 @@ GlarborgH2S library, doi: 10.1002/kin.21055
 P GlArborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790 - estimated
 
 I don't know how to calculate this. Is it important?
+unavailable on NIST
 """,
 )
 
 entry(
-    index = 204,
+    index = 203,
     label = "HSO + OH <=> HOSO + H",
     degeneracy = 1,
     kinetics = Arrhenius(
@@ -1643,11 +1678,12 @@ GlarborgH2S library, doi: 10.1002/kin.21055
 P GlArborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790 - estimated
 
 try to calculate?
+unavailable on NIST
 """,
 )
 
 entry(
-    index = 205,
+    index = 204,
     label = "HSO + O2 <=> SO2 + OH",
     degeneracy = 2,
     kinetics = Arrhenius(
@@ -1664,11 +1700,12 @@ Zhou TST (2009)
 could be complicated to calc myself:
 SO2+OH = HOSO2 = HOS1OO1 = HOS + O2;   HOS = HSO
 HOSO2 = O[SH]O2 = somecyclic = HSO + O2
+available on NIST only for atmospheric conditions, old study
 """,
 )
 
 entry(
-    index = 206,
+    index = 205,
     label = "HOSO2 + H <=> SO2 + H2O",
     degeneracy = 1,
     kinetics = Arrhenius(
@@ -1683,11 +1720,12 @@ GlarborgH2S library, doi: 10.1002/kin.21055
 P GlArborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790 - estimated
 
 I don't know what a good TS would be
+unavailable on NIST
 """,
 )
 
 entry(
-    index = 207,
+    index = 206,
     label = "SO3 + H <=> HOSO + O",
     degeneracy = 3,
     kinetics = Arrhenius(
@@ -1702,209 +1740,236 @@ GlarborgH2S library, doi: 10.1002/kin.21055
 P GlArborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790 - estimated
 
 calculate?
+unavailable on NIST
+""",
+)
+
+entry(
+    index = 207,
+    label = "SH + H2O2 <=> H2S + HO2",
+    degeneracy = 2,
+    kinetics = Arrhenius(
+        A = (56000, 'cm^3/(mol*s)'),
+        n = 2.823,
+        Ea = (8668, 'cal/mol'),
+        T0 = (1, 'K'),
+    ),
+    longDesc =
+u"""
+GlarborgH2S library, doi: 10.1002/kin.21055
+Zhou TST (2009)
+
+Calc?
+unavailable on NIST
+""",
+)
+
+entry(
+    index = 208,
+    label = "SH + HO2 <=> HSO + OH",
+    degeneracy = 1,
+    kinetics = Arrhenius(
+        A = (2.5e+08, 'cm^3/(mol*s)'),
+        n = 1.477,
+        Ea = (-2169, 'cal/mol'),
+        T0 = (1, 'K'),
+    ),
+    longDesc =
+u"""
+GlarborgH2S library, doi: 10.1002/kin.21055
+Zhou TST (2009)
+
+- consider calculating
+
+R10 in 10.1021/j100301a035: "additional investigation of this interesting reaction is warranted"
+available on NIST only for low T
 """,
 )
 
 
-# entry(
-#     index = 208,
-#     label = "SH + H2O2 <=> H2S + HO2",
-#     degeneracy = 2,
-#     kinetics = Arrhenius(
-#         A = (56000, 'cm^3/(mol*s)'),
-#         n = 2.823,
-#         Ea = (8668, 'cal/mol'),
-#         T0 = (1, 'K'),
-#     ),
-#     longDesc =
-# u"""
-# GlarborgH2S:
-# Zhou TST (2009)
-#
-# just H_abst, but probably important. Calc?
-# """,
-# )
+entry(
+    index = 209,
+    label = "HSO2 + OH <=> SO2 + H2O",
+    degeneracy = 1,
+    kinetics = Arrhenius(
+        A = (1e+13, 'cm^3/(mol*s)'),
+        n = 0,
+        Ea = (0, 'cal/mol'),
+        T0 = (1, 'K'),
+    ),
+    longDesc =
+u"""
+GlarborgMarshall:
+RAS/MAR07 ALZ/GLA01 estimated kinetics
 
-# entry(
-#     index = 209,
-#     label = "SH + HO2 <=> H2S + O2",
-#     degeneracy = 1,
-#     kinetics = Arrhenius(
-#         A = (38000, 'cm^3/(mol*s)'),
-#         n = 2.775,
-#         Ea = (-1529, 'cal/mol'),
-#         T0 = (1, 'K'),
-#     ),
-#     longDesc =
-# u"""
-# GlarborgH2S:
-# Zhou TST (2009)
-#
-# just H_abst, but probably important. Calc?
-# """,
-# )
+This should be left for RMG to generate => SO2(T) => SO2
+experimental data might be available on NIST
+""",
+)
 
-# entry(
-#     index = 210,
-#     label = "HSO2 + OH <=> SO2 + H2O",
-#     degeneracy = 1,
-#     kinetics = Arrhenius(
-#         A = (1e+13, 'cm^3/(mol*s)'),
-#         n = 0,
-#         Ea = (0, 'cal/mol'),
-#         T0 = (1, 'K'),
-#     ),
-#     longDesc =
-# u"""
-# GlarborgMarshall:
-# RAS/MAR07 ALZ/GLA01 estimated kinetics
-#
-# This should be left for RMG to generate => SO2(T) => SO2
-# """,
-# )
+entry(
+    index = 210,
+    label = "HSO2 + H <=> SO2 + H2",
+    degeneracy = 1,
+    kinetics = Arrhenius(
+        A = (5e+12, 'cm^3/(mol*s)'),
+        n = 0.46,
+        Ea = (-262, 'cal/mol'),
+        T0 = (1, 'K'),
+    ),
+    longDesc =
+u"""
+GlarborgH2S:
+X Hu P MArshall, poster presented at the 18th International Symposium on Gas Kinetics, Bristol, UK, August, 7-12, 2004
 
-# entry(
-#     index = 211,
-#     label = "HSO2 + H <=> SO2 + H2",
-#     degeneracy = 1,
-#     kinetics = Arrhenius(
-#         A = (5e+12, 'cm^3/(mol*s)'),
-#         n = 0.46,
-#         Ea = (-262, 'cal/mol'),
-#         T0 = (1, 'K'),
-#     ),
-#     longDesc =
-# u"""
-# GlarborgH2S:
-# X Hu P MArshall, poster presented at the 18th International Symposium on Gas Kinetics, Bristol, UK, August, 7-12, 2004
-#
-# This should be left for RMG to generate => SO2(T) => SO2
-# """,
-# )
+This should be left for RMG to generate => SO2(T) => SO2
+experimental data might be available on NIST
+""",
+)
 
 
-# entry(
-#     index = 135,
-#     label = "HOSO + H <=> SO2 + H2",
-#     degeneracy = 1,
-#     kinetics = Arrhenius(
-#         A = (1.8e+07, 'cm^3/(mol*s)'),
-#         n = 1.72,
-#         Ea = (-1286, 'cal/mol'),
-#         T0 = (1, 'K'),
-#     ),
-#     longDesc =
-# u"""
-# GlarborgH2S:
-# X Hu P MArshall, poster presented at the 18th International Symposium on Gas Kinetics, Bristol, UK, August, 7-12, 2004
-# """,
-# )
+entry(
+    index = 211,
+    label = "HOSO + H <=> SO2 + H2",
+    degeneracy = 1,
+    kinetics = Arrhenius(
+        A = (1.8e+07, 'cm^3/(mol*s)'),
+        n = 1.72,
+        Ea = (-1286, 'cal/mol'),
+        T0 = (1, 'K'),
+    ),
+    longDesc =
+u"""
+GlarborgH2S:
+X Hu P MArshall, poster presented at the 18th International Symposium on Gas Kinetics, Bristol, UK, August, 7-12, 2004SO2
+experimental data might be available on NIST
 
-# entry(
-#     index = 138,
-#     label = "HOSO + OH <=> SO2 + H2O",
-#     degeneracy = 1,
-#     kinetics = Arrhenius(
-#         A = (6e+12, 'cm^3/(mol*s)'),
-#         n = 0,
-#         Ea = (0, 'cal/mol'),
-#         T0 = (1, 'K'),
-#     ),
-#     longDesc =
-# u"""
-# GlarborgH2S:
-# Rasmussen CL GlArborg P MArshall P Proc Combust Inst 2007, 31, 339-347 est
-# """,
-# )
+""",
+)
 
-# entry(
-#     index = 140,
-#     label = "HOSO + O2 <=> HO2 + SO2",
-#     degeneracy = 2,
-#     kinetics = Arrhenius(
-#         A = (96, 'cm^3/(mol*s)'),
-#         n = 2.355,
-#         Ea = (-10130, 'cal/mol'),
-#         T0 = (1, 'K'),
-#     ),
-#     longDesc =
-# u"""
-# GlarborgH2S:
-# (T>400K)
-# Rasmussen CL GlArborg P MArshall P Proc Combust Inst 2007, 31, 339-347
-# """,
-# )
+entry(
+    index = 212,
+    label = "HOSO + OH <=> SO2 + H2O",
+    degeneracy = 1,
+    kinetics = Arrhenius(
+        A = (6e+12, 'cm^3/(mol*s)'),
+        n = 0,
+        Ea = (0, 'cal/mol'),
+        T0 = (1, 'K'),
+    ),
+    longDesc =
+u"""
+GlarborgH2S:
+Rasmussen CL GlArborg P MArshall P Proc Combust Inst 2007, 31, 339-347 estSO2
+experimental data might be available on NIST
 
-# entry(
-#     index = 81,
-#     label = "SO2 + OH <=> HOSO + O",
-#     degeneracy = 1,
-#     kinetics = Arrhenius(
-#         A = (3.9e+08, 'cm^3/(mol*s)'),
-#         n = 1.89,
-#         Ea = (76000, 'cal/mol'),
-#         T0 = (1, 'K'),
-#     ),
-#     longDesc =
-# u"""
-# GlarborgMarshall:
-# RAS/MAR07 GLA/BOZ96
-# """,
-# )
+""",
+)
 
-# entry(
-#     index = 86,
-#     label = "HSO + O <=> HSO2",
-#     degeneracy = 1,
-#     kinetics = ThirdBody(
-#         arrheniusLow = Arrhenius(
-#             A = (1.1e+19, 'cm^6/(mol^2*s)'),
-#             n = -1.73,
-#             Ea = (-50, 'cal/mol'),
-#             T0 = (1, 'K'),
-#         ),
-#         efficiencies = {},
-#     ),
-#     longDesc =
-# u"""
-# GlarborgH2S:
-# P GlArborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790
-#
-# I estimated #77 which is the reverse of this. Perhaps my estimation is bad???
-#
-# """,
-# )
+entry(
+    index = 213,
+    label = "SO2 + OH <=> HOSO + O",
+    degeneracy = 1,
+    kinetics = Arrhenius(
+        A = (3.9e+08, 'cm^3/(mol*s)'),
+        n = 1.89,
+        Ea = (76000, 'cal/mol'),
+        T0 = (1, 'K'),
+    ),
+    longDesc =
+u"""
+GlarborgMarshall:
+RAS/MAR07 GLA/BOZ96
+""",
+)
 
-# entry(
-#     index = 211,
-#     label = "HOSO2 + O <=> SO3 + OH",
-#     degeneracy = 1,
-#     kinetics = Arrhenius(
-#         A = (5e+12, 'cm^3/(mol*s)'),
-#         n = 0,
-#         Ea = (0, 'cal/mol'),
-#         T0 = (1, 'K'),
-#     ),
-#     longDesc =
-# u"""
-# GlarborgMarshall:
-# RAS/MAR07 GLA/BOZ96
-# """,
-# )
-#
-# entry(
-#     index = 212,
-#     label = "HOSO2 + OH <=> SO3 + H2O",
-#     degeneracy = 1,
-#     kinetics = Arrhenius(
-#         A = (1e+12, 'cm^3/(mol*s)'),
-#         n = 0,
-#         Ea = (0, 'cal/mol'),
-#         T0 = (1, 'K'),
-#     ),
-#     longDesc =
-# u"""
-# GlarborgMarshall:
-# RAS/MAR07 GLA/BOZ96
-# """,
-# )
+entry(
+    index = 214,
+    label = "HSO + O <=> HSO2",
+    degeneracy = 1,
+    kinetics = ThirdBody(
+        arrheniusLow = Arrhenius(
+            A = (1.1e+19, 'cm^6/(mol^2*s)'),
+            n = -1.73,
+            Ea = (-50, 'cal/mol'),
+            T0 = (1, 'K'),
+        ),
+        efficiencies = {},
+    ),
+    longDesc =
+u"""
+GlarborgH2S:
+P GlArborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790
+
+I estimated #77 which is the reverse of this. Perhaps my estimation is bad???
+
+""",
+)
+
+entry(
+    index = 215,
+    label = "HOSO2 + O <=> SO3 + OH",
+    degeneracy = 1,
+    kinetics = Arrhenius(
+        A = (5e+12, 'cm^3/(mol*s)'),
+        n = 0,
+        Ea = (0, 'cal/mol'),
+        T0 = (1, 'K'),
+    ),
+    longDesc =
+u"""
+GlarborgMarshall:
+RAS/MAR07 GLA/BOZ96
+""",
+)
+
+entry(
+    index = 216,
+    label = "HOSO2 + OH <=> SO3 + H2O",
+    degeneracy = 1,
+    kinetics = Arrhenius(
+        A = (1e+12, 'cm^3/(mol*s)'),
+        n = 0,
+        Ea = (0, 'cal/mol'),
+        T0 = (1, 'K'),
+    ),
+    longDesc =
+u"""
+GlarborgMarshall:
+RAS/MAR07 GLA/BOZ96
+""",
+)
+
+entry(
+    index = 217,
+    label = "HOSO2 <=> HOSO + O",
+    degeneracy = 1,
+    kinetics = Arrhenius(
+        A = (5.4e+18, 's^-1'),
+        n = -2.34,
+        Ea = (106300, 'cal/mol'),
+        T0 = (1, 'K'),
+    ),
+    longDesc =
+u"""
+GlarborgH2S:
+P GlArborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790
+""",
+)
+
+entry(
+    index = 218,
+    label = "H2S + HO2 <=> HSO + H2O",
+    degeneracy = 1,
+    kinetics = Arrhenius(
+        A = (1, 'cm^3/(mol*s)'),
+        n = 3.288,
+        Ea = (6224, 'cal/mol'),
+        T0 = (1, 'K'),
+    ),
+    longDesc =
+u"""
+GlarborgH2S:
+Zhou (Molina Sendt TST) 2009
+""",
+)

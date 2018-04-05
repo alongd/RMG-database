@@ -1543,7 +1543,7 @@ but this 1995 study discusses SH + O2 = HSOO, not HSO2
 )
 
 entry(
-    index = 82,
+    index = 81,
     label = "HSO + O <=> SO2 + H",
     degeneracy = 4,
     kinetics = Arrhenius(A=(1.98e+13, 'cm^3/(mol*s)'), n=0.07, Ea=(-0.567, 'kJ/mol'), T0=(1, 'K'),
@@ -1558,8 +1558,43 @@ dA = *|/ 1.07844, dn = +|- 0.00980355, dEa = +|- 0.0556134 kJ/mol
 """,
 )
 
+entry(
+    index = 82,
+    label = "SH + H2O2 <=> HO2 + H2S",
+    degeneracy = 2,
+    kinetics = Arrhenius(A=(9.53e+00, 'cm^3/(mol*s)'), n=6.90, Ea=(66.97, 'kJ/mol'), T0=(1, 'K'),
+                         Tmin=(750, 'K'), Tmax=(2500, 'K')),
+    shortDesc = u"""CCSD(T)-F12/cc-pVTZ//B3LYP/6-311G(2d,d,p)""",
+    longDesc =
+u"""
+calculated by alongd (xc1092) at the CCSD(T)-F12a/cc-pVTZ-f12//B3LYP/6-311G(2d,d,p) level of theory
+opt for TS: B3LYP/6-311G(2d,d,p)
+opt for H2O2, H2S: CCSD(T)-F12/cc-pVTZ from CCCBDB
+sp: CCSD(T)-F12a/cc-pVTZ-f12, freq: B3LYP/6-311G(2d,d,p)
+SH data taken from the SulfurHaynes library; HO2 data taken from the BurkeH2O2 library
+BAC was used; frequencyScaleFactor = 0.975
+The pre-exponential factor was multiplied by a degeneracy of 2 (originally 4.76277 'cm^3/(mol*s)')
+Fitted to 16 data points; dA = *|/ 1.34122, dn = +|- 0.0355631, dEa = +|- 0.394679 kJ/mol
+""",
+)
 
-
+entry(
+    index = 83,
+    label = "SO + HO2 <=> HSO + O2",
+    degeneracy = 2,
+    kinetics = Arrhenius(A=(2.69e+02, 'cm^3/(mol*s)'), n=10.85, Ea=(59.55, 'kJ/mol'), T0=(1, 'K'),
+                         Tmin=(750, 'K'), Tmax=(2500, 'K')),
+    shortDesc = u"""CCSD(T)-F12/cc-pVTZ//B3LYP/6-311G(2d,d,p)""",
+    longDesc =
+u"""
+calculated by alongd (xc1093) at the CCSD(T)-F12a/cc-pVTZ-f12//B3LYP/6-311G(2d,d,p) level of theory
+opt for TS: B3LYP/6-311G(2d,d,p)
+sp: CCSD(T)-F12a/cc-pVTZ-f12, freq: B3LYP/6-311G(2d,d,p)
+SO, HO2, HSO, O2 data taken from the primaryNS and BurkeH2O2 libraries
+BAC was used; frequencyScaleFactor = 0.975
+Fitted to 16 data points; dA = *|/ 1.35997, dn = +|- 0.0372443, dEa = +|- 0.413336 kJ/mol
+""",
+)
 
 
 
@@ -1568,7 +1603,7 @@ dA = *|/ 1.07844, dn = +|- 0.00980355, dEa = +|- 0.0556134 kJ/mol
 
 
 # entry(
-#     index = 81,
+#     index = 100,
 #     label = "H2S + O2 <=> SH + HO2",
 #     degeneracy = 4,
 #     kinetics = Arrhenius(A=(2.77e+05, 'cm^3/(mol*s)'), n=2.76, Ea=(38.2, 'kcal/mol'), T0=(1, 'K'),
@@ -1577,11 +1612,18 @@ dA = *|/ 1.07844, dn = +|- 0.00980355, dEa = +|- 0.0556134 kJ/mol
 #     longDesc =
 # u"""
 # Calculated at the G2//B3LYP/6-311+G(3df,2p) level of theory
+# Also available from the GlarborgH2S library, taken from Zhou TST (2009):
+#     kinetics = Arrhenius(
+#         A = (38000, 'cm^3/(mol*s)'),
+#         n = 2.775,
+#         Ea = (-1529, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
 # """,
 # )
 
 entry(
-    index = 81,
+    index = 100,
     label = "SH + HO2 <=> H2S + O2",
     degeneracy = 1,
     kinetics = Arrhenius(

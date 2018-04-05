@@ -1457,3 +1457,123 @@ entry(
         =========== =========== =========== =========== ===========
     """,
 )
+
+entry(
+    index=38,
+    label="OOSHO",
+    molecule=
+    """
+multiplicity 2
+1 O u0 p2 c0 {2,D}
+2 S u0 p1 c0 {1,D} {3,S} {4,S}
+3 H u0 p0 c0 {2,S}
+4 O u0 p2 c0 {2,S} {5,S}
+5 O u1 p2 c0 {4,S}
+    """,
+    thermo = NASA(
+        polynomials = [
+            NASAPolynomial(
+                coeffs = [3.49301, 0.057111, -0.000324634, 8.35612e-07, -7.49669e-10, -4565.4, 10.0383],
+                Tmin = (10, 'K'),
+                Tmax = (362.268, 'K'),
+            ),
+            NASAPolynomial(
+                coeffs = [4.35851, 0.0143188, -9.83395e-06, 3.05114e-09, -3.54701e-13, -4410.02, 9.75165],
+                Tmin = (362.268, 'K'),
+                Tmax = (3000, 'K'),
+            ),
+        ],
+        Tmin = (10, 'K'),
+        Tmax = (3000, 'K'),
+        E0 = (-37.9856, 'kJ/mol'),
+        Cp0 = (33.2579, 'J/(mol*K)'),
+        CpInf = (103.931, 'J/(mol*K)'),
+    ),
+    shortDesc=u"""CCSD(T)-F12a/cc-pVTZ-f12//B3LYP/6-311G(2d,d,p)""",
+    longDesc=
+    u"""
+    SMILES: [O]O[SH]=O
+
+    calculated by alongd (xq1194, xc1090) at the CCSD(T)-F12a/cc-pVTZ-f12//B3LYP/6-311G(2d,d,p) level of theory
+    frequencies calculated at B3LYP/6-311G(2d,d,p)
+    rotors calculated at B3LYP/6-311G(2d,pd)
+    
+    Thermodynamics for OOSHO:
+        Enthalpy of formation (298 K)   =    -5.082 kcal/mol
+        Entropy of formation (298 K)    =    76.381 cal/(mol*K)
+        =========== =========== =========== =========== ===========
+        Temperature Heat cap.   Enthalpy    Entropy     Free energy
+        (K)         (cal/mol*K) (kcal/mol)  (cal/mol*K) (kcal/mol)
+        =========== =========== =========== =========== ===========
+               300      15.696      -5.050      76.485     -27.996
+               400      17.286      -3.402      81.215     -35.888
+               500      18.717      -1.600      85.231     -44.216
+               600      19.917       0.333      88.753     -52.918
+               800      21.734       4.510      94.748     -71.288
+              1000      22.932       8.986      99.737     -90.751
+              1500      24.268      20.858     109.346    -143.161
+              2000      24.630      33.097     116.386    -199.674
+              2400      24.822      42.988     120.894    -247.156
+        =========== =========== =========== =========== ===========
+    """,
+)
+
+entry(
+    index=39,
+    label="OSOOH",
+    molecule=
+    """
+multiplicity 2
+1 O u0 p2 c0 {2,S} {5,S}
+2 O u0 p2 c0 {1,S} {3,S}
+3 S u1 p1 c0 {2,S} {4,D}
+4 O u0 p2 c0 {3,D}
+5 H u0 p0 c0 {1,S}
+    """,
+    thermo = NASA(
+        polynomials = [
+            NASAPolynomial(
+                coeffs = [3.75941, 0.01881, 7.03236e-05, -3.28577e-07, 3.35762e-10, -20685.7, 10.7497],
+                Tmin = (10, 'K'),
+                Tmax = (396.765, 'K'),
+            ),
+            NASAPolynomial(
+                coeffs = [8.07624, 0.00716155, -6.13257e-06, 2.34914e-09, -3.22926e-13, -21279.1, -9.24738],
+                Tmin = (396.765, 'K'),
+                Tmax = (3000, 'K'),
+            ),
+        ],
+        Tmin = (10, 'K'),
+        Tmax = (3000, 'K'),
+        E0 = (-171.981, 'kJ/mol'),
+        Cp0 = (33.2579, 'J/(mol*K)'),
+        CpInf = (99.7737, 'J/(mol*K)'),
+    ),
+    shortDesc=u"""CCSD(T)-F12a/cc-pVTZ-f12//B3LYP/6-311G(2d,d,p)""",
+    longDesc=
+    u"""
+    SMILES: O=[S]OO
+
+    calculated by alongd (xq1195, xc1091) at the CCSD(T)-F12a/cc-pVTZ-f12//B3LYP/6-311G(2d,d,p) level of theory
+    frequencies calculated at B3LYP/6-311G(2d,d,p)
+    rotors calculated at B3LYP/6-311G(2d,pd)
+
+    Thermodynamics for OSOOH:
+        Enthalpy of formation (298 K)   =   -36.962 kcal/mol
+        Entropy of formation (298 K)    =    76.823 cal/(mol*K)
+        =========== =========== =========== =========== ===========
+        Temperature Heat cap.   Enthalpy    Entropy     Free energy
+        (K)         (cal/mol*K) (kcal/mol)  (cal/mol*K) (kcal/mol)
+        =========== =========== =========== =========== ===========
+               300      19.037     -36.924      76.950     -60.009
+               400      20.074     -34.959      82.595     -67.997
+               500      20.662     -32.921      87.140     -76.491
+               600      21.126     -30.831      90.949     -85.401
+               800      21.762     -26.537      97.122    -104.234
+              1000      22.120     -22.145     102.021    -124.166
+              1500      22.483     -10.978     111.071    -177.585
+              2000      22.844       0.343     117.583    -234.822
+              2400      23.252       9.563     121.784    -282.719
+        =========== =========== =========== =========== ===========
+    """,
+)

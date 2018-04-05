@@ -1787,26 +1787,6 @@ unavailable on NIST
 )
 
 entry(
-    index = 207,
-    label = "SH + H2O2 <=> H2S + HO2",
-    degeneracy = 2,
-    kinetics = Arrhenius(
-        A = (56000, 'cm^3/(mol*s)'),
-        n = 2.823,
-        Ea = (8668, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc =
-u"""
-GlarborgH2S library, doi: 10.1002/kin.21055
-Zhou TST (2009)
-
-Calc?
-unavailable on NIST
-""",
-)
-
-entry(
     index = 208,
     label = "SH + HO2 <=> HSO + OH",
     degeneracy = 1,

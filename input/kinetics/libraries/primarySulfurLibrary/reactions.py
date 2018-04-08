@@ -1606,42 +1606,42 @@ dA = *|/ 1.07844, dn = +|- 0.00980355, dEa = +|- 0.0556134 kJ/mol
 
 
 
-entry(
-    index = 100,
-    label = "H2S + O2 <=> SH + HO2",
-    degeneracy = 4,
-    kinetics = Arrhenius(A=(2.77e+05, 'cm^3/(mol*s)'), n=2.76, Ea=(38.2, 'kcal/mol'), T0=(1, 'K'),
-                         Tmin=(300, 'K'), Tmax=(3000, 'K')),
-    shortDesc = u"""[Haynes2005]""",
-    longDesc =
-u"""
-Calculated at the G2//B3LYP/6-311+G(3df,2p) level of theory
-Also available from the GlarborgH2S library, taken from Zhou TST (2009):
-    kinetics = Arrhenius(
-        A = (38000, 'cm^3/(mol*s)'),
-        n = 2.775,
-        Ea = (-1529, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-""",
-)
-
 # entry(
 #     index = 100,
-#     label = "SH + HO2 <=> H2S + O2",
-#     degeneracy = 1,
+#     label = "H2S + O2 <=> SH + HO2",
+#     degeneracy = 4,
+#     kinetics = Arrhenius(A=(2.77e+05, 'cm^3/(mol*s)'), n=2.76, Ea=(38.2, 'kcal/mol'), T0=(1, 'K'),
+#                          Tmin=(300, 'K'), Tmax=(3000, 'K')),
+#     shortDesc = u"""[Haynes2005]""",
+#     longDesc =
+# u"""
+# Calculated at the G2//B3LYP/6-311+G(3df,2p) level of theory
+# Also available from the GlarborgH2S library, taken from Zhou TST (2009):
 #     kinetics = Arrhenius(
 #         A = (38000, 'cm^3/(mol*s)'),
 #         n = 2.775,
 #         Ea = (-1529, 'cal/mol'),
 #         T0 = (1, 'K'),
 #     ),
-#     longDesc =
-# u"""
-# GlarborgH2S library, doi: 10.1002/kin.21055
-# Zhou TST (2009)
 # """,
 # )
+
+entry(
+    index = 100,
+    label = "SH + HO2 <=> H2S + O2",
+    degeneracy = 1,
+    kinetics = Arrhenius(
+        A = (38000, 'cm^3/(mol*s)'),
+        n = 2.775,
+        Ea = (-1529, 'cal/mol'),
+        T0 = (1, 'K'),
+    ),
+    longDesc =
+u"""
+GlarborgH2S library, doi: 10.1002/kin.21055
+Zhou TST (2009)
+""",
+)
 
 
 

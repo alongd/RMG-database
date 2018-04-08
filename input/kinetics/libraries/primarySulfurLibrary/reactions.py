@@ -1558,43 +1558,47 @@ dA = *|/ 1.07844, dn = +|- 0.00980355, dEa = +|- 0.0556134 kJ/mol
 """,
 )
 
-entry(
-    index = 82,
-    label = "SH + H2O2 <=> HO2 + H2S",
-    degeneracy = 2,
-    kinetics = Arrhenius(A=(9.53e+00, 'cm^3/(mol*s)'), n=6.90, Ea=(66.97, 'kJ/mol'), T0=(1, 'K'),
-                         Tmin=(750, 'K'), Tmax=(2500, 'K')),
-    shortDesc = u"""CCSD(T)-F12/cc-pVTZ//B3LYP/6-311G(2d,d,p)""",
-    longDesc =
-u"""
-calculated by alongd (xc1092) at the CCSD(T)-F12a/cc-pVTZ-f12//B3LYP/6-311G(2d,d,p) level of theory
-opt for TS: B3LYP/6-311G(2d,d,p)
-opt for H2O2, H2S: CCSD(T)-F12/cc-pVTZ from CCCBDB
-sp: CCSD(T)-F12a/cc-pVTZ-f12, freq: B3LYP/6-311G(2d,d,p)
-SH data taken from the SulfurHaynes library; HO2 data taken from the BurkeH2O2 library
-BAC was used; frequencyScaleFactor = 0.975
-The pre-exponential factor was multiplied by a degeneracy of 2 (originally 4.76277 'cm^3/(mol*s)')
-Fitted to 16 data points; dA = *|/ 1.34122, dn = +|- 0.0355631, dEa = +|- 0.394679 kJ/mol
-""",
-)
+# entry(
+#     index = 82,
+#     label = "SH + H2O2 <=> HO2 + H2S",
+#     degeneracy = 2,
+#     kinetics = Arrhenius(A=(9.53e+00, 'cm^3/(mol*s)'), n=6.90, Ea=(66.97, 'kJ/mol'), T0=(1, 'K'),
+#                          Tmin=(750, 'K'), Tmax=(2500, 'K')),
+#     shortDesc = u"""CCSD(T)-F12/cc-pVTZ//B3LYP/6-311G(2d,d,p)""",
+#     longDesc =
+# u"""
+# calculated by alongd (xc1092) at the CCSD(T)-F12a/cc-pVTZ-f12//B3LYP/6-311G(2d,d,p) level of theory
+# opt for TS: B3LYP/6-311G(2d,d,p)
+# opt for H2O2, H2S: CCSD(T)-F12/cc-pVTZ from CCCBDB
+# sp: CCSD(T)-F12a/cc-pVTZ-f12, freq: B3LYP/6-311G(2d,d,p)
+# SH data taken from the SulfurHaynes library; HO2 data taken from the BurkeH2O2 library
+# BAC was used; frequencyScaleFactor = 0.975
+# The pre-exponential factor was multiplied by a degeneracy of 2 (originally 4.76277 'cm^3/(mol*s)')
+# Fitted to 16 data points; dA = *|/ 1.34122, dn = +|- 0.0355631, dEa = +|- 0.394679 kJ/mol
+#
+# O(7) above previous GlarH2S rate
+# """,
+# )
 
-entry(
-    index = 83,
-    label = "SO + HO2 <=> HSO + O2",
-    degeneracy = 2,
-    kinetics = Arrhenius(A=(2.69e+02, 'cm^3/(mol*s)'), n=10.85, Ea=(59.55, 'kJ/mol'), T0=(1, 'K'),
-                         Tmin=(750, 'K'), Tmax=(2500, 'K')),
-    shortDesc = u"""CCSD(T)-F12/cc-pVTZ//B3LYP/6-311G(2d,d,p)""",
-    longDesc =
-u"""
-calculated by alongd (xc1093) at the CCSD(T)-F12a/cc-pVTZ-f12//B3LYP/6-311G(2d,d,p) level of theory
-opt for TS: B3LYP/6-311G(2d,d,p)
-sp: CCSD(T)-F12a/cc-pVTZ-f12, freq: B3LYP/6-311G(2d,d,p)
-SO, HO2, HSO, O2 data taken from the primaryNS and BurkeH2O2 libraries
-BAC was used; frequencyScaleFactor = 0.975
-Fitted to 16 data points; dA = *|/ 1.35997, dn = +|- 0.0372443, dEa = +|- 0.413336 kJ/mol
-""",
-)
+# entry(
+#     index = 83,
+#     label = "SO + HO2 <=> HSO + O2",
+#     degeneracy = 2,
+#     kinetics = Arrhenius(A=(2.69e+02, 'cm^3/(mol*s)'), n=10.85, Ea=(59.55, 'kJ/mol'), T0=(1, 'K'),
+#                          Tmin=(750, 'K'), Tmax=(2500, 'K')),
+#     shortDesc = u"""CCSD(T)-F12/cc-pVTZ//B3LYP/6-311G(2d,d,p)""",
+#     longDesc =
+# u"""
+# calculated by alongd (xc1093) at the CCSD(T)-F12a/cc-pVTZ-f12//B3LYP/6-311G(2d,d,p) level of theory
+# opt for TS: B3LYP/6-311G(2d,d,p)
+# sp: CCSD(T)-F12a/cc-pVTZ-f12, freq: B3LYP/6-311G(2d,d,p)
+# SO, HO2, HSO, O2 data taken from the primaryNS and BurkeH2O2 libraries
+# BAC was used; frequencyScaleFactor = 0.975
+# Fitted to 16 data points; dA = *|/ 1.35997, dn = +|- 0.0372443, dEa = +|- 0.413336 kJ/mol
+#
+# O(20)!!! above previous H_abs estimate
+# """,
+# )
 
 
 
@@ -1643,6 +1647,37 @@ Also available from the GlarborgH2S library, taken from Zhou TST (2009):
 
 
 
+
+entry(
+    index = 300,
+    label = "HSO + O2 <=> SO + HO2",
+    degeneracy = 1,
+    kinetics = MultiArrhenius(
+        arrhenius = [
+            Arrhenius(
+                A = (640000, 'cm^3/(mol*s)'),
+                n = 2.627,
+                Ea = (19013, 'cal/mol'),
+                T0 = (1, 'K'),
+                comment = 'Zhou TST (2009) (quArtet TS); Ea-2.5 kcal/mol (pw)',
+            ),
+            Arrhenius(
+                A = (29, 'cm^3/(mol*s)'),
+                n = 3.2,
+                Ea = (14529, 'cal/mol'),
+                T0 = (1, 'K'),
+                comment = 'pw (PM 2015) (doublet TS)',
+            ),
+        ],
+    ),
+    shortDesc = u"""from the GlarborgH2S library""",
+    longDesc =
+u"""
+GlarborgH2S library, doi: 10.1002/kin.21055
+important for fuel lean Fig 7
+unavailable on NIST
+""",
+)
 
 
 

@@ -1558,6 +1558,76 @@ dA = *|/ 1.07844, dn = +|- 0.00980355, dEa = +|- 0.0556134 kJ/mol
 """,
 )
 
+entry(
+    index = 82,
+    label = "H2S + O2 <=> SH + HO2",
+    degeneracy = 4,
+    kinetics = Arrhenius(A=(2.77e+05, 'cm^3/(mol*s)'), n=2.76, Ea=(38.2, 'kcal/mol'), T0=(1, 'K'),
+                         Tmin=(300, 'K'), Tmax=(3000, 'K')),
+    shortDesc = u"""[Haynes2005]""",
+    longDesc =
+u"""
+Calculated at the G2//B3LYP/6-311+G(3df,2p) level of theory
+Also available from the GlarborgH2S library, taken from Zhou TST (2009):
+    kinetics = Arrhenius(
+        A = (3.8e+04, 'cm^3/(mol*s)'),
+        n = 2.775,
+        Ea = (-1529, 'cal/mol'),
+        T0 = (1, 'K'),
+    ),
+""",
+)
+
+entry(
+    index = 83,
+    label = "HSO + O2 <=> SO + HO2",
+    degeneracy = 1,
+    kinetics = MultiArrhenius(
+        arrhenius = [
+            Arrhenius(
+                A = (640000, 'cm^3/(mol*s)'),
+                n = 2.627,
+                Ea = (19013, 'cal/mol'),
+                T0 = (1, 'K'),
+                comment = 'Zhou TST (2009) (quArtet TS); Ea-2.5 kcal/mol (pw)',
+            ),
+            Arrhenius(
+                A = (29, 'cm^3/(mol*s)'),
+                n = 3.2,
+                Ea = (14529, 'cal/mol'),
+                T0 = (1, 'K'),
+                comment = 'pw (PM 2015) (doublet TS)',
+            ),
+        ],
+    ),
+    shortDesc = u"""from the GlarborgH2S library""",
+    longDesc =
+u"""
+GlarborgH2S library, doi: 10.1002/kin.21055
+important for fuel lean Fig 7
+unavailable on NIST
+""",
+)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # entry(
 #     index = 82,
 #     label = "SH + H2O2 <=> HO2 + H2S",
@@ -1606,78 +1676,9 @@ dA = *|/ 1.07844, dn = +|- 0.00980355, dEa = +|- 0.0556134 kJ/mol
 
 
 
-# entry(
-#     index = 100,
-#     label = "H2S + O2 <=> SH + HO2",
-#     degeneracy = 4,
-#     kinetics = Arrhenius(A=(2.77e+05, 'cm^3/(mol*s)'), n=2.76, Ea=(38.2, 'kcal/mol'), T0=(1, 'K'),
-#                          Tmin=(300, 'K'), Tmax=(3000, 'K')),
-#     shortDesc = u"""[Haynes2005]""",
-#     longDesc =
-# u"""
-# Calculated at the G2//B3LYP/6-311+G(3df,2p) level of theory
-# Also available from the GlarborgH2S library, taken from Zhou TST (2009):
-#     kinetics = Arrhenius(
-#         A = (38000, 'cm^3/(mol*s)'),
-#         n = 2.775,
-#         Ea = (-1529, 'cal/mol'),
-#         T0 = (1, 'K'),
-#     ),
-# """,
-# )
-
-entry(
-    index = 100,
-    label = "SH + HO2 <=> H2S + O2",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (38000, 'cm^3/(mol*s)'),
-        n = 2.775,
-        Ea = (-1529, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc =
-u"""
-GlarborgH2S library, doi: 10.1002/kin.21055
-Zhou TST (2009)
-""",
-)
 
 
 
-
-
-
-entry(
-    index = 300,
-    label = "HSO + O2 <=> SO + HO2",
-    degeneracy = 1,
-    kinetics = MultiArrhenius(
-        arrhenius = [
-            Arrhenius(
-                A = (640000, 'cm^3/(mol*s)'),
-                n = 2.627,
-                Ea = (19013, 'cal/mol'),
-                T0 = (1, 'K'),
-                comment = 'Zhou TST (2009) (quArtet TS); Ea-2.5 kcal/mol (pw)',
-            ),
-            Arrhenius(
-                A = (29, 'cm^3/(mol*s)'),
-                n = 3.2,
-                Ea = (14529, 'cal/mol'),
-                T0 = (1, 'K'),
-                comment = 'pw (PM 2015) (doublet TS)',
-            ),
-        ],
-    ),
-    shortDesc = u"""from the GlarborgH2S library""",
-    longDesc =
-u"""
-GlarborgH2S library, doi: 10.1002/kin.21055
-important for fuel lean Fig 7
-unavailable on NIST
-""",
-)
 
 
 
@@ -1884,7 +1885,6 @@ experimental data might be available on NIST
 """,
 )
 
-
 entry(
     index = 211,
     label = "HOSO + H <=> SO2 + H2",
@@ -1900,28 +1900,26 @@ u"""
 GlarborgH2S:
 X Hu P MArshall, poster presented at the 18th International Symposium on Gas Kinetics, Bristol, UK, August, 7-12, 2004SO2
 experimental data might be available on NIST
-
 """,
 )
 
-entry(
-    index = 212,
-    label = "HOSO + OH <=> SO2 + H2O",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (6e+12, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc =
-u"""
-GlarborgH2S:
-Rasmussen CL GlArborg P MArshall P Proc Combust Inst 2007, 31, 339-347 estSO2
-experimental data might be available on NIST
-
-""",
-)
+# entry(
+#     index = 212,
+#     label = "HOSO + OH <=> SO2 + H2O",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (6e+12, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# GlarborgH2S:
+# Rasmussen CL GlArborg P MArshall P Proc Combust Inst 2007, 31, 339-347 estSO2
+# experimental data might be available on NIST
+# """,
+# )
 
 entry(
     index = 213,
@@ -1963,39 +1961,39 @@ I estimated #77 which is the reverse of this. Perhaps my estimation is bad???
 """,
 )
 
-entry(
-    index = 215,
-    label = "HOSO2 + O <=> SO3 + OH",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (5e+12, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc =
-u"""
-GlarborgMarshall:
-RAS/MAR07 GLA/BOZ96
-""",
-)
+# entry(
+#     index = 215,
+#     label = "HOSO2 + O <=> SO3 + OH",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (5e+12, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# GlarborgMarshall:
+# RAS/MAR07 GLA/BOZ96
+# """,
+# )
 
-entry(
-    index = 216,
-    label = "HOSO2 + OH <=> SO3 + H2O",
-    degeneracy = 1,
-    kinetics = Arrhenius(
-        A = (1e+12, 'cm^3/(mol*s)'),
-        n = 0,
-        Ea = (0, 'cal/mol'),
-        T0 = (1, 'K'),
-    ),
-    longDesc =
-u"""
-GlarborgMarshall:
-RAS/MAR07 GLA/BOZ96
-""",
-)
+# entry(
+#     index = 216,
+#     label = "HOSO2 + OH <=> SO3 + H2O",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(
+#         A = (1e+12, 'cm^3/(mol*s)'),
+#         n = 0,
+#         Ea = (0, 'cal/mol'),
+#         T0 = (1, 'K'),
+#     ),
+#     longDesc =
+# u"""
+# GlarborgMarshall:
+# RAS/MAR07 GLA/BOZ96
+# """,
+# )
 
 entry(
     index = 217,

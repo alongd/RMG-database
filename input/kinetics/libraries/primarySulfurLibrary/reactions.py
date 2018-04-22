@@ -478,79 +478,79 @@ Added as a training reaction to Birad_R_Recombination
 """,
 )
 
-# entry(
-#     index = 77,
-#     label = "HSO2 <=> HSO + O",
-#     degeneracy = 2,
-#     kinetics = Arrhenius(A=(2.02e+13, 's^-1'), n=0, Ea=(88, 'kcal/mol'), T0=(1, 'K')),
-#     shortDesc = u"""estimated by alongd""",
-#     longDesc =
-# u"""
-# The rate was estimated as follows:
-#
-# The A factor is taken from the reaction HSO2 <=> SO2 + H
-# which is taken from [Pilling2006] where the reverse reaction SO2 + H <=> HSO2 (k1) and Keq are given.
-# (k1 high-P):  3.76e+07 * T^1.59 * exp(-2472 cal/mol / RT), cm^3/mol*s  (originally fitted only in 200-1000K)
-# (Keq,1):      4.72e-02 * T^0.28 * exp(-16273 cal/mol / RT), cm^3/mol
-# High-P limit k(-1) is calculated and fitted here into a two parameter Arrhenius form:
-# (k-1, highP): 2.02e+13 * exp(-11963 cal/mol / RT), s^-1
-# A = 2.02e+13 s^-1
-#
-# The Ea is taken as the bond energy of S=O in HSO2:
-# Ea = H(HSO) + H(O) - H(HSO2)     (values taken at 1000 K)
-# Ea = 2.19 + 63.12 - (-22.66) =~ 88.0 kcal/mol
-#
-# k(T) = 2.02e+13 * exp(-88 kcal/mol / RT) cm3/mol*s
-#
-# Also available in reverse from the GlarborgH2S library (doi: 10.1002/kin.21055):
-#     entry(
-#         index = 86,
-#         label = "HSO + O <=> HSO2",
-#         degeneracy = 1,
-#         kinetics = ThirdBody(
-#             arrheniusLow = Arrhenius(
-#                 A = (1.1e+19, 'cm^6/(mol^2*s)'),
-#                 n = -1.73,
-#                 Ea = (-50, 'cal/mol'),
-#                 T0 = (1, 'K'),
-#             ),
-#             efficiencies = {},
-#         ),
-#         longDesc = u"P Glarborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790",
-#     The source P Glarborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790
-#     directs to ref 35 in that paper which could not be found.
-# )
-#
-#
-#
-#
-# Sulfur/GlarborgH2S
-# T/[K] 	                         500	1000	1500	2000
-# log10(k(1 bar)/[mole,m,s]) 	    +3.8	+2.9	+2.5	+2.1
-# log10(k(10 bar)/[mole,m,s]) 	+4.8	+3.9	+3.5	+3.1
-# ThirdBody(arrheniusLow=Arrhenius(A=(1.1e+19,'cm^6/(mol^2*s)'), n=-1.73, Ea=(-0.05,'kcal/mol'), T0=(1,'K')), efficiencies={})
-#
-# PDepNetwork
-# T/[K] 	                         500	1000	1500	2000
-# log10(k(1 bar)/[mole,m,s])   	+4.9	+5.1	+5.0	+4.9
-# log10(k(10 bar)/[mole,m,s]) 	+4.9	+5.1	+5.2	+5.3
-#
-# ! Library reaction: Sulfur/GlarborgH2S
-# O(7)+HSO(18)+M=HSO2(17)+M         1.100e+19 -1.730    -0.050
-#
-# ! PDep reaction: PDepNetwork #221
-# HSO(21)+O(6)(+M)=HSO2(20)(+M)                       1.000e+00 0.000     0.000
-#     TCHEB/ 298.000   2000.000 /
-#     PCHEB/ 0.099     9.869    /
-#     CHEB/ 6 4/
-#     CHEB/ 1.086e+01    1.123e-01    -1.984e-02   1.505e-03   /
-#     CHEB/ 1.241e-01    1.804e-01    -2.588e-02   1.826e-04   /
-#     CHEB/ -3.750e-02   1.097e-01    -9.214e-03   -1.540e-03  /
-#     CHEB/ -4.346e-02   5.228e-02    1.050e-04    -1.328e-03  /
-#     CHEB/ -2.945e-02   1.833e-02    2.953e-03    -6.245e-04  /
-#     CHEB/ -1.584e-02   5.293e-03    1.744e-03    7.713e-05   /
-# """,
-# )
+entry(
+    index = 77,
+    label = "HSO2 <=> HSO + O",
+    degeneracy = 2,
+    kinetics = Arrhenius(A=(2.02e+13, 's^-1'), n=0, Ea=(88, 'kcal/mol'), T0=(1, 'K')),
+    shortDesc = u"""estimated by alongd""",
+    longDesc =
+u"""
+The rate was estimated as follows:
+
+The A factor is taken from the reaction HSO2 <=> SO2 + H
+which is taken from [Pilling2006] where the reverse reaction SO2 + H <=> HSO2 (k1) and Keq are given.
+(k1 high-P):  3.76e+07 * T^1.59 * exp(-2472 cal/mol / RT), cm^3/mol*s  (originally fitted only in 200-1000K)
+(Keq,1):      4.72e-02 * T^0.28 * exp(-16273 cal/mol / RT), cm^3/mol
+High-P limit k(-1) is calculated and fitted here into a two parameter Arrhenius form:
+(k-1, highP): 2.02e+13 * exp(-11963 cal/mol / RT), s^-1
+A = 2.02e+13 s^-1
+
+The Ea is taken as the bond energy of S=O in HSO2:
+Ea = H(HSO) + H(O) - H(HSO2)     (values taken at 1000 K)
+Ea = 2.19 + 63.12 - (-22.66) =~ 88.0 kcal/mol
+
+k(T) = 2.02e+13 * exp(-88 kcal/mol / RT) cm3/mol*s
+
+Also available in reverse from the GlarborgH2S library (doi: 10.1002/kin.21055):
+    entry(
+        index = 86,
+        label = "HSO + O <=> HSO2",
+        degeneracy = 1,
+        kinetics = ThirdBody(
+            arrheniusLow = Arrhenius(
+                A = (1.1e+19, 'cm^6/(mol^2*s)'),
+                n = -1.73,
+                Ea = (-50, 'cal/mol'),
+                T0 = (1, 'K'),
+            ),
+            efficiencies = {},
+        ),
+        longDesc = u"P Glarborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790",
+    The source P Glarborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790
+    directs to ref 35 in that paper which could not be found.
+)
+
+
+Sulfur/GlarborgH2S
+T/[K] 	                         500	1000	1500	2000
+log10(k(1 bar)/[mole,m,s]) 	    +3.8	+2.9	+2.5	+2.1
+log10(k(10 bar)/[mole,m,s]) 	+4.8	+3.9	+3.5	+3.1
+ThirdBody(arrheniusLow=Arrhenius(A=(1.1e+19,'cm^6/(mol^2*s)'), n=-1.73, Ea=(-0.05,'kcal/mol'), T0=(1,'K')), efficiencies={})
+
+! Library reaction: Sulfur/GlarborgH2S
+O(7)+HSO(18)+M=HSO2(17)+M         1.100e+19 -1.730    -0.050
+
+
+
+PDepNetwork
+T/[K] 	                         500	1000	1500	2000
+log10(k(1 bar)/[mole,m,s])   	+4.9	+5.1	+5.0	+4.9
+log10(k(10 bar)/[mole,m,s]) 	+4.9	+5.1	+5.2	+5.3
+
+! PDep reaction: PDepNetwork #221
+HSO(21)+O(6)(+M)=HSO2(20)(+M)                       1.000e+00 0.000     0.000
+    TCHEB/ 298.000   2000.000 /
+    PCHEB/ 0.099     9.869    /
+    CHEB/ 6 4/
+    CHEB/ 1.086e+01    1.123e-01    -1.984e-02   1.505e-03   /
+    CHEB/ 1.241e-01    1.804e-01    -2.588e-02   1.826e-04   /
+    CHEB/ -3.750e-02   1.097e-01    -9.214e-03   -1.540e-03  /
+    CHEB/ -4.346e-02   5.228e-02    1.050e-04    -1.328e-03  /
+    CHEB/ -2.945e-02   1.833e-02    2.953e-03    -6.245e-04  /
+    CHEB/ -1.584e-02   5.293e-03    1.744e-03    7.713e-05   /
+""",
+)
 
 entry(
     index = 23,
@@ -1935,29 +1935,6 @@ entry(
 u"""
 GlarborgMarshall:
 RAS/MAR07 GLA/BOZ96
-""",
-)
-
-entry(
-    index = 214,
-    label = "HSO + O <=> HSO2",
-    degeneracy = 1,
-    kinetics = ThirdBody(
-        arrheniusLow = Arrhenius(
-            A = (1.1e+19, 'cm^6/(mol^2*s)'),
-            n = -1.73,
-            Ea = (-50, 'cal/mol'),
-            T0 = (1, 'K'),
-        ),
-        efficiencies = {},
-    ),
-    longDesc =
-u"""
-GlarborgH2S:
-P GlArborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790
-
-I estimated #77 which is the reverse of this. Perhaps my estimation is bad???
-
 """,
 )
 

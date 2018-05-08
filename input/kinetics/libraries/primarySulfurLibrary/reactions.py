@@ -1466,29 +1466,16 @@ entry(
     index = 78,
     label = "HSO2 <=> HSOO",
     degeneracy = 2,
-    kinetics = Chebyshev(
-        coeffs = [
-            [-31.9934, 2.99994, -3.65706e-05, -1.72728e-05],
-            [28.0564, -2.45045e-05, -1.50276e-05, -7.09681e-06],
-            [0.343431, -2.64681e-05, -1.6232e-05, -7.66578e-06],
-            [0.142123, -1.70786e-05, -1.04736e-05, -4.94614e-06],
-            [0.0704471, -1.04975e-05, -6.43758e-06, -3.04003e-06],
-            [0.0318695, -5.92402e-06, -3.63279e-06, -1.71544e-06],
-        ],
-        kunits = 's^-1',
-        Tmin = (300, 'K'),
-        Tmax = (2500, 'K'),
-        Pmin = (0.1, 'bar'),
-        Pmax = (100, 'bar'),
-    ),
+    kinetics = Arrhenius(A=(3.54e+12, 's^-1'), n=0.424, Ea=(362.4, 'kJ/mol'), T0=(1, 'K'),
+                         Tmin=(300, 'K'), Tmax=(3000, 'K')),
     shortDesc = u"""CCSD(T)-F12/cc-pVTZ//B3LYP/6-311G(2d,d,p)""",
     longDesc =
 u"""
-calculated by alongd (xc1088) at the CCSD(T)-F12a/cc-pVTZ-f12//B3LYP/6-311G(2d,d,p) level of theory
+calculated by alongd (xc1099) at the CCSD(T)-F12a/cc-pVTZ-f12//B3LYP/6-311G(2d,d,p) level of theory
 frequencies calculated at B3LYP/6-311G(2d,d,p) in Molpro
 rotor for HSOO calculated at B3LYP/6-311G(2d,pd) in G03
 BAC wasn't used; frequencyScaleFactor = 0.975
-PES search inspired by doi: 10.1021/jp108460v
+Fitted to 16 data points; dA = *|/ 1.42695, dn = +|- 0.0445827, dEa = +|- 0.311473 kJ/mol
 """,
 )
 
@@ -1607,7 +1594,7 @@ entry(
     longDesc =
 u"""
 GlarborgH2S library, doi: 10.1002/kin.21055
-important for fuel lean Fig 7
+important for fuel lean conditions, Fig 7
 unavailable on NIST
 """,
 )

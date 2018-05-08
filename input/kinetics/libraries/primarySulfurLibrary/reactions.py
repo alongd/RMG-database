@@ -172,6 +172,7 @@ entry(
         arrheniusHigh = Arrhenius(A=(3.7e+11, 'cm^3/(mol*s)'), n=0, Ea=(1689, 'cal/mol'), T0=(1, 'K')),
         arrheniusLow = Arrhenius(A=(2.4e+27, 'cm^6/(mol^2*s)'), n=-3.6, Ea=(5186, 'cal/mol'), T0=(1, 'K')),
         alpha = 0.442, T3=(316, 'K'), T1=(7442, 'K'), efficiencies={'O=S=O': 10, 'O': 10, 'O=C=O': 2.5, 'N#N': 0}),
+    elementary_high_p = True,
     shortDesc = u"""[Marshall2005],[Marshall2006]""",
     longDesc =
 u"""
@@ -217,6 +218,7 @@ entry(
         arrheniusHigh = Arrhenius(A=(2.59e+12, 'cm^3/(mol*s)'), n=1.63, Ea=(7339, 'cal/mol'), T0=(300, 'K'), Tmin=(300, 'K'), Tmax=(1700, 'K')),
         arrheniusLow = Arrhenius(A=(1.14e+22, 'cm^6/(mol^2*s)'), n=-6.14, Ea=(11075, 'cal/mol'), T0=(300, 'K'), Tmin=(300, 'K'), Tmax=(1700, 'K')),
         alpha=0.283, T3=(272, 'K'), T1=(3995, 'K'), efficiencies={'O=S=O': 10, 'O': 10, 'O=C=O': 2.5}),
+    elementary_high_p = True,
     shortDesc = u"""[Pilling2006]""",
     longDesc =
 u"""
@@ -237,6 +239,7 @@ entry(
         arrheniusHigh = Arrhenius(A=(4.61e+12, 'cm^3/(mol*s)'), n=1.59, Ea=(2472, 'cal/mol'), T0=(300, 'K'), Tmin=(200, 'K'), Tmax=(1000, 'K')),
         arrheniusLow = Arrhenius(A=(1.97e+18, 'cm^6/(mol^2*s)'), n=-5.19, Ea=(4513, 'cal/mol'), T0=(300, 'K'), Tmin=(200, 'K'), Tmax=(1000, 'K')),
         alpha=0.390, T3=(167, 'K'), T1=(2191, 'K'), efficiencies={'O=S=O': 10, 'O': 10, 'O=C=O': 2.5}),
+    elementary_high_p = True,
     shortDesc = u"""[Pilling2006]""",
     longDesc =
 u"""
@@ -381,6 +384,7 @@ entry(
     kinetics = Lindemann(
         arrheniusHigh = Arrhenius(A=(1.03e+9, 's^-1'), n=1.03, Ea=(49980, 'cal/mol'), T0=(1, 'K'), Tmin=(200, 'K'), Tmax=(2000, 'K')),
         arrheniusLow = Arrhenius(A=(1.72e+35, 'cm^3/(mol*s)'), n=-5.64, Ea=(55423, 'cal/mol'), T0=(1, 'K'), Tmin=(200, 'K'), Tmax=(2000, 'K'))),
+    elementary_high_p = True,
     shortDesc = u"""[Marshall1999a]""",
     longDesc =
 u"""
@@ -398,6 +402,7 @@ entry(
     kinetics = Lindemann(
         arrheniusHigh = Arrhenius(A=(4.41e+18, 's^-1'), n=-1.07, Ea=(7750, 'cal/mol'), T0=(1, 'K'), Tmin=(200, 'K'), Tmax=(2000, 'K')),
         arrheniusLow = Arrhenius(A=(1.56e+23, 'cm^3/(mol*s)'), n=-2.82, Ea=(-7450, 'cal/mol'), T0=(1, 'K'), Tmin=(200, 'K'), Tmax=(2000, 'K'))),
+    elementary_high_p = True,
     shortDesc = u"""[Marshall1999a]""",
     longDesc =
 u"""
@@ -448,6 +453,7 @@ entry(
         arrheniusHigh = Arrhenius(A=(9.94e+21, 's^-1'), n=-2.54, Ea=(75891, 'cal/mol'), T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(2000, 'K')),
         arrheniusLow = Arrhenius(A=(1.16e+46, 'cm^3/(mol*s)'), n=-9.02, Ea=(52953, 'cal/mol'), T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(2000, 'K')),
         alpha=0.95, T3=(2989, 'K'), T1=(1.1, 'K'), efficiencies={'O=S=O': 10, 'O': 10, 'O=C=O': 2.5}),
+    elementary_high_p = True,
     shortDesc = u"""[Pilling2002b]""",
     longDesc =
 u"""
@@ -470,6 +476,7 @@ entry(
     kinetics = Lindemann(
         arrheniusHigh = Arrhenius(A=(2.01e+19, 's^-1'), n=-1.07, Ea=(28377, 'cal/mol'), T0=(1, 'K'), Tmin=(200, 'K'), Tmax=(2000, 'K')),
         arrheniusLow = Arrhenius(A=(9.27e+34, 'cm^3/(mol*s)'), n=-5.87, Ea=(30960, 'cal/mol'), T0=(1, 'K'), Tmin=(200, 'K'), Tmax=(2000, 'K'))),
+    elementary_high_p = True,
     shortDesc = u"""[Marshall1999a]""",
     longDesc =
 u"""
@@ -486,6 +493,7 @@ entry(
     label = "HSO2 <=> HSO + O",
     degeneracy = 2,
     kinetics = Arrhenius(A=(2.02e+13, 's^-1'), n=0, Ea=(88, 'kcal/mol'), T0=(1, 'K')),
+    elementary_high_p = True,
     shortDesc = u"""estimated by alongd""",
     longDesc =
 u"""
@@ -678,6 +686,7 @@ entry(
     degeneracy = 1,
     kinetics = Arrhenius(A=(1.26e+06, 'cm^3/(mol*s)','*|/',1.12511), n=1.98, Ea=(153, 'cal/mol','+|-',14.4),
                          T0=(1, 'K'), Tmin=(200, 'K'), Tmax=(1025, 'K')),
+    elementary_high_p = True,
     shortDesc = u"""[Sitha2011]""",
     longDesc =
 u"""
@@ -1267,6 +1276,7 @@ entry(
     degeneracy = 1,
     kinetics = Arrhenius(A=(1.59e+18, 's^-1'), n=-0.957, Ea=(267, 'kJ/mol'), T0 = (1, 'K'),
                          Tmin=(300, 'K'), Tmax=(2000, 'K')),
+    elementary_high_p = True,
     shortDesc = u"""[Sendt2009b]""",
     longDesc =
 u"""
@@ -1302,6 +1312,7 @@ entry(
     degeneracy = 2,
     kinetics = Arrhenius(A=(4.70e+17, 's^-1'), n=-0.076, Ea=(310, 'kJ/mol'), T0=(1, 'K'),
                          Tmin=(300, 'K'), Tmax=(2000, 'K')),
+    elementary_high_p = True,
     shortDesc = u"""[Sendt2009b]""",
     longDesc =
 u"""
@@ -1315,6 +1326,7 @@ entry(
     label = "HSSH <=> H2SS",
     degeneracy = 2,
     kinetics = Arrhenius(A=(6.74e+12, 's^-1'), n=0.213, Ea=(193, 'kJ/mol'), T0=(1, 'K')),
+    elementary_high_p = True,
     shortDesc = u"""[Sendt2009b]""",
     longDesc =
 u"""
@@ -1328,6 +1340,7 @@ entry(
     label = "H2SS <=> HSS + H",
     degeneracy = 2,
     kinetics = Arrhenius(A=(1.46e+15, 's^-1'), n=-0.026, Ea=(191, 'kJ/mol'), T0=(1, 'K')),
+    elementary_high_p = True,
     shortDesc = u"""[Sendt2009b]""",
     longDesc =
 u"""
@@ -1341,6 +1354,7 @@ entry(
     label = "H2SS <=> H2S + S",
     degeneracy = 1,
     kinetics = Arrhenius(A=(4.53e+11, 's^-1'), n=0.468, Ea=(127, 'kJ/mol'), T0=(1, 'K')),
+    elementary_high_p = True,
     shortDesc = u"""[Sendt2009b]""",
     longDesc =
 u"""
@@ -1354,6 +1368,7 @@ entry(
     label = "H2SS <=> S2 + H2",
     degeneracy = 1,
     kinetics = Arrhenius(A=(1.36e+10, 's^-1'), n=1.125, Ea=(158, 'kJ/mol'), T0=(1, 'K')),
+    elementary_high_p = True,
     shortDesc = u"""[Sendt2009b]""",
     longDesc =
 u"""
@@ -1370,6 +1385,7 @@ entry(
         arrheniusHigh = Arrhenius(A=(6.38e+07, 'cm^3/(mol*s)'), n=1.280, Ea=(-2, 'kJ/mol'), T0=(1, 'K')),
         arrheniusLow = Arrhenius(A=(2.40e+21, 'cm^6/(mol^2*s)'), n=-1.612, Ea=(7, 'kJ/mol'), T0=(1, 'K')),
         alpha = 0.5, T3=(726, 'K'), T1=(726, 'K'), efficiencies={}),
+    elementary_high_p = True,
     shortDesc = u"""[Marshall2011b]""",
     longDesc =
 u"""
@@ -1384,6 +1400,7 @@ entry(
     degeneracy = 1,
     kinetics = Arrhenius(A=(3.68e+14, 's^-1'), n=0.0, Ea=(244, 'kJ/mol'), T0=(1, 'K'),
                          Tmin=(300, 'K'), Tmax=(2000, 'K')),
+    elementary_high_p = True,
     shortDesc = u"""[Sendt2007]""",
     longDesc =
 u"""
@@ -1398,6 +1415,7 @@ entry(
     degeneracy = 1,
     kinetics = Arrhenius(A=(3.27e+10, 's^-1'), n=1.051, Ea=(231, 'kJ/mol'), T0=(1, 'K'),
                          Tmin=(300, 'K'), Tmax=(2000, 'K')),
+    elementary_high_p = True,
     shortDesc = u"""[Sendt2007]""",
     longDesc =
 u"""
@@ -1412,6 +1430,7 @@ entry(
     degeneracy = 1,
     kinetics = Arrhenius(A=(4.08e+11, 's^-1'), n=0.547, Ea=(192, 'kJ/mol'), T0=(1, 'K'),
                          Tmin=(300, 'K'), Tmax=(2000, 'K')),
+    elementary_high_p = True,
     shortDesc = u"""[Sendt2007]""",
     longDesc =
 u"""
@@ -1426,6 +1445,7 @@ entry(
     degeneracy = 1,
     kinetics = Arrhenius(A=(1.89e+14, 's^-1'), n=0.286, Ea=(410, 'kJ/mol'), T0=(1, 'K'),
                          Tmin=(300, 'K'), Tmax=(2000, 'K')),
+    elementary_high_p = True,
     shortDesc = u"""[Sendt2007]""",
     longDesc =
 u"""
@@ -1440,6 +1460,7 @@ entry(
     degeneracy = 1,
     kinetics = Arrhenius(A=(1.07e+15, 's^-1'), n=-0.013, Ea=(315, 'kJ/mol'), T0=(1, 'K'),
                          Tmin=(300, 'K'), Tmax=(2000, 'K')),
+    elementary_high_p = True,
     shortDesc = u"""[Sendt2007]""",
     longDesc =
 u"""
@@ -1468,6 +1489,7 @@ entry(
     degeneracy = 2,
     kinetics = Arrhenius(A=(3.54e+12, 's^-1'), n=0.424, Ea=(362.4, 'kJ/mol'), T0=(1, 'K'),
                          Tmin=(300, 'K'), Tmax=(3000, 'K')),
+    elementary_high_p = True,
     shortDesc = u"""CCSD(T)-F12/cc-pVTZ//B3LYP/6-311G(2d,d,p)""",
     longDesc =
 u"""
@@ -1498,6 +1520,7 @@ entry(
         Pmin = (0.1, 'bar'),
         Pmax = (100, 'bar'),
     ),
+    elementary_high_p = False,
     shortDesc = u"""CCSD(T)-F12/cc-pVTZ//B3LYP/6-311G(2d,d,p)""",
     longDesc =
 u"""
@@ -1518,6 +1541,7 @@ entry(
         arrheniusLow = Arrhenius(A=(3.3e+14, 'cm^6/(mol^2*s)'), n=-0.201, Ea=(20, 'cal/mol'), T0=(1, 'K')),
         efficiencies = {},
     ),
+    elementary_high_p = False,
     longDesc =
 u"""
 GlarborgMarshall library, doi: 10.1002/kin.20778
@@ -1972,6 +1996,7 @@ entry(
         Ea = (106300, 'cal/mol'),
         T0 = (1, 'K'),
     ),
+    elementary_high_p = True,
     longDesc =
 u"""
 GlarborgH2S:

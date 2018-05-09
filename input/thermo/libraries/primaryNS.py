@@ -1577,3 +1577,86 @@ multiplicity 2
         =========== =========== =========== =========== ===========
     """,
 )
+
+entry(
+    index = 40,
+    label = "SH",
+    molecule =
+"""
+multiplicity 2
+1 S u1 p2 c0 {2,S}
+2 H u0 p0 c0 {1,S}
+""",
+    thermo = NASA(
+        polynomials = [
+            NASAPolynomial(coeffs=[4.13333,-0.000378789,-2.77785e-06,5.37011e-09,-2.39401e-12,16027.7,0.161154], Tmin=(200,'K'), Tmax=(1000,'K')),
+            NASAPolynomial(coeffs=[3.05381,0.00125888,-4.24917e-07,6.92959e-11,-4.28169e-15,16351.3,5.97355], Tmin=(1000,'K'), Tmax=(5000,'K')),
+        ],
+        Tmin = (298,'K'),
+        Tmax = (5000,'K'),
+    ),
+    shortDesc = u"""""",
+    longDesc =
+u"""
+Taken from the SulfurGlarborgH2S library
+""",
+)
+
+entry(
+    index = 41,
+    label = "HOOS",
+    molecule =
+"""
+multiplicity 2
+1 O u0 p2 c0 {2,S} {4,S}
+2 O u0 p2 c0 {1,S} {3,S}
+3 S u1 p2 c0 {2,S}
+4 H u0 p0 c0 {1,S}
+""",
+    thermo = NASA(
+        polynomials = [
+            NASAPolynomial(
+                coeffs = [3.73157, 0.0188787, -3.67753e-05, 3.44399e-08, -1.20186e-11, 6226.5, 8.96936],
+                Tmin = (10, 'K'),
+                Tmax = (846.872, 'K'),
+            ),
+            NASAPolynomial(
+                coeffs = [5.81757, 0.00423321, -2.34567e-06, 6.53755e-10, -7.20093e-14, 6045.05, 0.267052],
+                Tmin = (846.872, 'K'),
+                Tmax = (3000, 'K'),
+            ),
+        ],
+        Tmin = (10, 'K'),
+        Tmax = (3000, 'K'),
+        E0 = (51.72, 'kJ/mol'),
+        Cp0 = (33.2579, 'J/(mol*K)'),
+        CpInf = (78.9875, 'J/(mol*K)'),
+    ),
+    shortDesc = u"""UCCSD(T)-F12a/cc-pVTZ-f12//UM06-2x/cc-pVTZ""",
+    longDesc =
+    u"""
+    SMILES: OO[S]
+
+    calculated by alongd (xq1228, xc1102) at the CCSD(T)-F12/cc-pVTZ//B3LYP/6-311G(2d,d,p) level of theory
+    frequencies calculated at B3LYP/6-311G(2d,d,p)
+    rotor calculated at B3LYP/6-311G(2d,pd)
+
+    Thermodynamics for HOOS:
+        Enthalpy of formation (298 K)   =    15.728 kcal/mol
+        Entropy of formation (298 K)    =    68.562 cal/(mol*K)
+        =========== =========== =========== =========== ===========
+        Temperature Heat cap.   Enthalpy    Entropy     Free energy
+        (K)         (cal/mol*K) (kcal/mol)  (cal/mol*K) (kcal/mol)
+        =========== =========== =========== =========== ===========
+               300      13.747      15.755      68.654      -4.841
+               400      14.498      17.171      72.720     -11.917
+               500      14.966      18.646      76.009     -19.359
+               600      15.304      20.160      78.769     -27.102
+               800      15.915      23.281      83.255     -43.322
+              1000      16.468      26.522      86.868     -60.346
+              1500      17.351      35.001      93.732    -105.597
+              2000      17.844      43.809      98.796    -153.784
+              2400      18.113      51.003     102.075    -193.976
+        =========== =========== =========== =========== ===========
+    """,
+)

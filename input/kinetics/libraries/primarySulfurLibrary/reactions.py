@@ -1502,6 +1502,24 @@ Fitted to 16 data points; dA = *|/ 1.42695, dn = +|- 0.0445827, dEa = +|- 0.3114
 )
 
 entry(
+    index = 500,
+    label = "HSOO <=> HOOS",
+    degeneracy = 1,
+    kinetics = Arrhenius(A=(6.66e+06, 's^-1'), n=1.39, Ea=(59.29, 'kJ/mol'), T0=(1, 'K'),
+                         Tmin=(500, 'K'), Tmax=(3000, 'K')),
+    elementary_high_p = True,
+    shortDesc = u"""CCSD(T)-F12/cc-pVTZ//B3LYP/6-311G(2d,d,p)""",
+    longDesc =
+u"""
+calculated by alongd (xc1101) at the CCSD(T)-F12a/cc-pVTZ-f12//B3LYP/6-311G(2d,d,p) level of theory
+frequencies calculated at B3LYP/6-311G(2d,d,p) in Molpro
+rotor for HSOO calculated at B3LYP/6-311G(2d,pd) in G03
+BAC wasn't used; frequencyScaleFactor = 0.975
+Fitted to 16 data points; dA = *|/ 1.97205, dn = +|- 0.0829864, dEa = +|- 0.792465 kJ/mol
+""",
+)
+
+entry(
     index = 79,
     label = "HSOO <=> SO2 + H",
     degeneracy = 1,

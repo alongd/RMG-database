@@ -1632,7 +1632,7 @@ multiplicity 2
         Cp0 = (33.2579, 'J/(mol*K)'),
         CpInf = (78.9875, 'J/(mol*K)'),
     ),
-    shortDesc = u"""UCCSD(T)-F12a/cc-pVTZ-f12//UM06-2x/cc-pVTZ""",
+    shortDesc = u"""CCSD(T)-F12/cc-pVTZ//B3LYP/6-311G(2d,d,p)""",
     longDesc =
     u"""
     SMILES: OO[S]
@@ -1657,6 +1657,66 @@ multiplicity 2
               1500      17.351      35.001      93.732    -105.597
               2000      17.844      43.809      98.796    -153.784
               2400      18.113      51.003     102.075    -193.976
+        =========== =========== =========== =========== ===========
+    """,
+)
+
+entry(
+    index = 42,
+    label = "NH2NHN(S)",
+    molecule =
+"""
+1 N u0 p1 c0 {2,S} {4,S} {5,S}
+2 N u0 p1 c0 {1,S} {3,S} {6,S}
+3 N u0 p2 c0 {2,S}
+4 H u0 p0 c0 {1,S}
+5 H u0 p0 c0 {1,S}
+6 H u0 p0 c0 {2,S}
+""",
+    thermo = NASA(
+        polynomials = [
+            NASAPolynomial(
+                coeffs = [3.9699, 0.00187928, 5.2548e-05, -1.04631e-07, 6.53935e-11, 40913.3, 8.08867],
+                Tmin = (10, 'K'),
+                Tmax = (500.934, 'K'),
+            ),
+            NASAPolynomial(
+                coeffs = [2.84747, 0.0168672, -1.03741e-05, 3.12044e-09, -3.64782e-13, 40950.2, 11.9733],
+                Tmin = (500.934, 'K'),
+                Tmax = (3000, 'K'),
+            ),
+        ],
+        Tmin = (10, 'K'),
+        Tmax = (3000, 'K'),
+        E0 = (340.164, 'kJ/mol'),
+        Cp0 = (33.2579, 'J/(mol*K)'),
+        CpInf = (128.874, 'J/(mol*K)'),
+    ),
+    shortDesc = u"""CCSD(T)-F12/cc-pVTZ//B3LYP/6-311G(2d,d,p)""",
+    longDesc =
+    u"""
+    aug-SMILES: NN[N::]
+
+    calculated by alongd (xq1241, xc1104) at the CCSD(T)-F12/cc-pVTZ//B3LYP/6-311G(2d,d,p) level of theory
+    frequencies calculated at B3LYP/6-311G(2d,d,p)
+    rotor calculated at B3LYP/6-311G(2d,pd)
+
+    Thermodynamics for NH2NHN(S):
+        Enthalpy of formation (298 K)   =    84.392 kcal/mol
+        Entropy of formation (298 K)    =    65.190 cal/(mol*K)
+        =========== =========== =========== =========== ===========
+        Temperature Heat cap.   Enthalpy    Entropy     Free energy
+        (K)         (cal/mol*K) (kcal/mol)  (cal/mol*K) (kcal/mol)
+        =========== =========== =========== =========== ===========
+               300      13.846      84.420      65.282      64.835
+               400      16.110      85.921      69.584      58.087
+               500      17.994      87.629      73.388      50.935
+               600      19.594      89.510      76.814      43.422
+               800      22.157      93.698      82.820      27.442
+              1000      24.038      98.328      87.978      10.350
+              1500      26.810     111.127      98.319     -36.352
+              2000      28.243     124.921     106.246     -87.571
+              2400      29.030     136.384     111.468    -131.141
         =========== =========== =========== =========== ===========
     """,
 )

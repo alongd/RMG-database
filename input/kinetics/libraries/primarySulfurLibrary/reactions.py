@@ -1550,29 +1550,29 @@ PES search inspired by doi: 10.1021/jp108460v
 """,
 )
 
-entry(
-    index = 80,
-    label = "SH + O2 <=> HSO2",
-    degeneracy = 1,
-    kinetics = Lindemann(
-        arrheniusHigh = Arrhenius(A=(2e+14, 'cm^3/(mol*s)'), n=-0.26, Ea=(298, 'cal/mol'), T0=(1, 'K')),
-        arrheniusLow = Arrhenius(A=(3.3e+14, 'cm^6/(mol^2*s)'), n=-0.201, Ea=(20, 'cal/mol'), T0=(1, 'K')),
-        efficiencies = {},
-    ),
-    elementary_high_p = False,
-    longDesc =
-u"""
-GlarborgMarshall library, doi: 10.1002/kin.20778
-In the source, the following comment was given: "GOU/MAR05"
-
-alongd comments:
-I'm uncertain how this (important) rate was derived.
-The source GOU/MAR05 seems to be https://doi.org/10.1016/j.proci.2004.08.214,
-however this reaction isn't mentioned there.
-It might have been taken from doi: 10.1021/j100027a025 instead (similar authors, but from 1995)
-but this 1995 study discusses SH + O2 = HSOO, not HSO2
-""",
-)
+# entry(
+#     index = 80,
+#     label = "SH + O2 <=> HSO2",
+#     degeneracy = 1,
+#     kinetics = Lindemann(
+#         arrheniusHigh = Arrhenius(A=(2e+14, 'cm^3/(mol*s)'), n=-0.26, Ea=(298, 'cal/mol'), T0=(1, 'K')),
+#         arrheniusLow = Arrhenius(A=(3.3e+14, 'cm^6/(mol^2*s)'), n=-0.201, Ea=(20, 'cal/mol'), T0=(1, 'K')),
+#         efficiencies = {},
+#     ),
+#     elementary_high_p = False,
+#     longDesc =
+# u"""
+# GlarborgMarshall library, doi: 10.1002/kin.20778
+# In the source, the following comment was given: "GOU/MAR05"
+#
+# alongd comments:
+# I'm uncertain how this (important) rate was derived.
+# The source GOU/MAR05 seems to be https://doi.org/10.1016/j.proci.2004.08.214,
+# however this reaction isn't mentioned there.
+# It might have been taken from doi: 10.1021/j100027a025 instead (similar authors, but from 1995)
+# but this 1995 study discusses SH + O2 = HSOO, not HSO2
+# """,
+# )
 
 entry(
     index = 81,
@@ -1714,20 +1714,20 @@ unavailable on NIST
 
 
 
-entry(
-    index = 200,
-    label = "SH + O2 <=> SO2 + H",
-    degeneracy = 1,
-    kinetics = Arrhenius(A=(1.5e+05, 'cm^3/(mol*s)'), n=2.123, Ea=(11020, 'cal/mol'), T0=(1, 'K')),
-    shortDesc = u"""from the GlarborgH2S library""",
-    longDesc =
-u"""
-GlarborgH2S library, doi: 10.1002/kin.21055
-J.D. GArrido, M.Y. Ballester, Y. Orozco-Gonzalez, S. Canuto, J. Phys. Chem. A 2011, 115, 1453-1461, doi: 10.1021/jp108460v
-The later explored the PES and gives all geometries (inc. TSs).
-unavailable on NIST
-""",
-)
+# entry(
+#     index = 200,
+#     label = "SH + O2 <=> SO2 + H",
+#     degeneracy = 1,
+#     kinetics = Arrhenius(A=(1.5e+05, 'cm^3/(mol*s)'), n=2.123, Ea=(11020, 'cal/mol'), T0=(1, 'K')),
+#     shortDesc = u"""from the GlarborgH2S library""",
+#     longDesc =
+# u"""
+# GlarborgH2S library, doi: 10.1002/kin.21055
+# J.D. GArrido, M.Y. Ballester, Y. Orozco-Gonzalez, S. Canuto, J. Phys. Chem. A 2011, 115, 1453-1461, doi: 10.1021/jp108460v
+# The later explored the PES and gives all geometries (inc. TSs).
+# unavailable on NIST
+# """,
+# )
 
 entry(
     index = 201,

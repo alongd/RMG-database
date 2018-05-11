@@ -1720,3 +1720,67 @@ entry(
         =========== =========== =========== =========== ===========
     """,
 )
+
+entry(
+    index = 43,
+    label = "N4H6",
+    molecule =
+"""
+1  N u0 p1 c0 {2,S} {5,S} {6,S}
+2  N u0 p1 c0 {1,S} {3,S} {7,S}
+3  N u0 p1 c0 {2,S} {4,S} {8,S}
+4  N u0 p1 c0 {3,S} {9,S} {10,S}
+5  H u0 p0 c0 {1,S}
+6  H u0 p0 c0 {1,S}
+7  H u0 p0 c0 {2,S}
+8  H u0 p0 c0 {3,S}
+9  H u0 p0 c0 {4,S}
+10 H u0 p0 c0 {4,S}
+""",
+    thermo = NASA(
+        polynomials = [
+            NASAPolynomial(
+                coeffs = [3.4889, 0.0587737, -0.000306151, 8.66171e-07, -8.12383e-10, 33175.8, 8.41442],
+                Tmin = (10, 'K'),
+                Tmax = (374.732, 'K'),
+            ),
+            NASAPolynomial(
+                coeffs = [0.682102, 0.0385376, -2.42183e-05, 7.13449e-09, -8.02431e-13, 33738.6, 23.9032],
+                Tmin = (374.732, 'K'),
+                Tmax = (3000, 'K'),
+            ),
+        ],
+        Tmin = (10, 'K'),
+        Tmax = (3000, 'K'),
+        E0 = (275.806, 'kJ/mol'),
+        Cp0 = (33.2579, 'J/(mol*K)'),
+        CpInf = (220.334, 'J/(mol*K)'),
+    ),
+    shortDesc = u"""CCSD(T)-F12/cc-pVTZ//B3LYP/6-311G(2d,d,p)""",
+    longDesc =
+    u"""
+    SMILES: NNNN
+
+    calculated by alongd (xq1240, xc1103) at the CCSD(T)-F12/cc-pVTZ//B3LYP/6-311G(2d,d,p) level of theory
+    frequencies calculated at B3LYP/6-311G(2d,d,p)
+    rotors calculated at B3LYP/6-311G(2d,pd)
+
+    Thermodynamics for N4H6:
+        Enthalpy of formation (298 K)   =    70.447 kcal/mol
+        Entropy of formation (298 K)    =    76.012 cal/(mol*K)
+        =========== =========== =========== =========== ===========
+        Temperature Heat cap.   Enthalpy    Entropy     Free energy
+        (K)         (cal/mol*K) (kcal/mol)  (cal/mol*K) (kcal/mol)
+        =========== =========== =========== =========== ===========
+               300      20.615      70.488      76.150      47.643
+               400      25.155      72.775      82.697      39.696
+               500      29.287      75.502      88.765      31.120
+               600      32.835      78.613      94.427      21.957
+               800      38.426      85.770     104.683       2.024
+              1000      42.394      93.875     113.710     -19.835
+              1500      47.721     116.613     132.076     -81.501
+              2000      49.921     141.089     146.143    -151.198
+              2400      51.031     161.289     155.348    -211.545
+        =========== =========== =========== =========== ===========
+    """,
+)

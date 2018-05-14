@@ -1660,27 +1660,27 @@ unavailable on NIST
 
 
 
-# entry(
-#     index = 82,
-#     label = "SH + H2O2 <=> HO2 + H2S",
-#     degeneracy = 2,
-#     kinetics = Arrhenius(A=(9.53e+00, 'cm^3/(mol*s)'), n=6.90, Ea=(66.97, 'kJ/mol'), T0=(1, 'K'),
-#                          Tmin=(750, 'K'), Tmax=(2500, 'K')),
-#     shortDesc = u"""CCSD(T)-F12/cc-pVTZ//B3LYP/6-311G(2d,d,p)""",
-#     longDesc =
-# u"""
-# calculated by alongd (xc1092) at the CCSD(T)-F12a/cc-pVTZ-f12//B3LYP/6-311G(2d,d,p) level of theory
-# opt for TS: B3LYP/6-311G(2d,d,p)
-# opt for H2O2, H2S: CCSD(T)-F12/cc-pVTZ from CCCBDB
-# sp: CCSD(T)-F12a/cc-pVTZ-f12, freq: B3LYP/6-311G(2d,d,p)
-# SH data taken from the SulfurHaynes library; HO2 data taken from the BurkeH2O2 library
-# BAC was used; frequencyScaleFactor = 0.975
-# The pre-exponential factor was multiplied by a degeneracy of 2 (originally 4.76277 'cm^3/(mol*s)')
-# Fitted to 16 data points; dA = *|/ 1.34122, dn = +|- 0.0355631, dEa = +|- 0.394679 kJ/mol
-#
-# O(7) above previous GlarH2S rate
-# """,
-# )
+entry(
+    index = 82,
+    label = "SH + H2O2 <=> HO2 + H2S",
+    degeneracy = 2,
+    kinetics = Arrhenius(A=(9.53e+00, 'cm^3/(mol*s)'), n=6.90, Ea=(16.0, 'kcal/mol'), T0=(1, 'K'),
+                         Tmin=(750, 'K'), Tmax=(2500, 'K')),
+    shortDesc = u"""CCSD(T)-F12/cc-pVTZ//B3LYP/6-311G(2d,d,p)""",
+    longDesc =
+u"""
+calculated by alongd (xc1092) at the CCSD(T)-F12a/cc-pVTZ-f12//B3LYP/6-311G(2d,d,p) level of theory
+opt for TS: B3LYP/6-311G(2d,d,p)
+opt for H2O2, H2S: CCSD(T)-F12/cc-pVTZ from CCCBDB
+sp: CCSD(T)-F12a/cc-pVTZ-f12, freq: B3LYP/6-311G(2d,d,p)
+SH data taken from the SulfurHaynes library; HO2 data taken from the BurkeH2O2 library
+BAC was used; frequencyScaleFactor = 0.975
+The pre-exponential factor was multiplied by a factor of 2 (originally 4.76277 'cm^3/(mol*s)') due to degeneracy
+Fitted to 16 data points; dA = *|/ 1.34122, dn = +|- 0.0355631, dEa = +|- 0.394679 kJ/mol
+
+O(7) above previous GlarH2S rate
+""",
+)
 
 # entry(
 #     index = 83,

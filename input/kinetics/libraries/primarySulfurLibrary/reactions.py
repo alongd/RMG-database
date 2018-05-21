@@ -488,79 +488,40 @@ Added as a training reaction to Birad_R_Recombination
 """,
 )
 
+
 entry(
-    index = 77,
-    label = "HSO2 <=> HSO + O",
-    degeneracy = 2,
-    kinetics = Arrhenius(A=(2.02e+13, 's^-1'), n=0, Ea=(88, 'kcal/mol'), T0=(1, 'K')),
-    elementary_high_p = True,
-    shortDesc = u"""estimated by alongd""",
+    index = 86,
+    label = "HSO + O <=> HSO2",
+    degeneracy = 1,
+    kinetics = ThirdBody(
+        arrheniusLow = Arrhenius(
+            A = (1.1e+19, 'cm^6/(mol^2*s)'),
+            n = -1.73,
+            Ea = (-50, 'cal/mol'),
+            T0 = (1, 'K'))),
     longDesc =
 u"""
-The rate was estimated as follows:
+P Glarborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790,
+Ref 35 in that paper is the real source of this rate, but it could not be traced.
+Need a trusted estimation for systems sensitive to this rate
 
-The A factor is taken from the reaction HSO2 <=> SO2 + H
-which is taken from [Pilling2006] where the reverse reaction SO2 + H <=> HSO2 (k1) and Keq are given.
-(k1 high-P):  3.76e+07 * T^1.59 * exp(-2472 cal/mol / RT), cm^3/mol*s  (originally fitted only in 200-1000K)
-(Keq,1):      4.72e-02 * T^0.28 * exp(-16273 cal/mol / RT), cm^3/mol
-High-P limit k(-1) is calculated and fitted here into a two parameter Arrhenius form:
-(k-1, highP): 2.02e+13 * exp(-11963 cal/mol / RT), s^-1
-A = 2.02e+13 s^-1
-
-The Ea is taken as the bond energy of S=O in HSO2:
-Ea = H(HSO) + H(O) - H(HSO2)     (values taken at 1000 K)
-Ea = 2.19 + 63.12 - (-22.66) =~ 88.0 kcal/mol
-
-k(T) = 2.02e+13 * exp(-88 kcal/mol / RT) cm3/mol*s
-
-Also available in reverse from the GlarborgH2S library (doi: 10.1002/kin.21055):
-    entry(
-        index = 86,
-        label = "HSO + O <=> HSO2",
-        degeneracy = 1,
-        kinetics = ThirdBody(
-            arrheniusLow = Arrhenius(
-                A = (1.1e+19, 'cm^6/(mol^2*s)'),
-                n = -1.73,
-                Ea = (-50, 'cal/mol'),
-                T0 = (1, 'K'),
-            ),
-            efficiencies = {},
-        ),
-        longDesc = u"P Glarborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790",
-    The source P Glarborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790
-    directs to ref 35 in that paper which could not be found.
-)
-
-
-Sulfur/GlarborgH2S
-T/[K] 	                         500	1000	1500	2000
-log10(k(1 bar)/[mole,m,s]) 	    +3.8	+2.9	+2.5	+2.1
-log10(k(10 bar)/[mole,m,s]) 	+4.8	+3.9	+3.5	+3.1
-ThirdBody(arrheniusLow=Arrhenius(A=(1.1e+19,'cm^6/(mol^2*s)'), n=-1.73, Ea=(-0.05,'kcal/mol'), T0=(1,'K')), efficiencies={})
-
-! Library reaction: Sulfur/GlarborgH2S
-O(7)+HSO(18)+M=HSO2(17)+M         1.100e+19 -1.730    -0.050
-
-
-
-PDepNetwork
-T/[K] 	                         500	1000	1500	2000
-log10(k(1 bar)/[mole,m,s])   	+4.9	+5.1	+5.0	+4.9
-log10(k(10 bar)/[mole,m,s]) 	+4.9	+5.1	+5.2	+5.3
-
-! PDep reaction: PDepNetwork #221
-HSO(21)+O(6)(+M)=HSO2(20)(+M)                       1.000e+00 0.000     0.000
-    TCHEB/ 298.000   2000.000 /
-    PCHEB/ 0.099     9.869    /
-    CHEB/ 6 4/
-    CHEB/ 1.086e+01    1.123e-01    -1.984e-02   1.505e-03   /
-    CHEB/ 1.241e-01    1.804e-01    -2.588e-02   1.826e-04   /
-    CHEB/ -3.750e-02   1.097e-01    -9.214e-03   -1.540e-03  /
-    CHEB/ -4.346e-02   5.228e-02    1.050e-04    -1.328e-03  /
-    CHEB/ -2.945e-02   1.833e-02    2.953e-03    -6.245e-04  /
-    CHEB/ -1.584e-02   5.293e-03    1.744e-03    7.713e-05   /
-""",
+alongd estimation:
+    kinetics = Arrhenius(A=(2.02e+13, 's^-1'), n=0, Ea=(88, 'kcal/mol'), T0=(1, 'K')),
+    
+    The A factor is taken from the reaction HSO2 <=> SO2 + H
+    which is taken from [Pilling2006] where the reverse reaction SO2 + H <=> HSO2 (k1) and Keq are given.
+    (k1 high-P):  3.76e+07 * T^1.59 * exp(-2472 cal/mol / RT), cm^3/mol*s  (originally fitted only in 200-1000K)
+    (Keq,1):      4.72e-02 * T^0.28 * exp(-16273 cal/mol / RT), cm^3/mol
+    High-P limit k(-1) is calculated and fitted here into a two parameter Arrhenius form:
+    (k-1, highP): 2.02e+13 * exp(-11963 cal/mol / RT), s^-1
+    A = 2.02e+13 s^-1
+    
+    The Ea is taken as the bond energy of S=O in HSO2:
+    Ea = H(HSO) + H(O) - H(HSO2)     (values taken at 1000 K)
+    Ea = 2.19 + 63.12 - (-22.66) =~ 88.0 kcal/mol
+    
+    k(T) = 2.02e+13 * exp(-88 kcal/mol / RT) cm3/mol*s
+"""
 )
 
 entry(
@@ -706,8 +667,7 @@ Also available (in reverse) from [Somnitz2004]:
     k_dec_inf, p. 3847 in Fig. 2
     calculated at the B3LYP/apVTZþ1//UB3LYP/apVTZþ1 level of theory
 
-Also available from doi: 10.1039/A901596E
-Also available from doi: 10.1039/B317055A
+Also available from doi: 10.1039/A901596E, 10.1039/B317055A
 """,
 )
 
@@ -847,7 +807,7 @@ entry(
     index = 39,
     label = "H2S + S <=> SH + SH",
     degeneracy = 2,
-    has_pdep_route = True,
+    allow_pdep_route = True,
     kinetics = Arrhenius(A=(7.4e+06, 'cm^3/(mol*s)'), n=2.297, Ea=(9011, 'cal/mol'), T0=(1, 'K'),
                          Tmin=(300, 'K'), Tmax=(3000, 'K')),
     shortDesc = u"""[Sendt2008]""",
@@ -974,7 +934,7 @@ entry(
     index = 48,
     label = "HSS + H <=> S2 + H2",
     degeneracy = 1,
-    has_pdep_route = True,
+    allow_pdep_route = True,
     kinetics = Arrhenius(A=(1.23e+08, 'cm^3/(mol*s)'), n=1.653, Ea=(-1105, 'cal/mol'), T0 = (1, 'K'),
                          Tmin=(873, 'K'), Tmax=(1423, 'K')),
     shortDesc = u"""[Sendt2002]""",
@@ -994,7 +954,7 @@ entry(
     index = 49,
     label = "HSS + H <=> H2S + S",
     degeneracy = 1,
-    has_pdep_route = True,
+    allow_pdep_route = True,
     kinetics = Arrhenius(A=(4.41e+13, 'cm^3/(mol*s)'), n=0, Ea=(6326, 'cal/mol'), T0 = (1, 'K'),
                          Tmin=(873, 'K'), Tmax=(1423, 'K')),
     shortDesc = u"""[Sendt2002]""",
@@ -1482,7 +1442,6 @@ Table 2
 calculated at MRCI/aug-cc-pV5Z
 """,
 )
-
 entry(
     index = 78,
     label = "HSO2 <=> HSOO",
@@ -1495,7 +1454,7 @@ entry(
 u"""
 calculated by alongd (xc1099) at the CCSD(T)-F12a/cc-pVTZ-f12//B3LYP/6-311G(2d,d,p) level of theory
 frequencies calculated at B3LYP/6-311G(2d,d,p) in Molpro
-rotor for HSOO calculated at B3LYP/6-311G(2d,pd) in G03
+rotor for HSOO calculated at B3LYP/6-311G(2d,pd) in G03 (no rotors in HSO2 or cyclic TS)
 BAC wasn't used; frequencyScaleFactor = 0.975
 Fitted to 16 data points; dA = *|/ 1.42695, dn = +|- 0.0445827, dEa = +|- 0.311473 kJ/mol
 """,
@@ -1513,7 +1472,7 @@ entry(
 u"""
 calculated by alongd (xc1101) at the CCSD(T)-F12a/cc-pVTZ-f12//B3LYP/6-311G(2d,d,p) level of theory
 frequencies calculated at B3LYP/6-311G(2d,d,p) in Molpro
-rotor for HSOO calculated at B3LYP/6-311G(2d,pd) in G03
+rotors for HSOO and HOOS calculated at B3LYP/6-311G(2d,pd) in G03 (no rotor in cyclic TS)
 BAC wasn't used; frequencyScaleFactor = 0.975
 Fitted to 16 data points; dA = *|/ 1.97205, dn = +|- 0.0829864, dEa = +|- 0.792465 kJ/mol
 """,
@@ -1550,29 +1509,30 @@ PES search inspired by doi: 10.1021/jp108460v
 """,
 )
 
-# entry(
-#     index = 80,
-#     label = "SH + O2 <=> HSO2",
-#     degeneracy = 1,
-#     kinetics = Lindemann(
-#         arrheniusHigh = Arrhenius(A=(2e+14, 'cm^3/(mol*s)'), n=-0.26, Ea=(298, 'cal/mol'), T0=(1, 'K')),
-#         arrheniusLow = Arrhenius(A=(3.3e+14, 'cm^6/(mol^2*s)'), n=-0.201, Ea=(20, 'cal/mol'), T0=(1, 'K')),
-#         efficiencies = {},
-#     ),
-#     elementary_high_p = False,
-#     longDesc =
-# u"""
-# GlarborgMarshall library, doi: 10.1002/kin.20778
-# In the source, the following comment was given: "GOU/MAR05"
-#
-# alongd comments:
-# I'm uncertain how this (important) rate was derived.
-# The source GOU/MAR05 seems to be https://doi.org/10.1016/j.proci.2004.08.214,
-# however this reaction isn't mentioned there.
-# It might have been taken from doi: 10.1021/j100027a025 instead (similar authors, but from 1995)
-# but this 1995 study discusses SH + O2 = HSOO, not HSO2
-# """,
-# )
+entry(
+    index = 80,
+    label = "SH + O2 <=> HSO2",
+    degeneracy = 1,
+    kinetics = Lindemann(
+        arrheniusHigh = Arrhenius(A=(2e+14, 'cm^3/(mol*s)'), n=-0.26, Ea=(298, 'cal/mol'), T0=(1, 'K')),
+        arrheniusLow = Arrhenius(A=(3.3e+14, 'cm^6/(mol^2*s)'), n=-0.201, Ea=(20, 'cal/mol'), T0=(1, 'K')),
+        efficiencies = {},
+    ),
+    elementary_high_p = False,
+    shortDesc = u"""GlarborgMarshall""",
+    longDesc =
+u"""
+GlarborgMarshall library, doi: 10.1002/kin.20778
+In the source, the following comment was given: "GOU/MAR05"
+
+alongd comments:
+I'm uncertain how this (important) rate was derived.
+The source GOU/MAR05 seems to be https://doi.org/10.1016/j.proci.2004.08.214,
+however this reaction isn't mentioned there.
+It might have been taken from doi: 10.1021/j100027a025 instead (similar authors, but from 1995)
+but this 1995 study discusses SH + O2 = HSOO, not HSO2
+""",
+)
 
 entry(
     index = 81,
@@ -1641,6 +1601,36 @@ unavailable on NIST
 """,
 )
 
+# entry(
+#     index = 83,
+#     label = "SO + HO2 <=> HSO + O2",
+#     degeneracy = 2,
+#     kinetics = Arrhenius(A=(2.69e+02, 'cm^3/(mol*s)'), n=10.85, Ea=(59.55, 'kJ/mol'), T0=(1, 'K'),
+#                          Tmin=(750, 'K'), Tmax=(2500, 'K')),
+#     shortDesc = u"""CCSD(T)-F12/cc-pVTZ//B3LYP/6-311G(2d,d,p)""",
+#     longDesc =
+# u"""
+# calculated by alongd (xc1093) at the CCSD(T)-F12a/cc-pVTZ-f12//B3LYP/6-311G(2d,d,p) level of theory
+# opt for TS: B3LYP/6-311G(2d,d,p)
+# sp: CCSD(T)-F12a/cc-pVTZ-f12, freq: B3LYP/6-311G(2d,d,p)
+# SO, HO2, HSO, O2 data taken from the primaryNS and BurkeH2O2 libraries
+# BAC was used; frequencyScaleFactor = 0.975
+# Fitted to 16 data points; dA = *|/ 1.35997, dn = +|- 0.0372443, dEa = +|- 0.413336 kJ/mol
+#
+# O(20)!!! above previous H_abs estimate
+#
+#
+#
+#
+# xc1105 was calculated on a Quartet surface. THe Dublet surface TS geometry would not converge.
+# Hence, there's a factor of 0.5 in the rate, since there's a 50% chance of an unfertile collision (Doublet)
+#
+# Still many orders of magnitude off....
+# wait till SA? consult?
+#
+# """,
+# )
+
 
 
 
@@ -1661,7 +1651,7 @@ unavailable on NIST
 
 
 entry(
-    index = 82,
+    index = 855,
     label = "SH + H2O2 <=> HO2 + H2S",
     degeneracy = 2,
     kinetics = Arrhenius(A=(9.53e+00, 'cm^3/(mol*s)'), n=6.90, Ea=(16.0, 'kcal/mol'), T0=(1, 'K'),
@@ -1681,26 +1671,6 @@ Fitted to 16 data points; dA = *|/ 1.34122, dn = +|- 0.0355631, dEa = +|- 0.3946
 O(7) above previous GlarH2S rate
 """,
 )
-
-# entry(
-#     index = 83,
-#     label = "SO + HO2 <=> HSO + O2",
-#     degeneracy = 2,
-#     kinetics = Arrhenius(A=(2.69e+02, 'cm^3/(mol*s)'), n=10.85, Ea=(59.55, 'kJ/mol'), T0=(1, 'K'),
-#                          Tmin=(750, 'K'), Tmax=(2500, 'K')),
-#     shortDesc = u"""CCSD(T)-F12/cc-pVTZ//B3LYP/6-311G(2d,d,p)""",
-#     longDesc =
-# u"""
-# calculated by alongd (xc1093) at the CCSD(T)-F12a/cc-pVTZ-f12//B3LYP/6-311G(2d,d,p) level of theory
-# opt for TS: B3LYP/6-311G(2d,d,p)
-# sp: CCSD(T)-F12a/cc-pVTZ-f12, freq: B3LYP/6-311G(2d,d,p)
-# SO, HO2, HSO, O2 data taken from the primaryNS and BurkeH2O2 libraries
-# BAC was used; frequencyScaleFactor = 0.975
-# Fitted to 16 data points; dA = *|/ 1.35997, dn = +|- 0.0372443, dEa = +|- 0.413336 kJ/mol
-#
-# O(20)!!! above previous H_abs estimate
-# """,
-# )
 
 
 

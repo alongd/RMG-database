@@ -54,14 +54,14 @@ entry(
                 n = 0,
                 Ea = (5200, 'cal/mol'),
                 T0 = (1, 'K'),
-                comment = 'SINCVE88 (ktot)',
+                shortDesc = 'SINCVE88 (ktot)',
             ),
             Arrhenius(
                 A = (-2e+13, 'cm^3/(mol*s)'),
                 n = 0,
                 Ea = (7385, 'cal/mol'),
                 T0 = (1, 'K'),
-                comment = 'pw',
+                shortDesc = 'pw',
             ),
         ],
     ),
@@ -76,7 +76,7 @@ entry(
         n = 0,
         Ea = (7385, 'cal/mol'),
         T0 = (1, 'K'),
-        comment = 'pw',
+        shortDesc = 'pw',
     ),
     longDesc = 
 u"""

@@ -486,51 +486,51 @@ Added as a training reaction to Birad_R_Recombination
 """,
 )
 
-entry(
-    index = 77,
-    label = "HSO2 <=> HSO + O",
-    degeneracy = 2,
-    elementary_high_p = True,
-    kinetics = Arrhenius(A=(2.02e+13, 's^-1'), n=0, Ea=(88, 'kcal/mol'), T0=(1, 'K')),
-    shortDesc = u"""estimated by alongd""",
-    longDesc =
-u"""
-The rate was estimated as follows:
-
-The A factor is taken from the reaction HSO2 <=> SO2 + H
-which is taken from [Pilling2006] where the reverse reaction SO2 + H <=> HSO2 (k1) and Keq are given.
-(k1 high-P):  3.76e+07 * T^1.59 * exp(-2472 cal/mol / RT), cm^3/mol*s  (originally fitted only in 200-1000K)
-(Keq,1):      4.72e-02 * T^0.28 * exp(-16273 cal/mol / RT), cm^3/mol
-High-P limit k(-1) is calculated and fitted here into a two parameter Arrhenius form:
-(k-1, highP): 2.02e+13 * exp(-11963 cal/mol / RT), s^-1
-A = 2.02e+13 s^-1
-
-The Ea is taken as the bond energy of S=O in HSO2:
-Ea = H(HSO) + H(O) - H(HSO2)     (values taken at 1000 K)
-Ea = 2.19 + 63.12 - (-22.66) =~ 88.0 kcal/mol
-
-k(T) = 2.02e+13 * exp(-88 kcal/mol / RT) cm3/mol*s
-
-Also available in reverse from the GlarborgH2S library (doi: 10.1002/kin.21055):
-    entry(
-        index = 86,
-        label = "HSO + O <=> HSO2",
-        degeneracy = 1,
-        kinetics = ThirdBody(
-            arrheniusLow = Arrhenius(
-                A = (1.1e+19, 'cm^6/(mol^2*s)'),
-                n = -1.73,
-                Ea = (-50, 'cal/mol'),
-                T0 = (1, 'K'),
-            ),
-            efficiencies = {},
-        ),
-        longDesc = u"P Glarborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790",
-    The source P Glarborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790
-    directs to ref 35 in that paper which could not be found.
-)
-""",
-)
+# entry(
+#     index = 77,
+#     label = "HSO2 <=> HSO + O",
+#     degeneracy = 2,
+#     elementary_high_p = True,
+#     kinetics = Arrhenius(A=(2.02e+13, 's^-1'), n=0, Ea=(88, 'kcal/mol'), T0=(1, 'K')),
+#     shortDesc = u"""estimated by alongd""",
+#     longDesc =
+# u"""
+# The rate was estimated as follows:
+#
+# The A factor is taken from the reaction HSO2 <=> SO2 + H
+# which is taken from [Pilling2006] where the reverse reaction SO2 + H <=> HSO2 (k1) and Keq are given.
+# (k1 high-P):  3.76e+07 * T^1.59 * exp(-2472 cal/mol / RT), cm^3/mol*s  (originally fitted only in 200-1000K)
+# (Keq,1):      4.72e-02 * T^0.28 * exp(-16273 cal/mol / RT), cm^3/mol
+# High-P limit k(-1) is calculated and fitted here into a two parameter Arrhenius form:
+# (k-1, highP): 2.02e+13 * exp(-11963 cal/mol / RT), s^-1
+# A = 2.02e+13 s^-1
+#
+# The Ea is taken as the bond energy of S=O in HSO2:
+# Ea = H(HSO) + H(O) - H(HSO2)     (values taken at 1000 K)
+# Ea = 2.19 + 63.12 - (-22.66) =~ 88.0 kcal/mol
+#
+# k(T) = 2.02e+13 * exp(-88 kcal/mol / RT) cm3/mol*s
+#
+# Also available in reverse from the GlarborgH2S library (doi: 10.1002/kin.21055):
+#     entry(
+#         index = 86,
+#         label = "HSO + O <=> HSO2",
+#         degeneracy = 1,
+#         kinetics = ThirdBody(
+#             arrheniusLow = Arrhenius(
+#                 A = (1.1e+19, 'cm^6/(mol^2*s)'),
+#                 n = -1.73,
+#                 Ea = (-50, 'cal/mol'),
+#                 T0 = (1, 'K'),
+#             ),
+#             efficiencies = {},
+#         ),
+#         longDesc = u"P Glarborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790",
+#     The source P Glarborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790
+#     directs to ref 35 in that paper which could not be found.
+# )
+# """,
+# )
 
 entry(
     index = 23,
@@ -675,8 +675,7 @@ Also available (in reverse) from [Somnitz2004]:
     k_dec_inf, p. 3847 in Fig. 2
     calculated at the B3LYP/apVTZþ1//UB3LYP/apVTZþ1 level of theory
 
-Also available from doi: 10.1039/A901596E
-Also available from doi: 10.1039/B317055A
+Also available from doi: 10.1039/A901596E, and 10.1039/B317055A
 """,
 )
 
@@ -1457,3 +1456,132 @@ Table 2
 calculated at MRCI/aug-cc-pV5Z
 """,
 )
+
+# entry(
+#     index = 77,
+#     label = "O + SH <=> HOS",
+#     degeneracy = 1,
+#     kinetics = Chebyshev(
+#         coeffs = [
+#             [7.66131, -1.2821, -0.122912, 0.0488847],
+#             [-0.201265, 0.0510702, -0.0264111, 0.00845862],
+#             [0.0219041, 0.023602, -0.0118613, 0.00349718],
+#             [0.0156355, 0.00756525, -0.00364677, 0.000940351],
+#             [-0.000689173, 0.000933265, -0.000350741, 2.31156e-06],
+#             [-0.00304297, -0.000699008, 0.000404502, -0.000163558],
+#         ],
+#         kunits = 'cm^3/(mol*s)',
+#         Tmin = (750, 'K'),
+#         Tmax = (3000, 'K'),
+#         Pmin = (0.1, 'bar'),
+#         Pmax = (100, 'bar'),
+#     ),
+#     shortDesc = u"""MRCI+Davidson/aug-cc-pV(5+d)Z//MRCI/aug-cc-pV(5+d)Z""",
+#     longDesc =
+# u"""
+# ZPE, freq, rotational constants, and high-P limit rates were taken from [Sendt2007] at the above level,
+# and were ran through in CanTherm by alongd
+# """,
+# )
+
+# entry(
+#     index = 78,
+#     label = "HSO <=> OH + S",
+#     degeneracy = 1,
+#     kinetics = Chebyshev(
+#         coeffs = [
+#             [-6.76342, -1.3329, -0.0957846, 0.0394346],
+#             [8.14122, 0.0445031, -0.0238091, 0.00833772],
+#             [-0.050276, 0.0211707, -0.0110448, 0.00361945],
+#             [-0.00402179, 0.00725498, -0.00365256, 0.00108164],
+#             [-0.00626237, 0.00115044, -0.000492784, 6.95176e-05],
+#             [-0.00508254, -0.000389486, 0.000256648, -0.000128903],
+#         ],
+#         kunits = 's^-1',
+#         Tmin = (750, 'K'),
+#         Tmax = (3000, 'K'),
+#         Pmin = (0.1, 'bar'),
+#         Pmax = (100, 'bar'),
+#     ),
+#     shortDesc = u"""MRCI+Davidson/aug-cc-pV(5+d)Z//MRCI/aug-cc-pV(5+d)Z""",
+#     longDesc =
+# u"""
+# ZPE, freq, rotational constants, and high-P limit rates were taken from [Sendt2007] at the above level,
+# and were ran through in CanTherm by alongd
+# """,
+# )
+
+# entry(
+#     index = 79,
+#     label = "SH + O <=> SO + H",
+#     degeneracy = 1,
+#     kinetics = Chebyshev(
+#         coeffs = [
+#             [-6.76342, -1.3329, -0.0957846, 0.0394346],
+#             [8.14122, 0.0445031, -0.0238091, 0.00833772],
+#             [-0.050276, 0.0211707, -0.0110448, 0.00361945],
+#             [-0.00402179, 0.00725498, -0.00365256, 0.00108164],
+#             [-0.00626237, 0.00115044, -0.000492784, 6.95176e-05],
+#             [-0.00508254, -0.000389486, 0.000256648, -0.000128903],
+#         ],
+#         kunits = 's^-1',
+#         Tmin = (750, 'K'),
+#         Tmax = (3000, 'K'),
+#         Pmin = (0.1, 'bar'),
+#         Pmax = (100, 'bar'),
+#     ),
+#     shortDesc = u"""MRCI+Davidson/aug-cc-pV(5+d)Z//MRCI/aug-cc-pV(5+d)Z""",
+#     longDesc =
+# u"""
+# ZPE, freq, rotational constants, and high-P limit rates were taken from [Sendt2007] at the above level,
+# and were ran through in CanTherm by alongd
+# """,
+# )
+
+
+
+
+
+
+"""
+HSO2 <=> HSOO (xc1099)
+HSOO <=> SO2 + H (xc1088)
+SH + O2 <=> HSO2 (problematic Marhsall rate)
+SH + H2O2 <=> HO2 + H2S (xc1092)
+SO + HO2 <=> HSO + O2 (xc1093) should be quartet + doublet, see GlarborgH2S
+H2S + O2 <=> SH + HO2 [Haynes2005], A. Montoya, K. Sendt, B.S. Haynes, J. Phys. Chem. A 2005, 109(6), 1057-1062, doi: 10.1021/jp047903p
+HOSO + OH <=> SO2 + H2O, GlarborgH2S, Rasmussen CL GlArborg P MArshall P Proc Combust Inst 2007, 31, 339-347 estSO2, experimental data might be available on NIST
+HOSO2 + O <=> SO3 + OH
+HOSO2 + OH <=> SO3 + H2O
+HSO2 <=> HSO + O (estimated by me, also GlarborgH2S from P GlArborg D Kubel K Dam-Johansen H-M Chiang JW Bozzelli Int J Chem Kinet 28 (1996) 773-790)
+HSOO <=> HOOS (xc1101)
+SH + O2 <=> SO2 + H (GlarborgH2S, geometries available from J.D. GArrido, M.Y. Ballester, Y. Orozco-Gonzalez, S. Canuto, J. Phys. Chem. A 2011, 115, 1453-1461, doi: 10.1021/jp108460v)
+HSS + H <=> SH + SH
+SO + H <=> HSO
+
+
+
+"""
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -24,6 +24,7 @@ Reference legend:
 [Dupre1993] K. Tsuchiya, H. Matsui, M. Oya, G. Dupre, in: R. Burn, L.Z. Dumitrescu (Ed.) Shock Waves @ Marseille II (Proceedings Marseille France), 1993, 71-76, doi: 10.1007/978-3-642-78832-1
 [Garland1998] N.L. Garland, Chem. Phys. Lett., 1998, 290(4-6), 385-390, doi: 10.1016/S0009-2614(98)00553-3
 [GlarBozz] (RMG's Sulfur/GlarborgBozzelli library) P. Glarborg, D. Kubel, K. Dam-Johansen, H-M. Chiang, J.W. Bozzelli, Int. J. Chem. Kin., 1996, 28, 773-790, doi: 10.1002/(SICI)1097-4601(1996)28:10<773::AID-KIN8>3.0.CO;2-K
+[Haynes2005], A. Montoya, K. Sendt, B.S. Haynes, J. Phys. Chem. A 2005, 109(6), 1057-1062, doi: 10.1021/jp047903p
 [Haynes2013] Chenlai (Ryan) Zhou, Karina Sendt, Brian S. Haynes, Proceedings of the Combustion Institute 2013, 34(1), 625-632, doi: 10.1016/j.proci.2012.05.083
 [Lin2003a] C-W. Lu, Y-J. Wu, Y-P. Lee, R.S. Zhu, M.C. Lin, J. Phys. Chem. A, 2003, 107(50), 11020-11029, doi: 10.1021/jp036025c
 [Lin2004] C-W. Lu, Y-J. Wu, Y-P. Lee, R.S. Zhu, M.C. Lin, J. Chem. Phys., 2004, 121(17), 8271-8278, doi: 10.1063/1.1792611
@@ -1370,7 +1371,7 @@ calculations done at the MRCI/aug-cc-pV(Q+d)Z//CASSCF/cc-pVTZ level of theory
 
 entry(
     index = 71,
-    label = "HSO <=> H + SO",
+    label = "HSO <=> SO + H",
     degeneracy = 1,
     elementary_high_p = True,
     kinetics = Arrhenius(A=(3.68e+14, 's^-1'), n=0.0, Ea=(244, 'kJ/mol'), T0=(1, 'K'),
@@ -1385,7 +1386,7 @@ calculated at MRCI/aug-cc-pV5Z
 
 entry(
     index = 72,
-    label = "HOS <=> H + SO",
+    label = "HOS <=> SO + H",
     degeneracy = 1,
     elementary_high_p = True,
     kinetics = Arrhenius(A=(3.27e+10, 's^-1'), n=1.051, Ea=(231, 'kJ/mol'), T0=(1, 'K'),
@@ -1456,6 +1457,22 @@ Table 2
 calculated at MRCI/aug-cc-pV5Z
 """,
 )
+
+entry(
+    index = 77,
+    label = "H2S + O2 <=> SH + HO2",
+    degeneracy = 1,
+    kinetics = Arrhenius(A=(2.77e+05, 'cm^3/(mol*s)'), n=2.76, Ea=(38.2, 'kcal/mol'), T0=(1, 'K'),
+                         Tmin=(300, 'K'), Tmax=(3000, 'K')),
+    shortDesc = u"""[Haynes2005]""",
+    longDesc =
+u"""
+Calculated at the MP2(full)/6-31G(d)//B3LYP/6-311+G(3df,2p) level of theory
+frequency scaling factor: 0.9427
+""",
+)
+
+
 
 # entry(
 #     index = 77,
@@ -1549,7 +1566,6 @@ HSOO <=> SO2 + H (xc1088)
 SH + O2 <=> HSO2 (problematic Marhsall rate)
 SH + H2O2 <=> HO2 + H2S (xc1092)
 SO + HO2 <=> HSO + O2 (xc1093) should be quartet + doublet, see GlarborgH2S
-H2S + O2 <=> SH + HO2 [Haynes2005], A. Montoya, K. Sendt, B.S. Haynes, J. Phys. Chem. A 2005, 109(6), 1057-1062, doi: 10.1021/jp047903p
 HOSO + OH <=> SO2 + H2O, GlarborgH2S, Rasmussen CL GlArborg P MArshall P Proc Combust Inst 2007, 31, 339-347 estSO2, experimental data might be available on NIST
 HOSO2 + O <=> SO3 + OH
 HOSO2 + OH <=> SO3 + H2O
@@ -1557,7 +1573,6 @@ HSO2 <=> HSO + O (estimated by me, also GlarborgH2S from P GlArborg D Kubel K Da
 HSOO <=> HOOS (xc1101)
 SH + O2 <=> SO2 + H (GlarborgH2S, geometries available from J.D. GArrido, M.Y. Ballester, Y. Orozco-Gonzalez, S. Canuto, J. Phys. Chem. A 2011, 115, 1453-1461, doi: 10.1021/jp108460v)
 HSS + H <=> SH + SH
-SO + H <=> HSO
 
 
 

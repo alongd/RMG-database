@@ -558,6 +558,7 @@ entry(
     longDesc =
 u"""
 Part of the "SOx" subset
+Measured at 450–585 K, combined with literature data to derive the overall rate expression
 
 Also available from [GlarBozz] (14) combining low T from [Baulch1992a] and high T from: D. Woiki, P. Roth, Int. J. Chem. Kin., 1995, 27(1), 59-71, doi: 10.1002/kin.550270108
 Also available from [Matsui1997]

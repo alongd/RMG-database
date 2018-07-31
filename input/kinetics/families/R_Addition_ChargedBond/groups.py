@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
-name = "R_Addition_MultipleBond/groups"
+name = "R_Addition_ChargedBond/groups"
 shortDesc = u""
 longDesc = u"""
-The reaction site *3 should be a triplet, otherwise it will react via the 1+2_Cycloaddition family instead.
+This family deals with radical additions to the positively charged atom of a 
 """
 
-template(reactants=["R_R", "YJ"], products=["RJ_R_Y"], ownReverse=False)
+template(reactants=["Rp_Rn", "YJ"], products=["RJ_R_Y"], ownReverse=False)
 
 reverse = "Beta_Scission"
 reversible = True
@@ -18669,25 +18669,6 @@ forbidden(
     shortDesc = u"""""",
     longDesc = 
 u"""
-
-""",
-)
-
-forbidden(
-    label = "charge_separation_on _S",
-    group =
-"""
-1 *1 S     ux c+1 px {2,D}
-2 *2 [N,O] ux c0  px {1,D}
-""",
-    shortDesc = u"""""",
-    longDesc =
-u"""
-A species that demonstrates all cases discussed here is [  [O-][S+](=N)=C   <=>   [NH-][S+](=O)=C  ]
-A radical should be added to the S site of the charged bond [O-][S+] or [NH-][S+] according to the
-R_Addition_ChargedBond family. However, these bonds are represented as having a bond order of 2 in one of the
-representative resonance structures, hence this group is forbidden here.
-We do not forbid here a radical addition reaction to the N/O sites of that bond, and of course not to 
 
 """,
 )

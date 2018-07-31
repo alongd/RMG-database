@@ -34,6 +34,7 @@ default = {
     'Intra_Disproportionation',
     'Intra_R_Add_Endocyclic',
     'Intra_R_Add_Exocyclic',
+    'R_Addition_ChargedBond',
     'R_Addition_COm',
     'R_Addition_MultipleBond',
     'R_Recombination',

@@ -24,7 +24,7 @@ Reference legend:
 [Dupre1993] K. Tsuchiya, H. Matsui, M. Oya, G. Dupre, in: R. Burn, L.Z. Dumitrescu (Ed.) Shock Waves @ Marseille II (Proceedings Marseille France), 1993, 71-76, doi: 10.1007/978-3-642-78832-1
 [Garland1998] N.L. Garland, Chem. Phys. Lett., 1998, 290(4-6), 385-390, doi: 10.1016/S0009-2614(98)00553-3
 [GlarBozz] (RMG's Sulfur/GlarborgBozzelli library) P. Glarborg, D. Kubel, K. Dam-Johansen, H-M. Chiang, J.W. Bozzelli, Int. J. Chem. Kin., 1996, 28, 773-790, doi: 10.1002/(SICI)1097-4601(1996)28:10<773::AID-KIN8>3.0.CO;2-K
-[Haynes2005], A. Montoya, K. Sendt, B.S. Haynes, J. Phys. Chem. A 2005, 109(6), 1057-1062, doi: 10.1021/jp047903p
+[Haynes2005] A. Montoya, K. Sendt, B.S. Haynes, J. Phys. Chem. A 2005, 109(6), 1057-1062, doi: 10.1021/jp047903p
 [Haynes2013] Chenlai (Ryan) Zhou, Karina Sendt, Brian S. Haynes, Proceedings of the Combustion Institute 2013, 34(1), 625-632, doi: 10.1016/j.proci.2012.05.083
 [Lin2003a] C-W. Lu, Y-J. Wu, Y-P. Lee, R.S. Zhu, M.C. Lin, J. Phys. Chem. A, 2003, 107(50), 11020-11029, doi: 10.1021/jp036025c
 [Lin2004] C-W. Lu, Y-J. Wu, Y-P. Lee, R.S. Zhu, M.C. Lin, J. Chem. Phys., 2004, 121(17), 8271-8278, doi: 10.1063/1.1792611

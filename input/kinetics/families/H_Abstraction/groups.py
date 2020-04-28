@@ -2000,8 +2000,25 @@ entry(
 )
 
 entry(
+    index = 10014,
+    label = "Cs/H3/NonDeN_C_CC",
+    group =
+"""
+1 *1 C   u0 {2,S} {3,S} {4,S} {5,S}
+2    N3s u0 {1,S} {6,S} {8,S}
+3 *2 H   u0 {1,S}
+4    H   u0 {1,S}
+5    H   u0 {1,S}
+6    C   ux {2,S} {7,S}
+7    C   ux {6,S}
+8    C   ux {2,S}
+""",
+    kinetics = None,
+)
+
+entry(
     index = 10010,
-    label = "Cs/H3/NonDeN_terminal_CH3",
+    label = "Cs/H3/NonDeN_CC",
     group =
 """
 1 *1 C   u0 {2,S} {3,S} {4,S} {5,S}
@@ -2044,6 +2061,21 @@ entry(
 )
 
 entry(
+    index = 10016,
+    label = "C/H2/Cb_CCb",
+    group =
+"""
+1 *1 C  u0 {2,S} {3,S} {4,S} {5,S}
+2 *2 H  u0 {1,S}
+3    H  u0 {1,S}
+4    Cb u0 {1,S}
+5    C u0 {1,S} {6,S}
+6    Cb u0 {5,S}
+""",
+    kinetics = None,
+)
+
+entry(
     index = 153,
     label = "C/H2/NonDeC",
     group = 
@@ -2053,6 +2085,22 @@ entry(
 3    H  u0 {1,S}
 4    Cs u0 {1,S}
 5    Cs u0 {1,S}
+""",
+    kinetics = None,
+)
+
+entry(
+    index = 10015,
+    label = "C/H2/NonDeC_NN",
+    group =
+"""
+1 *1 C  u0 {2,S} {3,S} {4,S} {5,S}
+2 *2 H  u0 {1,S}
+3    H  u0 {1,S}
+4    Cs u0 {1,S} {6,S}
+5    Cs u0 {1,S} {7,S}
+6    N3s ux {4,S}
+7    N3s ux {5,S}
 """,
     kinetics = None,
 )
@@ -2320,11 +2368,11 @@ entry(
 5    Cs u0 {1,S} {6,S}
 6    C  ux {5,S} {7,S}
 7    N  ux {6,S} {8,S} {9,S}
-8    C  ux {7,S} {11,S}
-9    C  ux {7,S} {12,S}
+8    C  ux {7,S} {11,[S,D,B]}
+9    C  ux {7,S} {12,[S,D,B]}
 10   Cs ux {4,S}
-11   C  ux {8,S}
-12   C  ux {9,S}
+11   C  ux {8,[S,D,B]}
+12   C  ux {9,[S,D,B]}
 """,
     kinetics = None,
 )
@@ -2339,12 +2387,12 @@ entry(
 3    H  u0 {1,S}
 4    N  u0 {1,S} {6,S} {7,S}
 5    Cs u0 {1,S} {8,S}
-6    C  ux {4,S} {10,S}
-7    C  ux {4,S} {11,S}
+6    C  ux {4,S} {10,[S,D,B]}
+7    C  ux {4,S} {11,[S,D,B]}
 8    C  ux {5,S} {9,S}
 9    N3s ux {8,S}
-10   C  ux {6,S}
-11   C  ux {7,S}
+10   C  ux {6,[S,D,B]}
+11   C  ux {7,[S,D,B]}
 """,
     kinetics = None,
 )
@@ -5643,6 +5691,41 @@ entry(
 )
 
 entry(
+    index = 10017,
+    label = "C_rad/H2/NCCCN",
+    group =
+"""
+1 *3 C u1 {2,S} {3,S} {4,S}
+2    H u0 {1,S}
+3    H u0 {1,S}
+4    N u0 {1,S} {5,S}
+5    C u0 {4,S} {6,S}
+6    C u0 {5,S} {7,S}
+7    C u0 {6,S} {8,S}
+8    N u0 {7,S}
+""",
+    kinetics = None,
+)
+
+entry(
+    index = 10018,
+    label = "C_rad/H2/NC_CCCN",
+    group =
+"""
+1 *3 C u1 {2,S} {3,S} {4,S}
+2    H u0 {1,S}
+3    H u0 {1,S}
+4    N u0 {1,S} {5,S} {9,S}
+5    C u0 {4,S} {6,S}
+6    C u0 {5,S} {7,S}
+7    C u0 {6,S} {8,S}
+8    N u0 {7,S}
+9    C u0 {4,S}
+""",
+    kinetics = None,
+)
+
+entry(
     index = 414,
     label = "C_sec_rad",
     group = 
@@ -5656,6 +5739,20 @@ entry(
 )
 
 entry(
+    index = 10022,
+    label = "C_sec_rad/Cb_CsCb",
+    group =
+"""
+1 *3 C  u1 {2,S} {3,S} {4,S}
+2    H  u0 {1,S}
+3    Cb u0 {1,S}
+4    Cs u0 {1,S} {5,S}
+5    Cb u0 {4,S}
+""",
+    kinetics = None,
+)
+
+entry(
     index = 415,
     label = "C_rad/H/NonDeC",
     group = 
@@ -5664,6 +5761,21 @@ entry(
 2    H  u0 {1,S}
 3    Cs u0 {1,S}
 4    Cs u0 {1,S}
+""",
+    kinetics = None,
+)
+
+entry(
+    index = 10019,
+    label = "C_rad/H/CsN_CsN",
+    group =
+"""
+1 *3 C  u1 {2,S} {3,S} {4,S}
+2    H  u0 {1,S}
+3    Cs u0 {1,S} {5,S}
+4    Cs u0 {1,S} {6,S}
+5    N  ux {3,S}
+6    N  ux {4,S}
 """,
     kinetics = None,
 )
@@ -5987,6 +6099,40 @@ entry(
 2    H  u0 {1,S}
 3    Cs u0 {1,S}
 4    N  u0 {1,S}
+""",
+    kinetics = None,
+)
+
+entry(
+    index = 10020,
+    label = "C_rad/H/NCs_CsCN",
+    group =
+"""
+1 *3 Cs u1 {2,S} {3,S} {4,S}
+2    H  u0 {1,S}
+3    Cs u0 {1,S} {6,S}
+4    N  u0 {1,S} {5,S}
+5    Cs ux {4,S}
+6    C  ux {3,S} {7,S}
+7    N  ux {6,S}
+""",
+    kinetics = None,
+)
+
+entry(
+    index = 10021,
+    label = "C_rad/H/NCb_CCNCs",
+    group =
+"""
+1 *3 Cs u1 {2,S} {3,S} {4,S}
+2    H  u0 {1,S}
+3    Cs u0 {1,S} {7,S}
+4    N  u0 {1,S} {5,S} {6,S}
+5    Cb ux {4,S}
+6    Cb ux {4,S}
+7    C  ux {3,S} {8,S}
+8    N  ux {7,S} {9,S}
+9    Cs ux {8,S}
 """,
     kinetics = None,
 )
@@ -7449,10 +7595,13 @@ L1: X_H_or_Xrad_H_Xbirad_H_Xtrirad_H
                         L7: C/H3/Cd\H_Cd\H\Cs
                         L7: C/H3/Cd\Cs_Cd\H2
                 L5: Cs/H3/NonDeN
-                    L6: Cs/H3/NonDeN_terminal_CH3
+                    L6: Cs/H3/NonDeN_CC
+                        L7: Cs/H3/NonDeN_C_CC
                 L5: Cs/H3/OneDeN
             L4: C_sec
+                L5: C/H2/Cb_CCb
                 L5: C/H2/NonDeC
+                    L6: C/H2/NonDeC_NN
                     L6: C/H2/Cs/Cs\O
                     L6: C/H2/Cs/Cs\Cs|O
                     L6: C/H2/NonDeC_5ring
@@ -7721,8 +7870,12 @@ L1: Y_rad_birad_trirad_quadrad
                     L6: C_rad/H2/Cd\H_Cd\H2
                     L6: C_rad/H2/Cd\Cs_Cd\H2
                 L5: C_rad/H2/N
+                    L6: C_rad/H2/NCCCN
+                        L7: C_rad/H2/NC_CCCN
             L4: C_sec_rad
+                L5: C_sec_rad/Cb_CsCb
                 L5: C_rad/H/NonDeC
+                    L6: C_rad/H/CsN_CsN
                     L6: C_rad/H/NonDeC_5ring_fused6_1
                     L6: C_rad/H/NonDeC_5ring_fused6_2
                     L6: C_rad/H/Cs\H3/Cs\H3
@@ -7742,6 +7895,8 @@ L1: Y_rad_birad_trirad_quadrad
                     L6: C_rad/H/CsS
                     L6: C_rad/H/S2
                 L5: C_rad/H/NonDeCN
+                    L6: C_rad/H/NCs_CsCN
+                    L6: C_rad/H/NCb_CCNCs
                 L5: C_rad/H/NonDeON
                 L5: C_rad/H/NonDeNN
                 L5: C_rad/H/OneDe

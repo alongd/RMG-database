@@ -4919,3 +4919,79 @@ O      -5.24058100   -0.92732500   -2.14367100
 O      -5.81645500   -0.89907600   -3.31742400
 """,
 )
+
+
+
+
+entry(
+    index = 46,
+    label = "imipramine_4_OOj_5_OOH",
+    molecule =
+"""
+multiplicity 2
+1  O u0 p2 c0 {2,S} {26,S}
+2  O u0 p2 c0 {1,S} {3,S}
+3  C u0 p0 c0 {2,S} {4,S} {27,S} {28,S}
+4  N u0 p1 c0 {3,S} {5,S} {25,S}
+5  C u0 p0 c0 {4,S} {6,S} {23,S} {29,S}
+6  C u0 p0 c0 {5,S} {7,S} {30,S} {31,S}
+7  C u0 p0 c0 {6,S} {8,S} {32,S} {33,S}
+8  N u0 p1 c0 {7,S} {9,S} {18,S}
+9  C u0 p0 c0 {8,S} {10,D} {14,S}
+10 C u0 p0 c0 {9,D} {11,S} {34,S}
+11 C u0 p0 c0 {10,S} {12,D} {35,S}
+12 C u0 p0 c0 {11,D} {13,S} {36,S}
+13 C u0 p0 c0 {12,S} {14,D} {37,S}
+14 C u0 p0 c0 {9,S} {13,D} {15,S}
+15 C u0 p0 c0 {14,S} {16,S} {38,S} {39,S}
+16 C u0 p0 c0 {15,S} {17,S} {40,S} {41,S}
+17 C u0 p0 c0 {16,S} {18,S} {22,D}
+18 C u0 p0 c0 {8,S} {17,S} {19,D}
+19 C u0 p0 c0 {18,D} {20,S} {42,S}
+20 C u0 p0 c0 {19,S} {21,D} {43,S}
+21 C u0 p0 c0 {20,D} {22,S} {44,S}
+22 C u0 p0 c0 {17,D} {21,S} {45,S}
+23 O u0 p2 c0 {5,S} {24,S}
+24 O u1 p2 c0 {23,S}
+25 C u0 p0 c0 {4,S} {46,S} {47,S} {48,S}
+26 H u0 p0 c0 {1,S}
+27 H u0 p0 c0 {3,S}
+28 H u0 p0 c0 {3,S}
+29 H u0 p0 c0 {5,S}
+30 H u0 p0 c0 {6,S}
+31 H u0 p0 c0 {6,S}
+32 H u0 p0 c0 {7,S}
+33 H u0 p0 c0 {7,S}
+34 H u0 p0 c0 {10,S}
+35 H u0 p0 c0 {11,S}
+36 H u0 p0 c0 {12,S}
+37 H u0 p0 c0 {13,S}
+38 H u0 p0 c0 {15,S}
+39 H u0 p0 c0 {15,S}
+40 H u0 p0 c0 {16,S}
+41 H u0 p0 c0 {16,S}
+42 H u0 p0 c0 {19,S}
+43 H u0 p0 c0 {20,S}
+44 H u0 p0 c0 {21,S}
+45 H u0 p0 c0 {22,S}
+46 H u0 p0 c0 {25,S}
+47 H u0 p0 c0 {25,S}
+48 H u0 p0 c0 {25,S}
+""",
+    thermo = NASA(
+        polynomials = [
+            NASAPolynomial(coeffs=[3.00923,0.166574,-3.12336e-05,-5.44471e-08,2.51763e-11,14844.2,22.4629], Tmin=(10,'K'), Tmax=(1130.96,'K')),
+            NASAPolynomial(coeffs=[32.216,0.127716,-6.51657e-05,1.59368e-08,-1.51922e-12,4116.64,-140.258], Tmin=(1130.96,'K'), Tmax=(3000,'K')),
+        ],
+        Tmin = (10,'K'),
+        Tmax = (3000,'K'),
+        E0 = (123.634,'kJ/mol'),
+        Cp0 = (33.2579,'J/(mol*K)'),
+        CpInf = (1180.66,'J/(mol*K)'),
+    ),
+    shortDesc = """""",
+    longDesc =
+"""
+thermo COPIED from imipramine_CCC(OOH)N(COOj)C above, should be calculated
+""",
+)

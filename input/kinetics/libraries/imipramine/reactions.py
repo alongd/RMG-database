@@ -341,3 +341,58 @@ We're definitely missing a factor of x3 of the torsion missing in the TS,
 we might be missing another factor of x3, depends whether the second methyl rotor is active in the TS or not (breaks it).
 """,
 )
+
+
+
+entry(
+    index = 25,
+    label = "imipramine + cyanoisopropylOO <=> imipramine_rad_5 + cyanoisopropylOOH",
+    degeneracy = 2.0,
+    kinetics = Arrhenius(A=(2.93207e-12,'cm^3/(mol*s)'), n=7.03045, Ea=(40.3569,'kJ/mol'),
+                         T0=(1,'K'), Tmin=(250,'K'), Tmax=(500,'K'), comment="""Fitted to 100 data points; dA = *|/ 1.4981, dn = +|- 0.0589796, dEa = +|- 0.168034 kJ/mol"""),
+    longDesc =
+u"""
+copied over, not calculated!!
+""",
+)
+
+entry(
+    index = 26,
+    label = "imipramine + cyanoisopropylOO <=> imipramine_rad_11 + cyanoisopropylOOH",
+    kinetics = Arrhenius(A=(1.1882e-10,'cm^3/(mol*s)'), n=6.39356, Ea=(55.874,'kJ/mol'),
+                         T0=(1,'K'), Tmin=(250,'K'), Tmax=(500,'K'), comment="""k11, Fitted to 100 data points; dA = *|/ 1.14786, dn = +|- 0.020122, dEa = +|- 0.057328 kJ/mol"""),
+    shortDesc = u"""k11+k12""",
+)
+
+entry(
+    index = 27,
+    label = "imipramine + cyanoisopropylOO <=> imipramine_rad_20 + cyanoisopropylOOH",
+    kinetics = Arrhenius(A=(1.60144e-12,'cm^3/(mol*s)'), n=7.44743, Ea=(61.7556,'kJ/mol'),
+                         T0=(1,'K'), Tmin=(250,'K'), Tmax=(500,'K'), comment="""k20, Fitted to 100 data points; dA = *|/ 1.76345, dn = +|- 0.0827744, dEa = +|- 0.235826 kJ/mol"""),
+    longDesc=
+    u"""
+    copied over, not calculated!!
+    """,
+)
+
+entry(
+    index = 28,
+    label = "imipramine + cyanoisopropylOO <=> imipramine_rad_28 + cyanoisopropylOOH",
+    kinetics = Arrhenius(A=(1.69879e-49,'cm^3/(mol*s)'), n=19.1594, Ea=(17.7046,'kJ/mol'),
+                         T0=(1,'K'), Tmin=(250,'K'), Tmax=(500,'K'), comment="""k28, Fitted to 100 data points; dA = *|/ 12.2045, dn = +|- 0.365056, dEa = +|- 1.04005 kJ/mol"""),
+    longDesc=
+    u"""
+    copied over, not calculated!!
+    """,
+)
+
+entry(
+    index = 29,
+    label = "imipramine + cyanoisopropylOO <=> imipramine_rad_39 + cyanoisopropylOOH",
+    kinetics = Arrhenius(A=(1.04937e-08,'cm^3/(mol*s)'), n=5.94011, Ea=(48.883,'kJ/mol'),
+                         T0=(1,'K'), Tmin=(250,'K'), Tmax=(500,'K'), comment="""k41, Fitted to 100 data points; dA = *|/ 1.32039, dn = +|- 0.0405538, dEa = +|- 0.115539 kJ/mol"""),
+    longDesc=
+    u"""
+    copied over, not calculated!!
+    """,
+)

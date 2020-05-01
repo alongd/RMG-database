@@ -361,6 +361,102 @@ entry(
 )
 
 entry(
+    index = 10025,
+    label = "ROOH_imipramine_1",
+    group =
+"""
+1 *1 O u0 {2,S} {3,S}
+2 *2 H u0 {1,S}
+3    O u0 {1,S} {4,S}
+4    Cs ux {3,S} {5,S} {6,S}
+5    Cb ux {4,S}
+6    Cs ux {4,S} {7,S}
+7    Cb ux {6,S}
+""",
+    kinetics = None,
+)
+
+entry(
+    index = 10026,
+    label = "ROOH_imipramine_2",
+    group =
+"""
+1 *1 O u0 {2,S} {3,S}
+2 *2 H u0 {1,S}
+3    O u0 {1,S} {9,S}
+4    N ux {9,S} {7,S} {8,S}
+5    C ux {9,S} {6,S}
+6    C ux {5,S} {10,S}
+7    Cb ux {4,S}
+8    Cb ux {4,S}
+9    Cs ux {3,S} {4,S} {5,S}
+10    N ux {6,S} {11,S} {12,S}
+11    Cs ux {10,S}
+12    Cs ux {10,S}
+""",
+    kinetics = None,
+)
+
+entry(
+    index = 10027,
+    label = "ROOH_imipramine_3",
+    group =
+"""
+1 *1 O u0 {2,S} {3,S}
+2 *2 H u0 {1,S}
+3    O u0 {1,S} {8,S}
+4    Cs ux {8,S} {6,S}
+5    Cs ux {8,S} {7,S}
+6    N ux {4,S}
+7    N ux {5,S}
+8    Cs ux {3,S} {4,S} {5,S}
+""",
+    kinetics = None,
+)
+
+entry(
+    index = 10028,
+    label = "ROOH_imipramine_4",
+    group =
+"""
+1 *1 O u0 {2,S} {3,S}
+2 *2 H u0 {1,S}
+3    O u0 {1,S} {9,S}
+4    N ux {9,S} {7,S} {8,S}
+5    C ux {9,S} {6,S}
+6    C ux {5,S} {10,S}
+7    Cs ux {4,S}
+8    Cs ux {4,S}
+9    Cs ux {3,S} {4,S} {5,S}
+10    N ux {6,S} {11,S} {12,S}
+11    Cb ux {10,S}
+12    Cb ux {10,S}
+""",
+    kinetics = None,
+)
+
+entry(
+    index = 10029,
+    label = "ROOH_imipramine_5",
+    group =
+"""
+1 *1 O u0 {2,S} {3,S}
+2 *2 H u0 {1,S}
+3    O u0 {1,S} {4,S}
+4    Cs ux {3,S} {5,S}
+5    N  ux {4,S} {6,S} {7,S}
+6    Cs ux {5,S}
+7    Cs ux {5,S} {8,S}
+8    Cs ux {7,S} {9,S}
+9    Cs ux {8,S} {10,S}
+10    N ux {9,S} {11,S} {12,S}
+11    Cb ux {10,S}
+12    Cb ux {10,S}
+""",
+    kinetics = None,
+)
+
+entry(
     index = 30,
     label = "H2O2",
     group = 

@@ -13,12 +13,14 @@ entry(
     label = "CH3OOH + H2O <=> CH3OH + H2O2",
     degeneracy = 1.0,
     rank = 5,
-    kinetics = Arrhenius(A=(1e5,'cm^3/(mol*s)'), n=0, Ea=(10,'kcal/mol'),
+    kinetics = Arrhenius(A=(1.25e+10,'cm^3/(mol*s)'), n=0, Ea=(15,'kcal/mol'),
                          T0=(1,'K'), Tmin=(300,'K'), Tmax=(3000,'K')),
     longDesc =
 """
-estimated to have a lifetime of about 30 min
-(divided by 18 cm^3/mol, the rate is 5.8E-4 1/s)
+estimated to have a lifetime of about 1 min
+this rate at 313K is 4.2E-1 cm^3/(mol*s),
+accounting for the [H2O] which is 69.2% * 0.00556 mol/cm^3 it becomes 1.62E-2 s^-1,
+which is a lifetime of ~1 min
 """,
 )
 
@@ -27,11 +29,10 @@ entry(
     label = "H2O + cyanoisopropylOOH <=> H2O2 + cyanoisopropylOH",
     degeneracy = 1.0,
     rank = 5,
-    kinetics = Arrhenius(A=(1e5,'cm^3/(mol*s)'), n=0, Ea=(10,'kcal/mol'),
+    kinetics = Arrhenius(A=(1.25e+10,'cm^3/(mol*s)'), n=0, Ea=(15,'kcal/mol'),
                          T0=(1,'K'), Tmin=(300,'K'), Tmax=(3000,'K')),
     longDesc =
 """
-estimated to have a lifetime of about 30 min
-(divided by 18 cm^3/mol, the rate is 5.8E-4 1/s)
+estimated to have a lifetime of about 1 min, see explanation above
 """,
 )

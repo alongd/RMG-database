@@ -60,7 +60,27 @@ entry(
     shortDesc = u"""est.""",
     longDesc =
 u"""
-estimated to be very low (if it exists at all, couldn't find a TS)
+estimated to be very slow (if it exists at all, couldn't find a TS)
+""",
+)
+
+entry(
+    index = 10002,
+    label = "imipramine_1_rad + O2 <=> imipramine_1d + HO2-2",
+    degeneracy = 2.0,
+    kinetics = Arrhenius(
+        A = (1.0e+6, 'cm^3/(mol*s)'),
+        n = 0,
+        Ea = (0, 'kcal/mol'),
+        T0 = (1, 'K'),
+        Tmin = (300, 'K'),
+        Tmax = (2500, 'K'),
+    ),
+    rank = 1,
+    shortDesc = u"""est.""",
+    longDesc =
+u"""
+estimated to be very relatively slow
 """,
 )
 

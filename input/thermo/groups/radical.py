@@ -5253,7 +5253,12 @@ entry(
 3   H  u0 {1,S}
 4   H  u0 {1,S}
 """,
-    thermo = u'CCsJN',
+    thermo=ThermoData(
+        Tdata=([300, 400, 500, 600, 800, 1000, 1500], 'K'),
+        Cpdata=([0.28, -1.73, -4.42, -6.7, -9.97, -12.53, -16.23], 'J/(mol*K)'),
+        H298=(388.31, 'kJ/mol'),
+        S298=(-12.26, 'J/(mol*K)'),
+    ),
     shortDesc = u"""""",
     longDesc = 
 u"""

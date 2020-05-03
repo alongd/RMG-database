@@ -49462,12 +49462,7 @@ entry(
 2   N   u0 {1,S}
 3   O   u0 {1,S}
 """,
-    thermo=ThermoData(
-        Tdata=([300, 400, 500, 600, 800, 1000, 1500], 'K'),
-        Cpdata=([0, 0, 0, 0, 0, 0, 0], 'J/(mol*K)'),
-        H298=(0, 'kJ/mol'),
-        S298=(0, 'J/(mol*K)'),
-    ),
+    thermo=u"Cs-N3sO2sHH",
     shortDesc = u"""Cs-NO""",
     longDesc =
 u"""

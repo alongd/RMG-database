@@ -12,13 +12,13 @@ entry(
     index = 0,
     label = "CCCCN(C)CO <=> CH2O + CCCCNC",
     degeneracy = 1.0,
-    kinetics=Arrhenius(A=(1e+17, 's^-1'), n=0, Ea=(70, 'kJ/mol'),
+    kinetics=Arrhenius(A=(5e+12, 's^-1'), n=2.0, Ea=(60, 'kJ/mol'),
                        T0=(1, 'K'), Tmin=(275, 'K'), Tmax=(350, 'K')),
     rank = 1,
     longDesc =
 """
 est.
 Ea is high on purpose to avoid endothermicity correction
-this rate is 2.1E+05 at 313 K
+this rate is 4.5E+07 at 313 K
 """,
 )

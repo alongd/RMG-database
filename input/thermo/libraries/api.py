@@ -128,7 +128,7 @@ H       4.24990200    2.86407000    2.34737600
 
 entry(
     index = 1,
-    label = "imipramine_rad_4",
+    label = "imipramine_rad_3",
     molecule =
 """
 multiplicity 2
@@ -366,7 +366,7 @@ H      -1.74455100   -0.66264100   -2.90745300
 
 entry(
     index = 3,
-    label = "imipramine_ringsH",
+    label = "iminodibenzyl",
     molecule =
 """
 1  N u0 p1 c0 {6,S} {7,S} {20,S}
@@ -452,7 +452,7 @@ H      -2.04265900    2.73388300   -0.07752100
 
 entry(
     index = 4,
-    label = "imipramine_19H",
+    label = "desimipramine",
     molecule =
 """
 1  N u0 p1 c0 {4,S} {11,S} {12,S}
@@ -566,7 +566,7 @@ H       1.82691300    2.73654600   -2.38909300
 
 entry(
     index = 5,
-    label = "imipramine_rad_10",
+    label = "imipramine_rad_4",
     molecule =
 """
 multiplicity 2
@@ -807,7 +807,7 @@ H       3.16786000   -3.42149900    5.62644100
 
 entry(
     index = 7,
-    label = "imipramine_peroxide_2_rad_10",
+    label = "imipramine_peroxide_2_rad_4",
     molecule =
 """
 multiplicity 2
@@ -930,7 +930,7 @@ H       7.52060800   -2.53181200   -0.99011400
 
 entry(
     index = 10,
-    label = "imipramine_ol_2_peroxy_10",
+    label = "imipramine_ol_2_peroxy_4",
     molecule =
 """
 multiplicity 2
@@ -1055,7 +1055,7 @@ H      -1.46620800    2.70123900    1.53836600
 
 entry(
     index = 11,
-    label = "imipramine_ol_2_peroide_10_rad_31",
+    label = "imipramine_ol_2_peroide_4_rad_5",
     molecule =
 """
 multiplicity 2
@@ -1180,7 +1180,7 @@ H      -0.37101700    0.80316500    2.88610200
 
 entry(
     index = 12,
-    label = "imipramine_ol_2_rad_10",
+    label = "imipramine_ol_2_rad_4",
     molecule =
 """
 multiplicity 2
@@ -1301,7 +1301,7 @@ H       2.94061300    5.94449300   -0.50741100
 
 entry(
     index = 13,
-    label = "imipramine_peroxy_31",
+    label = "imipramine_peroxy_5",
     molecule =
 """
 multiplicity 2
@@ -1424,7 +1424,7 @@ H       2.80334300   -2.25880300    4.15833200
 
 entry(
     index = 14,
-    label = "imipramine_ol_31",
+    label = "imipramine_ol_5",
     molecule =
 """
 1  O u0 p2 c0 {9,S} {46,S}
@@ -1546,7 +1546,7 @@ H      -1.21468200    2.02166700   -2.80884400
 
 entry(
     index = 15,
-    label = "imipramine_ol_31_rad_10",
+    label = "imipramine_ol_5_rad_4",
     molecule =
 """
 multiplicity 2
@@ -1667,7 +1667,7 @@ H      -0.28108400    2.64911700    1.86013600
 
 entry(
     index = 16,
-    label = "imipramine_peroxide_31_rad_10",
+    label = "imipramine_peroxide_5_rad_4",
     molecule = 
 """
 multiplicity 2
@@ -1790,7 +1790,7 @@ H      -2.14914900   -1.00870100   -2.45745500
 
 entry(
     index = 17,
-    label = "hemiaminal_hydrolysis_product_1a_OO",
+    label = "CN(C)C(OOj)CCdO",
     molecule =
 """
 multiplicity 2
@@ -1859,7 +1859,7 @@ H       3.52403100   -0.23341300    0.78322200
 
 entry(
     index = 18,
-    label = "hemiaminal_hydrolysis_product_1a_OOH",
+    label = "CN(C)C(OOH)CCdO",
     molecule =
 """
 1  O u0 p2 c0 {2,S} {5,S}
@@ -1929,7 +1929,7 @@ H       2.96478600   -1.03682900    1.96834400
 
 entry(
     index = 19,
-    label = "hemiaminal_hydrolysis_product_1a",
+    label = "CN(C)CCCdO",
     molecule =
 """
 1  O u0 p2 c0 {7,D}
@@ -1995,7 +1995,7 @@ H       3.64262800    0.99232600    0.17108100
 
 entry(
     index = 20,
-    label = "hemiaminal_hydrolysis_product_1a_rad",
+    label = "CN(C)CjCCdO",
     molecule =
 """
 multiplicity 2
@@ -2060,7 +2060,7 @@ H       2.01390400    0.01614000   -1.52836500
 
 entry(
     index = 21,
-    label = "imipramine_d_2_4",
+    label = "imipramine_d_2_3",
     molecule =
 """
 1  C u0 p0 c0 {2,S} {7,S} {22,S} {23,S}
@@ -2176,7 +2176,7 @@ H       3.71316500    0.91168400    1.47837700
 
 entry(
     index = 22,
-    label = "imipramine_d_4_10",
+    label = "imipramine_d_3_4_peroxide_5",
     molecule =
 """
 1  O u0 p2 c0 {2,S} {8,S}
@@ -2296,7 +2296,7 @@ H       2.00235800    0.91933600    3.62356800
 
 entry(
     index = 23,
-    label = "imipramine_d_9_17",
+    label = "imipramine_d_1_b_a",
     molecule =
 """
 1  C u0 p0 c0 {2,S} {3,S} {22,S} {23,S}
@@ -2416,7 +2416,7 @@ H       2.97674200    0.25756600    0.99858800
 
 entry(
     index = 24,
-    label = "imipramine_nob_1",
+    label = "imipramine_d_1_b_b",
     molecule =
 """
 1  C u0 p0 c0 {2,S} {3,S} {22,S} {23,S}
@@ -2536,7 +2536,7 @@ H       4.74114700    0.90459600   -1.39827900
 
 entry(
     index = 25,
-    label = "imipramine_nob_2",
+    label = "imipramine_d_3_4",
     molecule =
 """
 1  C u0 p0 c0 {2,S} {8,S} {22,S} {23,S}
@@ -2747,7 +2747,7 @@ H      -0.78647800    2.87526600   -1.33758700
 
 entry(
     index = 27,
-    label = "imipramine_rad_31",
+    label = "imipramine_rad_5",
     molecule =
 """
 multiplicity 2
@@ -2866,7 +2866,7 @@ H       7.10002700   -1.44227400    2.83982000
 
 entry(
     index = 28,
-    label = "imipramine_rad_17",
+    label = "imipramine_rad_1",
     molecule =
 """
 multiplicity 2
@@ -2985,7 +2985,7 @@ H       1.60281600   -1.25544000   -0.10895700
 
 entry(
     index = 30,
-    label = "imipramine_peroxide_31",
+    label = "imipramine_peroxide_5",
     molecule =
 """
 1  C u0 p0 c0 {2,S} {3,S} {24,S} {25,S}
@@ -3109,7 +3109,7 @@ H       1.53851500    0.23510300    1.43779500
 
 entry(
     index = 31,
-    label = "imipramine_ol_10",
+    label = "imipramine_ol_4",
     molecule =
 """
 1  C u0 p0 c0 {2,S} {8,S} {22,S} {23,S}
@@ -3231,7 +3231,7 @@ H       3.87802400   -1.56045300   -1.32452800
 
 entry(
     index = 32,
-    label = "imipramine_peroxide_10",
+    label = "imipramine_peroxide_4",
     molecule =
 """
 1  C u0 p0 c0 {2,S} {8,S} {22,S} {24,S}
@@ -3479,7 +3479,7 @@ H       1.87913700   -0.97275700    0.55679200
 
 entry(
     index = 34,
-    label = "imipramine_ol_17",
+    label = "imipramine_ol_1",
     molecule =
 """
 1  C u0 p0 c0 {5,S} {10,S} {22,S} {25,S}
@@ -3601,7 +3601,7 @@ H       5.03538200    0.69023000    0.91915800
 
 entry(
     index = 35,
-    label = "imipramine_peroxide_17",
+    label = "imipramine_peroxide_1",
     molecule =
 """
 1  C u0 p0 c0 {5,S} {10,S} {22,S} {26,S}
@@ -3725,7 +3725,7 @@ H       5.95685300    2.42658000   -0.29983000
 
 entry(
     index = 36,
-    label = "imipramine_peroxide_10_rad_2",
+    label = "imipramine_peroxide_4_rad_2",
     molecule =
 """
 multiplicity 2
@@ -3967,7 +3967,7 @@ H       3.48597900    0.82878900   -0.20796100
 
 entry(
     index = 38,
-    label = "imipramine_CCC(O)N(C)C(OO)",
+    label = "imipramine_ol_4_peroxy_5",
     molecule =
 """
 multiplicity 2
@@ -4092,7 +4092,7 @@ H       3.92088100   -1.81374000   -1.56683100
 
 entry(
     index = 39,
-    label = "imipramine_CCC=O",
+    label = "imipramine_CCCdO",
     molecule =
 """
 1  O u0 p2 c0 {19,D}
@@ -4194,7 +4194,7 @@ H       4.59331200   -2.34011400    6.63258600
 
 entry(
     index = 40,
-    label = "imipramineCCC(O)NCO",
+    label = "desimipramine_ol_4_ol_5",
     molecule =
 """
 1  O u0 p2 c0 {5,S} {44,S}
@@ -4434,7 +4434,7 @@ H       1.97205300    0.02799700   -0.59334100
 
 entry(
     index = 42,
-    label = "imipramineOOj_on_benzene_a",
+    label = "imipramineOOj_benzene_a",
     molecule =
 """
 multiplicity 2
@@ -4557,7 +4557,7 @@ H       0.53648700   -4.51742100   -2.11806800
 
 entry(
     index = 43,
-    label = "imipramine_open7_Cj",
+    label = "imipramine_open_rad_2",
     molecule =
 """
 multiplicity 2
@@ -4676,7 +4676,7 @@ H       4.48364100   -1.02102500   -1.40957800
 
 entry(
     index = 44,
-    label = "imipramineCCC(O)NCOOj",
+    label = "desimipramine_ol_4_peroxy_5",
     molecule =
 """
 multiplicity 2
@@ -4795,7 +4795,7 @@ H       4.41122600   -1.00515500    0.68111900
 
 entry(
     index = 45,
-    label = "imipramine_CCC(OOH)N(COOj)C",
+    label = "imipramine_peroxide_4_peroxy_5",
     molecule =
 """
 multiplicity 2
@@ -4922,7 +4922,7 @@ O      -5.81645500   -0.89907600   -3.31742400
 
 entry(
     index = 46,
-    label = "imipramine_3_ol",
+    label = "imipramine_ol_3",
     molecule =
 """
 1  O u0 p2 c0 {4,S} {46,S}
@@ -5039,87 +5039,6 @@ H       1.64686900    0.54427100    0.22818900
 H       5.34146700   -0.95721700   -0.47147900
 H       4.03546100   -2.07018000   -0.01515800
 H       4.31300300   -0.61087700    0.93032800
-""",
-)
-
-
-
-
-
-
-
-
-
-entry(
-    index = 5000,
-    label = "imipramine_4_OOj_5_OOH",
-    molecule =
-"""
-multiplicity 2
-1  O u0 p2 c0 {2,S} {26,S}
-2  O u0 p2 c0 {1,S} {3,S}
-3  C u0 p0 c0 {2,S} {4,S} {27,S} {28,S}
-4  N u0 p1 c0 {3,S} {5,S} {25,S}
-5  C u0 p0 c0 {4,S} {6,S} {23,S} {29,S}
-6  C u0 p0 c0 {5,S} {7,S} {30,S} {31,S}
-7  C u0 p0 c0 {6,S} {8,S} {32,S} {33,S}
-8  N u0 p1 c0 {7,S} {9,S} {18,S}
-9  C u0 p0 c0 {8,S} {10,D} {14,S}
-10 C u0 p0 c0 {9,D} {11,S} {34,S}
-11 C u0 p0 c0 {10,S} {12,D} {35,S}
-12 C u0 p0 c0 {11,D} {13,S} {36,S}
-13 C u0 p0 c0 {12,S} {14,D} {37,S}
-14 C u0 p0 c0 {9,S} {13,D} {15,S}
-15 C u0 p0 c0 {14,S} {16,S} {38,S} {39,S}
-16 C u0 p0 c0 {15,S} {17,S} {40,S} {41,S}
-17 C u0 p0 c0 {16,S} {18,S} {22,D}
-18 C u0 p0 c0 {8,S} {17,S} {19,D}
-19 C u0 p0 c0 {18,D} {20,S} {42,S}
-20 C u0 p0 c0 {19,S} {21,D} {43,S}
-21 C u0 p0 c0 {20,D} {22,S} {44,S}
-22 C u0 p0 c0 {17,D} {21,S} {45,S}
-23 O u0 p2 c0 {5,S} {24,S}
-24 O u1 p2 c0 {23,S}
-25 C u0 p0 c0 {4,S} {46,S} {47,S} {48,S}
-26 H u0 p0 c0 {1,S}
-27 H u0 p0 c0 {3,S}
-28 H u0 p0 c0 {3,S}
-29 H u0 p0 c0 {5,S}
-30 H u0 p0 c0 {6,S}
-31 H u0 p0 c0 {6,S}
-32 H u0 p0 c0 {7,S}
-33 H u0 p0 c0 {7,S}
-34 H u0 p0 c0 {10,S}
-35 H u0 p0 c0 {11,S}
-36 H u0 p0 c0 {12,S}
-37 H u0 p0 c0 {13,S}
-38 H u0 p0 c0 {15,S}
-39 H u0 p0 c0 {15,S}
-40 H u0 p0 c0 {16,S}
-41 H u0 p0 c0 {16,S}
-42 H u0 p0 c0 {19,S}
-43 H u0 p0 c0 {20,S}
-44 H u0 p0 c0 {21,S}
-45 H u0 p0 c0 {22,S}
-46 H u0 p0 c0 {25,S}
-47 H u0 p0 c0 {25,S}
-48 H u0 p0 c0 {25,S}
-""",
-    thermo = NASA(
-        polynomials = [
-            NASAPolynomial(coeffs=[3.00923,0.166574,-3.12336e-05,-5.44471e-08,2.51763e-11,14844.2,22.4629], Tmin=(10,'K'), Tmax=(1130.96,'K')),
-            NASAPolynomial(coeffs=[32.216,0.127716,-6.51657e-05,1.59368e-08,-1.51922e-12,4116.64,-140.258], Tmin=(1130.96,'K'), Tmax=(3000,'K')),
-        ],
-        Tmin = (10,'K'),
-        Tmax = (3000,'K'),
-        E0 = (123.634,'kJ/mol'),
-        Cp0 = (33.2579,'J/(mol*K)'),
-        CpInf = (1180.66,'J/(mol*K)'),
-    ),
-    shortDesc = """""",
-    longDesc =
-"""
-thermo COPIED from imipramine_CCC(OOH)N(COOj)C above, should be calculated
 """,
 )
 
@@ -5793,7 +5712,7 @@ H       0.69069500   -1.08425800   -0.90773000
 
 entry(
     index = 59,
-    label = "imipramine_3_peroxide",
+    label = "imipramine_peroxide_3",
     molecule =
 """
 1  O u0 p2 c0 {2,S} {5,S}
@@ -5917,7 +5836,7 @@ H       0.73132100    1.23518100    5.80640400
 
 entry(
     index = 60,
-    label = "imipramine_b1_peroxide",
+    label = "imipramine_peroxide_b1",
     molecule =
 """
 1  O u0 p2 c0 {2,S} {7,S}
@@ -6036,6 +5955,96 @@ H      -0.24315300    2.24763600    2.06982600
 H      -1.65156400    4.23733000    2.38619700
 H      -3.47721500    4.73545200    0.77822400
 H      -3.86869900    3.21317200   -1.13032200
+""",
+)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+entry(
+    index = 5000,
+    label = "imipramine_4_OOj_5_OOH",
+    molecule =
+"""
+multiplicity 2
+1  O u0 p2 c0 {2,S} {26,S}
+2  O u0 p2 c0 {1,S} {3,S}
+3  C u0 p0 c0 {2,S} {4,S} {27,S} {28,S}
+4  N u0 p1 c0 {3,S} {5,S} {25,S}
+5  C u0 p0 c0 {4,S} {6,S} {23,S} {29,S}
+6  C u0 p0 c0 {5,S} {7,S} {30,S} {31,S}
+7  C u0 p0 c0 {6,S} {8,S} {32,S} {33,S}
+8  N u0 p1 c0 {7,S} {9,S} {18,S}
+9  C u0 p0 c0 {8,S} {10,D} {14,S}
+10 C u0 p0 c0 {9,D} {11,S} {34,S}
+11 C u0 p0 c0 {10,S} {12,D} {35,S}
+12 C u0 p0 c0 {11,D} {13,S} {36,S}
+13 C u0 p0 c0 {12,S} {14,D} {37,S}
+14 C u0 p0 c0 {9,S} {13,D} {15,S}
+15 C u0 p0 c0 {14,S} {16,S} {38,S} {39,S}
+16 C u0 p0 c0 {15,S} {17,S} {40,S} {41,S}
+17 C u0 p0 c0 {16,S} {18,S} {22,D}
+18 C u0 p0 c0 {8,S} {17,S} {19,D}
+19 C u0 p0 c0 {18,D} {20,S} {42,S}
+20 C u0 p0 c0 {19,S} {21,D} {43,S}
+21 C u0 p0 c0 {20,D} {22,S} {44,S}
+22 C u0 p0 c0 {17,D} {21,S} {45,S}
+23 O u0 p2 c0 {5,S} {24,S}
+24 O u1 p2 c0 {23,S}
+25 C u0 p0 c0 {4,S} {46,S} {47,S} {48,S}
+26 H u0 p0 c0 {1,S}
+27 H u0 p0 c0 {3,S}
+28 H u0 p0 c0 {3,S}
+29 H u0 p0 c0 {5,S}
+30 H u0 p0 c0 {6,S}
+31 H u0 p0 c0 {6,S}
+32 H u0 p0 c0 {7,S}
+33 H u0 p0 c0 {7,S}
+34 H u0 p0 c0 {10,S}
+35 H u0 p0 c0 {11,S}
+36 H u0 p0 c0 {12,S}
+37 H u0 p0 c0 {13,S}
+38 H u0 p0 c0 {15,S}
+39 H u0 p0 c0 {15,S}
+40 H u0 p0 c0 {16,S}
+41 H u0 p0 c0 {16,S}
+42 H u0 p0 c0 {19,S}
+43 H u0 p0 c0 {20,S}
+44 H u0 p0 c0 {21,S}
+45 H u0 p0 c0 {22,S}
+46 H u0 p0 c0 {25,S}
+47 H u0 p0 c0 {25,S}
+48 H u0 p0 c0 {25,S}
+""",
+    thermo = NASA(
+        polynomials = [
+            NASAPolynomial(coeffs=[3.00923,0.166574,-3.12336e-05,-5.44471e-08,2.51763e-11,14844.2,22.4629], Tmin=(10,'K'), Tmax=(1130.96,'K')),
+            NASAPolynomial(coeffs=[32.216,0.127716,-6.51657e-05,1.59368e-08,-1.51922e-12,4116.64,-140.258], Tmin=(1130.96,'K'), Tmax=(3000,'K')),
+        ],
+        Tmin = (10,'K'),
+        Tmax = (3000,'K'),
+        E0 = (123.634,'kJ/mol'),
+        Cp0 = (33.2579,'J/(mol*K)'),
+        CpInf = (1180.66,'J/(mol*K)'),
+    ),
+    shortDesc = """""",
+    longDesc =
+"""
+thermo COPIED from imipramine_CCC(OOH)N(COOj)C above, should be calculated
 """,
 )
 

@@ -9239,7 +9239,7 @@ C1=CC=C2CCCCCC2=C1
 
 ##### API polycyclic
 entry(
-    index = 216,
+    index = 800,
     label = "Benzazepine",
     group =
 """
@@ -9265,6 +9265,30 @@ entry(
     longDesc =
 u""""
 Based on 6 CBS-QB3 calculations
+""",
+)
+
+entry(
+    index = 801,
+    label = "Benzazepene",
+    group =
+"""
+1    R!H u0 {2,B} {3,B} {6,[S,D,T,B]}
+2    R!H u0 {1,B} {4,B} {5,[S,D,T,B]}
+3    R!H u0 {1,B} {9,B}
+4    R!H u0 {2,B} {7,B}
+5    R!H u0 {2,[S,D,T,B]} {8,D}
+6    N3s u0 {1,[S,D,T,B]} {10,[S,D,T,B]}
+7  * R!H u0 {4,B} {9,B}
+8    R!H u0 {5,D} {11,[S,D,T,B]}
+9    R!H u0 {3,B} {7,B}
+10   R!H u0 {6,[S,D,T,B]} {11,[S,D,T,B]}
+11   R!H u0 {10,[S,D,T,B]} {8,[S,D,T,B]}
+""",
+    thermo=u"Benzazepine",
+    shortDesc = u"""use Benzazepine, should be refitted""",
+    longDesc =
+u""""
 """,
 )
 #### end of API polycyclic
@@ -10126,6 +10150,7 @@ L1: PolycyclicRing
             L4: Benzazepine
             L4: s2_6_7_ben_ene
                 L5: s2_6_7_ben_ene_1
+                    L6: Benzazepene
                     L6: s2_6_7_ben_diene_1_3
     L2: s3_4_4
         L3: s3_4_4_ane

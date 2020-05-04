@@ -17,6 +17,8 @@ template(reactants=["Root"], products=["ester", "amine"], ownReverse=False)
 
 reverse = "amine_ester_condensation"
 reversible = True
+reactantNum = 2
+productNum = 2
 
 only_forward = True
 

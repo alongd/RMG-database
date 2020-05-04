@@ -424,63 +424,63 @@ entry(
     """,
 )
 
-entry(
-    index = 800,
-    label = "imipramine_ol_5 + cyanoisopropylOO <=> imipramine_ol_5_rad_4 + cyanoisopropylOOH",
-    degeneracy = 2.0,
-    kinetics = Arrhenius(A=(2.2408e+08,'cm^3/(mol*s)'), n=0, Ea=(47.4742,'kJ/mol'), T0=(1,'K'), Tmin=(275,'K'),
-                         Tmax=(350,'K'), comment="""Fitted to 100 data points; dA = *|/ 1.00019, dn = +|- 0, 
-                         dEa = +|- 0.000483392 kJ/mol"""),
-    longDesc =
-u"""
-copied over, not calculated!!
-""",
-)
-
-entry(
-    index = 801,
-    label = "imipramine_ol_5 + cyanoisopropylOO <=> imipramine_ol_5_rad_4 + cyanoisopropylOOH",
-    kinetics=Arrhenius(A=(3.94097e+07, 'cm^3/(mol*s)'), n=0, Ea=(56.0508, 'kJ/mol'), T0=(1, 'K'), Tmin=(275, 'K'),
-                       Tmax=(350, 'K'), comment="""Fitted to 100 data points; dA = *|/ 1.00014, dn = +|- 0, 
-                     dEa = +|- 0.000364259 kJ/mol"""),
-    shortDesc = u"""k11+k12""",
-)
-
-entry(
-    index = 802,
-    label = "imipramine_ol_5 + cyanoisopropylOO <=> imipramine_ol_5_rad_4 + cyanoisopropylOOH",
-    kinetics=Arrhenius(A=(1.32296e+09, 'cm^3/(mol*s)'), n=0, Ea=(41.7324, 'kJ/mol'), T0=(1, 'K'), Tmin=(275, 'K'),
-                       Tmax=(350, 'K'), comment="""Fitted to 100 data points; dA = *|/ 1.00002, dn = +|- 0, 
-                     dEa = +|- 4.59316e-05 kJ/mol"""),
-    longDesc=
-    u"""
-    copied over, not calculated!!
-    """,
-)
-
-entry(
-    index = 803,
-    label = "imipramine_ol_5 + cyanoisopropylOO <=> imipramine_ol_5_rad_4 + cyanoisopropylOOH",
-    kinetics=Arrhenius(A=(4.7123e+06, 'cm^3/(mol*s)'), n=0, Ea=(24.1853, 'kJ/mol'), T0=(1, 'K'), Tmin=(275, 'K'),
-                       Tmax=(350, 'K'), comment="""Fitted to 100 data points; dA = *|/ 1.00028, dn = +|- 0, 
-                     dEa = +|- 0.000717396 kJ/mol"""),
-    longDesc=
-    u"""
-    copied over, not calculated!!
-    """,
-)
-
-entry(
-    index = 804,
-    label = "imipramine_ol_5 + cyanoisopropylOO <=> imipramine_ol_5_rad_4 + cyanoisopropylOOH",
-    kinetics=Arrhenius(A=(2.1327e+09, 'cm^3/(mol*s)'), n=0, Ea=(46.4329, 'kJ/mol'), T0=(1, 'K'), Tmin=(275, 'K'),
-                       Tmax=(350, 'K'), comment="""Fitted to 100 data points; dA = *|/ 1.00198, dn = +|- 0, 
-                     dEa = +|- 0.00509461 kJ/mol"""),
-    longDesc=
-    u"""
-    copied over, not calculated!!
-    """,
-)
+# entry(
+#     index = 800,
+#     label = "imipramine_ol_5 + cyanoisopropylOO <=> imipramine_ol_5_rad_4 + cyanoisopropylOOH",
+#     degeneracy = 2.0,
+#     kinetics = Arrhenius(A=(2.2408e+08,'cm^3/(mol*s)'), n=0, Ea=(47.4742,'kJ/mol'), T0=(1,'K'), Tmin=(275,'K'),
+#                          Tmax=(350,'K'), comment="""Fitted to 100 data points; dA = *|/ 1.00019, dn = +|- 0,
+#                          dEa = +|- 0.000483392 kJ/mol"""),
+#     longDesc =
+# u"""
+# copied over, not calculated!!
+# """,
+# )
+#
+# entry(
+#     index = 801,
+#     label = "imipramine_ol_5 + cyanoisopropylOO <=> imipramine_ol_5_rad_4 + cyanoisopropylOOH",
+#     kinetics=Arrhenius(A=(3.94097e+07, 'cm^3/(mol*s)'), n=0, Ea=(56.0508, 'kJ/mol'), T0=(1, 'K'), Tmin=(275, 'K'),
+#                        Tmax=(350, 'K'), comment="""Fitted to 100 data points; dA = *|/ 1.00014, dn = +|- 0,
+#                      dEa = +|- 0.000364259 kJ/mol"""),
+#     shortDesc = u"""k11+k12""",
+# )
+#
+# entry(
+#     index = 802,
+#     label = "imipramine_ol_5 + cyanoisopropylOO <=> imipramine_ol_5_rad_4 + cyanoisopropylOOH",
+#     kinetics=Arrhenius(A=(1.32296e+09, 'cm^3/(mol*s)'), n=0, Ea=(41.7324, 'kJ/mol'), T0=(1, 'K'), Tmin=(275, 'K'),
+#                        Tmax=(350, 'K'), comment="""Fitted to 100 data points; dA = *|/ 1.00002, dn = +|- 0,
+#                      dEa = +|- 4.59316e-05 kJ/mol"""),
+#     longDesc=
+#     u"""
+#     copied over, not calculated!!
+#     """,
+# )
+#
+# entry(
+#     index = 803,
+#     label = "imipramine_ol_5 + cyanoisopropylOO <=> imipramine_ol_5_rad_4 + cyanoisopropylOOH",
+#     kinetics=Arrhenius(A=(4.7123e+06, 'cm^3/(mol*s)'), n=0, Ea=(24.1853, 'kJ/mol'), T0=(1, 'K'), Tmin=(275, 'K'),
+#                        Tmax=(350, 'K'), comment="""Fitted to 100 data points; dA = *|/ 1.00028, dn = +|- 0,
+#                      dEa = +|- 0.000717396 kJ/mol"""),
+#     longDesc=
+#     u"""
+#     copied over, not calculated!!
+#     """,
+# )
+#
+# entry(
+#     index = 804,
+#     label = "imipramine_ol_5 + cyanoisopropylOO <=> imipramine_ol_5_rad_4 + cyanoisopropylOOH",
+#     kinetics=Arrhenius(A=(2.1327e+09, 'cm^3/(mol*s)'), n=0, Ea=(46.4329, 'kJ/mol'), T0=(1, 'K'), Tmin=(275, 'K'),
+#                        Tmax=(350, 'K'), comment="""Fitted to 100 data points; dA = *|/ 1.00198, dn = +|- 0,
+#                      dEa = +|- 0.00509461 kJ/mol"""),
+#     longDesc=
+#     u"""
+#     copied over, not calculated!!
+#     """,
+# )
 
 entry(
     index = 30,

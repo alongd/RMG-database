@@ -49545,6 +49545,31 @@ Added by Oscar using two CBS-QB3 calculations for imipramine API project
 """,
 )
 
+entry(
+    index = 8004,
+    label = "Cs-CsN3s(O2sO2sH)",
+    group =
+"""
+1 * Cs  u0 {2,S} {3,S} {4,S} {5,S}
+2   Cs  u0 {1,S}
+3   N3s u0 {1,S}
+4   O2s u0 {1,S} {6,S}
+5   H   u0 {1,S}
+6   O2s u0 {4,S}
+""",
+    thermo=ThermoData(
+        Tdata=([300, 400, 500, 600, 800, 1000, 1500], 'K'),
+        Cpdata=([13.62, 19.66, 24.87, 29.65, 39.16, 44.82, 54.67], 'J/(mol*K)'),
+        H298=(-63.22, 'kJ/mol'),
+        S298=(-90.74, 'J/(mol*K)'),
+    ),
+    shortDesc = u"""Cs-CsN3s(O2sO2sH)""",
+    longDesc =
+u"""
+Added by Oscar using six CBS-QB3 calculations for imipramine API project
+""",
+)
+
 ########## End of API DB groups
 
 
@@ -50222,6 +50247,7 @@ L1: R
         L3: Cs
             L4: Cs-NO
                 L5: Cs-CsN3sO2sH
+                    L6: Cs-CsN3s(O2sO2sH)
                 L5: Cs-N3sO2sHH
                 L5: Cs-N3dO2sHH
             L4: Cs-NHHH

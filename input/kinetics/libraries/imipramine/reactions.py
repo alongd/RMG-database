@@ -953,7 +953,7 @@ TS geom
 entry(
     index = 38,
     label = "imipramine_tail_2_OO_rad <=> imipramine_tail_2_OOH_4_rad",
-    degeneracy = 1.0,
+    degeneracy = 2.0,
     kinetics = Arrhenius(A=(2.01382e+10,'s^-1'), n=0, Ea=(64.066,'kJ/mol'), T0=(1,'K'), Tmin=(275,'K'), Tmax=(350,'K')),
     longDesc =
 """

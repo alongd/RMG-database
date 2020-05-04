@@ -4680,8 +4680,13 @@ entry(
 5   C  u0 {1,S}
 6   H  u0 {3,S}
 """,
-    thermo = u"""C2CsJOOH""",
-    shortDesc = u"""use C2CsJOOH""",
+    thermo=ThermoData(
+        Tdata=([300, 400, 500, 600, 800, 1000, 1500], 'K'),
+        Cpdata=([2.48, 0.91, -1.19, -3.72, -8.8, -12.78, -19.29], 'J/(mol*K)'),
+        H298=(411.41, 'kJ/mol'),
+        S298=(5.95, 'J/(mol*K)'),
+    ),
+    shortDesc = u"""fitted using three wb97xd/def2tzvp calculations with BAC""",
     longDesc =
 u"""
 

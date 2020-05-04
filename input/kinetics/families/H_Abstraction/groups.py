@@ -361,6 +361,46 @@ entry(
 )
 
 entry(
+    index = 10003,
+    label = "cyanoisopropylOOH",
+    group =
+"""
+1  N u0 p1 c0 {2,T}
+2  C u0 p0 c0 {1,T} {3,S}
+3  C u0 p0 c0 {2,S} {4,S} {6,S} {7,S}
+4  O u0 p2 c0 {3,S} {5,S}
+5  *1 O u0 p2 c0 {4,S} {8,S}
+6  C u0 p0 c0 {3,S} {9,S} {10,S} {11,S}
+7  C u0 p0 c0 {3,S} {12,S} {13,S} {14,S}
+8  *2 H u0 p0 c0 {5,S}
+9  H u0 p0 c0 {6,S}
+10 H u0 p0 c0 {6,S}
+11 H u0 p0 c0 {6,S}
+12 H u0 p0 c0 {7,S}
+13 H u0 p0 c0 {7,S}
+14 H u0 p0 c0 {7,S}
+""",
+    kinetics = None,
+)
+
+entry(
+    index = 10004,
+    label = "OHOCH2OOH",
+    group =
+"""
+1 O u0 p2 c0 {2,S} {5,S}
+2 C u0 p0 c0 {1,S} {3,S} {6,S} {7,S}
+3 O u0 p2 c0 {2,S} {4,S}
+4 *1 O u0 p2 c0 {3,S} {8,S}
+5 H u0 p0 c0 {1,S}
+6 H u0 p0 c0 {2,S}
+7 H u0 p0 c0 {2,S}
+8 *2 H u0 p0 c0 {4,S}
+""",
+    kinetics = None,
+)
+
+entry(
     index = 10025,
     label = "ROOH_imipramine_1",
     group =
@@ -4395,26 +4435,16 @@ entry(
 
 entry(
     index = 10002,
-    label = "OOCC",
+    label = "OHCH2OO",
     group =
 """
-1    O u0 {2,S} {3,S}
-2 *3 O u1 {1,S}
-3    C u0 {1,S} {4,S}
-4    C ux {3,S}
-""",
-    kinetics = None,
-)
-
-entry(
-    index = 10003,
-    label = "OOCO",
-    group =
-"""
-1    O u0 {2,S} {3,S}
-2 *3 O u1 {1,S}
-3    C u0 {1,S} {4,S}
-4    O ux {3,S}
+1 O u0 p2 c0 {2,S} {5,S}
+2 C u0 p0 c0 {1,S} {3,S} {6,S} {7,S}
+3 O u0 p2 c0 {2,S} {4,S}
+4 *3 O u1 p2 c0 {3,S}
+5 H u0 p0 c0 {1,S}
+6 H u0 p0 c0 {2,S}
+7 H u0 p0 c0 {2,S}
 """,
     kinetics = None,
 )
@@ -7570,6 +7600,8 @@ L1: X_H_or_Xrad_H_Xbirad_H_Xtrirad_H
             L4: O_sec
                 L5: O/H/NonDeC
                 L5: O/H/NonDeO
+                    L6: cyanoisopropylOOH
+                    L6: OHOCH2OOH
                     L6: H2O2
                     L6: ROOH_pri
                     L6: ROOH_sec
@@ -7855,9 +7887,8 @@ L1: Y_rad_birad_trirad_quadrad
                     L6: O_rad/Cs\H2\Cs|H|Cs2
                 L5: O_rad/NonDeO
                     L6: OOC
-                        L7: OOCC
-                            L8: cyanoisopropylOO
-                        L7: OOCO
+                        L7: cyanoisopropylOO
+                        L7: OHCH2OO
                 L5: O_rad/NonDeN
                 L5: O_rad/OneDe
                     L6: O_rad/OneDeC

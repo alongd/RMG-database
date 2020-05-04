@@ -1958,3 +1958,67 @@ H       1.12537600   -0.27521300   -0.19626800
 H      -0.12287500   -0.26587500   -2.13161400
 """,
 )
+
+entry(
+    index = 33,
+    label = "OOCNCOOj",
+    molecule =
+"""
+multiplicity 2
+1  O u0 p2 c0 {3,S} {6,S}
+2  O u0 p2 c0 {4,S} {7,S}
+3  O u0 p2 c0 {1,S} {13,S}
+4  O u1 p2 c0 {2,S}
+5  N u0 p1 c0 {6,S} {7,S} {12,S}
+6  C u0 p0 c0 {1,S} {5,S} {8,S} {9,S}
+7  C u0 p0 c0 {2,S} {5,S} {10,S} {11,S}
+8  H u0 p0 c0 {6,S}
+9  H u0 p0 c0 {6,S}
+10 H u0 p0 c0 {7,S}
+11 H u0 p0 c0 {7,S}
+12 H u0 p0 c0 {5,S}
+13 H u0 p0 c0 {3,S}
+""",
+    thermo = NASA(
+        polynomials = [
+            NASAPolynomial(coeffs=[3.56925,0.0380171,4.3939e-06,-3.73281e-08,2.00377e-11,-15382.9,12.9224], Tmin=(10,'K'), Tmax=(758.106,'K')),
+            NASAPolynomial(coeffs=[4.88457,0.0418742,-2.46011e-05,6.95617e-09,-7.61095e-13,-15892.6,4.89465], Tmin=(758.106,'K'), Tmax=(3000,'K')),
+        ],
+        Tmin = (10,'K'),
+        Tmax = (3000,'K'),
+        E0 = (-127.944,'kJ/mol'),
+        Cp0 = (33.2579,'J/(mol*K)'),
+        CpInf = (307.635,'J/(mol*K)'),
+    ),
+    shortDesc = """""",
+    longDesc =
+"""
+CBS-QB3
+
+Bond corrections: {'O-O': 2, 'C-O': 2, 'H-O': 1, 'C-N': 2, 'C-H': 4, 'H-N': 1}
+1D rotors:
+* Invalidated! pivots: [1, 2], dihedral: [8, 1, 2, 3], invalidation reason: The rotor scan has a barrier of 48.81 kJ/mol, which is higher than the maximal barrier for rotation (40.00 kJ/mol)
+* Invalidated! pivots: [2, 3], dihedral: [1, 2, 3, 4], invalidation reason: 
+* Invalidated! pivots: [3, 4], dihedral: [2, 3, 4, 5], invalidation reason: 
+* Invalidated! pivots: [4, 5], dihedral: [3, 4, 5, 6], invalidation reason: 
+* Invalidated! pivots: [5, 6], dihedral: [4, 5, 6, 7], invalidation reason: 
+
+
+External symmetry: 1, optical isomers: 2
+
+Geometry:
+O       1.95785300   -0.53224000   -0.92600100
+O       1.63344600   -0.02712300    0.39135300
+C       0.79368100    1.10681800    0.20961100
+N      -0.50779800    0.83850500   -0.34682400
+C      -1.38329100   -0.01257900    0.33702800
+O      -0.97596400   -1.48065200    0.36797300
+O      -0.61128800   -1.89784600   -0.81973600
+H       1.31806700   -1.26230100   -1.00355100
+H       1.29458800    1.83774200   -0.42884500
+H       0.69344400    1.49989900    1.22526900
+H      -0.48431000    0.66637100   -1.34310300
+H      -2.36993700   -0.02517200   -0.12568000
+H      -1.44254500    0.21728300    1.40040000
+""",
+)

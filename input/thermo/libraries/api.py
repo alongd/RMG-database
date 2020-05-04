@@ -7921,12 +7921,6 @@ thermo COPIED from imipramine_CCC(OOH)N(COOj)C above, should be calculated
 """,
 )
 
-
-
-
-
-
-
 entry(
     index = 6000,
     label = "imipramine_1_OOCOH",
@@ -8009,9 +8003,155 @@ H298 = (-73.2099,'kJ/mol')
 """,
 )
 
+entry(
+    index = 7000,
+    label = "imipramine_ol_1_rad_1",
+    molecule =
+"""
+multiplicity 2
+1  C u0 p0 c0 {2,S} {23,S} {24,S} {25,S}
+2  N u0 p1 c0 {1,S} {3,S} {4,S}
+3  C u0 p0 c0 {2,S} {26,S} {27,S} {28,S}
+4  C u0 p0 c0 {2,S} {5,S} {29,S} {30,S}
+5  C u0 p0 c0 {4,S} {6,S} {31,S} {32,S}
+6  C u0 p0 c0 {5,S} {7,S} {33,S} {34,S}
+7  N u0 p1 c0 {6,S} {8,S} {22,S}
+8  C u0 p0 c0 {7,S} {9,D} {13,S}
+9  C u0 p0 c0 {8,D} {10,S} {35,S}
+10 C u0 p0 c0 {9,S} {11,D} {36,S}
+11 C u0 p0 c0 {10,D} {12,S} {37,S}
+12 C u0 p0 c0 {11,S} {13,D} {38,S}
+13 C u0 p0 c0 {8,S} {12,D} {14,S}
+14 C u1 p0 c0 {13,S} {15,S} {16,S}
+15 O u0 p2 c0 {14,S} {39,S}
+16 C u0 p0 c0 {14,S} {17,S} {40,S} {41,S}
+17 C u0 p0 c0 {16,S} {18,D} {22,S}
+18 C u0 p0 c0 {17,D} {19,S} {42,S}
+19 C u0 p0 c0 {18,S} {20,D} {43,S}
+20 C u0 p0 c0 {19,D} {21,S} {44,S}
+21 C u0 p0 c0 {20,S} {22,D} {45,S}
+22 C u0 p0 c0 {7,S} {17,S} {21,D}
+23 H u0 p0 c0 {1,S}
+24 H u0 p0 c0 {1,S}
+25 H u0 p0 c0 {1,S}
+26 H u0 p0 c0 {3,S}
+27 H u0 p0 c0 {3,S}
+28 H u0 p0 c0 {3,S}
+29 H u0 p0 c0 {4,S}
+30 H u0 p0 c0 {4,S}
+31 H u0 p0 c0 {5,S}
+32 H u0 p0 c0 {5,S}
+33 H u0 p0 c0 {6,S}
+34 H u0 p0 c0 {6,S}
+35 H u0 p0 c0 {9,S}
+36 H u0 p0 c0 {10,S}
+37 H u0 p0 c0 {11,S}
+38 H u0 p0 c0 {12,S}
+39 H u0 p0 c0 {15,S}
+40 H u0 p0 c0 {16,S}
+41 H u0 p0 c0 {16,S}
+42 H u0 p0 c0 {18,S}
+43 H u0 p0 c0 {19,S}
+44 H u0 p0 c0 {20,S}
+45 H u0 p0 c0 {21,S}
+""",
+    thermo = ThermoData(
+        Tdata = ([300,400,500,600,800,1000,1500],'K'),
+        Cpdata = ([374.562,517.584,606.854,678.34,790.809,869.835,982.05],'J/(mol*K)'),
+        H298 = (336.866,'kJ/mol'),
+        S298 = (703.086,'J/(mol*K)'),
+        Cp0=(33.2579,'J/(mol*K)'),
+        CpInf=(1076.72,'J/(mol*K)')
+    ),
+    shortDesc = u"""""",
+    longDesc =
+"""
+thermo estimated, should be calculated
 
-ThermoData(Tdata=([300,400,500,600,800,1000,1500],'K'),
-           Cpdata=([433.25,600.092,705.341,786.322,909.45,995.929,1113.86],'J/(mol*K)'),
-           H298=(-73.2099,'kJ/mol'), S298=(783.359,'J/(mol*K)'),
-           Cp0=(33.2579,'J/(mol*K)'), CpInf=(1213.91,'J/(mol*K)'),
-           comment="""Thermo group additivity estimation: group(O2s-OsCs) + group(O2s-OsCs) + group(O2s-CsH) + group(N3s-CsCsCs) + group(N3s-CbCbCs) + group(Cs-CbCsOsH) + group(Cs-CsCsHH) + group(Cs-N3sCsHH) + group(Cs-CbCsHH) + group(Cs-N3sCsHH) + group(Cs-N3sHHH) + group(Cs-N3sHHH) + group(Cs-OsOsHH) + group(Cb-Cs) + group(Cb-Cs) + group(Cb-N3s) + group(Cb-N3s) + group(Cb-H) + group(Cb-H) + group(Cb-H) + group(Cb-H) + group(Cb-H) + group(Cb-H) + group(Cb-H) + group(Cb-H) + polycyclic(Benzazepine) + polycyclic(Benzazepine) - ring(azepane)""")
+originally:
+Thermo group additivity estimation: group(O2s-CsH) + group(N3s-CsCsCs) + group(N3s-CbCbCs) + group(Cs-CbCsOsH) + 
+group(Cs-CsCsHH) + group(Cs-N3sCsHH) + group(Cs-N3sCsHH) + group(Cs-CbCsHH) + group(Cs-N3sHHH) + group(Cs-N3sHHH) + 
+group(Cb-Cs) + group(Cb-Cs) + group(Cb-N3s) + group(Cb-N3s) + group(Cb-H) + group(Cb-H) + group(Cb-H) + group(Cb-H) + 
+group(Cb-H) + group(Cb-H) + group(Cb-H) + group(Cb-H) + polycyclic(Benzazepine) + polycyclic(Benzazepine) - 
+ring(azepane) + radical(C2CsJOH)
+
+H298 = (216.866,'kJ/mol')
+
+""",
+)
+
+entry(
+    index = 8000,
+    label = "imipramine_ket_1",
+    molecule =
+"""
+1  C u0 p0 c0 {2,S} {23,S} {24,S} {25,S}
+2  N u0 p1 c0 {1,S} {3,S} {4,S}
+3  C u0 p0 c0 {2,S} {26,S} {27,S} {28,S}
+4  C u0 p0 c0 {2,S} {5,S} {29,S} {30,S}
+5  C u0 p0 c0 {4,S} {6,S} {31,S} {32,S}
+6  C u0 p0 c0 {5,S} {7,S} {33,S} {34,S}
+7  N u0 p1 c0 {6,S} {8,S} {22,S}
+8  C u0 p0 c0 {7,S} {9,D} {13,S}
+9  C u0 p0 c0 {8,D} {10,S} {35,S}
+10 C u0 p0 c0 {9,S} {11,D} {36,S}
+11 C u0 p0 c0 {10,D} {12,S} {37,S}
+12 C u0 p0 c0 {11,S} {13,D} {38,S}
+13 C u0 p0 c0 {8,S} {12,D} {14,S}
+14 C u0 p0 c0 {13,S} {15,D} {16,S}
+15 O u0 p2 c0 {14,D}
+16 C u0 p0 c0 {14,S} {17,S} {39,S} {40,S}
+17 C u0 p0 c0 {16,S} {18,D} {22,S}
+18 C u0 p0 c0 {17,D} {19,S} {41,S}
+19 C u0 p0 c0 {18,S} {20,D} {42,S}
+20 C u0 p0 c0 {19,D} {21,S} {43,S}
+21 C u0 p0 c0 {20,S} {22,D} {44,S}
+22 C u0 p0 c0 {7,S} {17,S} {21,D}
+23 H u0 p0 c0 {1,S}
+24 H u0 p0 c0 {1,S}
+25 H u0 p0 c0 {1,S}
+26 H u0 p0 c0 {3,S}
+27 H u0 p0 c0 {3,S}
+28 H u0 p0 c0 {3,S}
+29 H u0 p0 c0 {4,S}
+30 H u0 p0 c0 {4,S}
+31 H u0 p0 c0 {5,S}
+32 H u0 p0 c0 {5,S}
+33 H u0 p0 c0 {6,S}
+34 H u0 p0 c0 {6,S}
+35 H u0 p0 c0 {9,S}
+36 H u0 p0 c0 {10,S}
+37 H u0 p0 c0 {11,S}
+38 H u0 p0 c0 {12,S}
+39 H u0 p0 c0 {16,S}
+40 H u0 p0 c0 {16,S}
+41 H u0 p0 c0 {18,S}
+42 H u0 p0 c0 {19,S}
+43 H u0 p0 c0 {20,S}
+44 H u0 p0 c0 {21,S}
+""",
+    thermo = ThermoData(
+        Tdata = ([300,400,500,600,800,1000,1500],'K'),
+        Cpdata = ([360.262,501.843,591.151,664.68,778.581,859.286,962.942],'J/(mol*K)'),
+        H298 = (190.6214,'kJ/mol'),
+        S298 = (661.32,'J/(mol*K)'),
+        Cp0=(33.2579,'J/(mol*K)'),
+        CpInf=(1055.94,'J/(mol*K)')
+    ),
+    shortDesc = u"""""",
+    longDesc =
+"""
+thermo estimated, should be calculated
+
+originally:
+Thermo group additivity estimation: missing(O2d-CO) + group(N3s-CsCsCs) + group(N3s-CbCbCs) + group(Cs-CsCsHH) + 
+group(Cs-N3sCsHH) + group(Cs-N3sCsHH) + group(Cs-(Cds-O2d)CbHH) + group(Cs-N3sHHH) + group(Cs-N3sHHH) + group(Cb-Cs) + 
+group(Cb-N3s) + group(Cb-N3s) + group(Cb-(Cds-O2d)) + group(Cds-O2d(Cds-Cds)Cs) + group(Cb-H) + group(Cb-H) + 
+group(Cb-H) + group(Cb-H) + group(Cb-H) + group(Cb-H) + group(Cb-H) + group(Cb-H) + polycyclic(Benzazepine) + 
+polycyclic(Benzazepine) - ring(azepane)
+
+H298 = (90.6214,'kJ/mol')
+
+""",
+)
+

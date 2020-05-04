@@ -72,7 +72,7 @@ default = {
     'methanoate_hydrolysis',  # custom
     'thione_ketone',  # custom
     'amine_COH_HCN',  # custom
-    'amide_alcoholysis',  # custom
+    # 'amide_alcoholysis',  # custom
 }
 
 # Peroxide chemistry families that are likely relevant in liquid-phase

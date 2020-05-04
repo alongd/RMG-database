@@ -10011,7 +10011,93 @@ TS geom
 """,
 )
 
+entry(
+    index = 10021,
+    label = "imipramine_tail_2_OO_rad_r <=> imipramine_tail_2_OOH_4_rad_p",
+    degeneracy = 2.0,
+    kinetics = Arrhenius(A=(2.01382e+10,'s^-1'), n=0, Ea=(64.066,'kJ/mol'), T0=(1,'K'), Tmin=(275,'K'), Tmax=(350,'K')),
+    longDesc =
+"""
+dlpno-ccsd(t)/def2-tzvp/def2-tzvp/c//apfd/def2tzvp
+solvation: SMD water, sp was corrected using APFD/6-311+G(2d,p) SMD water
 
+ts1051
+
+TS method summary for TS0 in fargment_peroxide_rad_4 <=> fargment_peroxide_4
+
+The method that generated the best TS guess and its output used for the optimization: user guess 0
+
+TS external symmetry: 1, TS optical isomers: 2
+
+Optimized TS geometry:
+N       4.71018900    0.25300500   -0.16010100
+C       3.74874000   -0.76583200   -0.15633500
+C       2.49883600   -0.46247100    0.62972100
+H       4.15446700   -1.77120300   -0.01723600
+C       1.51579600    0.36330700   -0.21905400
+H       2.01459800   -1.39801900    0.91142300
+H       2.71950700    0.09316600    1.54939000
+N       0.33342600    0.74614300    0.46587900
+H       2.02181000    1.26842900   -0.57662500
+C      -0.48803600   -0.32717800    0.99150400
+C      -0.45572100    1.71490000   -0.26925900
+H      -1.27484900    0.10697500    1.61189900
+H       0.10091800   -0.98789600    1.62666900
+H      -1.22187400    2.13038100    0.38918200
+H      -0.95141200    1.28497800   -1.15065200
+H       0.18430000    2.53324300   -0.60420800
+H       5.66223000    0.00609100   -0.36328600
+H       4.61172000    1.00548700    0.50045000
+H       3.21003500   -0.80565300   -1.33632300
+H      -0.96401600   -0.93113000    0.20678900
+O       1.20182400   -0.42476000   -1.38005000
+O       2.33004300   -0.46518000   -2.18550600
+""",
+)
+
+entry(
+    index = 10022,
+    label = "imipramine_tail_2_OOH_4_rad_r <=> imipramine_tail_2_OO_rad_p",
+    degeneracy = 1.0,
+    kinetics = Arrhenius(A=(9.39431e+10,'s^-1'), n=0, Ea=(33.9478,'kJ/mol'), T0=(1,'K'), Tmin=(275,'K'), Tmax=(350,'K')),
+    longDesc =
+"""
+dlpno-ccsd(t)/def2-tzvp/def2-tzvp/c//apfd/def2tzvp
+solvation: SMD water, sp was corrected using APFD/6-311+G(2d,p) SMD water
+
+ts1051 reverse
+
+TS method summary for TS0 in fargment_peroxide_rad_4 <=> fargment_peroxide_4
+
+The method that generated the best TS guess and its output used for the optimization: user guess 0
+
+TS external symmetry: 1, TS optical isomers: 2
+
+Optimized TS geometry:
+N       4.71018900    0.25300500   -0.16010100
+C       3.74874000   -0.76583200   -0.15633500
+C       2.49883600   -0.46247100    0.62972100
+H       4.15446700   -1.77120300   -0.01723600
+C       1.51579600    0.36330700   -0.21905400
+H       2.01459800   -1.39801900    0.91142300
+H       2.71950700    0.09316600    1.54939000
+N       0.33342600    0.74614300    0.46587900
+H       2.02181000    1.26842900   -0.57662500
+C      -0.48803600   -0.32717800    0.99150400
+C      -0.45572100    1.71490000   -0.26925900
+H      -1.27484900    0.10697500    1.61189900
+H       0.10091800   -0.98789600    1.62666900
+H      -1.22187400    2.13038100    0.38918200
+H      -0.95141200    1.28497800   -1.15065200
+H       0.18430000    2.53324300   -0.60420800
+H       5.66223000    0.00609100   -0.36328600
+H       4.61172000    1.00548700    0.50045000
+H       3.21003500   -0.80565300   -1.33632300
+H      -0.96401600   -0.93113000    0.20678900
+O       1.20182400   -0.42476000   -1.38005000
+O       2.33004300   -0.46518000   -2.18550600
+""",
+)
 
 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 # end of API db training reactions

@@ -4667,6 +4667,33 @@ u"""
 """,
 )
 
+### API radical corrections
+entry(
+    index = 8000,
+    label = "CsJ-CNOOH",
+    group =
+"""
+1 * Cs u1 {2,S} {4,S} {5,S}
+2   O2s u0 {1,S} {3,S}
+3   O2s u0 {2,S} {6,S}
+4   N  u0 {1,S}
+5   C  u0 {1,S}
+6   H  u0 {3,S}
+""",
+    thermo = u"""C2CsJOOH""",
+    shortDesc = u"""use C2CsJOOH""",
+    longDesc =
+u"""
+
+""",
+)
+
+
+
+
+
+### End of API radical corrections
+
 entry(
     index = 71,
     label = "C2CsJOOC",
@@ -10849,6 +10876,7 @@ L1: Radical
         L3: CJ
             L4: CsJ
                 L5: CH3
+                L5: CsJ-CNOOH
                 L5: Cs_P
                     L6: CJCO
                         L7: C=C(O)CJ

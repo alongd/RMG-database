@@ -193,12 +193,11 @@ Training reaction in HO2_Elimination_from_PeroxyRadical
 entry(
     index=15,
     label="OHCH2OOH <=> CH2O + H2O2",
-    kinetics=Arrhenius(A=(3.1e11, 's^-1'), n=2, Ea=(10, 'kcal/mol'), T0=(1, 'K')),
+    kinetics=Arrhenius(A=(3.16e11, 's^-1'), n=0, Ea=(0, 'kcal/mol'), T0=(1, 'K')),
     shortDesc=u""" """,
     longDesc=
     u"""
-Used an estimated rate for the reverse of 1e+11 cm^3/(mol*s)
-reversed using DFT_QCI_thermo thermo
+est.
 """,
 )
 

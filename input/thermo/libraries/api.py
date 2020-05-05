@@ -9547,3 +9547,85 @@ H298 = (-25.65,'kcal/mol')
 """,
 )
 
+entry(
+    index = 10000,
+    label = "imipramine_peroxide_2_peroxide_4_rad_5",
+    molecule =
+"""
+multiplicity 2
+1 O u0 p2 c0 {3,S} {7,S}
+2 O u0 p2 c0 {4,S} {8,S}
+3 O u0 p2 c0 {1,S} {48,S}
+4 O u0 p2 c0 {2,S} {47,S}
+5 N u0 p1 c0 {7,S} {12,S} {25,S}
+6 N u0 p1 c0 {8,S} {15,S} {16,S}
+7 C u0 p0 c0 {1,S} {5,S} {9,S} {26,S}
+8 C u0 p0 c0 {2,S} {6,S} {9,S} {29,S}
+9 C u0 p0 c0 {7,S} {8,S} {27,S} {28,S}
+10 C u0 p0 c0 {11,S} {13,S} {30,S} {31,S}
+11 C u0 p0 c0 {10,S} {14,S} {32,S} {33,S}
+12 C u0 p0 c0 {5,S} {34,S} {35,S} {36,S}
+13 C u0 p0 c0 {10,S} {15,B} {17,B}
+14 C u0 p0 c0 {11,S} {16,B} {18,B}
+15 C u0 p0 c0 {6,S} {13,B} {19,B}
+16 C u0 p0 c0 {6,S} {14,B} {20,B}
+17 C u0 p0 c0 {13,B} {22,B} {40,S}
+18 C u0 p0 c0 {14,B} {23,B} {41,S}
+19 C u0 p0 c0 {15,B} {21,B} {37,S}
+20 C u0 p0 c0 {16,B} {24,B} {44,S}
+21 C u0 p0 c0 {19,B} {22,B} {38,S}
+22 C u0 p0 c0 {17,B} {21,B} {39,S}
+23 C u0 p0 c0 {18,B} {24,B} {42,S}
+24 C u0 p0 c0 {20,B} {23,B} {43,S}
+25 C u1 p0 c0 {5,S} {45,S} {46,S}
+26 H u0 p0 c0 {7,S}
+27 H u0 p0 c0 {9,S}
+28 H u0 p0 c0 {9,S}
+29 H u0 p0 c0 {8,S}
+30 H u0 p0 c0 {10,S}
+31 H u0 p0 c0 {10,S}
+32 H u0 p0 c0 {11,S}
+33 H u0 p0 c0 {11,S}
+34 H u0 p0 c0 {12,S}
+35 H u0 p0 c0 {12,S}
+36 H u0 p0 c0 {12,S}
+37 H u0 p0 c0 {19,S}
+38 H u0 p0 c0 {21,S}
+39 H u0 p0 c0 {22,S}
+40 H u0 p0 c0 {17,S}
+41 H u0 p0 c0 {18,S}
+42 H u0 p0 c0 {23,S}
+43 H u0 p0 c0 {24,S}
+44 H u0 p0 c0 {20,S}
+45 H u0 p0 c0 {25,S}
+46 H u0 p0 c0 {25,S}
+47 H u0 p0 c0 {4,S}
+48 H u0 p0 c0 {3,S}
+""",
+    thermo = ThermoData(
+        Tdata = ([300,400,500,600,800,1000,1500],'K'),
+        Cpdata = ([101.72,132.06,157.58,178.45,208.02,226.16,255.77],'cal/(mol*K)'),
+        H298 = (30.80,'kcal/mol'),
+        S298 = (98.32,'cal/(mol*K)'),
+    ),
+    shortDesc = u"""""",
+    longDesc =
+"""
+thermo estimated, should be calculated
+
+originally:
+
+! Thermo group additivity estimation: group(O2s-OsCs) + group(O2s-OsCs) + group(O2s-OsH) + group(O2s-OsH) + group(N3s-CsCsCs) + group(N3s-CbCbCs) +
+! group(Cs-CsN3s(O2sO2sH)) + group(Cs-CsN3s(O2sO2sH)) + group(Cs-CsCsHH) + group(Cs-CbCsHH) + group(Cs-CbCsHH) + group(Cs-N3sHHH) + group(Cs-N3sHHH) +
+! group(Cb-Cs) + group(Cb-Cs) + group(Cb-N3s) + group(Cb-N3s) + group(Cb-H) + group(Cb-H) + group(Cb-H) + group(Cb-H) + group(Cb-H) + group(Cb-H) +
+! group(Cb-H) + group(Cb-H) + polycyclic(Benzazepine) + polycyclic(Benzazepine) - ring(azepane) + radical(CsJN)
+S(392)                  C  19H  23N   2O   4G   100.000  5000.000 1005.76      1
+ 5.28120029E+01 8.98275892E-02-3.48982681E-05 6.53318740E-09-4.68759501E-13    2
+-3.08019378E+04-2.88424530E+02-8.67966471E+00 2.31205541E-01-9.18664411E-05    3
+-5.77078458E-08 4.08541425E-11-1.32141774E+04 3.45339480E+01                   4
+
+H298 = (-12.80,'kcal/mol')
+
+""",
+)
+

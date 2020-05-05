@@ -9629,3 +9629,215 @@ H298 = (-12.80,'kcal/mol')
 """,
 )
 
+entry(
+    index = 10100,
+    label = "imipramine_peroxide_2_peroxy_4",
+    molecule =
+"""
+multiplicity 2
+1 O u0 p2 c0 {3,S} {7,S}
+2 O u0 p2 c0 {4,S} {8,S}
+3 O u0 p2 c0 {1,S} {48,S}
+4 O u1 p2 c0 {2,S}
+5 N u0 p1 c0 {7,S} {12,S} {13,S}
+6 N u0 p1 c0 {8,S} {16,S} {17,S}
+7 C u0 p0 c0 {1,S} {5,S} {9,S} {26,S}
+8 C u0 p0 c0 {2,S} {6,S} {9,S} {29,S}
+9 C u0 p0 c0 {7,S} {8,S} {27,S} {28,S}
+10 C u0 p0 c0 {11,S} {14,S} {30,S} {31,S}
+11 C u0 p0 c0 {10,S} {15,S} {32,S} {33,S}
+12 C u0 p0 c0 {5,S} {34,S} {35,S} {36,S}
+13 C u0 p0 c0 {5,S} {37,S} {38,S} {39,S}
+14 C u0 p0 c0 {10,S} {16,B} {18,B}
+15 C u0 p0 c0 {11,S} {17,B} {19,B}
+16 C u0 p0 c0 {6,S} {14,B} {20,B}
+17 C u0 p0 c0 {6,S} {15,B} {21,B}
+18 C u0 p0 c0 {14,B} {23,B} {43,S}
+19 C u0 p0 c0 {15,B} {24,B} {44,S}
+20 C u0 p0 c0 {16,B} {22,B} {40,S}
+21 C u0 p0 c0 {17,B} {25,B} {47,S}
+22 C u0 p0 c0 {20,B} {23,B} {41,S}
+23 C u0 p0 c0 {18,B} {22,B} {42,S}
+24 C u0 p0 c0 {19,B} {25,B} {45,S}
+25 C u0 p0 c0 {21,B} {24,B} {46,S}
+26 H u0 p0 c0 {7,S}
+27 H u0 p0 c0 {9,S}
+28 H u0 p0 c0 {9,S}
+29 H u0 p0 c0 {8,S}
+30 H u0 p0 c0 {10,S}
+31 H u0 p0 c0 {10,S}
+32 H u0 p0 c0 {11,S}
+33 H u0 p0 c0 {11,S}
+34 H u0 p0 c0 {12,S}
+35 H u0 p0 c0 {12,S}
+36 H u0 p0 c0 {12,S}
+37 H u0 p0 c0 {13,S}
+38 H u0 p0 c0 {13,S}
+39 H u0 p0 c0 {13,S}
+40 H u0 p0 c0 {20,S}
+41 H u0 p0 c0 {22,S}
+42 H u0 p0 c0 {23,S}
+43 H u0 p0 c0 {18,S}
+44 H u0 p0 c0 {19,S}
+45 H u0 p0 c0 {24,S}
+46 H u0 p0 c0 {25,S}
+47 H u0 p0 c0 {21,S}
+48 H u0 p0 c0 {3,S}
+""",
+    thermo = ThermoData(
+        Tdata = ([300,400,500,600,800,1000,1500],'K'),
+        Cpdata = ([99.61,129.66,155.07,175.96,205.71,224.14,254.58],'cal/(mol*K)'),
+        H298 = (20,'kcal/mol'),
+        S298 = (103.36,'cal/(mol*K)'),
+    ),
+    shortDesc = u"""""",
+    longDesc =
+"""
+thermo estimated, should be calculated
+
+originally:
+H298 = (-14.77,'kcal/mol')
+""",
+)
+
+entry(
+    index = 10200,
+    label = "imipramine_peroxide_2_peroxide_4",
+    molecule =
+"""
+1 O u0 p2 c0 {3,S} {8,S}
+2 O u0 p2 c0 {4,S} {7,S}
+3 O u0 p2 c0 {1,S} {48,S}
+4 O u0 p2 c0 {2,S} {49,S}
+5 N u0 p1 c0 {7,S} {12,S} {13,S}
+6 N u0 p1 c0 {8,S} {16,S} {17,S}
+7 C u0 p0 c0 {2,S} {5,S} {9,S} {29,S}
+8 C u0 p0 c0 {1,S} {6,S} {9,S} {26,S}
+9 C u0 p0 c0 {7,S} {8,S} {27,S} {28,S}
+10 C u0 p0 c0 {11,S} {14,S} {30,S} {31,S}
+11 C u0 p0 c0 {10,S} {15,S} {32,S} {33,S}
+12 C u0 p0 c0 {5,S} {34,S} {35,S} {36,S}
+13 C u0 p0 c0 {5,S} {37,S} {38,S} {39,S}
+14 C u0 p0 c0 {10,S} {16,B} {18,B}
+15 C u0 p0 c0 {11,S} {17,B} {19,B}
+16 C u0 p0 c0 {6,S} {14,B} {20,B}
+17 C u0 p0 c0 {6,S} {15,B} {21,B}
+18 C u0 p0 c0 {14,B} {24,B} {42,S}
+19 C u0 p0 c0 {15,B} {25,B} {44,S}
+20 C u0 p0 c0 {16,B} {22,B} {40,S}
+21 C u0 p0 c0 {17,B} {23,B} {41,S}
+22 C u0 p0 c0 {20,B} {24,B} {43,S}
+23 C u0 p0 c0 {21,B} {25,B} {45,S}
+24 C u0 p0 c0 {18,B} {22,B} {46,S}
+25 C u0 p0 c0 {19,B} {23,B} {47,S}
+26 H u0 p0 c0 {8,S}
+27 H u0 p0 c0 {9,S}
+28 H u0 p0 c0 {9,S}
+29 H u0 p0 c0 {7,S}
+30 H u0 p0 c0 {10,S}
+31 H u0 p0 c0 {10,S}
+32 H u0 p0 c0 {11,S}
+33 H u0 p0 c0 {11,S}
+34 H u0 p0 c0 {12,S}
+35 H u0 p0 c0 {12,S}
+36 H u0 p0 c0 {12,S}
+37 H u0 p0 c0 {13,S}
+38 H u0 p0 c0 {13,S}
+39 H u0 p0 c0 {13,S}
+40 H u0 p0 c0 {20,S}
+41 H u0 p0 c0 {21,S}
+42 H u0 p0 c0 {18,S}
+43 H u0 p0 c0 {22,S}
+44 H u0 p0 c0 {19,S}
+45 H u0 p0 c0 {23,S}
+46 H u0 p0 c0 {24,S}
+47 H u0 p0 c0 {25,S}
+48 H u0 p0 c0 {3,S}
+49 H u0 p0 c0 {4,S}
+""",
+    thermo = ThermoData(
+        Tdata = ([300,400,500,600,800,1000,1500],'K'),
+        Cpdata = ([101.63,132.49,158.60,180.04,2010.46,229.1,259.65],'cal/(mol*K)'),
+        H298 = (-10,'kcal/mol'),
+        S298 = (100.45,'cal/(mol*K)'),
+    ),
+    shortDesc = u"""""",
+    longDesc =
+"""
+thermo estimated, should be calculated
+
+originally:
+H298 = (-53.50,'kcal/mol')
+""",
+)
+
+entry(
+    index = 10300,
+    label = "imipramine_peroxide_2_ol_4",
+    molecule =
+"""
+1 O u0 p2 c0 {3,S} {7,S}
+2 O u0 p2 c0 {6,S} {47,S}
+3 O u0 p2 c0 {1,S} {48,S}
+4 N u0 p1 c0 {6,S} {11,S} {12,S}
+5 N u0 p1 c0 {7,S} {15,S} {16,S}
+6 C u0 p0 c0 {2,S} {4,S} {8,S} {28,S}
+7 C u0 p0 c0 {1,S} {5,S} {8,S} {25,S}
+8 C u0 p0 c0 {6,S} {7,S} {26,S} {27,S}
+9 C u0 p0 c0 {10,S} {13,S} {29,S} {30,S}
+10 C u0 p0 c0 {9,S} {14,S} {31,S} {32,S}
+11 C u0 p0 c0 {4,S} {33,S} {34,S} {35,S}
+12 C u0 p0 c0 {4,S} {36,S} {37,S} {38,S}
+13 C u0 p0 c0 {9,S} {15,B} {17,B}
+14 C u0 p0 c0 {10,S} {16,B} {18,B}
+15 C u0 p0 c0 {5,S} {13,B} {19,B}
+16 C u0 p0 c0 {5,S} {14,B} {20,B}
+17 C u0 p0 c0 {13,B} {23,B} {41,S}
+18 C u0 p0 c0 {14,B} {24,B} {43,S}
+19 C u0 p0 c0 {15,B} {21,B} {39,S}
+20 C u0 p0 c0 {16,B} {22,B} {40,S}
+21 C u0 p0 c0 {19,B} {23,B} {42,S}
+22 C u0 p0 c0 {20,B} {24,B} {44,S}
+23 C u0 p0 c0 {17,B} {21,B} {45,S}
+24 C u0 p0 c0 {18,B} {22,B} {46,S}
+25 H u0 p0 c0 {7,S}
+26 H u0 p0 c0 {8,S}
+27 H u0 p0 c0 {8,S}
+28 H u0 p0 c0 {6,S}
+29 H u0 p0 c0 {9,S}
+30 H u0 p0 c0 {9,S}
+31 H u0 p0 c0 {10,S}
+32 H u0 p0 c0 {10,S}
+33 H u0 p0 c0 {11,S}
+34 H u0 p0 c0 {11,S}
+35 H u0 p0 c0 {11,S}
+36 H u0 p0 c0 {12,S}
+37 H u0 p0 c0 {12,S}
+38 H u0 p0 c0 {12,S}
+39 H u0 p0 c0 {19,S}
+40 H u0 p0 c0 {20,S}
+41 H u0 p0 c0 {17,S}
+42 H u0 p0 c0 {21,S}
+43 H u0 p0 c0 {18,S}
+44 H u0 p0 c0 {22,S}
+45 H u0 p0 c0 {23,S}
+46 H u0 p0 c0 {24,S}
+47 H u0 p0 c0 {2,S}
+48 H u0 p0 c0 {3,S}
+""",
+    thermo = ThermoData(
+        Tdata = ([300,400,500,600,800,1000,1500],'K'),
+        Cpdata = ([97.63,127.82,153.46,174.54,204.31,222.51,253.27],'cal/(mol*K)'),
+        H298 = (-30,'kcal/mol'),
+        S298 = (96.61,'cal/(mol*K)'),
+    ),
+    shortDesc = u"""""",
+    longDesc =
+"""
+thermo estimated, should be calculated
+
+originally:
+H298 = (-66.84,'kcal/mol')
+""",
+)
+

@@ -23,7 +23,7 @@ boundaryAtoms = ["*1", "*2"]
 entry(
     index = 0,
     label = "RnH",
-    group = "OR{R2Hall, R3Hall, R4Hall, R5Hall, R6Hall, R7Hall, R8Hall}",
+    group = "OR{R2Hall, R3Hall, R4Hall, R5Hall, R6Hall, R7Hall, R8Hall, R9Hall}",
     kinetics = None,
 )
 
@@ -4554,6 +4554,18 @@ entry(
 """,
     kinetics = None,
 )
+
+
+
+
+
+
+
+
+
+
+
+
 
 tree(
 """

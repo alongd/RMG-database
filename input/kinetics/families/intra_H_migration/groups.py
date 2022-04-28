@@ -23,7 +23,7 @@ boundaryAtoms = ["*1", "*2"]
 entry(
     index = 0,
     label = "RnH",
-    group = "OR{R2Hall, R3Hall, R4Hall, R5Hall, R6Hall, R7Hall, R8Hall}",
+    group = "OR{R2Hall, R3Hall, R4Hall, R5Hall, R6Hall, R7Hall, R8Hall, R9Hall}",
     kinetics = None,
 )
 
@@ -4555,6 +4555,145 @@ entry(
     kinetics = None,
 )
 
+entry(
+    index = 313,
+    label = "RRROO",
+    group =
+"""
+1 *6 R!H u0 {2,S} {3,S}
+2 *5 R!H u0 {1,S} {4,S}
+3 *4 O u0 {1,S} {5,S}
+4 *2 R!H u0 {2,S} {6,S}
+5 *1 O u1 {3,S}
+6 *3 H   u0 {4,S}
+""",
+    kinetics = None,
+)
+
+entry(
+    index = 314,
+    label = "RNROO",
+    group =
+"""
+1 *6 R!H u0 {2,S} {3,S}
+2 *5 N u0 {1,S} {4,S}
+3 *4 O u0 {1,S} {5,S}
+4 *2 R!H u0 {2,S} {6,S}
+5 *1 O u1 {3,S}
+6 *3 H   u0 {4,S}
+""",
+    kinetics = None,
+)
+
+entry(
+    index = 315,
+    label = "RCROO",
+    group =
+"""
+1 *6 R!H u0 {2,S} {3,S}
+2 *5 C u0 {1,S} {4,S}
+3 *4 O u0 {1,S} {5,S}
+4 *2 R!H u0 {2,S} {6,S}
+5 *1 O u1 {3,S}
+6 *3 H   u0 {4,S}
+""",
+    kinetics = None,
+)
+
+entry(
+    index = 316,
+    label = "OORRR",
+    group =
+"""
+1 *6 R!H u0 {2,S} {3,S}
+2 *5 O u0 {1,S} {4,S}
+3 *4 R!H u0 {1,S} {5,S}
+4 *2 O u0 {2,S} {6,S}
+5 *1 R!H u1 {3,S}
+6 *3 H   u0 {4,S}
+""",
+    kinetics = None,
+)
+
+entry(
+    index = 317,
+    label = "OORNR",
+    group =
+"""
+1 *6 R!H u0 {2,S} {3,S}
+2 *5 O u0 {1,S} {4,S}
+3 *4 N u0 {1,S} {5,S}
+4 *2 O u0 {2,S} {6,S}
+5 *1 R!H u1 {3,S}
+6 *3 H   u0 {4,S}
+""",
+    kinetics = None,
+)
+
+entry(
+    index = 318,
+    label = "OORCR",
+    group =
+"""
+1 *6 R!H u0 {2,S} {3,S}
+2 *5 O u0 {1,S} {4,S}
+3 *4 C u0 {1,S} {5,S}
+4 *2 O u0 {2,S} {6,S}
+5 *1 R!H u1 {3,S}
+6 *3 H   u0 {4,S}
+""",
+    kinetics = None,
+)
+
+entry(
+    index = 319,
+    label = "RRRNR",
+    group =
+"""
+1 *6 R!H u0 {2,S} {3,S}
+2 *5 R!H u0 {1,S} {4,S}
+3 *4 N u0 {1,S} {5,S}
+4 *2 R!H u0 {2,S} {6,S}
+5 *1 R!H u1 {3,S}
+6 *3 H   u0 {4,S}
+""",
+    kinetics = None,
+)
+
+entry(
+    index = 320,
+    label = "RNRRR",  # p R5H_SSSS
+    group =
+"""
+1 *6 R!H u0 {2,S} {3,S}
+2 *5 N u0 {1,S} {4,S}
+3 *4 R!H u0 {1,S} {5,S}
+4 *2 R!H u0 {2,S} {6,S}
+5 *1 R!H u1 {3,S}
+6 *3 H   u0 {4,S}
+""",
+    kinetics = None,
+)
+
+entry(
+    index = 321,
+    label = "R9Hall",
+    group =
+"""
+1 *7 R!H ux {2,[S,D,T,B]} {4,[S,D,T,B]}
+2 *8 R!H ux {1,[S,D,T,B]} {3,[S,D,T,B]}
+3 *9 R!H ux {2,[S,D,T,B]} {5,[S,D,T,B]}
+4 *6 R!H ux {1,[S,D,T,B]} {6,[S,D,T,B]}
+5 *5 R!H ux {3,[S,D,T,B]} {8,[S,D,T,B]}
+6 *4 R!H ux {4,[S,D,T,B]} {7,[S,D,T,B]}
+7 *10 R!H ux {6,[S,D,T,B]} {9,[S,D,T,B]}
+8 *2 R!H u0 {5,[S,D,T,B]} {10,S}
+9 *1 R!H u1 {7,[S,D,T,B]}
+10 *3 H   u0 {8,S}
+""",
+    kinetics = None,
+)
+
 tree(
 """
 L1: RnH
@@ -4658,6 +4797,14 @@ L1: RnH
                                 L9: R5H_SSSS_OCC_CC
                             L8: R5H_SSSS_OCs(Cs/Cs)
                                 L9: R5H_SSSS_OCs(Cs/Cs/Cs)
+                        L7: RRROO
+                            L8: RNROO
+                            L8: RCROO
+                        L7: OORRR
+                            L8: OORNR
+                            L8: OORCR
+                        L7: RRRNR
+                        L7: RNRRR
                     L6: R5H_SSSD
                     L6: R5H_SSST
                     L6: R5H_SSSB
@@ -4765,6 +4912,7 @@ L1: RnH
     L2: R8Hall
         L3: R8H
             L4: R8H_SDSDSD
+    L2: R9Hall
 L1: Y_rad_out
     L2: O_rad_out
     L2: S_rad_out

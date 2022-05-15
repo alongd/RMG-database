@@ -33,7 +33,7 @@ Juang, which is more recent, is ~x2 faster than Eagel at the relevant temperatur
 
 entry(
     index=1001,
-    label="OOCH2OH <=> CH2OH + O2",
+    label="OHCH2OO <=> CH2OH + O2",
     kinetics=Arrhenius(A=(2.0e+15, 's^-1'), n=0, Ea=(35.8, 'kcal/mol'), T0=(1, 'K')),
     shortDesc=u"""CBS-QB3""",
     longDesc=

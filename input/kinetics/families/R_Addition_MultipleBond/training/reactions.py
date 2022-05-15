@@ -59418,7 +59418,7 @@ Original entry: Acepentacyl + H <=> W4
 )
 
 entry(
-    index = 2951,
+    index = 2952,
     label = "NCCCj + CNdC <=> CjN_C_CCCN",
     degeneracy = 1.0,
     kinetics = Arrhenius(A=(53580.4,'cm^3/(mol*s)'), n=0, Ea=(334.663,'kJ/mol'),
@@ -59454,7 +59454,7 @@ H      -2.81764200    1.16944800   -1.23582800
 )
 
 entry(
-    index = 2952,
+    index = 2953,
     label = "NC3j + CdCN_C_C <=> CN_C_CjCCN_C_C",
     degeneracy = 1.0,
     kinetics = Arrhenius(A=(1.99434e+09,'cm^3/(mol*s)'), n=0, Ea=(63.9562,'kJ/mol'),

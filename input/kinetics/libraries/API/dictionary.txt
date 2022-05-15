@@ -2264,15 +2264,3 @@ multiplicity 2
 23 H u0 p0 c0 {12,S}
 24 H u0 p0 c0 {13,S}
 25 H u0 p0 c0 {13,S}
-
-H2O2
-1 O u0 p2 c0 {2,S} {3,S}
-2 O u0 p2 c0 {1,S} {4,S}
-3 H u0 p0 c0 {1,S}
-4 H u0 p0 c0 {2,S}
-
-HO2
-multiplicity 2
-1 O u0 p2 c0 {2,S} {3,S}
-2 O u1 p2 c0 {1,S}
-3 H u0 p0 c0 {1,S}

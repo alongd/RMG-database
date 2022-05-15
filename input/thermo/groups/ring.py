@@ -11386,6 +11386,8 @@ L1: Ring
             L4: cycloheptyne
         L3: heptasulfur
         L3: oxepane
+        L3: azepane
+        L3: azepene
     L2: EightMember
         L3: Cyclooctane
         L3: cis-Cyclooctene
@@ -11396,8 +11398,6 @@ L1: Ring
         L3: 1,4-cyclooctadiene
         L3: 1,5-cyclooctadiene
         L3: octasulfur
-        L3: azepane
-        L3: azepene
     L2: NineMember
         L3: Cyclononane
         L3: Cyclononanone

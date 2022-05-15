@@ -104,24 +104,6 @@ entry(
 
 entry(
     index = 4,
-    label = "Root_N-6R->C_4R-inRing",
-    group = 
-"""
-1 *3 C u0 p0 c0 {2,S} {4,S} {5,D}
-2 *4 N u0 p1 c0 {1,S} {6,S} {7,S}
-3 *1 O u0 p2 c0 {8,S} {9,S}
-4    C ux r1 {1,S}
-5    O u0 p2 c0 {1,D}
-6    H ux {2,S}
-7    H ux {2,S}
-8 *2 H u0 p0 c0 {3,S}
-9    H ux {3,S}
-""",
-    kinetics = None,
-)
-
-entry(
-    index = 5,
     label = "Root_N-6R->C_N-4R-inRing",
     group = 
 """
@@ -139,7 +121,7 @@ entry(
 )
 
 entry(
-    index = 6,
+    index = 5,
     label = "Root_N-6R->C_N-4R-inRing_Ext-4R-R",
     group = 
 """
@@ -158,7 +140,7 @@ entry(
 )
 
 entry(
-    index = 7,
+    index = 6,
     label = "Root_N-6R->C_N-4R-inRing_Ext-4R-R_Ext-10R!H-R_Ext-10R!H-R",
     group = 
 """
@@ -184,7 +166,6 @@ L1: Root
     L2: Root_6R->C
         L3: Root_6R->C_Ext-4R-R
     L2: Root_N-6R->C
-        L3: Root_N-6R->C_4R-inRing
         L3: Root_N-6R->C_N-4R-inRing
             L4: Root_N-6R->C_N-4R-inRing_Ext-4R-R
                 L5: Root_N-6R->C_N-4R-inRing_Ext-4R-R_Ext-10R!H-R_Ext-10R!H-R

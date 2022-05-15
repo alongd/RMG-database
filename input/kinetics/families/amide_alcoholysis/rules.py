@@ -68,15 +68,15 @@ Total Standard Deviation in ln(k): 11.540182761524994
 
 entry(
     index = 5,
-    label = "Root_N-6R->C_4R-inRing",
-    kinetics = ArrheniusBM(A=(495.477e+6,'cm^3/(mol*s)'), n=-0.144487, w0=(754000,'J/mol'), E0=(94192.7,'J/mol'), Tmin=(300,'K'), Tmax=(1500,'K'), uncertainty=RateUncertainty(mu=0.0, var=33.13686319048999, Tref=1000.0, N=1, correlation='Root_N-6R->C_4R-inRing',), comment="""BM rule fitted to 2 training reactions at node Root_N-6R->C_4R-inRing
+    label = "Root_N-6R->C_N-4R-inRing",
+    kinetics = ArrheniusBM(A=(495.477e+6,'cm^3/(mol*s)'), n=-0.144487, w0=(754000,'J/mol'), E0=(94192.7,'J/mol'), Tmin=(300,'K'), Tmax=(1500,'K'), uncertainty=RateUncertainty(mu=0.0, var=33.13686319048999, Tref=1000.0, N=1, correlation='Root_N-6R->C_N-4R-inRing',), comment="""BM rule fitted to 2 training reactions at node Root_N-6R->C_N-4R-inRing
     Total Standard Deviation in ln(k): 11.540182761524994"""),
     rank = 11,
-    shortDesc = """BM rule fitted to 2 training reactions at node Root_N-6R->C_4R-inRing
+    shortDesc = """BM rule fitted to 2 training reactions at node Root_N-6R->C_N-4R-inRing
 Total Standard Deviation in ln(k): 11.540182761524994""",
     longDesc = 
 """
-BM rule fitted to 2 training reactions at node Root_N-6R->C_4R-inRing
+BM rule fitted to 2 training reactions at node Root_N-6R->C_N-4R-inRing
 Total Standard Deviation in ln(k): 11.540182761524994
 """,
 )

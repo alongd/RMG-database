@@ -4764,7 +4764,7 @@ Species are optimized and calculated by the CBS-QB3 method, no hindered rotors c
 
 entry(
     index = 177,
-    label = "O2 + C_tert <=> CH3_3_COO",
+    label = "O2 + C4H9 <=> CH3_3_COO",
     degeneracy = 2.0,
     kinetics = Arrhenius(
         A = (4.90e+12, 'cm^3/(mol*s)'),

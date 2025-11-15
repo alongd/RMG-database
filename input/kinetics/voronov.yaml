@@ -1,0 +1,1134 @@
+schema_version: 1
+source: "Voronov, G.S. (1997) Atom. Data Nucl. Data Tables 65, 1, Electron-impact ionization rate coefficient fits, Z=1–28"
+units:
+  A: "cm^3/(molecule*s)"
+  dE: "eV"  # ionization energy
+  T: "K"
+  Tmin: "eV"
+  Tmax: "eV"
+
+coefficients:
+
+  - Z: 1
+    element: "H"
+    entries:
+      - N: 1     # H I -> H II
+        dE: 13.6
+        P: 0.0
+        A: 2.910e-08
+        X: 2.32e-01
+        K: 0.39
+        Tmin: 1.0
+        Tmax: 20.0e3
+
+  - Z: 2
+    element: "He"
+    entries:
+      - N: 2     # He I -> He II  (neutral -> +1)
+        dE: 24.6
+        P: 0.0
+        A: 1.750e-08
+        X: 1.80e-01
+        K: 0.35
+        Tmin: 1.0
+        Tmax: 20.0e3
+      - N: 1     # He II -> He III  (+1 -> +2)
+        dE: 54.4
+        P: 1.0
+        A: 2.050e-09
+        X: 2.65e-01
+        K: 0.25
+        Tmin: 1.0
+        Tmax: 20000.0
+
+  - Z: 3
+    element: "Li"
+    entries:
+      - N: 3     # Li I  -> Li II  (neutral -> +1)
+        dE: 5.4
+        P: 0
+        A: 0.139e-6
+        X: 0.438
+        K: 0.41
+        Tmin: 1
+        Tmax: 20e3
+      - N: 2     # Li II -> Li III (+1 -> +2)
+        dE: 75.6
+        P: 1
+        A: 0.201e-8
+        X: 0.209
+        K: 0.23
+        Tmin: 4
+        Tmax: 20e3
+      - N: 1     # Li III -> Li IV (+2 -> +3)
+        dE: 122.4
+        P: 1
+        A: 0.960e-9
+        X: 0.582
+        K: 0.17
+        Tmin: 5
+        Tmax: 20e3
+
+  - Z: 6
+    element: "C"
+    entries:
+      - N: 6     # C I  -> C II  (neutral -> +1)
+        dE: 11.3
+        P: 0
+        A: 0.685e-7
+        X: 0.193
+        K: 0.25
+        Tmin: 1
+        Tmax: 20e3
+      - N: 5     # C II -> C III (+1 -> +2)
+        dE: 24.4
+        P: 1
+        A: 0.186e-7
+        X: 0.286
+        K: 0.24
+        Tmin: 1
+        Tmax: 20e3
+      - N: 4     # C III -> C IV (+2 -> +3)
+        dE: 47.9
+        P: 1
+        A: 0.635e-8
+        X: 0.427
+        K: 0.21
+        Tmin: 2
+        Tmax: 20e3
+      - N: 3     # C IV -> C V (+3 -> +4)
+        dE: 64.5
+        P: 1
+        A: 0.150e-8
+        X: 0.416
+        K: 0.13
+        Tmin: 3
+        Tmax: 20e3
+      - N: 2     # C V -> C VI (+4 -> +5)
+        dE: 392.1
+        P: 1
+        A: 0.299e-9
+        X: 0.666
+        K: 0.02
+        Tmin: 20
+        Tmax: 20e3
+      - N: 1     # C VI -> C VII (+5 -> +6)
+        dE: 490.0
+        P: 1
+        A: 0.123e-9
+        X: 0.620
+        K: 0.16
+        Tmin: 20
+        Tmax: 20e3
+
+  - Z: 7
+    element: "N"
+    entries:
+      - N: 7     # N I  -> N II  (neutral -> +1)
+        dE: 14.5
+        P: 0
+        A: 0.428e-7
+        X: 0.0652
+        K: 0.42
+        Tmin: 1
+        Tmax: 20e3
+      - N: 6     # N II -> N III (+1 -> +2)
+        dE: 29.6
+        P: 0
+        A: 0.298e-7
+        X: 0.310
+        K: 0.30
+        Tmin: 2
+        Tmax: 20e3
+      - N: 5     # N III -> N IV (+2 -> +3)
+        dE: 47.5
+        P: 1
+        A: 0.810e-8
+        X: 0.350
+        K: 0.24
+        Tmin: 2
+        Tmax: 20e3
+      - N: 4     # N IV -> N V (+3 -> +4)
+        dE: 77.5
+        P: 1
+        A: 0.371e-8
+        X: 0.549
+        K: 0.18
+        Tmin: 4
+        Tmax: 20e3
+      - N: 3     # N V -> N VI (+4 -> +5)
+        dE: 97.9
+        P: 0
+        A: 0.151e-8
+        X: 0.0167
+        K: 0.74
+        Tmin: 4
+        Tmax: 20e3
+      - N: 2     # N VI -> N VII (+5 -> +6)
+        dE: 552.1
+        P: 0
+        A: 0.371e-9
+        X: 0.546
+        K: 0.29
+        Tmin: 30
+        Tmax: 20e3
+      - N: 1     # N VII -> N VIII (+6 -> +7)
+        dE: 667.0
+        P: 1
+        A: 0.777e-10
+        X: 0.624
+        K: 0.16
+        Tmin: 30
+        Tmax: 20e3
+
+  - Z: 8
+    element: "O"
+    entries:
+      - N: 8     # O I  -> O II  (neutral -> +1)
+        dE: 13.6
+        P: 0
+        A: 0.359e-7
+        X: 0.073
+        K: 0.34
+        Tmin: 1
+        Tmax: 20e3
+      - N: 7     # O II -> O III (+1 -> +2)
+        dE: 35.1
+        P: 1
+        A: 0.139e-7
+        X: 0.212
+        K: 0.22
+        Tmin: 2
+        Tmax: 20e3
+      - N: 6     # O III -> O IV (+2 -> +3)
+        dE: 54.9
+        P: 1
+        A: 0.931e-8
+        X: 0.270
+        K: 0.27
+        Tmin: 3
+        Tmax: 20e3
+      - N: 5     # O IV -> O V (+3 -> +4)
+        dE: 77.4
+        P: 0
+        A: 0.102e-7
+        X: 0.614
+        K: 0.27
+        Tmin: 4
+        Tmax: 20e3
+      - N: 4     # O V -> O VI (+4 -> +5)
+        dE: 113.9
+        P: 1
+        A: 0.219e-8
+        X: 0.630
+        K: 0.17
+        Tmin: 5
+        Tmax: 20e3
+      - N: 3     # O VI -> O VII (+5 -> +6)
+        dE: 138.1
+        P: 0
+        A: 0.195e-8
+        X: 0.360
+        K: 0.54
+        Tmin: 7
+        Tmax: 20e3
+      - N: 2     # O VII -> O VIII (+6 -> +7)
+        dE: 739.3
+        P: 0
+        A: 0.212e-9
+        X: 0.396
+        K: 0.35
+        Tmin: 30
+        Tmax: 20e3
+      - N: 1     # O VIII -> O IX (+7 -> +8)
+        dE: 871.4
+        P: 1
+        A: 0.521e-10
+        X: 0.629
+        K: 0.16
+        Tmin: 40
+        Tmax: 20e3
+
+  - Z: 11
+    element: "Na"
+    entries:
+      - N: 11    # Na I  -> Na II  (neutral -> +1)
+        dE: 5.14
+        P: 1
+        A: 0.101e-6
+        X: 0.275
+        K: 0.23
+        Tmin: 1
+        Tmax: 20e3
+      - N: 10    # Na II -> Na III (+1 -> +2)
+        dE: 47.3
+        P: 1
+        A: 0.735e-8
+        X: 0.056
+        K: 0.35
+        Tmin: 2
+        Tmax: 20e3
+      - N: 9     # Na III -> Na IV (+2 -> +3)
+        dE: 71.6
+        P: 1
+        A: 0.810e-8
+        X: 0.148
+        K: 0.32
+        Tmin: 3
+        Tmax: 20e3
+      - N: 8     # Na IV -> Na V (+3 -> +4)
+        dE: 98.9
+        P: 0
+        A: 0.114e-7
+        X: 0.553
+        K: 0.28
+        Tmin: 4
+        Tmax: 20e3
+      - N: 7     # Na V -> Na VI (+4 -> +5)
+        dE: 138.1
+        P: 1
+        A: 0.263e-8
+        X: 0.230
+        K: 0.29
+        Tmin: 7
+        Tmax: 20e3
+      - N: 6     # Na VI -> Na VII (+5 -> +6)
+        dE: 172.2
+        P: 1
+        A: 0.185e-8
+        X: 0.363
+        K: 0.22
+        Tmin: 7
+        Tmax: 20e3
+      - N: 5     # Na VII -> Na VIII (+6 -> +7)
+        dE: 208.1
+        P: 0
+        A: 0.282e-08
+        X: 0.674
+        K: 0.27
+        Tmin: 10
+        Tmax: 20e3
+      - N: 4     # Na VIII -> Na IX (+7 -> +8)
+        dE: 264.2
+        P: 1
+        A: 0.672e-09
+        X: 0.752
+        K: 0.14
+        Tmin: 20
+        Tmax: 20e3
+      - N: 3     # Na IX -> Na X (+8 -> +9)
+        dE: 299.9
+        P: 1
+        A: 0.280e-09
+        X: 0.781
+        K: 0.15
+        Tmin: 20
+        Tmax: 20e3
+      - N: 2     # Na X -> Na XI (+9 -> +10)
+        dE: 1465.1
+        P: 1
+        A: 0.463e-10
+        X: 0.558
+        K: 0.16
+        Tmin: 70
+        Tmax: 100e3
+      - N: 1     # Na XI -> Na XII (+10 -> +11)
+        dE: 1648.7
+        P: 1
+        A: 0.216e-10
+        X: 0.743
+        K: 0.13
+        Tmin: 70
+        Tmax: 100e3
+
+  - Z: 12
+    element: "Mg"
+    entries:
+      - N: 12    # Mg I  -> Mg II  (neutral -> +1)
+        dE: 7.6
+        P: 0
+        A: 0.621e-6
+        X: 0.592
+        K: 0.39
+        Tmin: 1
+        Tmax: 20e3
+      - N: 11    # Mg II -> Mg III (+1 -> +2)
+        dE: 15.2
+        P: 0
+        A: 0.192e-7
+        X: 0.0027
+        K: 0.85
+        Tmin: 1
+        Tmax: 20e3
+      - N: 10    # Mg III -> Mg IV (+2 -> +3)
+        dE: 80.1
+        P: 1
+        A: 0.556e-8
+        X: 0.107
+        K: 0.30
+        Tmin: 4
+        Tmax: 20e3
+      - N: 9     # Mg IV -> Mg V (+3 -> +4)
+        dE: 109.3
+        P: 1
+        A: 0.435e-8
+        X: 0.159
+        K: 0.31
+        Tmin: 5
+        Tmax: 20e3
+      - N: 8     # Mg V -> Mg VI (+4 -> +5)
+        dE: 141.3
+        P: 0
+        A: 0.710e-8
+        X: 0.658
+        K: 0.25
+        Tmin: 7
+        Tmax: 20e3
+      - N: 7     # Mg VI -> Mg VII (+5 -> +6)
+        dE: 186.5
+        P: 1
+        A: 0.170e-8
+        X: 0.242
+        K: 0.28
+        Tmin: 10
+        Tmax: 20e3
+      - N: 6     # Mg VII -> Mg VIII (+6 -> +7)
+        dE: 224.9
+        P: 1
+        A: 0.122e-8
+        X: 0.343
+        K: 0.23
+        Tmin: 10
+        Tmax: 20e3
+      - N: 5     # Mg VIII -> Mg IX (+7 -> +8)
+        dE: 266.0
+        P: 0
+        A: 0.220e-8
+        X: 0.897
+        K: 0.22
+        Tmin: 20
+        Tmax: 20e3
+      - N: 4     # Mg IX -> Mg X (+8 -> +9)
+        dE: 328.2
+        P: 1
+        A: 0.486e-9
+        X: 0.751
+        K: 0.14
+        Tmin: 20
+        Tmax: 20e3
+      - N: 3     # Mg X -> Mg XI (+9 -> +10)
+        dE: 367.5
+        P: 1
+        A: 0.235e-9
+        X: 1.030
+        K: 0.10
+        Tmin: 20
+        Tmax: 20e3
+      - N: 2     # Mg XI -> Mg XII (+10 -> +11)
+        dE: 1761.8
+        P: 1
+        A: 0.206e-10
+        X: 0.196
+        K: 0.25
+        Tmin: 100
+        Tmax: 100e3
+      - N: 1     # Mg XII -> Mg XIII (+11 -> +12)
+        dE: 1962.7
+        P: 1
+        A: 0.175e-10
+        X: 0.835
+        K: 0.11
+        Tmin: 100
+        Tmax: 100e3
+
+  - Z: 13
+    element: "Al"
+    entries:
+      - N: 13    # Al I  -> Al II  (neutral -> +1)
+        dE: 6.0
+        P: 1
+        A: 0.228e-6
+        X: 0.387
+        K: 0.25
+        Tmin: 1
+        Tmax: 20e3
+      - N: 12    # Al II -> Al III (+1 -> +2)
+        dE: 18.8
+        P: 0
+        A: 0.118e-6
+        X: 2.21
+        K: 0.25
+        Tmin: 1
+        Tmax: 20e3
+      - N: 11    # Al III -> Al IV (+2 -> +3)
+        dE: 28.5
+        P: 1
+        A: 0.440e-8
+        X: 0.106
+        K: 0.24
+        Tmin: 2
+        Tmax: 20e3
+      - N: 10    # Al IV -> Al V (+3 -> +4)
+        dE: 120.0
+        P: 0
+        A: 0.175e-7
+        X: 0.872
+        K: 0.22
+        Tmin: 5
+        Tmax: 20e3
+      - N: 9     # Al V -> Al VI (+4 -> +5)
+        dE: 153.8
+        P: 1
+        A: 0.261e-8
+        X: 0.159
+        K: 0.31
+        Tmin: 7
+        Tmax: 20e3
+      - N: 8     # Al VI -> Al VII (+5 -> +6)
+        dE: 198.5
+        P: 1
+        A: 0.185e-8
+        X: 0.152
+        K: 0.36
+        Tmin: 10
+        Tmax: 20e3
+      - N: 7     # Al VII -> Al VIII (+6 -> +7)
+        dE: 241.4
+        P: 1
+        A: 0.114e-8
+        X: 0.228
+        K: 0.29
+        Tmin: 10
+        Tmax: 20e3
+      - N: 6     # Al VIII -> Al IX (+7 -> +8)
+        dE: 284.6
+        P: 1
+        A: 0.800e-9
+        X: 0.417
+        K: 0.16
+        Tmin: 20
+        Tmax: 20e3
+      - N: 5     # Al IX -> Al X (+8 -> +9)
+        dE: 390.2
+        P: 1
+        A: 0.583e-9
+        X: 0.497
+        K: 0.23
+        Tmin: 20
+        Tmax: 20e3
+      - N: 4     # Al X -> Al XI (+9 -> +10)
+        dE: 399.4
+        P: 0
+        A: 0.493e-9
+        X: 0.706
+        K: 0.16
+        Tmin: 20
+        Tmax: 20e3
+      - N: 3     # Al XI -> Al XII (+10 -> +11)
+        dE: 442.0
+        P: 1
+        A: 0.977e-10
+        X: 0.278
+        K: 0.17
+        Tmin: 20
+        Tmax: 20e3
+      - N: 2     # Al XII -> Al XIII (+11 -> +12)
+        dE: 2086.6
+        P: 0
+        A: 0.394e-10
+        X: 0.286
+        K: 0.36
+        Tmin: 100
+        Tmax: 100e3
+      - N: 1     # Al XIII -> Al XIV (+12 -> +13)
+        dE: 2304.1
+        P: 1
+        A: 0.138e-10
+        X: 0.835
+        K: 0.11
+        Tmin: 100
+        Tmax: 100e3
+
+  - Z: 14
+    element: "Si"
+    entries:
+      - N: 14    # Si I  -> Si II  (neutral -> +1)
+        dE: 8.2
+        P: 1
+        A: 0.188e-6
+        X: 0.376
+        K: 0.25
+        Tmin: 1
+        Tmax: 20e3
+      - N: 13    # Si II -> Si III (+1 -> +2)
+        dE: 1643
+        P: 1
+        A: 0.643e-7
+        X: 0.632
+        K: 0.20
+        Tmin: 1
+        Tmax: 20e3
+      - N: 12    # Si III -> Si IV (+2 -> +3)
+        dE: 33.5
+        P: 1
+        A: 0.201e-7
+        X: 0.473
+        K: 0.22
+        Tmin: 2
+        Tmax: 20e3
+      - N: 11    # Si IV -> Si V (+3 -> +4)
+        dE: 54.0
+        P: 1
+        A: 0.494e-8
+        X: 0.172
+        K: 0.23
+        Tmin: 3
+        Tmax: 20e3
+      - N: 10    # Si V -> Si VI (+4 -> +5)
+        dE: 166.8
+        P: 1
+        A: 0.176e-8
+        X: 0.102
+        K: 0.31
+        Tmin: 7
+        Tmax: 20e3
+      - N: 9     # Si VI -> Si VII (+5 -> +6)
+        dE: 205.3
+        P: 1
+        A: 0.174e-8
+        X: 0.180
+        K: 0.29
+        Tmin: 10
+        Tmax: 20e3
+      - N: 8     # Si VII -> Si VIII (+6 -> +7)
+        dE: 246.5
+        P: 1
+        A: 0.123e-8
+        X: 0.518
+        K: 0.07
+        Tmin: 10
+        Tmax: 20e3
+      - N: 7     # Si VIII -> Si IX (+7 -> +8)
+        dE: 303.5
+        P: 1
+        A: 0.827e-9
+        X: 0.239
+        K: 0.28
+        Tmin: 20
+        Tmax: 20e3
+      - N: 6     # Si IX -> Si X (+8 -> +9)
+        dE: 351.1
+        P: 1
+        A: 0.601e-9
+        X: 0.305
+        K: 0.25
+        Tmin: 20
+        Tmax: 20e3
+      - N: 5     # Si X -> Si XI (+9 -> +10)
+        dE: 401.4
+        P: 1
+        A: 0.465e-9
+        X: 0.666
+        K: 0.04
+        Tmin: 20
+        Tmax: 20e3
+      - N: 4     # Si XI -> Si XII (+10 -> +11)
+        dE: 476.4
+        P: 1
+        A: 0.263e-9
+        X: 0.666
+        K: 0.16
+        Tmin: 20
+        Tmax: 20e3
+      - N: 3     # Si XII -> Si XIII (+11 -> +12)
+        dE: 523.5
+        P: 1
+        A: 0.118e-9
+        X: 0.734
+        K: 0.16
+        Tmin: 30
+        Tmax: 20e3
+      - N: 2     # Si XIII -> Si XIV (+12 -> +13)
+        dE: 2437.7
+        P: 0
+        A: 0.336e-10
+        X: 0.336
+        K: 0.37
+        Tmin: 100
+        Tmax: 100e3
+      - N: 1     # Si XIV -> Si XV (+13 -> +14)
+        dE: 2673.2
+        P: 1
+        A: 0.119e-10
+        X: 0.989
+        K: 0.08
+        Tmin: 200
+        Tmax: 100e3
+
+  - Z: 18
+    element: "Ar"
+    entries:
+      - N: 18    # Ar I  -> Ar II  (neutral -> +1)
+        dE: 15.8
+        P: 1
+        A: 0.599e-7
+        X: 0.136
+        K: 0.26
+        Tmin: 1
+        Tmax: 20e3
+      - N: 17    # Ar II -> Ar III (+1 -> +2)
+        dE: 27.6
+        P: 1
+        A: 0.607e-7
+        X: 0.544
+        K: 0.21
+        Tmin: 2
+        Tmax: 20e3
+      - N: 16    # Ar III -> Ar IV (+2 -> +3)
+        dE: 40.9
+        P: 1
+        A: 0.343e-7
+        X: 0.834
+        K: 0.17
+        Tmin: 2
+        Tmax: 20e3
+      - N: 15    # Ar IV -> Ar V (+3 -> +4)
+        dE: 52.3
+        P: 0
+        A: 0.300e-7
+        X: 1.030
+        K: 0.25
+        Tmin: 3
+        Tmax: 20e3
+      - N: 14    # Ar V -> Ar VI (+4 -> +5)
+        dE: 75.0
+        P: 1
+        A: 0.873e-8
+        X: 0.366
+        K: 0.31
+        Tmin: 3
+        Tmax: 20e3
+      - N: 13    # Ar VI -> Ar VII (+5 -> +6)
+        dE: 91.0
+        P: 1
+        A: 0.578e-8
+        X: 0.314
+        K: 0.34
+        Tmin: 4
+        Tmax: 20e3
+      - N: 12    # Ar VII -> Ar VIII (+6 -> +7)
+        dE: 124.3
+        P: 1
+        A: 0.298e-8
+        X: 0.703
+        K: 0.16
+        Tmin: 5
+        Tmax: 20e3
+      - N: 11    # Ar VIII -> Ar IX (+7 -> +8)
+        dE: 143.5
+        P: 1
+        A: 0.725e-9
+        X: 0.207
+        K: 0.15
+        Tmin: 20
+        Tmax: 20e3
+      - N: 10    # Ar IX -> Ar X (+8 -> +9)
+        dE: 422.4
+        P: 1
+        A: 0.725e-9
+        X: 0.207
+        K: 0.15
+        Tmin: 20
+        Tmax: 20e3
+      - N: 9     # Ar X -> Ar XI (+9 -> +10)
+        dE: 478.7
+        P: 1
+        A: 0.478e-9
+        X: 0.164
+        K: 0.31
+        Tmin: 20
+        Tmax: 20e3
+      - N: 8     # Ar XI -> Ar XII (+10 -> +11)
+        dE: 539.0
+        P: 0
+        A: 0.802e-9
+        X: 0.439
+        K: 0.32
+        Tmin: 30
+        Tmax: 20e3
+      - N: 7     # Ar XII -> Ar XIII (+11 -> +12)
+        dE: 618.3
+        P: 1
+        A: 0.288e-9
+        X: 0.259
+        K: 0.27
+        Tmin: 30
+        Tmax: 20e3
+      - N: 6     # Ar XIII -> Ar XIV (+12 -> +13)
+        dE: 686.1
+        P: 1
+        A: 0.288e-9
+        X: 0.259
+        K: 0.27
+        Tmin: 30
+        Tmax: 20e3
+      - N: 5     # Ar XIV -> Ar XV (+13 -> +14)
+        dE: 755.7
+        P: 0
+        A: 0.333e-9
+        X: 0.412
+        K: 0.36
+        Tmin: 40
+        Tmax: 20e3
+      - N: 4     # Ar XV -> Ar XVI (+14 -> +15)
+        dE: 854.8
+        P: 1
+        A: 0.127e-9
+        X: 0.910
+        K: 0.13
+        Tmin: 40
+        Tmax: 20e3
+      - N: 3     # Ar XVI -> Ar XVII (+15 -> +16)
+        dE: 918.0
+        P: 1
+        A: 0.521e-10
+        X: 0.781
+        K: 0.15
+        Tmin: 40
+        Tmax: 20e3
+      - N: 2     # Ar XVII -> Ar XVIII (+16 -> +17)
+        dE: 4120.7
+        P: 0
+        A: 0.166e-10
+        X: 0.435
+        K: 0.33
+        Tmin: 200
+        Tmax: 100e3
+      - N: 1     # Ar XVIII -> Ar XIX (+17 -> +18)
+        dE: 4426.2
+        P: 1
+        A: 0.432e-11
+        X: 0.554
+        K: 0.18
+        Tmin: 200
+        Tmax: 100e3
+
+  - Z: 19
+    element: "K"
+    entries:
+      - N: 19    # K I  -> K II  (neutral -> +1)
+        dE: 4.3
+        P: 1
+        A: 0.202e-6
+        X: 0.272
+        K: 0.31
+        Tmin: 1
+        Tmax: 20e3
+      - N: 18    # K II -> K III (+1 -> +2)
+        dE: 31.6
+        P: 1
+        A: 0.401e-7
+        X: 0.371
+        K: 0.22
+        Tmin: 2
+        Tmax: 20e3
+      - N: 17    # K III -> K IV (+2 -> +3)
+        dE: 45.8
+        P: 1
+        A: 0.150e-7
+        X: 0.433
+        K: 0.21
+        Tmin: 2
+        Tmax: 20e3
+      - N: 16    # K IV -> K V (+3 -> +4)
+        dE: 60.9
+        P: 1
+        A: 0.194e-7
+        X: 0.889
+        K: 0.16
+        Tmin: 3
+        Tmax: 20e3
+      - N: 15    # K V -> K VI (+4 -> +5)
+        dE: 82.7
+        P: 1
+        A: 0.695e-8
+        X: 0.494
+        K: 0.18
+        Tmin: 4
+        Tmax: 20e3
+      - N: 14    # K VI -> K VII (+5 -> +6)
+        dE: 99.4
+        P: 1
+        A: 0.411e-8
+        X: 0.540
+        K: 0.17
+        Tmin: 4
+        Tmax: 20e3
+      - N: 13    # K VII -> K VIII (+6 -> +7)
+        dE: 117.6
+        P: 1
+        A: 0.223e-8
+        X: 0.519
+        K: 0.16
+        Tmin: 5
+        Tmax: 20e3
+      - N: 12    # K VIII -> K IX (+7 -> +8)
+        dE: 154.7
+        P: 1
+        A: 0.215e-8
+        X: 0.828
+        K: 0.14
+        Tmin: 7
+        Tmax: 20e3
+      - N: 11    # K IX -> K X (+8 -> +9)
+        dE: 175.8
+        P: 0
+        A: 0.161e-8
+        X: 0.642
+        K: 0.13
+        Tmin: 20
+        Tmax: 20e3
+      - N: 10    # K X -> K XI (+9 -> +10)
+        dE: 504.0
+        P: 1
+        A: 0.107e-8
+        X: 0.695
+        K: 0.13
+        Tmin: 30
+        Tmax: 20e3
+      - N: 9     # K XI -> K XII (+10 -> +11)
+        dE: 564.7
+        P: 1
+        A: 0.378e-9
+        X: 0.173
+        K: 0.30
+        Tmin: 30
+        Tmax: 20e3
+      - N: 8     # K XII -> K XIII (+11 -> +12)
+        dE: 629.4
+        P: 0
+        A: 0.624e-9
+        X: 0.418
+        K: 0.33
+        Tmin: 30
+        Tmax: 20e3
+      - N: 7     # K XIII -> K XIV (+12 -> +13)
+        dE: 714.6
+        P: 1
+        A: 0.229e-9
+        X: 0.245
+        K: 0.28
+        Tmin: 30
+        Tmax: 20e3
+      - N: 6     # K XIV -> K XV (+13 -> +14)
+        dE: 786.6
+        P: 1
+        A: 0.186e-9
+        X: 0.334
+        K: 0.23
+        Tmin: 40
+        Tmax: 20e3
+      - N: 5     # K XV -> K XVI (+14 -> +15)
+        dE: 861.1
+        P: 0
+        A: 0.269e-9
+        X: 0.396
+        K: 0.37
+        Tmin: 40
+        Tmax: 20e3
+      - N: 4     # K XVI -> K XVII (+15 -> +16)
+        dE: 968.0
+        P: 1
+        A: 0.106e-9
+        X: 0.912
+        K: 0.13
+        Tmin: 40
+        Tmax: 20e3
+      - N: 3     # K XVII -> K XVIII (+16 -> +17)
+        dE: 1053.4
+        P: 1
+        A: 0.424e-10
+        X: 0.737
+        K: 0.16
+        Tmin: 50
+        Tmax: 100e3
+      - N: 2     # K XVIII -> K XIX (+17 -> +18)
+        dE: 4610.9
+        P: 0
+        A: 0.138e-10
+        X: 0.416
+        K: 0.34
+        Tmin: 200
+        Tmax: 100e3
+      - N: 1     # K XIX -> K XX (+18 -> +19)
+        dE: 4934.1
+        P: 1
+        A: 0.367e-11
+        X: 0.555
+        K: 0.18
+        Tmin: 200
+        Tmax: 100e3
+
+  - Z: 20
+    element: "Ca"
+    entries:
+      - N: 20    # Ca I  -> Ca II  (neutral -> +1)
+        dE: 6.1
+        P: 0
+        A: 0.440e-6
+        X: 0.848
+        K: 0.33
+        Tmin: 1
+        Tmax: 20e3
+      - N: 19    # Ca II -> Ca III (+1 -> +2)
+        dE: 11.9
+        P: 0
+        A: 0.522e-7
+        X: 0.151
+        K: 0.34
+        Tmin: 1
+        Tmax: 20e3
+      - N: 18    # Ca III -> Ca IV (+2 -> +3)
+        dE: 50.9
+        P: 1
+        A: 0.206e-7
+        X: 0.418
+        K: 0.20
+        Tmin: 3
+        Tmax: 20e3
+      - N: 17    # Ca IV -> Ca V (+3 -> +4)
+        dE: 67.3
+        P: 1
+        A: 0.172e-7
+        X: 0.638
+        K: 0.19
+        Tmin: 3
+        Tmax: 20e3
+      - N: 16    # Ca V -> Ca VI (+4 -> +5)
+        dE: 84.5
+        P: 1
+        A: 0.126e-7
+        X: 1.010
+        K: 0.14
+        Tmin: 4
+        Tmax: 20e3
+      - N: 15    # Ca VI -> Ca VII (+5 -> +6)
+        dE: 108.8
+        P: 1
+        A: 0.472e-8
+        X: 0.526
+        K: 0.17
+        Tmin: 5
+        Tmax: 20e3
+      - N: 14    # Ca VII -> Ca VIII (+6 -> +7)
+        dE: 127.2
+        P: 1
+        A: 0.289e-8
+        X: 0.548
+        K: 0.17
+        Tmin: 7
+        Tmax: 20e3
+      - N: 13    # Ca VIII -> Ca IX (+7 -> +8)
+        dE: 147.2
+        P: 1
+        A: 0.164e-8
+        X: 0.552
+        K: 0.15
+        Tmin: 7
+        Tmax: 20e3
+      - N: 12    # Ca IX -> Ca X (+8 -> +9)
+        dE: 188.3
+        P: 1
+        A: 0.157e-8
+        X: 0.799
+        K: 0.14
+        Tmin: 10
+        Tmax: 20e3
+      - N: 11    # Ca X -> Ca XI (+9 -> +10)
+        dE: 211.3
+        P: 1
+        A: 0.432e-9
+        X: 0.232
+        K: 0.14
+        Tmin: 30
+        Tmax: 20e3
+      - N: 10    # Ca XI -> Ca XII (+10 -> +11)
+        dE: 591.9
+        P: 0
+        A: 0.947e-9
+        X: 0.311
+        K: 0.38
+        Tmin: 30
+        Tmax: 20e3
+      - N: 9     # Ca XII -> Ca XIII (+11 -> +12)
+        dE: 657.2
+        P: 1
+        A: 0.298e-9
+        X: 0.163
+        K: 0.31
+        Tmin: 30
+        Tmax: 20e3
+      - N: 8     # Ca XIII -> Ca XIV (+12 -> +13)
+        dE: 726.6
+        P: 0
+        A: 0.478e-9
+        X: 0.359
+        K: 0.36
+        Tmin: 30
+        Tmax: 20e3
+      - N: 7     # Ca XIV -> Ca XV (+13 -> +14)
+        dE: 817.6
+        P: 1
+        A: 0.186e-9
+        X: 0.244
+        K: 0.28
+        Tmin: 40
+        Tmax: 20e3
+      - N: 6     # Ca XV -> Ca XVI (+14 -> +15)
+        dE: 894.5
+        P: 1
+        A: 0.156e-9
+        X: 0.364
+        K: 0.22
+        Tmin: 40
+        Tmax: 20e3
+      - N: 5     # Ca XVI -> Ca XVII (+15 -> +16)
+        dE: 974.0
+        P: 0
+        A: 0.216e-9
+        X: 0.357
+        K: 0.39
+        Tmin: 40
+        Tmax: 20e3
+      - N: 4     # Ca XVII -> Ca XVIII (+16 -> +17)
+        dE: 1087.0
+        P: 1
+        A: 0.770e-10
+        X: 0.655
+        K: 0.15
+        Tmin: 50
+        Tmax: 100e3
+      - N: 3     # Ca XVIII -> Ca XIX (+17 -> +18)
+        dE: 1157.0
+        P: 1
+        A: 0.358e-10
+        X: 0.736
+        K: 0.16
+        Tmin: 50
+        Tmax: 100e3
+      - N: 2     # Ca XIX -> Ca XX (+18 -> +19)
+        dE: 5128.9
+        P: 0
+        A: 0.128e-10
+        X: 0.520
+        K: 0.30
+        Tmin: 300
+        Tmax: 100e3
+      - N: 1     # Ca XX -> Ca XXI (+19 -> +20)
+        dE: 5469.9
+        P: 1
+        A: 0.308e-11
+        X: 0.528
+        K: 0.19
+        Tmin: 300
+        Tmax: 100e3

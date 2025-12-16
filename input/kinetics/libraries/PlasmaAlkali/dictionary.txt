@@ -1,0 +1,148 @@
+e-
+1 e u1 p0 c-1
+
+K
+1 K u1 p0 c0
+
+K+
+1 K u0 p0 c+1
+
+Na
+1 Na u1 p0 c0
+
+Na+
+1 Na u0 p0 c+1
+
+Li
+1 Li u1 p0 c0
+
+Li+
+1 Li u0 p0 c+1
+
+Mg
+1 Mg u0 p1 c0
+
+Mg+
+1 Mg u1 p0 c+1
+
+Mg+2
+1 Mg u0 p0 c+2
+
+Ca
+1 Ca u0 p1 c0
+
+Ca+
+1 Ca u1 p0 c+1
+
+Si
+1 Si u2 p1 c0
+
+Si+
+1 Si u1 p1 c+1
+
+LiH2O+
+1 O u0 p2 c0 {2,S} {3,S}
+2 H u0 p0 c0 {1,S}
+3 H u0 p0 c0 {1,S}
+4 Li u0 p0 c+1
+
+NaH2O+
+1 O u0 p1 c+1 {2,S} {3,S} {4,S}
+2 H u0 p0 c0 {1,S}
+3 H u0 p0 c0 {1,S}
+4 Na u0 p0 c0 {1,S}
+
+KH2O+
+1 O u0 p2 c0 {2,S} {3,S}
+2 H u0 p0 c0 {1,S}
+3 H u0 p0 c0 {1,S}
+4 K u0 p0 c+1
+
+LiO2
+1 O u1 p2 c0 {2,S}
+2 O u0 p2 c0 {1,S} {3,S}
+3 Li u0 p0 c0 {2,S}
+
+KO2
+1 O u1 p2 c0 {2,S}
+2 O u0 p2 c0 {1,S} {3,S}
+3 K u0 p0 c0 {2,S}
+
+NaO2
+1 O u1 p2 c0 {2,S}
+2 O u0 p2 c0 {1,S} {3,S}
+3 Na u0 p0 c0 {2,S}
+
+LiOH
+1 O u0 p2 c0 {2,S} {3,S}
+2 H u0 p0 c0 {1,S}
+3 Li u0 p0 c0 {1,S}
+
+KOH
+1 O u0 p2 c0 {2,S} {3,S}
+2 H u0 p0 c0 {1,S}
+3 K u0 p0 c0 {1,S}
+
+NaOH
+1 O u0 p2 c0 {2,S} {3,S}
+2 H u0 p0 c0 {1,S}
+3 Na u0 p0 c0 {1,S}
+
+CaOH+
+1 Ca u0 p0 c+1 {2,S}
+2 O u0 p2 c0 {1,S} {3,S}
+3 H u0 p0 c0 {2,S}
+
+CaOH
+1 Ca u1 p0 c0 {2,S}
+2 O u0 p2 c0 {1,S} {3,S}
+3 H u0 p0 c0 {2,S}
+
+CaO
+1 Ca u0 p0 c0 {2,D}
+2 O u0 p2 c0 {1,D}
+
+CaOH2
+1 O u0 p2 c0 {2,S} {4,S}
+2 Ca u0 p0 c0 {1,S} {3,S}
+3 O u0 p2 c0 {2,S} {5,S}
+4 H u0 p0 c0 {1,S}
+5 H u0 p0 c0 {3,S}
+
+OH
+multiplicity 2
+1 O u1 p2 c0 {2,S}
+2 H u0 p0 c0 {1,S}
+
+OH-
+1 O u0 p3 c-1 {2,S}
+2 H u0 p0 c0 {1,S}
+
+H2O
+1 O u0 p2 c0 {2,S} {3,S}
+2 H u0 p0 c0 {1,S}
+3 H u0 p0 c0 {1,S}
+
+O2
+multiplicity 3
+1 O u1 p2 c0 {2,S}
+2 O u1 p2 c0 {1,S}
+
+H2
+1 H u0 p0 c0 {2,S}
+2 H u0 p0 c0 {1,S}
+
+HO2
+multiplicity 2
+1 O u0 p2 c0 {2,S} {3,S}
+2 O u1 p2 c0 {1,S}
+3 H u0 p0 c0 {1,S}
+
+H
+1 H u1 p0 c0
+
+H3O+
+1 O u0 p1 c+1 {2,S} {3,S} {4,S}
+2 H u0 p0 c0 {1,S}
+3 H u0 p0 c0 {1,S}
+4 H u0 p0 c0 {1,S}

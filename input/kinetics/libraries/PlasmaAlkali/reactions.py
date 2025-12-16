@@ -1,0 +1,595 @@
+#!/usr/bin/env python
+# encoding: utf-8
+
+name = "PlasmaAlkali"
+shortDesc = u"PlasmaAlkali"
+longDesc = u"""
+Plasma kinetics for Alkali and Alkali Earth metals in air plasma environments.
+
+Reference legend:
+[Golyatina2021]:  R.I. Golyatina, S.A. Marinov, Analytical Cross Section Approximation for Electron Impact Ionization of Alkali and Other Metals, Inert Gases and Hydrogen Atoms, Atoms 2021, 9(90), DOI: 10.3390/atoms9040090
+[VernerFerland1996]: D.A. Verner, G.J. Ferland, Atomic data for astrophysics. I. Radiative recombination rates for H-like, He-like, Li-like and Na-like ions over a broad range of temperature, ApJ 1995, arXiv:astro-ph/9509083v1
+[JensenJones1977]: D.E. Jensen and G.A. Jones, "Reaction Rate Coefficients for Flame Calculations", https://apps.dtic.mil/sti/tr/pdf/ADA047018.pdf
+"""
+
+entry(
+    index = 1,
+    label = "Li+ + e- <=> Li",
+    kinetics = TwoTemperaturePlasma(A=(1.30e-09, "cm^3/(molecule*s)"), n=-0.95, Ea_g=(0.0, "J/mol"), Ea_e=(0.19,'kJ/mol'),
+                                    Tmin = (10, "K"), Tmax = (1000000000, "K")),
+    shortDesc = u"[VernerFerland1996]",
+    longDesc = u"""
+Radiative Recombination to form Li I.
+Z=3, N_product=3 (Product has 3 e-).
+Fit Parameters: a=1.04e-11, b=0.3880, T0=1.08e+02, T1=1.18e+07
+
+temperatures = ([
+    1.00e+01, 1.46e+01, 2.12e+01, 3.09e+01, 4.50e+01, 6.55e+01, 9.54e+01, 1.39e+02, 2.02e+02, 2.95e+02, 4.29e+02, 6.25e+02, 9.10e+02, 1.33e+03, 1.93e+03, 2.81e+03, 4.09e+03, 5.96e+03, 8.69e+03, 1.26e+04, 1.84e+04, 2.68e+04, 3.91e+04, 5.69e+04, 8.29e+04, 1.21e+05, 1.76e+05, 2.56e+05, 3.73e+05, 5.43e+05, 7.91e+05, 1.15e+06, 1.68e+06, 2.44e+06, 3.56e+06, 5.18e+06, 7.54e+06, 1.10e+07, 1.60e+07, 2.33e+07, 3.39e+07, 4.94e+07, 7.20e+07, 1.05e+08, 1.53e+08, 2.22e+08, 3.24e+08, 4.71e+08, 6.87e+08, 1.00e+09
+], 'K'),
+rate_coefficients = ([
+    2.89e-11, 2.32e-11, 1.86e-11, 1.48e-11, 1.18e-11, 9.30e-12, 7.31e-12, 5.71e-12, 4.43e-12, 3.42e-12, 2.63e-12, 2.01e-12, 1.53e-12, 1.16e-12, 8.73e-13, 6.56e-13, 4.91e-13, 3.66e-13, 2.72e-13, 2.01e-13, 1.49e-13, 1.10e-13, 8.03e-14, 5.87e-14, 4.28e-14, 3.10e-14, 2.24e-14, 1.61e-14, 1.15e-14, 8.13e-15, 5.72e-15, 3.99e-15, 2.76e-15, 1.89e-15, 1.28e-15, 8.58e-16, 5.68e-16, 3.72e-16, 2.40e-16, 1.53e-16, 9.66e-17, 6.02e-17, 3.71e-17, 2.27e-17, 1.37e-17, 8.22e-18, 4.90e-18, 2.90e-18, 1.70e-18, 9.96e-19
+], 'cm^3/s'),
+
+Also available from:
+ThirdBody(arrheniusLow=Arrhenius(A=(2.41e+0,'cm^3/(mol*s)'), n=-1, Ea=(0,'cal/mol'), T0=(1,'K')),
+                         efficiencies={}),
+    shortDesc = u"[JensenJones1977]",
+p. 11
+"""
+)
+
+entry(
+    index = 2,
+    label = "Na+ + e- <=> Na",
+    kinetics = TwoTemperaturePlasma(A=(2.72e-08, "cm^3/(molecule*s)"), n=-1.07, Ea_g=(0.0, "J/mol"), Ea_e=(0.25,'kJ/mol'),
+                                    Tmin = (10, "K"), Tmax = (1000000000, "K")),
+    shortDesc = u"[VernerFerland1996]",
+    longDesc = u"""
+Radiative Recombination to form Na I.
+Z=11, N_product=11 (Product has 11 e-).
+Fit Parameters: a=5.64e-12, b=0.1749, T0=3.08e+02, T1=2.62e+06
+
+temperatures = ([
+    1.00e+01, 1.46e+01, 2.12e+01, 3.09e+01, 4.50e+01, 6.55e+01, 9.54e+01, 1.39e+02, 2.02e+02, 2.95e+02, 4.29e+02, 6.25e+02, 9.10e+02, 1.33e+03, 1.93e+03, 2.81e+03, 4.09e+03, 5.96e+03, 8.69e+03, 1.26e+04, 1.84e+04, 2.68e+04, 3.91e+04, 5.69e+04, 8.29e+04, 1.21e+05, 1.76e+05, 2.56e+05, 3.73e+05, 5.43e+05, 7.91e+05, 1.15e+06, 1.68e+06, 2.44e+06, 3.56e+06, 5.18e+06, 7.54e+06, 1.10e+07, 1.60e+07, 2.33e+07, 3.39e+07, 4.94e+07, 7.20e+07, 1.05e+08, 1.53e+08, 2.22e+08, 3.24e+08, 4.71e+08, 6.87e+08, 1.00e+09
+], 'K'),
+rate_coefficients = ([
+    2.72e-11, 2.20e-11, 1.77e-11, 1.41e-11, 1.12e-11, 8.89e-12, 6.98e-12, 5.45e-12, 4.22e-12, 3.24e-12, 2.47e-12, 1.87e-12, 1.41e-12, 1.05e-12, 7.75e-13, 5.70e-13, 4.16e-13, 3.02e-13, 2.17e-13, 1.56e-13, 1.11e-13, 7.85e-14, 5.52e-14, 3.86e-14, 2.68e-14, 1.85e-14, 1.27e-14, 8.62e-15, 5.81e-15, 3.88e-15, 2.57e-15, 1.68e-15, 1.09e-15, 6.98e-16, 4.43e-16, 2.78e-16, 1.73e-16, 1.06e-16, 6.47e-17, 3.91e-17, 2.34e-17, 1.40e-17, 8.25e-18, 4.85e-18, 2.84e-18, 1.65e-18, 9.60e-19, 5.56e-19, 3.21e-19, 1.85e-19
+], 'cm^3/s'),
+
+Also available from:
+ThirdBody(arrheniusLow=Arrhenius(A=(2.41e+0,'cm^3/(mol*s)'), n=-1, Ea=(0,'cal/mol'), T0=(1,'K')),
+                         efficiencies={}),
+    shortDesc = u"[JensenJones1977]",
+p. 11
+"""
+)
+
+entry(
+    index = 3,
+    label = "K+ + e- <=> K",
+    kinetics = ThirdBody(arrheniusLow=Arrhenius(A=(2.41e+0,'cm^6/(mol^2*s)'), n=-1, Ea=(0,'cal/mol'), T0=(1,'K')),
+                         efficiencies={}),
+    shortDesc = u"[JensenJones1977]",
+    longDesc = u"""
+p. 11
+"""
+)
+
+entry(
+    index = 4,
+    label = "Li+ + OH- <=> Li + OH",
+    kinetics=Arrhenius(A=(6.0e15, 'cm^3/(mol*s)'), n=-0.50, Ea=(0.0, 'cal/mol'),
+                       T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(10000, 'K')),
+    shortDesc = u"[JensenJones1977]",
+    longDesc = u"""
+p. 11
+"""
+)
+
+entry(
+    index = 5,
+    label = "Na+ + OH- <=> Na + OH",
+    kinetics=Arrhenius(A=(6.0e15, 'cm^3/(mol*s)'), n=-0.50, Ea=(0.0, 'cal/mol'),
+                       T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(10000, 'K')),
+    shortDesc = u"[JensenJones1977]",
+    longDesc = u"""
+p. 11
+"""
+)
+
+entry(
+    index = 6,
+    label = "K+ + OH- <=> K + OH",
+    kinetics=Arrhenius(A=(6.0e15, 'cm^3/(mol*s)'), n=-0.50, Ea=(0.0, 'cal/mol'),
+                       T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(10000, 'K')),
+    shortDesc = u"[JensenJones1977]",
+    longDesc = u"""
+p. 11
+"""
+)
+
+entry(
+    index = 8,
+    label = "LiH2O+ <=> Li+ + H2O",
+    kinetics = ThirdBody(arrheniusLow=Arrhenius(A=(1.2e+17,'cm^3/(mol*s)'), n=0.0, Ea=(45700,'cal/mol'), T0=(1,'K')),
+                         efficiencies={}),
+    shortDesc = u"[JensenJones1977]",
+    longDesc = u"""
+p. 11
+"""
+)
+
+entry(
+    index = 9,
+    label = "NaH2O+ <=> Na+ + H2O",
+    kinetics = ThirdBody(arrheniusLow=Arrhenius(A=(1.8e+17,'cm^3/(mol*s)'), n=0.0, Ea=(29800,'cal/mol'), T0=(1,'K')),
+                         efficiencies={}),
+    shortDesc = u"[JensenJones1977]",
+    longDesc = u"""
+p. 11
+"""
+)
+
+entry(
+    index = 10,
+    label = "KH2O+ <=> K+ + H2O",
+    kinetics = ThirdBody(arrheniusLow=Arrhenius(A=(6.0e+16,'cm^3/(mol*s)'), n=0.0, Ea=(19900,'cal/mol'), T0=(1,'K')),
+                         efficiencies={}),
+    shortDesc = u"[JensenJones1977]",
+    longDesc = u"""
+p. 11
+"""
+)
+
+entry(
+    index = 11,
+    label = "LiH2O+ + e- <=> Li + H2O",
+    kinetics=Arrhenius(A=(6.0e16, 'cm^3/(mol*s)'), n=0.0, Ea=(0.0, 'cal/mol'),
+                       T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(10000, 'K')),
+    shortDesc = u"[JensenJones1977]",
+    longDesc = u"""
+p. 11
+"""
+)
+
+entry(
+    index = 12,
+    label = "NaH2O+ + e- <=> Na + H2O",
+    kinetics=Arrhenius(A=(6.0e16, 'cm^3/(mol*s)'), n=0.0, Ea=(0.0, 'cal/mol'),
+                       T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(10000, 'K')),
+    shortDesc = u"[JensenJones1977]",
+    longDesc = u"""
+p. 11
+"""
+)
+
+entry(
+    index = 13,
+    label = "KH2O+ + e- <=> K + H2O",
+    kinetics=Arrhenius(A=(6.0e16, 'cm^3/(mol*s)'), n=0.0, Ea=(0.0, 'cal/mol'),
+                       T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(10000, 'K')),
+    shortDesc = u"[JensenJones1977]",
+    longDesc = u"""
+p. 11
+"""
+)
+
+entry(
+    index = 14,
+    label = "LiH2O+ + OH- => Li + OH + H2O",
+    reversible = False,
+    kinetics=Arrhenius(A=(2.4e16, 'cm^3/(mol*s)'), n=0.0, Ea=(0.0, 'cal/mol'),
+                       T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(10000, 'K')),
+    shortDesc = u"[JensenJones1977]",
+    longDesc = u"""
+p. 11
+"""
+)
+
+entry(
+    index = 15,
+    label = "NaH2O+ + OH- => Na + OH + H2O",
+    reversible = False,
+    kinetics=Arrhenius(A=(2.4e16, 'cm^3/(mol*s)'), n=0.0, Ea=(0.0, 'cal/mol'),
+                       T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(10000, 'K')),
+    shortDesc = u"[JensenJones1977]",
+    longDesc = u"""
+p. 11
+"""
+)
+
+entry(
+    index = 16,
+    label = "KH2O+ + OH- => K + OH + H2O",
+    reversible = False,
+    kinetics=Arrhenius(A=(2.4e16, 'cm^3/(mol*s)'), n=0.0, Ea=(0.0, 'cal/mol'),
+                       T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(10000, 'K')),
+    shortDesc = u"[JensenJones1977]",
+    longDesc = u"""
+p. 11
+"""
+)
+
+entry(
+    index = 17,
+    label = "Li + O2 <=> LiO2",
+    kinetics = ThirdBody(arrheniusLow=Arrhenius(A=(3.6e+17,'cm^6/(mol^2*s)'), n=-1.0, Ea=(0,'cal/mol'), T0=(1,'K')),
+                         efficiencies={}),
+    shortDesc = u"[JensenJones1977]",
+    longDesc = u"""
+p. 12
+"""
+)
+
+entry(
+    index = 18,
+    label = "Na + O2 <=> NaO2",
+    kinetics = ThirdBody(arrheniusLow=Arrhenius(A=(3.6e+17,'cm^6/(mol^2*s)'), n=-1.0, Ea=(0,'cal/mol'), T0=(1,'K')),
+                         efficiencies={}),
+    shortDesc = u"[JensenJones1977]",
+    longDesc = u"""
+p. 12
+"""
+)
+
+entry(
+    index = 19,
+    label = "K + O2 <=> KO2",
+    kinetics = ThirdBody(arrheniusLow=Arrhenius(A=(3.6e+17,'cm^6/(mol^2*s)'), n=-1.0, Ea=(0,'cal/mol'), T0=(1,'K')),
+                         efficiencies={}),
+    shortDesc = u"[JensenJones1977]",
+    longDesc = u"""
+p. 12
+"""
+)
+
+entry(
+    index = 20,
+    label = "LiO2 + H2 <=> LiOH + OH",
+    kinetics=Arrhenius(A=(1.8e12, 'cm^3/(mol*s)'), n=0.0, Ea=(19900.0, 'cal/mol'),
+                       T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(10000, 'K')),
+    shortDesc = u"[JensenJones1977]",
+    longDesc = u"""
+p. 12
+"""
+)
+
+entry(
+    index = 21,
+    label = "NaO2 + H2 <=> NaOH + OH",
+    kinetics=Arrhenius(A=(1.8e12, 'cm^3/(mol*s)'), n=0.0, Ea=(19900.0, 'cal/mol'),
+                       T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(10000, 'K')),
+    shortDesc = u"[JensenJones1977]",
+    longDesc = u"""
+p. 12
+"""
+)
+
+entry(
+    index = 22,
+    label = "KO2 + H2 <=> KOH + OH",
+    kinetics=Arrhenius(A=(1.8e12, 'cm^3/(mol*s)'), n=0.0, Ea=(19900.0, 'cal/mol'),
+                       T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(10000, 'K')),
+    shortDesc = u"[JensenJones1977]",
+    longDesc = u"""
+p. 12
+"""
+)
+
+entry(
+    index = 23,
+    label = "LiO2 + OH <=> LiOH + O2",
+    kinetics=Arrhenius(A=(1.2e13, 'cm^3/(mol*s)'), n=0.0, Ea=(0.0, 'cal/mol'),
+                       T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(10000, 'K')),
+    shortDesc = u"[JensenJones1977]",
+    longDesc = u"""
+p. 12
+"""
+)
+
+entry(
+    index = 24,
+    label = "NaO2 + OH <=> NaOH + O2",
+    kinetics=Arrhenius(A=(1.2e13, 'cm^3/(mol*s)'), n=0.0, Ea=(0.0, 'cal/mol'),
+                       T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(10000, 'K')),
+    shortDesc = u"[JensenJones1977]",
+    longDesc = u"""
+p. 12
+"""
+)
+
+entry(
+    index = 25,
+    label = "KO2 + OH <=> KOH + O2",
+    kinetics=Arrhenius(A=(1.2e13, 'cm^3/(mol*s)'), n=0.0, Ea=(0.0, 'cal/mol'),
+                       T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(10000, 'K')),
+    shortDesc = u"[JensenJones1977]",
+    longDesc = u"""
+p. 12
+"""
+)
+
+entry(
+    index = 26,
+    label = "Na + HO2 <=> NaO2 + H",
+    kinetics=Arrhenius(A=(6.0e12, 'cm^3/(mol*s)'), n=0.0, Ea=(1990.0, 'cal/mol'),
+                       T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(10000, 'K')),
+    shortDesc = u"[JensenJones1977]",
+    longDesc = u"""
+p. 12
+"""
+)
+
+entry(
+    index = 27,
+    label = "K + HO2 <=> KO2 + H",
+    kinetics=Arrhenius(A=(6.0e12, 'cm^3/(mol*s)'), n=0.0, Ea=(1990.0, 'cal/mol'),
+                       T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(10000, 'K')),
+    shortDesc = u"[JensenJones1977]",
+    longDesc = u"""
+p. 12
+"""
+)
+
+entry(
+    index = 28,
+    label = "CaOH+ + e- <=> Ca + OH",
+    kinetics=Arrhenius(A=(3.0e23, 'cm^3/(mol*s)'), n=-2.0, Ea=(0.0, 'cal/mol'),
+                       T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(10000, 'K')),
+    shortDesc = u"[JensenJones1977]",
+    longDesc = u"""
+p. 14
+"""
+)
+
+entry(
+    index = 29,
+    label = "CaOH + H <=> CaO + H2",
+    kinetics=Arrhenius(A=(2.4e13, 'cm^3/(mol*s)'), n=0.0, Ea=(7300.0, 'cal/mol'),
+                       T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(10000, 'K')),
+    shortDesc = u"[JensenJones1977]",
+    longDesc = u"""
+p. 14
+"""
+)
+
+entry(
+    index = 30,
+    label = "CaOH + H <=> Ca + H2O",
+    kinetics=Arrhenius(A=(2.4e12, 'cm^3/(mol*s)'), n=0.0, Ea=(1200.0, 'cal/mol'),
+                       T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(10000, 'K')),
+    shortDesc = u"[JensenJones1977]",
+    longDesc = u"""
+p. 14
+"""
+)
+
+entry(
+    index = 31,
+    label = "CaOH2 + H <=> CaOH + H2O",
+    kinetics=Arrhenius(A=(1.8e13, 'cm^3/(mol*s)'), n=0.0, Ea=(1200.0, 'cal/mol'),
+                       T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(10000, 'K')),
+    shortDesc = u"[JensenJones1977]",
+    longDesc = u"""
+p. 14
+"""
+)
+
+entry(
+    index = 32,
+    label = "CaO + H2O <=> CaOH2",
+    kinetics=Arrhenius(A=(3.6e14, 'cm^3/(mol*s)'), n=0.0, Ea=(0.0, 'cal/mol'),
+                       T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(10000, 'K')),
+    shortDesc = u"[JensenJones1977]",
+    longDesc = u"""
+p. 14
+"""
+)
+
+entry(
+    index = 33,
+    label = "CaOH+ + e- <=> CaO + H",
+    kinetics=Arrhenius(A=(3.0e23, 'cm^3/(mol*s)'), n=-2.0, Ea=(0.0, 'cal/mol'),
+                       T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(10000, 'K')),
+    shortDesc = u"[JensenJones1977]",
+    longDesc = u"""
+p. 14
+"""
+)
+
+entry(
+    index = 34,
+    label = "CaOH+ + H <=> Ca+ + H2O",
+    kinetics=Arrhenius(A=(6.0e13, 'cm^3/(mol*s)'), n=-2.0, Ea=(2000.0, 'cal/mol'),
+                       T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(10000, 'K')),
+    shortDesc = u"[JensenJones1977]",
+    longDesc = u"""
+p. 14
+"""
+)
+
+entry(
+    index = 35,
+    label = "H3O+ + Li => Li+ + H2O + H",
+    reversible = False,
+    kinetics=Arrhenius(A=(1.0e19, 'cm^3/(mol*s)'), n=-1.0, Ea=(0.0, 'cal/mol'),
+                       T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(10000, 'K')),
+    shortDesc = u"[JensenJones1977]",
+    longDesc = u"""
+p. 14
+"""
+)
+
+entry(
+    index = 36,
+    label = "H3O+ + Na => Na+ + H2O + H",
+    reversible = False,
+    kinetics=Arrhenius(A=(2.4e22, 'cm^3/(mol*s)'), n=-2.0, Ea=(0.0, 'cal/mol'),
+                       T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(10000, 'K')),
+    shortDesc = u"[JensenJones1977]",
+    longDesc = u"""
+p. 14
+"""
+)
+
+entry(
+    index = 37,
+    label = "H3O+ + K => K+ + H2O + H",
+    reversible = False,
+    kinetics=Arrhenius(A=(2.7e22, 'cm^3/(mol*s)'), n=-2.0, Ea=(0.0, 'cal/mol'),
+                       T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(10000, 'K')),
+    shortDesc = u"[JensenJones1977]",
+    longDesc = u"""
+p. 14
+"""
+)
+
+entry(
+    index = 38,
+    label = "Li + e- => Li+ + e- + e-",
+    reversible = False,
+    kinetics = ElectronCollisionPlasma(
+        energies = ([
+            5.39, 5.49, 5.89, 6.39, 7.39, 10.39, 15.39, 25.39, 35.39, 45.39, 55.39, 65.39, 75.39, 85.39, 95.39, 105.39, 155.39, 205.39, 255.39, 305.39, 355.39, 405.39, 455.39, 505.39, 555.39, 605.39, 655.39, 705.39, 755.39, 805.39, 855.39, 905.39, 955.39, 1005.39, 1505.39, 2005.39, 2505.39, 3005.39, 3505.39, 4005.39, 4505.39, 5005.39, 5505.39, 6005.39, 6505.39, 7005.39, 7505.39, 8005.39, 8505.39, 9005.39, 9505.39, 10000.00
+        ], 'eV/molecule'),
+        sigma = ([
+            0.00e+00, 5.33e-22, 2.56e-21, 4.88e-21, 8.87e-21, 1.72e-20, 2.41e-20, 2.81e-20, 2.81e-20, 2.70e-20, 2.56e-20, 2.43e-20, 2.31e-20, 2.20e-20, 2.09e-20, 2.00e-20, 1.65e-20, 1.42e-20, 1.25e-20, 1.13e-20, 1.03e-20, 9.51e-21, 8.85e-21, 8.30e-21, 7.82e-21, 7.41e-21, 7.05e-21, 6.72e-21, 6.44e-21, 6.18e-21, 5.94e-21, 5.73e-21, 5.53e-21, 5.35e-21, 4.12e-21, 3.41e-21, 2.95e-21, 2.61e-21, 2.36e-21, 2.16e-21, 2.00e-21, 1.86e-21, 1.75e-21, 1.65e-21, 1.56e-21, 1.49e-21, 1.42e-21, 1.36e-21, 1.31e-21, 1.26e-21, 1.21e-21, 1.17e-21
+        ], 'm^2'),
+    ),
+    shortDesc = u"[Golyatina2021]",
+    longDesc = u"""
+Li Ionization. Threshold 5.392 eV.
+"""
+)
+
+entry(
+    index = 39,
+    label = "Na + e- => Na+ + e- + e-",
+    reversible = False,
+    kinetics = ElectronCollisionPlasma(
+        energies = ([
+            5.14, 5.24, 5.64, 6.14, 7.14, 10.14, 15.14, 25.14, 35.14, 45.14, 55.14, 65.14, 75.14, 85.14, 95.14, 105.14, 155.14, 205.14, 255.14, 305.14, 355.14, 405.14, 455.14, 505.14, 555.14, 605.14, 655.14, 705.14, 755.14, 805.14, 855.14, 905.14, 955.14, 1005.14, 1505.14, 2005.14, 2505.14, 3005.14, 3505.14, 4005.14, 4505.14, 5005.14, 5505.14, 6005.14, 6505.14, 7005.14, 7505.14, 8005.14, 8505.14, 9005.14, 9505.14, 10000.00
+        ], 'eV/molecule'),
+        sigma = ([
+            0.00e+00, 8.28e-22, 3.94e-21, 7.42e-21, 1.32e-20, 2.43e-20, 3.18e-20, 3.35e-20, 3.12e-20, 2.84e-20, 2.59e-20, 2.36e-20, 2.17e-20, 2.01e-20, 1.87e-20, 1.75e-20, 1.32e-20, 1.07e-20, 8.95e-21, 7.74e-21, 6.82e-21, 6.11e-21, 5.54e-21, 5.07e-21, 4.67e-21, 4.34e-21, 4.05e-21, 3.80e-21, 3.58e-21, 3.39e-21, 3.22e-21, 3.06e-21, 2.92e-21, 2.79e-21, 1.96e-21, 1.52e-21, 1.25e-21, 1.06e-21, 9.23e-22, 8.19e-22, 7.37e-22, 6.71e-22, 6.16e-22, 5.70e-22, 5.31e-22, 4.96e-22, 4.67e-22, 4.40e-22, 4.17e-22, 3.96e-22, 3.78e-22, 3.61e-22
+        ], 'm^2'),
+    ),
+    shortDesc = u"[Golyatina2021]",
+    longDesc = u"""
+Na Ionization. Threshold 5.139 eV.
+"""
+)
+
+entry(
+    index = 40,
+    label = "K + e- => K+ + e- + e-",
+    reversible = False,
+    kinetics = ElectronCollisionPlasma(
+        energies = ([
+            4.34, 4.44, 4.84, 5.34, 6.34, 9.34, 14.34, 24.34, 34.34, 44.34, 54.34, 64.34, 74.34, 84.34, 94.34, 104.34, 154.34, 204.34, 254.34, 304.34, 354.34, 404.34, 454.34, 504.34, 554.34, 604.34, 654.34, 704.34, 754.34, 804.34, 854.34, 904.34, 954.34, 1004.34, 1504.34, 2004.34, 2504.34, 3004.34, 3504.34, 4004.34, 4504.34, 5004.34, 5504.34, 6004.34, 6504.34, 7004.34, 7504.34, 8004.34, 8504.34, 9004.34, 9504.34, 10000.00
+        ], 'eV/molecule'),
+        sigma = ([
+            0.00e+00, 9.19e-22, 4.43e-21, 8.45e-21, 1.55e-20, 3.05e-20, 4.38e-20, 5.29e-20, 5.41e-20, 5.31e-20, 5.14e-20, 4.94e-20, 4.75e-20, 4.57e-20, 4.41e-20, 4.25e-20, 3.64e-20, 3.21e-20, 2.90e-20, 2.65e-20, 2.46e-20, 2.30e-20, 2.16e-20, 2.05e-20, 1.95e-20, 1.86e-20, 1.78e-20, 1.72e-20, 1.65e-20, 1.60e-20, 1.55e-20, 1.50e-20, 1.45e-20, 1.41e-20, 1.13e-20, 9.65e-21, 8.52e-21, 7.69e-21, 7.05e-21, 6.54e-21, 6.12e-21, 5.77e-21, 5.47e-21, 5.20e-21, 4.97e-21, 4.77e-21, 4.59e-21, 4.42e-21, 4.27e-21, 4.14e-21, 4.01e-21, 3.90e-21
+        ], 'm^2'),
+    ),
+    shortDesc = u"[Golyatina2021]",
+    longDesc = u"""
+K Ionization. Threshold 4.339 eV.
+"""
+)
+
+entry(
+    index = 41,
+    label = "Mg + e- => Mg+ + e- + e-",
+    reversible = False,
+    kinetics = ElectronCollisionPlasma(
+        energies = ([
+            7.65, 7.75, 8.15, 8.65, 9.65, 12.65, 17.65, 27.65, 37.65, 47.65, 57.65, 67.65, 77.65, 87.65, 97.65, 107.65, 157.65, 207.65, 257.65, 307.65, 357.65, 407.65, 457.65, 507.65, 557.65, 607.65, 657.65, 707.65, 757.65, 807.65, 857.65, 907.65, 957.65, 1007.65, 1507.65, 2007.65, 2507.65, 3007.65, 3507.65, 4007.65, 4507.65, 5007.65, 5507.65, 6007.65, 6507.65, 7007.65, 7507.65, 8007.65, 8507.65, 9007.65, 9507.65, 10000.00
+        ], 'eV/molecule'),
+        sigma = ([
+            0.00e+00, 6.48e-22, 3.11e-21, 5.92e-21, 1.08e-20, 2.08e-20, 2.90e-20, 3.30e-20, 3.21e-20, 3.01e-20, 2.80e-20, 2.60e-20, 2.42e-20, 2.27e-20, 2.13e-20, 2.00e-20, 1.56e-20, 1.28e-20, 1.08e-20, 9.45e-21, 8.40e-21, 7.56e-21, 6.89e-21, 6.33e-21, 5.86e-21, 5.46e-21, 5.12e-21, 4.82e-21, 4.55e-21, 4.31e-21, 4.10e-21, 3.91e-21, 3.74e-21, 3.58e-21, 2.55e-21, 1.99e-21, 1.65e-21, 1.41e-21, 1.23e-21, 1.10e-21, 9.94e-22, 9.07e-22, 8.36e-22, 7.75e-22, 7.23e-22, 6.78e-22, 6.39e-22, 6.04e-22, 5.74e-22, 5.46e-22, 5.21e-22, 4.99e-22
+        ], 'm^2'),
+    ),
+    shortDesc = u"[Golyatina2021]",
+    longDesc = u"""
+Mg Ionization. Threshold 7.646 eV.
+"""
+)
+
+entry(
+    index = 42,
+    label = "Si + e- => Si+ + e- + e-",
+    reversible = False,
+    kinetics = ElectronCollisionPlasma(
+        energies = ([
+            8.16, 8.26, 8.66, 9.16, 10.16, 13.16, 18.16, 28.16, 38.16, 48.16, 58.16, 68.16, 78.16, 88.16, 98.16, 108.16, 158.16, 208.16, 258.16, 308.16, 358.16, 408.16, 458.16, 508.16, 558.16, 608.16, 658.16, 708.16, 758.16, 808.16, 858.16, 908.16, 958.16, 1008.16, 1508.16, 2008.16, 2508.16, 3008.16, 3508.16, 4008.16, 4508.16, 5008.16, 5508.16, 6008.16, 6508.16, 7008.16, 7508.16, 8008.16, 8508.16, 9008.16, 9508.16, 10000.00
+        ], 'eV/molecule'),
+        sigma = ([
+            0.00e+00, 6.30e-22, 3.07e-21, 5.94e-21, 1.12e-20, 2.35e-20, 3.65e-20, 4.83e-20, 5.23e-20, 5.31e-20, 5.26e-20, 5.15e-20, 5.02e-20, 4.88e-20, 4.74e-20, 4.60e-20, 4.00e-20, 3.56e-20, 3.22e-20, 2.95e-20, 2.73e-20, 2.55e-20, 2.40e-20, 2.27e-20, 2.15e-20, 2.05e-20, 1.97e-20, 1.89e-20, 1.82e-20, 1.75e-20, 1.69e-20, 1.64e-20, 1.59e-20, 1.54e-20, 1.22e-20, 1.03e-20, 9.03e-21, 8.10e-21, 7.39e-21, 6.82e-21, 6.35e-21, 5.96e-21, 5.63e-21, 5.34e-21, 5.09e-21, 4.87e-21, 4.67e-21, 4.49e-21, 4.33e-21, 4.18e-21, 4.05e-21, 3.92e-21
+        ], 'm^2'),
+    ),
+    shortDesc = u"[Golyatina2021]",
+    longDesc = u"""
+Si Ionization. Threshold 8.157 eV.
+"""
+)
+
+# entry(
+#     index = 43,
+#     label = "Li+2 + e- <=> Li+",
+#     kinetics = TwoTemperaturePlasma(A=(5.08e-09, "cm^3/(molecule*s)"), n=-0.89, Ea_g=(0.0, "J/mol"), Ea_e=(0.18,'kJ/mol'),
+#                                     Tmin = (10, "K"), Tmax = (1000000000, "K")),
+#     shortDesc = u"[VernerFerland1996]",
+#     longDesc = u"""
+# Radiative Recombination to form Li II.
+# Z=3, N_product=2 (Product has 2 e-).
+# Fit Parameters: a=1.11e-10, b=0.6926, T0=2.44e+01, T1=8.32e+06
+#
+# temperatures = ([
+#     1.00e+01, 1.46e+01, 2.12e+01, 3.09e+01, 4.50e+01, 6.55e+01, 9.54e+01, 1.39e+02, 2.02e+02, 2.95e+02, 4.29e+02, 6.25e+02, 9.10e+02, 1.33e+03, 1.93e+03, 2.81e+03, 4.09e+03, 5.96e+03, 8.69e+03, 1.26e+04, 1.84e+04, 2.68e+04, 3.91e+04, 5.69e+04, 8.29e+04, 1.21e+05, 1.76e+05, 2.56e+05, 3.73e+05, 5.43e+05, 7.91e+05, 1.15e+06, 1.68e+06, 2.44e+06, 3.56e+06, 5.18e+06, 7.54e+06, 1.10e+07, 1.60e+07, 2.33e+07, 3.39e+07, 4.94e+07, 7.20e+07, 1.05e+08, 1.53e+08, 2.22e+08, 3.24e+08, 4.71e+08, 6.87e+08, 1.00e+09
+# ], 'K'),
+# rate_coefficients = ([
+#     1.49e-10, 1.20e-10, 9.71e-11, 7.81e-11, 6.26e-11, 5.01e-11, 4.00e-11, 3.18e-11, 2.52e-11, 2.00e-11, 1.58e-11, 1.24e-11, 9.78e-12, 7.68e-12, 6.02e-12, 4.71e-12, 3.68e-12, 2.86e-12, 2.23e-12, 1.73e-12, 1.34e-12, 1.03e-12, 7.93e-13, 6.07e-13, 4.63e-13, 3.51e-13, 2.65e-13, 1.98e-13, 1.47e-13, 1.09e-13, 7.92e-14, 5.72e-14, 4.08e-14, 2.87e-14, 2.00e-14, 1.37e-14, 9.22e-15, 6.13e-15, 4.02e-15, 2.59e-15, 1.65e-15, 1.04e-15, 6.43e-16, 3.95e-16, 2.40e-16, 1.44e-16, 8.60e-17, 5.10e-17, 3.00e-17, 1.76e-17
+# ], 'cm^3/s'),
+# """
+# )
+#
+# entry(
+#     index = 44,
+#     label = "Li+3 + e- <=> Li+2",
+#     kinetics = TwoTemperaturePlasma(A=(1.32e-08, "cm^3/(molecule*s)"), n=-0.86, Ea_g=(0.0, "J/mol"), Ea_e=(0.19,'kJ/mol'),
+#                                     Tmin = (10, "K"), Tmax = (1000000000, "K")),
+#     shortDesc = u"[VernerFerland1996]",
+#     longDesc = u"""
+# Radiative Recombination to form Li III.
+# Z=3, N_product=1 (Product has 1 e-).
+# Fit Parameters: a=3.04e-10, b=0.7539, T0=1.87e+01, T1=6.21e+06
+#
+# temperatures = ([
+#     1.00e+01, 1.46e+01, 2.12e+01, 3.09e+01, 4.50e+01, 6.55e+01, 9.54e+01, 1.39e+02, 2.02e+02, 2.95e+02, 4.29e+02, 6.25e+02, 9.10e+02, 1.33e+03, 1.93e+03, 2.81e+03, 4.09e+03, 5.96e+03, 8.69e+03, 1.26e+04, 1.84e+04, 2.68e+04, 3.91e+04, 5.69e+04, 8.29e+04, 1.21e+05, 1.76e+05, 2.56e+05, 3.73e+05, 5.43e+05, 7.91e+05, 1.15e+06, 1.68e+06, 2.44e+06, 3.56e+06, 5.18e+06, 7.54e+06, 1.10e+07, 1.60e+07, 2.33e+07, 3.39e+07, 4.94e+07, 7.20e+07, 1.05e+08, 1.53e+08, 2.22e+08, 3.24e+08, 4.71e+08, 6.87e+08, 1.00e+09
+# ], 'K'),
+# rate_coefficients = ([
+#     3.62e-10, 2.94e-10, 2.38e-10, 1.92e-10, 1.55e-10, 1.25e-10, 9.99e-11, 8.00e-11, 6.39e-11, 5.10e-11, 4.06e-11, 3.23e-11, 2.56e-11, 2.03e-11, 1.60e-11, 1.26e-11, 9.96e-12, 7.83e-12, 6.14e-12, 4.81e-12, 3.75e-12, 2.92e-12, 2.26e-12, 1.74e-12, 1.34e-12, 1.02e-12, 7.73e-13, 5.81e-13, 4.33e-13, 3.19e-13, 2.33e-13, 1.68e-13, 1.20e-13, 8.40e-14, 5.81e-14, 3.96e-14, 2.66e-14, 1.75e-14, 1.14e-14, 7.32e-15, 4.63e-15, 2.89e-15, 1.78e-15, 1.09e-15, 6.56e-16, 3.93e-16, 2.34e-16, 1.38e-16, 8.09e-17, 4.73e-17
+# ], 'cm^3/s'),
+# """
+# )
+
+entry(
+    index = 45,
+    label = "Mg+2 + e- <=> Mg+",
+    kinetics = TwoTemperaturePlasma(A=(8.69e-09, "cm^3/(molecule*s)"), n=-0.99, Ea_g=(0.0, "J/mol"), Ea_e=(0.23,'kJ/mol'),
+                                    Tmin = (10, "K"), Tmax = (1000000000, "K")),
+    shortDesc = u"[VernerFerland1996]",
+    longDesc = u"""
+Radiative Recombination to form Mg II.
+Z=12, N_product=11 (Product has 11 e-).
+Fit Parameters: a=1.92e-11, b=0.3028, T0=4.85e+02, T1=5.89e+06
+
+temperatures = ([
+    1.00e+01, 1.46e+01, 2.12e+01, 3.09e+01, 4.50e+01, 6.55e+01, 9.54e+01, 1.39e+02, 2.02e+02, 2.95e+02, 4.29e+02, 6.25e+02, 9.10e+02, 1.33e+03, 1.93e+03, 2.81e+03, 4.09e+03, 5.96e+03, 8.69e+03, 1.26e+04, 1.84e+04, 2.68e+04, 3.91e+04, 5.69e+04, 8.29e+04, 1.21e+05, 1.76e+05, 2.56e+05, 3.73e+05, 5.43e+05, 7.91e+05, 1.15e+06, 1.68e+06, 2.44e+06, 3.56e+06, 5.18e+06, 7.54e+06, 1.10e+07, 1.60e+07, 2.33e+07, 3.39e+07, 4.94e+07, 7.20e+07, 1.05e+08, 1.53e+08, 2.22e+08, 3.24e+08, 4.71e+08, 6.87e+08, 1.00e+09
+], 'K'),
+rate_coefficients = ([
+    1.22e-10, 9.89e-11, 8.02e-11, 6.48e-11, 5.22e-11, 4.18e-11, 3.33e-11, 2.64e-11, 2.08e-11, 1.63e-11, 1.27e-11, 9.83e-12, 7.56e-12, 5.77e-12, 4.37e-12, 3.30e-12, 2.47e-12, 1.84e-12, 1.36e-12, 1.00e-12, 7.35e-13, 5.36e-13, 3.89e-13, 2.80e-13, 2.01e-13, 1.43e-13, 1.01e-13, 7.13e-14, 4.97e-14, 3.44e-14, 2.36e-14, 1.61e-14, 1.08e-14, 7.18e-15, 4.72e-15, 3.07e-15, 1.97e-15, 1.25e-15, 7.88e-16, 4.89e-16, 3.01e-16, 1.83e-16, 1.11e-16, 6.62e-17, 3.93e-17, 2.32e-17, 1.36e-17, 7.98e-18, 4.64e-18, 2.69e-18
+], 'cm^3/s'),
+"""
+)

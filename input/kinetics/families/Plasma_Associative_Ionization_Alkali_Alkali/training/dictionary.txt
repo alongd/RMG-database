@@ -1,0 +1,36 @@
+e-
+1 e u1 p0 c-1
+
+Li_A
+1 *1 Li u1 p0 c0
+
+Li_B
+1 *2 Li u1 p0 c0
+
+Na_A
+1 *1 Na u1 p0 c0
+
+Na_B
+1 *2 Na u1 p0 c0
+
+K_A
+1 *1 K u1 p0 c0
+
+K_B
+1 *2 K u1 p0 c0
+
+Li2+
+1 Li u1 p0 c0
+2 Li u0 p0 c+1
+
+Na2+
+1 Na u1 p0 c0
+2 Na u0 p0 c+1
+
+K2+
+1 K u1 p0 c0
+2 K u0 p0 c+1
+
+NaK+
+1 Na u1 p0 c0
+2 K u0 p0 c+1

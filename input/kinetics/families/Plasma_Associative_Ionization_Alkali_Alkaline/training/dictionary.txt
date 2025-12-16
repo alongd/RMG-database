@@ -1,0 +1,12 @@
+e-
+1 e u1 p0 c-1
+
+Na_A
+1 *1 Na u1 p0 c0
+
+Mg_B
+1 *2 Mg u2 p0 c0
+
+NaMg+
+1 Na u0 p0 c0 {2,S}
+2 Mg u0 p0 c+1 {1,S}

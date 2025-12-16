@@ -58,6 +58,15 @@ default = {
     '1,3_NH3_elimination',
     'Retroene',
     'Ketoenol',
+    'Plasma_Collisional_Ionization',  # 1a
+    'Plasma_Electron_Impact_Ionization',  # 1b
+    'Plasma_Radiative_Recombination',  # 2
+    'Plasma_Electron_Impact_Dissociation',  # 3
+    'Plasma_Charge_Transfer',  # 4
+    'Plasma_Associative_Ionization_Alkali_Alkali',  # 5a
+    'Plasma_Associative_Ionization_Alkali_Alkaline',  # 5b
+    'Plasma_Associative_Ionization_Alkaline_Alkaline',  # 5c
+    'Plasma_Ion_Molecule_Association',  # 6
 }
 
 # Families for pyrolysis of C/H systems

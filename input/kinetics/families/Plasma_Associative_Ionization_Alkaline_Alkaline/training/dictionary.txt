@@ -1,0 +1,32 @@
+O_A
+1 *1 O u2 p2 c0
+
+O_B
+1 *2 O u2 p2 c0
+
+O2+
+1 *1 O u0 p2 c+1 {2,S}
+2 *2 O u1 p2 c0 {1,S}
+
+e-
+1 e u1 p0 c-1
+
+Mg_A
+1 *1 Mg u2 p0 c0
+
+Mg_B
+1 *2 Mg u2 p0 c0
+
+Mg2+
+1 Mg u1 p0 c0 {2,S}
+2 Mg u0 p0 c+1 {1,S}
+
+Ca_A
+1 *1 Ca u2 p0 c0
+
+Ca_B
+1 *2 Ca u2 p0 c0
+
+Ca2+
+1 Ca u1 p0 c0 {2,S}
+2 Ca u0 p0 c+1 {1,S}

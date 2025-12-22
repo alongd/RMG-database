@@ -60478,10 +60478,284 @@ This associates all the energy of this subgroup with the associated S6dd contrib
 """,
 )
 
+entry(
+    index = 3001,
+    label = "Alkali",
+    group =
+"""
+1 * alkali ux p0 cx
+""",
+    thermo = None,
+    shortDesc = """""",
+    longDesc =
+"""
+""",
+)
+
+entry(
+    index = 3002,
+    label = "Alkaline",
+    group =
+"""
+1 * alkaline ux p0 cx
+""",
+    thermo = None,
+    shortDesc = """""",
+    longDesc =
+"""
+""",
+)
+
+entry(
+    index = 3003,
+    label = "Li",
+    group =
+"""
+1 * Li ux p0 cx
+""",
+    thermo = ThermoData(
+        Tdata = ([300, 400, 500, 600, 800, 1000, 1500], 'K'),
+        Cpdata = ([29.5, 30.1, 31.0, 32.0, 33.5, 34.5, 36.0], 'J/(mol*K)'),
+        H298 = (140.6, 'kJ/mol'),
+        S298 = (175.0, 'J/(mol*K)'),
+    ),
+    shortDesc = u"""Lithium group""",
+    longDesc =
+"""
+Ref: LiH (Lithium Hydride gas).
+Data from NIST WebBook.
+Hf(298) = 140.6 kJ/mol. S(298) = 175.0 J/molK.
+""",
+)
+
+entry(
+    index = 3004,
+    label = "Na",
+    group =
+"""
+1 * Na ux p0 cx
+""",
+    thermo = ThermoData(
+        Tdata = ([300, 400, 500, 600, 800, 1000, 1500], 'K'),
+        Cpdata = ([29.5, 30.0, 30.8, 31.5, 33.0, 34.0, 36.0], 'J/(mol*K)'),
+        H298 = (124.3, 'kJ/mol'),
+        S298 = (186.0, 'J/(mol*K)'),
+    ),
+    shortDesc = u"""Sodium group""",
+    longDesc =
+"""
+Ref: NaH (Sodium Hydride gas).
+Data from NIST WebBook.
+Hf(298) = 124.3 kJ/mol. S(298) = 186.0 J/molK.
+""",
+)
+
+entry(
+    index = 3005,
+    label = "K",
+    group =
+"""
+1 * K ux p0 cx
+""",
+    thermo = ThermoData(
+        Tdata = ([300, 400, 500, 600, 800, 1000, 1500], 'K'),
+        Cpdata = ([29.5, 30.0, 30.8, 31.5, 33.0, 34.0, 36.0], 'J/(mol*K)'),
+        H298 = (127.0, 'kJ/mol'),
+        S298 = (200.0, 'J/(mol*K)'),
+    ),
+    shortDesc = u"""Potassium group""",
+    longDesc =
+"""
+Ref: KH (Potassium Hydride gas).
+Values estimated based on trends in alkali hydrides and older JANAF data.
+Hf(298) approx 127 kJ/mol.
+""",
+)
+
+entry(
+    index = 3006,
+    label = "Mg",
+    group =
+"""
+1 * Mg ux p0 cx
+""",
+    thermo = ThermoData(
+        Tdata = ([300, 400, 500, 600, 800, 1000, 1500], 'K'),
+        Cpdata = ([41.0, 45.0, 48.0, 50.0, 54.0, 57.0, 62.0], 'J/(mol*K)'),
+        H298 = (-10.0, 'kJ/mol'),
+        S298 = (210.0, 'J/(mol*K)'),
+    ),
+    shortDesc = u"""Magnesium group""",
+    longDesc =
+"""
+Ref: MgH2 (Magnesium Dihydride gas).
+Note: Gas phase MgH2 is significantly less stable than solid MgH2 (Hf_solid = -74.5 kJ/mol).
+This value (-10.0 kJ/mol) is a gas-phase estimate to serve as the group reference.
+""",
+)
+
+entry(
+    index = 3007,
+    label = "Ca",
+    group =
+"""
+1 * Ca ux p0 cx
+""",
+    thermo = ThermoData(
+        Tdata = ([300, 400, 500, 600, 800, 1000, 1500], 'K'),
+        Cpdata = ([42.0, 46.0, 49.0, 51.0, 55.0, 58.0, 63.0], 'J/(mol*K)'),
+        H298 = (-40.0, 'kJ/mol'),
+        S298 = (220.0, 'J/(mol*K)'),
+    ),
+    shortDesc = u"""Calcium group""",
+    longDesc =
+"""
+Ref: CaH2 (Calcium Dihydride gas).
+Gas phase estimate.
+""",
+)
+
+entry(
+    index = 3010,
+    label = "N_cation",
+    group =
+"""
+1 * N ux px c+1
+""",
+    thermo = ThermoData(
+        Tdata = ([300, 400, 500, 600, 800, 1000, 1500], 'K'),
+        Cpdata = ([48.0, 52.0, 58.0, 65.0, 75.0, 85.0, 100.0], 'J/(mol*K)'),
+        H298 = (630.0, 'kJ/mol'),
+        S298 = (189.0, 'J/(mol*K)'),
+    ),
+    shortDesc = u"""Nitrogen cation base""",
+    longDesc =
+"""
+Ref: Ammonium cation (NH4+).
+Derived from Proton Affinity of NH3 (853.6 kJ/mol) and Hf(H+) = 1530 kJ/mol.
+Hf(NH4+) = Hf(NH3) + Hf(H+) - PA = -46 + 1530 - 854 = 630 kJ/mol.
+""",
+)
+
+entry(
+    index = 3011,
+    label = "N_cation_C",
+    group =
+"""
+1 * N ux px c+1 {2,S}
+2   C ux px c0 {1,S}
+""",
+    thermo = None,
+    shortDesc = u"""N cation attached to Carbon""",
+    longDesc =
+"""
+Child node for N+ bonded to Carbon.
+Inherits from N_cation (NH4+) baseline.
+Requires specific bond correction for N(+)-C bond.
+""",
+)
+
+entry(
+    index = 3020,
+    label = "C_cation",
+    group =
+"""
+1 * C ux px c+1
+""",
+    thermo = ThermoData(
+        Tdata = ([300, 400, 500, 600, 800, 1000, 1500], 'K'),
+        Cpdata = ([40.0, 45.0, 50.0, 55.0, 65.0, 75.0, 90.0], 'J/(mol*K)'),
+        H298 = (1093.0, 'kJ/mol'),
+        S298 = (193.0, 'J/(mol*K)'),
+    ),
+    shortDesc = u"""Carbon cation base""",
+    longDesc =
+"""
+Ref: Methylium (CH3+).
+Standard literature value for gas phase Methyl cation.
+Structure is planar D3h (Singlet).
+""",
+)
+
+entry(
+    index = 3021,
+    label = "C_anion",
+    group =
+"""
+1 * C ux px c-1
+""",
+    thermo = ThermoData(
+        Tdata = ([300, 400, 500, 600, 800, 1000, 1500], 'K'),
+        Cpdata = ([38.0, 42.0, 48.0, 53.0, 62.0, 70.0, 85.0], 'J/(mol*K)'),
+        H298 = (138.0, 'kJ/mol'),
+        S298 = (190.0, 'J/(mol*K)'),
+    ),
+    shortDesc = u"""Carbon anion base""",
+    longDesc =
+"""
+Ref: Methyl anion (CH3-).
+Structure is Pyramidal C3v.
+Hf approx 138 kJ/mol (Burcat/NIST).
+""",
+)
+
+entry(
+    index = 3030,
+    label = "O_cation",
+    group =
+"""
+1 * O ux px c+1
+""",
+    thermo = ThermoData(
+        Tdata = ([300, 400, 500, 600, 800, 1000, 1500], 'K'),
+        Cpdata = ([39.0, 42.0, 46.0, 50.0, 58.0, 65.0, 78.0], 'J/(mol*K)'),
+        H298 = (590.0, 'kJ/mol'),
+        S298 = (190.0, 'J/(mol*K)'),
+    ),
+    shortDesc = u"""Oxygen cation base""",
+    longDesc =
+"""
+Ref: Hydronium (H3O+).
+Derived from Proton Affinity of H2O (691 kJ/mol).
+Hf(H3O+) = Hf(H2O) + Hf(H+) - PA = -242 + 1530 - 691 = 597 kJ/mol.
+""",
+)
+
+entry(
+    index = 3031,
+    label = "O_anion",
+    group =
+"""
+1 * O ux px c-1
+""",
+    thermo = ThermoData(
+        Tdata = ([300, 400, 500, 600, 800, 1000, 1500], 'K'),
+        Cpdata = ([29.1, 29.2, 29.5, 30.0, 31.0, 32.0, 34.0], 'J/(mol*K)'),
+        H298 = (-137.0, 'kJ/mol'),
+        S298 = (175.0, 'J/(mol*K)'),
+    ),
+    shortDesc = u"""Oxygen anion base""",
+    longDesc =
+"""
+Ref: Hydroxide (OH-).
+Derived from Proton Affinity of OH- (1633 kJ/mol).
+Hf(OH-) = Hf(H2O) - Hf(H+) + 1633 = -242 - 1530 + 1633 = -139 kJ/mol.
+""",
+)
+
 tree(
 """
 L1: R
+    L2: Alkali
+        L3: Li
+        L3: Na
+        L3: K
+    L2: Alkaline
+        L3: Mg
+        L3: Ca
     L2: C
+        L3: C_cation
+        L3: C_anion
         L3: CJ2_singlet
             L4: CJ2_singlet-F
                 L5: CJ2_singlet-FF
@@ -62771,6 +63045,8 @@ L1: R
                 L5: Cs-N5sdtcHHH
                 L5: Cs-N1sHHH
     L2: O
+        L3: O_cation
+        L3: O_anion
         L3: O0sc
             L4: O0sc-S4sc
         L3: Oa(S)
@@ -63034,6 +63310,8 @@ L1: R
     L2: F1s
     L2: I1s
     L2: N
+        L3: N_cation
+            L4: N_cation_C
         L3: N5sc-HHHN
         L3: N5sc-HHNN
         L3: N5sc-HHNO

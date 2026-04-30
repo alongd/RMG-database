@@ -24,6 +24,7 @@ Reference legend:
 [Tanarro2015]: M. Jimenez-Redondo, E. Carrasco, V.J. Herrero, I. Tanarro, Chemistry in glow discharges of H2/O2 mixtures. Diagnostics and modeling, Plasma Sources Sci Technol 2015, 24(1), DOI: 10.1088/0963-0252/24/1/015029
 [Golyatina2021]:  R.I. Golyatina, S.A. Marinov, Analytical Cross Section Approximation for Electron Impact Ionization of Alkali and Other Metals, Inert Gases and Hydrogen Atoms, Atoms 2021, 9(90), DOI: 10.3390/atoms9040090
 [VernerFerland1996]: D.A. Verner, G.J. Ferland, Atomic data for astrophysics. I. Radiative recombination rates for H-like, He-like, Li-like and Na-like ions over a broad range of temperature, ApJ 1995, arXiv:astro-ph/9509083v1
+[JPL2019]: J.B. Burkholder et al., Chemical Kinetics and Photochemical Data for Use in Atmospheric Studies, Evaluation No. 19, JPL Publication 19-5, NASA/JPL, 2020. https://jpldataeval.jpl.nasa.gov/
 
 # can add these:
 # Ar+ + H2 <=> ArH+ + H
@@ -1260,3 +1261,130 @@ rate_coefficients = ([
 ], 'cm^3/s'),
 """
 )
+
+entry(
+    index = 94,
+    label = "Os + N2 <=> O + N2",
+    kinetics=Arrhenius(A=(1.57e13, 'cm^3/(mol*s)'), n=0.0, Ea=(-220, 'cal/mol'),
+                       T0=(1, 'K'), Tmin=(100, 'K'), Tmax=(2000, 'K')),
+    shortDesc = u"[JPL2019]",
+    longDesc = u"""
+O(1D) electronic quenching by N2.
+JPL Eval. 19-5 recommendation: k(T) = 2.15e-11 * exp(110/T) cm^3 molecule^-1 s^-1.
+Converted to cm^3/(mol*s) using N_A = 6.022e23.
+Ea = -110 K * R_cal = -218.6 cal/mol (negative = mild T dependence).
+""",
+)
+
+entry(
+    index = 95,
+    label = "Os + O2 <=> O + O2",
+    kinetics=Arrhenius(A=(1.92e13, 'cm^3/(mol*s)'), n=0.0, Ea=(-110, 'cal/mol'),
+                       T0=(1, 'K'), Tmin=(100, 'K'), Tmax=(2000, 'K')),
+    shortDesc = u"[JPL2019]",
+    longDesc = u"""
+O(1D) electronic quenching by O2.
+JPL Eval. 19-5 recommendation: k(T) = 3.3e-11 * exp(55/T) cm^3 molecule^-1 s^-1
+(Note: leaves out the 20% spin-allowed O2(b) channel, which interconverts to
+ground-state O2 within ~100 ms in this gas.)
+Converted to cm^3/(mol*s) using N_A = 6.022e23.
+""",
+)
+
+entry(
+    index = 96,
+    label = "Os + O <=> O + O",
+    kinetics=Arrhenius(A=(4.82e13, 'cm^3/(mol*s)'), n=0.0, Ea=(0.0, 'cal/mol'),
+                       T0=(1, 'K'), Tmin=(100, 'K'), Tmax=(2000, 'K')),
+    shortDesc = u"[JPL2019]",
+    longDesc = u"""
+O(1D) electronic quenching by ground-state O.
+Recommended room-T value k(298 K) = 8.0e-11 cm^3 molecule^-1 s^-1
+(see Atkinson et al. evaluations cited in JPL 19-5; T-dependence weak).
+Converted to cm^3/(mol*s) using N_A = 6.022e23.
+""",
+)
+
+entry(
+    index = 97,
+    label = "Os + Ar <=> O + Ar",
+    kinetics=Arrhenius(A=(3.0e8, 'cm^3/(mol*s)'), n=0.0, Ea=(0.0, 'cal/mol'),
+                       T0=(1, 'K'), Tmin=(100, 'K'), Tmax=(2000, 'K')),
+    shortDesc = u"[JPL2019]",
+    longDesc = u"""
+O(1D) electronic quenching by Ar (slow; mostly inelastic).
+Recommended upper bound k(298 K) <= 5e-13 cm^3 molecule^-1 s^-1.
+Used here as an explicit small rate so Ar is not treated as a perfect
+quencher but does contribute when no other partner is available.
+Converted to cm^3/(mol*s) using N_A = 6.022e23.
+""",
+)
+
+entry(
+    index = 98,
+    label = "Os + H2O => OH + OH",
+    reversible = False,
+    kinetics=Arrhenius(A=(1.20e14, 'cm^3/(mol*s)'), n=0.0, Ea=(0.0, 'cal/mol'),
+                       T0=(1, 'K'), Tmin=(100, 'K'), Tmax=(2000, 'K')),
+    shortDesc = u"[JPL2019]",
+    longDesc = u"""
+O(1D) reaction with water producing 2 OH (chemical-quenching channel).
+JPL Eval. 19-5 recommendation: k(T) = 1.99e-10 * exp(32/T) cm^3 molecule^-1 s^-1
+~ 2.0e-10 cm^3 molecule^-1 s^-1 at 298 K.
+Treated as irreversible because the reverse (OH + OH -> O(1D) + H2O)
+is endothermic by ~1.97 eV and negligibly slow at the temperatures
+considered here.
+Converted to cm^3/(mol*s) using N_A = 6.022e23.
+""",
+)
+
+entry(
+    index = 99,
+    label = "Os + O3 => O2 + O2",
+    reversible = False,
+    kinetics=Arrhenius(A=(7.23e13, 'cm^3/(mol*s)'), n=0.0, Ea=(0.0, 'cal/mol'),
+                       T0=(1, 'K'), Tmin=(100, 'K'), Tmax=(2000, 'K')),
+    shortDesc = u"[JPL2019]",
+    longDesc = u"""
+O(1D) reaction with ozone producing 2 O2 (chemical-quenching channel,
+branching ratio ~0.6; the ~0.4 channel to O2 + O + O is omitted here for
+simplicity since it cycles back through the standard O + O3 chemistry).
+JPL Eval. 19-5 recommendation: k(298 K) = 1.2e-10 cm^3 molecule^-1 s^-1
+(combined branches), of which ~60% goes to 2 O2.
+Treated as irreversible since the reverse is far endothermic.
+Converted to cm^3/(mol*s) using N_A = 6.022e23.
+""",
+)
+
+entry(
+    index = 100,
+    label = "Os + H2 => OH + H",
+    reversible = False,
+    kinetics=Arrhenius(A=(7.23e13, 'cm^3/(mol*s)'), n=0.0, Ea=(0.0, 'cal/mol'),
+                       T0=(1, 'K'), Tmin=(100, 'K'), Tmax=(2000, 'K')),
+    shortDesc = u"[JPL2019]",
+    longDesc = u"""
+O(1D) reaction with H2 producing OH + H (chemical-quenching channel,
+exothermic by ~1.85 eV).
+JPL Eval. 19-5 recommendation: k(298 K) = 1.2e-10 cm^3 molecule^-1 s^-1.
+Treated as irreversible.
+Converted to cm^3/(mol*s) using N_A = 6.022e23.
+""",
+)
+
+entry(
+    index = 101,
+    label = "Os => O",
+    reversible = False,
+    kinetics=Arrhenius(A=(9.1e-3, 's^-1'), n=0.0, Ea=(0.0, 'cal/mol'),
+                       T0=(1, 'K'), Tmin=(100, 'K'), Tmax=(2000, 'K')),
+    shortDesc = u"[JPL2019]",
+    longDesc = u"""
+O(1D) -> O(3P) radiative decay (forbidden red-doublet emission near 630 nm).
+Total Einstein A coefficient ~ 9.1e-3 s^-1 (lifetime ~110 s).
+Negligible vs. collisional quenching at any but very low pressures, but
+included so that Os has a destruction path even in pure-Ar (or other
+weakly-quenching) bath gases.
+""",
+)
+

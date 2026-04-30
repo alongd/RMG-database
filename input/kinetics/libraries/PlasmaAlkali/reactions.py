@@ -22,6 +22,7 @@ Reference legend:
 [PlaneRajasekhar1988a]: J.M.C. Plane, B. Rajasekhar, "Study of the reaction Li + H2O over the temperature range 850–1000 K by time-resolved laser-induced fluorescence of Li", J. Chem. Soc. Faraday Trans. 2 1988, 84, 273-285, DOI: 10.1039/F29888400273
 [PlaneRajasekhar1988b]: J.M.C. Plane, B. Rajasekhar, "A study of the reaction Li + O2 + M (M = N2, He) over the temperature range 267-1100 K by Time-Resolved Lacer-Induced Fluorescence of Li", J. Phys. Chem. 93 1988, 3884-3890, DOI: 10.1021/j100324a041
 [Sorvajarvi2015]: T. Sorvajarvi, J. Viljanen, J. Toivonen, P. Marshall, P. Glarborg, "Rate constant and thermochemistry for K + O2 + N2 = KO2 + N2", J. Phys. Chem. A 2015, 119, 3329-3336, DOI: 10.1021/acs.jpca.5b00755
+[Plane1991]: J.M.C. Plane, "The chemistry of meteoric metals in the Earth's upper atmosphere", Int. Rev. Phys. Chem. 1991, 10, 55-106, DOI: 10.1080/01442359109353254
 """
 
 entry(
@@ -861,4 +862,64 @@ entry(
 Assumed same rate as NaO2 + O <=> NaO + O2 by analogy. No primary KO2 + O data. Confidence: ANALOGY.
 """,
 )
+
+# ----------------------------------------------------------------------
+# Direct termolecular formation of alkali hydroxides:
+#     A + OH + M  <=>  AOH + M
+#
+# This is the dominant mesospheric source of NaOH per Plane and Husain
+# (1991 review); without it, the only paths to NaOH in this library are
+# the slower NaO + H2 / NaO + H2O channels (entries 55, 58) and the
+# NaO2 + H2 / NaO2 + OH channels (entries 21, 24). Adding the direct
+# Na + OH + M recombination raises the steady-state NaOH so that the
+# RMG enlarger has a chance of promoting NaOH into the core.
+# ----------------------------------------------------------------------
+
+entry(
+    index = 67,
+    label = "Na + OH <=> NaOH",
+    kinetics = ThirdBody(arrheniusLow=Arrhenius(A=(4.24e+23,'cm^6/(mol^2*s)'),
+                                                n=-2.0, Ea=(0,'cal/mol'),
+                                                T0=(1,'K')),
+                         efficiencies={}),
+    shortDesc = u"[Plane1991]",
+    longDesc = u"""
+Low-pressure-limit (k0) recombination, M = N2.
+Plane 1991 / Plane 2015 mesospheric recommendation:
+   k0(T) = 1.3e-29 * (T/300)^-2 cm^6 molecule^-2 s^-1
+Converted to cm^6/(mol^2*s) by N_A^2 = 3.626e47:
+   A = 1.3e-29 * 300^2 * 3.626e47 = 4.24e23 cm^6/(mol^2*s).
+""",
+)
+
+entry(
+    index = 68,
+    label = "Li + OH <=> LiOH",
+    kinetics = ThirdBody(arrheniusLow=Arrhenius(A=(4.24e+23,'cm^6/(mol^2*s)'),
+                                                n=-2.0, Ea=(0,'cal/mol'),
+                                                T0=(1,'K')),
+                         efficiencies={}),
+    shortDesc = u"[Plane1991]",
+    longDesc = u"""
+Assumed same rate as Na + OH + M <=> NaOH + M by analogy. No primary
+Li + OH + M kinetics measurement available; the alkali termolecular
+recombination rate is expected to be only weakly Z-dependent.
+Confidence: ANALOGY.
+""",
+)
+
+entry(
+    index = 69,
+    label = "K + OH <=> KOH",
+    kinetics = ThirdBody(arrheniusLow=Arrhenius(A=(4.24e+23,'cm^6/(mol^2*s)'),
+                                                n=-2.0, Ea=(0,'cal/mol'),
+                                                T0=(1,'K')),
+                         efficiencies={}),
+    shortDesc = u"[Plane1991]",
+    longDesc = u"""
+Assumed same rate as Na + OH + M <=> NaOH + M by analogy.
+Confidence: ANALOGY.
+""",
+)
+
 

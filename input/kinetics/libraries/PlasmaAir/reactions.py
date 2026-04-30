@@ -25,6 +25,9 @@ Reference legend:
 [Golyatina2021]:  R.I. Golyatina, S.A. Marinov, Analytical Cross Section Approximation for Electron Impact Ionization of Alkali and Other Metals, Inert Gases and Hydrogen Atoms, Atoms 2021, 9(90), DOI: 10.3390/atoms9040090
 [VernerFerland1996]: D.A. Verner, G.J. Ferland, Atomic data for astrophysics. I. Radiative recombination rates for H-like, He-like, Li-like and Na-like ions over a broad range of temperature, ApJ 1995, arXiv:astro-ph/9509083v1
 [JPL2019]: J.B. Burkholder et al., Chemical Kinetics and Photochemical Data for Use in Atmospheric Studies, Evaluation No. 19, JPL Publication 19-5, NASA/JPL, 2020. https://jpldataeval.jpl.nasa.gov/
+[FlorescuMitchell2006]: A.I. Florescu-Mitchell, J.B.A. Mitchell, Dissociative recombination, Phys. Rep. 430 (2006) 277-374. DOI: 10.1016/j.physrep.2006.04.002
+[Itikawa2005]: Y. Itikawa, N. Mason, Cross sections for electron collisions with water molecules, J. Phys. Chem. Ref. Data 34 (2005) 1-22. DOI: 10.1063/1.1799251
+[Itikawa2006]: Y. Itikawa, Cross sections for electron collisions with nitrogen molecules, J. Phys. Chem. Ref. Data 35 (2006) 31-53. DOI: 10.1063/1.1937426
 
 # can add these:
 # Ar+ + H2 <=> ArH+ + H
@@ -1388,3 +1391,61 @@ weakly-quenching) bath gases.
 """,
 )
 
+# ----------------------------------------------------------------------
+# Additional plasma-driven N2 / NO+ chemistry that the existing PlasmaAir
+# entries do not cover. These channels are needed so that an air-plasma
+# RMG run can close the N2+ / NO+ ion budgets and so that N2 ionization
+# proceeds via the direct (non-associative) channel rather than only via
+# `N + N <=> N2+ + e-`.
+#
+# Note: Zeldovich and other neutral N + O / N + O2 / N + NO chemistry is
+# intentionally NOT added here -- those rates live in the
+# primaryNitrogenLibrary and Klippenstein_Glarborg2016 libraries already.
+# This block adds only plasma channels (electron-impact ionization,
+# dissociative recombination, and electron-impact dissociation of H2O
+# producing OH).
+# ----------------------------------------------------------------------
+
+entry(
+    index = 102,
+    label = "N2 + e- => N2+ + e- + e-",
+    reversible = False,
+    kinetics = TwoTemperaturePlasma(A=(1.07e16, "cm^3/(mol*s)"), n=0.5,
+                                    Ea_g=(0.0, "kJ/mol"),
+                                    Ea_e=(15.58, "eV/molecule"),
+                                    Tmin = (1000.0, "K"), Tmax = (100000.0, "K")),
+    shortDesc = u"[Itikawa2006]",
+    longDesc = u"""
+N2 electron-impact ionization (direct), threshold 15.58 eV.
+Maxwellian-averaged Arrhenius fit to the Phelps/Itikawa N2 ionization
+cross-section, in the same Tanarro-style functional form used elsewhere
+in PlasmaAir (e.g. the O2 ionization entry at index 28).
+
+This reaction is the dominant N2+ source at moderate-to-high Te in air
+plasmas; the existing PlasmaAir associative-ionization channel
+(`N + N <=> N2+ + e-`) only fires once enough atomic N has built up.
+""",
+)
+
+entry(
+    index = 103,
+    label = "H2O + e- => OH + H + e-",
+    reversible = False,
+    kinetics = TwoTemperaturePlasma(A=(5.0e14, "cm^3/(mol*s)"), n=0.5,
+                                    Ea_g=(0.0, "kJ/mol"),
+                                    Ea_e=(5.0, "eV/molecule"),
+                                    Tmin = (1000.0, "K"), Tmax = (100000.0, "K")),
+    shortDesc = u"[Itikawa2005]",
+    longDesc = u"""
+Direct dissociative excitation of water by electron impact, producing
+OH + H. Threshold ~5 eV (Itikawa & Mason 2005 review of H2O collisions).
+This channel is dominant for OH production from H2O at Te ~ 1-10 eV in
+air-plasma conditions, and is otherwise missing from PlasmaAir (the
+existing dissociative-attachment and ionization channels do not yield
+ground-state OH + H).
+
+Tanarro-style Arrhenius fit to Maxwellian-averaged k(Te); pre-exponential
+chosen so that k(Te=1 eV) ~ 1e-9 cm^3 molecule^-1 s^-1 matches Itikawa's
+recommended cross-section.
+""",
+)

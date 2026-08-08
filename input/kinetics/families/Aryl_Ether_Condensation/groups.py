@@ -59,6 +59,41 @@ recipe(actions=[
     ['FORM_BOND', '*2', 1, '*6'],
 ])
 
+# Declared outcome (D-053): the family declares its own polymer-moment
+# consequence, so the engine reads a declaration instead of re-deriving the
+# outcome by graph analysis. The three signature slots are the per-pool
+# moments the polymer solver actually consumes (pool.mu_indices in
+# rmgpy/solver/polymer.pyx is the (mu0, mu1, mu2) triple): mu0 = chain
+# count, mu1 = repeat units (mass), mu2 = second moment.
+#
+#   intermolecular -- the *1 and *4 sites live in DIFFERENT reactant
+#   molecules: the condensation merges two chains of lengths a and b into
+#   one, so the chain count drops by one (dmu0 = -1), repeat units are
+#   conserved (dmu1 = 0), and the second moment rises by
+#   (a+b)^2 - a^2 - b^2 = 2*a*b. Chain lengths are unknown until solve
+#   time, so dmu2 is declared SYMBOLICALLY as the marker '2*a*b'; the
+#   consumer evaluates it from its own chain-length state (cf.
+#   _chain_bundle in rmgpy/solver/polymer.pyx).
+#
+#   intramolecular -- both sites in the SAME molecule: the condensation
+#   closes a loop inside one chain. Two sites are consumed and water is
+#   ejected, but nothing merges: dmu0 = dmu1 = dmu2 = 0.
+#
+# Water release is IDENTICAL in both cases: it comes from the recipe above
+# and depends only on site consumption, never on the inter/intra case.
+#
+# The modified unit is declared as a whole subgraph, not a bond pair: the
+# six labeled site atoms extended ('ring' extent) to the full ring carrying
+# each ipso carbon plus that ring's hydrogens. The unit's boundary is
+# implicit -- whichever bonds cross the declared atom set.
+declaredOutcome = {
+    'siteAnchors': ('*1', '*4'),
+    'siteLabels': (('*1', '*2', '*3'), ('*4', '*5', '*6')),
+    'unitExtent': 'ring',
+    'intermolecular': (-1, 0, '2*a*b'),
+    'intramolecular': (0, 0, 0),
+}
+
 entry(
     index = 0,
     label = "ArOH_A",

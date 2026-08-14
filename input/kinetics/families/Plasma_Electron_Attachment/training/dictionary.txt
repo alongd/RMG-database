@@ -1,0 +1,28 @@
+O2
+multiplicity 3
+1 *1 O u1 p2 c0 {2,S}
+2    O u1 p2 c0 {1,S}
+
+O2-
+multiplicity 2
+1 *1 O u0 p3 c-1 {2,S}
+2    O u1 p2 c0 {1,S}
+
+OH
+multiplicity 2
+1 *1 O u1 p2 c0 {2,S}
+2    H u0 p0 c0 {1,S}
+
+OH-
+multiplicity 1
+1 *1 O u0 p3 c-1 {2,S}
+2    H u0 p0 c0 {1,S}
+
+O
+multiplicity 3
+1 *1 O u2 p2 c0
+
+O-
+multiplicity 2
+1 *1 O u1 p3 c-1
+

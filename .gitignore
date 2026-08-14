@@ -22,3 +22,11 @@
 
 # evaluate kinetics folder stuff
 testing/eval/*
+
+# local-only agent working files
+docs/superpowers/
+docs/contracts/
+
+# pytest
+.pytest_cache/
+__pycache__/

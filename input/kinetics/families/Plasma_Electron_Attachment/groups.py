@@ -33,7 +33,7 @@ uncertain number, it is a fabricated one - and in a plasma mechanism it lands
 directly on the electron balance. This family therefore matches exactly the
 three shapes it has data for and nothing else.
 
-Two consequences are structural, and both are load-bearing:
+Three consequences are structural, and all three are load-bearing:
 
 1. The root `Attacher` is a union (LogicOr) of the three trained groups, not a
    single wide group. A single Group cannot express "atomic O, or the O of OH,
@@ -46,23 +46,68 @@ Two consequences are structural, and both are load-bearing:
    `elec_def` in 1+2_Cycloaddition, and family.py `generate_product_template`,
    which expands LogicNodes explicitly.
 
-2. `O_atom` is a member of that union but is deliberately NOT a node in the
-   tree. `Database.descend_tree` returns the *root* when a structure matches it
-   but matches none of its children, so atomic O resolves to `Attacher` itself
-   and the O + e- => O- training reaction gives the root an exact rate rule.
-   `KineticsRules.fill_rules_by_averaging_up` keeps any existing rule of rank>0
-   rather than averaging over children, so with all three training reactions
-   landing on tree nodes - `Attacher`, `O_in_OH`, `O_in_O2` - **no averaged rate
-   rule is created anywhere in this family**. That is the fix for the second
-   defect: training entries 1 and 2 are effective two-body coefficients with a
-   5 torr third-body density folded in, entry 3 is a genuine two-body radiative
-   rate, and their mean is not a rate coefficient of any kind. Adding `O_atom`
-   as an L2 node would move that training reaction off the root and silently
-   restore the mixed average - do not do it.
+2. **Every member of that union is also a child of the root**, and the invariant
+   is exactly that: `set(root.item.components) == {c.label for c in
+   root.children}`. It is what makes the root's own rate rule unreachable.
 
-If training data for another attacher arrives, add its group to the union and,
-if it is a monoradical, as an L2 node; do not widen an existing group to cover
-it.
+   `fill_rules_by_averaging_up` does put an averaged rule on `Attacher`, and
+   that average is a bad number - training entries 1 and 2 are effective
+   two-body coefficients with a 5 torr third-body density folded in, entry 3 is
+   a genuine two-body radiative rate, and their mean is not a rate coefficient
+   of any kind. It is tolerable only because nothing can ever be given it.
+   `Database.descend_tree` returns the *root* when a structure matches the root
+   but none of its children; with the union and the child set identical, any
+   structure the union admits necessarily matches the child that admitted it, so
+   descent never stops at `Attacher`.
+
+   This is the second attempt at that property. The first kept `O_atom` out of
+   the tree entirely, so atomic O resolved to the root and gave it an exact rule,
+   and no averaged rule existed anywhere. That worked chemically and was illegal
+   structurally: RMG's own database consistency check
+   (`test/database/databaseTest.py::kinetics_check_groups_found_in_tree`) walks
+   every non-top, non-product group up its parent chain, and a parentless group
+   makes it dereference `None`. Do not solve an averaging problem by leaving a
+   group out of the tree.
+
+3. Every trained group carries the `multiplicity` of the state its rate was
+   measured in, because RMG group matching compares connectivity, radical count,
+   lone pairs and charge, and nothing else - two adjacent `O u1 p2 c0` atoms are
+   ground-state triplet O2 and singlet-delta O2(a1Dg) alike. Without
+   `multiplicity [3]` on `O_in_O2`, O2(a1Dg) - one of the dominant excited
+   species in an oxygen discharge, with its own attachment behaviour - collects
+   the ground-state triplet rate to four significant figures. `Group.multiplicity`
+   is a matched constraint (`rmgpy/molecule/group.py`, enforced in
+   `Molecule.is_subgraph_isomorphic`), it constrains the multiplicity of the
+   *whole* matched molecule, and it needs no engine change.
+
+   `O_in_OH` [2] and `O_atom` [3] are stated for the same reason but are, today,
+   unfalsifiable rather than load-bearing, and that is deliberate. Charge is
+   derived, so `O u1 p2 c0` fixes the bond count at one and `O u2 p2 c0` at zero:
+   `O_in_OH` can only ever match the whole two-atom molecule OH, and `O_atom`
+   only lone atomic O. A single unpaired electron admits only a doublet, and an
+   atom bearing two unpaired electrons in a multiplicity-1 molecule is rejected
+   outright by RMG's adjacency-list checker (`ConsistencyChecker.check_hund_rule`),
+   so no other multiplicity is representable for either. Constraining them
+   therefore loses no legitimate match, and records that these are ground-state
+   rates for the day a wider group or an excited-state representation arrives.
+
+   KNOWN LIMITATION, upstream of this family and not fixable in it: RMG erases
+   the spin state before the group ever sees it.
+   `resonance.generate_resonance_structures` opens with `mol.update()`
+   (rmgpy/molecule/resonance.py:197), and `Molecule.update_multiplicity`
+   recomputes `multiplicity = radical_count + 1` unconditionally
+   (rmgpy/molecule/molecule.py:1595), so a species declared `multiplicity 1`
+   with two unpaired electrons comes back relabelled `multiplicity 3` - and is
+   then isomorphic to ground-state O2, so RMG would not carry it as a distinct
+   species at all. The group constraint is still correct and still refuses a
+   singlet that reaches it as a singlet; what it cannot do is survive an engine
+   that rewrites the reactant first. Pinned by
+   test_known_limitation_resonance_generation_erases_declared_multiplicity.
+
+If training data for another attacher arrives, add its group to the union **and**
+as an L2 node - both, always, or the root average becomes reachable - and give
+the group the multiplicity of the state its rate was measured in. Do not widen an
+existing group to cover it.
 
 Consequences of the recipe, stated explicitly because they bound the family:
 
@@ -72,11 +117,15 @@ Consequences of the recipe, stated explicitly because they bound the family:
    every group in the union also carries u[1,2].
 2. GAIN_PAIR must be a legal action on the *generic* atomtype of *1, because the
    product template is built by applying the recipe to the root group itself.
-   `ATOMTYPES['F'].increment_lone_pair` is empty (atomtype.py:853), as are H's
-   and Cl's, so F could not appear in this tree *even though the F0sc anion
-   atomtype exists*. The elements that work at all are C, N, O, P and S - but
-   only oxygen has training data here, so only oxygen is in the tree. Widening
-   to the halogens needs both an RMG-Py atomtype and training data.
+   Against the RMG-Py this family targets, `increment_lone_pair` is wired for
+   H, C, N, O, P, S, F, Cl and Br; the one element it is still empty for is
+   **iodine**, which therefore could not appear in this tree even if data
+   arrived. Everything else - the halogens included - is absent from this family
+   for one reason only: **there is no training data for it here**, not because
+   RMG cannot represent it. (This file previously claimed F, H and Cl had no
+   `increment_lone_pair` action; the charged-atomtype work has since closed that
+   gap, and widening to the halogens is now a training-data ticket.) Only oxygen
+   has training data, so only oxygen is in the tree.
 
 KNOWN LIMITATION - a group cannot require a neutral reactant. RMG groups match
 subgraphs, so no group can express "the whole molecule is neutral", and
@@ -122,6 +171,7 @@ entry(
     label = "O_atom",
     group =
 """
+multiplicity [3]
 1 *1 O u2 p2 c0
 """,
     kinetics = None,
@@ -132,6 +182,7 @@ entry(
     label = "O_in_OH",
     group =
 """
+multiplicity [2]
 1 *1 O u1 p2 c0 {2,S}
 2    H u0 p0 c0 {1,S}
 """,
@@ -143,19 +194,22 @@ entry(
     label = "O_in_O2",
     group =
 """
+multiplicity [3]
 1 *1 O u1 p2 c0 {2,S}
 2    O u1 p2 c0 {1,S}
 """,
     kinetics = None,
 )
 
-# `O_atom` is intentionally absent from this tree: it is a member of the
-# `Attacher` union only, so that atomic O resolves to the root and the
-# O + e- => O- training reaction gives the root an exact rule instead of an
-# average. See point 2 of longDesc before changing this.
+# Every member of the `Attacher` union is an L2 node here, and must stay that
+# way: that identity is what makes the root's averaged rule unreachable, since
+# `descend_tree` only stops at the root when no child matches. Adding a union
+# member without its L2 node re-opens the mixed pressure-baked/radiative average
+# to whatever the new member admits. See point 2 of longDesc.
 tree(
 """
 L1: Attacher
+    L2: O_atom
     L2: O_in_OH
     L2: O_in_O2
 """

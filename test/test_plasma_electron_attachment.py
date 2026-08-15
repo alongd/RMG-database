@@ -131,6 +131,29 @@ multiplicity 2
 1 O u0 p3 c-1 {2,S}
 2 O u1 p2 c0 {1,S}
 """,
+    # O2(a1Dg), written in the biradical form RMG accepts. Identical connectivity,
+    # radical count, lone pairs and charge to ground-state triplet O2 - the *only*
+    # thing that distinguishes it is the molecular multiplicity, which is why
+    # ``O_in_O2`` has to carry a ``multiplicity`` constraint to keep it out.
+    'O2_singlet_delta': """
+multiplicity 1
+1 O u1 p2 c0 {2,S}
+2 O u1 p2 c0 {1,S}
+""",
+    # Closed-shell singlet O2, for contrast: kept out by the recipe, not by spin.
+    'O2_singlet_closed_shell': """
+multiplicity 1
+1 O u0 p2 c0 {2,D}
+2 O u0 p2 c0 {1,D}
+""",
+    # Singlet atomic oxygen. O(1D) cannot be written as ``O u2 p2 c0`` with
+    # multiplicity 1 at all - ``ConsistencyChecker.check_hund_rule`` rejects an
+    # atom with two unpaired electrons in a multiplicity-1 molecule - so the only
+    # representable singlet O atom is the closed-shell one below, which the recipe
+    # excludes for want of a radical. See ``test_atomic_oxygen_spin_states``.
+    'O_singlet': """
+1 O u0 p3 c0
+""",
 }
 
 # What the root union is expected to let in, and what it is expected to keep out.
@@ -147,7 +170,9 @@ EXPECTED_IN = ['O2', 'OH', 'O']
 # The species kept out are kept out for three distinct reasons, all of which the
 # tests below pin separately:
 #   closed shell    -> LOSE_RADICAL has no unpaired electron to remove (H2O, N2, CO2, O3, Ar)
-#   wrong element   -> no anion atomtype / no increment_lone_pair action (H, Cl)
+#   untrained element -> H and Cl are open-shell and RMG can represent their
+#                      anions perfectly well; they are out because there is no
+#                      training data for them, so no group of theirs is in the union
 #   untrained shape -> open-shell, right element, but outside the trained union
 #                      (HO2, CH3O, CH3, N, S)
 EXPECTED_OUT = ['H2O', 'N2', 'CO2', 'O3', 'Ar', 'H', 'Cl', 'HO2', 'CH3O', 'CH3', 'N', 'S']
@@ -169,7 +194,17 @@ EXPECTED_PRODUCT_FORMULA = {'O2': 'O2', 'OH': 'HO', 'O': 'O'}
 EXPECTED_TRAINED_KINETICS = {
     'O2': ('O_in_O2', 1, 9.6807e10),
     'OH': ('O_in_OH', 2, 2.9580e10),
-    'O': ('Attacher', 3, 9.0332e08),
+    'O': ('O_atom', 3, 9.0332e08),
+}
+
+# The ground-state multiplicity each trained group is pinned to, and why. Every
+# training rate in this family is a ground-state measurement, so a group that
+# cannot tell the ground state from an excited one hands the ground-state rate to
+# the excited species (see ``test_o2_spin_states``).
+EXPECTED_GROUP_MULTIPLICITY = {
+    'O_in_O2': [3],   # load-bearing: O2(a1Dg) is otherwise indistinguishable
+    'O_in_OH': [2],   # documentary: one unpaired electron admits only a doublet
+    'O_atom': [3],    # documentary: Hund's rule forbids the multiplicity-1 form
 }
 
 # Which physical quantity each training entry actually is. Entries 1 and 2 are
@@ -212,9 +247,9 @@ def family(kinetics_db):
     return kinetics_db.families[FAMILY]
 
 
-def _generate(kinetics_db, name):
+def _generate(kinetics_db, name, resonance=True):
     return kinetics_db.generate_reactions_from_families(
-        [_species(name)], products=None, only_families=[FAMILY], resonance=True)
+        [_species(name)], products=None, only_families=[FAMILY], resonance=resonance)
 
 
 def _root_matches(family, name):
@@ -244,6 +279,49 @@ def _all_rules(family):
     return [(label, entry)
             for label, entries in family.rules.entries.items()
             for entry in entries]
+
+
+def _reachable_labels(family):
+    """Labels of the nodes a structure can actually resolve to.
+
+    ``descend_tree`` stops at the root only when the structure matches the root
+    but no child. The root here is a LogicOr over exactly its own children
+    (``test_no_union_member_lacks_an_l2_child``), so every structure the root
+    admits matches a child and the root itself is unreachable. What a species can
+    be given is therefore exactly the L2 set.
+    """
+    return {child.label for child in family.groups.top[0].children}
+
+
+def _group_tree_failures(family):
+    """The failures ``kinetics_check_groups_found_in_tree`` would report.
+
+    Transcribed from ``RMG-Py/test/database/databaseTest.py`` (the ``tst``/``tst1``/
+    ``tst2``/``tst3`` loop), with one deliberate difference: the ``ascend_parent is
+    None`` case breaks instead of falling through to ``ascend_parent.children``.
+    The repo-wide test does fall through, so a parentless group makes it raise
+    ``AttributeError`` and CI reports a crashed test rather than a rejected family
+    - which is how this family's own out-of-tree ``O_atom`` stayed invisible.
+    """
+    failures = []
+    for node_name, node_group in family.groups.entries.items():
+        if '[' in node_name or ']' in node_name:
+            failures.append('{0}: square brackets in the label'.format(node_name))
+        ascend_parent = node_group
+        while (ascend_parent not in family.groups.top
+               and ascend_parent not in family.forward_template.products):
+            child = ascend_parent
+            ascend_parent = ascend_parent.parent
+            if ascend_parent is None:
+                failures.append('{0}: found in the tree without a proper parent'.format(node_name))
+                break
+            if child not in ascend_parent.children:
+                failures.append('{0}: not in its parent\'s children'.format(node_name))
+                break
+            if child is ascend_parent:
+                failures.append('{0}: is a parent to itself'.format(node_name))
+                break
+    return failures
 
 
 # ---------------------------------------------------------------------------
@@ -282,12 +360,51 @@ def test_root_is_a_union_of_exactly_the_trained_groups(family):
     assert root.label == 'Attacher'
     assert sorted(root.item.components) == ['O_atom', 'O_in_O2', 'O_in_OH']
 
-    # ``O_atom`` is a union member but deliberately not a tree node: descend_tree
-    # returns the root when no child matches, so atomic O resolves to Attacher
-    # itself and its training reaction gives the root an *exact* rule. Making it
-    # an L2 node would move that rule off the root and let averaging refill the
-    # root with a pressure-baked/radiative mean.
-    assert sorted(c.label for c in root.children) == ['O_in_O2', 'O_in_OH']
+
+def test_group_tree_is_legal(family):
+    """The tree RMG's own database consistency check demands.
+
+    Every group entry must walk a valid parent chain to a top or product node.
+    This runs the loop from ``kinetics_check_groups_found_in_tree`` rather than
+    inspecting the tree by eye, so the repo-wide test can never be the first thing
+    to discover a broken tree here.
+
+    It is not a hypothetical: ``O_atom`` used to sit outside the tree with no
+    parent - deliberately, to keep the atomic-O rule on the root - and the
+    repo-wide check does not reject that cleanly, it dereferences ``None`` and
+    raises ``AttributeError``. The property that placement protected is now held
+    by ``test_no_union_member_lacks_an_l2_child`` instead.
+    """
+    assert _group_tree_failures(family) == []
+
+
+def test_no_union_member_lacks_an_l2_child(family):
+    """The root's averaged rule is unreachable, and stays unreachable.
+
+    ``fill_rules_by_averaging_up`` puts a rule on ``Attacher`` that mixes a
+    pressure-baked effective coefficient with a radiative one - a number that is
+    not a rate coefficient of any kind. It is tolerable only because nothing can
+    be given it, and that is structural rather than a fact about today's three
+    species: ``descend_tree`` returns the root only when a structure matches the
+    root but none of its children, so as long as the union's members are exactly
+    the root's children, every structure the union admits matches a child.
+
+    This is the assertion that rots the moment someone adds a fourth member to
+    the union without a matching L2 node - which a test over today's three
+    species would not notice - so it is written as a set identity, not a list.
+    """
+    root = family.groups.top[0]
+    union_members = set(root.item.components)
+    children = {child.label for child in root.children}
+
+    assert union_members == children, (
+        'union members without an L2 child: {0}; L2 children not in the union: '
+        '{1}. Either way the root can be reached and its averaged rule handed '
+        'out.'.format(sorted(union_members - children), sorted(children - union_members))
+    )
+    # ... and each child is the very entry the union names, not a namesake.
+    for label in union_members:
+        assert family.groups.entries[label] in root.children
 
 
 def test_training_set_is_populated_and_each_entry_templates(family):
@@ -309,7 +426,7 @@ def test_training_set_is_populated_and_each_entry_templates(family):
     assert nodes == {
         'O2 <=> O2-': 'O_in_O2',
         'OH <=> OH-': 'O_in_OH',
-        'O <=> O-': 'Attacher',
+        'O <=> O-': 'O_atom',
     }
     # Distinct nodes: no two training reactions collapse onto one node, which
     # would average rates that differ by orders of magnitude.
@@ -320,18 +437,27 @@ def test_training_set_is_populated_and_each_entry_templates(family):
 # Rate rules - every rule is evidence, none is an average
 # ---------------------------------------------------------------------------
 
-def test_every_rate_rule_is_an_exact_training_hit(family):
-    """There is one rate rule per training reaction and not one more.
+def test_every_reachable_rate_rule_is_an_exact_training_hit(family):
+    """Every rule a species can be given is one training reaction, exactly.
 
-    ``fill_rules_by_averaging_up`` only invents a rule for a node that has none,
-    and keeps any rule of rank > 0. With all three training reactions landing on
-    tree nodes, every node is already exact and nothing is averaged - so the
-    family cannot hand a derived number to anything.
+    ``fill_rules_by_averaging_up`` invents a rule only for a node that has none,
+    and keeps any rule of rank > 0. Each of the three L2 nodes carries its own
+    training reaction, so each is exact; the only derived rule in the family is
+    the root's, and the root is unreachable
+    (``test_no_union_member_lacks_an_l2_child``). The distinction between "no
+    averaged rule exists" and "no averaged rule can be reached" is the whole
+    design: the first was bought by leaving ``O_atom`` out of the tree, which is
+    illegal, and this is the second.
     """
     rules = _all_rules(family)
-    assert sorted(label for label, _ in rules) == ['Attacher', 'O_in_O2', 'O_in_OH']
+    assert sorted(label for label, _ in rules) == ['Attacher', 'O_atom', 'O_in_O2', 'O_in_OH']
+
+    reachable = _reachable_labels(family)
+    assert reachable == {'O_atom', 'O_in_O2', 'O_in_OH'}
 
     for label, entry in rules:
+        if label not in reachable:
+            continue
         assert entry.rank > 0, '{0} has rank 0, which invites averaging'.format(label)
         assert 'Average of' not in _rule_provenance(entry), \
             '{0} is an averaged rule: {1}'.format(label, _rule_provenance(entry))
@@ -339,14 +465,30 @@ def test_every_rate_rule_is_an_exact_training_hit(family):
             '{0} derives from training reactions {1}'.format(label, _training_indices(entry))
 
 
-def test_no_rate_rule_mixes_pressure_baked_with_radiative(family):
-    """Defect 2, asserted directly.
+def test_the_only_averaged_rule_is_the_unreachable_root(family):
+    """The root's average is named here so it cannot spread unnoticed.
+
+    Averaging up is not disabled - it cannot be - so the root does carry a
+    derived rule. Pinning *which* node carries it is what makes the arrangement
+    auditable: if a second averaged rule ever appears, it is on a node something
+    can resolve to, and this fails.
+    """
+    averaged = sorted(label for label, entry in _all_rules(family)
+                      if 'Average of' in _rule_provenance(entry))
+    assert averaged == ['Attacher'], \
+        'averaged rules on {0}; only the unreachable root may carry one'.format(averaged)
+    assert 'Attacher' not in _reachable_labels(family)
+
+
+def test_no_reachable_rate_rule_mixes_pressure_baked_with_radiative(family):
+    """No species is given a mean of two different physical quantities.
 
     Training entries 1 and 2 are effective two-body coefficients with a 5 torr
     third-body density folded in; entry 3 is a genuine two-body radiative rate.
-    The mean of the two kinds is not a rate coefficient of any kind. Before the
-    tree was narrowed, ``Attacher`` was exactly that mean and it was what every
-    untrained class received.
+    The mean of the two kinds is not a rate coefficient of any kind. The root
+    rule *is* that mean - it is asserted below to be exactly that, so nobody
+    mistakes it for a defensible number - and the point is that nothing can
+    resolve to it.
     """
     depository_indices = set(family.get_training_depository().entries)
     assert depository_indices <= set(TRAINING_ENTRY_CATEGORY), (
@@ -355,14 +497,23 @@ def test_no_rate_rule_mixes_pressure_baked_with_radiative(family):
             depository_indices - set(TRAINING_ENTRY_CATEGORY))
     )
 
+    reachable = _reachable_labels(family)
     for label, entry in _all_rules(family):
         indices = _training_indices(entry)
         assert indices, '{0} cites no training reaction at all'.format(label)
         categories = {TRAINING_ENTRY_CATEGORY[i] for i in indices}
+        if label not in reachable:
+            continue
         assert len(categories) == 1, (
             'rate rule {0} mixes {1} (training reactions {2})'.format(
                 label, sorted(categories), sorted(indices))
         )
+
+    # The root is the mixed rule, stated rather than implied.
+    root_rule = family.rules.entries['Attacher'][0]
+    assert {TRAINING_ENTRY_CATEGORY[i] for i in _training_indices(root_rule)} == \
+        {'pressure-baked', 'radiative'}
+    assert 'Attacher' not in reachable
 
 
 # ---------------------------------------------------------------------------
@@ -462,6 +613,152 @@ def test_every_match_yields_a_mono_anion_of_the_same_formula(kinetics_db, name):
 
 
 # ---------------------------------------------------------------------------
+# Spin state - the groups must not price an excited species at the ground rate
+# ---------------------------------------------------------------------------
+
+def test_each_trained_group_pins_its_ground_state_multiplicity(family):
+    """Every training rate here is a ground-state measurement, so say so.
+
+    RMG group matching compares connectivity, radical count, lone pairs and
+    charge - not spin coupling - so without ``multiplicity`` the groups cannot
+    tell a ground state from an excited state of the same adjacency list.
+    ``Group.multiplicity`` is a supported, matched constraint on the multiplicity
+    of the *whole* molecule, so this needs no engine change.
+    """
+    for label, expected in EXPECTED_GROUP_MULTIPLICITY.items():
+        assert family.groups.entries[label].item.multiplicity == expected, (
+            'group {0} has multiplicity {1}, expected {2}'.format(
+                label, family.groups.entries[label].item.multiplicity, expected)
+        )
+
+
+def test_o2_spin_states(kinetics_db, family):
+    """Singlet-delta O2 is refused; ground-state triplet O2 is unaffected.
+
+    This is the load-bearing half of the spin constraint. ``O_in_O2`` is two
+    adjacent ``O u1 p2 c0`` atoms, which is ground-state O2(X3Sg-) and
+    O2(a1Dg) alike; before ``multiplicity [3]``, singlet-delta O2 was handed the
+    ground-state triplet rate identical to four significant figures. O2(a1Dg) is
+    one of the dominant excited species in an oxygen discharge and has its own
+    attachment behaviour, so a wrong number for it is not an edge case.
+
+    Asserted on the matched template and the rate, and on the group-level cause
+    for the refusal - not on an exception, and not on a bare reaction count.
+
+    The refusal is asserted against the species as declared. RMG's *own*
+    resonance step then undoes the declaration, which is an RMG-Py defect and is
+    pinned separately by
+    ``test_known_limitation_resonance_generation_erases_declared_multiplicity``.
+    """
+    # Ground state: unchanged, still its own node and its own rate.
+    reactions = _generate(kinetics_db, 'O2')
+    assert len(reactions) == 1
+    assert reactions[0].template == ['O_in_O2']
+    kinetics, _, _, _ = family.get_kinetics(
+        reactions[0], template_labels=reactions[0].template,
+        degeneracy=reactions[0].degeneracy, estimator='rate rules', return_all_kinetics=False)
+    assert kinetics.A.value_si * 1e6 == pytest.approx(9.6807e10, rel=1e-4)
+
+    # Singlet delta: refused by the group, therefore never priced.
+    singlet = _species('O2_singlet_delta').molecule[0]
+    assert singlet.multiplicity == 1
+    assert sum(a.radical_electrons for a in singlet.atoms) == 2, \
+        'the biradical form is the point - a closed-shell singlet would be kept out by the recipe'
+    assert not singlet.is_subgraph_isomorphic(family.groups.entries['O_in_O2'].item), \
+        'O_in_O2 matches singlet-delta O2, which will be given the triplet rate'
+    assert not _root_matches(family, 'O2_singlet_delta')
+    assert _generate(kinetics_db, 'O2_singlet_delta', resonance=False) == []
+
+    # Closed-shell singlet O2, for contrast: kept out by LOSE_RADICAL, not by spin.
+    closed = _species('O2_singlet_closed_shell').molecule[0]
+    assert sum(a.radical_electrons for a in closed.atoms) == 0
+    assert _generate(kinetics_db, 'O2_singlet_closed_shell') == []
+
+
+def test_known_limitation_resonance_generation_erases_declared_multiplicity(kinetics_db, family):
+    """The spin constraint holds; RMG-Py destroys the spin state upstream of it.
+
+    ``resonance.generate_resonance_structures`` opens with ``mol.update()``
+    (rmgpy/molecule/resonance.py:197), and ``Molecule.update_multiplicity``
+    unconditionally recomputes ``multiplicity = radical_count + 1``
+    (rmgpy/molecule/molecule.py:1595). A species declared ``multiplicity 1`` with
+    two unpaired electrons - O2(a1Dg) in its biradical form - therefore comes back
+    from resonance generation relabelled ``multiplicity 3``, i.e. as ground-state
+    O2. It is then a legitimate match for ``O_in_O2``, and it is also isomorphic
+    to ground-state O2, so RMG would not carry it as a distinct species at all.
+
+    Nothing in this family can fix that: it is an RMG-Py defect, out of scope
+    here, and it is asserted on its *cause* rather than left as a silent hole.
+    What the family owns - refusing to price a species that reaches it still
+    declared as a singlet - is asserted in ``test_o2_spin_states`` and holds.
+    """
+    species = _species('O2_singlet_delta')
+    assert species.molecule[0].multiplicity == 1
+
+    species.generate_resonance_structures()
+    assert [m.multiplicity for m in species.molecule] == [3], (
+        'resonance generation no longer relabels singlet-delta O2 as a triplet - '
+        'the RMG-Py gap may be fixed, so re-check what this family now sees'
+    )
+
+    # ... and that is exactly why the resonance-enabled path still generates.
+    reactions = _generate(kinetics_db, 'O2_singlet_delta')
+    assert len(reactions) == 1
+    assert reactions[0].template == ['O_in_O2'], (
+        'if this is no longer O_in_O2, the upstream relabelling changed shape'
+    )
+
+
+def test_atomic_oxygen_spin_states(kinetics_db, family):
+    """``O_atom``'s multiplicity is documentary, and this says why.
+
+    Charge is derived, so ``O u2 p2 c0`` fixes the bond count at zero: the group
+    can only ever match lone atomic O. Of the multiplicities RMG would accept for
+    two unpaired electrons, the multiplicity-1 form is rejected outright by
+    ``ConsistencyChecker.check_hund_rule``, so triplet O(3P) is the only thing
+    this group can match and ``multiplicity [3]`` loses no legitimate match. The
+    singlet O atom RMG *can* represent is the closed-shell ``O u0 p3 c0``, which
+    the group does not match and the recipe could not act on anyway.
+    """
+    from rmgpy.exceptions import InvalidAdjacencyListError
+
+    reactions = _generate(kinetics_db, 'O')
+    assert len(reactions) == 1
+    assert reactions[0].template == ['O_atom']
+
+    with pytest.raises(InvalidAdjacencyListError):
+        Species(label='O(1D)').from_adjacency_list('multiplicity 1\n1 O u2 p2 c0\n')
+
+    singlet = _species('O_singlet').molecule[0]
+    assert sum(a.radical_electrons for a in singlet.atoms) == 0
+    assert not singlet.is_subgraph_isomorphic(family.groups.entries['O_atom'].item)
+    assert not _root_matches(family, 'O_singlet')
+    assert _generate(kinetics_db, 'O_singlet') == []
+
+
+def test_hydroxyl_multiplicity_constraint_loses_no_match(kinetics_db, family):
+    """``O_in_OH``'s multiplicity is documentary too, and this proves the "no loss".
+
+    ``O u1 p2 c0`` fixes the bond count at one and ``H u0 p0 c0`` is saturated,
+    so the group can only match the whole two-atom molecule OH; one unpaired
+    electron admits only a doublet. ``multiplicity [2]`` therefore cannot
+    exclude anything OH-shaped - which is what this asserts, on the generated
+    rate rather than on the argument.
+    """
+    reactions = _generate(kinetics_db, 'OH')
+    assert len(reactions) == 1
+    assert reactions[0].template == ['O_in_OH']
+    kinetics, _, _, _ = family.get_kinetics(
+        reactions[0], template_labels=reactions[0].template,
+        degeneracy=reactions[0].degeneracy, estimator='rate rules', return_all_kinetics=False)
+    assert kinetics.A.value_si * 1e6 == pytest.approx(2.9580e10, rel=1e-4)
+
+    molecule = _species('OH').molecule[0]
+    assert molecule.multiplicity == 2
+    assert sum(a.radical_electrons for a in molecule.atoms) == 1
+
+
+# ---------------------------------------------------------------------------
 # Root group - what it matches and what it does not
 # ---------------------------------------------------------------------------
 
@@ -523,10 +820,15 @@ def test_closed_shell_species_are_excluded_by_the_recipe(kinetics_db):
 def test_hydrogen_and_chlorine_are_excluded_by_element(kinetics_db):
     """H and Cl are open-shell, so only the root union's elements keep them out.
 
-    Both are radicals that LOSE_RADICAL could act on; neither H- nor Cl- has a
-    resolvable atomtype, and neither ``ATOMTYPES['H']`` nor ``ATOMTYPES['Cl']``
-    has an ``increment_lone_pair`` action for GAIN_PAIR to use. Every member of
-    the root union is an oxygen group, so they never reach the recipe.
+    Both are radicals that LOSE_RADICAL could act on, and against the RMG-Py this
+    family targets both ``ATOMTYPES['H']`` and ``ATOMTYPES['Cl']`` *do* carry an
+    ``increment_lone_pair`` action for GAIN_PAIR to use - as do F and Br. (An
+    earlier version of this docstring and of ``groups.py`` claimed otherwise; the
+    charged-atomtype work has closed that gap. Iodine is the one element still
+    unwired.) So the exclusion here is not a capability limit at all: it is that
+    every member of the root union is an oxygen group, because oxygen is the only
+    element with training data in this family. Widening to the halogens is a
+    training-data ticket, and out of scope here.
     """
     for name in ['H', 'Cl']:
         molecule = _species(name).molecule[0]

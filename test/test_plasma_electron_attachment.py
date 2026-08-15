@@ -281,14 +281,20 @@ def _all_rules(family):
             for entry in entries]
 
 
-def _reachable_labels(family):
-    """Labels of the nodes a structure can actually resolve to.
+def _labels_generation_can_reach(family):
+    """Labels of the nodes a *generated* reaction can resolve to.
 
     ``descend_tree`` stops at the root only when the structure matches the root
     but no child. The root here is a LogicOr over exactly its own children
     (``test_no_union_member_lacks_an_l2_child``), so every structure the root
-    admits matches a child and the root itself is unreachable. What a species can
-    be given is therefore exactly the L2 set.
+    admits matches a child and generation never stops at the root. What a
+    generated reaction can be given is therefore exactly the L2 set.
+
+    "Generated" is the operative word and the bound is deliberate. The root's
+    rule is not unreachable in general - ``get_kinetics_for_template`` hands it
+    over if you name the template - and nothing in a database entry can stop
+    that. This helper says what reaction generation can reach, which is the
+    property that decides what ends up in a mechanism.
     """
     return {child.label for child in family.groups.top[0].children}
 
@@ -379,15 +385,21 @@ def test_group_tree_is_legal(family):
 
 
 def test_no_union_member_lacks_an_l2_child(family):
-    """The root's averaged rule is unreachable, and stays unreachable.
+    """No generated reaction resolves to the root, and that stays true.
 
     ``fill_rules_by_averaging_up`` puts a rule on ``Attacher`` that mixes a
     pressure-baked effective coefficient with a radiative one - a number that is
-    not a rate coefficient of any kind. It is tolerable only because nothing can
-    be given it, and that is structural rather than a fact about today's three
-    species: ``descend_tree`` returns the root only when a structure matches the
-    root but none of its children, so as long as the union's members are exactly
-    the root's children, every structure the union admits matches a child.
+    not a rate coefficient of any kind. It is tolerable because no generated
+    reaction can be given it, and that is structural rather than a fact about
+    today's three species: ``descend_tree`` returns the root only when a
+    structure matches the root but none of its children, so as long as the
+    union's members are exactly the root's children, every structure the union
+    admits matches a child.
+
+    Note the bound. The rule is not unreachable in general - naming the template
+    to ``get_kinetics_for_template`` returns it - and no database entry can
+    prevent that. What is asserted here is that reaction generation, the path a
+    mechanism is actually built along, never lands on it.
 
     This is the assertion that rots the moment someone adds a fourth member to
     the union without a matching L2 node - which a test over today's three
@@ -399,8 +411,9 @@ def test_no_union_member_lacks_an_l2_child(family):
 
     assert union_members == children, (
         'union members without an L2 child: {0}; L2 children not in the union: '
-        '{1}. Either way the root can be reached and its averaged rule handed '
-        'out.'.format(sorted(union_members - children), sorted(children - union_members))
+        '{1}. Either way generation can land on the root and be handed its '
+        'averaged rule.'.format(sorted(union_members - children),
+                                sorted(children - union_members))
     )
     # ... and each child is the very entry the union names, not a namesake.
     for label in union_members:
@@ -434,25 +447,25 @@ def test_training_set_is_populated_and_each_entry_templates(family):
 
 
 # ---------------------------------------------------------------------------
-# Rate rules - every rule is evidence, none is an average
+# Rate rules - every rule generation can reach is evidence, none is an average
 # ---------------------------------------------------------------------------
 
-def test_every_reachable_rate_rule_is_an_exact_training_hit(family):
-    """Every rule a species can be given is one training reaction, exactly.
+def test_every_rate_rule_generation_can_reach_is_an_exact_training_hit(family):
+    """Every rule a generated reaction can be given is one training reaction.
 
     ``fill_rules_by_averaging_up`` invents a rule only for a node that has none,
     and keeps any rule of rank > 0. Each of the three L2 nodes carries its own
     training reaction, so each is exact; the only derived rule in the family is
-    the root's, and the root is unreachable
+    the root's, and generation never lands there
     (``test_no_union_member_lacks_an_l2_child``). The distinction between "no
-    averaged rule exists" and "no averaged rule can be reached" is the whole
-    design: the first was bought by leaving ``O_atom`` out of the tree, which is
-    illegal, and this is the second.
+    averaged rule exists" and "no generated reaction can be given one" is the
+    whole design: the first was bought by leaving ``O_atom`` out of the tree,
+    which is illegal, and this is the second.
     """
     rules = _all_rules(family)
     assert sorted(label for label, _ in rules) == ['Attacher', 'O_atom', 'O_in_O2', 'O_in_OH']
 
-    reachable = _reachable_labels(family)
+    reachable = _labels_generation_can_reach(family)
     assert reachable == {'O_atom', 'O_in_O2', 'O_in_OH'}
 
     for label, entry in rules:
@@ -465,30 +478,32 @@ def test_every_reachable_rate_rule_is_an_exact_training_hit(family):
             '{0} derives from training reactions {1}'.format(label, _training_indices(entry))
 
 
-def test_the_only_averaged_rule_is_the_unreachable_root(family):
+def test_the_only_averaged_rule_is_the_root_which_generation_never_reaches(family):
     """The root's average is named here so it cannot spread unnoticed.
 
     Averaging up is not disabled - it cannot be - so the root does carry a
     derived rule. Pinning *which* node carries it is what makes the arrangement
-    auditable: if a second averaged rule ever appears, it is on a node something
-    can resolve to, and this fails.
+    auditable: if a second averaged rule ever appears, it is on a node a
+    generated reaction can resolve to, and this fails.
     """
     averaged = sorted(label for label, entry in _all_rules(family)
                       if 'Average of' in _rule_provenance(entry))
     assert averaged == ['Attacher'], \
-        'averaged rules on {0}; only the unreachable root may carry one'.format(averaged)
-    assert 'Attacher' not in _reachable_labels(family)
+        'averaged rules on {0}; only the root, which generation never reaches, ' \
+        'may carry one'.format(averaged)
+    assert 'Attacher' not in _labels_generation_can_reach(family)
 
 
-def test_no_reachable_rate_rule_mixes_pressure_baked_with_radiative(family):
-    """No species is given a mean of two different physical quantities.
+def test_no_rate_rule_generation_can_reach_mixes_pressure_baked_with_radiative(family):
+    """No generated reaction is given a mean of two different physical quantities.
 
     Training entries 1 and 2 are effective two-body coefficients with a 5 torr
     third-body density folded in; entry 3 is a genuine two-body radiative rate.
     The mean of the two kinds is not a rate coefficient of any kind. The root
     rule *is* that mean - it is asserted below to be exactly that, so nobody
-    mistakes it for a defensible number - and the point is that nothing can
-    resolve to it.
+    mistakes it for a defensible number - and the point is that no generated
+    reaction resolves to it. Retrieving it by template name still yields it;
+    that is out of this family's hands.
     """
     depository_indices = set(family.get_training_depository().entries)
     assert depository_indices <= set(TRAINING_ENTRY_CATEGORY), (
@@ -497,7 +512,7 @@ def test_no_reachable_rate_rule_mixes_pressure_baked_with_radiative(family):
             depository_indices - set(TRAINING_ENTRY_CATEGORY))
     )
 
-    reachable = _reachable_labels(family)
+    reachable = _labels_generation_can_reach(family)
     for label, entry in _all_rules(family):
         indices = _training_indices(entry)
         assert indices, '{0} cites no training reaction at all'.format(label)

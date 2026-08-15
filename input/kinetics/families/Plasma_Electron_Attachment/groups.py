@@ -48,17 +48,26 @@ Three consequences are structural, and all three are load-bearing:
 
 2. **Every member of that union is also a child of the root**, and the invariant
    is exactly that: `set(root.item.components) == {c.label for c in
-   root.children}`. It is what makes the root's own rate rule unreachable.
+   root.children}`. It is what keeps generated reactions off the root's own
+   rate rule.
 
    `fill_rules_by_averaging_up` does put an averaged rule on `Attacher`, and
    that average is a bad number - training entries 1 and 2 are effective
    two-body coefficients with a 5 torr third-body density folded in, entry 3 is
    a genuine two-body radiative rate, and their mean is not a rate coefficient
-   of any kind. It is tolerable only because nothing can ever be given it.
-   `Database.descend_tree` returns the *root* when a structure matches the root
-   but none of its children; with the union and the child set identical, any
-   structure the union admits necessarily matches the child that admitted it, so
-   descent never stops at `Attacher`.
+   of any kind. It is tolerable only because no generated reaction can be given
+   it. `Database.descend_tree` returns the *root* when a structure matches the
+   root but none of its children; with the union and the child set identical,
+   any structure the union admits necessarily matches the child that admitted
+   it, so descent never stops at `Attacher`.
+
+   Say that precisely, because the looser claim is false: this rule is **not**
+   unreachable in general. Ask the rate-rule API for it by name and you get it -
+   `get_kinetics_for_template(retrieve_template(['Attacher']), degeneracy=1)`
+   returns `A = 13727.2 m^3/(mol*s)`, the mixed average, via family.py:2608/2625.
+   That route is open on every family root in the database and is not this
+   family's to close. What this family guarantees is the narrower thing that
+   matters for a mechanism: nothing RMG *generates* resolves to `Attacher`.
 
    This is the second attempt at that property. The first kept `O_atom` out of
    the tree entirely, so atomic O resolved to the root and gave it an exact rule,
@@ -105,7 +114,8 @@ Three consequences are structural, and all three are load-bearing:
    test_known_limitation_resonance_generation_erases_declared_multiplicity.
 
 If training data for another attacher arrives, add its group to the union **and**
-as an L2 node - both, always, or the root average becomes reachable - and give
+as an L2 node - both, always, or generation starts resolving to the root
+average - and give
 the group the multiplicity of the state its rate was measured in. Do not widen an
 existing group to cover it.
 
@@ -202,10 +212,11 @@ multiplicity [3]
 )
 
 # Every member of the `Attacher` union is an L2 node here, and must stay that
-# way: that identity is what makes the root's averaged rule unreachable, since
-# `descend_tree` only stops at the root when no child matches. Adding a union
-# member without its L2 node re-opens the mixed pressure-baked/radiative average
-# to whatever the new member admits. See point 2 of longDesc.
+# way: that identity is what keeps generated reactions off the root's averaged
+# rule, since `descend_tree` only stops at the root when no child matches.
+# Adding a union member without its L2 node hands the mixed pressure-baked/
+# radiative average to whatever the new member admits. (The rate-rule API can
+# still fetch that average by name - see point 2 of longDesc.)
 tree(
 """
 L1: Attacher

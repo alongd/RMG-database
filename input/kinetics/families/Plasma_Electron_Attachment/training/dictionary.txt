@@ -25,4 +25,3 @@ multiplicity 3
 O-
 multiplicity 2
 1 *1 O u1 p3 c-1
-

@@ -20,7 +20,7 @@ entry(
         Ea = (0.75, 'eV/molecule'), # activation energy
         Tmin = (298, 'K'),
         Tmax = (3000, 'K'),
-        electrons = 1, # electron stochiometric coeff
+        electrons = -1, # electron stochiometric coeff
     ),
     shortDesc = u"""CO2RR_Ag111""",
     longDesc = u"""Calculated by Manish Kumar Kothakonda""",
@@ -39,7 +39,7 @@ entry(
         Ea = (1.25, 'eV/molecule'), # activation energy
         Tmin = (298, 'K'),
         Tmax = (3000, 'K'),
-        electrons = 1, # electron stochiometric coeff
+        electrons = -1, # electron stochiometric coeff
     ),
     shortDesc = u"""CO2RR_Ag111""",
     longDesc = u"""Calculated by Manish Kumar Kothakonda""",
@@ -58,7 +58,7 @@ entry(
         Ea = (0.25, 'eV/molecule'), # activation energy
         Tmin = (298, 'K'),
         Tmax = (3000, 'K'),
-        electrons = 1, # electron stochiometric coeff
+        electrons = -1, # electron stochiometric coeff
     ),
     shortDesc = u"""CO2RR_Ag111""",
     longDesc = u"""Calculated by Manish Kumar Kothakonda""",
@@ -77,7 +77,7 @@ entry(
         Ea = (2.40, 'eV/molecule'), # activation energy
         Tmin = (298, 'K'),
         Tmax = (3000, 'K'),
-        electrons = 1, # electron stochiometric coeff
+        electrons = -1, # electron stochiometric coeff
     ),
     shortDesc = u"""CO2RR_Ag111""",
     longDesc = u"""Calculated by Manish Kumar Kothakonda""",
@@ -96,7 +96,7 @@ entry(
         Ea = (2.64, 'eV/molecule'), # activation energy
         Tmin = (298, 'K'),
         Tmax = (3000, 'K'),
-        electrons = 1, # electron stochiometric coeff
+        electrons = -1, # electron stochiometric coeff
     ),
     shortDesc = u"""CO2RR_Ag111""",
     longDesc = u"""Calculated by Manish Kumar Kothakonda""",
@@ -115,7 +115,7 @@ entry(
         Ea = (0.45, 'eV/molecule'), # activation energy
         Tmin = (298, 'K'),
         Tmax = (3000, 'K'),
-        electrons = 1, # electron stochiometric coeff
+        electrons = -1, # electron stochiometric coeff
     ),
     shortDesc = u"""CO2RR_Ag111""",
     longDesc = u"""Calculated by Manish Kumar Kothakonda""",
@@ -134,7 +134,7 @@ entry(
         Ea = (2.14, 'eV/molecule'), # activation energy
         Tmin = (298, 'K'),
         Tmax = (3000, 'K'),
-        electrons = 1, # electron stochiometric coeff
+        electrons = -1, # electron stochiometric coeff
     ),
     shortDesc = u"""CO2RR_Ag111""",
     longDesc = u"""Calculated by Manish Kumar Kothakonda""",
@@ -153,7 +153,7 @@ entry(
         Ea = (2.60, 'eV/molecule'), # activation energy
         Tmin = (298, 'K'),
         Tmax = (3000, 'K'),
-        electrons = 1, # electron stochiometric coeff
+        electrons = -1, # electron stochiometric coeff
     ),
     shortDesc = u"""CO2RR_Ag111""",
     longDesc = u"""Calculated by Manish Kumar Kothakonda""",
@@ -172,7 +172,7 @@ entry(
         Ea = (0.79, 'eV/molecule'), # activation energy
         Tmin = (298, 'K'),
         Tmax = (3000, 'K'),
-        electrons = 1, # electron stochiometric coeff
+        electrons = -1, # electron stochiometric coeff
     ),
     shortDesc = u"""CO2RR_Ag111""",
     longDesc = u"""Calculated by Manish Kumar Kothakonda""",

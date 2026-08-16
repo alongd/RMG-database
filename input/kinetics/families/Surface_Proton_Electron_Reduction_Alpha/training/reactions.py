@@ -42,7 +42,7 @@ entry(
         Ea = (0.44, 'eV/molecule'), # activation energy
         Tmin = (200, 'K'),
         Tmax = (3000, 'K'),
-        electrons = 1, # electron stochiometric coeff 
+        electrons = -1, # electron stochiometric coeff 
     ),
     shortDesc = u"""https://doi.org/10.1016/j.cattod.2018.03.048""",
     longDesc = u"""Tafel""",
@@ -130,7 +130,7 @@ entry(
         Ea = (0.44, 'eV/molecule'), # activation energy
         Tmin = (200, 'K'),
         Tmax = (3000, 'K'),
-        electrons = 1, # electron stochiometric coeff 
+        electrons = -1, # electron stochiometric coeff 
     ),
     shortDesc = u"""https://doi.org/10.1016/j.cattod.2018.03.048""",
     longDesc = u"""Tafel""",
@@ -218,7 +218,7 @@ entry(
         Ea = (0.37, 'eV/molecule'), # activation energy
         Tmin = (200, 'K'),
         Tmax = (3000, 'K'),
-        electrons = 1, # electron stochiometric coeff 
+        electrons = -1, # electron stochiometric coeff 
     ),
     shortDesc = u"""https://doi.org/10.1016/j.cattod.2018.03.048""",
     longDesc = u"""Tafel""",
@@ -285,7 +285,7 @@ entry(
         Ea = (0.59, 'eV/molecule'), # activation energy
         Tmin = (200, 'K'),
         Tmax = (3000, 'K'),
-        electrons = 1, # electron stochiometric coeff 
+        electrons = -1, # electron stochiometric coeff 
     ),
     shortDesc = u"""https://doi.org/10.1016/j.cattod.2018.03.048""",
     longDesc = u"""Tafel""",
@@ -373,7 +373,7 @@ entry(
         Ea = (0.97, 'eV/molecule'), # activation energy
         Tmin = (200, 'K'),
         Tmax = (3000, 'K'),
-        electrons = 1, # electron stochiometric coeff 
+        electrons = -1, # electron stochiometric coeff 
     ),
     shortDesc = u"""https://doi.org/10.1016/j.cattod.2018.03.048""",
     longDesc = u"""Tafel""",
@@ -461,7 +461,7 @@ entry(
         Ea = (0.48, 'eV/molecule'), # activation energy
         Tmin = (200, 'K'),
         Tmax = (3000, 'K'),
-        electrons = 1, # electron stochiometric coeff 
+        electrons = -1, # electron stochiometric coeff 
     ),
     shortDesc = u"""https://doi.org/10.1016/j.cattod.2018.03.048""",
     longDesc = u"""Tafel""",

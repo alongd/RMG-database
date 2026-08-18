@@ -8,10 +8,10 @@ Non-dissociative (radiative or three-body-stabilized) electron attachment:
 
     A(*1) + e-  =>  A-(*1)
 
-A neutral species captures a free electron and becomes a mono-anion. No bond is
-made or broken, so this family covers *only* the non-dissociative channel;
-dissociative attachment (A + e- => B- + C) breaks a bond and is a different
-recipe, deliberately out of scope here.
+A net-neutral species captures a free electron and becomes a mono-anion. No
+bond is made or broken, so this family covers *only* the non-dissociative
+channel; dissociative attachment (A + e- => B- + C) breaks a bond and is a
+different recipe, deliberately out of scope here.
 
 The recipe is LOSE_RADICAL + GAIN_PAIR on the attaching atom *1. Charge in RMG
 is derived from the electron count, never declared, so the pair
@@ -137,16 +137,39 @@ Consequences of the recipe, stated explicitly because they bound the family:
    gap, and widening to the halogens is now a training-data ticket.) Only oxygen
    has training data, so only oxygen is in the tree.
 
-KNOWN LIMITATION - a group cannot require a neutral reactant. RMG groups match
-subgraphs, so no group can express "the whole molecule is neutral", and
-`allowChargedSpecies` is two-sided (it permits charged reactants *and* products
-together, family.py line ~1714) while `generatedSpeciesConstraints` has no
-charge key. Blocking anion re-attachment needs a one-sided neutral-reactant
-check in RMG-Py, which does not exist. This family no longer generates
-O2- + e- => O2(2-), but only incidentally: the radical oxygen of O2- is bonded
-to O0sc rather than to another O u1 p2 c0, so it falls outside the union. The
-RMG-Py gap is unfixed and the next family that needs a wider group will meet it
-again; test/test_plasma_electron_attachment.py pins the current behaviour.
+NEUTRAL REACTANTS ONLY - `allowChargedReactants = False`, declared below beside
+`allowChargedSpecies`. This family models electron attachment to a net-neutral
+molecule, so it must not consume a species carrying a nonzero net charge. No
+group can say that: RMG groups match subgraphs, so the `c0` on *1 constrains the
+atom it is written on and never the molecule as a whole, and
+`generatedSpeciesConstraints` has no charge key either. `allowChargedSpecies`
+cannot say it on its own because it is two-sided - it permits charged reactants
+*and* products together - and charged products are the entire point here, so it
+stays True. `allowChargedReactants` is the one-sided companion: RMG-Py reads it
+into `allow_charged_reactants` and applies `is_charged_reactant_forbidden` to the
+forward reactants inside `_create_reaction`, rejecting on whole-molecule net
+charge, either sign, before the two-sided filter runs. Left undeclared it
+inherits `allowChargedSpecies`, which is why every other family - the `Cation_*`
+and `Surface_Proton_Electron_Reduction_*` families that legitimately consume ions
+included - is unaffected.
+
+Read the criterion literally: it is *net* charge, so a charge-separated but
+net-neutral reactant is not refused by this declaration. Whether such a species
+reacts here is then the ordinary question of tree and recipe match, and no
+zwitterion is in this tree today. The declaration draws its line at net charge
+and nowhere else.
+
+This is a family-local restriction, not a claim that electron attachment to an
+ion is impossible; it is real chemistry, and a family that wants to model it says
+so by staying silent about this flag while keeping `allowChargedSpecies = True` -
+silence alone is not enough, since the two-sided flag still has to permit the
+charged reactant. Before the declaration this family happened not to generate
+O2- + e- => O2(2-), but only by accident of shape: the radical oxygen of O2- is
+bonded to O0sc rather than to another O u1 p2 c0, so it fell outside the narrow
+union. The group shape was the only thing stopping it; no charge policy was. The
+declaration is what carries that exclusion through a future widening of the tree,
+for any reactant of nonzero net charge, as long as generation keeps running
+through the `_create_reaction` guard.
 
 The electron is not a template reactant. It is carried by `electrons = -1`, the
 same mechanism the Surface_Proton_Electron_Reduction_* families use, which is
@@ -162,6 +185,7 @@ reactantNum = 1
 productNum = 1
 
 allowChargedSpecies = True
+allowChargedReactants = False
 electrons = -1
 
 recipe(actions=[

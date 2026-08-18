@@ -851,29 +851,47 @@ def test_hydrogen_and_chlorine_are_excluded_by_element(kinetics_db):
         assert _generate(kinetics_db, name) == []
 
 
-def test_known_limitation_rmg_still_cannot_require_a_neutral_reactant(kinetics_db, family):
-    """O2- is no longer re-attached, but RMG-Py's gap is unfixed.
+def test_charged_reactants_are_refused_by_declaration_not_by_group_shape(kinetics_db, family):
+    """The family declares ``allowChargedReactants = False``, and that is the guard.
 
-    RMG groups match subgraphs, so a group cannot express "the reactant molecule
-    is neutral". ``allowChargedSpecies`` is two-sided - it permits charged
-    reactants *and* products together - and there is no generated-species
-    constraint on net charge either. Blocking anion re-attachment properly needs a
-    one-sided neutral-reactant check in RMG-Py, which does not exist and is out of
-    scope for this ticket.
+    RMG groups match subgraphs, so a group still cannot express "the reactant
+    molecule is neutral", and ``allowChargedSpecies`` still cannot say it either -
+    it is two-sided, permitting charged reactants *and* products together, and
+    charged products are this family's entire purpose. What has changed is that
+    RMG-Py now carries the one-sided companion: ``allowChargedReactants`` reaches
+    ``family.allow_charged_reactants``, and ``is_charged_reactant_forbidden``
+    rejects a forward reactant on whole-molecule net charge, either sign.
 
-    This family used to generate the spurious ``O2- + e- => O2(2-)`` and this test
-    pinned that. It no longer does - but *only incidentally*, and the distinction
-    is the whole point of keeping this test: the radical oxygen of O2- is bonded
-    to an O0sc rather than to another ``O u1 p2 c0``, so it falls outside the
-    narrowed union. Nothing in the engine stopped it. The next family that needs a
-    wider group will meet the same gap, so the assertion below is on the *cause* -
-    a group-shape miss - not on any engine-level protection.
+    O2- was already not re-attached before that declaration, but *only
+    incidentally* - the radical oxygen of O2- is bonded to an O0sc rather than to
+    another ``O u1 p2 c0``, so it falls outside the narrowed union. That accident
+    is asserted first and separately below precisely because it is not the guard:
+    it would keep passing with the declaration deleted, and it stops holding the
+    moment the union is widened. The declaration is what survives that widening,
+    so it is asserted on its own terms - as a property of the loaded family and of
+    the predicate, for a negative *and* a positive reactant.
     """
     assert not _root_matches(family, 'O2-'), \
-        'O2- matches the root union again - the RMG-Py neutral-reactant gap is now live'
+        'O2- matches the root union again - the group-shape miss below is no longer why'
     assert _generate(kinetics_db, 'O2-') == []
 
-    # The gap itself, unchanged: the family still declares charged species legal
-    # in both directions, which is the setting that would let O2- through the
-    # moment a group happened to match it.
+    # Charged products stay legal; that is the chemistry the family exists for.
     assert family.allow_charged_species is True
+    # Charged reactants do not, and this is the only thing that says so.
+    assert family.allow_charged_reactants is False
+
+    # Both signs, by whole-molecule net charge. The cation carries an ordinary
+    # ``O u1 p2 c0`` - asserted, not asserted-by-comment - with its charge on a
+    # different atom, so nothing local to that oxygen distinguishes it from the
+    # neutral case and only the molecule's net charge can refuse it.
+    anion = _species('O2-').molecule[0]
+    cation = Species().from_smiles('[O]CC[NH3+]').molecule[0]
+    assert anion.get_net_charge() == -1
+    assert cation.get_net_charge() == 1
+    assert any(a.is_oxygen() and a.radical_electrons == 1 and a.charge == 0
+               and a.lone_pairs == 2 for a in cation.atoms)
+    assert family.is_charged_reactant_forbidden(anion) is True
+    assert family.is_charged_reactant_forbidden(cation) is True
+
+    # And the reactants the family is for are untouched.
+    assert family.is_charged_reactant_forbidden(_species('O2').molecule[0]) is False

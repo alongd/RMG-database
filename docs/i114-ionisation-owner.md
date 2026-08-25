@@ -35,9 +35,18 @@ Evidence labels: **[R]** code (file:line) · **[D]** database (file, entry) · *
 
 | Role | Path | State |
 |---|---|---|
-| Runtime (imports) | `/home/alon/Code/RMG-Py-i113-placement-widening` | `dde602778`, branch `i113-placement-widening`, unmodified, **not rebuilt** (see below) |
+| Reference runtime, as briefed | `/home/alon/Code/RMG-Py-i113-placement-widening` | `dde602778`, branch `i113-placement-widening`, unmodified, **not rebuilt** (see below) |
+| Runtime carrying the declaration | `/home/alon/Code/RMG-Py-i114-ionisation-declaration` | branch `i114-ionisation-declaration`, `4a5bcba03`, forked from `dde602778` |
 | Data under test | `/home/alon/Code/RMG-database-i114-ionisation` | branch `i114-ionisation-declaration`, base `fb3c13c60` |
 | Interpreter | `/home/alon/anaconda3/envs/rmg_env/bin/python` | 3.9.23 |
+
+The registry line lives in RMG-Py and cannot ship from a database repository, so it went on its
+own branch forked off the reference one rather than into another ticket's worktree. §4 was
+measured against the reference runtime, before that branch existed; §5 was re-run against the
+branch with the entry **shipped**, no runtime injection. That worktree carries no compiled
+extensions of its own — the 104 built `.so` files were copied across from the reference worktree,
+which is sound because the two trees differ only in `electron_placement.py`, and that module is
+pure Python with no `.so`. No `make` of any kind was run.
 
 **[M]** Import resolution, printed before any other work:
 
@@ -50,6 +59,13 @@ rmgpy: /home/alon/Code/RMG-Py-i113-placement-widening/rmgpy/__init__.py
 
 $ python -c "from rmgpy.electron_placement import FAMILY_ELECTRON_PLACEMENT as F; print(F)"
 {'Plasma_Electron_Attachment': (1, 0), 'Cation_R_Recombination': (1, 0)}
+
+# and on the branch carrying the declaration:
+$ PYTHONPATH=/home/alon/Code/RMG-Py-i114-ionisation-declaration python -c \
+    "import rmgpy.electron_placement as ep; print(ep.__file__); print(ep.FAMILY_ELECTRON_PLACEMENT)"
+/home/alon/Code/RMG-Py-i114-ionisation-declaration/rmgpy/electron_placement.py
+{'Plasma_Electron_Attachment': (1, 0), 'Cation_R_Recombination': (1, 0),
+ 'PlasmaElectronImpactIonization': (1, 2)}
 ```
 
 The two-element tuples confirm the **widened** declaration is the one in play; the superseded
@@ -311,18 +327,25 @@ the metadata electron — which only works because step 1's propagation happened
 
 ### Step 3 — RESOLVE ELECTRON PLACEMENT
 
+The entry is removed from the registry first, to show the refusal, then restored — this is the
+**shipped** declaration, not an injected one.
+
 ```
-registry BEFORE : {'Plasma_Electron_Attachment': (1, 0), 'Cation_R_Recombination': (1, 0)}
+registry with the entry REMOVED : {'Plasma_Electron_Attachment': (1, 0),
+                                   'Cation_R_Recombination': (1, 0)}
 undeclared      : ElectronPlacementError: Family 'PlasmaElectronImpactIonization' has no
                   electron-placement declaration (reaction [Li] => [Lip], electrons=1);
                   refusing to infer electron placement from the net electron count...
-registry AFTER  : {'Plasma_Electron_Attachment': (1, 0), 'Cation_R_Recombination': (1, 0),
-                   'PlasmaElectronImpactIonization': (1, 2)}
+registry (SHIPPED, no injection): {'Plasma_Electron_Attachment': (1, 0),
+                                   'Cation_R_Recombination': (1, 0),
+                                   'PlasmaElectronImpactIonization': (1, 2)}
 rxn.family      : 'PlasmaElectronImpactIonization'
 VIEW            : [Li] + e => [Lip] + e + e
 view reactants  : ['[Li]', 'e']
 view products   : ['[Lip]', 'e', 'e']
 view.electrons  : 0 | view.reversible: False
+view.comment    : Electron-placement view (family 'PlasmaElectronImpactIonization',
+                  rate-order cross-check: agrees (order 2)) of: [Li] => [Lip]
 E balance L/R   : 1 / 1
 CANONICAL UNCHANGED: electrons=1 reactants=['[Li]'] products=['[Lip]']
 ```
@@ -453,12 +476,18 @@ neither of which exists today.
 
 Stated plainly, since a green suite is easy to over-read.
 
-- **The placement declaration is not committed anywhere.** `FAMILY_ELECTRON_PLACEMENT` lives in
-  RMG-Py, and the only checkout carrying the widened form is another worker's worktree, which this
-  ticket forbids writing to. Everything in §5 was produced with the one-line entry injected at
-  runtime and the registry restored afterwards. **Until that line lands, this library loads and
-  balances but does not resolve.** The line is:
-  `'PlasmaElectronImpactIonization': (1, 2),`
+- **The placement declaration is committed, but on a different branch in a different
+  repository.** `FAMILY_ELECTRON_PLACEMENT` lives in RMG-Py, so
+  `'PlasmaElectronImpactIonization': (1, 2)` is `4a5bcba03` on RMG-Py branch
+  `i114-ionisation-declaration`, **stacked on `i113-placement-widening`**. Two consequences worth
+  naming: this library resolves only against a runtime carrying that branch, and if
+  `i113-placement-widening` is rebased before it lands, the stacked branch needs
+  `git rebase --onto`. Landing it also moved three registry tripwires I-113 had installed — each
+  by hand, none loosened; see the RMG-Py commit message.
+- **The database repository cannot verify the shipped declaration on its own.** The database test
+  suite injects `(1, 2)` when the runtime does not carry it, so it is green against *both*
+  runtimes. That is deliberate — it gets stronger, not weaker, once the RMG-Py branch merges — but
+  it means a green database suite is not by itself evidence that the RMG-Py half exists.
 - **No RMG model was run.** No `rmg.py` job, no enlargement, no convergence. `PlasmaReactor`
   accepted the reaction and evaluated it at the right rate; whether an ionisation channel survives
   flux filtering and pruning into a converged mechanism is a different question this did not ask.

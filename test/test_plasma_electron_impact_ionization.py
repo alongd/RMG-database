@@ -43,17 +43,24 @@ library.py``), so a *library label* is a valid key there and the one-line additi
 
     'PlasmaElectronImpactIonization': (1, 2),
 
-The ``declaration`` fixture below uses the shipped entry when RMG-Py carries it and
-otherwise injects it for the duration of the test, restoring the registry afterwards.
-Both paths assert the value is ``(1, 2)``, so these tests get stronger, not weaker,
-once the RMG-Py line lands.
+which lives on RMG-Py branch ``i114-ionisation-declaration``, stacked on
+``i113-placement-widening``.
 
-Run with the runtime pinned to the branch carrying the widened two-sided
-declaration::
+The ``declaration`` fixture below uses that shipped entry when the runtime carries it
+and otherwise injects it for the duration of the test, restoring the registry
+afterwards. Both paths assert the value is ``(1, 2)``, so this file is green against
+either runtime -- which is the point, since the two halves of this ticket live in
+different repositories and can merge at different times. The corollary is worth stating
+because it bounds what a green run here proves: passing does NOT establish that the
+RMG-Py entry exists.
+
+Run with the runtime pinned to a branch carrying the widened two-sided declaration --
+``i114-ionisation-declaration`` for the shipped path, ``i113-placement-widening`` for
+the injected one::
 
     cd /home/alon/Code/RMG-database-i114-ionisation
     PATH=/home/alon/anaconda3/envs/rmg_env/bin:$PATH \\
-    PYTHONPATH=/home/alon/Code/RMG-Py-i113-placement-widening \\
+    PYTHONPATH=/home/alon/Code/RMG-Py-i114-ionisation-declaration \\
       python -m pytest test/test_plasma_electron_impact_ionization.py -v
 """
 

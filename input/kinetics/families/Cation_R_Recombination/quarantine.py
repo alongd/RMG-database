@@ -17,6 +17,40 @@ appliesToKineticsClass = "Marcus"
 
 reason = "electrochemical reference/domain unavailable"
 
+# ---------------------------------------------------------------------------
+# I-111 -- what this family actually is.
+#
+# Two limitations live here and they are SEPARATE. `state` above is the first:
+# the plasma-domain exclusion, gated by the loader. `classification` below is the
+# second: the provenance limitation, which survives even inside the SEI domain
+# these rates were written for. A consumer that supplies an electrode and a
+# reference lifts the first and still does not get validated data.
+#
+# The domain was recovered by I-111's evidence base, not guessed; see
+# PROVENANCE.md beside this file for the recovered conditions, the mapping of the
+# twelve database objects onto five underlying calculations, and the four facts
+# that remain unresolved.
+# ---------------------------------------------------------------------------
+
+#: The provenance label, verbatim. NOT "validated", not even for SEI use.
+classification = "LEGACY SEI ELECTROCHEMISTRY — INCOMPLETE QUANTITATIVE PROVENANCE"
+
+#: The physical domain the rates were actually fitted in.
+domain = "lithium-ion battery solid-electrolyte-interphase (SEI) electrochemistry"
+
+#: Stated positively so no reader has to infer it from an absence. The reactions
+#: carry electron metadata (`electrons = -1`, a LOSE_CHARGE recipe); that is
+#: electrode electron transfer bookkeeping and is NOT evidence of free-electron
+#: plasma chemistry.
+isPlasmaFamily = False
+
+#: The curated selections this family belongs in, in input/kinetics/families/
+#: recommended.py. One entry, and it is the electrochemical one.
+familySets = ["electrochem"]
+
+#: Documentation beside the family, relative to this manifest.
+provenance = "PROVENANCE.md"
+
 shortDesc = """Marcus rates fitted as electrode electron-transfer; no electrochemical reference exists in a gas-phase or plasma mechanism"""
 
 longDesc = """
@@ -46,4 +80,15 @@ electrochemical reference and domain these rates were fitted in are actually
 available to the consumer -- not when a run is inconvenient.
 
 See rmgpy/data/kinetics/quarantine.py in RMG-Py for the loader and the gate.
+
+I-111 note on where the gate does and does not exist. The loader named above is
+present in the RMG-Py worktree that landed it and is NOT present in every plasma
+runtime -- `/home/alon/Code/RMG-Py-plasma` (branch `plasma`) has no
+`rmgpy/data/kinetics/quarantine.py`, so under that runtime this manifest is an
+inert data file and no refusal fires. Where the gate is absent, the plasma-domain
+exclusion rests entirely on declared configuration: this family is a member of the
+`electrochem` set and of no other set in recommended.py, so no plasma deck that
+selects families by set can reach it. A plasma deck that names the family
+individually bypasses both, and that residual is documented in
+docs/i111-sei-reclassification.md rather than papered over.
 """

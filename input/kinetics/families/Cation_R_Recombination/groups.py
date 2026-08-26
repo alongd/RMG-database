@@ -2,9 +2,37 @@
 # encoding: utf-8
 
 name = "Cation_R_Recombination/groups"
-shortDesc = ""
+shortDesc = """LEGACY SEI ELECTROCHEMISTRY — INCOMPLETE QUANTITATIVE PROVENANCE. Li-ion battery SEI family (Marcus electron transfer at a Li(110) electrode in liquid ethylene carbonate, 298.15 K, declared electrode potentials). NOT a plasma family."""
 longDesc = """
+LEGACY SEI ELECTROCHEMISTRY — INCOMPLETE QUANTITATIVE PROVENANCE
 
+This is a legacy lithium-ion-battery solid-electrolyte-interphase (SEI) family. Its
+twelve Marcus objects were fitted as electrode electron transfer at a lithium metal
+(110) electrode, in liquid ethylene carbonate, at 298.15 K, in a liquidSurfaceReactor
+with declared electrode potentials (-1.0 V liquid / 0.0 V surface). The surviving
+statement of those conditions is the RMG example input examples/rmg/SEI_pure_EC/input.py.
+
+It is NOT a free-electron plasma family, and must not be treated as gas-phase
+electron-ion recombination, lithium-plasma recombination, a cation source or loss route
+for an alkali-plasma model, or kinetics transferable to a two-temperature plasma reactor
+merely because these reactions carry electron metadata. The `electrons = -1` declaration
+and the LOSE_CHARGE recipe below are electrode electron-transfer bookkeeping.
+
+Outside the electrochemical domain the twelve entries return 1e-23 to 1e-226
+m^3/(mol*s). The rate law evaluates correctly; the evaluation has lost the semantics of
+the source model.
+
+The label is not "validated", and that holds for SEI use too: the domain is recovered,
+the numbers are not reproducible. Four facts remain unresolved -- the Li+ reference the
+lambda_i set was computed against, whether implicit solvation was used and in which
+solvent, the derivation of the shared A = 1.73e6 / n = 2, and the association /
+electron-transfer decomposition.
+
+Nothing here is deleted, repaired, refitted or reinterpreted; the data are the
+provenance evidence. Read PROVENANCE.md in this directory before using, citing,
+refitting or copying anything here. quarantine.py beside it carries the machine-readable
+form. The genuinely available lithium-plasma kinetics are input/kinetics/voronov.yaml
+(electron-impact ionisation) and input/kinetics/badnell.yaml (radiative recombination).
 """
 
 template(reactants=["Root"], products=["Y_Y"], ownReverse=False)

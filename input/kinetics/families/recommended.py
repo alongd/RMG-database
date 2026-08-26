@@ -174,6 +174,13 @@ electrochem = {
     'Cation_NO_Substitution',
     'Cation_NO_Ring_Opening',
     'Cation_Li_Abstraction',
+    # LEGACY SEI ELECTROCHEMISTRY -- INCOMPLETE QUANTITATIVE PROVENANCE.
+    # A lithium-ion-battery SEI family (Marcus electron transfer at a Li(110)
+    # electrode in liquid ethylene carbonate at 298.15 K, under declared electrode
+    # potentials), NOT a plasma family, and not validated even for SEI use. This
+    # set is the only one it belongs in: it must be excluded from every plasma
+    # configuration. See PROVENANCE.md and quarantine.py in
+    # Cation_R_Recombination/, and docs/i111-sei-reclassification.md.
     'Cation_R_Recombination',
     'Cation_Addition_MultipleBond_Disprop',
     'Li_Abstraction',

@@ -667,30 +667,41 @@ Fitted Arrhenius to "K_N1" polynom rate between Te=6000-25000 K
 """
 )
 
-entry(
-    index = 42,
-    label = "H3p + e- => H + H + H",
-    reversible = False,
-    kinetics = TwoTemperaturePlasma(A=(1.07e08, "cm^3/(mol*s)"), n=6.0, Ea_g=(0.0, "kJ/mol"), Ea_e=(0.54, "kJ/mol"),
-        Tmin = (1000.0, "K"), Tmax = (100000.0, "K")),
-    shortDesc = u"[Tanarro2015]",
-    longDesc = u"""
-Table 1, N2
-Fitted Arrhenius to "0.5*K_N2" polynom rate between Te=6000-25000 K
-"""
-)
+# H3p COMMENTED OUT (I-176). H3p is a triangular 3-centre-2-electron ion that RMG cannot
+# represent (no hydrogen atom type carries two single bonds), so it is carried as the
+# disconnected / van der Waals graph [H][H].[H+]. Under that representation H3p cannot be
+# given thermochemistry: on RMG-Py branch i172-balance (ed2ee5901) it crashes in
+# Molecule.is_linear (IndexError, via calculate_cp0 -> find_cp0_and_cpinf); on an
+# is_linear-fixed runtime group additivity instead returns EXACTLY 0.0 for H298, S298 and
+# Cp, because no group is centred on hydrogen -- fabricated thermochemistry presented as an
+# estimate. Both outcomes are unacceptable, so H3p and every reaction referencing it are
+# commented out (NOT deleted) until H3p can be given real library or citable thermo.
+# The H3p species itself remains in dictionary.txt: the adjacency-list dictionary format
+# cannot carry comments and deletion is forbidden, so it is preserved there, now unreferenced.
+# entry(
+#     index = 42,
+#     label = "H3p + e- => H + H + H",
+#     reversible = False,
+#     kinetics = TwoTemperaturePlasma(A=(1.07e08, "cm^3/(mol*s)"), n=6.0, Ea_g=(0.0, "kJ/mol"), Ea_e=(0.54, "kJ/mol"),
+#         Tmin = (1000.0, "K"), Tmax = (100000.0, "K")),
+#     shortDesc = u"[Tanarro2015]",
+#     longDesc = u"""
+# Table 1, N2
+# Fitted Arrhenius to "0.5*K_N2" polynom rate between Te=6000-25000 K
+# """
+# )
 
-entry(
-    index = 43,
-    label = "H3p + e- <=> H2 + H",
-    kinetics = TwoTemperaturePlasma(A=(1.07e08, "cm^3/(mol*s)"), n=6.0, Ea_g=(0.0, "kJ/mol"), Ea_e=(0.54, "kJ/mol"),
-        Tmin = (1000.0, "K"), Tmax = (100000.0, "K")),
-    shortDesc = u"[Tanarro2015]",
-    longDesc = u"""
-Table 1, N2
-Fitted Arrhenius to "0.5*K_N2" polynom rate between Te=6000-25000 K
-"""
-)
+# entry(
+#     index = 43,
+#     label = "H3p + e- <=> H2 + H",
+#     kinetics = TwoTemperaturePlasma(A=(1.07e08, "cm^3/(mol*s)"), n=6.0, Ea_g=(0.0, "kJ/mol"), Ea_e=(0.54, "kJ/mol"),
+#         Tmin = (1000.0, "K"), Tmax = (100000.0, "K")),
+#     shortDesc = u"[Tanarro2015]",
+#     longDesc = u"""
+# Table 1, N2
+# Fitted Arrhenius to "0.5*K_N2" polynom rate between Te=6000-25000 K
+# """
+# )
 
 entry(
     index = 44,
@@ -1021,16 +1032,18 @@ Table 1, X2
 """
 )
 
-entry(
-    index = 70,
-    label = "H3p + H- <=> H2 + H2",
-    kinetics=Arrhenius(A=(2.0e-7, 'cm^3/(molecule*s)'), n=-0.5, Ea=(0.0, 'kJ/mol'),
-                       T0=(300, 'K'), Tmin=(300, 'K'), Tmax=(10000, 'K')),
-    shortDesc = u"[Tanarro2015]",
-    longDesc = u"""
-Table 1, IN3
-"""
-)
+# H3p COMMENTED OUT (I-176) -- see the banner at index 42 for the reason (H3p has no
+# representable structure and no non-fabricated thermochemistry). Preserved, not deleted.
+# entry(
+#     index = 70,
+#     label = "H3p + H- <=> H2 + H2",
+#     kinetics=Arrhenius(A=(2.0e-7, 'cm^3/(molecule*s)'), n=-0.5, Ea=(0.0, 'kJ/mol'),
+#                        T0=(300, 'K'), Tmin=(300, 'K'), Tmax=(10000, 'K')),
+#     shortDesc = u"[Tanarro2015]",
+#     longDesc = u"""
+# Table 1, IN3
+# """
+# )
 
 entry(
     index = 71,
@@ -1065,16 +1078,18 @@ Table 1, IN10
 """
 )
 
-entry(
-    index = 74,
-    label = "H3p + O- <=> OH + H2",
-    kinetics=Arrhenius(A=(2.3e-7, 'cm^3/(molecule*s)'), n=-0.5, Ea=(0.0, 'kJ/mol'),
-                       T0=(300, 'K'), Tmin=(300, 'K'), Tmax=(10000, 'K')),
-    shortDesc = u"[Tanarro2015]",
-    longDesc = u"""
-Table 1, IN11
-"""
-)
+# H3p COMMENTED OUT (I-176) -- see the banner at index 42 for the reason (H3p has no
+# representable structure and no non-fabricated thermochemistry). Preserved, not deleted.
+# entry(
+#     index = 74,
+#     label = "H3p + O- <=> OH + H2",
+#     kinetics=Arrhenius(A=(2.3e-7, 'cm^3/(molecule*s)'), n=-0.5, Ea=(0.0, 'kJ/mol'),
+#                        T0=(300, 'K'), Tmin=(300, 'K'), Tmax=(10000, 'K')),
+#     shortDesc = u"[Tanarro2015]",
+#     longDesc = u"""
+# Table 1, IN11
+# """
+# )
 
 entry(
     index = 75,
@@ -1109,16 +1124,18 @@ Table 1, IN17
 """
 )
 
-entry(
-    index = 78,
-    label = "H3p + OH- <=> H2 + H2O",
-    kinetics=Arrhenius(A=(2.0e-7, 'cm^3/(molecule*s)'), n=-0.5, Ea=(0.0, 'kJ/mol'),
-                       T0=(300, 'K'), Tmin=(300, 'K'), Tmax=(10000, 'K')),
-    shortDesc = u"[Tanarro2015]",
-    longDesc = u"""
-Table 1, IN18
-"""
-)
+# H3p COMMENTED OUT (I-176) -- see the banner at index 42 for the reason (H3p has no
+# representable structure and no non-fabricated thermochemistry). Preserved, not deleted.
+# entry(
+#     index = 78,
+#     label = "H3p + OH- <=> H2 + H2O",
+#     kinetics=Arrhenius(A=(2.0e-7, 'cm^3/(molecule*s)'), n=-0.5, Ea=(0.0, 'kJ/mol'),
+#                        T0=(300, 'K'), Tmin=(300, 'K'), Tmax=(10000, 'K')),
+#     shortDesc = u"[Tanarro2015]",
+#     longDesc = u"""
+# Table 1, IN18
+# """
+# )
 
 entry(
     index = 79,

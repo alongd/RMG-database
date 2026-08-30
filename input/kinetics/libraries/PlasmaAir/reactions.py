@@ -73,18 +73,30 @@ What changed in the carry, and nothing else did:
 
 FREE-ELECTRON STOICHIOMETRY -- WHY 52 ENTRIES DO NOT LOAD
 ---------------------------------------------------------
-RMG carries a reaction's free-electron stoichiometry either as an explicit
-participant or as the scalar ``Reaction.electrons``. ``Reaction.is_balanced``
-treats the free electron as a conserved pseudo-element, so an explicit-electron
-entry whose electron COUNT changes across the arrow fails the balance check
-(``test/rmgpy/i108ElectronRepresentationMatrixTest.py`` pins this), and the
-metadata form is only reachable through a rate law that carries the count itself
--- ``VoronovEIArrhenius``, ``BadnellRRArrhenius``, or a charge-transfer law. These
-entries use ``Arrhenius``, ``ThirdBody``, ``TwoTemperaturePlasma`` and
-``ElectronCollisionPlasma``, none of which do. Extending
-``KineticsLibrary.load_entry`` with an ``electrons=`` argument is the agreed fix
-and is a separate ticket; until it lands these reactions are a NAMED gap rather
-than a silent one.
+The free electron is a first-class chemical element in RMG: ``e`` is
+``element_list[0]``. ``Reaction.is_balanced`` compares the per-element census of
+both sides and returns ``False`` on the first element that differs, and it does
+NOT skip ``e``. So any entry that produces or consumes a free electron differs in
+its ``e`` count and is rejected right there -- before the net-charge comparison at
+the end of the method is ever reached.
+
+That matters, because for these entries the charge comparison would PASS. Measured
+on ``Ar + e- => Arp + e- + e-``: reactant census ``{'Ar': 1, 'e': 1}`` against
+product census ``{'Ar': 1, 'e': 2}``; net charge -1 on both sides;
+``rxn.electrons`` is 0, never set, because ``KineticsLibrary.load`` populates it
+only for a rate law carrying an ``electrons`` field and none of the laws used here
+(``Arrhenius``, ``ThirdBody``, ``TwoTemperaturePlasma``,
+``ElectronCollisionPlasma``) does. The electron is not double-counted and the
+charge is not wrong -- the census simply counts a free electron as if it were an
+argon atom.
+
+This is NOT a consequence of this line's stricter ``is_balanced``. The same
+reaction is rejected identically by pre-campaign runtimes whose ``is_balanced``
+ends ``return True`` and never compares charge at all; the element loop is
+byte-identical between the variants, and across 74 RMG-Py checkouts on this
+machine not one skips ``e``. These entries have therefore never loaded on any
+runtime here, branch ``99``'s included -- on ``99`` they fail even earlier, since
+its ``Ar+`` spelling is torn in half by the loader's split on a bare ``+``.
 
 Measured entry by entry (each loaded alone into a throwaway one-entry library,
 because one rejection aborts the whole load): 42 accepted, 52 rejected, every
@@ -95,13 +107,15 @@ rejection a balance error and none an unknown atom type. By shape:
       (1, 2) x 14  electron-impact ionisation, one in and two out
       (0, 0) x  1  ``N2p + N2 => N2 + N + N``, the source defect above
 
-The 42 that load all conserve the free electron count, which is why this library
-still declares NO electron placement in
-``rmgpy.electron_placement.FAMILY_ELECTRON_PLACEMENT``. Once the ``electrons=``
-change lands, the three shapes above are what that declaration has to express --
-note they are three DIFFERENT shapes in one library, so a single library-level
-``(in, out)`` pair cannot describe this file the way it describes a single-shape
-library like ``PlasmaElectronImpactIonization``.
+The 42 that load are exactly the 42 with zero net electron change, which is why
+this library still declares NO electron placement in
+``rmgpy.electron_placement.FAMILY_ELECTRON_PLACEMENT``.
+
+Excluding ``e`` from the element census and letting the existing charge comparison
+carry the electron bookkeeping would admit 94 of the 95 labels with ZERO
+regressions; the one that would still fail is ``N2p + N2 => N2 + N + N``, which
+should. See ``docs/i158-plasmaair-full-count.md`` for that measurement. The fix
+belongs to RMG-Py and is not made here.
 
 READ THE RATES BEFORE TRUSTING THEM
 -----------------------------------

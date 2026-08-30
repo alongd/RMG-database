@@ -54,17 +54,31 @@ arithmetic applied to any number in this file.
 
 WHAT IS NOT HERE
 ----------------
-``Ar2+``. Tabulated thermodynamic functions for it do exist - Maltsev, Morozov & Osina,
-"Thermodynamic Properties of Ar2+ and Ar2 Argon Dimers", High Temperature 57 (2019) 37-40,
-doi:10.1134/S0018151X19010176, covering 298.15-10000 K and folded into IVTANTHERMO - but
-that paper is closed access with no open-access copy, and ATcT's argon-dimer-cation page
-returns HTTP 403 from here. Without the tabulated Cp(T) and S(298) there is no way to
-enter it that is not authoring, so it is not entered. See
-``docs/i127-argon-cation-thermo.md``.
+Two argon cations that are NOT this species are deliberately absent, for two different
+reasons. They are easy to confuse because plain ASCII writes both "Ar2+", so this section
+spells them apart and uses the unambiguous forms throughout: ``Ar2(+)`` is the argon DIMER
+cation (diatomic, net charge +1); ``Ar(2+)`` is the argon DICATION (monatomic, net charge
++2).
 
-Higher argon charge stages (Ar2+ the dication, Ar3+, ...) are absent for a different
-reason: ``voronov.yaml`` can drive them, but RMG cannot construct a doubly charged
-monatomic cation, so there is nothing for a thermochemistry entry to attach to.
+``Ar2(+)`` -- the argon dimer cation (diatomic, +1). Tabulated thermodynamic functions for
+it do exist - Maltsev, Morozov & Osina, "Thermodynamic Properties of Ar2+ and Ar2 Argon
+Dimers", High Temperature 57 (2019) 37-40, doi:10.1134/S0018151X19010176, covering
+298.15-10000 K and folded into IVTANTHERMO - but that paper is closed access with no
+open-access copy, and ATcT's argon-dimer-cation page returns HTTP 403 from here. Without
+the tabulated Cp(T) and S(298) there is no way to enter it that is not authoring, so it is
+not entered. See ``docs/i127-argon-cation-thermo.md``.
+
+``Ar(2+)`` and higher stages -- the argon dication (monatomic, +2), ``Ar(3+)``, ... are
+absent for a different reason, and it is NOT that RMG cannot build them. RMG constructs the
+dication without complaint: the adjacency list ``1 Ar u2 p2 c+2`` (ground-state 3P) parses
+and carries net charge +2, because argon's atom type is charge-unconstrained - the same
+reason ``Ar(+)`` itself builds. What is missing is sourced thermochemistry: NIST-JANAF has
+no table above Ar-002 (Ar+), and a thermo query for the dication does NOT silently
+fabricate a group-additivity number - it raises a loud ``DatabaseError`` ("no data ... for
+atom Ar++"), because group additivity has no group for a charge-+2 argon atom. So the
+dication builds, fails loudly, and has nothing to attach an entry to. (Both this loud
+failure and the ``Ar(+)`` values above were re-verified on the i172-balance runtime under
+I-179 fork C; see ``docs/i127-argon-cation-thermo.md``.)
 """
 
 entry(

@@ -430,9 +430,16 @@ Table II, R14
 """
 )
 
+# Products corrected on the project owner's ruling of 2026-08-30. Branch 99 wrote this
+# entry as "N2p + N2 => N2 + N + N", which is charge-unbalanced: +1 on the left, 0 on the
+# right, with no free electron on either side. 99 loaded it anyway because its balance
+# check never compared charge. The ruled channel is dissociative charge transfer - the
+# incident ion dissociates and the charge is left on an N atom, with the second N2 as the
+# collision partner - which conserves both charge (+1 -> +1) and N atoms (4 -> 4). The
+# rate coefficient is unchanged from [Ozawa2008] Table III.
 entry(
     index = 24,
-    label = "N2p + N2 => N2 + N + N",
+    label = "N2p + N2 => N + Np + N2",
     reversible = False,
     kinetics=Arrhenius(A=(6.99e21, 'cm^3/(mol*s)'), n=-1.60, Ea=(941.3, 'kJ/mol'),
                        T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(10000, 'K')),

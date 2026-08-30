@@ -90,13 +90,26 @@ only for a rate law carrying an ``electrons`` field and none of the laws used he
 charge is not wrong -- the census simply counts a free electron as if it were an
 argon atom.
 
-This is NOT a consequence of this line's stricter ``is_balanced``. The same
-reaction is rejected identically by pre-campaign runtimes whose ``is_balanced``
-ends ``return True`` and never compares charge at all; the element loop is
-byte-identical between the variants, and across 74 RMG-Py checkouts on this
-machine not one skips ``e``. These entries have therefore never loaded on any
-runtime here, branch ``99``'s included -- on ``99`` they fail even earlier, since
-its ``Ar+`` spelling is torn in half by the loader's split on a bare ``+``.
+EACH BRANCH HAS HALF THE CORRECT CHECK, and neither has both:
+
+  * RMG-Py ``origin/99`` SKIPS the electron in the census
+    (``if element.symbol == 'e': continue``) but never checks charge -- it ends
+    ``return True``. It therefore accepts all 95 labels in this library,
+    including the charge-broken one above, silently.
+  * RMG-Py ``plasma`` counts the electron as an element but DOES check charge
+    (``return reactants_net_charge == products_net_charge``). It accepts 42.
+
+So these entries DID load on ``99``. Simulating each rule over all 95 labels:
+``99`` accepts 95, ``plasma`` accepts 42, and the two halves together accept 94 --
+the sole rejection being ``N2p + N2 => N2 + N + N``, which should be rejected.
+The fix is not new engineering; it is ``99``'s skip plus ``plasma``'s charge
+check in one place. It belongs to RMG-Py and is specified, not made, here.
+
+Separately, and NOT a reason ``99`` failed: ``plasma``'s loader splits a reaction
+string on a bare ``+`` (``library.py:599``), which tears a species whose own label
+contains ``+``. That is why cations are spelled ``Arp`` on this branch. ``99``'s
+loader splits on ``' + '`` and would not tear ``Ar+``. The two mechanisms are
+unrelated.
 
 Measured entry by entry (each loaded alone into a throwaway one-entry library,
 because one rejection aborts the whole load): 42 accepted, 52 rejected, every

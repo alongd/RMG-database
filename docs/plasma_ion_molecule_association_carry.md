@@ -159,6 +159,37 @@ The deck names `kineticsFamilies=['Plasma_Electron_Attachment']` only and never 
 family, so it is unaffected whether or not the family is present; the run confirms the branch itself
 is healthy.
 
+### V5 — electron-placement resolver is never reached (per-owner declaration NOT needed)
+
+The branch carries a per-owner electron-placement registry
+(`RMG-Py-plasma/rmgpy/electron_placement.py`, `FAMILY_ELECTRON_PLACEMENT`, keyed by owner label,
+valued `(reactant_count, product_count)`). An owner absent from it resolves to a **named failure**,
+`ElectronPlacementError`, never a net-derived guess. `Plasma_Ion_Molecule_Association` is absent.
+Verified (not assumed) that it does not need to be present:
+
+```
+built reaction     : Lip + H <=> LiHp   (family=Plasma_Ion_Molecule_Association, electrons=0)
+reactor gate expr  : bool(getattr(rxn,'electrons',0)) = False
+=== through the REAL reactor gate (_resolve_electron_placements, plasma.pyx:378-383) ===
+resolver invocations: 0
+reaction passed through by identity: True
+=== resolver called DIRECTLY (bypassing the gate) ===
+ElectronPlacementError: Family 'Plasma_Ion_Molecule_Association' has no electron-placement
+  declaration ...; refusing to infer electron placement from the net electron count.
+```
+
+- The reactor only calls `resolve_electron_placement` for reactions with **nonzero** `electrons`
+  (`plasma.pyx:379`). This family's reaction carries `electrons = 0`, so the gate is falsy and the
+  resolver is **not invoked** (0 calls, reaction passed through by identity).
+- The gate is load-bearing: called directly, the resolver **does** raise `ElectronPlacementError`
+  naming the family. So "never reached" is exactly what makes the absent declaration correct —
+  matching the module's own docstring (electron_placement.py:193-197).
+- Independently, the family cannot generate any reaction on this branch at all (V3's `apply_recipe`
+  blocker), so nothing from it ever reaches the reactor in the first place.
+
+No `ElectronPlacementError` arises in the live path; **no companion code-repo declaration is
+needed**, and `electron_placement.py` was not edited.
+
 ## Disposition
 
 - Translated files staged at `docs/plasma_ion_molecule_association_staged/` (`groups.py`,

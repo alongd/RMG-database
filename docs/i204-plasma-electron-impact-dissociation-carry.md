@@ -5,12 +5,44 @@
 **Rule applied:** `RMG-database-i200-collisional/docs/plasma_family_carry_translation_rule.md`.
 Last of the four data-carrying families in this consolidation.
 
-## What was carried
+## Disposition — STAGED OUT of `input/`, deliberately
+
+**This family is NOT in `input/`. Its files live in `docs/plasma_electron_impact_dissociation_staged/`
+and must stay there until the electron-placement gap below is closed in the code repository.** This
+is the same disposition the other three carries reached, for a sharper reason. The family loads
+green, passes the standing kinetics suite, and leaves the 5 torr argon deck untouched — and it
+generates a dissociation rate that is **wrong by a factor of the electron density** (§ "Why staged
+out"). A family that fails loudly is safe: someone sees the error and stops. A family that is green
+*and* wrong is the most dangerous artifact this campaign can produce, because every downstream check
+agrees with it — it is one merge away from a mechanism whose dissociation rates are off by n_e with
+nothing anywhere to say so, and at 5 torr that factor is enormous. So the report is the deliverable,
+not the family. Do not move these files into `input/` until the placement gate (`plasma.pyx:379`) is
+lifted and a net-zero placement path exists.
+
+## Why staged out — the dimensional argument (this is the whole finding)
+
+The training coefficients are declared for the two-body process `AB + e- -> A + B + e-`, so their
+units are **`cm^3/(mol*s)`** — second order. Example (entry 1):
+`A = 1.05e17 cm^3/(mol*s)`, applied as a rate `A·[AB]·[e-]` (units `mol/(cm^3·s)`, correct).
+
+Under the translated representation the generated reaction is unimolecular `AB => A + B`
+(`electrons = 0`, no `e-` reactant), so RMG evaluates a **first-order** rate law `A·[AB]`. Feeding a
+second-order coefficient (`cm^3/(mol*s)`) into a first-order law leaves the result carrying an extra
+`cm^3/mol`, i.e. the computed rate is the true rate **divided by `[e-]`** (in `mol/cm^3`) — off by
+**exactly one factor of the electron density n_e**, no more and no less. `TwoTemperaturePlasma`
+cannot supply that factor: it is `k(T, Te)`, a function of gas and electron *temperature*, with no
+density term. n_e enters only as the incident-electron reaction order, which the `electrons = 0`
+stoichiometry has thrown away. At 5 torr, n_e is large, so the error is not a rounding matter — the
+dissociation channel is mis-weighted by orders of magnitude, silently.
+
+## What was staged
 
 Family `Plasma_Electron_Impact_Dissociation` (`AB + e- => A + B + e-`), 5 training entries, carried
-by hand (no merge/rebase/cherry-pick of `99`). Files: `groups.py`, `rules.py`,
-`training/dictionary.txt`, `training/reactions.py`. Not added to any set in `recommended.py` (matches
-the other plasma families on the branch).
+by hand (no merge/rebase/cherry-pick of `99`) and translated, then staged at
+`docs/plasma_electron_impact_dissociation_staged/{groups.py, rules.py, training/dictionary.txt,
+training/reactions.py}`. Not added to any set in `recommended.py`. The translation below was verified
+with the files temporarily in `input/` (see Verifier results — that green-and-wrong state is the
+evidence for staging out); they were then moved to `docs/`.
 
 ### The rule, applied to this family
 
@@ -93,13 +125,49 @@ wrote it: the resolver would never consult the table for that shape."*
   gate is the real blocker, not the mapping entry. This is a code-repo change and is out of scope
   here (code repo kept read-only).
 
+## The code's recorded reason for holding this family back is wrong
+
+`electron_placement.py`'s docstring names this family twice and both times attributes its absence to
+a **spectator** problem:
+
+> "…``Plasma_Collisional_Ionization`` and ``Plasma_Electron_Impact_Dissociation`` both make a
+> SPECTATOR a template participant, which RMG's family model cannot express…" (lines 186-189)
+>
+> "Such a family has to carry its electron as an explicit template participant instead, which is what
+> that one does — and which is separately why it is held back from the database (RMG's family model
+> cannot express a spectator participant…)" (lines 205-208)
+
+That reason does not survive measurement of the representation this ticket produces:
+
+- The recipe is `BREAK_BOND *1-*2`, `GAIN_RADICAL *1`, `GAIN_RADICAL *2` — it acts on **both** heavy
+  centres. There is no unchanged heavy species, so no heavy spectator exists. The only conserved
+  participant is the electron itself.
+- Under the ruling the electron is **removed** from the template (`reactants=["AB"]`,
+  `products=["A","B"]`), so nothing is asked to carry a spectator participant at all. The family then
+  loads green, passes `test_kinetics`, and generates reactions (Verifier 1 & 4). The "family model
+  cannot express it" claim is therefore false for this representation — I loaded it.
+
+So the docstring's spectator reason describes only the *old* `99` shape (electron kept in the
+template), and is stale for the shape the ruling defines. **The real reason this family must stay out
+of `input/` is not the spectator — it is the placement gate and the n_e loss above.** This matters
+because the next person to reopen this will start from that docstring: they will go hunting for a way
+to express a spectator participant, when the actual blocker is the `electrons != 0` gate at
+`plasma.pyx:379`. A wrong reason in the code's own record is a finding in its own right; correcting
+it belongs in the companion (code-repo) ticket alongside the gate change.
+
 ## Deliverable: the `longDesc` note
 
-The family's `groups.py` `longDesc` now records that this is an electron-impact process, the electron
-is a catalyst with net count zero and incident order one, and names `electron_placement.py` as where
-that order is declared — so the next reader finds the fact the stoichiometry no longer records.
+The staged `groups.py` `longDesc` records that this is an electron-impact process, the electron is a
+catalyst with net count zero and incident order one, and names `electron_placement.py` as where that
+order is declared — so the next reader finds the fact the stoichiometry no longer records.
 
 ## Verifier results
+
+The four verifier runs below were performed with the family temporarily in `input/`. That is
+deliberate: Verifier 4's AFTER run is the *green-and-wrong* state that justifies staging out — the
+family passed the standing suite while generating an n_e-wrong rate. The files were moved to
+`docs/plasma_electron_impact_dissociation_staged/` immediately afterward; `input/` no longer contains
+the family.
 
 ### 1. Family loads and is what we think it is (worktree DB)
 ```

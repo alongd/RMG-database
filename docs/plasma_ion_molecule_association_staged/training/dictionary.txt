@@ -1,0 +1,23 @@
+Lip
+1 *1 Li u0 p0 c+1
+
+H
+1 *2 H u1 p0 c0
+
+LiHp
+1 Li u0 p0 c+1
+2 H u1 p0 c0
+
+Nap
+1 *1 Na u0 p0 c+1
+
+NaHp
+1 Na u0 p0 c+1
+2 H u1 p0 c0
+
+Mgp
+1 *1 Mg u1 p0 c+1
+
+MgHp
+1 Mg u1 p0 c+1
+2 H u1 p0 c0

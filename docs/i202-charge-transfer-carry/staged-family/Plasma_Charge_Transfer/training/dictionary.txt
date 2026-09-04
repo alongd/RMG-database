@@ -1,0 +1,139 @@
+H
+multiplicity 2
+1 H u1 p0 c0
+
+Hp_r1
+1 *1 H u0 p0 c+1
+
+Hm_r2
+1 *2 H u0 p1 c-1
+
+H2
+1 H u0 p0 c0 {2,S}
+2 H u0 p0 c0 {1,S}
+
+H2p_r1
+1    H u1 p0 c0
+2 *1 H u0 p0 c+1
+
+Op_r1
+1 *1 O u1 p2 c+1
+
+Op
+1 O u1 p2 c+1
+
+O
+multiplicity 3
+1 O u2 p2 c0
+
+O_r2
+multiplicity 3
+1 *2 O u2 p2 c0
+
+Om_r2
+1 *2 O u1 p3 c-1
+
+OH
+multiplicity 2
+1 O u1 p2 c0 {2,S}
+2 H u0 p0 c0 {1,S}
+
+OHm_r2
+1 *2 O u0 p3 c-1 {2,S}
+2    H u0 p0 c0 {1,S}
+
+OHp_r1
+1 *1 O u0 p2 c+1 {2,S}
+2    H u0 p0 c0 {1,S}
+
+O2p_r1
+1 *1 O u0 p2 c+1 {2,S}
+2    O u1 p2 c0 {1,S}
+
+O2p
+1 O u0 p2 c+1 {2,S}
+2 O u1 p2 c0 {1,S}
+
+O2
+multiplicity 3
+1 O u1 p2 c0 {2,S}
+2 O u1 p2 c0 {1,S}
+
+O2_r2
+multiplicity 3
+1 *2 O u1 p2 c0 {2,S}
+2    O u1 p2 c0 {1,S}
+
+H2Op_r1
+multiplicity 2
+1 *1 O u1 p1 c+1 {2,S} {3,S}
+2    H u0 p0 c0 {1,S}
+3    H u0 p0 c0 {1,S}
+
+H2O
+1 O u0 p2 c0 {2,S} {3,S}
+2 H u0 p0 c0 {1,S}
+3 H u0 p0 c0 {1,S}
+
+N
+multiplicity 4
+1 N u3 p1 c0
+
+N_r2
+multiplicity 4
+1 *2 N u3 p1 c0
+
+Np_r1
+1 *1 N u2 p1 c+1
+
+Np
+1 N u2 p1 c+1
+
+N2_r2
+1 *2 N u0 p1 c0 {2,T}
+2    N u0 p1 c0 {1,T}
+
+N2p
+1 N u0 p1 c0 {2,T}
+2 N u1 p0 c+1 {1,T}
+
+NO
+multiplicity 2
+1 N u1 p1 c0 {2,D}
+2 O u0 p2 c0 {1,D}
+
+Arp_r1
+1 *1 Ar u1 p3 c+1
+
+Ar
+1 Ar u0 p4 c0
+
+Lip_r1
+1 *1 Li u0 p0 c+1
+
+Li
+1 Li u1 p0 c0
+
+Nap_r1
+1 *1 Na u0 p0 c+1
+
+Na
+1 Na u1 p0 c0
+
+Kp_r1
+1 *1 K u0 p0 c+1
+
+K
+1 K u1 p0 c0
+
+Mgp_r1
+1 *1 Mg u1 p0 c+1
+
+Mg
+1 Mg u2 p0 c0
+
+Cap_r1
+1 *1 Ca u1 p0 c+1
+
+Ca
+1 Ca u2 p0 c0

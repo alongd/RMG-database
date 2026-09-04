@@ -590,15 +590,41 @@ def test_a_species_outside_the_fits_gets_no_reaction_at_all_and_no_rate(library)
     assert entered == {'[Li+]'}
 
 
-@pytest.mark.parametrize('symbol', ['Be', 'B', 'Na', 'Mg'])
-def test_four_covered_elements_cannot_be_built_by_rmg_at_all(symbol):
-    """Not a database gap - RMG has no atom types for these elements.
+@pytest.mark.parametrize('symbol,error', [
+    ('Be', 'KeyError'),
+    ('B', 'KeyError'),
+    ('Mg', 'InvalidAdjacencyListError'),
+])
+def test_three_covered_elements_cannot_be_built_by_rmg_at_all(symbol, error):
+    """Not a database gap - RMG cannot build these as the neutral radical ``X u1 p0 c0``.
 
     Named here so that "the library covers one species" is not read as a database omission
-    a family would have fixed. A family could not have reached them either.
+    a family would have fixed. A family could not have reached them either. The exception
+    type is pinned per element because the two reasons are distinct and drift between them is
+    the class of change this baseline caught: Be and B have no atom type at all
+    (``KeyError``); Mg was given an alkaline-earth atom type by RMG-Py commit ``e918cafdd``
+    but that odd-electron adjacency list is still rejected (``InvalidAdjacencyListError``).
+
+    Na left this set when ``e918cafdd`` added its atom type - the neutral radical now builds
+    - and is pinned by ``test_sodium_now_builds_since_the_atom_type_port``.
     """
-    with pytest.raises(Exception):
+    with pytest.raises(Exception) as excinfo:
         Molecule().from_adjacency_list('1 {0} u1 p0 c0'.format(symbol))
+    assert type(excinfo.value).__name__ == error
+
+
+def test_sodium_now_builds_since_the_atom_type_port():
+    """The capability the test above used to deny for Na, now pinned so it cannot regress.
+
+    RMG-Py commit ``e918cafdd`` ("Give RMG alkali and alkaline-earth atom types") added Na,
+    so the neutral radical ``Na u1 p0 c0`` now constructs to the ``Na0`` atom type rather
+    than raising. The library still claims one species and a family still could not have
+    reached this - construction is not coverage - but the construction gate is gone,
+    deliberately.
+    """
+    neutral = Molecule().from_adjacency_list('1 Na u1 p0 c0')
+    assert neutral.atoms[0].element.symbol == 'Na'
+    assert neutral.atoms[0].atomtype.label == 'Na0'
 
 
 def test_dissociative_recombination_has_no_reactant_to_write():

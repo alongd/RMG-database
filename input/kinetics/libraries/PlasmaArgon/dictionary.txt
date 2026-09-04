@@ -1,0 +1,8 @@
+Ar
+1 Ar u0 p4 c0
+
+Arp
+1 Ar u1 p3 c+1
+
+e-
+1 e u1 p0 c-1

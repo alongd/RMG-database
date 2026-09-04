@@ -542,6 +542,25 @@ def test_trained_species_resolve_to_their_own_rate_through_their_own_node(kineti
     Asserting the rate without the template would have passed against every
     defect this test file was rewritten for: the wrong node hands out a
     plausible-looking number.
+
+    Resolution now lands on the training depository as an EXACT training-reaction
+    match, not on the rate-rules estimator. ``get_kinetics`` searches the family's
+    depositories before the estimator, and with ``return_all_kinetics=False`` an exact
+    match short-circuits and returns the depository as ``source``. Before RMG-Py commit
+    ``bb95576e4`` ("Count electrons toward molecularity, and give families a route to
+    their training reactions") the training reactions loaded with ``electrons=0`` while a
+    generated attachment reaction carries ``electrons=-1``; ``Reaction.is_isomorphic``
+    compares that count, so the depository search MISSED and resolution fell through to the
+    rate-rules estimator (``source == 'rate rules'``, comment "From training reaction ...").
+    That fall-through was a consequence of the electron-propagation bug, and this test
+    used to pin it. The bug is fixed; the exact training match is now found directly. The
+    kinetics object changes with the path - the depository path returns a deepcopy of the
+    raw training ``Arrhenius`` where the old rate-rules path returned an ``ArrheniusEP`` via
+    ``to_arrhenius_ep`` - but the numeric rate is unchanged, because these entries have
+    ``n=0``, ``Ea=0``, ``T0=1 K`` and degeneracy 1, so the two forms give the same ``k(T)``.
+    What matters - own node, own numeric rate, from the training set and not a library or an
+    average - is unchanged and is what is asserted (numeric rate to ``rel=1e-9``, no class
+    dependence).
     """
     expected_node, expected_index, expected_a_cm3 = EXPECTED_TRAINED_KINETICS[name]
 
@@ -554,10 +573,10 @@ def test_trained_species_resolve_to_their_own_rate_through_their_own_node(kineti
         reaction, template_labels=reaction.template, degeneracy=reaction.degeneracy,
         estimator='rate rules', return_all_kinetics=False)
 
-    assert source == 'rate rules'
-    assert 'From training reaction {0} used for {1}'.format(expected_index, expected_node) \
-        in kinetics.comment
-    assert 'Exact match found for rate rule [{0}]'.format(expected_node) in kinetics.comment
+    assert source is family.get_training_depository()
+    assert 'Matched reaction {0}'.format(expected_index) in kinetics.comment
+    assert 'in {0}/training'.format(FAMILY) in kinetics.comment
+    assert 'This reaction matched rate rule [{0}]'.format(expected_node) in kinetics.comment
     assert 'Average of' not in kinetics.comment
 
     # A_si is m^3/(mol*s) for a second-order rate; the reference values are the
@@ -591,11 +610,21 @@ def test_o2_attachment_is_generated_with_the_right_product(kinetics_db):
 
 
 def test_o2_rate_comes_from_the_training_set_not_a_library(kinetics_db, family):
-    """The rate is an exact rate-rule hit on the O2 training reaction.
+    """The rate is an exact hit on the O2 training reaction, resolved through the
+    training depository.
 
     No kinetics libraries are loaded by this fixture at all, so a library lookup
     is not merely improbable here - it is impossible. What the test pins is the
     positive claim: the number came from training reaction 1.
+
+    The resolution path is the depository's exact-match branch, not the rate-rules
+    estimator - see the note on
+    ``test_trained_species_resolve_to_their_own_rate_through_their_own_node`` and RMG-Py
+    commit ``bb95576e4``. ``source`` is therefore the training depository and the comment
+    reads "Matched reaction 1 ... in Plasma_Electron_Attachment/training". The numeric rate
+    equals training reaction 1 (to ``rel=1e-9``), which is the whole point: from the training
+    set, never a library. (The kinetics class changes with the path - deepcopied ``Arrhenius``
+    here vs ``ArrheniusEP`` on the old path - but the number does not.)
     """
     assert kinetics_db.libraries == {}
 
@@ -604,9 +633,10 @@ def test_o2_rate_comes_from_the_training_set_not_a_library(kinetics_db, family):
         reaction, template_labels=reaction.template, degeneracy=reaction.degeneracy,
         estimator='rate rules', return_all_kinetics=False)
 
-    assert source == 'rate rules'
-    assert 'From training reaction 1 used for O_in_O2' in kinetics.comment
-    assert 'Exact match found for rate rule [O_in_O2]' in kinetics.comment
+    assert source is family.get_training_depository()
+    assert 'Matched reaction 1' in kinetics.comment
+    assert 'in {0}/training'.format(FAMILY) in kinetics.comment
+    assert 'This reaction matched rate rule [O_in_O2]' in kinetics.comment
     assert 'Average of' not in kinetics.comment
 
     training = family.get_training_depository().entries[1]

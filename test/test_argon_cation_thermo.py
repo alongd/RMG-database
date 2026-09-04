@@ -607,33 +607,75 @@ def test_the_other_noble_gas_cations_are_still_refused(estimator_only, symbol,
 @pytest.mark.parametrize('symbol,adjacency_list,error', [
     ('C', 'multiplicity 2\n1 C u1 p1 c+1\n', 'AtomTypeError'),
     ('F', 'multiplicity 3\n1 F u2 p2 c+1\n', 'AtomTypeError'),
-    ('Na', '1 Na u0 p0 c+1\n', 'KeyError'),
-    ('Mg', 'multiplicity 2\n1 Mg u1 p0 c+1\n', 'KeyError'),
     ('Al', '1 Al u0 p1 c+1\n', 'KeyError'),
-    ('K', '1 K u0 p0 c+1\n', 'KeyError'),
-    ('Ca', 'multiplicity 2\n1 Ca u1 p0 c+1\n', 'KeyError'),
 ])
 def test_the_gate_before_thermochemistry_is_the_atom_type(symbol, adjacency_list, error):
-    """Six of the thirteen elements ``voronov.yaml`` can ionise - C, Na, Mg, Al, K, Ca -
-    cannot have thermochemistry at all, for a reason that has nothing to do with data
-    and two more (F, Cl) join them on the recombination side: RMG has no
-    atom type that admits the element at charge +1, so the cation cannot be constructed
-    for an entry to attach to. That gate lives in ``rmgpy/molecule/atomtype.py``, i.e.
-    in RMG-Py, and is what makes this gap a generation consequence."""
+    """Three of the elements ``voronov.yaml`` can ionise - C and Al on the ionisation
+    side, F on the recombination side - still cannot have thermochemistry at all, for a
+    reason that has nothing to do with data: RMG has no atom type that admits the element
+    at charge +1, so the cation cannot be constructed for an entry to attach to. That gate
+    lives in ``rmgpy/molecule/atomtype.py``, i.e. in RMG-Py, and is what makes this gap a
+    generation consequence.
+
+    Na, Mg, K and Ca were in this set until RMG-Py commit ``e918cafdd`` ("Give RMG alkali
+    and alkaline-earth atom types") added their charged atom types; they now build, and are
+    pinned as such by ``test_alkali_and_alkaline_earth_cations_now_build``. C, F and Al are
+    what remain gated by the atom type."""
     with pytest.raises(Exception) as excinfo:
         Molecule().from_adjacency_list(adjacency_list)
     assert type(excinfo.value).__name__ == error
 
 
-def test_argon_is_representable_only_because_its_atom_type_is_unconstrained():
-    """And the corollary, which is uncomfortable and belongs on the record: argon's atom
-    type declares no charge constraint at all, so RMG accepts Ar at any charge including
-    arrangements no free ion has. Ar+ builds for the same reason Ar(4+) does. The entry
-    added by this branch is the ground state and matches only the ground state."""
+@pytest.mark.parametrize('symbol,adjacency_list,atomtype', [
+    ('Na', '1 Na u0 p0 c+1\n', 'Na+'),
+    ('Mg', 'multiplicity 2\n1 Mg u1 p0 c+1\n', 'Mg+'),
+    ('K', '1 K u0 p0 c+1\n', 'K+'),
+    ('Ca', 'multiplicity 2\n1 Ca u1 p0 c+1\n', 'Ca+'),
+])
+def test_alkali_and_alkaline_earth_cations_now_build(symbol, adjacency_list, atomtype):
+    """The capability the atom-type gate above used to deny, now pinned so it cannot
+    regress unnoticed.
+
+    RMG-Py commit ``e918cafdd`` ("Give RMG alkali and alkaline-earth atom types", ported
+    from branch 99) added Na, K, Mg and Ca with their charged forms because the carried
+    ``PlasmaAlkali`` library and four plasma families otherwise fail to load with
+    ``KeyError``. So each of these +1 cations now constructs to its own charged atom type
+    rather than raising. This flipped four parametrizations of the gate test above from
+    green to red; the truth it now asserts is that they build. Thermochemistry for them is
+    a separate matter - a library entry still has to be authored - but the construction gate
+    is gone, deliberately."""
+    cation = Molecule().from_adjacency_list(adjacency_list)
+    assert cation.get_net_charge() == 1
+    assert cation.atoms[0].element.symbol == symbol
+    assert cation.atoms[0].atomtype.label == atomtype
+
+
+def test_argon_atom_type_now_declares_a_charge_envelope_but_still_parses_any_charge():
+    """Argon's atom type used to declare no charge constraint at all; it now declares
+    ``charge=[0, 1, 2]``, and the uncomfortable corollary that outlived the change belongs
+    on the record.
+
+    RMG-Py commit ``b52045138`` ("Narrow the placement declarations, and let noble gases be
+    cations") gave He, Ne and Ar ``charge=[0, 1, 2]`` so that ``GroupAtom.make_sample_molecule``
+    would stop refusing the noble-gas cations (Ar+, He+, He+2, Ne+) that are real species in
+    the carried ``PlasmaAir`` library. That falsified the old assertion ``not
+    ATOMTYPES['Ar'].charge``, which is what turned this test red.
+
+    The envelope narrows what group-sample *construction* will emit; it does not gate what
+    ``from_adjacency_list`` will *parse*, because argon is in ``nonSpecifics`` and
+    ``get_atomtype`` returns it without consulting the charge features. So a nonsense Ar(4+)
+    still parses exactly as before - Ar+ builds for the same reason Ar(4+) does - and the
+    entry added by this branch is the ground state and matches only the ground state.
+
+    This test PINS OBSERVED CURRENT BEHAVIOUR so it cannot regress silently; it does not
+    bless that behaviour as intended. Whether an atom type declaring ``charge=[0, 1, 2]``
+    while still parsing any charge through ``nonSpecifics`` is coherent RMG-Py design is an
+    open question owned in RMG-Py (where the Ar0/Ar+/Ar++ specifics belong), not resolvable
+    from this database test."""
     from rmgpy.molecule.atomtype import ATOMTYPES
 
     ground = Molecule().from_adjacency_list(ARP)
-    assert not ATOMTYPES['Ar'].charge
+    assert ATOMTYPES['Ar'].charge == [0, 1, 2]
     assert ground.atoms[0].atomtype.label == 'Ar'
 
     # a nonsense argon cation parses just as readily, and is NOT this entry's species

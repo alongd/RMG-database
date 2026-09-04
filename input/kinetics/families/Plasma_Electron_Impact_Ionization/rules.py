@@ -30,7 +30,7 @@ entry(
     index = 1,
     label = "A_rad",
     kinetics = Arrhenius(
-        A = (1.254444e+03, 'm^3/(mol*s)'),
+        A = (1.292979e+08, 'm^3/(mol*s)'),
         n = 0.0,
         Ea = (0.0, 'kJ/mol'),
         T0 = (1, 'K'),
@@ -38,32 +38,43 @@ entry(
         Tmax = (20000, 'K'),
     ),
     rank = 10,
-    shortDesc = u"""ESTIMATE — one-point generalization of argon electron-impact ionisation. NOT a fitted rule, NOT a prediction. Order-of-magnitude placeholder handed to every species this family matches. See longDesc for source and bounds.""",
+    shortDesc = u"""ESTIMATE — one-point generalization of the sourced Voronov lithium electron-impact ionisation rate. NOT a fitted rule, NOT a prediction. Order-of-magnitude placeholder handed to every species this family matches. See longDesc for source and bounds.""",
     longDesc = u"""
 ESTIMATED RATE RULE — one-point cross-family generalization. Read all of this.
 
 PROVENANCE
 ----------
-The A-factor is the rate coefficient of the single sourced reaction in the
-`PlasmaArgon` reaction library on this branch,
+The A-factor is the rate coefficient of the sourced reaction
 
-    Ar + e-  =>  Ar+ + e- + e-    (entry index 86, `PlasmaArgon/reactions.py`)
+    [Li] => [Lip]    (Li(2S) + e- => Li+ + 2 e-, `PlasmaElectronImpactIonization/reactions.py`)
 
-evaluated ONCE, at the campaign's 1 eV working point:
+a `VoronovEIArrhenius(Z=3, N=3)` fit loaded by (Z, N) from
+`input/kinetics/voronov.yaml`, evaluated ONCE at the campaign's 1 eV working point:
 
-    k(Te = 1 eV = 11604.5 K) = 1.254444e+03 m^3/(mol*s)
+    k(Te = 1 eV = 11604.5 K) = 1.292979e+08 m^3/(mol*s)
 
-and frozen as a temperature-independent Arrhenius (n=0, Ea=0). The `PlasmaArgon`
-entry is an `ElectronCollisionPlasma` cross-section table, not a fitted rate; its
-own cited source is
+and frozen as a temperature-independent Arrhenius (n=0, Ea=0). Its cited source is
 
-    [Golyatina2021]: R.I. Golyatina, S.A. Marinov, "Analytical Cross Section
-    Approximation for Electron Impact Ionization of Alkali and Other Metals,
-    Inert Gases and Hydrogen Atoms", Atoms 2021, 9(90), DOI: 10.3390/atoms9040090
+    [Voronov1997]: G.S. Voronov, "A Practical Fit Formula for Ionization Rate
+    Coefficients of Atoms and Ions by Electron Impact: Z = 1-28", Atomic Data and
+    Nuclear Data Tables 65 (1997) 1-35 (Table I, Z=3, N=3: the Li I -> Li II
+    stage, ionisation threshold dE = 5.4 eV).
 
-(51-point sigma(E) grid, threshold 15.759 eV). The value here was obtained by
-`ElectronCollisionPlasma.get_rate_coefficient(11604.5)` against the pinned
+The value here was obtained by
+`VoronovEIArrhenius(Z=3,N=3).get_rate_coefficient(11604.5)` against the pinned
 runtime — reproducible, not transcribed.
+
+ANCHOR CHANGED, 2026-09-04, on the owner's ruling. This rule was ORIGINALLY
+anchored on argon electron-impact ionisation ([Golyatina2021], `PlasmaArgon`
+entry 86, an `ElectronCollisionPlasma` cross-section table, k(1 eV) = 1.254444e3
+m^3/(mol*s)). It was re-anchored onto Voronov lithium because an order-of-
+magnitude placeholder should rest on chemistry the family can actually be asked
+about: this family CANNOT generate argon at all (closed-shell Ar has u0, outside
+the template's u[1,2,3,4]; `generate_reactions([Ar])` returns 0 reactions),
+whereas it does generate `Li + e- => Li+`. Lithium is equally sourced and equally
+citable, so the swap costs nothing in provenance and makes the validity statement
+below defensible. The old argon number is preserved in the carry report, not
+silently dropped.
 
 WHAT THIS IS
 ------------
@@ -73,25 +84,31 @@ single electron temperature, promoted to the top node of a family whose template
 returns a defensible order-of-magnitude number instead of nothing. It is a
 PLACEHOLDER, not a prediction.
 
-WHAT THIS IS NOT
-----------------
-* It is not a rate for the species it is handed to. It is argon's rate, at 1 eV,
-  applied flat. Argon's ionisation threshold is 15.76 eV, which makes its rate at
-  Te = 1 eV anomalously small — about FIVE ORDERS OF MAGNITUDE below the real
-  electron-impact ionisation rate of a low-threshold light atom at the same Te
-  (e.g. Li: Voronov Z=3,N=3 gives k(1 eV) = 1.29e8 m^3/(mol*s), vs 1.25e3 here).
-  So this estimate is defensible only as an order-of-magnitude floor for
-  high-threshold, noble-gas-like ionisation near 1 eV; it badly under-predicts
-  alkali and hydrogen ionisation and must not be read as quantitative for them.
+WHAT THIS IS NOT — the range of validity, and it is the deliverable
+-------------------------------------------------------------------
+* It is a light-alkali ionisation rate at 1 eV, applied flat to every radical the
+  template matches. It is defensible as an ORDER-OF-MAGNITUDE estimate for
+  LOW-THRESHOLD light atoms — the alkalis and hydrogen (ionisation thresholds
+  ~4-14 eV) that dominate the campaign's chemistry — NEAR the 1 eV working point.
+  It is NOT defensible for high-threshold species: a noble gas (Ar 15.76 eV,
+  He 24.6 eV) ionises orders of magnitude more slowly at 1 eV than lithium
+  (5.4 eV) does, so on those this rule OVER-predicts badly — the mirror image of
+  the error the original argon anchor made on light atoms. The two sourced
+  endpoints at 1 eV bracket the family's true spread: Li 1.29e8 vs Ar 1.25e3
+  m^3/(mol*s), five orders apart on threshold alone. Read this number as "roughly
+  a light atom near 1 eV", never as a species rate.
 * It is not electron-temperature-aware. Plain Arrhenius has no
   `uses_electron_temperature` flag, so the family evaluates it at the GAS
   temperature — the wrong independent variable for an electron-driven process,
   exactly as documented for the interim entries in `Plasma_Electron_Attachment`.
-* It is not the sibling library. Where the sourced library `PlasmaElectronImpactIonization`
-  (Voronov) covers a species — Li — the library wins by RMG's library-over-family
-  precedence; this estimate cannot displace it. And argon itself, the number's
-  own source, cannot be produced by this family (u0 does not match u[1,2,3,4]), so
-  the estimate can never overwrite the sourced argon datum in `PlasmaArgon`.
+  The true Voronov rate climbs steeply with Te across a discharge; this single
+  1 eV point does not carry that.
+* It is not the sibling library, and cannot shadow it. Where the sourced library
+  `PlasmaElectronImpactIonization` (Voronov) covers a species — Li, the very datum
+  this estimate is anchored on — the library wins by RMG's library-over-family
+  precedence and this flat estimate is SUPPRESSED at model construction; the model
+  keeps the sourced Te-dependent fit, not this 1 eV point. Confirmed empirically
+  (see the carry report's precedence section).
 
 rank 10: a poor rank (smaller is better; auto-fits use 11), marking this as the
 least-reliable kind of number a rule can carry — a hand-placed placeholder.

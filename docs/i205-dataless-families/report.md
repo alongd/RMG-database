@@ -11,8 +11,18 @@ this branch's own sourced library:
 
 | Family | template | `electrons` | estimated rule source | k(1 eV) frozen as A |
 |---|---|---|---|---|
-| `Plasma_Electron_Impact_Ionization` | `A_rad → A+` | **+1** | `PlasmaArgon` `Ar+e-⇒Ar⁺+2e-` (Golyatina2021 ECP) | **1.254444e3** m³/(mol·s) |
+| `Plasma_Electron_Impact_Ionization` | `A_rad → A+` | **+1** | `PlasmaElectronImpactIonization` `Li⇒Li⁺` (Voronov1997 Z=3,N=3) | **1.292979e8** m³/(mol·s) |
 | `Plasma_Radiative_Recombination` | `A → A⁻` | **−1** | `PlasmaRadiativeRecombination` `Li⁺⇒Li` (Badnell2006 Z=3,N=2) | **1.301428e5** m³/(mol·s) |
+
+> **Anchor change (2026-09-04, owner ruling).** The EII estimate was ORIGINALLY anchored on argon
+> ionisation (`PlasmaArgon`, Golyatina2021 ECP, **k(1 eV) = 1.254444e3 m³/(mol·s)**) — that number is
+> kept here on the record, not silently dropped. It was **re-anchored onto the sourced Voronov
+> lithium datum** because an order-of-magnitude placeholder should rest on chemistry the family can
+> actually be asked about: this family *cannot generate argon at all* (`generate_reactions([Ar])→0`,
+> u0 ∉ template u[1,2,3,4]), whereas it does generate `Li⇒Li⁺`. Lithium is equally sourced and
+> citable, so provenance is unchanged and the range-of-validity statement is now defensible (§V6,
+> §"range of validity"). RR's anchor is unchanged. The rewritten sections below are EII's; RR's
+> stand as first written.
 
 ---
 
@@ -41,11 +51,14 @@ balance.
 
 Both provenances are deep and citable (not thin — the derivation is legitimate):
 
-- **EII ← `PlasmaArgon/reactions.py` entry 86**, `Ar + e- ⇒ Arp + e- + e-`, an
-  `ElectronCollisionPlasma` σ(E) table (51-point grid, threshold 15.759 eV). Cited source
-  **[Golyatina2021]** (Atoms 2021, 9(90), DOI 10.3390/atoms9040090). This is the campaign's central
-  argon reaction; its longDesc documents that it is a cross-section table integrated against a
-  Maxwellian EEDF at Te, carried verbatim from `PlasmaAir` index 86.
+- **EII ← `PlasmaElectronImpactIonization/reactions.py`** entry `[Li] => [Lip]`
+  (`Li(2S) + e- ⇒ Li⁺ + 2e-`), a `VoronovEIArrhenius(Z=3,N=3)` fit loaded by (Z,N) from
+  `input/kinetics/voronov.yaml`. Cited source **[Voronov1997]** (G.S. Voronov, "A Practical Fit
+  Formula for Ionization Rate Coefficients of Atoms and Ions by Electron Impact: Z = 1–28", Atomic
+  Data and Nuclear Data Tables 65 (1997) 1–35; Table I, Z=3 N=3 = Li I→Li II, threshold dE = 5.4 eV;
+  valid Te = 1 eV–20 keV). *(Original anchor, kept on record: `PlasmaArgon` entry 86
+  `Ar+e-⇒Ar⁺+2e-`, `ElectronCollisionPlasma` σ(E) table, 51-pt grid, threshold 15.759 eV,
+  **[Golyatina2021]** Atoms 2021 9(90) DOI 10.3390/atoms9040090, k(1 eV)=1.254444e3.)*
 - **RR ← `PlasmaRadiativeRecombination/reactions.py` entry 0**, `Li⁺ + e- ⇒ Li + hv`, a
   `BadnellRRArrhenius(Z=3,N=2)` fit loaded from `input/kinetics/badnell.yaml`. Cited source
   **[Badnell2006]** (the (Z,N)-indexed radiative-recombination fits; Z=3,N=2 = Li II→Li I;
@@ -54,13 +67,15 @@ Both provenances are deep and citable (not thin — the derivation is legitimate
 Measured at the campaign's 1 eV working point (`get_rate_coefficient(11604.5)`, pinned runtime):
 
 ```
-EII  PlasmaArgon Ar+e-=>Ar+ +2e- (Golyatina2021 ECP)   : k(1eV) = 1.254444e+03 m^3/(mol*s)
-RR   PlasmaRadiativeRecombination Li+=>Li (Badnell Z3N2) : k(1eV) = 1.301428e+05 m^3/(mol*s)
-ref  Li EII Voronov Z=3,N=3 (the real Li datum)          : k(1eV) = 1.292979e+08 m^3/(mol*s)
+EII  PlasmaElectronImpactIonization Li=>Li+ (Voronov Z3N3)  : k(1eV) = 1.292979e+08 m^3/(mol*s)  [anchor]
+RR   PlasmaRadiativeRecombination  Li+=>Li  (Badnell Z3N2)   : k(1eV) = 1.301428e+05 m^3/(mol*s)  [anchor]
+--   PlasmaArgon Ar+e-=>Ar+ +2e-   (Golyatina2021 ECP)       : k(1eV) = 1.254444e+03 m^3/(mol*s)  [EII original anchor, superseded]
 ```
 
 The RR value reproduces the `1.301e5` the library's own longDesc quotes at 1.0 eV — independent
-confirmation the derivation is faithful.
+confirmation the derivation is faithful. The two EII endpoints (Li 1.29e8 vs Ar 1.25e3) sit five
+orders apart: that spread is threshold physics (Li 5.4 eV vs Ar 15.76 eV at Te = 1 eV) and is
+exactly why the anchor choice governs the range-of-validity statement, not the provenance.
 
 ### Q3 — the two structural walls
 
@@ -82,7 +97,7 @@ placement finding below.
 built family (probe `probe_families.py`):
 
 ```
-EII  get_kinetics_for_template(['A_rad']) -> A = 1.254444e+03 m^3/(mol*s)   MATCH=True
+EII  get_kinetics_for_template(['A_rad']) -> A = 1.292979e+08 m^3/(mol*s)   MATCH=True   (Voronov Li anchor)
 RR   get_kinetics_for_template(['A'])     -> A = 1.301428e+05 m^3/(mol*s)   MATCH=True
 ```
 
@@ -143,27 +158,98 @@ dimensionality must match; `product_count − reactant_count` = the net, indepen
 
 ---
 
-## Precedence (verifier 6), against the post-companion-ticket state
+## Precedence (verifier 6), against the post-companion-ticket state — now with the lithium anchor
 
-The estimate must not be able to displace a sourced library value. Evaluated as if the family
-declarations above already existed:
+The estimate must not be able to displace a sourced library value. The re-anchor makes this the
+sharp case: the EII estimate is now anchored on the very Voronov Li datum the family also matches, so
+Li is exactly where an estimate could shadow real data. Executed (`probe_prec.py`,
+`probe_prec3.py`), not asserted from code-reading as the first report's version was.
 
-- **Argon** (EII's own number source): the EII family **cannot produce argon ionisation at all** —
-  `generate_reactions([Ar u0 p4 c0]) -> 0 reactions` (probe), because closed-shell argon has u0 and
-  the template demands u[1,2,3,4]. So the estimate can *never* overwrite `PlasmaArgon`'s sourced
-  argon datum; there is no overlap to lose.
-- **Lithium** (the one species with sourced data that the family *does* match): the EII family
-  generates `Li⇒Li+`, and the library `PlasmaElectronImpactIonization` also carries it (sourced
-  Voronov, 1.29e8). RMG's **library-over-family precedence** decides this at model construction:
-  `RMGModel.check_for_existing_reaction` (`rmgpy/rmg/model.py:514-524`) matches a family-generated
-  reaction against every loaded `KineticsLibrary` reaction (`are_identical_species_references`) and,
-  on a hit, `make_new_reaction` discards the family duplicate. A model that loads the library gets
-  the sourced 1.29e8; the family estimate (1.25e3) is suppressed. The same holds for RR at Li⁺.
+- **Argon** (EII's *original* source): the EII family **cannot produce argon ionisation at all** —
+  `generate_reactions([Ar u0 p4 c0]) -> 0 reactions`, because closed-shell argon has u0 and the
+  template demands u[1,2,3,4]. So the estimate can never overwrite `PlasmaArgon`'s sourced argon
+  datum; there is no overlap to lose. (This is also why argon was a poor anchor — hence the swap.)
+- **Lithium** (the species with sourced data the family *does* match, and the new anchor): the EII
+  family generates `Li⇒Li+`; the library `PlasmaElectronImpactIonization` carries the sourced Voronov
+  `Li⇒Li+` (k(1 eV)=1.292979e8). Suppression is decided by
+  `RMGModel.check_for_existing_reaction` (`rmgpy/rmg/model.py`, library loop lines 508–534), and its
+  match test `are_identical_species_references` compares **not only the heavy species but the
+  electron-placement counts** (`get_electron_placement_counts`, `rmgpy/electron_balance.py`).
+  Measured, both states:
 
-**Verdict: the estimate cannot displace either sourced value** — it is unreachable for argon and
-superseded for lithium. This ticket does not degrade the branch. (An end-to-end deck demonstration
-is impossible without the companion code change, and is moot: without the declaration the family
-cannot resolve placement at all; with it, the suppression path above applies.)
+  ```
+  library placement counts                         : (1, 2)
+  CURRENT (family undeclared):
+    family placement counts                        : (0, 1)   <- net-scalar fallback, != library
+    are_identical_species_references(fam, lib)     : False    -> family NOT suppressed
+  POST-COMPANION-TICKET (family declared (1,2)):
+    family placement counts                        : (1, 2)   == library
+    are_identical_species_references(fam, lib)     : True
+    check_for_existing_reaction -> found, returns LibraryReaction  -> family estimate SUPPRESSED
+  ```
+
+  So a model gets the **sourced Voronov Te-dependent fit**, not the flat 1 eV estimate. The estimate
+  cannot shadow the sourced Li value. (The `CURRENT` row is moot in a real run: without the
+  declaration the family raises `ElectronPlacementError` at solve time and never coexists with the
+  library at all.)
+
+**Verdict: the estimate cannot displace either sourced value** — unreachable for argon, suppressed
+for lithium. **No regression from the swap.** The precedence outcome is value-independent (it turns
+on reaction *identity*, not rate magnitude), so it is the same for the old argon anchor and the new
+lithium one; the first report's conclusion was directionally right but is now confirmed by execution.
+
+**Load-bearing corollary for the companion ticket.** The suppression HINGES on the family's declared
+pair equalling the library's `(1,2)`. The `(1,2)` I specified is therefore load-bearing *twice*: it
+lets the family run (resolves `ElectronPlacementError`) AND it is exactly what makes the sourced
+library win over the family estimate. A *different* declared pair would let the estimate coexist with
+— and shadow — the sourced datum. Declare `(1,2)` for EII and `(1,0)` for RR, not merely "some pair".
+
+### Disposition of the I-206 adversarial-review HIGH (which owner wins, and can the estimate displace the sourced value)
+
+The review is correct that `are_identical_species_references` (`model.py:2356`) compares heavy-species
+references and per-side electron-placement counts and **nothing else** — no owner, no kinetics, no
+provenance, no rate comparison. Once I-206 declares the family `(1,2)`, a family `Li⇒Li+` and the
+library's sourced Voronov `Li⇒Li+` compare identical, and `check_for_existing_reaction` returns the
+incumbent while `make_new_reaction` drops the newcomer silently. So the protection is **entirely
+registration order**; there is no source-priority rule that would save the sourced value if the order
+were reversed. Verified against the code, each point:
+
+1. **Collision scope is lithium-only.** The `PlasmaElectronImpactIonization` library has exactly ONE
+   entry, `[Li]⇒[Lip]` (`len(lib.entries)==1`). The family generates ionisation for every radical
+   (measured: `N⇒N+`, `O⇒O+`, and `Li⇒Li+`), but the only heavy-species overlap with the library is
+   **Li**. For N, O, H, Si… the library has no entry, so the estimate is the sole (intended) source
+   and displaces nothing. The collision the review names is real but narrow: it is lithium and only
+   lithium.
+
+2. **In a normal run the sourced value wins, by initialization order — not merely "usually".** The
+   library reaction enters the model **wholesale at `initialize()`** via `add_reaction_library_to_edge`
+   (`main.py:795-796`), which runs strictly before the family-enlargement loop. So the sourced
+   Voronov `Li⇒Li+` is always the pre-loaded incumbent; when the family later generates `Li⇒Li+` it is
+   always the newcomer that gets dropped. There is no enlargement-time path in which the family
+   reaction precedes the library one. (Note: the review's `generate_reactions` library-before-family
+   ordering, `database.py:464-465`, does not even come into play here — `generate_reactions_from_libraries([Li])`
+   returns `[]`, i.e. the library's Li reaction is not surfaced by on-the-fly generation at all; it is
+   present only because it was pre-loaded. That makes the ordering guarantee stronger, not weaker.)
+
+3. **Plain disposition.** Under normal operation — any run loading both the library and the (post-I-206)
+   family — **the estimate provably cannot displace the sourced Voronov value**: the library is the
+   pre-loaded incumbent and the family duplicate is dropped. The estimate becomes the operative lithium
+   rate only under conditions that involve **no sourced value to displace or a deliberately inverted
+   load order**, named honestly:
+   - (a) a deck that loads the family but **not** the library — then there is no sourced Voronov value
+     in the model; the estimate is the intended fallback, displacing nothing;
+   - (b) the pathological ordering where a family-generated estimate is baked into a **seed mechanism**
+     (added to core at `main.py:790-791`, ahead of reaction-library loading at `795-796`) and a later
+     run loads both that seed and the library — then the seed estimate is the incumbent and the library
+     reaction is the dropped newcomer. This is a deliberate, self-inflicted configuration, not normal
+     operation; I observe the ordering in code (`790` precedes `795`) but did **not** construct the
+     seed to confirm it end-to-end, and it is outside this ticket's data.
+
+   The estimate is not resolved by weakening it or removing the family — that is the owner's call, not
+   mine; this report states the mechanism and its exact conditions so he can make it. **Bottom line:
+   in normal operation the sourced Voronov value is not displaceable by the estimate, but the
+   guarantee rests solely on RMG's registration order (libraries pre-loaded before family enlargement),
+   because the identity check carries no source-priority of its own.**
 
 ---
 
@@ -177,18 +263,23 @@ cannot resolve placement at all; with it, the suppression path above applies.)
 - **V4 — standing DB test no worse than baseline.** `test/database/databaseTest.py::TestDatabase::test_kinetics`,
   one suite per process (verifier 7), each with its own rmgrc:
   - baseline (`RMG-database-plasma/input`): **`1 passed in 501.90s`**
-  - worktree (`this input/`): **`1 passed in 409.29s`**
+  - worktree, original argon anchor (`this input/`): **`1 passed in 409.29s`**
+  - worktree, after re-anchor to Voronov Li: **`1 passed in 425.05s`**
 
-  Both green. Notably the suite stays green *because* neither family has a spectator (Q3) — the
-  opposite of the pathfinder's `Plasma_Collisional_Ionization`, which turned it red on
+  All green. The DB structural test is value-independent (it checks tree/group consistency, not rate
+  magnitudes), so the re-anchor cannot change its result — re-run anyway on the owner's instruction.
+  Notably the suite stays green *because* neither family has a spectator (Q3) — the opposite of the
+  pathfinder's `Plasma_Collisional_Ionization`, which turned it red on
   `kinetics_check_groups_nonidentical`. These two are the clean carry.
 - **V5 — 5 torr argon deck unaffected.** Deck `docs/i194-ar5torr-plasma-lineage/input.py` only,
   `rmg.py`, clean run dir, `PYTHON_EXIT` from the interpreter:
   - baseline: `PYTHON_EXIT=0`, one `MODEL GENERATION COMPLETED`, final core **3 species / 1 reaction**
-  - worktree: `PYTHON_EXIT=0`, one `MODEL GENERATION COMPLETED`, final core **3 species / 1 reaction**;
-    my two families appear **0 times** in stdout/stderr (deck names only `Plasma_Electron_Attachment`
-    as a family). baseline == worktree.
-- **V6 — libraries still win.** See Precedence above.
+  - worktree, original anchor: `PYTHON_EXIT=0`, one `MODEL GENERATION COMPLETED`, core **3 / 1**;
+    my two families appear **0 times** (deck names only `Plasma_Electron_Attachment`).
+  - worktree, after re-anchor: `PYTHON_EXIT=0`, one `MODEL GENERATION COMPLETED`, core **3 / 1**,
+    families 0 mentions. Unchanged — the deck loads neither family, so the estimate's value is inert to it.
+- **V6 — libraries still win.** See Precedence above; confirmed by execution against the
+  post-companion-ticket state, and value-independent.
 
 ---
 

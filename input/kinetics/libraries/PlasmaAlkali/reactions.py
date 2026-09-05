@@ -706,25 +706,35 @@ Confidence: ANALOGY.
 # ---------------------------------------------------------------------------
 # I-157 carry: the alkali / alkaline-earth ionisation and recombination network.
 #
-# Fourteen entries carried verbatim from RMG-database branch 99 (indices retained):
+# Fourteen entries carried from RMG-database branch 99 (indices retained):
 #   electron-impact ionisation  Li/Na/K/Mg/Si   (38-42, ElectronCollisionPlasma)
 #   radiative recombination     Li+/Na+/K+/Mg2+ (1,2,3,45)
 #   dissociative recombination  Li/Na/K H2O+     (11,12,13)
 #   dissociative recombination  CaOH+  two chan. (28,33)
 #
-# Only the label is translated into this line's p-suffix cation convention
-# (Na+ -> Nap, Mg+2 -> Mgp2, ...): the plasma loader splits a reaction string on a
-# bare '+', so a cation whose own label contains '+' is torn in half. Kinetics
+# For eleven of the fourteen, only the label is translated into this line's p-suffix
+# cation convention (Na+ -> Nap, Mg+2 -> Mgp2, ...): the plasma loader splits a reaction
+# string on a bare '+', so a cation whose own label contains '+' is torn in half. Kinetics
 # objects, units and provenance are unchanged. These entries change the explicit
 # free-electron count across the arrow; they load because the plasma engine's
 # is_balanced exempts the free electron from the per-element census and judges it by
 # charge instead. (This supersedes the CARRY-OVER PROVENANCE note above, written when
 # that fix had not yet landed and these fourteen were held out.)
+#
+# DELIBERATELY IRREVERSIBLE (do not "restore" <=>): entries 1, 2 and 45 -- the Li+, Na+
+# and Mg2+ radiative recombinations, the only reversible Te-dependent (TwoTemperaturePlasma)
+# entries -- are marked '=>' with reversible=False, deviating from branch 99's '<=>'.
+# PlasmaReactor._validate_reactions refuses a reversible Te-dependent reaction
+# (NonEquilibriumReverseRateError: kf(Tgas,Te)/Keq(Tgas) is undefined), and the reverse of
+# recombination is ionisation, already carried explicitly at 38/39/41 -- so the reversible
+# form both fails the reactor and double-counts ionisation. The '=>' and reversible=False
+# must agree or the loader raises DatabaseError. See docs/i157-plasmaalkali/report.md.
 # ---------------------------------------------------------------------------
 
 entry(
     index = 1,
-    label = "Lip + e- <=> Li",
+    label = "Lip + e- => Li",
+    reversible = False,
     kinetics = TwoTemperaturePlasma(A=(1.30e-09, "cm^3/(molecule*s)"), n=-0.95, Ea_g=(0.0, "J/mol"), Ea_e=(0.19,'kJ/mol'),
                                     Tmin = (10, "K"), Tmax = (1000000000, "K")),
     shortDesc = u"[VernerFerland1996]",
@@ -750,7 +760,8 @@ p. 11
 
 entry(
     index = 2,
-    label = "Nap + e- <=> Na",
+    label = "Nap + e- => Na",
+    reversible = False,
     kinetics = TwoTemperaturePlasma(A=(2.72e-08, "cm^3/(molecule*s)"), n=-1.07, Ea_g=(0.0, "J/mol"), Ea_e=(0.25,'kJ/mol'),
                                     Tmin = (10, "K"), Tmax = (1000000000, "K")),
     shortDesc = u"[VernerFerland1996]",
@@ -932,7 +943,8 @@ Si Ionization. Threshold 8.157 eV.
 
 entry(
     index = 45,
-    label = "Mgp2 + e- <=> Mgp",
+    label = "Mgp2 + e- => Mgp",
+    reversible = False,
     kinetics = TwoTemperaturePlasma(A=(8.69e-09, "cm^3/(molecule*s)"), n=-0.99, Ea_g=(0.0, "J/mol"), Ea_e=(0.23,'kJ/mol'),
                                     Tmin = (10, "K"), Tmax = (1000000000, "K")),
     shortDesc = u"[VernerFerland1996]",

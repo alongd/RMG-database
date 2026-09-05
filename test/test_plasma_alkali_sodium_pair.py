@@ -10,9 +10,12 @@ sodium cation without these two reactions:
 * ``Na + e- => Nap + e- + e-`` -- electron-impact ionisation, the SOURCE. Carried from
   RMG-database branch ``99`` (entry index 39) as an ``ElectronCollisionPlasma`` cross
   section from [Golyatina2021], ionisation threshold 5.139 eV.
-* ``Nap + e- <=> Na`` -- radiative recombination, the SINK. Carried from ``99``
+* ``Nap + e- => Na`` -- radiative recombination, the SINK. Carried from ``99``
   (entry index 2) as a ``TwoTemperaturePlasma`` rate from [VernerFerland1996], with
-  ``A`` in the per-molecule unit ``cm^3/(molecule*s)``.
+  ``A`` in the per-molecule unit ``cm^3/(molecule*s)``. Marked irreversible (``=>``) as
+  a documented I-157 deviation from ``99``'s ``<=>``: the reversible Te-dependent form is
+  refused by ``PlasmaReactor`` and double-counts the ionisation already carried at index 39
+  (see ``test_plasma_alkali_reversible_te_admissibility.py``).
 
 The suite is pinned to this worktree by ``test/conftest.py`` (``database.directory``),
 and is run against the ``plasma`` RMG-Py engine, whose ``is_balanced`` exempts the free
@@ -31,7 +34,7 @@ from rmgpy.kinetics import ElectronCollisionPlasma, TwoTemperaturePlasma
 from rmgpy.quantity import Quantity
 
 SODIUM_IONISATION = "Na + e- => Nap + e- + e-"
-SODIUM_RECOMBINATION = "Nap + e- <=> Na"
+SODIUM_RECOMBINATION = "Nap + e- => Na"
 
 
 @pytest.fixture(scope="module")
@@ -62,6 +65,8 @@ def test_sodium_recombination_loads_with_verner_ferland_rate_and_molecule_units(
     assert entry.short_desc == "[VernerFerland1996]"
     # The reaction balances on the plasma engine (charge -1 = -1).
     assert entry.item.is_balanced()
+    # Carried irreversible (I-157 deviation from 99's reversible form).
+    assert entry.item.reversible is False
 
 
 def test_sodium_ionisation_loads_with_golyatina_cross_section_and_threshold(alkali_by_label):

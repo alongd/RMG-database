@@ -724,11 +724,29 @@ Confidence: ANALOGY.
 # DELIBERATELY IRREVERSIBLE (do not "restore" <=>): entries 1, 2 and 45 -- the Li+, Na+
 # and Mg2+ radiative recombinations, the only reversible Te-dependent (TwoTemperaturePlasma)
 # entries -- are marked '=>' with reversible=False, deviating from branch 99's '<=>'.
-# PlasmaReactor._validate_reactions refuses a reversible Te-dependent reaction
-# (NonEquilibriumReverseRateError: kf(Tgas,Te)/Keq(Tgas) is undefined), and the reverse of
-# recombination is ionisation, already carried explicitly at 38/39/41 -- so the reversible
-# form both fails the reactor and double-counts ionisation. The '=>' and reversible=False
-# must agree or the loader raises DatabaseError. See docs/i157-plasmaalkali/report.md.
+# The reason is the engine's, and it is the only reason: PlasmaReactor._validate_reactions
+# refuses a reversible Te-dependent reaction at initialize_model with
+# NonEquilibriumReverseRateError, because reconstructing a reverse rate as kf(Tgas,Te)/Keq(Tgas)
+# combines two incompatible thermal closures (a two-temperature forward rate over a single-
+# temperature equilibrium constant). Marking the forward-only channel irreversible removes the
+# ill-defined reverse and lets the reactor build.
+#
+# NOTE these are RADIATIVE recombination (A+ + e- -> A + hv), electron placement (1,0). Their
+# microscopic reverse is PHOTOionisation, not the electron-impact ionisation carried at 38-42
+# (placement (1,2), whose true inverse is three-body recombination A+ + 2 e- -> A + e-, (2,1),
+# a distinct third-order channel that TwoTemperaturePlasma cannot even store). So marking 1/2/45
+# irreversible creates NO double-count with 38-42: they are not a reverse pair. (The engine draws
+# exactly this distinction; see RMG-Py rmgpy/electron_balance.py get_electron_placement_counts and
+# rmgpy/electron_placement.py FAMILY_ELECTRON_PLACEMENT.)
+#
+# reversible=False here is NOT a reactor-validator-only flag. It also makes the Chemkin and
+# Cantera exporters emit one-way '=>' equations, sets kb=0 / Keq=inf in the plasma reactor,
+# disables reverse-rate reconstruction, and changes duplicate handling for opposite irreversible
+# directions (rmgpy/reaction.py:704, rmgpy/solver/plasma.pyx:875, rmgpy/chemkin.pyx:1985 and :2349,
+# rmgpy/yaml_cantera2.py:933). All of that is intended for these forward-only channels.
+#
+# The '=>' and reversible=False must agree or the loader raises DatabaseError.
+# See docs/i157-plasmaalkali/report.md.
 # ---------------------------------------------------------------------------
 
 entry(

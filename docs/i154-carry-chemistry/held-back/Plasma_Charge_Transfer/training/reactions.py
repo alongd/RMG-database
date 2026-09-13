@@ -14,6 +14,25 @@ References:
 [Gupta1990]: R.N. Gupta, J.M. Yos, R.A. Thompson, K.-P. Lee, NASA Reference Publication 1232, 1990, A Review of Reaction Rates and Thermodynamic and Transport Properties for an 11-Species Air Model for Chemical and Thermal Nonequilibrium Calculations to 30000 K
 [Aiken2023] T.T. Aiken, PhD Thesis, Detailed Modeling and Sensitivity Analysis of Non-Equilibrium Thermochemistry in Shock-Heated Gases, 2023, University of Colorado.
 [Ozawa2008]: T. Ozawa, J. Zhong, D.A. Levin, Development of kinetic-based energy exchange models for noncontinuum, ionized hypersonic flows, Physics of Fluids 2008, 20, 046102, DOI: 10.1063/1.2907198
+
+A note on T0, because two entries here got it wrong (I-223):
+[Tanarro2015] Table 1 is written k = A (T/300)^n, so its entries carry T0 = 300 K.
+[Gupta1990] Table II is written k = Cf T^eta exp(-theta_d/T) -- a BARE T -- so a Gupta
+entry must carry T0 = 1 K. Entries 13 and 17 sat immediately after the Tanarro block and
+had inherited its T0 = 300 K while copying Cf verbatim, which makes every k they return
+wrong by 300^n: 561x too high for entry 13 (n = -1.11), 2.64x too low for entry 17
+(n = +0.17). Entry 13's T0 is corrected below; entry 17 was deleted (see next paragraph).
+[Ozawa2008] Table III and [Aiken2023] Table 3.16 are likewise bare-T and already carry
+T0 = 1 K. Only [Gupta1990] was checked against the primary document.
+
+Deleted entry 17 (I-223): a second copy of NOp_r1 + O2_r2 <=> O2p + NO, from [Gupta1990]
+Table II R19, k = 1.8e15 T^0.17 exp(-3.3e4/T). It duplicated entry 21 at the same rank 6,
+so KineticsRules.get_rule broke the tie on index alone and entry 21 was silently never
+used. Entry 21 ([Ozawa2008]) is kept: the Gupta fit demands 10-19x the Langevin capture
+rate for NO+ + O2 over 300-10000 K (Ozawa 0.55-2.3x), Ozawa's Ea of 271.1 kJ/mol matches
+the endothermicity IE(O2) - IE(NO) = 270.7 kJ/mol, and the rest of the air charge-exchange
+block here (entries 14, 15, 16, 21, 22, 23) is [Ozawa2008] Table III.
+Evidence: docs/i223-charge-transfer-node-repair/{report.md,logs/kt.stdout.log,logs/t0.stdout.log}.
 """
 
 entry(
@@ -177,11 +196,15 @@ entry(
     label = "O2p_r1 + O_r2 <=> O2 + Op",
     degeneracy = 1,
     kinetics=Arrhenius(A=(2.92e18, 'cm^3/(mol*s)'), n=-1.11, Ea=(55650, 'cal/mol'),
-                       T0=(300, 'K'), Tmin=(300, 'K'), Tmax=(10000, 'K')),
+                       T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(10000, 'K')),
     rank = 6,
     shortDesc = u"[Gupta1990]",
     longDesc = u"""
-Table II, R11
+Table II, R11:  2.92e18 T^-1.11 exp(-2.8e4/T) cm^3/(mol*s).
+
+T0 is 1 K, not 300 K: Gupta's Table II is a bare-T fit and A here is his Cf verbatim.
+It carried T0 = 300 K until I-223, which made every k it returned 300^1.11 = 561x too
+high. Ea = 55650 cal/mol is theta_d = 2.8e4 K (Ea/R = 28004 K).
 """
 )
 
@@ -224,18 +247,10 @@ Table III
 """
 )
 
-entry(
-    index = 17,
-    label = "NOp_r1 + O2_r2 <=> O2p + NO",
-    degeneracy = 1,
-    kinetics=Arrhenius(A=(1.8e15, 'cm^3/(mol*s)'), n=0.17, Ea=(65600, 'cal/mol'),
-                       T0=(300, 'K'), Tmin=(300, 'K'), Tmax=(10000, 'K')),
-    rank = 6,
-    shortDesc = u"[Gupta1990]",
-    longDesc = u"""
-Table II, R19
-"""
-)
+# Index 17 deleted by I-223. It was a duplicate of index 21 below: the same reaction,
+# NOp_r1 + O2_r2 <=> O2p + NO, at the same rank 6, from [Gupta1990] Table II R19. See the
+# longDesc at the top of this file for the evidence behind keeping the [Ozawa2008] fit.
+# The index is deliberately left unused rather than renumbering the entries after it.
 
 entry(
     index = 18,
@@ -285,7 +300,12 @@ entry(
     rank = 6,
     shortDesc = u"[Ozawa2008]",
     longDesc = u"""
-Table III
+Table III.
+
+The surviving fit for this reaction; a rival [Gupta1990] Table II R19 copy sat at index 17
+at the same rank until I-223 deleted it. Ea = 271.1 kJ/mol is the endothermicity
+IE(O2) - IE(NO) = 12.0697 - 9.2642 eV = 270.7 kJ/mol, and A*T^n stays within 0.55-2.3x of
+the Langevin capture rate for NO+ + O2 (4.5e14 cm^3/(mol*s)) over 300-10000 K.
 """
 )
 

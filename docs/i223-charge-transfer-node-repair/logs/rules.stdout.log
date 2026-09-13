@@ -1,0 +1,64 @@
+cwd                = /home/alon/Code/RMG-Py-i223-ct-node-repair
+database.directory = /home/alon/Code/RMG-database-i223-charge-transfer-node-repair/input
+family loaded from  = /home/alon/Code/RMG-database-i223-charge-transfer-node-repair/docs/i154-carry-chemistry/held-back/Plasma_Charge_Transfer
+
+training entries   = 27
+duplicate reaction labels in training: none
+
+--- duplicate check on the training depository itself ---
+  none
+
+--- template each training reaction resolves to ---
+    1  Hp_r1 + H-_r2 <=> H + H            -> H_ion;H_anion
+    2  H2p_r1 + H-_r2 <=> H2 + H          -> H2_ion;H_anion
+    3  Op_r1 + H-_r2 <=> O + H            -> O_atom_ion;H_anion
+    4  O2p_r1 + H-_r2 <=> O2 + H          -> O2_ion;H_anion
+    5  H2Op_r1 + H-_r2 <=> H2O + H        -> H2O_ion;H_anion
+    6  Hp_r1 + O-_r2 <=> H + O            -> H_ion;O_anion
+    7  Op_r1 + O-_r2 <=> O + O            -> O_atom_ion;O_anion
+    8  O2p_r1 + O-_r2 <=> O2 + O          -> O2_ion;O_anion
+    9  H2Op_r1 + O-_r2 <=> H2O + O        -> H2O_ion;O_anion
+   10  O2p_r1 + OH-_r2 <=> O2 + OH        -> O2_ion;O_anion
+   11  OHp_r1 + OH-_r2 <=> OH + OH        -> OH_ion;O_anion
+   12  H2Op_r1 + OH-_r2 <=> H2O + OH      -> H2O_ion;O_anion
+   13  O2p_r1 + O_r2 <=> O2 + Op          -> O2_ion;O_neutral
+   14  NOp_r1 + O_r2 <=> NO + Op          -> NO_ion;O_neutral
+   15  Op_r1 + N2_r2 <=> N2p + O          -> O_atom_ion;N_neutral
+   16  NOp_r1 + N_r2 <=> NO + Np          -> NO_ion;N_neutral
+   18  Np_r1 + N2_r2 <=> N2p + N          -> N_atom_ion;N_neutral
+   19  Arp_r1 + N2_r2 <=> Ar + N2p        -> Ar_ion;N_neutral
+   20  Arp_r1 + O_r2 <=> Ar + Op          -> Ar_ion;O_neutral
+   21  NOp_r1 + O2_r2 <=> O2p + NO        -> NO_ion;O2_neutral
+   22  O2p_r1 + N_r2 <=> Np + O2          -> O2_ion;N_neutral
+   23  O2p_r1 + N2_r2 <=> N2p + O2        -> O2_ion;N_neutral
+   24  Lip_r1 + H-_r2 <=> Li + H          -> Li_ion;H_anion
+   25  Nap_r1 + H-_r2 <=> Na + H          -> Na_ion;H_anion
+   26  Kp_r1 + H-_r2 <=> K + H            -> K_ion;H_anion
+   27  Mgp_r1 + H-_r2 <=> Mg + H          -> Mg_ion;H_anion
+   28  Cap_r1 + H-_r2 <=> Ca + H          -> Ca_ion;H_anion
+
+--- rate rules generated from training ---
+  H2O_ion;O_anion: 2 entries, ranks [6, 6]
+      rule idx   9  rank 6  Rate rule generated from training reaction 9. [Tanarro2015] Rate rule generated from training reaction 9. Table 1, IN15    <-- get_rule picks this one
+      rule idx  12  rank 6  Rate rule generated from training reaction 12. [Tanarro2015] Rate rule generated from training reaction 12. Table 1, IN22 
+    (distinct reactions sharing one template node; equal rank here means
+     get_rule keeps the lowest index and discards the rest -- ordinary RMG,
+     and a tree-granularity question, not a duplicate-entry defect)
+  O2_ion;N_neutral: 2 entries, ranks [6, 6]
+      rule idx  21  rank 6  Rate rule generated from training reaction 22. [Ozawa2008] Rate rule generated from training reaction 22. Table III    <-- get_rule picks this one
+      rule idx  22  rank 6  Rate rule generated from training reaction 23. [Ozawa2008] Rate rule generated from training reaction 23. Table III 
+    (distinct reactions sharing one template node; equal rank here means
+     get_rule keeps the lowest index and discards the rest -- ordinary RMG,
+     and a tree-granularity question, not a duplicate-entry defect)
+  O2_ion;O_anion: 2 entries, ranks [6, 6]
+      rule idx   8  rank 6  Rate rule generated from training reaction 8. [Tanarro2015] Rate rule generated from training reaction 8. Table 1, IN13    <-- get_rule picks this one
+      rule idx  10  rank 6  Rate rule generated from training reaction 10. [Tanarro2015] Rate rule generated from training reaction 10. Table 1, IN20 
+    (distinct reactions sharing one template node; equal rank here means
+     get_rule keeps the lowest index and discards the rest -- ordinary RMG,
+     and a tree-granularity question, not a duplicate-entry defect)
+
+total rule labels  = 24
+labels with >1 entry = 3
+
+VERDICT: no reaction appears twice at equal rank, in training or in the rules
+exit status: 0

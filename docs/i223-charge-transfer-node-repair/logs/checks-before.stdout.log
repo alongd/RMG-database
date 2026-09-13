@@ -1,0 +1,24 @@
+cwd                = /home/alon/Code/RMG-Py-i223-ct-node-repair
+database.directory = /home/alon/Code/RMG-database-i223-charge-transfer-node-repair/input
+family loaded from  = /tmp/claude-1000/i223-before/Plasma_Charge_Transfer
+
+auto_generated     = False
+own_reverse        = False
+n groups.top       = 2, n template reactants = 2
+
+kinetics_check_correct_number_of_nodes_in_rules         PASS
+kinetics_check_nodes_in_rules_found_in_groups           PASS
+kinetics_check_groups_found_in_tree                     PASS
+kinetics_check_groups_nonidentical                      PASS
+kinetics_check_child_parent_relationships               PASS
+kinetics_check_siblings_for_parents                     PASS
+kinetics_check_cd_atom_type                             PASS
+kinetics_check_reactant_and_product_template            PASS
+kinetics_check_num_reactant_and_product                 PASS
+kinetics_check_family_electrons_reach_training_reactions PASS
+kinetics_check_sample_descends_to_group                 RAISED ValueError
+    Error Occurred
+kinetics_check_sample_can_react                         PASS
+
+FAILED CHECKS: kinetics_check_sample_descends_to_group
+exit status: 1

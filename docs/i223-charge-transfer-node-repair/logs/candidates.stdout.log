@@ -1,0 +1,54 @@
+cwd                = /home/alon/Code/RMG-Py-i223-ct-node-repair
+database.directory = /home/alon/Code/RMG-database-i223-charge-transfer-node-repair/input
+family loaded from  = /tmp/claude-1000/i223-before/Plasma_Charge_Transfer
+
+==============================================================================
+1. Can RMG build and type these ions? (no atom type may be added)
+==============================================================================
+  He+          OK   charge=+1  atomtypes=['He']  smiles='[He+]'
+  Ne+          OK   charge=+1  atomtypes=['Ne']  smiles='[Ne+]'
+  Ar+          OK   charge=+1  atomtypes=['Ar+']  smiles='[Ar+]'
+  H2+ (vdW)    OK   charge=+1  atomtypes=['H0', 'H+']  smiles='[H+].[H]'
+
+==============================================================================
+2. Does each candidate group sample to something of the right charge?
+==============================================================================
+  H2_ion (current, bonded)                   sample=[H][H-]      charge=-1
+                                             adjlist: multiplicity 2 | 1    H u1 p0 c-1 {2,S} | 2 *1 H u0 p0 c0 {1,S}
+  H2_ion (candidate, vdW-disconnected)       sample=[H+].[H]     charge=+1
+                                             adjlist: multiplicity 2 | 1    H u1 p0 c0 | 2 *1 H u0 p0 c+1
+  Noble_cation (current)                     sample=[He]         charge=+0
+                                             adjlist: 1 *1 He u0 p1 c0
+  Noble_cation (candidate, Ar first + explicit u/p) sample=[Ar+]        charge=+1
+                                             adjlist: multiplicity 2 | 1 *1 Ar u1 p3 c+1
+  He_ion (candidate child)                   sample=[He+]        charge=+1
+                                             adjlist: multiplicity 2 | 1 *1 He u1 p0 c+1
+  Ne_ion (candidate child)                   sample=[Ne+]        charge=+1
+                                             adjlist: multiplicity 2 | 1 *1 Ne u1 p3 c+1
+
+==============================================================================
+3. Does each candidate group match the real species it is meant to describe?
+==============================================================================
+  H2_ion (current, bonded)                   vs H2+ (vdW)    subgraph_isomorphic = False
+  H2_ion (candidate, vdW-disconnected)       vs H2+ (vdW)    subgraph_isomorphic = True
+  Noble_cation (current)                     vs He+          subgraph_isomorphic = True
+  Noble_cation (current)                     vs Ne+          subgraph_isomorphic = True
+  Noble_cation (current)                     vs Ar+          subgraph_isomorphic = True
+  Noble_cation (candidate, Ar first + explicit u/p) vs He+          subgraph_isomorphic = False
+  Noble_cation (candidate, Ar first + explicit u/p) vs Ne+          subgraph_isomorphic = True
+  Noble_cation (candidate, Ar first + explicit u/p) vs Ar+          subgraph_isomorphic = True
+  He_ion (candidate child)                   vs He+          subgraph_isomorphic = True
+  Ne_ion (candidate child)                   vs Ne+          subgraph_isomorphic = True
+
+==============================================================================
+4. Where does the real H2p_r1 species descend today?
+==============================================================================
+  H2p_r1 descends to: H_ion
+  (H2_ion is the node that is supposed to catch it)
+
+==============================================================================
+5. Which training reactions carry a *1 that is a noble-gas cation?
+==============================================================================
+  index  19  Arp_r1 + N2_r2 <=> Ar + N2p
+  index  20  Arp_r1 + O_r2 <=> Ar + Op
+exit status: 0

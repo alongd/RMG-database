@@ -340,6 +340,27 @@ entry(
     kinetics = None,
 )
 
+# Added by I-223. `O_neutral` is `O ux px c0`, so atomic O and molecular O2 both landed on
+# it, and the two training reactions that use them -- index 14 (NOp_r1 + O_r2) and index 21
+# (NOp_r1 + O2_r2) -- both resolved to the template `NO_ion;O_neutral`. KineticsRules.get_rule
+# then kept the lower index and the O2 rate was never used, which is the same silent-shadowing
+# defect as the duplicate entry this ticket deleted, one level up. Written concretely, as the
+# ground-state triplet, to match the training dictionary's O2_r2.
+#
+# Three sibling merges of the same kind are still open and deliberately NOT repaired here:
+# O_anion catches both O- and OH- (colliding training 8/10 and 9/12), and N_neutral catches
+# both N and N2 (colliding training 22/23). See docs/i223-charge-transfer-node-repair/report.md.
+entry(
+    index = 213,
+    label = "O2_neutral",
+    group =
+"""
+1 *2 O u1 p2 c0 {2,S}
+2    O u1 p2 c0 {1,S}
+""",
+    kinetics = None,
+)
+
 # -----------------------------------------------------------------------------
 # Tree Definition
 # -----------------------------------------------------------------------------
@@ -373,6 +394,7 @@ L1: B
         L3: O_anion
     L2: Neutral
         L3: O_neutral
+            L4: O2_neutral
         L3: N_neutral
 """
 )

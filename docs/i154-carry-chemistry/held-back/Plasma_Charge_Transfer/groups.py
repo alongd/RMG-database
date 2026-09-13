@@ -80,12 +80,26 @@ entry(
     kinetics = None,
 )
 
+# The charge-specific `Ar+` is listed first on purpose, and generic `Ar` is kept after it.
+#
+# `pick_wildcards` takes the *first* atomtype when it builds the sample molecule. Neither `He`
+# nor `Ne` has a charged subtype or any `lone_pairs` of its own, so a He-first sample falls back
+# to neutral-helium defaults and comes out as `[He]` at charge 0 -- which the root `A`
+# (c[+1,+2,+3,+4]) then rejects. `Ar+` carries lone_pairs=[3] and charge=[1], so putting it first
+# builds the sample at +1 ([ArH+]).
+#
+# Generic `Ar` must stay in the list as well: the child `Ar_ion` is written on the generic `Ar`
+# atomtype, and `Ar+` is *more* specific than `Ar`, so an `Ar+`-only parent stops being a proper
+# parent of its own child (kinetics_check_child_parent_relationships).
+#
+# The matched set is unchanged by all of this -- He+, Ne+, Ar+, Ar2+ and ArH+ all still match,
+# measured in docs/i223-charge-transfer-node-repair/logs/parent.stdout.log.
 entry(
     index = 13,
     label = "Noble_cation",
     group =
 """
-1 *1 [He,Ne,Ar] ux px c+1
+1 *1 [Ar+,Ar,He,Ne] ux px c+1
 """,
     kinetics = None,
 )
@@ -113,13 +127,19 @@ entry(
     kinetics = None,
 )
 
+# H2+ is held together by a one-electron bond, which RMG's integer bond orders cannot express:
+# writing it as a single bond hands both bonding electrons to the pair, and the sample then comes
+# out as `[H][H-]` at charge -1. The family's own training dictionary already avoids this -- its
+# `H2p_r1` is two *unbonded* atoms, `[H+].[H]` -- so the bonded form here matched nothing: H2p_r1
+# descended only as far as `H_ion`, and this node was dead. The unbonded form below matches it and
+# samples at +1.
 entry(
     index = 102,
     label = "H2_ion",
     group =
 """
-1 *1 H u0 p0 c+1 {2,S}
-2    H u1 p0 c0  {1,S}
+1 *1 H u0 p0 c+1
+2    H u1 p0 c0
 """,
     kinetics = None,
 )

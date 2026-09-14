@@ -94,6 +94,7 @@ JANAF_AR_S298 = 154.845       # J/(mol*K)
 JANAF_AR_CP = 20.786          # J/(mol*K), at every tabulated T
 
 #: What is actually in the file.
+DERIVED_E0 = 1108.0496        # kJ/mol, what to_wilhoit() derives; the entry states no E0
 ENTERED_H298 = 1114.247       # kJ/mol
 ENTERED_S298 = 168.227        # J/(mol*K)
 ENTERED_CP = 20.786           # J/(mol*K)
@@ -224,11 +225,15 @@ def test_the_radiation_trapping_caveat_is_recorded(entry):
 # =====================================================================================
 
 def test_h298_is_the_level_energy_times_hc_na(entry):
-    """H298 is the 1s5 level energy converted by an exact constant. Nothing else."""
+    """H298 is the 1s5 level energy converted by an exact constant. Nothing else.
+
+    The entry is a NASA, so there is no H298 FIELD to read -- the polynomial is evaluated
+    at the reference temperature. That is the point of the form: the file and the API
+    return the same number, with no 298-vs-298.15 field offset between them."""
     expected = ASD_1S5_3P2 * HC_NA / 1000.0
     assert expected == pytest.approx(1114.2468, abs=5e-4)
-    assert entry.data.H298.value_si / 1000.0 == pytest.approx(expected, abs=5e-4)
-    assert entry.data.H298.value_si / 1000.0 == ENTERED_H298
+    assert entry.data.get_enthalpy(T0) / 1000.0 == pytest.approx(expected, abs=5e-4)
+    assert entry.data.get_enthalpy(T0) / 1000.0 == pytest.approx(ENTERED_H298, abs=1e-6)
 
 
 def test_e0_is_not_stated_so_there_is_exactly_one_source_of_truth_for_it(entry):
@@ -247,25 +252,34 @@ def test_e0_is_not_stated_so_there_is_exactly_one_source_of_truth_for_it(entry):
 
 
 def test_both_api_paths_now_agree_on_one_e0(entry):
-    """The disagreement measured in round 55 was 1114.2470 stored against 1108.0527
-    derived. With the field gone there is one number, and it is the derived one."""
-    derived = entry.data.to_wilhoit(B=1000.0).E0.value_si / 1000.0
-    assert derived == pytest.approx(1108.0527, abs=1e-3)
+    """The disagreement measured in round 55 was 1114.2470 stored against a derived
+    value. With the field gone there is one number, and it is the derived one."""
+    derived = entry.data.to_wilhoit().E0.value_si / 1000.0
+    assert derived == pytest.approx(DERIVED_E0, abs=1e-3)
     assert entry.data.E0 is None
 
 
-def test_the_e0_gap_is_five_halves_r_at_298_not_298_15(entry):
-    """The size of the trap, pinned so the explanation in the longDesc stays checkable.
+def test_the_e0_gap_is_the_thermal_enthalpy_and_not_the_298_convention(entry):
+    """Round 58 correction. The longDesc used to lean on the 298-vs-298.15 distinction as
+    if it explained the ~6.19 kJ/mol gap. It does not, and this pins the arithmetic that
+    shows why: the gap is 5/2*R*T, the WHOLE of it, while the 0.15 K of reference-temperature
+    ambiguity is worth 3.118 J/mol -- three thousandths of a kJ, the last digit only.
 
-    Note the reference temperature: to_wilhoit calls get_enthalpy(298), so the gap is
-    5/2*R*298 = 6.1943, not 5/2*R*298.15 = 6.1974. Round 55 quoted the latter. The 0.003
-    difference is the same 298-vs-298.15 field convention this file documents elsewhere,
-    showing up a second time."""
-    derived = entry.data.to_wilhoit(B=1000.0).E0.value_si / 1000.0
+    A test rather than prose because this is precisely the kind of plausible-but-wrong
+    attribution that survives review."""
+    derived = entry.data.to_wilhoit().E0.value_si / 1000.0
     gap = ENTERED_H298 - derived
-    assert gap == pytest.approx(2.5 * R * 298.0 / 1000.0, abs=1e-3)
-    assert gap == pytest.approx(6.1943, abs=1e-3)
-    assert gap != pytest.approx(2.5 * R * T0 / 1000.0, abs=1e-4)
+
+    # The gap IS the monatomic thermal enthalpy at the reference temperature.
+    assert gap == pytest.approx(2.5 * R * T0 / 1000.0, abs=2e-3)
+    assert gap == pytest.approx(6.1974, abs=2e-3)
+
+    # And the 298/298.15 choice is three orders of magnitude too small to explain it.
+    convention = 2.5 * R * (T0 - 298.0)
+    assert convention == pytest.approx(3.118, abs=1e-3)          # J/mol, not kJ/mol
+    assert convention / 1000.0 < gap / 1000.0
+    assert gap * 1000.0 / convention > 1000.0, (
+        'the thermal enthalpy must dwarf the reference-temperature convention')
 
 
 def test_the_cation_library_carries_the_same_unfixed_e0_collision(thermo_db):
@@ -288,7 +302,7 @@ def test_s298_is_the_ground_state_plus_the_exact_degeneracy_term(entry):
     r_ln_5 = R * math.log(5.0)
     assert r_ln_5 == pytest.approx(13.3816, abs=5e-4)
     assert JANAF_AR_S298 + r_ln_5 == pytest.approx(ENTERED_S298, abs=5e-4)
-    assert entry.data.S298.value_si == pytest.approx(ENTERED_S298, abs=1e-9)
+    assert entry.data.get_entropy(T0) == pytest.approx(ENTERED_S298, abs=1e-6)
 
 
 def test_cp_is_exactly_five_halves_r_at_every_tabulated_temperature(entry):
@@ -297,12 +311,24 @@ def test_cp_is_exactly_five_halves_r_at_every_tabulated_temperature(entry):
     Cp peaks at 22.773 J/(mol*K) near 1000 K precisely because it is a 2P term."""
     five_halves_r = 2.5 * R
     assert five_halves_r == pytest.approx(JANAF_AR_CP, abs=5e-4)
-    for cp in entry.data.Cpdata.value_si:
-        assert cp == pytest.approx(ENTERED_CP, abs=1e-9)
+    # Flat across the WHOLE declared range, not merely on a grid of sampled points:
+    # for a NASA this is a statement about the coefficients, since a2..a5 are zero.
+    # Tolerance note: the entry's coefficients are derived with RMG's OWN gas constant
+    # (rmgpy.constants.R = 8.314472, the older CODATA value), while R above is the current
+    # 8.314462618. The two differ by 2.3e-5 in 5/2 R. That is the "which R" trap the
+    # longDesc warns about, and it is why this is not asserted to 1e-6.
+    for T in (200.0, T0, 300.0, 1000.0, 3000.0, 5000.0, 6000.0):
+        assert entry.data.get_heat_capacity(T) == pytest.approx(five_halves_r, abs=5e-4)
+    # Flatness itself, however, IS exact: every temperature returns the identical value.
+    values = {entry.data.get_heat_capacity(T)
+              for T in (200.0, T0, 1000.0, 3000.0, 6000.0)}
+    assert len(values) == 1, 'Cp must be identical at every temperature, not merely close'
+    poly = entry.data.polynomials[0]
+    assert poly.c0 == pytest.approx(2.5, abs=1e-12)
+    for coeff in (poly.c1, poly.c2, poly.c3, poly.c4):
+        assert coeff == 0.0, 'a2..a5 must be identically zero for a constant Cp'
     assert entry.data.Cp0.value_si == pytest.approx(five_halves_r, abs=1e-3)
     assert entry.data.CpInf.value_si == pytest.approx(five_halves_r, abs=1e-3)
-    assert entry.data.Tdata.value_si[0] == pytest.approx(T0)
-    assert entry.data.Tdata.value_si[-1] == pytest.approx(6000.0)
 
 
 def test_the_level_energy_in_ev_matches_what_the_plasma_literature_quotes(pinned):
@@ -346,15 +372,16 @@ def test_thermo_comes_from_this_entry_and_not_from_an_estimator(thermo_db):
     data = thermo_db.get_thermo_data(_species(AR_META, 'Ar(3P2)'))
     assert 'Thermo library: %s' % LIBRARY in data.comment
     assert 'group additivity' not in data.comment.lower()
-    # The 298-vs-298.15 K offset below is RMG's, not this entry's: ThermoData's H298/S298
-    # fields are referenced to 298 K (rmgpy/thermo/thermodata.pyx), while every
-    # JANAF-sourced entry in this database writes the 298.15 K value into them.
-    offset_s = ENTERED_CP * math.log(T0 / 298.0)
-    offset_h = ENTERED_CP * 0.15 / 1000.0
-    assert offset_s == pytest.approx(0.0105, abs=1e-3)
-    assert data.get_entropy(T0) == pytest.approx(ENTERED_S298 + offset_s, abs=2e-3)
-    assert data.get_enthalpy(T0) / 1000.0 == pytest.approx(ENTERED_H298 + offset_h,
-                                                           abs=2e-3)
+    # A NASA has no 298 K FIELD to be referenced to the wrong temperature, so the API
+    # returns exactly what the file writes. The ThermoData form of this entry did not:
+    # it read 168.227 in the file and 168.2375 through the API. That offset is gone, and
+    # asserting its absence is what keeps the form from silently reverting.
+    assert data.get_entropy(T0) == pytest.approx(ENTERED_S298, abs=1e-6)
+    assert data.get_enthalpy(T0) / 1000.0 == pytest.approx(ENTERED_H298, abs=1e-6)
+    thermo_data_offset = ENTERED_CP * math.log(T0 / 298.0)
+    assert thermo_data_offset == pytest.approx(0.0105, abs=1e-3)
+    assert abs(data.get_entropy(T0) - ENTERED_S298) < thermo_data_offset / 100.0, (
+        'the ThermoData 298 K field offset must NOT be present on a NASA entry')
     for T in (T0, 1000.0, 6000.0):
         assert data.get_heat_capacity(T) == pytest.approx(ENTERED_CP, abs=1e-3)
 
@@ -533,31 +560,63 @@ def test_the_ground_state_argon_an_entry_is_anchored_on_is_decided_by_library_or
         # NASA (no offset, does not cancel). Contrast the entropy below, which moves by
         # 0.11 - forty times larger - purely on which library won.
         assert d_h == pytest.approx(ASD_1S5_3P2 * HC_NA / 1000.0, abs=5e-3)
-        # ... and the entropy error is the winner's own offset from the JANAF value this
-        # entry is anchored on, compared like for like on the API scale. The +offset_s is
-        # the 298-vs-298.15 K field convention: this entry's anchor 154.845 is a 298.15 K
-        # number written into a 298 K field, so it reads back 0.0105 higher, exactly as
-        # this entry's own S298 does. The two traps COMPOUND - the 0.121 seen with the
-        # shipped library set is 0.110 of precedence plus 0.011 of field convention.
-        offset_s = ENTERED_CP * math.log(T0 / 298.0)
+        # ... and the entropy error is exactly the winner's own departure from the JANAF
+        # value this entry is anchored on, measured on the API scale.
+        #
+        # This identity got SIMPLER when the entry became a NASA. As a ThermoData it also
+        # carried the +0.0105 J/(mol*K) 298-vs-298.15 K field offset, so the residual was
+        # a sum of two unrelated traps - 0.110 of precedence plus 0.011 of field convention
+        # - and the test needed a hand-added correction term to compare like for like. A
+        # NASA has no 298 K field, so only the precedence term survives on this side. Any
+        # offset left in the number now belongs to the WINNER, which may still be a
+        # ThermoData; that asymmetry is real and is why AR_CARRIERS holds API values.
         assert d_s - R * math.log(5.0) == pytest.approx(
-            JANAF_AR_S298 + offset_s - AR_CARRIERS[winner], abs=3e-3)
+            JANAF_AR_S298 - AR_CARRIERS[winner], abs=1e-3)
 
 
-def test_with_every_library_loaded_the_winner_is_burke_and_the_error_is_0_121(thermo_db):
-    """The state of the world as shipped, separate from the rule above. Disclosure, not
-    approval: if anyone re-anchors BurkeH2O2 or changes precedence, this fails and points
-    them at the longDesc paragraph that has to be revisited with it."""
+def test_with_every_library_loaded_the_anchor_is_whatever_os_walk_put_first(thermo_db):
+    """The state of the world as shipped, separate from the rule above.
+
+    Round 58 MEDIUM: this used to assert `Thermo library: BurkeH2O2` outright. That is a
+    claim about the FILESYSTEM, not about RMG - load_libraries appends in os.walk order,
+    so on a filesystem that enumerates alphabetically `2-BTP` wins instead and the old
+    assertion failed for a reason that had nothing to do with this entry. Pinning a
+    defect as if it were the design is worse than not pinning it at all.
+
+    So this now asserts what is actually meant, in three parts: SOME carrier wins, the
+    winner is the first Ar-carrying library in library_order (the rule), and the resulting
+    error in the anchor is that winner's own departure from JANAF (the consequence). The
+    identity of the winner is recorded for information and is deliberately not asserted."""
     ar = thermo_db.get_thermo_data(_species(AR, 'Ar'))
-    assert 'Thermo library: BurkeH2O2' in ar.comment
-    assert LIBRARY not in ar.comment
-    meta = thermo_db.get_thermo_data(_species(AR_META, 'Ar(3P2)'))
+    assert 'Thermo library: ' in ar.comment
+    assert LIBRARY not in ar.comment, 'this library must never win ground-state argon'
 
+    winner = ar.comment.split('Thermo library: ')[1].split('\n')[0].strip()
+    assert winner in AR_CARRIERS, (
+        'ground-state argon resolved to %r, which is not a known carrier; the carrier '
+        'census in AR_CARRIERS needs updating' % winner)
+
+    # The rule: first Ar-carrying library in library_order wins, whatever that order is.
+    carriers_in_order = [lib for lib in thermo_db.library_order if lib in AR_CARRIERS]
+    assert carriers_in_order, 'no known argon carrier was loaded at all'
+    assert winner == carriers_in_order[0], (
+        'get_thermo_data_from_libraries must return on the FIRST match over library_order; '
+        'got %r but %r comes first' % (winner, carriers_in_order[0]))
+
+    # The consequence: the anchor error is the winner's own departure from JANAF.
+    meta = thermo_db.get_thermo_data(_species(AR_META, 'Ar(3P2)'))
     d_h = (meta.get_enthalpy(T0) - ar.get_enthalpy(T0)) / 1000.0
     d_s = meta.get_entropy(T0) - ar.get_entropy(T0)
-    assert d_h == pytest.approx(ASD_1S5_3P2 * HC_NA / 1000.0, abs=1e-3)
-    assert d_s == pytest.approx(13.5027, abs=2e-3)
-    assert d_s - R * math.log(5.0) == pytest.approx(0.1211, abs=2e-3)
+    assert d_h == pytest.approx(ASD_1S5_3P2 * HC_NA / 1000.0, abs=5e-3)
+    assert d_s - R * math.log(5.0) == pytest.approx(
+        JANAF_AR_S298 - AR_CARRIERS[winner], abs=1e-3)
+
+    # And the finding itself: the two camps are ~0.113 J/(mol*K) apart, so WHICH one wins
+    # is worth forty times more than any rounding question in this entry.
+    spread = max(AR_CARRIERS.values()) - min(AR_CARRIERS.values())
+    assert spread == pytest.approx(0.1136, abs=2e-3)
+    print('\n  ground-state argon anchor resolved to %r (S298 = %.4f J/(mol*K)); '
+          'carrier spread %.4f' % (winner, AR_CARRIERS[winner], spread))
 
 
 def test_no_deck_or_dictionary_DECLARES_the_metastable(pinned):
@@ -694,11 +753,14 @@ def test_the_island_claim_is_retracted_in_the_file_itself(entry):
 
 # ---- the temperature range actually delivered: round-55 HIGH-3 -----------------------
 
-def test_the_advertised_6000_K_does_not_survive_normal_processing(thermo_db):
-    """The entry declares 6000 K, which is true of the DATA. Standard processing refits any
-    non-NASA library entry to a hard-coded 100-5000 K (thermoengine.py:86-99) and then
-    raises above it. Pinned so that the day someone widens that range, this fails and the
-    longDesc's disclosure gets revisited."""
+def test_the_advertised_6000_K_now_survives_normal_processing(thermo_db):
+    """Round 58 HIGH-3, INVERTED by the form change.
+
+    The ThermoData form of this entry was refit by process_thermo_data to a hard-coded
+    100-5000 K (thermoengine.py:86-99), so the 6000 K it advertised was never delivered.
+    The justification for that form - that emitting NASA would mean fitting coefficients -
+    was false: for a CONSTANT Cp the coefficients follow algebraically. The entry is now a
+    NASA and the range is real. This is the tripwire against reverting the form."""
     pytest.importorskip('rmgpy.thermo.thermoengine')
     from rmgpy.data.rmg import RMGDatabase
     from rmgpy.thermo import NASA
@@ -710,41 +772,104 @@ def test_the_advertised_6000_K_does_not_survive_normal_processing(thermo_db):
               depository=False, solvation=True, surface=False)
     spc = _species(AR_META, 'Ar(3P2)')
     resolved = full.thermo.get_thermo_data(spc)
+    assert isinstance(resolved, NASA), 'the entry must stay a NASA or the range is lost'
     nasa = process_thermo_data(spc, resolved, thermo_class=NASA)
 
-    assert nasa.Tmin.value_si == pytest.approx(100.0)
-    assert nasa.Tmax.value_si == pytest.approx(5000.0)
-    assert nasa.get_heat_capacity(5000.0) == pytest.approx(2.5 * R, abs=1e-3)
-    with pytest.raises(ValueError):
-        nasa.get_enthalpy(6000.0)
+    assert nasa.Tmax.value_si == pytest.approx(6000.0), (
+        'processing must preserve the declared ceiling; it does that only for a NASA '
+        'whose comment marks it as library-sourced (thermoengine.py:93)')
+    assert nasa.get_heat_capacity(6000.0) == pytest.approx(2.5 * R, abs=1e-3)
+    assert nasa.get_enthalpy(6000.0) / 1000.0 == pytest.approx(1232.7667, abs=1e-2)
+    assert nasa.get_entropy(6000.0) == pytest.approx(230.6254, abs=1e-2)
 
     # and the derived E0 is what reaches the conformer, on this same path
-    assert nasa.E0.value_si / 1000.0 == pytest.approx(1108.0527, abs=1e-3)
-    assert spc.conformer.E0.value_si / 1000.0 == pytest.approx(1108.0527, abs=1e-3)
+    assert nasa.E0.value_si / 1000.0 == pytest.approx(DERIVED_E0, abs=1e-2)
+    assert spc.conformer.E0.value_si / 1000.0 == pytest.approx(DERIVED_E0, abs=1e-2)
     # the degeneracy RMG carries here is NOT the 5 this entry's S298 assumes
     assert spc.conformer.spin_multiplicity == 1
     assert spc.molecule[0].multiplicity == 3
 
 
-def test_raw_thermodata_freezes_entropy_above_its_grid_while_enthalpy_keeps_climbing(entry):
-    """Engine behaviour, not a defect in these numbers, but this file advertises the range
-    so it has to be true about it. At and below 6000 K the entry is right; above it, S stops
-    and H does not, so any free energy built from the pair is wrong and worsens with T.
+def test_being_a_nasa_is_not_enough_the_library_comment_is_the_gate(entry):
+    """The preservation above is gated on a condition that is easy to satisfy by accident
+    and easy to lose (thermoengine.py:93):
 
-    is_temperature_valid is accurate and nothing in the accessor path calls it."""
-    data = entry.data
-    assert data.get_entropy(6000.0) == pytest.approx(230.6353, abs=1e-3)
-    frozen = data.get_entropy(6000.0)
-    for T in (8000.0, 10000.0):
-        assert data.get_entropy(T) == pytest.approx(frozen, abs=1e-6), (
-            'entropy is expected to be frozen above the grid')
-        exact = data.S298.value_si + 2.5 * R * math.log(T / 298.0)
-        assert exact > frozen + 5.0
-        # enthalpy, by contrast, stays correct
-        assert data.get_enthalpy(T) / 1000.0 == pytest.approx(
-            (data.H298.value_si + 2.5 * R * (T - 298.0)) / 1000.0, abs=1e-2)
-    assert data.is_temperature_valid(6000.0) is True
-    assert data.is_temperature_valid(8000.0) is False
+        if "Thermo library" in thermo0.comment and isinstance(thermo0, NASA):
+
+    A bare NASA with no library comment is refit to 100-5000 K regardless of its declared
+    range. Pinned because "it is a NASA, so the range is safe" is the wrong rule."""
+    pytest.importorskip('rmgpy.thermo.thermoengine')
+    import copy
+    from rmgpy.thermo import NASA
+    from rmgpy.thermo.thermoengine import process_thermo_data
+
+    class _Shim(object):
+        def __init__(self):
+            self.thermo = None
+            self.conformer = None
+
+    bare = copy.deepcopy(entry.data)
+    bare.comment = ''
+    refit = process_thermo_data(_Shim(), bare, thermo_class=NASA)
+    assert refit.Tmax.value_si == pytest.approx(5000.0)
+    with pytest.raises(ValueError):
+        refit.get_entropy(6000.0)
+
+    stamped = copy.deepcopy(entry.data)
+    stamped.comment = 'Thermo library: %s' % LIBRARY
+    kept = process_thermo_data(_Shim(), stamped, thermo_class=NASA)
+    assert kept.Tmax.value_si == pytest.approx(6000.0)
+
+
+def test_thermodata_freezes_entropy_whenever_the_last_cp_slope_is_nonpositive(entry):
+    """Round 58 MEDIUM, raised in severity and broadened.
+
+    This entry no longer suffers from it - that is one of the reasons for the NASA form -
+    but the defect is worth pinning because the obvious reading of it is too narrow on two
+    counts. ThermoData freezes S whenever the FINAL Cp SLOPE is nonpositive, which means:
+
+      * it can fire INSIDE a declared Tmax, whenever the tabulated grid ends earlier; and
+      * is_temperature_valid cannot repair it, because that guard tests the DECLARED range,
+        which is not the condition that triggers the freeze.
+
+    A flat Cp - exactly right for any monatomic species - is a nonpositive slope, so this
+    is not an exotic case. Constructed directly on ThermoData so it stays true of the CLASS
+    rather than of this entry."""
+    from rmgpy.thermo import ThermoData
+
+    def _flat(grid, tmax):
+        return ThermoData(
+            Tdata=(list(grid), 'K'),
+            Cpdata=([2.5 * R] * len(grid), 'J/(mol*K)'),
+            H298=(ENTERED_H298, 'kJ/mol'), S298=(ENTERED_S298, 'J/(mol*K)'),
+            Cp0=(2.5 * R, 'J/(mol*K)'), CpInf=(2.5 * R, 'J/(mol*K)'),
+            Tmin=(298.15, 'K'), Tmax=(tmax, 'K'))
+
+    # (a) The grid reaching the declared ceiling: the freeze starts at the ceiling, and
+    #     this reproduces the magnitude quoted in the longDesc.
+    to_6000 = _flat([298.15, 300.0, 400.0, 500.0, 600.0, 800.0, 1000.0,
+                     1500.0, 2000.0, 3000.0, 4000.0, 5000.0, 6000.0], 6000.0)
+    frozen = to_6000.get_entropy(6000.0)
+    for T, expected in ((8000.0, 47.838), (10000.0, 106.180)):
+        assert to_6000.get_entropy(T) == pytest.approx(frozen, abs=1e-6)
+        # H keeps climbing correctly, which is exactly what makes the PAIR wrong.
+        assert to_6000.get_enthalpy(T) > to_6000.get_enthalpy(6000.0)
+        d_gibbs = T * (2.5 * R * math.log(T / 6000.0)) / 1000.0
+        assert d_gibbs == pytest.approx(expected, rel=0.02), (
+            'Gibbs error at %.0f K should be ~%.3f kJ/mol' % (T, expected))
+
+    # (b) The grid ending EARLY: the freeze now fires inside the declared Tmax, and
+    #     is_temperature_valid still says the temperature is fine. This is the part that
+    #     makes the defect broader than "it misbehaves above Tmax".
+    to_3000 = _flat([298.15, 500.0, 1000.0, 2000.0, 3000.0], 6000.0)
+    early_frozen = to_3000.get_entropy(3000.0)
+    for T in (4000.0, 5000.0, 6000.0):
+        assert to_3000.is_temperature_valid(T) is True, (
+            'the guard reports %.0f K as in range' % T)
+        assert to_3000.get_entropy(T) == pytest.approx(early_frozen, abs=1e-6), (
+            'S is frozen at %.0f K despite a declared Tmax of 6000' % T)
+    # ... and the error is already large well inside the advertised range.
+    assert 6000.0 * (2.5 * R * math.log(6000.0 / 3000.0)) / 1000.0 > 80.0
 
 
 def test_three_different_electronic_state_counts_coexist_for_this_species(entry, thermo_db):
@@ -776,3 +901,297 @@ def test_plasma_air_advertises_metastable_quenching_but_carries_no_metastable(pi
     assert '1 Ar u0 p4 c0' in dictionary
     assert '1 Ar u1 p3 c+1' in dictionary
     assert 'u2 p3 c0' not in dictionary
+
+
+# ---- what the channel actually DELIVERS: round-58 HIGH ------------------------------
+#
+# Round 58's central finding, and the reason these tests exist in this shape: the previous
+# rate test inspected the RULE - its rank, its A factor, its provenance - and never carried
+# the reaction through model admission or solver evaluation. A rule-level assertion cannot
+# see a defect that happens after the rule is read, and that is exactly where this one
+# lives. Inspecting the rule is necessary and is not sufficient.
+
+ELECTRON = '1 e u0 p0 c-1\n'
+EV_K = 11604.518          # K per eV
+PUBLISHED_EII_3EV = 2.0583e10   # m^3/(mol*s), published state-resolved argon model
+
+
+@pytest.fixture(scope='module')
+def admitted(pinned):
+    """The one reaction this library unlocks, carried all the way through the model
+    admission path that a real run uses: rate-rule estimate -> fix_barrier_height."""
+    pytest.importorskip('rmgpy.rmg.model')
+    from rmgpy.data.rmg import RMGDatabase
+    from rmgpy.rmg.model import CoreEdgeReactionModel
+
+    db = RMGDatabase()
+    db.load(THIS_DATABASE,
+            thermo_libraries=['primaryThermoLibrary', LIBRARY, CATION_LIBRARY],
+            kinetics_families=[EII], reaction_libraries=[], seed_mechanisms=[],
+            kinetics_depositories=['training'], depository=False, solvation=True,
+            surface=False)
+    fam = db.kinetics.families[EII]
+    try:
+        fam.add_rules_from_training(thermo_database=db.thermo)
+    except Exception:                                            # noqa: BLE001
+        pass
+    fam.fill_rules_by_averaging_up(verbose=True)
+
+    reactions = db.kinetics.generate_reactions_from_families(
+        [_species(AR_META, 'Ar(3P2)')], products=None, only_families=[EII], resonance=True)
+    assert len(reactions) == 1
+    rxn = reactions[0]
+    for s in list(rxn.reactants) + list(rxn.products):
+        if s.is_electron():
+            continue
+        if not s.label:
+            s.label = str(s)
+        s.thermo = db.thermo.get_thermo_data(s)
+
+    cerm = CoreEdgeReactionModel()
+    cerm.kinetics_estimator = 'rate rules'
+    cerm.apply_kinetics_to_reaction(rxn)
+    estimated_class = rxn.kinetics.__class__.__name__
+    estimated_comment = rxn.kinetics.comment
+    rxn.fix_barrier_height(force_positive=True, solvent="")
+    return db, rxn, estimated_class, estimated_comment
+
+
+def test_the_estimate_arrives_as_an_ordinary_arrhenius_with_no_electron_temperature(admitted):
+    """The mechanism of the defect, pinned at its origin.
+
+    A rate-rule estimate is an ArrheniusEP, which fix_barrier_height converts to an ordinary
+    Arrhenius. Neither carries uses_electron_temperature. Only four classes set that flag
+    anywhere in rmgpy/kinetics/arrhenius.pyx, and - measured, not assumed - none of them is
+    a superclass of Arrhenius, so no estimate can ever inherit it."""
+    from rmgpy.kinetics.arrhenius import (Arrhenius, ArrheniusEP, TwoTemperaturePlasma,
+                                          ElectronCollisionPlasma, BadnellRRArrhenius,
+                                          VoronovEIArrhenius)
+    _db, rxn, estimated_class, _comment = admitted
+
+    assert estimated_class == 'ArrheniusEP'
+    assert isinstance(rxn.kinetics, Arrhenius)
+    assert getattr(rxn.kinetics, 'uses_electron_temperature', False) is False, (
+        'an ordinary Arrhenius must not claim electron-temperature dependence')
+
+    flagged = (TwoTemperaturePlasma, ElectronCollisionPlasma, BadnellRRArrhenius,
+               VoronovEIArrhenius)
+    for cls in flagged:
+        assert not issubclass(cls, Arrhenius), (
+            '%s must not be a subclass of Arrhenius, or an estimate could inherit the flag'
+            % cls.__name__)
+    assert not issubclass(ArrheniusEP, Arrhenius)
+
+
+def test_the_barrier_is_set_by_the_mixed_sibling_e0_convention(admitted):
+    """Round 58 correction to the review question, and a finding in its own right.
+
+    fix_barrier_height raises an endothermic barrier to the reaction enthalpy at ZERO K
+    (rmgpy/reaction.py:1401-1403), where a species with no stated E0 falls back to
+    to_wilhoit().E0. PlasmaCationThermo STATES E0 and this library DERIVES it, so the two
+    siblings are read on two different conventions inside a single subtraction, and the
+    inconsistency lands directly in an activation energy.
+
+    The review question expected 406.334 kJ/mol - which is dHrxn(298), the value both
+    conventions agree on. The delivered barrier is 412.5203, and the 6.1863 difference is
+    exactly the cation library's own stated-minus-derived gap."""
+    _db, rxn, _cls, _comment = admitted
+
+    ea = rxn.kinetics.Ea.value_si / 1000.0
+    d_h298 = rxn.get_enthalpy_of_reaction(298.0) / 1000.0
+    assert d_h298 == pytest.approx(406.3340, abs=5e-3)
+    assert ea == pytest.approx(412.5203, abs=5e-3)
+
+    leak = ea - d_h298
+    assert leak == pytest.approx(6.1863, abs=5e-3)
+
+    # ... and that leak is the cation library's collision, not a new number.
+    arp = _db.thermo.libraries[CATION_LIBRARY].entries['[Arp]']
+    stated = arp.data.E0.value_si / 1000.0
+    derived = arp.data.to_wilhoit(B=1000.0).E0.value_si / 1000.0
+    assert stated - derived == pytest.approx(leak, abs=5e-3)
+
+
+def test_the_delivered_rate_is_evaluated_at_the_GAS_temperature(admitted):
+    """The finding the rule-level tests could not see, measured through actual reactor
+    initialisation rather than by reading the rule.
+
+    PlasmaReactor.generate_rate_coefficients branches on
+    getattr(kin, 'uses_electron_temperature', False) (rmgpy/solver/plasma.pyx:875). An
+    estimate has no such attribute, so it falls to the else branch and is evaluated at
+    self.T - the GAS temperature (plasma.pyx:886). An electron-impact ionisation with a
+    412 kJ/mol barrier, evaluated at room temperature, is zero.
+
+    The direction matters: the hazard is NOT that the lithium-anchored placeholder is too
+    large. It is that the delivered number is ~24 orders of magnitude too SMALL and does
+    not depend on Te at all. Re-anchoring the rule would not move it."""
+    pytest.importorskip('rmgpy.solver.plasma')
+    from rmgpy.solver.plasma import PlasmaReactor
+    _db, rxn, _cls, _comment = admitted
+
+    rxn.reversible = False
+    electron = _species(ELECTRON, 'e-')
+    core = list(rxn.reactants) + list(rxn.products) + [electron]
+    seen, uniq = set(), []
+    for s in core:
+        if id(s) not in seen:
+            seen.add(id(s))
+            uniq.append(s)
+    core = uniq
+    for i, s in enumerate(core):
+        s.index = i + 1
+    fractions = {s: (1e-6 if (s.is_electron() or '+' in str(s)) else 1.0) for s in core}
+    total = sum(fractions.values())
+    fractions = {s: v / total for s, v in fractions.items()}
+
+    def delivered(t_gas, te_ev):
+        reactor = PlasmaReactor(T=(t_gas, 'K'), P=(1.0, 'bar'),
+                                initial_mole_fractions=dict(fractions),
+                                Te=(te_ev * EV_K, 'K'), charge_balance_species=electron)
+        reactor.initialize_model(core_species=core, core_reactions=[rxn],
+                                 edge_species=[], edge_reactions=[])
+        reactor.generate_rate_coefficients([rxn], [])
+        return reactor.kf[reactor.reaction_index[rxn]]
+
+    k300_1ev = delivered(300.0, 1.0)
+    k300_3ev = delivered(300.0, 3.0)
+    k1000_1ev = delivered(1000.0, 1.0)
+    k1000_3ev = delivered(1000.0, 3.0)
+
+    # 1. Te does not enter. This is the whole defect in one assertion.
+    assert k300_1ev == k300_3ev, 'tripling Te must not leave the rate unchanged'
+    assert k1000_1ev == k1000_3ev
+
+    # 2. The delivered value tracks the GAS temperature instead.
+    assert k1000_3ev > k300_3ev * 1e40, (
+        'the rate responds to Tgas, which is what proves it is evaluated there')
+    assert k300_3ev == pytest.approx(1.936048e-64, rel=0.05)
+    assert k1000_3ev == pytest.approx(3.665970e-14, rel=0.05)
+
+    # 3. The direction and scale of the error, against a published value at the same Te.
+    assert k1000_3ev < PUBLISHED_EII_3EV
+    orders_low = math.log10(PUBLISHED_EII_3EV / k1000_3ev)
+    assert orders_low > 20.0, (
+        'under-delivered by %.1f orders of magnitude at 1000 K gas' % orders_low)
+
+    # 4. What the same Arrhenius would give if it ever saw the electron temperature.
+    at_te = rxn.kinetics.get_rate_coefficient(3.0 * EV_K)
+    assert at_te > k1000_3ev * 1e19
+
+
+def test_nothing_at_the_point_of_use_says_the_rate_is_a_placeholder(admitted):
+    """The runtime comment on the generated reaction reads 'Exact match', with no mention
+    of rank 10, of the rule being a placeholder, or of lithium. A reader inspecting the
+    generated mechanism sees a confident phrase attached to a rate that is wrong by orders
+    of magnitude. Pinned as disclosure: if the comment ever gains a qualification, this
+    fails and the longDesc paragraph should be revisited with it."""
+    _db, _rxn, _cls, comment = admitted
+    assert 'Exact match' in comment
+    for absent in ('placeholder', 'rank', 'lithium', 'Li', 'estimate'):
+        assert absent not in comment, (
+            'the point-of-use comment now mentions %r - update the disclosure' % absent)
+
+
+# ---- the Q = 0 path, and the save/reload round trip ---------------------------------
+
+def test_an_arkane_structure_only_declaration_reports_ready_with_a_zero_partition_function(entry):
+    """Round 58 HIGH-2, the part that was missing from both the disclosure and the tests.
+
+    Species.has_statmech takes a shortcut for single-atom species (rmgpy/species.py:528):
+    it checks ONLY that conformer.E0 is not None - not that the conformer has modes, and
+    not that spin_multiplicity is physical. An ordinary Arkane structure-only species
+    declaration defaults spin_multiplicity to 0 (arkane/input.py:157). Compose the two and
+    the species reports itself READY while its partition function is exactly zero and its
+    conformer entropy is minus infinity. Nothing raises."""
+    from rmgpy.statmech import Conformer
+
+    spc = _species(AR_META, 'Ar(3P2)')
+    spc.thermo = entry.data
+    e0 = entry.data.to_wilhoit().E0.value_si
+
+    spc.conformer = Conformer(E0=(e0, 'J/mol'), modes=[], spin_multiplicity=0,
+                              optical_isomers=1)
+
+    assert len(spc.molecule[0].atoms) == 1, 'the shortcut only applies to atomics'
+    assert spc.has_statmech() is True, (
+        'this is the defect: a zero-multiplicity, mode-less conformer reports READY')
+
+    for T in (T0, 1000.0):
+        assert spc.conformer.get_partition_function(T) == 0.0
+        assert spc.conformer.get_entropy(T) == float('-inf')
+
+    # The shortcut is what lets it through: with modes required, it would fail.
+    assert spc.conformer.E0 is not None
+    assert spc.conformer.modes == []
+
+
+def test_the_conformer_degeneracy_scales_rates_while_library_entropy_does_not_move(entry):
+    """The three coexisting counts reach calculations rather than sitting in a field.
+    Q is LINEAR in spin_multiplicity, so a TST rate or density of states built from the
+    conformer is wrong by 5x against the g = 5 this entry's S298 asserts, or 5/3 once
+    statmech has run - while get_entropy, which reads the thermo, does not move at all."""
+    from rmgpy.statmech import Conformer
+
+    q = {}
+    for g in (1, 3, 5):
+        c = Conformer(E0=(0.0, 'J/mol'), modes=[], spin_multiplicity=g, optical_isomers=1)
+        q[g] = c.get_partition_function(T0)
+        assert q[g] == pytest.approx(float(g), abs=1e-9)
+
+    assert q[5] / q[1] == pytest.approx(5.0, abs=1e-9)
+    assert q[5] / q[3] == pytest.approx(5.0 / 3.0, abs=1e-9)
+
+    # ... while the library entropy is untouched by any of it.
+    assert entry.data.get_entropy(T0) == pytest.approx(ENTERED_S298, abs=1e-6)
+
+
+def test_the_entry_survives_a_save_reload_round_trip(entry, tmp_path):
+    """The ThermoData branch of the database writer (rmgpy/data/thermo.py:89-99) emits only
+    Tdata/Cpdata/H298/S298/Tmin/Tmax - it DROPS Cp0 and CpInf - so a ThermoData library that
+    was saved and reloaded produced entries whose to_wilhoit() raised AttributeError, while
+    the file on disk looked fine. The NASA branch (thermo.py:113-125) writes both.
+
+    This entry states both and is a NASA, so it round-trips. Pinned because the failure is
+    silent until something calls to_wilhoit, which is the E0 path this entry depends on."""
+    from rmgpy.data.thermo import ThermoLibrary
+
+    original = entry.data
+    assert original.Cp0 is not None and original.CpInf is not None
+
+    out = ThermoLibrary(label=LIBRARY)
+    out.load_entry(index=0, label='Ar(3P2)', molecule=AR_META, thermo=original,
+                   shortDesc=entry.short_desc, longDesc=entry.long_desc)
+    path = str(tmp_path / 'RoundTrip.py')
+    out.save(path)
+
+    from rmgpy.data.thermo import ThermoDatabase
+    contexts = ThermoDatabase()
+    back = ThermoLibrary(label='RoundTrip')
+    back.load(path, contexts.local_context, contexts.global_context)
+    restored = back.entries['Ar(3P2)'].data
+
+    assert restored.Cp0 is not None, 'Cp0 must survive the writer'
+    assert restored.CpInf is not None, 'CpInf must survive the writer'
+    assert restored.to_wilhoit().E0.value_si / 1000.0 == pytest.approx(DERIVED_E0, abs=1e-2)
+    assert restored.Tmax.value_si == pytest.approx(6000.0)
+
+    # The round trip is NOT bit-exact, and the size of the loss is worth knowing. The writer
+    # emits the polynomial through repr(), at SIX significant figures:
+    #
+    #     a6  133267.5845721773  ->  133268
+    #
+    # so H298 comes back 3.45 J/mol high and S298 2.4e-5 J/(mol*K) low. The entropy error is
+    # negligible against anything this entry cares about; the ENTHALPY error is not quite -
+    # 3.45 J/mol exceeds the 1 J/mol (0.001 kJ/mol) precision at which H298 is quoted, and is
+    # comparable to the 3.118 J/mol reference-temperature convention documented elsewhere.
+    #
+    # It does not affect the shipped library, which is hand-maintained and never written by
+    # the writer. It WOULD affect anyone who round-trips this library programmatically, so it
+    # is pinned rather than left to be discovered.
+    assert restored.get_entropy(T0) == pytest.approx(ENTERED_S298, abs=1e-4)
+    assert restored.get_enthalpy(T0) / 1000.0 == pytest.approx(ENTERED_H298, abs=5e-3)
+    d_h = abs(restored.get_enthalpy(T0) - ENTERED_H298 * 1000.0)
+    assert d_h == pytest.approx(3.45, abs=0.5), (
+        'the writer truncates a6 to six significant figures; if this changes, the '
+        'round-trip precision caveat in the longDesc needs revisiting')
+    assert restored.get_entropy(T0) != pytest.approx(ENTERED_S298, abs=1e-9)

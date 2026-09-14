@@ -30,6 +30,16 @@ reports at most one failing node per family and silently never runs the later ch
 > the one genuinely new measurement, and it confirms the reparenting it documents is numerically
 > inert to 1.000000×.
 
+> **STOP — read §11 before acting on anything else in this report.** The producibility audit that
+> §8 listed as outstanding has now been run, and it inverted the premise the whole ticket rests on.
+> **This family's recipe is a no-op: it hands back its own reactants, so the family generates zero
+> reactions.** Not 26 entries with wrong products — the recipe never moves a charge at all, because
+> `LOSE_CHARGE` sets `atom.charge` and `apply_recipe` then re-derives that same charge from the
+> structure the action did not touch. All twelve checks stay green on it, by construction. Nothing
+> below is wrong — the nodes are repaired, the rates are audited, the splits hold — but every one of
+> those statements is about a family that cannot currently react. I have **not** repaired it: §11
+> measures what a repair needs and it is a family redesign, which is yours to direct.
+
 ---
 
 ## 1. The two failures, reproduced before any edit
@@ -637,7 +647,8 @@ convention by 5.6× and 12×.
   `sample_can_react`, is exactly where the H2⁺ defect surfaced — and note that it surfaced only for a
   node whose *sample* the recipe rejected. Entry 2 remains in the training set as a reaction whose
   products this family cannot make, and **no check in the suite catches that**; it is caught here only
-  because §3 went looking. Other training entries have not been audited that way.
+  because §3 went looking. **This item is now closed, and badly: the other 26 entries have since been
+  audited and they are all in the same state, for a reason that is not per-entry. See §11.**
 - Reactor admissibility is untested. I-157 established that loading ≠ admissible: reversible
   Te-dependent recombinations are refused at `initialize_model`. Nothing here was put through a
   reactor.
@@ -708,6 +719,121 @@ under `input/`.**
 
 ---
 
+## 11. STOP — the recipe is inert, and the family generates no reactions
+
+This is the audit §8 listed as open work ("the other training entries have not been audited that
+way"). It was expected to find a handful of entries like entry 2. It found that the question is not
+per-entry.
+
+**Evidence: `probe_producibility.py`, `logs/producibility.stdout.log`, exit status 1.**
+
+### What happens
+
+The recipe is `[['LOSE_CHARGE', '*1', 1], ['GAIN_CHARGE', '*2', 1]]`, and that is the whole of it.
+
+1. `Atom.decrement_charge` / `increment_charge` set `atom.charge` **and touch nothing else**
+   (`molecule.py:538-548`).
+2. `apply_recipe` then calls `struct.update_charge()` on every product structure
+   (`family.py:1547`).
+3. `Atom.update_charge` **re-derives** the charge from the structure
+   (`molecule.py:596-598`):
+
+   ```
+   charge = valence_electrons − bond_order − radical_electrons − 2 × lone_pairs
+   ```
+
+The recipe changed none of the three quantities on the right, so step 3 puts the charge back exactly
+where step 1 found it. The products come out isomorphic to the reactants, and `_create_reaction`
+discards a reaction whose products are the same species as its reactants (`family.py:1757-1759`).
+
+### Measured three ways, independently
+
+| measurement | result |
+|---|---|
+| `apply_recipe` on Li⁺+H⁻, O⁺+O, Ar⁺+N₂ | 3 of 3 return the **reactants verbatim**, charge unmoved |
+| `generate_reactions` on the same three pairs | **0 reactions** each |
+| all 27 training entries through `apply_recipe` | 26 `INERT` (reactants returned), 1 `NO OUTPUT` (entry 2, product count 3 ≠ 2). **`PRODUCIBLE`: 0** |
+
+### This is the family's defect, not RMG's
+
+`probe_producibility.py` parses every recipe under `input/kinetics/families/` on each run rather than
+quoting a tally:
+
+- **20** mainline families use `LOSE_CHARGE` or `GAIN_CHARGE`.
+- **20 of 20** pair it with a structural action — a radical change, a lone-pair change, or a bond
+  change — i.e. with something that moves the electron count the charge is derived from.
+- **0** use charge actions alone.
+
+`Plasma_Radiative_Recombination`, the closest analogue, spells out the convention:
+`[['GAIN_RADICAL', '*1', 1], ['LOSE_CHARGE', '*1', 1]]`. The arriving electron has to be put
+*somewhere* in the structure; declaring the charge is bookkeeping on top of that, not a substitute
+for it.
+
+### Why twelve green checks say nothing about this
+
+`kinetics_check_sample_can_react` is the only check that runs the recipe. It requires that
+`apply_recipe` not raise, not return `None`, and that resonance generation on the output not throw.
+Its own comment is `# Just check none of this throws errors` (`databaseTest.py:1668`). It never
+compares the products to the reactants, so **a no-op recipe passes it by construction**.
+
+Of the other eleven, ten are tree-shape, label or unit checks that never open the training
+depository at all. The eleventh, `kinetics_check_family_electrons_reach_training_reactions`, does —
+and this family declares `electrons = 0`, so the check returns `True` on its first line
+(`databaseTest.py:842-843`) without reading an entry. **No check in the suite ever compares a
+training entry's declared products to what the recipe makes.**
+
+Re-run after this finding: **ALL 12 STILL PASS** (`logs/checks-recheck.stdout.log`). That is the
+finding, not a reassurance.
+
+### What a repair would need — measured, not chosen
+
+For each entry, `probe_producibility.py` computes the change between each reactant species and the
+product species of the same formula, in the four quantities `update_charge` balances, and reads off
+the action set that change implies. The answer is that **one recipe cannot serve this training set**:
+
+| side | distinct action sets | breakdown |
+|---|---|---|
+| cation `*1` | **4** | `GAIN_RADICAL+LOSE_CHARGE` (18 entries) · `LOSE_RADICAL+GAIN_PAIR+LOSE_CHARGE` (5: H₂O⁺, Ar⁺) · `CHANGE_BOND(−1)+GAIN_RADICAL+GAIN_PAIR+LOSE_CHARGE` (3: NO⁺) · `CHANGE_BOND(+1)+LOSE_RADICAL+LOSE_CHARGE` (1: entry 2) |
+| partner `*2` | **2** | `GAIN_RADICAL+LOSE_PAIR+GAIN_CHARGE` (21) · `LOSE_RADICAL+GAIN_CHARGE` (6) |
+
+Two structural obstacles, beyond the count:
+
+- **Ar⁺ → Ar needs the opposite radical action to O⁺ → O.** Ar⁺ is `Ar u1 p3 c+1` and neutral Ar is
+  `Ar u0 p4 c0`: the electron pairs up. O⁺ is `O u1 p2 c+1` and neutral O is `O u2 p2 c0`: the
+  electron stays unpaired. `GAIN_RADICAL` is right for one and wrong for the other, and no single
+  action covers both.
+- **Entries 2, 14, 16, 21 need a bond-order change** (NO⁺ `N#[O+]` → NO `[N]=O`, and entry 2's H₂).
+  `CHANGE_BOND` takes **two** labelled atoms. The template has `*1` and `*2` and they are on
+  different molecules, so the present template cannot express it at all — this is a template change,
+  not just a recipe change.
+
+### I stopped here rather than fixing it
+
+Three reasons, in order:
+
+1. **The stop rule.** A convention/structure mismatch gets reported, not patched — patching it
+   buries the defect. This is that case, one level up from entry 13's `T0`.
+2. **The contract's gate**: "If a node turns out to need a chemistry decision I cannot source, bring
+   the decision to the owner rather than guessing it." Choosing between one recipe with more actions,
+   several narrower families, and "these reactions are not a family" is that decision.
+3. **It is outside the brief**, which was two group nodes and a duplicate rate.
+
+Nothing else in this report is retracted. The nodes are repaired, the rates are audited against
+their primaries, the splits hold. All of it describes a family that cannot presently react.
+
+### What §11 could not reach
+
+- **The reverse family.** `groups.py` sets `reverse = "Plasma_Charge_Transfer_Reverse"` with
+  `own_reverse = False`, so the reverse is a separate object that does not exist in this repository.
+  Whether it carries the same defect is unmeasured.
+- **Whether this family has ever been run.** Generating zero reactions is consistent with never
+  having been exercised in a real job, but this probe cannot establish that, and the campaign's
+  other copies were not checked for it here.
+- **Whether the same defect sits in the other plasma families.** The census above counts recipes, not
+  behaviour, and it covers `input/` — the held-back copies under `docs/` were not swept.
+
+---
+
 ## Files
 
 | path | what |
@@ -725,6 +851,7 @@ under `input/`.**
 | `probe_tanarro.py` | all twelve `[Tanarro2015]` entries audited against Table 1, with the stop rule; provenance counts computed from the full 23-row block |
 | `probe_averaging.py` | **what the new nodes reparent, and what `fill_rules_by_averaging_up` then does about it** |
 | `probe_ozawa_aiken.py` | **`[Aiken2023]` Table 3.16 audited against the primary; `[Ozawa2008]` Table III recorded unreachable and bounded by three surrogates** |
+| `probe_producibility.py` | **§11 — all 27 training entries run through the recipe; the inert-recipe finding, the mainline recipe census, and the per-entry action sets a repair would need** |
 | `run.sh` | runner — pins cwd and `PYTHONPATH`, persists **both** streams per probe |
 | `logs/*.{stdout,stderr}.log` | one pair per measurement |
 | `kT-comparison.png` | k(T) and ratio for the duplicate |
@@ -745,5 +872,7 @@ dying on a `KeyError` — it is an argument about the pre-edit file and says so.
 | `rules-before` | base | `H_ion;H_anion` already collided before this branch; the N-template assignments before `N2_neutral` |
 | `averaging` / `averaging-before` | HEAD / base | the reparenting of training 15/18/19, and the exact-to-averaged demotion with its 1.000000× numeric check |
 | `ozawa-aiken` | HEAD | `[Aiken2023]` three of three verified; `[Ozawa2008]` unreachable, surrogates, and the `300^(n₁−n₂)` bound showing neither split can be overturned |
+| `producibility` | HEAD | **0 of 27 training entries producible; the recipe returns its reactants; `generate_reactions` → 0; 20 of 20 mainline charge recipes pair the action with a structural one** |
+| `checks-recheck` | HEAD | all twelve still pass **after** the producibility finding — the suite cannot see it |
 | `t0` | base | the `[Gupta1990]` `T0` argument |
 | `t0-head` | HEAD | the precondition message, demonstrated |

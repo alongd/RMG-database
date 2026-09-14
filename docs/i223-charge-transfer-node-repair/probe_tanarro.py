@@ -16,12 +16,18 @@ Primary source, read directly (not from a secondary compilation):
 
 WHY THIS PROBE EXISTS, beyond checking digits.
 
-Of the 23 ion-ion neutralization rows in that table, 18 carry the SAME expression,
-2e-7 (Tg/300)^-0.5, and 16 of those cite the same single reference [56] -- Kossyi, Kostinsky,
+Of the 23 ion-ion neutralization rows in that table, 17 carry the SAME expression,
+2e-7 (Tg/300)^-0.5, and 14 of those cite the same single reference [56] -- Kossyi, Kostinsky,
 Matveyev & Silakov, Plasma Sources Sci. Technol. 1 (1992) 207, a kinetic-scheme review rather
-than a measurement of any particular pair.  The rows that differ are exactly the ones with a
-pair-specific source: IN1 1.8e-7 [21], IN4 2.3e-7 [60], IN12 exponent -1 [57], IN17 1e-7 with no
-T dependence, IN23 4e-7 [21].
+than a measurement of any particular pair.  Six rows differ: IN1 1.8e-7 [21], IN4 2.3e-7 [60],
+IN8 2.3e-7 [60], IN12 exponent -1 [57], IN17 1e-7 with no T dependence [56], IN23 4e-7 [21].
+Five of those six carry a pair-specific source; IN17 cites [56] and differs anyway, so "cites
+Kossyi" and "carries the generic value" are counted as separate predicates below.
+
+These counts are DERIVED from the transcribed block in FULL_BLOCK, not asserted in prose. The
+first version of this probe asserted 18 and 16, and both were wrong: IN8 is 2.3e-7 and had been
+miscounted as generic. A hand tally in a comment is not checkable and drifts; this one is
+recomputed on every run.
 
 So where several of these entries agree exactly, that is ONE class estimate quoted several
 times, not several determinations that happen to agree.  The paper gives its own reason for not
@@ -61,10 +67,27 @@ TABLE1 = {
     12: ('IN22', 'H2O+ + OH- -> H2O + OH',   2.0e-7, -0.5, '[56] Kossyi 1992'),
 }
 
-# How many of the 23 rows in that block share the generic value, and how many cite Kossyi for it.
-GENERIC_ROWS_IN_TABLE = 18
-GENERIC_ROWS_CITING_KOSSYI = 16
-TOTAL_IN_ROWS = 23
+# The whole ion-ion neutralization block, all 23 rows, transcribed so the provenance counts below
+# are DERIVED from the table rather than asserted. The first version of this probe asserted them
+# and got them wrong -- 18/16 where the truth is 17/14, because IN8 is 2.3e-7 and was miscounted
+# as generic. Counting in code is the fix; a hand-tallied number in a comment is not checkable.
+#   row -> (A / cm^3 s^-1, exponent on (Tg/300) or None for no T dependence, reference)
+FULL_BLOCK = {
+    'IN1':  (1.8e-7, -0.5, '[21]'),  'IN2':  (2.0e-7, -0.5, '[71]'),
+    'IN3':  (2.0e-7, -0.5, '[72]'),  'IN4':  (2.3e-7, -0.5, '[60]'),
+    'IN5':  (2.0e-7, -0.5, '[56]'),  'IN6':  (2.0e-7, -0.5, '[56]'),
+    'IN7':  (2.0e-7, -0.5, '[56]'),  'IN8':  (2.3e-7, -0.5, '[60]'),
+    'IN9':  (2.0e-7, -0.5, '[56]'),  'IN10': (2.0e-7, -0.5, '[56]'),
+    'IN11': (2.0e-7, -0.5, '[56]'),  'IN12': (2.0e-7, -1.0, '[57]'),
+    'IN13': (2.0e-7, -0.5, '[73]'),  'IN14': (2.0e-7, -0.5, '[56]'),
+    'IN15': (2.0e-7, -0.5, '[56]'),  'IN16': (2.0e-7, -0.5, '[56]'),
+    'IN17': (1.0e-7, None, '[56]'),  'IN18': (2.0e-7, -0.5, '[56]'),
+    'IN19': (2.0e-7, -0.5, '[56]'),  'IN20': (2.0e-7, -0.5, '[56]'),
+    'IN21': (2.0e-7, -0.5, '[56]'),  'IN22': (2.0e-7, -0.5, '[56]'),
+    'IN23': (4.0e-7, -0.5, '[21]'),
+}
+GENERIC = (2.0e-7, -0.5)
+KOSSYI = '[56]'
 
 TOL = 1e-9
 
@@ -86,6 +109,19 @@ def main():
     family = load_family()
     dep = family.get_training_depository()
     by_index = {e.index: e for e in dep.entries.values()}
+
+    # The 12 audited rows and the 23-row block are two transcriptions of the same table. If they
+    # ever disagree, one of them is a typo and every number below is suspect, so check first.
+    inconsistent = [(idx, tag) for idx, (tag, _, a, n, _) in TABLE1.items()
+                    if FULL_BLOCK.get(tag) is None
+                    or abs(FULL_BLOCK[tag][0] - a) / a > 1e-9
+                    or FULL_BLOCK[tag][1] != n]
+    if inconsistent:
+        print('INTERNAL INCONSISTENCY between TABLE1 and FULL_BLOCK: {0}'.format(inconsistent))
+        print('Both transcribe Table 1; one of them is wrong. Fix before trusting any result.')
+        return 2
+    print('TABLE1 (12 audited rows) and FULL_BLOCK (all 23) agree where they overlap.')
+    print('')
 
     missing = sorted(i for i in TABLE1 if i not in by_index)
     if missing:
@@ -148,15 +184,36 @@ def main():
         print('  entry {0:>2}  {1:<6} {2}'.format(idx, TABLE1[idx][0], TABLE1[idx][4]))
 
     print('')
-    print('provenance of the repeated value')
-    print('  {0} of the {1} ion-ion neutralization rows in Table 1 carry 2e-7 (Tg/300)^-0.5;'.format(
-        GENERIC_ROWS_IN_TABLE, TOTAL_IN_ROWS))
-    print('  {0} of those cite one reference, Kossyi 1992, a kinetic-scheme review.'.format(
-        GENERIC_ROWS_CITING_KOSSYI))
-    print('  Rows with a pair-specific source carry pair-specific numbers (IN1, IN4, IN12,')
-    print('  IN17, IN23).  Agreement among the rest is one estimate quoted many times.')
+    print('provenance of the repeated value -- counted from the transcribed block, not asserted')
+    total = len(FULL_BLOCK)
+    generic = [r for r, (a, n, _) in FULL_BLOCK.items() if (a, n) == GENERIC]
+    exceptions = [r for r in FULL_BLOCK if r not in generic]
+    generic_kossyi = [r for r in generic if FULL_BLOCK[r][2] == KOSSYI]
+    generic_other = sorted(set(FULL_BLOCK[r][2] for r in generic if FULL_BLOCK[r][2] != KOSSYI))
+    exc_non_kossyi = [r for r in exceptions if FULL_BLOCK[r][2] != KOSSYI]
+
+    def order(rows):
+        return sorted(rows, key=lambda r: int(r[2:]))
+
+    print('  {0} of the {1} ion-ion neutralization rows carry the generic 2e-7 (Tg/300)^-0.5.'.format(
+        len(generic), total))
+    print('  {0} of those {1} cite one reference, {2} Kossyi 1992, a kinetic-scheme review'.format(
+        len(generic_kossyi), len(generic), KOSSYI))
+    print('  rather than a measurement of any particular ion pair. The other {0} cite {1}.'.format(
+        len(generic) - len(generic_kossyi), ', '.join(generic_other)))
+    print('  the {0} rows that DIFFER: {1}'.format(len(exceptions), ', '.join(order(exceptions))))
+    print('    {0} of those {1} carry a pair-specific source: {2}'.format(
+        len(exc_non_kossyi), len(exceptions),
+        ', '.join('{0} {1}'.format(r, FULL_BLOCK[r][2]) for r in order(exc_non_kossyi))))
+    still_kossyi = [r for r in exceptions if FULL_BLOCK[r][2] == KOSSYI]
+    if still_kossyi:
+        print('    the remaining {0} cite {1} yet still differ: {2} -- so "cites Kossyi" and'.format(
+            len(still_kossyi), KOSSYI, ', '.join(order(still_kossyi))))
+        print('    "carries the generic value" are not the same predicate, and are counted apart.')
     print('  => where two of these entries are merged onto one template node, the merge is')
     print('     lossless because the SOURCE is coarse, not because the tree is right.')
+    print('  The argument rests on the ratio {0}/{1}, not on any single row.'.format(
+        len(generic_kossyi), total))
 
     print('')
     print('rule applied to each mismatch')

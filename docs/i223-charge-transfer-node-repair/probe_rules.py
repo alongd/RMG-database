@@ -9,8 +9,19 @@ then takes entries[0] (rmgpy/data/kinetics/rules.py:151-154).  With equal ranks
 the rank key -- the field that exists to express preference -- discriminates
 nothing and the smaller index wins by accident, silently.
 
-This runs add_rules_from_training + fill_rules_by_averaging_up the way a real
-RMG run does, then reports every rule label holding more than one entry.
+This runs add_rules_from_training and then reports every rule label holding more
+than one entry.
+
+It deliberately STOPS there. A real rate-rules job also calls
+fill_rules_by_averaging_up (rmgpy/rmg/main.py:610), which manufactures derived
+entries for every empty parent template -- 24 exact rule labels become 89 here.
+Those derived entries would swamp the question this probe exists to answer,
+which is which labels hold two entries at equal rank from TRAINING. The
+consequences of the averaging stage are measured separately, in
+probe_averaging.py.
+
+(An earlier version of this docstring claimed both stages ran. Only the first
+does; the claim was wrong and is corrected here rather than quietly dropped.)
 """
 
 import os

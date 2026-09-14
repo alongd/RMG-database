@@ -2,6 +2,8 @@ cwd                = /home/alon/Code/RMG-Py-i223-ct-node-repair
 database.directory = /home/alon/Code/RMG-database-i223-charge-transfer-node-repair/input
 family loaded from  = /home/alon/Code/RMG-database-i223-charge-transfer-node-repair/docs/i154-carry-chemistry/held-back/Plasma_Charge_Transfer
 
+TABLE1 (12 audited rows) and FULL_BLOCK (all 23) agree where they overlap.
+
 idx  row    reaction (as in Table 1)         A source  A entered  n src  n ent     T0 verdict
 ---------------------------------------------------------------------------------------------
 1    IN1    H+ + H- -> 2H                     1.8e-07    1.8e-07   -0.5   -0.5    300 OK
@@ -31,13 +33,17 @@ cited source per row (from Table 1, not from this file):
   entry 11  IN21   [56] Kossyi 1992
   entry 12  IN22   [56] Kossyi 1992
 
-provenance of the repeated value
-  18 of the 23 ion-ion neutralization rows in Table 1 carry 2e-7 (Tg/300)^-0.5;
-  16 of those cite one reference, Kossyi 1992, a kinetic-scheme review.
-  Rows with a pair-specific source carry pair-specific numbers (IN1, IN4, IN12,
-  IN17, IN23).  Agreement among the rest is one estimate quoted many times.
+provenance of the repeated value -- counted from the transcribed block, not asserted
+  17 of the 23 ion-ion neutralization rows carry the generic 2e-7 (Tg/300)^-0.5.
+  14 of those 17 cite one reference, [56] Kossyi 1992, a kinetic-scheme review
+  rather than a measurement of any particular ion pair. The other 3 cite [71], [72], [73].
+  the 6 rows that DIFFER: IN1, IN4, IN8, IN12, IN17, IN23
+    5 of those 6 carry a pair-specific source: IN1 [21], IN4 [60], IN8 [60], IN12 [57], IN23 [21]
+    the remaining 1 cite [56] yet still differ: IN17 -- so "cites Kossyi" and
+    "carries the generic value" are not the same predicate, and are counted apart.
   => where two of these entries are merged onto one template node, the merge is
      lossless because the SOURCE is coarse, not because the tree is right.
+  The argument rests on the ratio 14/23, not on any single row.
 
 rule applied to each mismatch
   below 10x  -> transcription slip; correct the digit in place, record the row.

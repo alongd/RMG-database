@@ -21,6 +21,14 @@ reports at most one failing node per family and silently never runs the later ch
 > **Status: all twelve family checks pass.** The first round of this ticket left
 > `kinetics_check_sample_can_react` red; it was green before the branch, so the branch had traded
 > one red check for another. §3 is the account of how that was found and fixed.
+>
+> **Round 49 changed nothing the branch does.** Every edit in it was to what the branch *says*: a
+> tree change described as narrower than it was (§4), a hand-tallied literature count that was wrong
+> (§6), two ratios quoted from outside the range where they mean anything (§6), and an overclaim
+> about why one merge is harmless (§3). All seven corrections are listed in §9. The code, the
+> twelve checks and every rate are unchanged from the previous head; `logs/averaging.stdout.log` is
+> the one genuinely new measurement, and it confirms the reparenting it documents is numerically
+> inert to 1.000000×.
 
 ---
 
@@ -168,6 +176,14 @@ Deleting the node turns **all twelve family checks green** (`logs/checks-h2del.s
 reasoning above sits in `groups.py` at the node's former position, so the next reader does not
 re-derive it and re-add the node.
 
+One caveat on that gap, because it is presented as a durable marker and is not. Both save paths —
+`KineticsFamily.save_groups` (`family.py:965`) and `Database.save(reindex=True)` (`base.py:371`) —
+go through `Group.get_entries_to_save`, which **renumbers every entry `0..N-1` in tree order**
+(`base.py:295-296`). One save through RMG and this file's authored numbering, gaps and all, is gone.
+The gap means something to a human and nothing to RMG; it is recorded in the comment so the meaning
+survives even when the number does not, and so nobody reads a gap in a machine-written copy of this
+family as evidence that something was deleted.
+
 It is not free, and the first round's stated reason for keeping the node — that dropping it would
 create a second equal-rank duplicate — was **half right**. Training entry 2 does fall back to
 `H_ion;H_anion`, where entry 1 already sits, so the family goes from four colliding template labels
@@ -177,10 +193,13 @@ to five. Two measurements say to accept that anyway:
    `H_ion;H_anion` holding entries 1 and 2 at the branch base. The first round's node was *preventing*
    a collision that had always been there; deleting it restores the base, it does not introduce
    anything.
-2. **The collision is inert.** Entry 2 describes a reaction this family provably cannot generate, so
-   a rule at `H_ion;H_anion` can only ever be applied to H⁺ + H⁻ — which entry 1 describes exactly.
-   Entry 1 winning the tie is the *correct* outcome, not a silent loss. The two rates differ by 1.11×
-   in any case (`logs/collisions.stdout.log`).
+2. **The collision is inert**, for a narrower reason than "nothing else lands there". `H_ion` is a
+   one-atom group, `H u0 p0 c+1`, with no bond constraint, so the template catches any reaction whose
+   `*1` atom is a bare proton. Within *this* training set that is only H⁺ + H⁻, which entry 1
+   describes exactly — but a real run carrying a larger H-bearing cation could reach it too, and I
+   have not checked whether entry 1's rate is right for such a species. What makes the shadowing
+   harmless is not exclusivity; it is that **the two numbers are within 1.11× of each other**
+   (`logs/collisions.stdout.log`), so which one wins cannot change an answer.
 
 ### Training entry 2 is kept, and annotated
 
@@ -219,6 +238,11 @@ The deletion is the chemistry call (§5); this node is the plumbing that makes i
 reason for the other — the deletion would still be right if the tree had already been fine, and this
 node would still be needed if a different fit had won.
 
+`O2_neutral` reparents **exactly one** training reaction, index 21, and leaves nothing empty behind
+it: `NO_ion;O_neutral` still holds training 14, and `Ar_ion;O_neutral` still holds training 20,
+because atomic O continues to descend to `O_neutral` (`logs/averaging.stdout.log`). That is not true
+of the second node, below.
+
 ### `N2_neutral` (index 214, child of `N_neutral`) — independent, and required by the criterion in §6
 
 ```
@@ -228,10 +252,46 @@ node would still be needed if a different fit had won.
 
 Not coupled to anything above. `N_neutral` is `N ux px c0`, so atomic N and N₂ both landed on it, and
 training 22 (O₂⁺ + N) shadowed training 23 (O₂⁺ + N₂). Unlike the O⁻/OH⁻ merges, these two rates are
-genuinely different — both `[Ozawa2008]` Table III, but pair-specific, and **107× apart at 10000 K,
-further apart at every lower temperature** (`logs/collisions.stdout.log`). The merge was discarding a
-real, sourced number. §6 states the criterion that says so; this is the ticket applying it rather
-than stating it and declining to act on it.
+genuinely different — both `[Ozawa2008]` Table III, but pair-specific, and **at least 107× apart
+everywhere both fits are used** (`logs/collisions.stdout.log`; §6 explains why that window and not
+the full declared range). The merge was discarding a real, sourced number. §6 states the criterion
+that says so; this is the ticket applying it rather than stating it and declining to act on it.
+
+#### It moves four training reactions, not one
+
+A node applies to everything that descends to it, so `N2_neutral` picks up **every** reaction whose
+`*2` partner is N₂ — not just the one it was added for. Measured before and after
+(`logs/rules-before.stdout.log`, `logs/rules.stdout.log`):
+
+| training | reaction | template at base | template now |
+|---|---|---|---|
+| 15 | Op_r1 + N2_r2 | `O_atom_ion;N_neutral` | `O_atom_ion;N2_neutral` |
+| 18 | Np_r1 + N2_r2 | `N_atom_ion;N_neutral` | `N_atom_ion;N2_neutral` |
+| 19 | Arp_r1 + N2_r2 | `Ar_ion;N_neutral` | `Ar_ion;N2_neutral` |
+| 23 | O2p_r1 + N2_r2 | `O2_ion;N_neutral` | `O2_ion;N2_neutral` |
+
+Only the last of those was this ticket's target. The other three had no collision at all; they moved
+because that is what adding a tree node does. The earlier draft of this report described the change
+as if it were surgical, which the logs it cites already contradicted.
+
+**The knock-on, and it is the part worth measuring rather than reasoning about.** Those three
+templates held exact rules from training 15, 18 and 19, and now hold nothing exact.
+`fill_rules_by_averaging_up` — which a real rate-rules job always runs (`rmgpy/rmg/main.py:610`) and
+which `probe_rules.py` deliberately does not — fills each empty parent by averaging its children, and
+`N2_neutral` is `N_neutral`'s only child carrying a rule. So each is an average over exactly one
+entry. Measured in `logs/averaging.stdout.log`:
+
+| template | at base | now | k(1000 K) | k(5000 K) | k(10000 K) |
+|---|---|---|---|---|---|
+| `O_atom_ion;N_neutral` | exact, training 15 | averaged over 1 child | 1.000000× | 1.000000× | 1.000000× |
+| `N_atom_ion;N_neutral` | exact, training 18 | averaged over 1 child | 1.000000× | 1.000000× | 1.000000× |
+| `Ar_ion;N_neutral` | exact, training 19 | averaged over 1 child | 1.000000× | 1.000000× | 1.000000× |
+
+**No rate changes value. What changes is provenance** — the kinetics comment goes from *"rate rule
+generated from training reaction 15"* to *"Average of [From training reaction 15 used for
+`O_atom_ion;N2_neutral`]"*. Harmless, and not nothing: a reader auditing where a number came from now
+has one more hop to make, and the averaging stage — 24 exact rule labels become 89
+(`logs/averaging.stdout.log`) — is a behaviour no check reports and no collision count shows.
 
 ---
 
@@ -327,7 +387,8 @@ measurement for every pair (`probe_collisions.py`, `logs/collisions.stdout.log`)
 1. the two reactants are distinguishable by a group RMG's existing atom types can express, **and** the
    family's recipe can process the resulting sample — a node the recipe turns into `None` is not a
    repair, it is §3;
-2. the two rates differ, somewhere in their shared validity range, by more than **4×**.
+2. the two rates differ by more than **4×** *throughout* the window where both fits are actually
+   used — that is, even at the temperature in that window least favourable to splitting.
 
 The 4× is not arbitrary. This ticket measured the disagreement between two independent literature fits
 of the *same* reaction — Gupta R19 vs Ozawa Table III for NO⁺ + O₂ — at **1.9–3.8×** (§5). Below that,
@@ -335,15 +396,36 @@ two rates merged onto one node disagree by less than the source-to-source scatte
 reaction, so splitting buys a distinction the underlying data cannot support. Above it, the merge is
 discarding real information.
 
-| template pair | worst ratio | expressible | verdict | why the verdict holds |
-|---|---|---|---|---|
-| 1 / 2 · H⁺+H⁻ vs H2⁺+H⁻ | 1.11× | **no** | leave merged | recipe cannot process an H2⁺ node (§3) |
-| 9 / 12 · H₂O⁺+O⁻ vs H₂O⁺+OH⁻ | 1.00× | yes | leave merged | **coarse source — expires, see below** |
-| 8 / 10 · O₂⁺+O⁻ vs O₂⁺+OH⁻ | 1.00× | yes | leave merged | **coarse source — expires, see below** |
-| 22 / 23 · O₂⁺+N vs O₂⁺+N₂ | 6.4e18× (107× at 10000 K) | yes | **split** | rates genuinely differ → `N2_neutral`, §4 |
-| 14 / 21 · NO⁺+O vs NO⁺+O₂ | 3.6e27× | yes | **split** | rates genuinely differ → `O2_neutral`, §4 |
+**Which temperatures count, and why it is not the declared range.** Every entry here declares
+`Tmin = 300 K`, but the two `[Ozawa2008]` pairs are hypersonic shock-layer fits with Ea of
+238–424 kJ/mol. At 300 K both sides of each pair evaluate to ~1e-28 cm³/mol·s and their *ratio* runs
+to 6e18 and 3.6e27 — an exponential artefact of extrapolating far below where anyone would use either
+number. An earlier draft of this report quoted those figures as the strength of the case. They are
+arithmetic that favours the conclusion and they are not evidence, so the verdicts are decided on
+5000–10000 K, where both fits are live, and on the **weakest** disagreement in that window rather
+than the strongest.
+
+| template pair | in-window (decides) | declared-range (artefact) | expressible | verdict | why the verdict holds |
+|---|---|---|---|---|---|
+| 1 / 2 · H⁺+H⁻ vs H2⁺+H⁻ | 1.11× | 1.11× | **no** | leave merged | recipe cannot process an H2⁺ node (§3) |
+| 9 / 12 · H₂O⁺+O⁻ vs H₂O⁺+OH⁻ | 1.00× | 1.00× | yes | leave merged | **coarse source — expires, see below** |
+| 8 / 10 · O₂⁺+O⁻ vs O₂⁺+OH⁻ | 1.00× | 1.00× | yes | leave merged | **coarse source — expires, see below** |
+| 22 / 23 · O₂⁺+N vs O₂⁺+N₂ | **107×** | 6.4e18× | yes | **split** | rates genuinely differ → `N2_neutral`, §4 |
+| 14 / 21 · NO⁺+O vs NO⁺+O₂ | **218×** | 3.6e27× | yes | **split** | rates genuinely differ → `O2_neutral`, §4 |
+
+The in-window figures are the minimum over 5000–10000 K, both reached at 10000 K. The Tanarro pairs
+have `Ea = 0` and equal `n`, so their ratio is exactly `A₁/A₂` at every temperature and there is no
+window to argue about.
 
 Zero merged pairs are left that the criterion condemns. Both splits it demands are in the branch.
+
+**How much does the 4× matter?** Not at all, within a wide margin, and that is checkable rather than
+asserted. The largest in-window ratio among the merges is **1.11×**; the smallest among the splits is
+**107×**. **Any threshold strictly between those gives the same five verdicts — a factor-of-96
+window**, and 4× sits inside it with two orders of magnitude of room on either side. The probe
+computes and prints that interval on every run (`logs/collisions.stdout.log`), so if a future entry
+narrows it, the criterion stops looking robust in the same place it is stated. A threshold that only
+worked at one value would be a fudge; this one is not load-bearing.
 
 ### The two "lossless" merges are lossless because the *source* is coarse — and that expires
 
@@ -355,12 +437,23 @@ primary document rather than concluding the tree was right.
 [europepmc.org/articles/PMC4685741](https://europepmc.org/articles/PMC4685741), section "Ion-ion
 neutralization", rows IN1–IN23:
 
-- **18 of the 23 rows carry the identical `2×10⁻⁷ (Tg/300)^−0.5`**, and **16 of those cite one
+- **17 of the 23 rows carry the identical `2×10⁻⁷ (Tg/300)^−0.5`**, and **14 of those cite one
   reference** — [56] Kossyi, Kostinsky, Matveyev & Silakov, *Plasma Sources Sci. Technol.* **1** (1992)
-  207, a kinetic-scheme review, not a measurement of any particular ion pair.
-- The rows that *differ* are exactly the ones with a pair-specific source: IN1 `1.8e-7` [21], IN4
-  `2.3e-7` [60], IN12 exponent −1 [57], IN17 `1e-7` with no T dependence, IN23 `4e-7` [21]. The table
-  carries pair-specific values wherever the authors had them.
+  207, a kinetic-scheme review, not a measurement of any particular ion pair. (The other three cite
+  [71], [72] and [73], each quoting the same generic value.)
+- **Six rows differ**: IN1 `1.8e-7` [21], IN4 `2.3e-7` [60], IN8 `2.3e-7` [60], IN12 exponent −1 [57],
+  IN17 `1e-7` with no T dependence [56], IN23 `4e-7` [21]. Five of the six carry a pair-specific
+  source — the table carries pair-specific values wherever the authors had them. IN17 is the
+  exception that cites [56] and differs anyway, so *"cites Kossyi"* and *"carries the generic value"*
+  are separate predicates and are counted separately.
+
+> An earlier draft of this report said 18 and 16. Both were wrong: **IN8 is `2.3e-7`**, not the
+> generic value, and I had miscounted it. The conclusion is unaffected — 14 of 23 rows still trace to
+> one review, and the four entries this bears on (8, 9, 10, 12 → rows IN13, IN15, IN20, IN22) all sit
+> in the generic 17 either way. The counts are now **recomputed from the transcribed block on every
+> run** of `probe_tanarro.py` rather than tallied by hand in prose, and the probe cross-checks its
+> 12-row audit table against its 23-row block and refuses to run if they disagree. A number in a
+> comment is not checkable; this one is.
 - The authors say why they did not refine the rest: *"Other mechanisms such as electron impact
   neutralization and ion-ion recombination are also considered, but their importance is orders of
   magnitude lower"*, and *"The relevance of the negative ion processes in the global chemistry of the
@@ -527,7 +620,22 @@ changes but the `T0` finding does not — the bare-`T` form of the table is unam
 | `N2_neutral` added | second tree change, outside the brief entirely | yours, this round — the criterion in §6 condemns the merge at 107× |
 | training entry 2 annotated, not deleted | training-data edit outside the brief | yours, this round — unique rate, no fallback, unlike entry 17 |
 | training entry 1 `A` corrected 1.88e-7 → 1.8e-7 | training-data edit outside the brief | yours, this round |
-| all twelve `[Tanarro2015]` entries audited | source verification outside the brief | yours, this round |
+| all twelve `[Tanarro2015]` entries audited | source verification outside the brief | yours, round 47 |
+
+### Corrections this round (49) made to the branch's own record
+
+None of these changed what the branch does; all of them changed what it says. Listed separately from
+the deviations above because they are my errors, not decisions.
+
+| corrected | was | is |
+|---|---|---|
+| §4 · what `N2_neutral` moves | described as splitting training 22/23 | it also reparents 15, 18 and 19, and demotes three templates from exact to averaged — §4, measured in `logs/averaging.stdout.log` |
+| §6 · Tanarro provenance count | 18 generic rows, 16 citing Kossyi | **17 and 14**; IN8 is `2.3e-7`. Now computed by the probe, not tallied in prose |
+| §6 · the ratios quoted for the splits | 6.4e18× and 3.6e27× | **107× and 218×**; the large figures are 300 K extrapolation of shock-layer fits and are labelled as artefacts |
+| §6 · threshold justification | 4× asserted from the scatter measurement | the same, plus the **interval (1.11×, 107×)** over which the verdicts are unchanged, computed per run |
+| §3 · why the `H_ion;H_anion` merge is harmless | "can only ever be applied to H⁺ + H⁻" | `H_ion` is an unconstrained one-atom group; it is harmless because the two rates are within 1.11×, not because nothing else matches |
+| `probe_rules.py` docstring | claimed it ran `fill_rules_by_averaging_up` | it does not, and says so; the averaging stage is measured in `probe_averaging.py` |
+| `groups.py` · "index 102 left unused" | presented as durable | any save through RMG renumbers every entry `0..N-1` (`base.py:295-296`); the gap is for humans only |
 
 ---
 
@@ -565,7 +673,8 @@ under `input/`.**
 | `probe_t0.py` | the `T0` error in both `[Gupta1990]` entries, and the Langevin comparison |
 | `probe_rules.py` | template each training reaction resolves to; equal-rank collisions |
 | `probe_collisions.py` | **the split criterion, applied to all five collisions with rate ratios and source provenance** |
-| `probe_tanarro.py` | **all twelve `[Tanarro2015]` entries audited against Table 1, with the stop rule** |
+| `probe_tanarro.py` | all twelve `[Tanarro2015]` entries audited against Table 1, with the stop rule; provenance counts computed from the full 23-row block |
+| `probe_averaging.py` | **what the new nodes reparent, and what `fill_rules_by_averaging_up` then does about it** |
 | `run.sh` | runner — pins cwd and `PYTHONPATH`, persists **both** streams per probe |
 | `logs/*.{stdout,stderr}.log` | one pair per measurement |
 | `kT-comparison.png` | k(T) and ratio for the duplicate |
@@ -583,6 +692,7 @@ dying on a `KeyError` — it is an argument about the pre-edit file and says so.
 | `checks-h2kept` | first round's HEAD | `sample_can_react` red — the regression |
 | `checks-h2del` / `nodes-h2del` / `rules-h2del` | deletion variant, in isolation | all twelve green; the `H_ion;H_anion` collision returning |
 | `after` / `checks-after` / `rules` / `collisions` / `tanarro` / `candidates` / `parent` | HEAD | the final state |
-| `rules-before` | base | `H_ion;H_anion` already collided before this branch |
+| `rules-before` | base | `H_ion;H_anion` already collided before this branch; the N-template assignments before `N2_neutral` |
+| `averaging` / `averaging-before` | HEAD / base | the reparenting of training 15/18/19, and the exact-to-averaged demotion with its 1.000000× numeric check |
 | `t0` | base | the `[Gupta1990]` `T0` argument |
 | `t0-head` | HEAD | the precondition message, demonstrated |

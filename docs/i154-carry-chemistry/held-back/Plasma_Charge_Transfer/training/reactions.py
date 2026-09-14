@@ -39,22 +39,24 @@ the ratio the split criterion tests moves only by 300^(n1-n2). Under the wrong c
 splits fall to 22.2x and 48.1x, still far above the 4x criterion. See
 docs/i223-charge-transfer-node-repair/probe_ozawa_aiken.py.
 
-BEFORE TRUSTING ANY RATE BELOW, KNOW THAT NONE OF THEM IS CURRENTLY REACHABLE (I-223).
-The family's recipe is charge-only -- LOSE_CHARGE *1, GAIN_CHARGE *2 -- and a charge-only recipe
-cannot move a charge in RMG. LOSE_CHARGE sets atom.charge and nothing else (molecule.py:538-548);
-apply_recipe then calls update_charge() on every product (family.py:1547), which re-derives the
-charge as valence - bonds - radicals - 2*lone_pairs (molecule.py:596-598) and so puts it straight
-back. Measured: all 27 entries below come out of apply_recipe as their own reactants, and
-generate_reactions returns ZERO reactions. All twelve family checks pass anyway, because the only
-one that runs the recipe, kinetics_check_sample_can_react, checks that nothing throws and never
-compares products to reactants. Every mainline family that uses a charge action -- 20 of them --
-pairs it with a radical, lone-pair or bond action; this is the only recipe in the repository that
-does not. The rates below are still correct transcriptions of their sources, and the audits of
-them still stand; they are simply attached to a family that does not presently react. The repair
-is a family redesign and is the owner's call: the 27 entries need 4 distinct cation-side action
-sets and 2 partner-side ones, and 4 of them need a bond-order change that a two-label template
-cannot express at all. See docs/i223-charge-transfer-node-repair/probe_producibility.py and
-report.md section 11.
+THIS SET WAS 27 ENTRIES AND IS NOW 15 (I-223). The twelve that left are in
+training/reactions-unrepresentable.py, with the reason for each; that file is never loaded.
+
+The family's recipe used to be charge-only -- LOSE_CHARGE *1, GAIN_CHARGE *2 -- and a charge-only
+recipe cannot move a charge in RMG, because apply_recipe re-derives every product's charge from a
+structure the action never touched (molecule.py:596-598, family.py:1547). The family generated
+ZERO reactions while all twelve checks passed. The recipe is now
+GAIN_RADICAL *1 + GAIN_RADICAL *2 + LOSE_PAIR *2, with no charge action at all, and the two root
+templates are narrowed to the structures that recipe can process without raising. Measured after
+the change: 45 reactions generated over the training set's own species, all 15 entries below
+reproduced with their declared products, none reproduced wrongly, zero crashes.
+
+The rates were never the problem and none of the audits below is retracted. What changed is which
+of them the family can reach. Numbering is unchanged and therefore now has gaps -- the gaps are
+the entries that moved out, and they are deliberate, but see the note on index 102 in groups.py:
+any save through RMG renumbers everything and the gaps will not survive it.
+See docs/i223-charge-transfer-node-repair/{probe_producibility.py,probe_grammar.py,probe_narrow.py}
+and report.md sections 11 and 12.
 
 [Tanarro2015] has (I-223). All twelve entries, indices 1-12, were audited row by row against
 Table 1 of the open author manuscript (europepmc.org/articles/PMC4685741) -- reaction, A,
@@ -111,52 +113,6 @@ value it gives most of the block.
 )
 
 entry(
-    index = 2,
-    label = "H2p_r1 + H-_r2 <=> H2 + H",
-    degeneracy = 1,
-    kinetics=Arrhenius(A=(2.0e-7, 'cm^3/(molecule*s)'), n=-0.5, Ea=(0.0, 'kJ/mol'),
-                       T0=(300, 'K'), Tmin=(300, 'K'), Tmax=(10000, 'K')),
-    rank = 6,
-    shortDesc = u"[Tanarro2015]",
-    longDesc = u"""
-Table 1, IN2
-
-This reaction is NOT a member of this family, and I-223 kept the entry anyway. Deliberately.
-
-The recipe here only moves charge -- LOSE_CHARGE on *1, GAIN_CHARGE on *2 -- and has no
-bond-forming action. H2+ cannot be written with a bond at all (its one-electron bond has no
-integer order), so the dictionary writes H2p_r1 as two unbonded atoms, `[H+].[H]`; applying the
-recipe to that gives `[H].[H]`, two separate H atoms, never the bonded H2 this reaction produces.
-apply_recipe returns None on it (logs/h2-recipe.stdout.log). This is mutual neutralisation
-followed by recombination and it belongs in a library, not in a charge-transfer family.
-
-Amended (I-223, producibility audit): this entry is NOT the exception it was written up as. It is
-the only one apply_recipe returns None for -- the other 26 it accepts and hands back unchanged --
-but none of the 27 is producible, for the reason in the header note above. What is specific to
-this entry is the bond, not the charge: even a recipe that correctly neutralised H2+ would still
-have to FORM the H-H bond, and no other entry here needs that. The paragraph below about why it
-is kept rather than deleted is unaffected.
-The H2_ion group node that used to try to host it was removed by I-223 for the same reason; see
-the comment at its former position in groups.py.
-
-It is kept, where the duplicate at index 17 was deleted, because the two cases are not alike:
-index 17 was a rival fit for a reaction this family DOES cover, so deleting it lost nothing that
-could not be recovered from the surviving entry. This is the only sourced rate in the repo for
-H2+ + H-, so deleting it would destroy information with no fallback.
-
-It is inert where it sits, and the reason is narrower than "nothing else can land there". It
-resolves to the template H_ion;H_anion, where entry 1 wins the rank-6 tie on the lower index.
-H_ion is a one-atom group, `H u0 p0 c+1`, with no bond constraint, so the template catches any
-reaction whose *1 atom is a bare proton -- within THIS training set that is only H+ + H-, which
-entry 1 describes exactly, but a real run carrying a larger H-bearing cation could reach it too.
-What makes the shadowing harmless is not that nothing else matches; it is that the number being
-shadowed is within 1.1x of the one that wins (logs/collisions.stdout.log), so the choice between
-them cannot change an answer either way. Whether entry 1's H+ + H- rate is the right value for
-some larger cation that descends to H_ion is a separate question this ticket did not examine.
-"""
-)
-
-entry(
     index = 3,
     label = "Op_r1 + H-_r2 <=> O + H",
     degeneracy = 1,
@@ -179,19 +135,6 @@ entry(
     shortDesc = u"[Tanarro2015]",
     longDesc = u"""
 Table 1, IN5
-"""
-)
-
-entry(
-    index = 5,
-    label = "H2Op_r1 + H-_r2 <=> H2O + H",
-    degeneracy = 1,
-    kinetics=Arrhenius(A=(2.0e-7, 'cm^3/(molecule*s)'), n=-0.5, Ea=(0.0, 'kJ/mol'),
-                       T0=(300, 'K'), Tmin=(300, 'K'), Tmax=(10000, 'K')),
-    rank = 6,
-    shortDesc = u"[Tanarro2015]",
-    longDesc = u"""
-Table 1, IN7
 """
 )
 
@@ -235,19 +178,6 @@ Table 1, IN13
 )
 
 entry(
-    index = 9,
-    label = "H2Op_r1 + O-_r2 <=> H2O + O",
-    degeneracy = 1,
-    kinetics=Arrhenius(A=(2.0e-7, 'cm^3/(molecule*s)'), n=-0.5, Ea=(0.0, 'kJ/mol'),
-                       T0=(300, 'K'), Tmin=(300, 'K'), Tmax=(10000, 'K')),
-    rank = 6,
-    shortDesc = u"[Tanarro2015]",
-    longDesc = u"""
-Table 1, IN15
-"""
-)
-
-entry(
     index = 10,
     label = "O2p_r1 + OH-_r2 <=> O2 + OH",
     degeneracy = 1,
@@ -274,141 +204,10 @@ Table 1, IN21
 )
 
 entry(
-    index = 12,
-    label = "H2Op_r1 + OH-_r2 <=> H2O + OH",
-    degeneracy = 1,
-    kinetics=Arrhenius(A=(2.0e-7, 'cm^3/(molecule*s)'), n=-0.5, Ea=(0.0, 'kJ/mol'),
-                       T0=(300, 'K'), Tmin=(300, 'K'), Tmax=(10000, 'K')),
-    rank = 6,
-    shortDesc = u"[Tanarro2015]",
-    longDesc = u"""
-Table 1, IN22
-"""
-)
-
-entry(
-    index = 13,
-    label = "O2p_r1 + O_r2 <=> O2 + Op",
-    degeneracy = 1,
-    kinetics=Arrhenius(A=(2.92e18, 'cm^3/(mol*s)'), n=-1.11, Ea=(55650, 'cal/mol'),
-                       T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(10000, 'K')),
-    rank = 6,
-    shortDesc = u"[Gupta1990]",
-    longDesc = u"""
-Table II, R11:  2.92e18 T^-1.11 exp(-2.8e4/T) cm^3/(mol*s).
-
-T0 is 1 K, not 300 K: Gupta's Table II is a bare-T fit and A here is his Cf verbatim.
-It carried T0 = 300 K until I-223, which made every k it returned 300^1.11 = 561x too
-high. Ea = 55650 cal/mol is theta_d = 2.8e4 K (Ea/R = 28004 K).
-"""
-)
-
-entry(
-    index = 14,
-    label = "NOp_r1 + O_r2 <=> NO + Op",
-    degeneracy = 1,
-    kinetics=Arrhenius(A=(2.76e13, 'cm^3/(mol*s)'), n=0.01, Ea=(424.0, 'kJ/mol'),
-                       T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(10000, 'K')),
-    rank = 6,
-    shortDesc = u"[Ozawa2008]",
-    longDesc = u"""
-Table III
-"""
-)
-
-entry(
     index = 15,
     label = "Op_r1 + N2_r2 <=> N2p + O",
     degeneracy = 1,
     kinetics=Arrhenius(A=(9.1e13, 'cm^3/(mol*s)'), n=0.36, Ea=(189.6, 'kJ/mol'),
-                       T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(10000, 'K')),
-    rank = 6,
-    shortDesc = u"[Ozawa2008]",
-    longDesc = u"""
-Table III
-"""
-)
-
-entry(
-    index = 16,
-    label = "NOp_r1 + N_r2 <=> NO + Np",
-    degeneracy = 1,
-    kinetics=Arrhenius(A=(1.11e15, 'cm^3/(mol*s)'), n=-0.02, Ea=(507.7, 'kJ/mol'),
-                       T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(10000, 'K')),
-    rank = 6,
-    shortDesc = u"[Ozawa2008]",
-    longDesc = u"""
-Table III
-"""
-)
-
-# Index 17 deleted by I-223. It was a duplicate of index 21 below: the same reaction,
-# NOp_r1 + O2_r2 <=> O2p + NO, at the same rank 6, from [Gupta1990] Table II R19. See the
-# longDesc at the top of this file for the evidence behind keeping the [Ozawa2008] fit.
-# The index is deliberately left unused rather than renumbering the entries after it.
-
-entry(
-    index = 18,
-    label = "Np_r1 + N2_r2 <=> N2p + N",
-    degeneracy = 1,
-    kinetics=Arrhenius(A=(6.99e6, 'cm^3/(mol*s)'), n=1.47, Ea=(26090, 'cal/mol'),
-                       T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(10000, 'K')),
-    rank = 6,
-    shortDesc = u"[Aiken2023]",
-    longDesc = u"""
-Table 3.16
-"""
-)
-
-entry(
-    index = 19,
-    label = "Arp_r1 + N2_r2 <=> Ar + N2p",
-    degeneracy = 1,
-    kinetics=Arrhenius(A=(1.55e13, 'cm^3/(mol*s)'), n=0.50, Ea=(0.0, 'cal/mol'),
-                       T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(10000, 'K')),
-    rank = 6,
-    shortDesc = u"[Aiken2023]",
-    longDesc = u"""
-Table 3.16
-"""
-)
-
-entry(
-    index = 20,
-    label = "Arp_r1 + O_r2 <=> Ar + Op",
-    degeneracy = 1,
-    kinetics=Arrhenius(A=(3.85e12, 'cm^3/(mol*s)'), n=0.0, Ea=(0.0, 'cal/mol'),
-                       T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(10000, 'K')),
-    rank = 6,
-    shortDesc = u"[Aiken2023]",
-    longDesc = u"""
-Table 3.16
-"""
-)
-
-entry(
-    index = 21,
-    label = "NOp_r1 + O2_r2 <=> O2p + NO",
-    degeneracy = 1,
-    kinetics=Arrhenius(A=(2.4e13, 'cm^3/(mol*s)'), n=0.41, Ea=(271.1, 'kJ/mol'),
-                       T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(10000, 'K')),
-    rank = 6,
-    shortDesc = u"[Ozawa2008]",
-    longDesc = u"""
-Table III.
-
-The surviving fit for this reaction; a rival [Gupta1990] Table II R19 copy sat at index 17
-at the same rank until I-223 deleted it. Ea = 271.1 kJ/mol is the endothermicity
-IE(O2) - IE(NO) = 12.0697 - 9.2642 eV = 270.7 kJ/mol, and A*T^n stays within 0.55-2.3x of
-the Langevin capture rate for NO+ + O2 (4.5e14 cm^3/(mol*s)) over 300-10000 K.
-"""
-)
-
-entry(
-    index = 22,
-    label = "O2p_r1 + N_r2 <=> Np + O2",
-    degeneracy = 1,
-    kinetics=Arrhenius(A=(8.67e13, 'cm^3/(mol*s)'), n=0.14, Ea=(237.8, 'kJ/mol'),
                        T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(10000, 'K')),
     rank = 6,
     shortDesc = u"[Ozawa2008]",

@@ -13,31 +13,110 @@ template(reactants=["A", "B"], products=["A-", "B+"], ownReverse=False)
 
 reverse = "Plasma_Charge_Transfer_Reverse"
 
-reversible = True
+# reversible was True until I-223. It is False because RMG generates the reverse direction from a
+# template this file cannot author, and that reverse crashes.
+#
+# generate_reactions runs the reverse whenever `not own_reverse and reversible`
+# (family.py:1882-1891), using `reverse_template`. For this family that template is not written
+# anywhere -- RMG FABRICATES it by applying the recipe to the root groups, which is where the
+# `A-` and `B+` named in template() above come from. So the reverse admits whatever the forward
+# roots produce, and nothing in this file can narrow it.
+#
+# Measured: the reverse applies LOSE_RADICAL to *1, and on O+ (`O u1 p2 c+1`) that gives
+# `O u0 p2 c+2` -- an O++ with no atom type -- so generate_reactions raises AtomTypeError and takes
+# the job with it. Two of 91 reactant pairs drawn from this family's own training set crash that
+# way, and one of them IS training entry 7 (O+ + O- -> O + O), so the family could not even
+# reproduce its own entry. With reversible = False: 0 crashes, 45 reactions, 15 of 15 entries
+# reproduced. See logs/generate.stdout.log.
+#
+# What this COSTS, stated plainly: RMG will not construct the reverse of these reactions. That is
+# tolerable here only because this family already declares its reverse to be a DIFFERENT family
+# (`reverse = "Plasma_Charge_Transfer_Reverse"`, below) -- and that family does not exist in this
+# repository, so the reverse chemistry is currently UNREPRESENTED rather than handled elsewhere.
+# If the reverse family is ever written, revisit this line first.
+reversible = False
 allowChargedSpecies = True
 electrons = 0
 
-# THIS RECIPE DOES NOTHING, and that is measured, not suspected (I-223).
-# LOSE_CHARGE/GAIN_CHARGE set atom.charge and touch nothing else (molecule.py:538-548).
-# apply_recipe then calls update_charge() on each product (family.py:1547), which re-derives
-# charge = valence - bonds - radicals - 2*lone_pairs (molecule.py:596-598) -- none of which this
-# recipe changed -- so the charge returns to where it started. The products come back isomorphic
-# to the reactants and _create_reaction discards them (family.py:1757-1759): the family generates
-# ZERO reactions. All twelve checks pass regardless; the only one that runs the recipe merely
-# checks that nothing throws.
-# Every one of the 20 mainline families using a charge action pairs it with a radical, lone-pair
-# or bond action. This is the only recipe in the repository that does not.
-# Do NOT just bolt GAIN_RADICAL on: Ar+ -> Ar pairs the electron up (LOSE_RADICAL + GAIN_PAIR)
-# while O+ -> O leaves it unpaired (GAIN_RADICAL), and NO+ -> NO needs a bond-order change that
-# two labels on two different molecules cannot express. The training set needs 4 distinct
-# cation-side action sets and 2 partner-side ones.
-# Evidence and the full per-entry table: docs/i223-charge-transfer-node-repair/probe_producibility.py,
-# logs/producibility.stdout.log, report.md section 11. Left unrepaired deliberately -- it is a
-# family redesign and a chemistry decision, which the contract routes to the owner.
+# THERE IS NO CHARGE ACTION IN THIS RECIPE, AND THAT IS DELIBERATE (I-223).
+#
+# The previous recipe was ['LOSE_CHARGE','*1',1] + ['GAIN_CHARGE','*2',1] and it did NOTHING.
+# An atom's charge is DERIVED, not stored: LOSE_CHARGE/GAIN_CHARGE set atom.charge and touch
+# nothing else (molecule.py:538-548), and apply_recipe then calls update_charge() on every product
+# (family.py:1547), which recomputes charge = valence - bonds - radicals - 2*lone_pairs
+# (molecule.py:596-598). None of those three moved, so the charge went straight back and the
+# products came out isomorphic to the reactants; _create_reaction discards those
+# (family.py:1757-1759) and the family generated ZERO reactions.
+#
+# So to move an electron you must move it in the STRUCTURE and let update_charge derive the
+# charge. Measured over the whole nine-action grammar (probe_grammar.py): GAIN_RADICAL is the only
+# single-atom action that moves exactly one electron; GAIN_PAIR/LOSE_PAIR move two; the bond
+# actions move one onto each of two atoms and need a second label; the two charge actions move
+# none. Hence:
+#
+#     *1 accepts the electron as an unpaired radical   -> GAIN_RADICAL *1
+#     *2 donates one by breaking a lone pair           -> GAIN_RADICAL *2 + LOSE_PAIR *2
+#
+# This is one of exactly four possible two-label recipes, and it is the one that serves the most
+# training entries -- 16 of 27 before the templates were narrowed for crash-safety, 15 after.
+# The other three, and the eleven entries that no recipe in the grammar can serve, are in
+# report.md section 12. Do not "generalise" this recipe: LOSE_RADICAL on a closed-shell atom
+# RAISES ActionError rather than misbehaving, which is why one recipe cannot cover the rest.
 recipe(actions=[
-    ['LOSE_CHARGE', '*1', 1],
-    ['GAIN_CHARGE', '*2', 1],
+    ['GAIN_RADICAL', '*1', 1],
+    ['GAIN_RADICAL', '*2', 1],
+    ['LOSE_PAIR', '*2', 1],
 ])
+
+# Forbidden products. THESE MUST CARRY THE RECIPE'S ATOM LABELS OR THEY SILENTLY NEVER FIRE.
+# Measured (probe_grammar.py, and report.md section 12): an UNLABELLED forbidden group returns
+# True from is_molecule_forbidden when called on a label-free molecule, and False on the same
+# molecule at generation time, because the product still carries *1/*2 there. The unlabelled form
+# blocks nothing at all; the labelled form blocks correctly. apply_recipe's own docstring hints at
+# this ("product atom labels ... to assist in identifying forbidden structures") but nothing
+# enforces it, so an unlabelled entry here looks like a guard and is not one.
+#
+# What they are for: an RMG group constrains ATOMS, not the net charge of a MOLECULE. Root B below
+# therefore matches a neutral atom sitting inside a cation -- the nitrogen of NO+, the neutral
+# oxygen of O2+ -- and without these the family generates cation + cation "charge transfer",
+# 19 of 82 reactions, producing dications like [O+][O+]. With them: 0 of 45.
+forbidden(
+    label = "like_charge_transfer_star1",
+    group =
+"""
+1 *1 R ux px c[+1,+2,+3,+4] {2,[S,D,T,Q]}
+2    R ux px c[+1,+2,+3,+4] {1,[S,D,T,Q]}
+""",
+    shortDesc = u"""Two bonded cations in a product: the donor was itself a cation.""",
+)
+
+forbidden(
+    label = "like_charge_transfer_star2",
+    group =
+"""
+1 *2 R ux px c[+1,+2,+3,+4] {2,[S,D,T,Q]}
+2    R ux px c[+1,+2,+3,+4] {1,[S,D,T,Q]}
+""",
+    shortDesc = u"""As above, with the label on the donor atom.""",
+)
+
+forbidden(
+    label = "excited_O2_cation",
+    group =
+"""
+1 *2 O u2 p1 c+1 {2,[S,D,T,Q]}
+2    R ux px cx  {1,[S,D,T,Q]}
+""",
+    shortDesc = u"""O2+ in the state this recipe would otherwise make it in.""",
+    longDesc = u"""
+O2 donating from a lone pair gives `O u2 p1 c+1`, but O2+ ground state is `O u0 p2 c+1` bonded to
+`O u1 p2 c0` -- the electron O2 actually loses is an unpaired one, which is LOSE_RADICAL, a
+different recipe. Without this entry the family generates the reverse of training entry 13
+(O+ + O2 -> O + O2+) with a wrong-state O2+: green, and wrong. Measured: it is the only such case
+left once the roots are narrowed, and blocking it takes the wrongly-served training entries from
+1 to 0 at a cost of 18 of 63 generated reactions.
+""",
+)
 
 # Root Definitions
 
@@ -46,7 +125,7 @@ entry(
     label = "A",
     group =
 """
-1 *1 R ux px c[+1,+2,+3,+4]
+1 *1 R ux p[0,2] c[+1,+2,+3,+4]
 """,
     kinetics = None,
 )
@@ -56,7 +135,7 @@ entry(
     label = "B",
     group =
 """
-1 *2 R ux px c[0,-1,-2,-3,-4]
+1 *2 R u[0,1] p[1,2,3,4] c[0,-1,-2,-3,-4]
 """,
     kinetics = None,
 )
@@ -82,53 +161,7 @@ entry(
     label = "O_cation",
     group =
 """
-1 *1 O ux px c+1
-""",
-    kinetics = None,
-)
-
-entry(
-    index = 12,
-    label = "N_cation",
-    group =
-"""
-1 *1 N ux px c+1
-""",
-    kinetics = None,
-)
-
-# The charge-specific `Ar+` is listed first on purpose, and generic `Ar` is kept after it.
-#
-# `pick_wildcards` takes the *first* atomtype when it builds the sample molecule
-# (rmgpy/molecule/group.py:2857). Neither `He` nor `Ne` has a charged subtype or any `lone_pairs`
-# of its own, so a He-first sample falls back to neutral-helium defaults and comes out as `[He]` at
-# charge 0 -- which the root `A` (c[+1,+2,+3,+4]) then rejects. `Ar+` carries lone_pairs=[3] and
-# charge=[1], so putting it first builds the sample at +1 ([ArH+]).
-#
-# "Takes the first atomtype" is only half the mechanism. `pick_wildcards` has a second stage at
-# group.py:2921-2925: after the first pass it walks each atom again and, if the chosen atomtype is
-# still *generic*, replaces it with the first entry of that atomtype's `.specific` list in
-# `allElements` order. `Ar+` is already specific, so it passes through that stage untouched; a
-# generic `Ar` in first position would not, and what it became would be decided by `allElements`
-# rather than by this file.
-#
-# The ordering survives a save/load round trip. `to_adjacency_list` emits the list with a plain
-# ','.join and no sort (rmgpy/molecule/adjlist.py:967), so re-reading a written-out copy of this
-# family preserves `Ar+` in first position. The repair is therefore fragile only against a human
-# re-sorting the list by hand, not against RMG's own serialization.
-#
-# Generic `Ar` must stay in the list as well: the child `Ar_ion` is written on the generic `Ar`
-# atomtype, and `Ar+` is *more* specific than `Ar`, so an `Ar+`-only parent stops being a proper
-# parent of its own child (kinetics_check_child_parent_relationships).
-#
-# The matched set is unchanged by all of this -- He+, Ne+, Ar+, Ar2+ and ArH+ all still match,
-# measured in docs/i223-charge-transfer-node-repair/logs/parent.stdout.log.
-entry(
-    index = 13,
-    label = "Noble_cation",
-    group =
-"""
-1 *1 [Ar+,Ar,He,Ne] ux px c+1
+1 *1 O ux p2 c+1
 """,
     kinetics = None,
 )
@@ -138,7 +171,7 @@ entry(
     label = "Metal_cation",
     group =
 """
-1 *1 metal ux px c+1
+1 *1 metal ux p0 c+1
 """,
     kinetics = None,
 )
@@ -211,18 +244,6 @@ entry(
 )
 
 entry(
-    index = 113,
-    label = "H2O_ion",
-    group =
-"""
-1 *1 O u1 p1 c+1 {2,S} {3,S}
-2    H u0 p0 c0  {1,S}
-3    H u0 p0 c0  {1,S}
-""",
-    kinetics = None,
-)
-
-entry(
     index = 114,
     label = "O2_ion",
     group =
@@ -233,40 +254,27 @@ entry(
     kinetics = None,
 )
 
-# Nitrogen Cations
-entry(
-    index = 121,
-    label = "N_atom_ion",
-    group =
-"""
-1 *1 N u2 p1 c+1
-""",
-    kinetics = None,
-)
+# Nitrogen cations, noble-gas cations, NO+ and H2O+ are NO LONGER IN THIS TREE (I-223).
+# They were removed together with the nodes N_cation (12), N_atom_ion (121), NO_ion (122),
+# Noble_cation (13), Ar_ion (131) and H2O_ion (113), because the narrowed root A below is
+# `p[0,2]` and every one of them sits at `p1` or `p3`:
+#
+#   N+   `N u2 p1 c+1`   Ar+  `Ar u1 p3 c+1`   NO+  `O u0 p1 c+1`   H2O+ `O u1 p1 c+1`
+#
+# Root A cannot admit them, because the recipe above breaks on them -- GAIN_RADICAL turns H2O+
+# into `O u2 p1` with two single bonds and NO+ into `O u1 p1` with a triple bond, and NEITHER HAS
+# AN ATOM TYPE, so generate_reactions raises AtomTypeError and takes the RMG job with it. Ar+
+# does have a typeable product but the wrong one: `Ar u2 p3`, not ground-state `Ar u0 p4`.
+#
+# N+ is the painful one. It needs `p1`, it would work perfectly well with this recipe, and it is
+# excluded only because a group's `u` and `p` lists are a CROSS PRODUCT, not a disjunction: any
+# root admitting `N u2 p1` also admits `O u1 p1` (H2O+) and `O u0 p1` (NO+), which crash. The
+# vocabulary that would separate them is a charge-specific atom type per element, and the engine
+# defines exactly six -- Li+ Na+ K+ Mg+ Ca+ Ar+ -- none for N, O or H. Adding one is an engine
+# change and out of scope. Training entry 18 (N+ + N2) is the cost, and it is recorded with the
+# other eleven in training/reactions-unrepresentable.py.
 
-entry(
-    index = 122,
-    label = "NO_ion",
-    group =
-"""
-1    N u0 p1 c0  {2,T}
-2 *1 O u0 p1 c+1 {1,T}
-""",
-    kinetics = None,
-)
-
-# Noble Cations
-entry(
-    index = 131,
-    label = "Ar_ion",
-    group =
-"""
-1 *1 Ar u1 p3 c+1
-""",
-    kinetics = None,
-)
-
-# Metal Cations
+# Metal cations
 entry(
     index = 141,
     label = "Li_ion",
@@ -331,19 +339,6 @@ entry(
 )
 
 entry(
-    index = 21,
-    label = "Neutral",
-    group =
-"""
-1 *2 R ux px c0
-""",
-    kinetics = None,
-)
-
-# --- Level 2: Specific Partners ---
-
-# Anions
-entry(
     index = 201,
     label = "H_anion",
     group =
@@ -358,28 +353,18 @@ entry(
     label = "O_anion",
     group =
 """
-1 *2 O ux p3 c-1
+1 *2 O u[0,1] p3 c-1
 """,
     kinetics = None,
 )
 
 # Neutrals
 entry(
-    index = 211,
-    label = "O_neutral",
-    group =
-"""
-1 *2 O ux px c0
-""",
-    kinetics = None,
-)
-
-entry(
     index = 212,
     label = "N_neutral",
     group =
 """
-1 *2 N ux px c0
+1 *2 N u[0,1] p1 c0
 """,
     kinetics = None,
 )
@@ -401,41 +386,6 @@ entry(
 # granularity. The first pair-specific measurement for O- or OH- makes this merge start silently
 # discarding data exactly as the N/N2 merge did. So the question of whether OH_anion is a sibling
 # or a child of O_anion stays open; it has no rate consequence yet, not no rate consequence ever.
-entry(
-    index = 213,
-    label = "O2_neutral",
-    group =
-"""
-1 *2 O u1 p2 c0 {2,S}
-2    O u1 p2 c0 {1,S}
-""",
-    kinetics = None,
-)
-
-# Added by I-223 for the same reason as O2_neutral, and on the same criterion. `N_neutral` is
-# `N ux px c0`, so atomic N and molecular N2 both landed on it: training 22 (O2p_r1 + N_r2) and
-# training 23 (O2p_r1 + N2_r2) both resolved to `O2_ion;N_neutral`, and get_rule kept the lower
-# index, discarding the N2 rate. Unlike the O-/OH- merge these two rates are genuinely different
-# -- both [Ozawa2008] Table III, but at least 107x apart everywhere both fits are used (5000-10000
-# K; logs/collisions.stdout.log) -- so the merge was destroying real information.
-# Written concretely, as the triply-bonded ground state, to match the training dictionary's N2_r2.
-#
-# THIS NODE MOVES FOUR TRAINING REACTIONS, NOT ONE. Every reaction whose *2 partner is N2 now
-# descends here, so besides training 23 it reparents 15 (Op_r1 + N2_r2), 18 (Np_r1 + N2_r2) and
-# 19 (Arp_r1 + N2_r2). Measured before and after in logs/rules-before.stdout.log and
-# logs/rules.stdout.log. Those three had no collision and were not the reason for the node; they
-# move because a tree node applies to everything that descends to it, which is the point of a tree
-# and is worth saying out loud rather than letting a reader infer the change was surgical.
-#
-# The knock-on: O_atom_ion;N_neutral, N_atom_ion;N_neutral and Ar_ion;N_neutral held exact rules
-# from training 15, 18 and 19 before, and now hold nothing exact. fill_rules_by_averaging_up --
-# which a real rate-rules job always runs, rmgpy/rmg/main.py:610 -- fills each of them by
-# averaging over N_neutral's children, of which N2_neutral is the only one carrying a rule. So an
-# average over exactly one entry. Measured in logs/averaging.stdout.log: the value those three
-# templates return is unchanged to 1.000000x at 1000, 5000 and 10000 K. What changed is the
-# PROVENANCE -- "rate rule from training reaction 15" becomes "Average of [training reaction 15
-# used for O_atom_ion;N2_neutral]" in the kinetics comment. No number moves; a label does.
-# Contrast O2_neutral above, which reparented only training 21 and left nothing empty behind it.
 entry(
     index = 214,
     label = "N2_neutral",
@@ -459,13 +409,7 @@ L1: A
     L2: O_cation
         L3: O_atom_ion
         L3: OH_ion
-        L3: H2O_ion
         L3: O2_ion
-        L3: NO_ion
-    L2: N_cation
-        L3: N_atom_ion
-    L2: Noble_cation
-        L3: Ar_ion
     L2: Metal_cation
         L3: Li_ion
         L3: Na_ion
@@ -477,10 +421,7 @@ L1: B
     L2: Anion
         L3: H_anion
         L3: O_anion
-    L2: Neutral
-        L3: O_neutral
-            L4: O2_neutral
-        L3: N_neutral
-            L4: N2_neutral
+    L2: N_neutral
+        L3: N2_neutral
 """
 )

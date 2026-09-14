@@ -1,0 +1,5 @@
+atom types WITH increment_charge (36):
+   Ar, Ar+, Ar0, Br0sc, Ca, Ca+, Ca0d, Ca0s, Cl0sc, F0sc, F1s, H, H-, H0, K, K0, Li, Li0, Mg, Mg+, Mg0d, Mg0s, N, Na, Na0, Nm2, Nm3, Om2, R, R!H, Rx, Rx!H, Val5, alkali, alkaline, metal
+
+total atom types: 164
+any O-bearing type with increment_charge: ['Om2']

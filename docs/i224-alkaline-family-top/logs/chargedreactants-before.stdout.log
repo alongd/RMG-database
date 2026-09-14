@@ -1,0 +1,72 @@
+RESOLVED database.directory = /tmp/claude-1000/-home-alon-Code-RMG-database-i224-alkaline-family-top/f05da8f7-fd2c-4709-84e7-1a5ca6d85921/scratchpad/chgbase2
+tag = chargedreactants-before
+allow_charged_species   = True
+allow_charged_reactants = True
+(declared in groups.py? no, or declared equal to allowChargedSpecies -- undeclared it inherits allow_charged_species, family.py:693-695)
+TOP A: <rmgpy.molecule.group.Group object at 0x7ce6c3fe6120>
+TOP B: <rmgpy.molecule.group.Group object at 0x7ce6c3fe6270>
+
+=== A. original 17-species set ===
+  RXN Mg  (u2) + Mg  (u2)  ->  2 reaction(s)
+  RXN Mg  (u2) + Ca  (u2)  ->  2 reaction(s)
+  RXN Ca  (u2) + Ca  (u2)  ->  2 reaction(s)
+TOTAL reactions generated (A. original 17-species set): 6
+
+=== B0. every (element, charge, bond-count) at u2: which can exist at all? ===
+  Mg u2 c-1 bonds=0  InvalidAdjacencyListError
+  Mg u2 c-1 bonds=1  AtomTypeError
+  Mg u2 c-1 bonds=2  InvalidAdjacencyListError
+  Mg u2 c0  bonds=0  CONSTRUCTIBLE
+  Mg u2 c0  bonds=1  InvalidAdjacencyListError
+  Mg u2 c0  bonds=2  InvalidAdjacencyListError
+  Mg u2 c+1 bonds=0  InvalidAdjacencyListError
+  Mg u2 c+1 bonds=1  InvalidAdjacencyListError
+  Mg u2 c+1 bonds=2  InvalidAdjacencyListError
+  Mg u2 c+2 bonds=0  InvalidAdjacencyListError
+  Mg u2 c+2 bonds=1  InvalidAdjacencyListError
+  Mg u2 c+2 bonds=2  InvalidAdjacencyListError
+  Ca u2 c-1 bonds=0  InvalidAdjacencyListError
+  Ca u2 c-1 bonds=1  AtomTypeError
+  Ca u2 c-1 bonds=2  InvalidAdjacencyListError
+  Ca u2 c0  bonds=0  CONSTRUCTIBLE
+  Ca u2 c0  bonds=1  InvalidAdjacencyListError
+  Ca u2 c0  bonds=2  InvalidAdjacencyListError
+  Ca u2 c+1 bonds=0  InvalidAdjacencyListError
+  Ca u2 c+1 bonds=1  InvalidAdjacencyListError
+  Ca u2 c+1 bonds=2  InvalidAdjacencyListError
+  Ca u2 c+2 bonds=0  InvalidAdjacencyListError
+  Ca u2 c+2 bonds=1  InvalidAdjacencyListError
+  Ca u2 c+2 bonds=2  InvalidAdjacencyListError
+
+=== B1. charge ON the matched atom: can the molecule even exist? ===
+  NOT-CONSTRUCTIBLE Mg+  (u2, c+1): InvalidAdjacencyListError: Invalid valency for atom Mg (Mg+) with 2 unpaired electrons, 0 pairs of electrons, 1 charge, and bonds [].
+  NOT-CONSTRUCTIBLE Ca+  (u2, c+1): InvalidAdjacencyListError: Invalid valency for atom Ca (Ca+) with 2 unpaired electrons, 0 pairs of electrons, 1 charge, and bonds [].
+  NOT-CONSTRUCTIBLE Mg+2 (u2, c+2): InvalidAdjacencyListError: Invalid valency for atom Mg (Mg+2) with 2 unpaired electrons, 0 pairs of electrons, 2 charge, and bonds [].
+  NOT-CONSTRUCTIBLE Ca+2 (u2, c+2): InvalidAdjacencyListError: Invalid valency for atom Ca (Ca+2) with 2 unpaired electrons, 0 pairs of electrons, 2 charge, and bonds [].
+  NOT-CONSTRUCTIBLE Mg-  (u2, c-1): InvalidAdjacencyListError: Invalid valency for atom Mg (Mg) with 2 unpaired electrons, 0 pairs of electrons, -1 charge, and bonds [].
+constructible: 0 of 5
+
+=== B2. charge on a SPECTATOR fragment: group match vs charge policy ===
+  GROUP-MATCH Mg..H+  (vdW, net +1)  net_charge=+1  A=ERROR ValueError: Number of vertices has changed cannot restore original vertex order  B=True
+    is_charged_reactant_forbidden = False
+  GROUP-MATCH Ca..H+  (vdW, net +1)  net_charge=+1  A=True  B=True
+    is_charged_reactant_forbidden = False
+  GROUP-MATCH Mg..O-  (vdW, net -1)  net_charge=-1  A=True  B=True
+    is_charged_reactant_forbidden = False
+  GROUP-MATCH Mg..H+..H+ (net +2)    net_charge=+2  A=True  B=True
+    is_charged_reactant_forbidden = False
+  GROUP-MATCH Mg..H+..O- (net 0)     net_charge=+0  A=True  B=True
+    is_charged_reactant_forbidden = False
+  GROUP-MATCH Mg (u2, c0)            net_charge=+0  A=True  B=True
+    is_charged_reactant_forbidden = False
+  GROUP-MATCH Ca (u2, c0)            net_charge=+0  A=True  B=True
+    is_charged_reactant_forbidden = False
+
+=== B. charged-spectator set ===
+  RXN Mg (u2, c0) + Mg (u2, c0)  ->  2 reaction(s)
+  RXN Mg (u2, c0) + Ca (u2, c0)  ->  2 reaction(s)
+  RXN Ca (u2, c0) + Ca (u2, c0)  ->  2 reaction(s)
+TOTAL reactions generated (B. charged-spectator set): 6
+
+SUMMARY chargedreactants-before: original-set reactions=6  charged-spectator-set reactions=6
+DONE chargedreactants-before

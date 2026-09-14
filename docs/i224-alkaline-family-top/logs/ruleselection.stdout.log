@@ -1,0 +1,14 @@
+RESOLVED database.directory = /home/alon/Code/RMG-database-i224-alkaline-family-top/input
+tag = ruleselection
+add_rules_from_training: returned normally
+
+get_all_rules(A;B) -> 2 entr(ies) AT THE SAME NODE
+  index=1 rank=9 kinetics=ArrheniusEP(A=(3.01e+13,'cm^3/(mol*s)'), n=0, alpha=0, E0=(0,'J/mol'), Tmin=(300,'K'), Tmax=(10000,'K'), comment="""From training reaction 2 used for A;B""")  shortDesc=Rate rule generated from training reaction 2. estimated
+  index=2 rank=9 kinetics=ArrheniusEP(A=(9.35e+12,'cm^3/(mol*s)'), n=0, alpha=0, E0=(0,'J/mol'), Tmin=(300,'K'), Tmax=(10000,'K'), comment="""From training reaction 3 used for A;B""")  shortDesc=Rate rule generated from training reaction 3. estimated
+
+get_rule(A;B) SERVES exactly one: index=1 rank=9 A=3.01e+07  "Rate rule generated from training reaction 2. estimated"
+the other 1 entr(ies) at this node are never returned by get_rule:
+  NEVER-SERVED index=2 rank=9 A=9.35e+06  "Rate rule generated from training reaction 3. estimated"
+
+tree nodes below the tops: {'A': [], 'AB+': [], 'B': []}
+DONE ruleselection

@@ -1,0 +1,32 @@
+RESOLVED database.directory = /home/alon/Code/RMG-database-i224-alkaline-family-top/input
+allow_charged_species=True allow_charged_reactants=False
+
+--- Mg..H+ (net charge +1) ---
+  is_molecule_forbidden        = False
+  is_charged_reactant_forbidden= True
+  _match_reactant_to_template(A) -> 1 mapping(s)
+  _match_reactant_to_template(B) -> 1 mapping(s)
+
+--- Mg (net charge +0) ---
+  is_molecule_forbidden        = False
+  is_charged_reactant_forbidden= False
+  _match_reactant_to_template(A) -> 1 mapping(s)
+  _match_reactant_to_template(B) -> 1 mapping(s)
+
+forward_template.reactants = ['A', 'B']
+reactant_num = None  product_num = None
+
+=== generate_reactions([Mg..H+, Mg..H+]) with debug logging ===
+TRACE apply_recipe -> None
+TRACE _generate_product_structures -> None
+TRACE apply_recipe -> None
+TRACE _generate_product_structures -> None
+generated: 0
+
+=== generate_reactions([Mg..H+, Mg]) with debug logging ===
+TRACE apply_recipe -> None
+TRACE _generate_product_structures -> None
+TRACE apply_recipe -> None
+TRACE _generate_product_structures -> None
+generated: 0
+DONE

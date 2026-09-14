@@ -1,0 +1,5 @@
+1 *1 R u[2,3,4] px cx          elementCount={}               Mg:True   O:True
+1 *1 [alkaline,O] u2 px cx     elementCount={'O': 1}         Mg:False  O:True
+1 *1 [O,alkaline] u2 px cx     elementCount={}               Mg:True   O:True
+1 *1 [Mg,Ca,O] u2 px cx        elementCount={}               Mg:True   O:True
+1 *1 alkaline u2 px cx         elementCount={}               Mg:True   O:False

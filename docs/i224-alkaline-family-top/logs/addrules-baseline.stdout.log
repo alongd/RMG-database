@@ -1,0 +1,14 @@
+RESOLVED database.directory = /tmp/claude-1000/-home-alon-Code-RMG-database-i224-alkaline-family-top/f05da8f7-fd2c-4709-84e7-1a5ca6d85921/scratchpad/basefull
+tag = addrules-baseline
+thermo groups loaded: ['adsorptionLi', 'adsorptionPt111', 'group', 'longDistanceInteraction_cyclic']
+training entries: 3
+rate rules BEFORE add_rules_from_training: 0
+TEMPLATE-MATCH  O_A + O_B <=> O2p            template=['A', 'B']
+TEMPLATE-MATCH  Mg_A + Mg_B <=> Mg2p         template=['alkaline_A', 'alkaline_B']
+TEMPLATE-MATCH  Ca_A + Ca_B <=> Ca2p         template=['alkaline_A', 'alkaline_B']
+ADD_RULES_FROM_TRAINING: returned normally
+rate rules AFTER  add_rules_from_training: 2
+  RULE A;B                          rank=6 kinetics=ArrheniusEP(A=(9.1e+09,'cm^3/(mol*s)'), n=0.6797, alpha=0, E0=(670846,'J/mol'), Tmin=(300,'K'), Tmax=(10000,'K'), comment="""From training reaction 1 used for A;B""")
+  RULE alkaline_A;alkaline_B        rank=9 kinetics=ArrheniusEP(A=(3.01e+13,'cm^3/(mol*s)'), n=0, alpha=0, E0=(0,'J/mol'), Tmin=(300,'K'), Tmax=(10000,'K'), comment="""From training reaction 2 used for alkaline_A;alkaline_B""")
+  RULE alkaline_A;alkaline_B        rank=9 kinetics=ArrheniusEP(A=(9.35e+12,'cm^3/(mol*s)'), n=0, alpha=0, E0=(0,'J/mol'), Tmin=(300,'K'), Tmax=(10000,'K'), comment="""From training reaction 3 used for alkaline_A;alkaline_B""")
+DONE addrules-baseline

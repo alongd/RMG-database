@@ -1,0 +1,20 @@
+RESOLVED database.directory = /tmp/claude-1000/-home-alon-Code-RMG-database-i224-alkaline-family-top/f05da8f7-fd2c-4709-84e7-1a5ca6d85921/scratchpad/basefull
+tag = checks-baseline
+families loaded: ['Plasma_Associative_Ionization_Alkaline_Alkaline']
+CHECK kinetics_check_correct_number_of_nodes_in_rules            PASS
+CHECK kinetics_check_nodes_in_rules_found_in_groups              PASS
+CHECK kinetics_check_groups_found_in_tree                        PASS
+CHECK kinetics_check_groups_nonidentical                         PASS
+CHECK kinetics_check_child_parent_relationships                  PASS
+CHECK kinetics_check_siblings_for_parents                        PASS
+CHECK kinetics_check_cd_atom_type                                PASS
+CHECK kinetics_check_reactant_and_product_template               PASS
+CHECK kinetics_check_num_reactant_and_product                    PASS
+CHECK kinetics_check_family_electrons_reach_training_reactions   PASS
+CHECK kinetics_check_sample_descends_to_group                    PASS
+CHECK kinetics_check_sample_can_react                            PASS
+CHECK kinetics_check_adjlists_nonidentical                       [Plasma_Associative_Ionization_Alkaline_Alkaline/training] PASS
+CHECK kinetics_check_rate_units_are_correct                      [Plasma_Associative_Ionization_Alkaline_Alkaline/training] PASS
+
+SUMMARY checks-baseline: 12/12 family checks PASS
+DONE checks-baseline

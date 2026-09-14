@@ -1,0 +1,12 @@
+RESOLVED database.directory = /home/alon/Code/RMG-database-i224-alkaline-family-top/input
+tag = orphan-removed
+thermo groups loaded: ['adsorptionLi', 'adsorptionPt111', 'group', 'longDistanceInteraction_cyclic']
+training entries: 2
+rate rules BEFORE add_rules_from_training: 0
+TEMPLATE-MATCH  Mg_A + Mg_B <=> Mg2p         template=['A', 'B']
+TEMPLATE-MATCH  Ca_A + Ca_B <=> Ca2p         template=['A', 'B']
+ADD_RULES_FROM_TRAINING: returned normally
+rate rules AFTER  add_rules_from_training: 1
+  RULE A;B                          rank=9 kinetics=ArrheniusEP(A=(3.01e+13,'cm^3/(mol*s)'), n=0, alpha=0, E0=(0,'J/mol'), Tmin=(300,'K'), Tmax=(10000,'K'), comment="""From training reaction 2 used for A;B""")
+  RULE A;B                          rank=9 kinetics=ArrheniusEP(A=(9.35e+12,'cm^3/(mol*s)'), n=0, alpha=0, E0=(0,'J/mol'), Tmin=(300,'K'), Tmax=(10000,'K'), comment="""From training reaction 3 used for A;B""")
+DONE orphan-removed

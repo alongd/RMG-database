@@ -1,0 +1,75 @@
+RESOLVED database.directory = /home/alon/Code/RMG-database-i224-alkaline-family-top/input
+family dir = /home/alon/Code/RMG-database-i224-alkaline-family-top/input/kinetics/families
+tag = after
+loaded family: Plasma_Associative_Ionization_Alkaline_Alkaline
+electrons = 1  reversible = False
+TOP A: <rmgpy.molecule.group.Group object at 0x7d24fa63ceb0>
+TOP B: <rmgpy.molecule.group.Group object at 0x7d24fa5f2040>
+NODE A            parent=None         children=[]
+NODE AB+          parent=None         children=[]
+NODE B            parent=None         children=[]
+NOTE: metastable Ar (Ar u2 p3 c0) not constructible here: AtomTypeError: Unable to determine atom type for atom Ar.., which has 0 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 benzene bonds, 3 lone pairs, and +0 charge.
+
+=== TOP-GROUP MATCHES (subgraph isomorphism against each top) ===
+  top A <- O   (3P, u2)             intended    False
+  top A <- Mg  (u2)                 intended    True
+  top A <- Ca  (u2)                 intended    True
+  top A <- C   (u4)                 unintended  False
+  top A <- N   (u3)                 unintended  False
+  top A <- S   (u2)                 unintended  False
+  top A <- CH2 (triplet)            unintended  False
+  top A <- NH  (triplet)            unintended  False
+  top A <- CH2CH2CH (carbene C)     unintended  False
+  top A <- O2  (triplet molecule)   unintended  False
+  top A <- Na  (u1)                 unintended  False
+  top A <- Li  (u1)                 unintended  False
+  top A <- H   (u1)                 unintended  False
+  top A <- Ar  (ground, u0)         unintended  False
+  top A <- He  (ground, u0)         unintended  False
+  top A <- Mg+ (u1, c+1)            unintended  False
+  top A <- OH+ (O u2 p1 c+1)        unintended  False
+  top B <- O   (3P, u2)             intended    False
+  top B <- Mg  (u2)                 intended    True
+  top B <- Ca  (u2)                 intended    True
+  top B <- C   (u4)                 unintended  False
+  top B <- N   (u3)                 unintended  False
+  top B <- S   (u2)                 unintended  False
+  top B <- CH2 (triplet)            unintended  False
+  top B <- NH  (triplet)            unintended  False
+  top B <- CH2CH2CH (carbene C)     unintended  False
+  top B <- O2  (triplet molecule)   unintended  False
+  top B <- Na  (u1)                 unintended  False
+  top B <- Li  (u1)                 unintended  False
+  top B <- H   (u1)                 unintended  False
+  top B <- Ar  (ground, u0)         unintended  False
+  top B <- He  (ground, u0)         unintended  False
+  top B <- Mg+ (u1, c+1)            unintended  False
+  top B <- OH+ (O u2 p1 c+1)        unintended  False
+SUMMARY top A: 2 matches (2 intended, 0 unintended)
+SUMMARY top B: 2 matches (2 intended, 0 unintended)
+
+=== REACTION GENERATION over all ordered pairs of the set ===
+  RXN Mg  (u2) + Mg  (u2)  ->  [1 products, 1 electrons]  multiplicity 2;1 Mg u1 p0 c0 {2,S};2 Mg u0 p0 c+1 {1,S}
+  RXN Mg  (u2) + Mg  (u2)  ->  [1 products, 1 electrons]  multiplicity 2;1 Mg u1 p0 c0 {2,S};2 Mg u0 p0 c+1 {1,S}
+  RXN Mg  (u2) + Ca  (u2)  ->  [1 products, 1 electrons]  multiplicity 2;1 Ca u1 p0 c0 {2,S};2 Mg u0 p0 c+1 {1,S}
+  RXN Mg  (u2) + Ca  (u2)  ->  [1 products, 1 electrons]  multiplicity 2;1 Ca u0 p0 c+1 {2,S};2 Mg u1 p0 c0 {1,S}
+  RXN Ca  (u2) + Ca  (u2)  ->  [1 products, 1 electrons]  multiplicity 2;1 Ca u1 p0 c0 {2,S};2 Ca u0 p0 c+1 {1,S}
+  RXN Ca  (u2) + Ca  (u2)  ->  [1 products, 1 electrons]  multiplicity 2;1 Ca u1 p0 c0 {2,S};2 Ca u0 p0 c+1 {1,S}
+
+TOTAL reactions generated : 6
+  intended  (both partners intended)   : 6
+  unintended (>=1 partner unintended)  : 0
+  KEEP-CANDIDATE  Mg  (u2) + Mg  (u2)
+  KEEP-CANDIDATE  Mg  (u2) + Mg  (u2)
+  KEEP-CANDIDATE  Mg  (u2) + Ca  (u2)
+  KEEP-CANDIDATE  Mg  (u2) + Ca  (u2)
+  KEEP-CANDIDATE  Ca  (u2) + Ca  (u2)
+  KEEP-CANDIDATE  Ca  (u2) + Ca  (u2)
+
+=== TRAINING REACTIONS: can the family still generate each one? ===
+training entries: 3
+  TRAINING O_A + O_B <=> O2p            product-match=False  n_generated=0
+  TRAINING Mg_A + Mg_B <=> Mg2p         product-match=True  n_generated=2
+  TRAINING Ca_A + Ca_B <=> Ca2p         product-match=True  n_generated=2
+
+DONE after

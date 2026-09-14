@@ -1,0 +1,255 @@
+RESOLVED database.directory = /tmp/claude-1000/-home-alon-Code-RMG-database-i224-alkaline-family-top/f05da8f7-fd2c-4709-84e7-1a5ca6d85921/scratchpad/basedb
+family dir = /tmp/claude-1000/-home-alon-Code-RMG-database-i224-alkaline-family-top/f05da8f7-fd2c-4709-84e7-1a5ca6d85921/scratchpad/basedb/kinetics/families
+tag = baseline-v2
+loaded family: Plasma_Associative_Ionization_Alkaline_Alkaline
+electrons = 1  reversible = False
+TOP A: <rmgpy.molecule.group.Group object at 0x715f1602edd0>
+TOP B: <rmgpy.molecule.group.Group object at 0x715f1602ef20>
+NODE A            parent=None         children=['alkaline_A']
+NODE AB+          parent=None         children=[]
+NODE B            parent=None         children=['alkaline_B']
+NODE alkaline_A   parent=A            children=[]
+NODE alkaline_B   parent=B            children=[]
+NOTE: metastable Ar (Ar u2 p3 c0) not constructible here: AtomTypeError: Unable to determine atom type for atom Ar.., which has 0 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 benzene bonds, 3 lone pairs, and +0 charge.
+
+=== TOP-GROUP MATCHES (subgraph isomorphism against each top) ===
+  top A <- O   (3P, u2)             intended    True
+  top A <- Mg  (u2)                 intended    True
+  top A <- Ca  (u2)                 intended    True
+  top A <- C   (u4)                 unintended  True
+  top A <- N   (u3)                 unintended  True
+  top A <- S   (u2)                 unintended  True
+  top A <- CH2 (triplet)            unintended  True
+  top A <- NH  (triplet)            unintended  True
+  top A <- CH2CH2CH (carbene C)     unintended  True
+  top A <- O2  (triplet molecule)   unintended  False
+  top A <- Na  (u1)                 unintended  False
+  top A <- Li  (u1)                 unintended  False
+  top A <- H   (u1)                 unintended  False
+  top A <- Ar  (ground, u0)         unintended  False
+  top A <- He  (ground, u0)         unintended  False
+  top A <- Mg+ (u1, c+1)            unintended  False
+  top A <- OH+ (O u2 p1 c+1)        unintended  True
+  top B <- O   (3P, u2)             intended    True
+  top B <- Mg  (u2)                 intended    True
+  top B <- Ca  (u2)                 intended    True
+  top B <- C   (u4)                 unintended  True
+  top B <- N   (u3)                 unintended  True
+  top B <- S   (u2)                 unintended  True
+  top B <- CH2 (triplet)            unintended  True
+  top B <- NH  (triplet)            unintended  True
+  top B <- CH2CH2CH (carbene C)     unintended  True
+  top B <- O2  (triplet molecule)   unintended  False
+  top B <- Na  (u1)                 unintended  False
+  top B <- Li  (u1)                 unintended  False
+  top B <- H   (u1)                 unintended  False
+  top B <- Ar  (ground, u0)         unintended  False
+  top B <- He  (ground, u0)         unintended  False
+  top B <- Mg+ (u1, c+1)            unintended  False
+  top B <- OH+ (O u2 p1 c+1)        unintended  True
+SUMMARY top A: 10 matches (3 intended, 7 unintended)
+SUMMARY top B: 10 matches (3 intended, 7 unintended)
+
+=== REACTION GENERATION over all ordered pairs of the set ===
+  RXN O   (3P, u2) + O   (3P, u2)  ->  [1 products, 1 electrons]  multiplicity 2;1 O u1 p2 c0 {2,S};2 O u0 p2 c+1 {1,S}
+  RXN O   (3P, u2) + O   (3P, u2)  ->  [1 products, 1 electrons]  multiplicity 2;1 O u1 p2 c0 {2,S};2 O u0 p2 c+1 {1,S}
+  RXN O   (3P, u2) + Mg  (u2)  ->  [1 products, 1 electrons]  multiplicity 2;1 Mg u1 p0 c0 {2,S};2 O  u0 p2 c+1 {1,S}
+  RXN O   (3P, u2) + Mg  (u2)  ->  [1 products, 1 electrons]  multiplicity 2;1 Mg u0 p0 c+1 {2,S};2 O  u1 p2 c0 {1,S}
+  RXN O   (3P, u2) + Ca  (u2)  ->  [1 products, 1 electrons]  multiplicity 2;1 Ca u1 p0 c0 {2,S};2 O  u0 p2 c+1 {1,S}
+  RXN O   (3P, u2) + Ca  (u2)  ->  [1 products, 1 electrons]  multiplicity 2;1 Ca u0 p0 c+1 {2,S};2 O  u1 p2 c0 {1,S}
+  RXN O   (3P, u2) + C   (u4)  ->  [1 products, 1 electrons]  multiplicity 4;1 O u0 p2 c+1 {2,S};2 C u3 p0 c0 {1,S}
+  RXN O   (3P, u2) + C   (u4)  ->  [1 products, 1 electrons]  multiplicity 4;1 O u1 p2 c0 {2,S};2 C u2 p0 c+1 {1,S}
+  RXN O   (3P, u2) + N   (u3)  ->  [1 products, 1 electrons]  multiplicity 3;1 O u0 p2 c+1 {2,S};2 N u2 p1 c0 {1,S}
+  RXN O   (3P, u2) + N   (u3)  ->  [1 products, 1 electrons]  multiplicity 3;1 O u1 p2 c0 {2,S};2 N u1 p1 c+1 {1,S}
+  RXN O   (3P, u2) + S   (u2)  ->  [1 products, 1 electrons]  multiplicity 2;1 S u1 p2 c0 {2,S};2 O u0 p2 c+1 {1,S}
+  RXN O   (3P, u2) + S   (u2)  ->  [1 products, 1 electrons]  multiplicity 2;1 S u0 p2 c+1 {2,S};2 O u1 p2 c0 {1,S}
+  RXN O   (3P, u2) + CH2 (triplet)  ->  [1 products, 1 electrons]  multiplicity 2;1 O u0 p2 c+1 {2,S};2 C u1 p0 c0 {1,S} {3,S} {4,S};3 H u0 p0 c0 {2,S};4 H u0 p0 c0 {2,S}
+  RXN O   (3P, u2) + CH2 (triplet)  ->  [1 products, 1 electrons]  multiplicity 2;1 O u1 p2 c0 {2,S};2 C u0 p0 c+1 {1,S} {3,S} {4,S};3 H u0 p0 c0 {2,S};4 H u0 p0 c0 {2,S}
+  RXN O   (3P, u2) + NH  (triplet)  ->  [1 products, 1 electrons]  multiplicity 2;1 O u0 p2 c+1 {2,S};2 N u1 p1 c0 {1,S} {3,S};3 H u0 p0 c0 {2,S}
+  RXN O   (3P, u2) + NH  (triplet)  ->  [1 products, 1 electrons]  multiplicity 2;1 O u1 p2 c0 {2,S};2 N u0 p1 c+1 {1,S} {3,S};3 H u0 p0 c0 {2,S}
+  RXN O   (3P, u2) + CH2CH2CH (carbene C)  ->  [1 products, 1 electrons]  multiplicity 2;1  O u0 p2 c+1 {4,S};2  C u0 p0 c0 {3,S} {4,S} {5,S} {6,S};3  C u0 p0 c0 {2,S} {7,S} {8,S} {9,S};4  C u1 p0 c0 {1,S} {2,S} {10,S};5  H u0 p0 c0 {2,S};6  H u0 p0 c0 {2,S};7  H u0 p0 c0 {3,S};8  H u0 p0 c0 {3,S};9  H u0 p0 c0 {3,S};10 H u0 p0 c0 {4,S}
+  RXN O   (3P, u2) + CH2CH2CH (carbene C)  ->  [1 products, 1 electrons]  multiplicity 2;1  O u1 p2 c0 {4,S};2  C u0 p0 c0 {3,S} {4,S} {5,S} {6,S};3  C u0 p0 c0 {2,S} {7,S} {8,S} {9,S};4  C u0 p0 c+1 {1,S} {2,S} {10,S};5  H u0 p0 c0 {2,S};6  H u0 p0 c0 {2,S};7  H u0 p0 c0 {3,S};8  H u0 p0 c0 {3,S};9  H u0 p0 c0 {3,S};10 H u0 p0 c0 {4,S}
+  GEN-ERROR O   (3P, u2) + OH+ (O u2 p1 c+1): AtomTypeError: Unable to determine atom type for atom O++, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 benzene bonds, 1 lone pairs, and +2 charge.
+  RXN Mg  (u2) + Mg  (u2)  ->  [1 products, 1 electrons]  multiplicity 2;1 Mg u1 p0 c0 {2,S};2 Mg u0 p0 c+1 {1,S}
+  RXN Mg  (u2) + Mg  (u2)  ->  [1 products, 1 electrons]  multiplicity 2;1 Mg u1 p0 c0 {2,S};2 Mg u0 p0 c+1 {1,S}
+  RXN Mg  (u2) + Ca  (u2)  ->  [1 products, 1 electrons]  multiplicity 2;1 Ca u1 p0 c0 {2,S};2 Mg u0 p0 c+1 {1,S}
+  RXN Mg  (u2) + Ca  (u2)  ->  [1 products, 1 electrons]  multiplicity 2;1 Ca u0 p0 c+1 {2,S};2 Mg u1 p0 c0 {1,S}
+  RXN Mg  (u2) + C   (u4)  ->  [1 products, 1 electrons]  multiplicity 4;1 Mg u0 p0 c+1 {2,S};2 C  u3 p0 c0 {1,S}
+  RXN Mg  (u2) + C   (u4)  ->  [1 products, 1 electrons]  multiplicity 4;1 Mg u1 p0 c0 {2,S};2 C  u2 p0 c+1 {1,S}
+  RXN Mg  (u2) + N   (u3)  ->  [1 products, 1 electrons]  multiplicity 3;1 Mg u0 p0 c+1 {2,S};2 N  u2 p1 c0 {1,S}
+  RXN Mg  (u2) + N   (u3)  ->  [1 products, 1 electrons]  multiplicity 3;1 Mg u1 p0 c0 {2,S};2 N  u1 p1 c+1 {1,S}
+  RXN Mg  (u2) + S   (u2)  ->  [1 products, 1 electrons]  multiplicity 2;1 S  u1 p2 c0 {2,S};2 Mg u0 p0 c+1 {1,S}
+  RXN Mg  (u2) + S   (u2)  ->  [1 products, 1 electrons]  multiplicity 2;1 S  u0 p2 c+1 {2,S};2 Mg u1 p0 c0 {1,S}
+  RXN Mg  (u2) + CH2 (triplet)  ->  [1 products, 1 electrons]  multiplicity 2;1 Mg u0 p0 c+1 {2,S};2 C  u1 p0 c0 {1,S} {3,S} {4,S};3 H  u0 p0 c0 {2,S};4 H  u0 p0 c0 {2,S}
+  RXN Mg  (u2) + CH2 (triplet)  ->  [1 products, 1 electrons]  multiplicity 2;1 Mg u1 p0 c0 {2,S};2 C  u0 p0 c+1 {1,S} {3,S} {4,S};3 H  u0 p0 c0 {2,S};4 H  u0 p0 c0 {2,S}
+  RXN Mg  (u2) + NH  (triplet)  ->  [1 products, 1 electrons]  multiplicity 2;1 Mg u0 p0 c+1 {2,S};2 N  u1 p1 c0 {1,S} {3,S};3 H  u0 p0 c0 {2,S}
+  RXN Mg  (u2) + NH  (triplet)  ->  [1 products, 1 electrons]  multiplicity 2;1 Mg u1 p0 c0 {2,S};2 N  u0 p1 c+1 {1,S} {3,S};3 H  u0 p0 c0 {2,S}
+  RXN Mg  (u2) + CH2CH2CH (carbene C)  ->  [1 products, 1 electrons]  multiplicity 2;1  Mg u0 p0 c+1 {4,S};2  C  u0 p0 c0 {3,S} {4,S} {5,S} {6,S};3  C  u0 p0 c0 {2,S} {7,S} {8,S} {9,S};4  C  u1 p0 c0 {1,S} {2,S} {10,S};5  H  u0 p0 c0 {2,S};6  H  u0 p0 c0 {2,S};7  H  u0 p0 c0 {3,S};8  H  u0 p0 c0 {3,S};9  H  u0 p0 c0 {3,S};10 H  u0 p0 c0 {4,S}
+  RXN Mg  (u2) + CH2CH2CH (carbene C)  ->  [1 products, 1 electrons]  multiplicity 2;1  Mg u1 p0 c0 {4,S};2  C  u0 p0 c0 {3,S} {4,S} {5,S} {6,S};3  C  u0 p0 c0 {2,S} {7,S} {8,S} {9,S};4  C  u0 p0 c+1 {1,S} {2,S} {10,S};5  H  u0 p0 c0 {2,S};6  H  u0 p0 c0 {2,S};7  H  u0 p0 c0 {3,S};8  H  u0 p0 c0 {3,S};9  H  u0 p0 c0 {3,S};10 H  u0 p0 c0 {4,S}
+  GEN-ERROR Mg  (u2) + OH+ (O u2 p1 c+1): AtomTypeError: Unable to determine atom type for atom O++, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 benzene bonds, 1 lone pairs, and +2 charge.
+  RXN Ca  (u2) + Ca  (u2)  ->  [1 products, 1 electrons]  multiplicity 2;1 Ca u1 p0 c0 {2,S};2 Ca u0 p0 c+1 {1,S}
+  RXN Ca  (u2) + Ca  (u2)  ->  [1 products, 1 electrons]  multiplicity 2;1 Ca u1 p0 c0 {2,S};2 Ca u0 p0 c+1 {1,S}
+  RXN Ca  (u2) + C   (u4)  ->  [1 products, 1 electrons]  multiplicity 4;1 Ca u0 p0 c+1 {2,S};2 C  u3 p0 c0 {1,S}
+  RXN Ca  (u2) + C   (u4)  ->  [1 products, 1 electrons]  multiplicity 4;1 Ca u1 p0 c0 {2,S};2 C  u2 p0 c+1 {1,S}
+  RXN Ca  (u2) + N   (u3)  ->  [1 products, 1 electrons]  multiplicity 3;1 Ca u0 p0 c+1 {2,S};2 N  u2 p1 c0 {1,S}
+  RXN Ca  (u2) + N   (u3)  ->  [1 products, 1 electrons]  multiplicity 3;1 Ca u1 p0 c0 {2,S};2 N  u1 p1 c+1 {1,S}
+  RXN Ca  (u2) + S   (u2)  ->  [1 products, 1 electrons]  multiplicity 2;1 Ca u0 p0 c+1 {2,S};2 S  u1 p2 c0 {1,S}
+  RXN Ca  (u2) + S   (u2)  ->  [1 products, 1 electrons]  multiplicity 2;1 Ca u1 p0 c0 {2,S};2 S  u0 p2 c+1 {1,S}
+  RXN Ca  (u2) + CH2 (triplet)  ->  [1 products, 1 electrons]  multiplicity 2;1 Ca u0 p0 c+1 {2,S};2 C  u1 p0 c0 {1,S} {3,S} {4,S};3 H  u0 p0 c0 {2,S};4 H  u0 p0 c0 {2,S}
+  RXN Ca  (u2) + CH2 (triplet)  ->  [1 products, 1 electrons]  multiplicity 2;1 Ca u1 p0 c0 {2,S};2 C  u0 p0 c+1 {1,S} {3,S} {4,S};3 H  u0 p0 c0 {2,S};4 H  u0 p0 c0 {2,S}
+  RXN Ca  (u2) + NH  (triplet)  ->  [1 products, 1 electrons]  multiplicity 2;1 Ca u0 p0 c+1 {2,S};2 N  u1 p1 c0 {1,S} {3,S};3 H  u0 p0 c0 {2,S}
+  RXN Ca  (u2) + NH  (triplet)  ->  [1 products, 1 electrons]  multiplicity 2;1 Ca u1 p0 c0 {2,S};2 N  u0 p1 c+1 {1,S} {3,S};3 H  u0 p0 c0 {2,S}
+  RXN Ca  (u2) + CH2CH2CH (carbene C)  ->  [1 products, 1 electrons]  multiplicity 2;1  Ca u0 p0 c+1 {4,S};2  C  u0 p0 c0 {3,S} {4,S} {5,S} {6,S};3  C  u0 p0 c0 {2,S} {7,S} {8,S} {9,S};4  C  u1 p0 c0 {1,S} {2,S} {10,S};5  H  u0 p0 c0 {2,S};6  H  u0 p0 c0 {2,S};7  H  u0 p0 c0 {3,S};8  H  u0 p0 c0 {3,S};9  H  u0 p0 c0 {3,S};10 H  u0 p0 c0 {4,S}
+  RXN Ca  (u2) + CH2CH2CH (carbene C)  ->  [1 products, 1 electrons]  multiplicity 2;1  Ca u1 p0 c0 {4,S};2  C  u0 p0 c0 {3,S} {4,S} {5,S} {6,S};3  C  u0 p0 c0 {2,S} {7,S} {8,S} {9,S};4  C  u0 p0 c+1 {1,S} {2,S} {10,S};5  H  u0 p0 c0 {2,S};6  H  u0 p0 c0 {2,S};7  H  u0 p0 c0 {3,S};8  H  u0 p0 c0 {3,S};9  H  u0 p0 c0 {3,S};10 H  u0 p0 c0 {4,S}
+  GEN-ERROR Ca  (u2) + OH+ (O u2 p1 c+1): AtomTypeError: Unable to determine atom type for atom O++, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 benzene bonds, 1 lone pairs, and +2 charge.
+  RXN C   (u4) + C   (u4)  ->  [1 products, 1 electrons]  multiplicity 6;1 C u3 p0 c0 {2,S};2 C u2 p0 c+1 {1,S}
+  RXN C   (u4) + C   (u4)  ->  [1 products, 1 electrons]  multiplicity 6;1 C u3 p0 c0 {2,S};2 C u2 p0 c+1 {1,S}
+  RXN C   (u4) + N   (u3)  ->  [1 products, 1 electrons]  multiplicity 5;1 N u2 p1 c0 {2,S};2 C u2 p0 c+1 {1,S}
+  RXN C   (u4) + N   (u3)  ->  [1 products, 1 electrons]  multiplicity 5;1 N u1 p1 c+1 {2,S};2 C u3 p0 c0 {1,S}
+  RXN C   (u4) + S   (u2)  ->  [1 products, 1 electrons]  multiplicity 4;1 S u1 p2 c0 {2,S};2 C u2 p0 c+1 {1,S}
+  RXN C   (u4) + S   (u2)  ->  [1 products, 1 electrons]  multiplicity 4;1 S u0 p2 c+1 {2,S};2 C u3 p0 c0 {1,S}
+  RXN C   (u4) + CH2 (triplet)  ->  [1 products, 1 electrons]  multiplicity 4;1 C u1 p0 c0 {2,S} {3,S} {4,S};2 C u2 p0 c+1 {1,S};3 H u0 p0 c0 {1,S};4 H u0 p0 c0 {1,S}
+  RXN C   (u4) + CH2 (triplet)  ->  [1 products, 1 electrons]  multiplicity 4;1 C u0 p0 c+1 {2,S} {3,S} {4,S};2 C u3 p0 c0 {1,S};3 H u0 p0 c0 {1,S};4 H u0 p0 c0 {1,S}
+  RXN C   (u4) + NH  (triplet)  ->  [1 products, 1 electrons]  multiplicity 4;1 N u1 p1 c0 {2,S} {3,S};2 C u2 p0 c+1 {1,S};3 H u0 p0 c0 {1,S}
+  RXN C   (u4) + NH  (triplet)  ->  [1 products, 1 electrons]  multiplicity 4;1 N u0 p1 c+1 {2,S} {3,S};2 C u3 p0 c0 {1,S};3 H u0 p0 c0 {1,S}
+  RXN C   (u4) + CH2CH2CH (carbene C)  ->  [1 products, 1 electrons]  multiplicity 4;1  C u0 p0 c0 {2,S} {3,S} {5,S} {6,S};2  C u0 p0 c0 {1,S} {7,S} {8,S} {9,S};3  C u1 p0 c0 {1,S} {4,S} {10,S};4  C u2 p0 c+1 {3,S};5  H u0 p0 c0 {1,S};6  H u0 p0 c0 {1,S};7  H u0 p0 c0 {2,S};8  H u0 p0 c0 {2,S};9  H u0 p0 c0 {2,S};10 H u0 p0 c0 {3,S}
+  RXN C   (u4) + CH2CH2CH (carbene C)  ->  [1 products, 1 electrons]  multiplicity 4;1  C u0 p0 c0 {2,S} {3,S} {5,S} {6,S};2  C u0 p0 c0 {1,S} {7,S} {8,S} {9,S};3  C u0 p0 c+1 {1,S} {4,S} {10,S};4  C u3 p0 c0 {3,S};5  H u0 p0 c0 {1,S};6  H u0 p0 c0 {1,S};7  H u0 p0 c0 {2,S};8  H u0 p0 c0 {2,S};9  H u0 p0 c0 {2,S};10 H u0 p0 c0 {3,S}
+  GEN-ERROR C   (u4) + OH+ (O u2 p1 c+1): AtomTypeError: Unable to determine atom type for atom O++, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 benzene bonds, 1 lone pairs, and +2 charge.
+  RXN N   (u3) + N   (u3)  ->  [1 products, 1 electrons]  multiplicity 4;1 N u2 p1 c0 {2,S};2 N u1 p1 c+1 {1,S}
+  RXN N   (u3) + N   (u3)  ->  [1 products, 1 electrons]  multiplicity 4;1 N u2 p1 c0 {2,S};2 N u1 p1 c+1 {1,S}
+  RXN N   (u3) + S   (u2)  ->  [1 products, 1 electrons]  multiplicity 3;1 S u1 p2 c0 {2,S};2 N u1 p1 c+1 {1,S}
+  RXN N   (u3) + S   (u2)  ->  [1 products, 1 electrons]  multiplicity 3;1 S u0 p2 c+1 {2,S};2 N u2 p1 c0 {1,S}
+  RXN N   (u3) + CH2 (triplet)  ->  [1 products, 1 electrons]  multiplicity 3;1 N u1 p1 c+1 {2,S};2 C u1 p0 c0 {1,S} {3,S} {4,S};3 H u0 p0 c0 {2,S};4 H u0 p0 c0 {2,S}
+  RXN N   (u3) + CH2 (triplet)  ->  [1 products, 1 electrons]  multiplicity 3;1 N u2 p1 c0 {2,S};2 C u0 p0 c+1 {1,S} {3,S} {4,S};3 H u0 p0 c0 {2,S};4 H u0 p0 c0 {2,S}
+  RXN N   (u3) + NH  (triplet)  ->  [1 products, 1 electrons]  multiplicity 3;1 N u1 p1 c0 {2,S} {3,S};2 N u1 p1 c+1 {1,S};3 H u0 p0 c0 {1,S}
+  RXN N   (u3) + NH  (triplet)  ->  [1 products, 1 electrons]  multiplicity 3;1 N u0 p1 c+1 {2,S} {3,S};2 N u2 p1 c0 {1,S};3 H u0 p0 c0 {1,S}
+  RXN N   (u3) + CH2CH2CH (carbene C)  ->  [1 products, 1 electrons]  multiplicity 3;1  N u1 p1 c+1 {4,S};2  C u0 p0 c0 {3,S} {4,S} {5,S} {6,S};3  C u0 p0 c0 {2,S} {7,S} {8,S} {9,S};4  C u1 p0 c0 {1,S} {2,S} {10,S};5  H u0 p0 c0 {2,S};6  H u0 p0 c0 {2,S};7  H u0 p0 c0 {3,S};8  H u0 p0 c0 {3,S};9  H u0 p0 c0 {3,S};10 H u0 p0 c0 {4,S}
+  RXN N   (u3) + CH2CH2CH (carbene C)  ->  [1 products, 1 electrons]  multiplicity 3;1  N u2 p1 c0 {4,S};2  C u0 p0 c0 {3,S} {4,S} {5,S} {6,S};3  C u0 p0 c0 {2,S} {7,S} {8,S} {9,S};4  C u0 p0 c+1 {1,S} {2,S} {10,S};5  H u0 p0 c0 {2,S};6  H u0 p0 c0 {2,S};7  H u0 p0 c0 {3,S};8  H u0 p0 c0 {3,S};9  H u0 p0 c0 {3,S};10 H u0 p0 c0 {4,S}
+  GEN-ERROR N   (u3) + OH+ (O u2 p1 c+1): AtomTypeError: Unable to determine atom type for atom O++, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 benzene bonds, 1 lone pairs, and +2 charge.
+  RXN S   (u2) + S   (u2)  ->  [1 products, 1 electrons]  multiplicity 2;1 S u1 p2 c0 {2,S};2 S u0 p2 c+1 {1,S}
+  RXN S   (u2) + S   (u2)  ->  [1 products, 1 electrons]  multiplicity 2;1 S u1 p2 c0 {2,S};2 S u0 p2 c+1 {1,S}
+  RXN S   (u2) + CH2 (triplet)  ->  [1 products, 1 electrons]  multiplicity 2;1 S u0 p2 c+1 {2,S};2 C u1 p0 c0 {1,S} {3,S} {4,S};3 H u0 p0 c0 {2,S};4 H u0 p0 c0 {2,S}
+  RXN S   (u2) + CH2 (triplet)  ->  [1 products, 1 electrons]  multiplicity 2;1 S u1 p2 c0 {2,S};2 C u0 p0 c+1 {1,S} {3,S} {4,S};3 H u0 p0 c0 {2,S};4 H u0 p0 c0 {2,S}
+  RXN S   (u2) + NH  (triplet)  ->  [1 products, 1 electrons]  multiplicity 2;1 S u0 p2 c+1 {2,S};2 N u1 p1 c0 {1,S} {3,S};3 H u0 p0 c0 {2,S}
+  RXN S   (u2) + NH  (triplet)  ->  [1 products, 1 electrons]  multiplicity 2;1 S u1 p2 c0 {2,S};2 N u0 p1 c+1 {1,S} {3,S};3 H u0 p0 c0 {2,S}
+  RXN S   (u2) + CH2CH2CH (carbene C)  ->  [1 products, 1 electrons]  multiplicity 2;1  S u0 p2 c+1 {4,S};2  C u0 p0 c0 {3,S} {4,S} {5,S} {6,S};3  C u0 p0 c0 {2,S} {7,S} {8,S} {9,S};4  C u1 p0 c0 {1,S} {2,S} {10,S};5  H u0 p0 c0 {2,S};6  H u0 p0 c0 {2,S};7  H u0 p0 c0 {3,S};8  H u0 p0 c0 {3,S};9  H u0 p0 c0 {3,S};10 H u0 p0 c0 {4,S}
+  RXN S   (u2) + CH2CH2CH (carbene C)  ->  [1 products, 1 electrons]  multiplicity 2;1  S u1 p2 c0 {4,S};2  C u0 p0 c0 {3,S} {4,S} {5,S} {6,S};3  C u0 p0 c0 {2,S} {7,S} {8,S} {9,S};4  C u0 p0 c+1 {1,S} {2,S} {10,S};5  H u0 p0 c0 {2,S};6  H u0 p0 c0 {2,S};7  H u0 p0 c0 {3,S};8  H u0 p0 c0 {3,S};9  H u0 p0 c0 {3,S};10 H u0 p0 c0 {4,S}
+  GEN-ERROR S   (u2) + OH+ (O u2 p1 c+1): AtomTypeError: Unable to determine atom type for atom O++, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 benzene bonds, 1 lone pairs, and +2 charge.
+  RXN CH2 (triplet) + CH2 (triplet)  ->  [1 products, 1 electrons]  multiplicity 2;1 C u1 p0 c0 {2,S} {3,S} {4,S};2 C u0 p0 c+1 {1,S} {5,S} {6,S};3 H u0 p0 c0 {1,S};4 H u0 p0 c0 {1,S};5 H u0 p0 c0 {2,S};6 H u0 p0 c0 {2,S}
+  RXN CH2 (triplet) + CH2 (triplet)  ->  [1 products, 1 electrons]  multiplicity 2;1 C u1 p0 c0 {2,S} {3,S} {4,S};2 C u0 p0 c+1 {1,S} {5,S} {6,S};3 H u0 p0 c0 {1,S};4 H u0 p0 c0 {1,S};5 H u0 p0 c0 {2,S};6 H u0 p0 c0 {2,S}
+  RXN CH2 (triplet) + NH  (triplet)  ->  [1 products, 1 electrons]  multiplicity 2;1 N u1 p1 c0 {2,S} {5,S};2 C u0 p0 c+1 {1,S} {3,S} {4,S};3 H u0 p0 c0 {2,S};4 H u0 p0 c0 {2,S};5 H u0 p0 c0 {1,S}
+  RXN CH2 (triplet) + NH  (triplet)  ->  [1 products, 1 electrons]  multiplicity 2;1 N u0 p1 c+1 {2,S} {5,S};2 C u1 p0 c0 {1,S} {3,S} {4,S};3 H u0 p0 c0 {2,S};4 H u0 p0 c0 {2,S};5 H u0 p0 c0 {1,S}
+  RXN CH2 (triplet) + CH2CH2CH (carbene C)  ->  [1 products, 1 electrons]  multiplicity 2;1  C u0 p0 c0 {2,S} {3,S} {5,S} {6,S};2  C u0 p0 c0 {1,S} {7,S} {8,S} {9,S};3  C u1 p0 c0 {1,S} {4,S} {10,S};4  C u0 p0 c+1 {3,S} {11,S} {12,S};5  H u0 p0 c0 {1,S};6  H u0 p0 c0 {1,S};7  H u0 p0 c0 {2,S};8  H u0 p0 c0 {2,S};9  H u0 p0 c0 {2,S};10 H u0 p0 c0 {3,S};11 H u0 p0 c0 {4,S};12 H u0 p0 c0 {4,S}
+  RXN CH2 (triplet) + CH2CH2CH (carbene C)  ->  [1 products, 1 electrons]  multiplicity 2;1  C u0 p0 c0 {2,S} {3,S} {5,S} {6,S};2  C u0 p0 c0 {1,S} {7,S} {8,S} {9,S};3  C u0 p0 c+1 {1,S} {4,S} {10,S};4  C u1 p0 c0 {3,S} {11,S} {12,S};5  H u0 p0 c0 {1,S};6  H u0 p0 c0 {1,S};7  H u0 p0 c0 {2,S};8  H u0 p0 c0 {2,S};9  H u0 p0 c0 {2,S};10 H u0 p0 c0 {3,S};11 H u0 p0 c0 {4,S};12 H u0 p0 c0 {4,S}
+  GEN-ERROR CH2 (triplet) + OH+ (O u2 p1 c+1): AtomTypeError: Unable to determine atom type for atom O++, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 benzene bonds, 1 lone pairs, and +2 charge.
+  RXN NH  (triplet) + NH  (triplet)  ->  [1 products, 1 electrons]  multiplicity 2;1 N u1 p1 c0 {2,S} {3,S};2 N u0 p1 c+1 {1,S} {4,S};3 H u0 p0 c0 {1,S};4 H u0 p0 c0 {2,S}
+  RXN NH  (triplet) + NH  (triplet)  ->  [1 products, 1 electrons]  multiplicity 2;1 N u1 p1 c0 {2,S} {3,S};2 N u0 p1 c+1 {1,S} {4,S};3 H u0 p0 c0 {1,S};4 H u0 p0 c0 {2,S}
+  RXN NH  (triplet) + CH2CH2CH (carbene C)  ->  [1 products, 1 electrons]  multiplicity 2;1  N u0 p1 c+1 {4,S} {11,S};2  C u0 p0 c0 {3,S} {4,S} {5,S} {6,S};3  C u0 p0 c0 {2,S} {7,S} {8,S} {9,S};4  C u1 p0 c0 {1,S} {2,S} {10,S};5  H u0 p0 c0 {2,S};6  H u0 p0 c0 {2,S};7  H u0 p0 c0 {3,S};8  H u0 p0 c0 {3,S};9  H u0 p0 c0 {3,S};10 H u0 p0 c0 {4,S};11 H u0 p0 c0 {1,S}
+  RXN NH  (triplet) + CH2CH2CH (carbene C)  ->  [1 products, 1 electrons]  multiplicity 2;1  N u1 p1 c0 {4,S} {11,S};2  C u0 p0 c0 {3,S} {4,S} {5,S} {6,S};3  C u0 p0 c0 {2,S} {7,S} {8,S} {9,S};4  C u0 p0 c+1 {1,S} {2,S} {10,S};5  H u0 p0 c0 {2,S};6  H u0 p0 c0 {2,S};7  H u0 p0 c0 {3,S};8  H u0 p0 c0 {3,S};9  H u0 p0 c0 {3,S};10 H u0 p0 c0 {4,S};11 H u0 p0 c0 {1,S}
+  GEN-ERROR NH  (triplet) + OH+ (O u2 p1 c+1): AtomTypeError: Unable to determine atom type for atom O++, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 benzene bonds, 1 lone pairs, and +2 charge.
+  RXN CH2CH2CH (carbene C) + CH2CH2CH (carbene C)  ->  [1 products, 1 electrons]  multiplicity 2;1  C u0 p0 c0 {3,S} {5,S} {7,S} {8,S};2  C u0 p0 c0 {4,S} {6,S} {9,S} {10,S};3  C u0 p0 c0 {1,S} {11,S} {12,S} {13,S};4  C u0 p0 c0 {2,S} {14,S} {15,S} {16,S};5  C u1 p0 c0 {1,S} {6,S} {17,S};6  C u0 p0 c+1 {2,S} {5,S} {18,S};7  H u0 p0 c0 {1,S};8  H u0 p0 c0 {1,S};9  H u0 p0 c0 {2,S};10 H u0 p0 c0 {2,S};11 H u0 p0 c0 {3,S};12 H u0 p0 c0 {3,S};13 H u0 p0 c0 {3,S};14 H u0 p0 c0 {4,S};15 H u0 p0 c0 {4,S};16 H u0 p0 c0 {4,S};17 H u0 p0 c0 {5,S};18 H u0 p0 c0 {6,S}
+  RXN CH2CH2CH (carbene C) + CH2CH2CH (carbene C)  ->  [1 products, 1 electrons]  multiplicity 2;1  C u0 p0 c0 {3,S} {5,S} {7,S} {8,S};2  C u0 p0 c0 {4,S} {6,S} {9,S} {10,S};3  C u0 p0 c0 {1,S} {11,S} {12,S} {13,S};4  C u0 p0 c0 {2,S} {14,S} {15,S} {16,S};5  C u1 p0 c0 {1,S} {6,S} {17,S};6  C u0 p0 c+1 {2,S} {5,S} {18,S};7  H u0 p0 c0 {1,S};8  H u0 p0 c0 {1,S};9  H u0 p0 c0 {2,S};10 H u0 p0 c0 {2,S};11 H u0 p0 c0 {3,S};12 H u0 p0 c0 {3,S};13 H u0 p0 c0 {3,S};14 H u0 p0 c0 {4,S};15 H u0 p0 c0 {4,S};16 H u0 p0 c0 {4,S};17 H u0 p0 c0 {5,S};18 H u0 p0 c0 {6,S}
+  GEN-ERROR CH2CH2CH (carbene C) + OH+ (O u2 p1 c+1): AtomTypeError: Unable to determine atom type for atom O++, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 benzene bonds, 1 lone pairs, and +2 charge.
+  GEN-ERROR OH+ (O u2 p1 c+1) + OH+ (O u2 p1 c+1): AtomTypeError: Unable to determine atom type for atom O++, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 benzene bonds, 1 lone pairs, and +2 charge.
+
+TOTAL reactions generated : 90
+  intended  (both partners intended)   : 12
+  unintended (>=1 partner unintended)  : 78
+  KEEP-CANDIDATE  O   (3P, u2) + O   (3P, u2)
+  KEEP-CANDIDATE  O   (3P, u2) + O   (3P, u2)
+  KEEP-CANDIDATE  O   (3P, u2) + Mg  (u2)
+  KEEP-CANDIDATE  O   (3P, u2) + Mg  (u2)
+  KEEP-CANDIDATE  O   (3P, u2) + Ca  (u2)
+  KEEP-CANDIDATE  O   (3P, u2) + Ca  (u2)
+  KEEP-CANDIDATE  Mg  (u2) + Mg  (u2)
+  KEEP-CANDIDATE  Mg  (u2) + Mg  (u2)
+  KEEP-CANDIDATE  Mg  (u2) + Ca  (u2)
+  KEEP-CANDIDATE  Mg  (u2) + Ca  (u2)
+  KEEP-CANDIDATE  Ca  (u2) + Ca  (u2)
+  KEEP-CANDIDATE  Ca  (u2) + Ca  (u2)
+  DROP-CANDIDATE  O   (3P, u2) + C   (u4)
+  DROP-CANDIDATE  O   (3P, u2) + C   (u4)
+  DROP-CANDIDATE  O   (3P, u2) + N   (u3)
+  DROP-CANDIDATE  O   (3P, u2) + N   (u3)
+  DROP-CANDIDATE  O   (3P, u2) + S   (u2)
+  DROP-CANDIDATE  O   (3P, u2) + S   (u2)
+  DROP-CANDIDATE  O   (3P, u2) + CH2 (triplet)
+  DROP-CANDIDATE  O   (3P, u2) + CH2 (triplet)
+  DROP-CANDIDATE  O   (3P, u2) + NH  (triplet)
+  DROP-CANDIDATE  O   (3P, u2) + NH  (triplet)
+  DROP-CANDIDATE  O   (3P, u2) + CH2CH2CH (carbene C)
+  DROP-CANDIDATE  O   (3P, u2) + CH2CH2CH (carbene C)
+  DROP-CANDIDATE  Mg  (u2) + C   (u4)
+  DROP-CANDIDATE  Mg  (u2) + C   (u4)
+  DROP-CANDIDATE  Mg  (u2) + N   (u3)
+  DROP-CANDIDATE  Mg  (u2) + N   (u3)
+  DROP-CANDIDATE  Mg  (u2) + S   (u2)
+  DROP-CANDIDATE  Mg  (u2) + S   (u2)
+  DROP-CANDIDATE  Mg  (u2) + CH2 (triplet)
+  DROP-CANDIDATE  Mg  (u2) + CH2 (triplet)
+  DROP-CANDIDATE  Mg  (u2) + NH  (triplet)
+  DROP-CANDIDATE  Mg  (u2) + NH  (triplet)
+  DROP-CANDIDATE  Mg  (u2) + CH2CH2CH (carbene C)
+  DROP-CANDIDATE  Mg  (u2) + CH2CH2CH (carbene C)
+  DROP-CANDIDATE  Ca  (u2) + C   (u4)
+  DROP-CANDIDATE  Ca  (u2) + C   (u4)
+  DROP-CANDIDATE  Ca  (u2) + N   (u3)
+  DROP-CANDIDATE  Ca  (u2) + N   (u3)
+  DROP-CANDIDATE  Ca  (u2) + S   (u2)
+  DROP-CANDIDATE  Ca  (u2) + S   (u2)
+  DROP-CANDIDATE  Ca  (u2) + CH2 (triplet)
+  DROP-CANDIDATE  Ca  (u2) + CH2 (triplet)
+  DROP-CANDIDATE  Ca  (u2) + NH  (triplet)
+  DROP-CANDIDATE  Ca  (u2) + NH  (triplet)
+  DROP-CANDIDATE  Ca  (u2) + CH2CH2CH (carbene C)
+  DROP-CANDIDATE  Ca  (u2) + CH2CH2CH (carbene C)
+  DROP-CANDIDATE  C   (u4) + C   (u4)
+  DROP-CANDIDATE  C   (u4) + C   (u4)
+  DROP-CANDIDATE  C   (u4) + N   (u3)
+  DROP-CANDIDATE  C   (u4) + N   (u3)
+  DROP-CANDIDATE  C   (u4) + S   (u2)
+  DROP-CANDIDATE  C   (u4) + S   (u2)
+  DROP-CANDIDATE  C   (u4) + CH2 (triplet)
+  DROP-CANDIDATE  C   (u4) + CH2 (triplet)
+  DROP-CANDIDATE  C   (u4) + NH  (triplet)
+  DROP-CANDIDATE  C   (u4) + NH  (triplet)
+  DROP-CANDIDATE  C   (u4) + CH2CH2CH (carbene C)
+  DROP-CANDIDATE  C   (u4) + CH2CH2CH (carbene C)
+  DROP-CANDIDATE  N   (u3) + N   (u3)
+  DROP-CANDIDATE  N   (u3) + N   (u3)
+  DROP-CANDIDATE  N   (u3) + S   (u2)
+  DROP-CANDIDATE  N   (u3) + S   (u2)
+  DROP-CANDIDATE  N   (u3) + CH2 (triplet)
+  DROP-CANDIDATE  N   (u3) + CH2 (triplet)
+  DROP-CANDIDATE  N   (u3) + NH  (triplet)
+  DROP-CANDIDATE  N   (u3) + NH  (triplet)
+  DROP-CANDIDATE  N   (u3) + CH2CH2CH (carbene C)
+  DROP-CANDIDATE  N   (u3) + CH2CH2CH (carbene C)
+  DROP-CANDIDATE  S   (u2) + S   (u2)
+  DROP-CANDIDATE  S   (u2) + S   (u2)
+  DROP-CANDIDATE  S   (u2) + CH2 (triplet)
+  DROP-CANDIDATE  S   (u2) + CH2 (triplet)
+  DROP-CANDIDATE  S   (u2) + NH  (triplet)
+  DROP-CANDIDATE  S   (u2) + NH  (triplet)
+  DROP-CANDIDATE  S   (u2) + CH2CH2CH (carbene C)
+  DROP-CANDIDATE  S   (u2) + CH2CH2CH (carbene C)
+  DROP-CANDIDATE  CH2 (triplet) + CH2 (triplet)
+  DROP-CANDIDATE  CH2 (triplet) + CH2 (triplet)
+  DROP-CANDIDATE  CH2 (triplet) + NH  (triplet)
+  DROP-CANDIDATE  CH2 (triplet) + NH  (triplet)
+  DROP-CANDIDATE  CH2 (triplet) + CH2CH2CH (carbene C)
+  DROP-CANDIDATE  CH2 (triplet) + CH2CH2CH (carbene C)
+  DROP-CANDIDATE  NH  (triplet) + NH  (triplet)
+  DROP-CANDIDATE  NH  (triplet) + NH  (triplet)
+  DROP-CANDIDATE  NH  (triplet) + CH2CH2CH (carbene C)
+  DROP-CANDIDATE  NH  (triplet) + CH2CH2CH (carbene C)
+  DROP-CANDIDATE  CH2CH2CH (carbene C) + CH2CH2CH (carbene C)
+  DROP-CANDIDATE  CH2CH2CH (carbene C) + CH2CH2CH (carbene C)
+
+=== TRAINING REACTIONS: can the family still generate each one? ===
+training entries: 3
+  TRAINING O_A + O_B <=> O2p            product-match=True  n_generated=2
+  TRAINING Mg_A + Mg_B <=> Mg2p         product-match=True  n_generated=2
+  TRAINING Ca_A + Ca_B <=> Ca2p         product-match=True  n_generated=2
+
+DONE baseline-v2

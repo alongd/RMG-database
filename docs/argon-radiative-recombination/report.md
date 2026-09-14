@@ -1,21 +1,120 @@
 # I-234 — Argon radiative recombination: sourced, entered, and it is not negligible
 
-**Headline, and it inverts the brief.** The brief anticipated that a correctly sourced argon
-radiative-recombination rate would turn out to be negligible at 5 torr / 3 eV, and asked for the
-comparison that would establish it. The comparison was run and it says the opposite: **this one
-entry is the difference between a model that ionises argon to completion and a model that reaches
-a steady state.** Without it the deck drives the neutral fraction to zero (`x_Ar → -5.1e-26`);
-with it the deck settles at `x_Ar = 1.213e-3`, which is `alpha/k_iz` reproduced to four
-significant figures. The channel is determinative here — though for a reason that is itself a
-finding, and not a flattering one (§6).
+**The most important finding is not about argon.** Adding this entry silently disabled twenty
+existing checks on the lithium entry that was already there — not by breaking an assertion, but by
+expiring a fixture precondition, which pytest reports as a setup *error* rather than a failure, so
+the checks stopped running while the suite still printed green for the rest. That is §0, and it is
+a cleaner instance of this campaign's own subject than anything else here. Fixed; 47 → 69 passing,
+zero errors.
 
-Two further contradictions of the framing, both measured:
+**On argon, the result inverts the brief.** The brief anticipated that a correctly sourced rate
+would turn out to be negligible at 5 torr / 3 eV, and asked for the comparison that would establish
+it. The comparison says the opposite: **this entry is the only loss channel in the mechanism, so it
+alone sets the end state.** Without it argon ionises until the neutral is gone; with it the model
+settles at a heavy-species neutral fraction of `1.213e-3`, which is `alpha/k_iz`. The channel is
+determinative here for a reason that is itself a finding and not a flattering one (§6.4).
+
+Three further contradictions of the framing, all measured:
 
 - **My own first estimate was wrong, and the run caught it.** Evaluated at the deck's seed state
   the RR sink is `7.5e-11` of the ionisation source and the RR timescale is ~600 s against a
   1e-3 s run — apparently inert by ten orders of magnitude. That arithmetic is correct and
   answers the wrong question, because the system leaves that state within a microsecond (§6.1).
 - **I-120 ruled this rate must not be entered. All three of its supports have since moved** (§7).
+- **Neither available source publishes an uncertainty, and none is offered** (§3.4). An earlier
+  draft advised using the inter-fit spread as an error bar; that is withdrawn.
+
+---
+
+## 0. The finding this ticket is really about: a precondition that expired and took twenty checks with it
+
+Adding correct, sourced data to this library **silently disabled twenty existing checks on the entry
+that was already there.** This is a cleaner instance of the campaign's own subject — a justification
+that goes stale without anyone touching it — than anything else in this report, so it goes first.
+
+```
+base 20cfc36cc,  test_plasma_radiative_recombination.py + test_plasma_argon.py   47 passed
+850c81cf0,       same two files, same command                    3 failed, 20 errors, 24 passed
+```
+
+**Nobody wrote a bad assertion.** The fixture at `test_plasma_radiative_recombination.py:134` read:
+
+```python
+@pytest.fixture
+def reaction(library):
+    reactions = library.get_library_reactions()
+    assert len(reactions) == 1          # <- the precondition
+    return reactions[0]                 # <- selection by position
+```
+
+That encodes *"this library has exactly one entry"* as a **precondition of twenty tests** rather
+than as a **claim made by one**. The moment the library grew, the precondition expired.
+
+**Why that is worse than a failure, and the reason it is worth a section.** The twenty did not
+fail — they **errored in setup**. Pytest reports a setup error as an error, not a failure, and an
+errored test asserts nothing. So the suite quietly stopped checking twenty properties of the
+*lithium* entry — its electron propagation, its balance, its placement resolution, its reactor
+acceptance — none of which the argon entry had any bearing on, and still printed a green count for
+the 24 that remained. **A failure argues with you; a setup error just removes the check and leaves
+a smaller green number behind.** A reader skimming for red sees three failures about entry counts,
+fixes those, and ships a suite twenty assertions weaker than the one they started with.
+
+**The fix, and the rule it encodes.** Selection is now by identity, not position:
+
+```python
+def _reaction_for(library, reactant_label): ...   # asserts exactly one match for THAT label
+@pytest.fixture
+def reaction(library):        return _reaction_for(library, '[Lip]')
+@pytest.fixture
+def argon_reaction(library):  return _reaction_for(library, '[Arp]')
+```
+
+The library's size is now asserted in exactly **one** place — `test_library_loads_with_the_expected_coverage`
+— where it is a claim that fails loudly and in isolation, and where it pins *what* is covered rather
+than merely *how many*, so a wrong second entry cannot satisfy it. Two other tests were carrying the
+same precondition for their own reasons and were corrected the same way: the three-body tripwire now
+loops over every entry (strictly stronger than insisting there is one), and the coverage test names
+`{Li+, Ar+}`.
+
+**Result:**
+
+| | base `20cfc36cc` | after the fix |
+|---|---|---|
+| passed | 47 | **69** |
+| failed | 0 | 0 |
+| errors | 0 | 0 |
+
+All 46 unchanged base tests still run, one was deliberately renamed
+(`test_library_loads_with_exactly_one_entry` → `..._with_the_expected_coverage`), and **22 new argon
+tests** were added at the same strength as the lithium ones — mirroring them rather than sampling
+them, because the argon entry differs in three ways that each defeat a lithium-shaped check: a
+different kinetics class, a transcribed rather than table-loaded coefficient, and a two-temperature
+evaluator instead of an electron-temperature one. Verified by diffing collected test ids against the
+base commit.
+
+### 0.1 The same trap is still armed in two sibling files — measured, not fixed
+
+Having found the pattern, I searched for it. It is not unique to this file:
+
+```
+test/test_plasma_electron_impact_ionization.py:112-116   @pytest.fixture def reaction(library):
+                                                             reactions = library.get_library_reactions()
+                                                             assert len(reactions) == 1
+test/test_plasma_argon.py:61-65                          identical
+```
+
+Both are byte-for-byte the construct that just cost twenty checks, in the fixtures for
+`PlasmaElectronImpactIonization` (one entry, lithium) and `PlasmaArgon` (one entry, argon
+ionisation). Each also has a `test_library_loads_with_exactly_one_entry` asserting the count.
+**The day either library gains a second entry, the same silent disabling happens to that file** —
+and both are libraries this campaign is actively expanding, so this is a live hazard rather than a
+theoretical one.
+
+**Not fixed here, deliberately.** Both libraries have exactly one entry today, so the corrected
+fixture would be a no-op with no failing test to demonstrate it works, and changing tests you
+cannot exercise is its own risk. The fix pattern is proven in this file against a genuinely
+two-entry library and transfers mechanically. Flagged for its own ticket rather than folded in
+silently.
 
 ---
 
@@ -104,14 +203,17 @@ than taken from a secondary. `A` is written into the entry in the paper's own un
 (`cm^3/(molecule*s)`) so that RMG performs the unit conversion and **no arithmetic is done by
 hand**; `n = -0.651` is `-X_rad`; `T0 = 1e4 K` is the paper's own normalisation.
 
-**Which row, and why it is the right one.** Not from the naming convention — from the table's own
-structure. For every element the last row (C6, N7, O8, NE10, MG12, SI14, S16) carries
-`X_rad = 7.26E-01` with a null dielectronic entry, which is the hydrogenic value; that row can
-only be the bare nucleus recombining to the H-like ion. So row `X_n` is recombination that
-*produces* stage `X_n`, and `AR1` is the reaction yielding neutral Ar I, i.e. `Ar+ + e- => Ar`.
-Independently, Verner's `rrfit.f` encoding of the same paper keys argon on the electron count
-*after* recombination and gives `A = 3.770e-13, B = 0.6510` at `IN = 18` — the same two numbers
-by a different route (that cross-check is I-120's, re-used here rather than re-run).
+**Which row, and why it is the right one.** Table 2's own footnote says so outright:
+
+> "Rates refer to collisional ionization of and recombination to the tabulated ion."
+
+So row `X_n` carries recombination *to* stage `X_n`, and `AR1` is the reaction yielding neutral
+Ar I, i.e. `Ar+ + e- => Ar`. I originally proved this the hard way, by internal consistency — for
+every element the last row (C6, N7, O8, NE10, MG12, SI14, S16) carries `X_rad = 7.26E-01` with a
+null dielectronic entry, the hydrogenic value, which only the bare nucleus recombining to the
+H-like ion can be. That argument is sound and was unnecessary; the footnote is the direct proof
+and is now what the entry cites, with the consistency check and Verner's `rrfit.f` encoding
+(`A = 3.770e-13, B = 0.6510` at `IN = 18`) kept as corroboration rather than as the argument.
 
 The provenance chain is corroborated by an open, readable, peer-reviewed third party —
 Mazzotta et al. 1998, A&AS 133, 403 (arXiv astro-ph/9806391), §2.2:
@@ -127,21 +229,40 @@ Mazzotta et al. 1998, A&AS 133, 403 (arXiv astro-ph/9806391), §2.2:
 they "attempted to simplify the rate coefficients with analytic fits over the temperature range of
 interest" (§II), and never name that range where the recombination fits are given (§II(b)).
 
-`Tmin = 1e4 K` / `Tmax = 1e8 K` in the entry are therefore **not a quoted bound**, and the entry
-says so in those words. They are the grid over which the authors themselves exercise these rates:
-Table 3 tabulates argon ionisation fractions at `log T = 4.00` through `8.00`, and §III states
-those results "are applicable to any hot, optically thin, low density plasma in ionization
-equilibrium." Using the span the authors applied the fit over is the strongest range statement the
-source supports, and it is recorded as that rather than as a claim they made.
+`Tmin = 1e4 K` / `Tmax = 1e8 K` in the entry are therefore **grid membership and nothing more** —
+not a quoted bound, and specifically **not a demonstrated accuracy bound for this fit**. They are
+the span over which the authors exercise these rates: Table 3 tabulates argon ionisation fractions
+at `log T = 4.00` through `8.00`, and §III states those results "are applicable to any hot,
+optically thin, low density plasma in ionization equilibrium." That the authors ran the fit over
+that span is evidence they considered it usable there; it is not an error bound, and neither the
+entry nor this report should be read as offering one. **No accuracy bound for this fit is available
+from any source consulted.**
 
-The deck runs at `Te = 34813.5 K`, inside that span. Note the two entries in this library do not
-share a floor: the Li⁺ `BadnellRRArrhenius` is valid down to 10 K, this one is not.
+The deck runs at `Te = 34813.5 K`, inside that span. The two entries in this library do not share a
+floor: the Li⁺ `BadnellRRArrhenius` is valid down to 10 K, this one is not.
 
-### 3.4 Uncertainty: neither source publishes one, so the spread between them is recorded
+**And nothing enforces either number — measured.** No evaluation path consults them.
+`is_temperature_valid(298.15)` returns `False` while `get_rate_coefficient_two_temp` returns an
+ordinary number at `Te = 0.5 eV` (5802 K, below `Tmin`), with no warning and no raise:
+`5.373287e-13 cm³/s` delivered from outside the declared range. So `Tmin`/`Tmax` are documentation
+for a reader, not a guard against a caller. Pinned by
+`test_the_declared_temperature_range_is_grid_membership_that_nothing_enforces`. **Referred, not
+fixed** — making the engine enforce a declared range is an RMG-Py change and out of scope here.
 
-**Neither candidate source states an uncertainty.** Rather than leave the entry silent, the entry
-records the spread between the two independent published fits. Both values are transcribed; the
-comparison between them is arithmetic on transcribed values.
+### 3.4 Uncertainty: there is none to quote, and that is the finding
+
+**Neither candidate source states an uncertainty, so no error bar is offered.** An absent quantity
+is reported absent.
+
+> **Correction, and it is mine to carry even though the instruction was not.** An earlier draft of
+> this report and of the entry advised a reader who needs an error bar to use the ~48 % spread
+> below as one. That was wrong. Two fits that share an ancestor disagreeing by 48 % is neither an
+> uncertainty interval nor a lower bound on the error — it is a comparison between two particular
+> calculations, and telling a reader to use it as an error bar asserts something the evidence does
+> not support. The advice is withdrawn from both. The spread is still reported, as a spread.
+
+What follows is a comparison between this fit and the one rival fit for the same reaction. Both
+values are transcribed from their sources.
 
 The rival is CHIANTI `ar_2.rrparams` — six-parameter Badnell/Gu form (A = 4.6460e-11 cm³/s,
 B = 0.67040, T0 = 7.4230 K, T1 = 5.2750e6 K, C = 0.38320, T2 = 3.9120e4 K), refitted for CHIANTI
@@ -156,16 +277,18 @@ in 2008 by P. R. Young and K. P. Dere from Aldrovandi & Péquignot, *Rev. Bras. 
 | **3.0 eV** | **1.674e-13** | **2.472e-13** | **1.48×** |
 | 5.0 eV | 1.200e-13 | 2.386e-13 | 1.99× |
 
-**The ~48 % spread at the deck's working point is the best uncertainty statement available**, and
-it is in the entry's `longDesc` for a reader who needs an error bar. Two things make it a floor
-rather than a full error bar, both also recorded in the entry:
+Two facts about the pair, recorded as facts and not as a bound:
 
-- **The two fits are not independent at the root** — both descend from Aldrovandi & Péquignot, so
-  the spread measures divergence between two parameterisations of a common ancestry.
-- **The spread is strongly Te-dependent, and worst exactly where this deck runs.** The two agree
-  to 1–3 % at 0.3–1 eV and diverge above it, because the Gu form's `C*exp(-T2/Te)` term flattens
-  the high-Te falloff while the single power law keeps falling. I-120 compared these two at 1 eV
-  and found them 1.5 % apart; that agreement does not survive to 3 eV.
+- **The two fits are not independent at the root** — both descend from Aldrovandi & Péquignot
+  (SVS82 §II(b) cites AP 1973, 1976 as its radiative source). This is exactly why their difference
+  is uninformative about the error of either: common ancestry means their agreement is partly
+  inherited and their disagreement measures divergence between parameterisations, not distance
+  from the truth.
+- **The spread is strongly Te-dependent, and worst where this deck runs.** The two agree to 1–3 %
+  at 0.3–1 eV and diverge above it, because the Gu form's `C*exp(-T2/Te)` term flattens the high-Te
+  falloff while the single power law keeps falling. I-120 compared these two at 1 eV and found them
+  1.5 % apart; that agreement does not survive to 3 eV. Useful when choosing between them; still
+  not an error bar.
 
 **The disclosure that must travel with this number.** SVS82 §II(b) states the radiative
 coefficients came from AP for C, N, O, Ne, Mg, Si and S, and then: *"Values for Ar, Ca, and Ni are
@@ -238,9 +361,40 @@ The entry adds exactly one core reaction and no species. The two edge species ar
 `[Lip](5)`, pulled in by the lithium entries of the two plasma libraries the deck loads; they never
 reach the core, as expected in an argon-only mixture.
 
-The `without` case was run against the library at HEAD. For the composition comparison the library
-was reverted with `git checkout`, the matched run performed, and the edited files restored from a
-backup **verified byte-exact by md5** afterwards.
+### 5.1 The two arms are NOT reproducible from the committed files, and here is what to do
+
+This needs stating plainly because the committed evidence does not show it. **The two profile decks
+(`prof-with/input.py`, `prof-without/input.py`) are byte-identical.** Both resolve the database
+through an `rmgrc` pointing at this checkout, and `rmgrc` is `.gitignore`d by deliberate project
+policy — a tracked one pins a checkout-specific path and has previously produced
+meaningless-green runs. So re-running `prof-without/input.py` **today reproduces the *with* arm**,
+because the library in this checkout now contains the argon entry.
+
+The distinction between the arms lived entirely in a database state that no committed file carries:
+
+- `run-without/` and `prof-without/` were run with `input/kinetics/libraries/PlasmaRadiativeRecombination/`
+  at commit `20cfc36cc` (one entry, lithium only);
+- `run-with/` and `prof-with/` were run with it at `850c81cf0` (two entries).
+
+**To reproduce the *without* arm by hand:**
+
+```bash
+git checkout 20cfc36cc -- input/kinetics/libraries/PlasmaRadiativeRecombination/
+printf 'database.directory = %s/input\n' "$PWD" > docs/argon-radiative-recombination/prof-without/rmgrc
+cd docs/argon-radiative-recombination/prof-without && \
+  PYTHONPATH=/home/alon/Code/RMG-Py-plasma python /home/alon/Code/RMG-Py-plasma/rmg.py input.py \
+  > >(tee -a ../logs/prof-without.stdout.log) 2> >(tee -a ../logs/prof-without.stderr.log >&2)
+cd - && git checkout HEAD -- input/kinetics/libraries/PlasmaRadiativeRecombination/
+```
+
+That is what was actually done — the library was reverted with `git checkout`, the matched run
+performed, and the edited files restored from a backup **verified byte-exact by md5** afterwards.
+The committed files cannot carry it because the arm is selected by database content rather than by
+anything in the deck, and the one file that would pin the database path is correctly untracked.
+
+A deck-level switch would be better than a procedure in prose — the `without` arm is really "load
+this library minus one entry", which no input directive can express. Recorded as a limitation of
+this comparison rather than fixed here.
 
 ---
 
@@ -263,12 +417,21 @@ Ten orders of magnitude below the source; a timescale six hundred thousand times
 simulation. On this alone the entry is inert, and this is the estimate I carried into the runs.
 **The run refuted it.** The failure is that both rates are evaluated at a state the system
 abandons within a microsecond: the RR sink scales as `n_e·n_Ar+` while the source scales as
-`n_e·n_Ar`, so as the gas ionises the two swap places. `n_Ar+` rises ~7 orders of magnitude from
-its seed value over the run.
+`n_e·n_Ar`, so as the gas ionises the two swap places.
+
+The ion **number density** rises by a factor of **1.375e5** over the run. An earlier draft of this
+report said seven orders of magnitude; that was wrong, because it read the rise in Ar⁺ *mole count*
+as a rise in density while the mixture's volume grows **117.6×** over the same interval (3.7188 m³
+→ 437.41 m³). Density is what the rate depends on, so 1.375e5 is the figure that belongs here.
 
 ### 6.2 What actually happens
 
-Mole fractions, from the solver profiles:
+**These columns are moles, not mole fractions.** The snapshot writer emits moles; the three columns
+sum to 1.0 at t = 0 and to 1.9988 at the end, which is the tell — ionisation creates a second
+particle. An earlier draft of this report labelled them mole fractions. Corrected below, with both
+normalisations given, because they answer different questions.
+
+Moles, from the solver profiles:
 
 | t (s) | Ar *without* | Ar⁺ *without* | Ar *with* | Ar⁺ *with* |
 |---|---|---|---|---|
@@ -279,7 +442,7 @@ Mole fractions, from the solver profiles:
 | 1e-4 | 6.777791e-09 | 9.999999e-01 | 1.212983e-03 | 9.987870e-01 |
 | **1e-3** | **-2.97e-24** | **9.999999e-01** | **1.212976e-03** | **9.987870e-01** |
 
-Final state at 1e-3 s:
+Final state at 1e-3 s, **in moles**:
 
 ```
               without           with              delta
@@ -288,10 +451,21 @@ Ar(2)   -5.096717093e-26   1.212975870e-03   +1.2130e-03
 Arp(3)   9.999999382e-01   9.987869624e-01   -1.2130e-03
 ```
 
-The two trajectories are indistinguishable until ~1e-6 s and then separate completely. Without the
-entry the mechanism has **no loss channel at all**, so argon ionises to exhaustion and the neutral
-is driven to numerical zero (the negative value is solver noise against `atol=1e-16`, and is itself
-a symptom of an unbalanced mechanism). With the entry the model reaches a real balance.
+The same end state as **total-mixture mole fractions**, which is what a reader expecting fractions
+will want:
+
+```
+with the entry:   Ar 0.000606856    Ar+ 0.499696572    e- 0.499696572
+```
+
+And the **heavy-species neutral fraction**, `Ar/(Ar+Ar⁺) = 1.212976e-3` — a defensible quantity and
+the one §6.3 uses, but not what the column header said. The distinction does not touch §6.3's
+conclusion: that check is on the **ratio** `Ar/Ar⁺`, which is invariant under any normalisation.
+
+The two trajectories are indistinguishable until ~1e-6 s and then separate. Without the entry the
+mechanism has **no loss channel at all** and argon ionises until the neutral is gone. With the entry
+the model reaches a balance. (The final `-2.97e-24` mol is numerical noise against `atol=1e-16` —
+finite, consistent with the driver's tolerance, and nothing is built on it.)
 
 ### 6.3 The steady state is set by this entry, and the arithmetic closes
 
@@ -299,13 +473,23 @@ Equating the mechanism's only two channels, `k_iz·n_e·n_Ar = alpha·n_e·n_Ar+
 `n_Ar/n_Ar+ = alpha/k_iz` with no free parameters:
 
 ```
-predicted  alpha / k_iz            = 1.214459e-03
-measured   x_Ar / x_Ar+ at 1e-3 s  = 1.214449e-03
-ratio                                1.0000
+predicted  alpha / k_iz             = 1.214459e-03
+measured   Ar / Ar+  at 1e-3 s      = 1.214449e-03
+ratio                                 1.0000
 ```
 
-Agreement to four significant figures. **The entry is not a correction to the steady state; it is
-the steady state.**
+**What this establishes, stated precisely, because the first draft overclaimed it.** It is an
+*integration consistency check*: the solver was handed these two coefficients and reproduces the
+ratio the algebra implies from them. Using unrounded coefficients it agrees to numerical precision,
+which is what a correct integrator *should* do. So it confirms that the implementation does what
+the rate expressions say — no more. It is **not** an independent validation of the rate, and it is
+**not** evidence that either coefficient is right.
+
+With that said: the entry is not a correction to this mechanism's balance, it *is* the balance.
+Note also that the no-loss arm does not diverge without bound — it approaches an absorbing state
+once the neutral is exhausted — so the contrast between the arms is a difference between a
+bounded-by-exhaustion end state and a bounded-by-recombination one, which is less dramatic than
+"runaway versus steady state" suggests.
 
 ### 6.4 The verdict, stated so it cannot be over-read
 
@@ -316,16 +500,18 @@ and dissociative recombination of Ar₂⁺, which I-120 measured at ~2.9e5× fas
 which I-212 established cannot be represented here at all. A real 5 torr argon glow does not sit at
 99.9 % ionisation; it runs at ionisation fractions of order 1e-7 to 1e-5.
 
-So this entry does not make the model right. **It makes the model bounded** — replacing an
-unphysical runaway to complete ionisation with a steady state that is still set by the wrong
-physics. The `1.2e-3` neutral fraction is a property of this two-reaction mechanism and must not be
-quoted as a prediction about argon.
+So this entry does not make the model right. **It makes the model's end state a recombination
+balance rather than an exhaustion state.** The `1.2e-3` heavy-species neutral fraction is a
+property of this two-reaction mechanism and must not be quoted as a statement about argon.
 
-**What would have to change for it to stop mattering:** adding either of the two dominant loss
-channels. Both would outrun it by orders of magnitude and would push the steady state to a
-physically sensible ionisation fraction, at which point RR returns to being the ~1e-10 correction
-the seed-state arithmetic in §6.1 describes. That arithmetic is not wrong — it is the answer for a
-weakly ionised argon plasma, which is what this deck would be if its mechanism were complete.
+**What would have to change for it to stop mattering** is the addition of those loss channels —
+and this report does not predict what they would do. Dissociative recombination of Ar₂⁺ depends on
+dimer formation and dimer abundance; wall loss depends on transport and geometry. Neither the
+dimer nor the geometry is in this model, so their effect on this balance is not calculable from
+anything measured here and is not asserted. They are named as absent, which is all the evidence
+supports. (I-120 measured Ar₂⁺ dissociative recombination at ~2.9e5× the rate of this channel, and
+I-212 established it cannot be represented here at all; a rate ratio is not a steady state, so that
+number bounds nothing on its own.)
 
 ---
 
@@ -358,34 +544,56 @@ verifier and was left alone.
 
 Reported because the absence is the finding.
 
-- **The metastable branching fraction.** SVS82's `alpha_r` is the **total** radiative recombination
-  coefficient — capture into the ground level plus all excited levels. The product entered here is
-  ground-state Ar alone. The reconciliation is physical and is argued in the entry: radiative
-  cascade to ground runs on nanoseconds, ~1e6 times faster than the run's termination, so lumping
-  the total onto the ground-state product is correct coarse-graining rather than an overstatement
-  — **except** for the fraction that lands in argon's metastable 4s `3P2`/`3P0` levels and is held
-  rather than delivered. That fraction cannot be extracted from either source; both publish totals
-  with no level resolution. So the ground-state channel is an upper bound on itself by an amount no
-  source consulted can quantify. (`Ar(3P2)` now exists in `PlasmaExcitedNeutralThermo` per I-221,
-  but nothing reaches or leaves it, so the branching is not representable in any case.)
+- **The metastable branching fraction — and with it, how much this entry overstates ground-state
+  argon.** SVS82's `alpha_r` is the **total** radiative recombination coefficient: capture into the
+  ground level plus all excited levels. The product entered here is ground-state Ar alone, so every
+  excited-state capture is delivered as if it were a ground-state capture. **This makes the entry an
+  unquantified upper bound on ground-state production, and it is labelled as one in the entry.**
+
+  > **Correction.** An earlier draft justified the lumping by comparing the nanosecond radiative
+  > cascade against the run's 1e-3 s termination time. That argument is withdrawn: whether an
+  > excited state can be eliminated is decided by what competes with its decay — collisional
+  > quenching, stepwise re-ionisation out of the excited level, and radiation trapping of the
+  > resonance lines, which at 5 torr lengthens effective radiative lifetimes by orders of magnitude
+  > — not by whether the bare lifetime is shorter than the simulation. The old text read as a
+  > quantitative justification and was not one.
+
+  Argon's metastable 4s `3P2`/`3P0` levels make it concrete: population reaching them is held, not
+  delivered. Neither source resolves final states, so the branching fraction is not sourced and the
+  size of the overstatement is unknown. (`Ar(3P2)` exists in `PlasmaExcitedNeutralThermo` per I-221,
+  but nothing reaches or leaves it, so the branching is not representable here in any case.)
 - **Li, Qu & Wang, JQSRT 113 (2012) 1920**, doi:10.1016/j.jqsrt.2012.05.005 — "State-selective
   radiative recombination cross sections of argon ions". **The single highest-value unreachable
-  source.** It resolves Ar⁺ recombination to n, (n,l) and fine-structure levels, which is exactly
-  what would quantify the item above. ScienceDirect returns 403. Two caveats even if obtained: it
-  publishes cross sections rather than Maxwellian rate coefficients (though RMG's
-  `ElectronCollisionPlasma` could integrate a σ(E) table directly, as the `PlasmaArgon` ionisation
-  entry does), and it reports that Ar⁺ sits near a Cooper minimum where simple analytic fits break
-  down — which, if true, bears directly on the confidence owed to both fits entered or compared
-  here.
+  source**, because it is what would quantify the item above.
+
+  > **Correction, and this one was a factual error in my own report rather than in the entry.** The
+  > first draft dismissed this source on the grounds that it supplies only cross sections and that
+  > no modern independent calculation exists. The publisher's abstract contradicts both: it states
+  > the work covers **Ar⁺**, and reports n-, (n,l)- and fine-structure-resolved results together
+  > with **Maxwellian rate coefficients and analytic fitting parameters**. A reader who checks finds
+  > that in one click, which makes a false dismissal worse than no dismissal.
+
+  The honest position: **the paper could not be retrieved** (ScienceDirect returns HTTP 403), so
+  none of its numbers have been seen and nothing here rests on it — it is named as the obvious next
+  source, not used as evidence, and not dismissed. If obtained, two things would need checking:
+  whether its rate coefficients are usable directly, and its reported finding that Ar⁺ sits near a
+  Cooper minimum where simple analytic fits break down — which, if it holds, bears directly on the
+  confidence owed to both fits entered and compared here. Note RMG could also take a σ(E) table
+  directly via `ElectronCollisionPlasma`, as the `PlasmaArgon` ionisation entry does, so the
+  cross-section form would not by itself have been a barrier.
 - **Dere et al. 2009, A&A 498, 915 §3** — aanda.org returns 403 on both HTML and PDF, as it did for
   I-120. This is what would give the CHIANTI fit its fitted temperature grid.
 - **Aldrovandi & Péquignot 1974, *Rev. Bras. Fis.* 4, 491** — the primary for argon in both chains.
   I-120 established it is not in ADS full text, not on arXiv and not on SciELO; not re-attempted.
-- **A modern independent calculation for this stage.** There is none. Ar⁺ is Cl-like, and the
-  systematic radiative-recombination programmes (Badnell/APAP, Verner & Ferland, Nahar & Pradhan)
-  are organised by isoelectronic sequence and have not reached it. Both available fits therefore
-  descend from one 1974 calculation, which is the deepest limitation on this number and is not
-  fixable by better sourcing.
+- **A modern calculation usable as an entered rate.** None was obtained. The *systematic*
+  radiative-recombination programmes (Badnell/APAP, Verner & Ferland, Nahar & Pradhan) are
+  organised by isoelectronic sequence and have not reached Cl-like ions, so they do not cover Ar⁺;
+  that much is established. But "no modern calculation exists" is **not** established, and this
+  report should not have said it — Li, Qu & Wang (above) is exactly such a calculation, it is
+  simply unreachable. The accurate statement is narrower and still serious: **both fits that could
+  be obtained descend from one 1974 calculation**, which is the deepest limitation on this number,
+  and the one source that would break that dependence sits behind a paywall. That is a retrieval
+  problem, not a literature gap, and it is more tractable than the first draft implied.
 
 ---
 
@@ -400,8 +608,13 @@ push, merge or PR.
 ```
 input/kinetics/libraries/PlasmaRadiativeRecombination/reactions.py    + entry index 1, [Arp] => [Ar]
 input/kinetics/libraries/PlasmaRadiativeRecombination/dictionary.txt  + [Arp], [Ar]
+test/test_plasma_radiative_recombination.py                          fixtures by identity; +22 argon tests
 docs/argon-radiative-recombination/                                   this report, decks, logs, profiles
 ```
+
+No test was deleted or skipped. The only base test id absent afterwards is the deliberate rename
+`test_library_loads_with_exactly_one_entry` → `test_library_loads_with_the_expected_coverage`;
+verified by diffing `--collect-only` ids against `20cfc36cc`.
 
 The `dictionary.txt` addition was not anticipated and is worth naming: a kinetics library refuses to
 load if a species named in an entry label is missing from its dictionary

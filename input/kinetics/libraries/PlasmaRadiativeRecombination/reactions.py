@@ -177,15 +177,17 @@ paper's own units, so RMG performs the unit conversion and no arithmetic is done
 ``(T/10^4)^(-X_rad)`` and this class's ``(Te/T0)^n``; ``T0 = 1e4 K`` is the paper's own
 normalisation. Nothing here is fitted, averaged or interpolated by this database.
 
-WHICH ROW, AND WHY IT IS THE RIGHT ONE. In Table 2 the radiative coefficients on row
-``X_n`` describe recombination that PRODUCES stage ``X_n``, not recombination out of it.
-Proof from the table's own structure rather than from the naming: for every element the
-last row (C6, N7, O8, NE10, MG12, SI14, S16) carries X_rad = 7.26E-01 and a null
-dielectronic entry, which is the hydrogenic value - that row can only be the bare nucleus
-recombining to the H-like ion. So row ``AR1`` is the reaction that yields neutral Ar I,
-i.e. Ar+ + e- => Ar. Independently, Verner's ``rrfit.f`` encoding of the same paper keys
-argon on the electron count AFTER recombination and gives A = 3.770e-13, B = 0.6510 at
-IN = 18 (neutral argon, 18 electrons) - the same two numbers, reached by a different route.
+WHICH ROW, AND WHY IT IS THE RIGHT ONE. Table 2's own footnote settles it:
+
+    "Rates refer to collisional ionization of and recombination to the tabulated ion."
+
+So the radiative coefficients on row ``X_n`` are recombination *to* stage ``X_n``, and row
+``AR1`` is the reaction yielding neutral Ar I: Ar+ + e- => Ar. Two independent
+corroborations, neither needed but both recorded: the last row of every element (C6, N7,
+O8, NE10, MG12, SI14, S16) carries X_rad = 7.26E-01 with a null dielectronic entry, the
+hydrogenic value, which only the bare nucleus recombining to the H-like ion can be; and
+Verner's ``rrfit.f`` encoding of the same paper keys argon on the electron count AFTER
+recombination, giving A = 3.770e-13, B = 0.6510 at IN = 18 (neutral argon, 18 electrons).
 
 TEMPERATURE: THIS ENTRY READS Te, NOT THE GAS TEMPERATURE
 ----------------------------------------------------------
@@ -230,25 +232,41 @@ They say only that they "attempted to simplify the rate coefficients with analyt
 over the temperature range of interest" (Sec. II), without naming that range in Sec. II(b)
 where the recombination fits are given.
 
-``Tmin``/``Tmax`` above are therefore NOT a quoted bound. They are the temperature grid
-over which the authors themselves exercise these rates: Table 3 tabulates the resulting
-ionization fractions for argon at ``log T = 4.00`` through ``8.00`` in steps of 0.10, i.e.
-1e4 K to 1e8 K, and Sec. III states those results "are applicable to any hot, optically
-thin, low density plasma in ionization equilibrium." Using the span the authors applied
-the fit over is the strongest range statement the source supports; it is recorded as that
-and not as a claim the authors made.
+``Tmin``/``Tmax`` above are therefore NOT a quoted bound and NOT an accuracy claim. They
+are **grid membership, nothing more**: the span over which the authors themselves exercise
+these rates, Table 3 tabulating argon ionization fractions at ``log T = 4.00`` through
+``8.00`` in steps of 0.10, i.e. 1e4 K to 1e8 K. Sec. III adds that those results "are
+applicable to any hot, optically thin, low density plasma in ionization equilibrium."
+That the authors ran the fit over a span is evidence they considered it usable there; it
+is not a demonstrated error bound, and it must not be read or cited as one. **No accuracy
+bound for this fit is available from any source consulted.**
 
-The deck this entry was measured on runs at Te = 34813.5 K, which is inside that span.
-Below 1e4 K the entry is outside anything the source exercised - note that the sibling
-Li+ entry's ``BadnellRRArrhenius`` IS valid down to 10 K, so the two entries in this
+The deck this entry was measured on runs at Te = 34813.5 K, inside that span. The sibling
+Li+ entry's ``BadnellRRArrhenius`` is valid down to 10 K, so the two entries in this
 library do not share a floor.
 
-UNCERTAINTY - CONSTRUCTED FROM TWO TRANSCRIBED FITS, BECAUSE NEITHER AUTHOR PUBLISHED ONE
-------------------------------------------------------------------------------------------
-**Neither available source for this reaction states an uncertainty.** Rather than leave
-the entry silent, the spread between the two independent published fits is recorded here.
-Both values below are transcribed from their sources; the comparison between them is
-arithmetic on transcribed values, not an estimate authored here.
+**Nothing enforces these numbers, and that is measured, not assumed.** No evaluation path
+consults them: ``is_temperature_valid(298.15)`` returns ``False`` while
+``get_rate_coefficient_two_temp`` returns a perfectly ordinary number at Te = 0.5 eV
+(5802 K, below ``Tmin``) with no warning and no raise. So ``Tmin``/``Tmax`` here are
+documentation for a reader, not a guard against a caller. Pinned by
+``test_the_declared_temperature_range_is_grid_membership_that_nothing_enforces``. Making
+the engine enforce a declared range is an RMG-Py change and is referred, not attempted
+here.
+
+UNCERTAINTY - THERE IS NONE TO QUOTE, AND THAT IS THE STATEMENT
+----------------------------------------------------------------
+**Neither available source for this reaction states an uncertainty.** No error bar is
+offered here, because none exists to offer. An absent quantity is reported absent.
+
+What IS recorded below is a comparison between this fit and the one rival fit for the same
+reaction. Read it as what it is - two particular calculations disagreeing - and not as an
+uncertainty interval, a confidence bound, or a lower bound on the error. It supports none
+of those readings: the two share an ancestor, so their agreement where they agree is
+partly inherited rather than independent, and their disagreement where they disagree
+measures the divergence of two parameterisations, not the distance of either from the
+truth. An earlier draft of this entry advised a reader to use the spread as an error bar.
+That advice was wrong and is withdrawn.
 
 The rival fit is CHIANTI ``ar_2.rrparams`` - the six-parameter Badnell/Gu form
 (A = 4.6460e-11 cm^3/s, B = 0.67040, T0 = 7.4230 K, T1 = 5.2750e6 K, C = 0.38320,
@@ -260,19 +278,18 @@ A&A 498 (2009) 915, Sec. 3. At the deck's working point:
     CHIANTI ar_2 / AP74          alpha(3 eV) = 2.472e-13 cm^3/s
     spread                       ~48 %
 
-**That ~48 % spread is the best uncertainty statement available for this rate**, and a
-reader needing an error bar should use it. Note it is strongly Te-dependent and is NOT a
-constant: the two fits agree to 1-3 % at 0.3-1 eV and diverge above it (1.20x at 2 eV,
-1.48x at 3 eV, 1.99x at 5 eV), because the Gu form's ``C*exp(-T2/Te)`` term flattens the
-high-Te falloff while this single power law keeps falling. The disagreement is therefore
-worst exactly where this deck runs.
+The spread is strongly Te-dependent: the two fits agree to 1-3 % at 0.3-1 eV and diverge
+above it (1.20x at 2 eV, 1.48x at 3 eV, 1.99x at 5 eV), because the Gu form's
+``C*exp(-T2/Te)`` term flattens the high-Te falloff while this single power law keeps
+falling. They disagree most at the conditions this deck runs at. That is worth knowing
+when choosing between them, and it is still not an error bar.
 
-Two qualifications that make the spread a floor rather than a full error bar:
+Two further facts about the pair, recorded for the same reason:
 
 * **The two fits are not independent at the root.** Both descend from Aldrovandi &
-  Pequignot; SVS82's Sec. II(b) cites AP (1973, 1976) as its radiative source. The spread
-  measures the divergence of two parameterisations of a common ancestry, so the true
-  uncertainty against modern theory is larger, not smaller.
+  Pequignot; SVS82's Sec. II(b) cites AP (1973, 1976) as its radiative source. This is
+  precisely why their difference cannot be read as an uncertainty: common ancestry makes
+  the comparison uninformative about the error of either against reality.
 * **The authors of this entry's source flag argon's class as unchecked.** SVS82 Sec. II(b)
   states the radiative coefficients came from AP for C, N, O, Ne, Mg, Si and S, and then:
   "Values for Ar, Ca, and Ni are derived by interpolating along isosequences." Their
@@ -282,33 +299,42 @@ Two qualifications that make the spread a floor rather than a full error bar:
   This interpolation is the compilers' own, disclosed in their paper and quoted here; it is
   not an interpolation performed by this database, but a reader must know it is there.
 
-WHAT THE PRODUCT IS: A TOTAL RATE ON A GROUND-STATE PRODUCT
-------------------------------------------------------------
+WHAT THE PRODUCT IS: A TOTAL RATE DELIVERED ENTIRELY TO GROUND STATE - AN UPPER BOUND
+--------------------------------------------------------------------------------------
+**This entry overstates ground-state argon production by an unknown amount. Treat the
+rate as an upper bound on that channel, not as the channel.**
+
 ``alpha_r`` in SVS82 is the TOTAL radiative recombination coefficient - the sum over
 capture into the ground level and into all excited levels (AP's method: ground level by
 the Milne relation from photoionisation cross sections, excited levels hydrogenic). The
-product written here is ground-state Ar alone. The two are reconciled as follows, and the
-reconciliation is a physical argument, so it is given rather than assumed:
+product written here is ground-state Ar alone, so every excited-state capture the total
+includes is delivered here as if it were a ground-state capture.
 
-Capture into an excited Ar level is followed by radiative cascade to the ground state on
-nanosecond timescales, which is ~1e6 times shorter than this deck's 1e-3 s termination.
-Every excited atom the total rate creates therefore arrives at ground-state Ar long within
-one output step, and lumping the total onto the ground-state product is the correct
-coarse-graining, not an overstatement of that channel - provided the cascade is not
-trapped. That proviso is the real caveat: argon's 4s ``3P2``/``3P0`` levels are metastable,
-so the cascade fraction that lands there is held rather than delivered. This database now
-carries ``Ar(3P2)`` (``PlasmaExcitedNeutralThermo``), but no reaction reaches or leaves it,
-so the branching cannot be represented and is not attempted here.
+**Why that cannot be justified by a timescale argument.** An earlier draft of this entry
+argued that radiative cascade to ground runs on nanoseconds, ~1e6 times faster than the
+deck's 1e-3 s termination, and concluded the lumping was therefore correct. That argument
+does not hold and is withdrawn. Whether an excited state can be eliminated is decided by
+what competes with its decay - collisional quenching, stepwise re-ionisation out of the
+excited level, and radiation trapping of the resonance lines, which at 5 torr lengthens
+effective radiative lifetimes by orders of magnitude - not by whether its bare radiative
+lifetime is shorter than the length of the simulation. Comparing against the run's
+termination time answers a question nobody asked.
 
-**Unquantified, and named as such.** The branching fraction into the metastables cannot be
-extracted from either source: both publish a total only, with no level resolution. The one
-state-resolved calculation located for this ion - C. Y. Li, Y. Z. Qu, J. G. Wang,
-"State-selective radiative recombination cross sections of argon ions", JQSRT 113 (2012)
-1920, doi:10.1016/j.jqsrt.2012.05.005, which resolves Ar+ recombination to n, (n,l) and
-fine-structure levels - is behind a publisher wall that could not be reached, and it
-publishes cross sections rather than Maxwellian rate coefficients in any case. So the
-ground-state channel here is an upper bound on itself, by an amount no source consulted
-can quantify.
+Argon's 4s ``3P2``/``3P0`` levels are metastable and make the point concrete: population
+reaching them is held, not delivered. This database carries ``Ar(3P2)``
+(``PlasmaExcitedNeutralThermo``, I-221) but no reaction reaches or leaves it, so the
+branching cannot be represented here whatever its value.
+
+**The branching fraction is not sourced.** Neither SVS82 nor the CHIANTI/AP74 fit resolves
+final states; both publish a total. A state-resolved calculation for this ion does exist -
+C. Y. Li, Y. Z. Qu, J. G. Wang, "State-selective radiative recombination cross sections of
+argon ions", JQSRT 113 (2012) 1920, doi:10.1016/j.jqsrt.2012.05.005 - whose abstract
+states it covers Ar+ and reports n-, (n,l)- and fine-structure-resolved results together
+with Maxwellian rate coefficients and analytic fitting parameters. **It could not be
+retrieved** (publisher returns HTTP 403), so none of its numbers have been seen, let alone
+checked; it is named as the obvious next source rather than as evidence. Until something
+resolves the final states, the size of the overstatement is unknown, and this entry says
+so rather than bounding it.
 
 WHY A LIBRARY ENTRY AND NOT A FAMILY RATE
 ------------------------------------------
@@ -330,29 +356,35 @@ ionisation source and the RR timescale for one Ar+ ion is ~600 s against a 1e-3 
 that arithmetic alone the entry looks inert. **That arithmetic answers the wrong question**,
 because it is evaluated at a state the system leaves immediately.
 
-At Te = 3 eV the deck ionises away from its seed: by t ~ 1e-5 s the neutral fraction has
-fallen from 1.0 to 0.17, and n_Ar+ has risen ~7 orders of magnitude from the seed value.
-The RR sink scales as n_e * n_Ar+ while the ionisation source scales as n_e * n_Ar, so the
-two swap places as the gas ionises. The end state differs completely between the two runs:
+At Te = 3 eV the deck ionises away from its seed: the heavy-species neutral fraction falls
+from 1.0 to 0.17 by t ~ 1e-5 s, while the ion NUMBER DENSITY rises by a factor of 1.4e5
+(the mixture's volume grows 117.6x over the run, so the rise in density is much smaller
+than the rise in mole count). The RR sink scales as n_e * n_Ar+ while the ionisation source
+scales as n_e * n_Ar, so the two swap places as the gas ionises. The end states differ:
 
-    without this entry   x_Ar -> -5.1e-26   (i.e. zero; argon ionises to completion)
-    with this entry      x_Ar ->  1.213e-3  (a genuine ionisation/recombination balance)
+    without this entry   Ar/(Ar+Ar+) -> ~0        (argon ionises until the neutral is gone)
+    with this entry      Ar/(Ar+Ar+) ->  1.213e-3 (an ionisation/recombination balance)
 
-**This entry is the only loss channel in the mechanism, so it alone sets the steady state.**
+**This entry is the only loss channel in the mechanism, so it alone sets the balance.**
 Equating the two channels gives n_Ar/n_Ar+ = alpha/k_iz, and with k_iz = 1.3781e-10 cm^3/s
 from the shipped ``PlasmaArgon`` cross-section table at this Te:
 
-    predicted  alpha / k_iz          = 1.214459e-3
-    measured   x_Ar / x_Ar+ at 1e-3s = 1.214449e-3      (agreement to 4 significant figures)
+    predicted  alpha / k_iz             = 1.214459e-3
+    measured   Ar/Ar+ ratio at 1e-3 s   = 1.214449e-3
 
-Read the correct conclusion from that, and not a flattering one: the channel is
-determinative HERE because the channels that would really dominate argon loss at 5 torr are
-absent from this mechanism - ambipolar diffusion to the wall, and dissociative recombination
-of Ar2+, which I-120 measured at ~2.9e5 times faster than this one. A real 5 torr argon glow
-does not sit at 99.9 % ionisation. So this entry does not make the model right; it makes the
-model *bounded*, replacing an unphysical runaway to complete ionisation with a steady state
-that is still set by the wrong physics. Treat the 1.2e-3 neutral fraction as a property of
-this two-reaction mechanism, not as a prediction about argon.
+**What that agreement establishes, and what it does not.** It is an integration consistency
+check: the solver was handed these two coefficients and reproduces the ratio the algebra
+implies from them, which is what a correct integrator should do. It confirms that the
+implementation does what the rate expressions say. It is NOT an independent validation of
+the rate, and it is not evidence that either coefficient is right.
+
+The channel is determinative HERE because the channels that would really dominate argon
+loss at 5 torr are absent from this mechanism - ambipolar diffusion to the wall, and
+dissociative recombination of Ar2+. Both are named as absent; neither is modelled, and what
+either would do to this balance is not predicted here, because dissociative recombination
+depends on dimer formation and abundance and wall loss depends on transport and geometry,
+none of which this model contains. Treat the 1.2e-3 neutral fraction as a property of this
+two-reaction mechanism, not as a statement about argon.
 
 CORRECTION TO A SIBLING LIBRARY. ``PlasmaArgon``'s longDesc states that radiative
 recombination of argon "is NOT here, and does not belong", on three supports from I-120.

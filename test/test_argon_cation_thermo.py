@@ -682,10 +682,19 @@ def test_argon_atom_type_resolves_to_a_specific_leaf_and_no_longer_parses_any_ch
     ``docs/argon-perception-pins/logs/probe_stdout.log``) says:
 
       * ``nonSpecifics`` is now ``['He', 'Ne', 'e']`` - argon is **not** in it;
-      * ``ATOMTYPES['Ar'].specific`` is ``['Ar0', 'Ar0s', 'Ar+', 'Ar++']``;
+      * ``ATOMTYPES['Ar'].specific`` is ``['Ar0', 'Ar0s', 'Ar0e', 'Ar+', 'Ar++']``;
       * ``Ar+`` (``u1 p3 c+1``) perceives as the **specific leaf** ``Ar+``, not ``Ar``;
       * the nonsense Ar(4+) no longer parses **at all** - no leaf admits ``+4``, so
         ``from_adjacency_list`` raises ``AtomTypeError``.
+
+    **Round three, which happened while I-226 was being written.** The leaf list above was
+    first pinned as the four ``['Ar0', 'Ar0s', 'Ar+', 'Ar++']`` against engine
+    ``fced5e836``. Within the hour, RMG-Py merged ``i222-metastable-argon-atomtype``
+    (``311818121``), adding a fifth leaf ``Ar0e`` for metastable argon
+    (``single=[0], lone_pairs=[3], charge=[0]``) - and **this pin caught it immediately**,
+    which is the entire reason it asserts the list exactly rather than loosely. Nothing else
+    in this file moved: ``Ar+``, ``Ar0``, the dimer and the Ar(4+) refusal were all
+    unaffected. The list is deliberately still exact; a sixth leaf should fail here too.
 
     The generic ``Ar`` keeps ``charge=[0, 1, 2]``, so that half of the old pin survives
     verbatim. What died is the corollary the old docstring called uncomfortable: argon no
@@ -707,7 +716,9 @@ def test_argon_atom_type_resolves_to_a_specific_leaf_and_no_longer_parses_any_ch
     # ... but argon is no longer a nonSpecifics catch-all, and has specific leaves.
     from rmgpy.molecule.atomtype import nonSpecifics
     assert 'Ar' not in nonSpecifics
-    assert [t.label for t in ATOMTYPES['Ar'].specific] == ['Ar0', 'Ar0s', 'Ar+', 'Ar++']
+    # Exact on purpose: this list gaining Ar0e is what this assertion caught mid-ticket.
+    assert [t.label for t in ATOMTYPES['Ar'].specific] == [
+        'Ar0', 'Ar0s', 'Ar0e', 'Ar+', 'Ar++']
 
     # Ar+ now resolves to its own leaf rather than the generic parent.
     assert ground.atoms[0].atomtype.label == 'Ar+'

@@ -6,10 +6,27 @@ corrected below by measurement.** The most consequential correction is that the 
 buildtime tests protected was **not uniformly lost**: for the dication it is **relocated and still
 asserted**, for the dimer it is **partially lost** and now pinned as the smaller thing it is.
 
-Everything below is measured against a freshly built engine at `fced5e836`, resolved to
+Everything below is measured against a freshly built engine, resolved to
 `/home/alon/Code/RMG-Py-plasma/rmgpy/molecule/atomtype.cpython-39-x86_64-linux-gnu.so`. Logs are in
 `docs/argon-perception-pins/logs/`; the probes that produced them are the three `probe_*.py` scripts
 beside this file and are re-runnable.
+
+> **The engine moved during this ticket, and the new pin caught it.** Work began at the briefed tip
+> `fced5e836`. Partway through, another session merged `i222-metastable-argon-atomtype`, taking
+> `RMG-Py-plasma` to **`311818121`** and rebuilding the `.so` underneath me. The freshly written pin
+> on argon's leaf list went red **within the hour**, on the appearance of a fifth leaf `Ar0e`
+> (metastable argon; `single=[0]`, `lone_pairs=[3]`, `charge=[0]`). Nothing else moved — `Ar+`,
+> `Ar0`, the dimer, the Ar(4+) refusal, the dication and the tripwire were all unaffected, and 220
+> of 221 tests stayed green across the jump. The final state is pinned against **`311818121`**,
+> because `cross-repo-check` — the stated definition of done — measures the live engine, and a pin
+> against a tip that no longer exists is worth nothing. **Verifier item 1's "at `fced5e836`" is
+> therefore not literally satisfiable any more**; §7 records both runs. The §1 table below is the
+> `311818121` measurement; the four-leaf reading it replaced is in
+> `logs/probe_stdout.log`, and the five-leaf one in `logs/probe_at_311818121_stdout.log`.
+>
+> This is the single most useful thing the ticket produced: it is direct evidence that an exact pin
+> on a cross-repository coupling pays for itself, since the interval between writing it and its
+> first true positive was under an hour.
 
 ---
 
@@ -41,11 +58,12 @@ From `logs/probe_stdout.log`:
 
 | | |
 |---|---|
-| `ATOMTYPES['Ar'].specific` | `['Ar0', 'Ar0s', 'Ar+', 'Ar++']` — **4 leaves** |
+| `ATOMTYPES['Ar'].specific` | `['Ar0', 'Ar0s', 'Ar0e', 'Ar+', 'Ar++']` — **5 leaves** (4 at `fced5e836`) |
 | `'Ar' in nonSpecifics` | **False** (`nonSpecifics` is now `['He', 'Ne', 'e']`) |
 | generic `Ar` | `single=[]`, `lone_pairs=[]`, `charge=[0, 1, 2]` |
 | `Ar0` | `single=[0]`, `lone_pairs=[4]`, `charge=[0]` |
 | `Ar0s` | `single=[1]`, `lone_pairs=[3]`, `charge=[0]` |
+| `Ar0e` | `single=[0]`, `lone_pairs=[3]`, `charge=[0]` — **new at `311818121`**, metastable argon |
 | `Ar+` | `single=[0, 1]`, `lone_pairs=[3]`, `charge=[1]` |
 | `Ar++` | `single=[0, 1, 2]`, `lone_pairs=[3]`, `charge=[2]` |
 
@@ -245,7 +263,7 @@ the run that actually answers the Verifier. Both results are in §7.
 
 | # | Item | Result |
 |---|---|---|
-| 1 | the two argon files green, counts against their own totals | **70 passed** (was `3 failed, 67 passed` — same 70 collected) |
+| 1 | the two argon files green, counts against their own totals | **70 passed** (was `3 failed, 67 passed` — same 70 collected). Pinned against `311818121`, not `fced5e836`; see the note at the top |
 | 2 | every rewritten assertion justified by a printed measurement | yes — §1, §3a, §4; logs named per assertion |
 | 3 | each docstring records what changed and why the old pin was right | yes — all four rewritten docstrings carry a "what this was written for, and why it was right" section |
 | 4 | guarantee question answered in the stated terms | yes — §3a **relocated, not lost**; §3b **partially lost** |
@@ -258,15 +276,24 @@ Definition of done, per the tool:
 
 ```
 $ bin/cross-repo-check --db <this worktree> --py /home/alon/Code/RMG-Py-plasma
-  database : ... @ d1694dacd (i226-argon-perception-pins)
-  engine   : ... @ fced5e836 (plasma)
+  database : ... @ 7b403cf7b (i226-argon-perception-pins)
+  engine   : ... @ 311818121 (plasma)
   built    : 52 extension(s); atomtype -> .../atomtype.cpython-39-x86_64-linux-gnu.so
-  pytest   : 221 passed, 568 warnings in 25.86s
+  built    : atomtype .so is 12 min old and not older than its source
+  pytest   : 221 passed, 568 warnings in 26.34s
   CLEAN -- every collected test in the database checkout passes against this engine.
   exit 0
 ```
 
 221 = the previous 218 collected, plus 3 from splitting the tripwire into four tests.
+
+Three `cross-repo-check` runs are in `logs/`, and the middle one is the interesting one:
+
+1. at `fced5e836`, after the re-pins — `221 passed`, exit 0;
+2. at `311818121`, before the `Ar0e` re-pin — `1 failed, 220 passed`, exit 1, naming
+   `test_argon_atom_type_resolves_to_a_specific_leaf_and_no_longer_parses_any_charge`. This is the
+   new pin catching a real engine change, unprompted, within the hour;
+3. at `311818121`, after it — `221 passed`, exit 0. This is the final state.
 
 ---
 

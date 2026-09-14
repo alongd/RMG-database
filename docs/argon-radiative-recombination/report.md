@@ -631,6 +631,15 @@ Reported because the absence is the finding.
   > with **Maxwellian rate coefficients and analytic fitting parameters**. A reader who checks finds
   > that in one click, which makes a false dismissal worse than no dismissal.
 
+  > **Retrieval re-attempted 2026-09-15, and the answer is now a measured negative rather than a
+  > failed attempt.** The remaining question was whether 403 from ScienceDirect meant "no copy
+  > exists" or merely "not by that route". OpenAlex — which aggregates the open repositories a
+  > preprint or author copy would sit in — returns for this DOI `open_access.is_oa: false`,
+  > `open_access.oa_url: null`, `best_oa_location: null`, and exactly one location, the paywalled
+  > publisher landing page. So there is no open copy indexed anywhere, and no alternative route to
+  > try: this is a **paywall**, and the unblock condition is institutional access or an author
+  > request, not a better search. Recorded so the next session does not spend the same hour.
+
   The honest position: **the paper could not be retrieved** (ScienceDirect returns HTTP 403), so
   none of its numbers have been seen and nothing here rests on it — it is named as the obvious next
   source, not used as evidence, and not dismissed. If obtained, two things would need checking:

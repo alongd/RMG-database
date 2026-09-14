@@ -119,13 +119,43 @@ left once the roots are narrowed, and blocking it takes the wrongly-served train
 )
 
 # Root Definitions
+#
+# Both roots name their elements explicitly, and that is load-bearing rather than tidy. They were
+# written as `R` -- broader than their own subtrees, which between them name only H, O, metal and
+# N -- and `R` is what made this family unusable outside its own training set. A group constrains
+# ATOMS, not molecules, so `R ... c[+1,...]` does not mean "a cation": it means "any molecule
+# containing a formally positive atom", which is every nitro compound, every N-oxide, every
+# nitrile oxide in the database. Measured over the 22,344 species the installed thermo libraries
+# name (logs/rootsafety-before.stdout.log):
+#
+#     root B as `R`  : 17,009 species (76%) made generate_reactions RAISE
+#     root A as `R`  :    630 of its 645 matchers raised, and 633 of those matchers were not
+#                        cations at all
+#     worst of all   : N2+, a PRODUCT of training entries 15 and 23, raised when fed back in --
+#                      so the family aborts a job on the iteration after its own reaction fires
+#
+# The raise is an AtomTypeError from `update_atomtypes`: RMG has no atom type for most ionised
+# heavy atoms (Br+, S+, N+ with four bonds), and `generate_reactions` propagates it out to the
+# caller, so it ABORTS the run rather than omitting a reaction. That is why these roots are
+# narrowed rather than widened, and why the narrowing is by element.
+#
+# With the element lists below the same sweep measures 0 crashes over all 22,344 species, 0 on the
+# family's own products, and the family still reproduces 15 of 15 training entries with 45
+# reactions and none wrong (logs/narrow2.stdout.log, logs/rootsafety-after.stdout.log). The
+# alternative scored identically -- writing each root as `OR{}` over its children -- and was not
+# taken, because a LogicOr root has no sample molecule of its own and the twelve database checks
+# descend from these roots.
+#
+# Both roots stay strictly BROADER than their children, so the family still generalises: root B
+# admits an ether oxygen that no child names. What it no longer admits is an element whose cation
+# RMG cannot type.
 
 entry(
     index = 0,
     label = "A",
     group =
 """
-1 *1 R ux p[0,2] c[+1,+2,+3,+4]
+1 *1 [H,O,metal] ux p[0,2] c[+1,+2,+3,+4]
 """,
     kinetics = None,
 )
@@ -135,7 +165,7 @@ entry(
     label = "B",
     group =
 """
-1 *2 R u[0,1] p[1,2,3,4] c[0,-1,-2,-3,-4]
+1 *2 [H,O,N] u[0,1] p[1,2,3,4] c[0,-1,-2,-3,-4]
 """,
     kinetics = None,
 )

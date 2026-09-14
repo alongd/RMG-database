@@ -4,6 +4,14 @@ Worktree `/home/alon/Code/RMG-database-i224-alkaline-family-top`, branch `i224-a
 Engine used for every measurement: `/home/alon/Code/RMG-Py-plasma` (branch `plasma`, tip `78f306665`),
 via `PYTHONPATH`; RMG-Py was not modified.
 
+**Revised after adversarial round 50**, which found nothing CRITICAL and nothing HIGH and
+reproduced the narrowing, the gate clearance and the relocation independently against the same
+engine. That round added one behavioural change — `allowChargedReactants = False`, with its own
+section below — and five corrections to this document: the suite's structural blind spot is now a
+finding of its own rather than a clause; the `A;B` node is described as holding two entries and
+serving one; the training-index gap is marked documentary; the `alkaline` atom type is marked a
+moving target; and "6 reactions / 0 unintended" now says which claim it is making.
+
 ## Resolved database directory
 
 Every measurement pins and prints it as its first log line:
@@ -131,6 +139,24 @@ Retained: `Mg + Mg`, `Mg + Ca`, `Ca + Ca` (2 reactions each, the two charge assi
 Dropped and intended: `O + O`, `O + Mg`, `O + Ca`. Dropped and unintended: every pair drawn from
 C, N, S, CH2, NH, the polyatomic carbene, and OH⁺ — 78 reactions, to zero.
 
+**What "6 reactions / 0 unintended" claims, and what it does not.** Six is raw generation
+arithmetic: two matching species give three unordered pairs, and each pair is generated in both
+slot orders (`*1` takes the charge, `*2` does not), so 3 × 2 = 6 is exactly the number a correct
+template predicts. The claim being made is therefore **"the template does not over-generate"** —
+nothing above the predicted count, and the 78 unintended are gone. It is **not** a claim that
+coverage is complete, that six is the right number of alkaline-earth associative-ionization
+channels in nature, or that these six reactions carry defensible rates. Coverage in fact went
+*down*: three intended pairs involving oxygen were lost, which is the subject of the next section.
+Whether the retained chemistry is right is untouched — see "What this could not reach".
+
+**`alkaline` is a moving target, and the top now says so.** The narrowing means "whatever the
+`alkaline` atom type resolves to", which is Mg and Ca today (`atomtype.py:388-389`). If Be, Sr or Ba
+are ever added to that atom type, these tops widen to admit them with no edit to `groups.py` and no
+check failing, while the training set stays Mg and Ca only — a widening of the atom type would
+outrun the data before it outran the family's name. A sentence recording this is now in the
+`groups.py` docstring, which is where someone editing the atom type would have a chance of seeing
+it.
+
 ## The orphaned training reaction — measured, then moved
 
 This ticket went through two states, and both are reported because the intermediate one carries the
@@ -147,14 +173,24 @@ the pre-I-224 original shows the entry identical in index, label, degeneracy, ki
 reference, differing only by an added provenance note in its `longDesc`; the three species
 definitions (`O_A`, `O_B`, `O2p`) moved with it and are byte-identical. The surviving entries keep
 indices **2 and 3** — index 1 is deliberately absent from the family, so the two files match up by
-number. The held-back copy records what it is, that it left because the narrowing put oxygen
+number.
+
+**That index gap is a documentary signal, not a durable fact.** `Database.save(path, reindex=True)`
+is the default (`rmgpy/data/base.py:362-372`), and `get_entries_to_save` ends with
+`for index, entry in enumerate(entries): entry.index = index` (`base.py:295-296`). So the moment
+anything saves this depository through RMG's own writer, the surviving entries become 0 and 1 and
+the gap closes silently. The gap survives only as long as the file is edited by hand, which is how
+it is maintained today. Anyone who needs the link to be durable should rely on the prose note in
+`training/reactions.py` and on the held-back copy's own provenance block, not on the numbering.
+
+The held-back copy records what it is, that it left because the narrowing put oxygen
 outside the template rather than because it was judged wrong, that it wants a family named for
 neutral associative ionization, and that the prerequisite for such a family is an RMG-Py change
 this ticket does not make.
 
 What the orphan does, measured one call at a time (`logs/addrules-*.stdout.log`):
 
-| call | 1. baseline | 2. narrowed, entry in place | 3. entry moved out (committed) |
+| call | 1. baseline | 2. narrowed, entry in place | 3. entry moved out |
 |---|---|---|---|
 | training entries in the family | 3 | 3 | 2 |
 | `get_reaction_template_labels(O + O)` | `['A', 'B']` | **raises `UndeterminableKineticsError`** | n/a — entry is held back |
@@ -168,10 +204,8 @@ What the orphan does, measured one call at a time (`logs/addrules-*.stdout.log`)
 **This is the result you asked to see, and it is worse than a red check.** No check goes red. The
 family is green through every method in `databaseTest.py`, invoked individually, and it still takes
 a real run down: `rmgpy/rmg/main.py:590` calls `add_rules_from_training` for every non-auto-generated
-family, and the unmatched entry escapes it. The test suite calls that same method **only** from
-`kinetics_check_surface_training_reactions_can_be_used`, which `test_kinetics` reaches only for
-families whose name contains "surface" (`databaseTest.py:365-371`) — so this family's orphan is
-structurally invisible to the suite.
+family, and the unmatched entry escapes it. The suite does not miss this by bad luck; it cannot see
+it at all, for a structural reason that is the next section.
 
 Mechanism: `add_rules_from_training` catches `UndeterminableKineticsError` for the forward direction
 and files the entry under `reverse_entries` (`family.py:1184-1191`), then re-tries it in reverse; the
@@ -185,7 +219,8 @@ Re-run with one, the failure is the `UndeterminableKineticsError` above.
 **State 2 was green-and-broken-at-run-time — a merge gate, not a footnote.** State 3 clears it, and
 the clearance was exercised rather than assumed: `add_rules_from_training`, called with a real
 thermo database exactly as `main.py:590` calls it, **returns normally** and produces the one
-expected rule node `A;B` carrying the two rank-9 alkaline-earth rates. Nothing was left on stderr.
+expected rule node `A;B`, carrying the two rank-9 alkaline-earth **entries** — of which it serves
+one; see "The `A;B` node holds two entries and serves one" below. Nothing was left on stderr.
 So the orphan was the only trigger of the uncaught reverse-miss path for this family; had it not
 cleared, that would have meant a second trigger at `family.py:1184-1191`, and the instruction was
 to stop and report rather than chase it.
@@ -194,6 +229,55 @@ to stop and report rather than chase it.
 sourced, rank-6 chemistry with nowhere to live. It is preserved verbatim under `docs/`, and it
 needs a family named for neutral associative ionization — which needs the oxygen atom types to gain
 a charge row in RMG-Py first. Neither is built here.
+
+## Finding: the database suite never exercises `add_rules_from_training` for a gas-phase family
+
+This is the strongest thing the ticket produced, and the first version of this report left it as a
+clause inside the paragraph above. It is not a check that happened to be looking the wrong way.
+
+`test/database/databaseTest.py` calls `add_rules_from_training` in exactly **one** place, inside
+`kinetics_check_surface_training_reactions_can_be_used` (`databaseTest.py:365-370`, the call itself
+at `:369`):
+
+```python
+    def kinetics_check_surface_training_reactions_can_be_used(self, family_name):
+        """Test that surface training reactions can be averaged and used for generating rate rules"""
+        family = self.database.kinetics.families[family_name]
+        if not family.auto_generated:
+            family.add_rules_from_training(thermo_database=self.database.thermo)
+            family.fill_rules_by_averaging_up(verbose=True)
+        return True
+```
+
+and `test_kinetics` invokes that check only from inside a name gate (`databaseTest.py:130`):
+
+```python
+            # tests for surface families
+            if "surface" in family_name.lower():
+```
+
+**General form.** *No check in the database suite exercises `add_rules_from_training` for a
+gas-phase family, so the class of defect this ticket found is invisible to the suite by
+construction, not by accident.* Every gas-phase family in the database — including every plasma
+family this campaign carries — is never run against the function that crashes. A training entry the
+recipe cannot reach passes the entire suite on any non-surface family, every time, forever. The
+measurement that makes this concrete is in the table above: at state 2, twelve of twelve family
+checks and `6 passed` on the whole suite, alongside `add_rules_from_training` raising
+`UndeterminableKineticsError` on the path `rmgpy/rmg/main.py:590` takes.
+
+**What would close it, and who owns that.** The smallest honest answer is that the check has no
+reason to be surface-gated: `add_rules_from_training` and `fill_rules_by_averaging_up` are not
+surface-specific, the method's own body is already guarded by `if not family.auto_generated`, and
+running it for every family is what `main.py` does anyway. Renaming it and lifting it out of the
+`"surface"` branch would turn a class of run-time crash into a test failure. **This is a referral,
+not a change**: `databaseTest.py` lives in RMG-Py, which this ticket does not touch. Two families
+are already known to reach that call and fail for unrelated reasons — this one via an unreachable
+training entry, and `Plasma_Electron_Impact_Dissociation` via `TwoTemperaturePlasma` kinetics — which
+is enough to suspect a pattern rather than two accidents, and enough to justify the referral.
+
+**What the referral does not cover.** Lifting the gate would exercise the call for ~100 gas-phase
+families that have never been run through it in CI; how many of them would go red is not measured
+here, and finding out is the sweep, not this ticket.
 
 ## Finding: the wildcard top may be a workaround for an incomplete atom-type action table
 
@@ -239,6 +323,110 @@ The narrowing incidentally removes the first half of that hazard: after it, the 
 the Mg and Ca rates, which is the right granularity for a tree whose root *is* the alkaline node.
 It replaces it with the second half, for oxygen.
 
+## The `A;B` node holds two entries and serves one
+
+An earlier draft of this report read as though the surviving rule node carries two rates. It carries
+two **entries** and serves **one**. Measured (`logs/ruleselection.stdout.log`), after
+`add_rules_from_training` on the committed tree:
+
+```
+get_all_rules(A;B) -> 2 entries AT THE SAME NODE
+  index=1 rank=9  A=3.01e+13 cm^3/(mol*s)   "From training reaction 2 used for A;B"   (Mg)
+  index=2 rank=9  A=9.35e+12 cm^3/(mol*s)   "From training reaction 3 used for A;B"   (Ca)
+
+get_rule(A;B) SERVES exactly one: index=1  A=3.01e+13
+  NEVER-SERVED index=2  A=9.35e+12
+```
+
+**Mechanism.** `estimate_kinetics` asks `KineticsRules.get_rule(template)`, which collects every
+entry filed under the template label and, when there is more than one, sorts them on
+`(rank, index)` and returns `entries[0]` (`rmgpy/data/kinetics/rules.py:141-156`; rank 0 or `None`
+is given an effective rank of 1000). Both entries are rank 9, so the tie falls to the index, and the
+lower index wins. `fill_rules_by_averaging_up` does not intervene: it fills *gaps* in the tree, and
+`A;B` is not a gap. (The rule A-factors are half the training A-factors — 6.02e13 and 1.87e13 — because
+both training entries carry degeneracy 2.)
+
+**Consequence, stated plainly: this family cannot distinguish Mg from Ca at the template level.**
+Any Mg/Ca pair that reaches this family is estimated from the Mg training reaction; the Ca rate is
+carried in the depository, converted into a rule, and then never returned. Distinguishing them needs
+a tree level below the tops — exactly the level the narrowing removed, and removing it was the point
+of the ticket, since under an `alkaline` top a re-stated `alkaline` child fails
+`kinetics_check_groups_nonidentical`. Separate `Mg`/`Ca` nodes would be a different shape from the
+one this ticket was asked for, and are not built here.
+
+**This is pre-existing, not a regression.** Before the narrowing both entries sat together on
+`alkaline_A;alkaline_B` and the same one won by the same rule; what changed is that the collision
+now sits on the root node and there is no longer a level above it. Nothing is broken — but it is a
+real limitation of the result and should not be discovered by whoever reads this next.
+
+## Finding: `allowChargedReactants = False` — declared, and measured to change nothing today
+
+`groups.py` declares `allowChargedSpecies = True`, which is **two-sided**: it gates reactants and
+products together (`family.py:688-695`). The charged product is the entire point of this family, so
+that flag has to stay True, and before this round `allowChargedReactants` was undeclared and
+therefore inherited it — the reactant side was charge-open while the family's own docstring said it
+associates two neutral atoms. The groups cannot say it either: RMG groups match subgraphs, so a
+`c0` on `*1` constrains that atom and never the molecule around it, and the tops' `cx` constrains
+nothing at all. `allowChargedReactants` is mainline's one-sided reactant override for exactly this
+case (`family.py:576-580`, `:693-695`, `is_charged_reactant_forbidden` at `:1726-1740`, applied to
+the forward reactants in `_create_reaction` at `:1788-1792`). It is now declared `False`. One other
+family in this database already does the same: `Plasma_Electron_Attachment/groups.py`.
+
+**Measured effect: none today, in generation.** Logs `logs/chargedreactants-before.*` (the tree at
+`e56fd307e`, family copied into a scratch tree so the two runs differ only in this declaration) and
+`logs/chargedreactants-after.*`:
+
+| quantity | before (inherits `True`) | after (`False`) |
+|---|---|---|
+| `family.allow_charged_species` | True | True |
+| `family.allow_charged_reactants` | **True** (inherited) | **False** (declared) |
+| reactions over the 17-species set | 6 | **6** |
+| reactions over the charged-spectator set | 6 | **6** |
+| `is_charged_reactant_forbidden(Mg··H⁺)`, net +1 | False | **True** |
+| `is_charged_reactant_forbidden(Ca··H⁺)`, net +1 | False | **True** |
+| `is_charged_reactant_forbidden(Mg··O⁻)`, net −1 | False | **True** |
+| `is_charged_reactant_forbidden(Mg··H⁺··H⁺)`, net +2 | False | **True** |
+| `is_charged_reactant_forbidden(Mg··H⁺··O⁻)`, net **0** | False | False |
+| `is_charged_reactant_forbidden(Mg)`, net 0 | False | False |
+| 12 family checks, one at a time | 12/12 | **12/12** |
+| `add_rules_from_training` | returns normally | **returns normally** |
+
+The declaration is read and it does arm the predicate — four species flip from admitted to forbidden
+— but **no reaction count moves**, because nothing that the predicate now refuses was reaching the
+recipe anyway. Two independent layers were already stopping it, and both are worth recording because
+they bound what the declaration is protecting:
+
+1. **A charged alkaline-earth atom at `u2` cannot exist.** Exhaustively, over `Mg` and `Ca` × charge
+   −1…+2 × 0…2 bonds (`logs/chargedreactants-after.stdout.log`, section B0), the **only**
+   constructible combination is neutral with zero bonds; every other is refused by RMG's valency
+   model with `InvalidAdjacencyListError` (or `AtomTypeError` at `c-1` with one bond). So although
+   `ATOMTYPES['alkaline']` does contain `Mg+, Mg+2, Ca+, Ca+2` and the tops' `cx` admits them at the
+   group level, no molecule can present one to these tops. Any *connected* molecule matching these
+   tops **is** a bare neutral atom.
+2. **A charge on a disconnected spectator fragment is refused one layer earlier than the charge
+   policy.** A species like `Mg··H⁺` (net +1) does match both tops — `_match_reactant_to_template`
+   returns one mapping against each — but generation still yields nothing, and the reason is not
+   charge: the merged structure splits into two products against a template declaring one
+   (`template(products=["AB+"])`), so `apply_recipe` returns `None` at `family.py:1525-1532`, before
+   `_create_reaction` is ever called. Traced on **both** trees, with `_create_reaction`,
+   `_generate_product_structures` and `apply_recipe` instrumented:
+   `logs/vdw-productcount-probe-before.stdout.log` shows `apply_recipe -> None` while
+   `is_charged_reactant_forbidden` is still `False` — so the refusal is not the charge policy's —
+   and `logs/vdw-productcount-probe-after.stdout.log` shows the same `apply_recipe -> None` with the
+   predicate now `True`, i.e. the declaration never gets the chance to be the reason.
+
+**So why keep it?** Because both of those are accidents of the current shape, not statements of
+scope. Widen the radical count, write a bonded group, or declare a second product, and the reactant
+side is charge-open again with no edit to this file and no check failing — the same
+silently-widening hazard as the `alkaline` atom type itself. The declaration costs one net-charge
+test per candidate reactant and converts a property the family currently has by luck into one it
+states. It is a family-local restriction on this family's declared scope, not a claim that
+associative ionization of an ion is impossible chemistry.
+
+**Read the criterion literally.** It is *net* charge: the charge-separated but net-neutral
+`Mg··H⁺··O⁻` is **not** refused, before or after — correctly, since the predicate draws its line at
+net charge and nowhere else.
+
 ## Findings that cost time and should not be re-learned
 
 1. **A generic atom type unioned with an element silently loses the generic's members.**
@@ -283,13 +471,15 @@ under test, once per tree, in separate processes.
 |---|---|---|---|---|
 | 1. baseline (pristine family) | 6 | **6** | 0 | 511.88 s |
 | 2. narrowed, entry in place | 6 | **6** | 0 | 493.58 s |
-| 3. entry moved out (committed) | 6 | **6** | 0 | 468.19 s |
+| 3. entry moved out | 6 | **6** | 0 | 468.19 s |
+| 4. `allowChargedReactants = False` (committed) | 6 | **6** | 0 | 465.84 s |
 
-Same six tests in all three, same outcome each: `test_kinetics`, `test_thermo`, `test_transport`,
+Same six tests in all four, same outcome each: `test_kinetics`, `test_thermo`, `test_transport`,
 `test_solvation`, `test_statmech`, `test_metal_libraries`. No new failure, and no test that passed
 at baseline stopped passing. Note what that does *not* mean: on tree 2, `test_kinetics` is green
 while `add_rules_from_training` raises, for the structural reason given above — which is exactly
-why the gate had to be exercised separately rather than inferred from a green suite.
+why the gate had to be exercised separately rather than inferred from a green suite. Logs:
+`logs/suite-baseline.*`, `logs/suite-after.*`, `logs/suite-orphan-removed.*`, `logs/suite-rework.*`.
 
 ## What this could not reach
 
@@ -297,10 +487,21 @@ why the gate had to be exercised separately rather than inferred from a green su
   that opened the ticket was never tested against either the old or the new top. The case against
   the old top rests on six other species; the case that `R!H` would not have excluded argon rests on
   `R!H`'s `specific` list, not on a match test.
-- **Everything about rate selection.** `rules.py` is still empty, so no rate is selected by this
-  family today and none of the rate-rule behaviour above is exercised by a production run. The
-  root-node hazard, the rank ordering in `rules.py:151-154`, and the consequences of the orphan for
-  estimated rates all stay unproven until someone populates that file.
+- **Rate selection inside a production run.** `rules.py` is still empty by design, so every rule
+  this family has exists only in memory, built from `training/` by `add_rules_from_training`. The
+  `(rank, index)` tie-break is measured on those in-memory rules (`logs/ruleselection.stdout.log`),
+  but no RMG job was run, so nothing here shows what `estimate_kinetics` returns to a live model,
+  and the root-node hazard's consequences for estimated rates stay unproven until someone populates
+  that file or runs a job.
+- **How much the surface-gate referral would uncover.** Lifting the `"surface"` gate would exercise
+  `add_rules_from_training` for every gas-phase family in the database. How many of those would then
+  fail is not measured here — two are known (this one before the move, and
+  `Plasma_Electron_Impact_Dissociation`), and establishing the rest is a separate sweep.
+- **What `allowChargedReactants = False` protects against.** It is measured to change no reaction
+  count today, and the two reasons why are measured (valency, and the product-count guard). What is
+  *not* measured is the future case it exists for: no widened top, bonded group or second declared
+  product was constructed to watch the declaration actually refuse a reaction. The evidence that it
+  arms is the predicate flipping on five species, not a suppressed reaction.
 - **Whether the retained chemistry is right.** This ticket measured *reachability*, not chemistry.
   The Mg and Ca rates are rank 9, "estimated", with no source; nothing here checks whether
   `Mg + Mg <=> Mg2+ + e-` is a real channel at the conditions this campaign runs, or whether

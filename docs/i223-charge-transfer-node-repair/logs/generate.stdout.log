@@ -1,0 +1,72 @@
+cwd                 = /home/alon/Code/RMG-Py-plasma
+engine              = /home/alon/Code/RMG-Py-plasma
+database.directory  = /home/alon/Code/RMG-database-plasma/input
+family loaded from  = docs/i154-carry-chemistry/held-back/Plasma_Charge_Transfer
+
+NOTE: database.directory above points at a DIFFERENT worktree -- the engine's rmgrc
+decides it and this probe never uses it. The family is loaded from the explicit path
+on the line above. Stated because a reader checking provenance will notice.
+
+recipe              = [['GAIN_RADICAL', '*1', 1], ['GAIN_RADICAL', '*2', 1], ['LOSE_PAIR', '*2', 1]]
+root A (*1)         = 1 *1 R ux p[0,2] c[+1,+2,+3,+4]
+root B (*2)         = 1 *2 R u[0,1] p[1,2,3,4] c[0,-1,-2,-3,-4]
+forbidden groups    = ['excited_O2_cation', 'like_charge_transfer_star1', 'like_charge_transfer_star2']
+training entries    = 15  [1, 3, 4, 6, 7, 8, 10, 11, 15, 23, 24, 25, 26, 27, 28]
+
+====================================================================================================
+PART 1 -- driving the family over its own training species.
+====================================================================================================
+13 distinct reactants -> 91 unordered pairs.
+  N#N|+0, [Ca+]|+1, [H+]|+1, [H-]|-1, [K+]|+1, [Li+]|+1, [Mg+]|+1, [Na+]|+1, [O+]|+1, [O-]|-1, [OH+]|+1, [OH-]|-1, [O][O+]|+1
+
+crashes                       : 0
+reactions generated           : 45
+like-charge reactant pairs    : 0
+training entries reproduced   : 15 of 15  [1, 3, 4, 6, 7, 8, 10, 11, 15, 23, 24, 25, 26, 27, 28]
+training entries WRONG        : 0  []
+training entries not generated: 0  []
+
+====================================================================================================
+PART 2 -- reactions beyond the training set. Not errors; a family generalises.
+====================================================================================================
+21 distinct, of 45 generated. First 20:
+   N#N + [Ca+] -> [Ca] + N#[N+]
+   N#N + [H+] -> [H] + N#[N+]
+   N#N + [K+] -> [K] + N#[N+]
+   N#N + [Li+] -> [Li] + N#[N+]
+   N#N + [Mg+] -> [Mg] + N#[N+]
+   N#N + [Na+] -> [Na] + N#[N+]
+   N#N + [OH+] -> [OH] + N#[N+]
+   [H-] + [OH+] -> [OH] + [H]
+   [O-] + [Ca+] -> [Ca] + [O]
+   [O-] + [K+] -> [K] + [O]
+   [O-] + [Li+] -> [Li] + [O]
+   [O-] + [Mg+] -> [Mg] + [O]
+   [O-] + [Na+] -> [Na] + [O]
+   [O-] + [OH+] -> [OH] + [O]
+   [OH-] + [Ca+] -> [Ca] + [OH]
+   [OH-] + [H+] -> [H] + [OH]
+   [OH-] + [K+] -> [K] + [OH]
+   [OH-] + [Li+] -> [Li] + [OH]
+   [OH-] + [Mg+] -> [Mg] + [OH]
+   [OH-] + [Na+] -> [Na] + [OH]
+
+====================================================================================================
+SUMMARY
+====================================================================================================
+  before this change (charge-only recipe) : 0 reactions
+  after                                   : 45 reactions
+  crashes                                 : 0
+  training entries reproduced correctly   : 15 of 15
+  training entries reproduced wrongly     : 0
+  like-charge reactions surviving         : 0
+
+What this probe could NOT reach:
+  - Species outside the training set. A root safe over these 13 is not proven safe
+    over every molecule a real mechanism contains.
+  - Rate correctness. That is the source audits, and they are untouched by this change.
+  - The reverse family, which does not exist in this repository.
+
+VERDICT: the family generates reactions, reproduces every one of its 15 training
+entries correctly, reproduces none wrongly, and crashes on nothing.
+exit status: 0

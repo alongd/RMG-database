@@ -1,0 +1,130 @@
+cwd                 = /home/alon/Code/RMG-Py-plasma
+engine              = /home/alon/Code/RMG-Py-plasma
+database.directory  = /home/alon/Code/RMG-database-plasma/input
+family loaded from  = docs/i154-carry-chemistry/held-back/Plasma_Charge_Transfer
+shipped recipe      = [['LOSE_CHARGE', '*1', 1], ['GAIN_CHARGE', '*2', 1]]
+
+====================================================================================================
+PART 0 -- reproduce the two prior numbers on THIS engine, as my own measurements.
+====================================================================================================
+(0a) the shipped recipe, applied by hand
+  Li+ + H-     in [Li+] (+1) + [H-] (-1)       out [Li+] (+1) + [H-] (-1)       IDENTICAL
+  O+ + O       in [O+] (+1) + [O] (+0)         out [O+] (+1) + [O] (+0)         IDENTICAL
+  Ar+ + N2     in [Ar+] (+1) + N#N (+0)        out [Ar+] (+1) + N#N (+0)        IDENTICAL
+  -> 3 of 3 unchanged
+
+(0b) generate_reactions on the same pairs
+  Li+ + H-     -> 0 reaction(s)
+  O+ + O       -> 0 reaction(s)
+  Ar+ + N2     -> 0 reaction(s)
+
+(0c) census of charge-action recipes under input/kinetics/families/
+  use a charge action                      : 20
+  ... paired with a structural action      : 20
+  ... charge actions only                  : 0
+
+====================================================================================================
+PART 1 -- the action grammar, read from the engine and measured.
+====================================================================================================
+valid_actions, read from rmgpy/data/kinetics/family.py:
+  ['CHANGE_BOND', 'FORM_BOND', 'BREAK_BOND', 'GAIN_RADICAL', 'LOSE_RADICAL', 'GAIN_CHARGE', 'LOSE_CHARGE', 'GAIN_PAIR', 'LOSE_PAIR']
+
+Effect of each on the DERIVED charge of *1, measured by applying it and reading back:
+
+  action              labels  d(charge)  meaning
+  --------------------------------------------------------------------------
+  GAIN_RADICAL             1         -1  moves +1 electron(s) onto *1
+  LOSE_RADICAL             1         +1  moves -1 electron(s) onto *1
+  GAIN_PAIR                1         -2  moves +2 electron(s) onto *1
+  LOSE_PAIR                1         +2  moves -2 electron(s) onto *1
+  GAIN_CHARGE              1         +0  moves NO electron
+  LOSE_CHARGE              1         +0  moves NO electron
+  CHANGE_BOND(+1)          2         -1  moves +1 electron(s) onto *1
+  BREAK_BOND               2         +1  moves -1 electron(s) onto *1
+  FORM_BOND                2         -1  moves +1 electron(s) onto *1
+
+Reading: an electron arriving at an atom must lower valence - bonds - radicals - 2*lp by
+one. GAIN_RADICAL does exactly that with one label. GAIN_PAIR/LOSE_PAIR move two
+electrons. Bond actions move one onto EACH of two atoms and need a second label. The two
+charge actions move none -- they are the only actions in the grammar with no effect on
+the quantity the charge is derived from.
+
+====================================================================================================
+PART 2 -- all four candidate recipes against all 27 training entries.
+====================================================================================================
+A candidate is CORRECT for an entry when apply_recipe returns exactly the declared
+products. "raise" means the action is impossible on that structure, not merely wrong.
+
+ idx  reaction                       A1 | B1      A1 | B2      A2 | B1      A2 | B2     
+----------------------------------------------------------------------------------------
+   1  Hp_r1 + H-_r2 <=> H + H        raise        CORRECT      raise        raise       
+   2  H2p_r1 + H-_r2 <=> H2 + H      raise        n-prod       raise        raise       
+   3  Op_r1 + H-_r2 <=> O + H        raise        CORRECT      raise        wrong       
+   4  O2p_r1 + H-_r2 <=> O2 + H      raise        CORRECT      raise        raise       
+   5  H2Op_r1 + H-_r2 <=> H2O + H    raise        raise        raise        CORRECT     
+   6  Hp_r1 + O-_r2 <=> H + O        wrong        CORRECT      raise        raise       
+   7  Op_r1 + O-_r2 <=> O + O        wrong        CORRECT      wrong        wrong       
+   8  O2p_r1 + O-_r2 <=> O2 + O      wrong        CORRECT      raise        raise       
+   9  H2Op_r1 + O-_r2 <=> H2O + O    raise        raise        wrong        CORRECT     
+  10  O2p_r1 + OH-_r2 <=> O2 + OH    raise        CORRECT      raise        raise       
+  11  OHp_r1 + OH-_r2 <=> OH + OH    raise        CORRECT      raise        raise       
+  12  H2Op_r1 + OH-_r2 <=> H2O + OH  raise        raise        raise        CORRECT     
+  13  O2p_r1 + O_r2 <=> O2 + Op      CORRECT      wrong        raise        raise       
+  14  NOp_r1 + O_r2 <=> NO + Op      raise        raise        raise        raise       
+  15  Op_r1 + N2_r2 <=> N2p + O      raise        CORRECT      raise        wrong       
+  16  NOp_r1 + N_r2 <=> NO + Np      raise        raise        raise        raise       
+  18  Np_r1 + N2_r2 <=> N2p + N      raise        CORRECT      raise        wrong       
+  19  Arp_r1 + N2_r2 <=> Ar + N2p    raise        wrong        raise        CORRECT     
+  20  Arp_r1 + O_r2 <=> Ar + Op      wrong        wrong        CORRECT      wrong       
+  21  NOp_r1 + O2_r2 <=> O2p + NO    raise        raise        raise        raise       
+  22  O2p_r1 + N_r2 <=> Np + O2      CORRECT      wrong        raise        raise       
+  23  O2p_r1 + N2_r2 <=> N2p + O2    raise        CORRECT      raise        raise       
+  24  Lip_r1 + H-_r2 <=> Li + H      raise        CORRECT      raise        raise       
+  25  Nap_r1 + H-_r2 <=> Na + H      raise        CORRECT      raise        raise       
+  26  Kp_r1 + H-_r2 <=> K + H        raise        CORRECT      raise        raise       
+  27  Mgp_r1 + H-_r2 <=> Mg + H      raise        CORRECT      raise        wrong       
+  28  Cap_r1 + H-_r2 <=> Ca + H      raise        CORRECT      raise        wrong       
+
+====================================================================================================
+PART 3 -- what that partition means.
+====================================================================================================
+entries served, per candidate recipe:
+  A1 | B1                     2 entries  [13, 22]
+  A1 | B2                    16 entries  [1, 3, 4, 6, 7, 8, 10, 11, 15, 18, 23, 24, 25, 26, 27, 28]
+  A2 | B1                     1 entries  [20]
+  A2 | B2                     4 entries  [5, 9, 12, 19]
+
+  served by exactly one candidate : 23
+  served by more than one         : 0  []
+  served by NO candidate          : 4  [2, 14, 16, 21]
+
+  largest single-recipe family    : 16 of 27 entries
+  distinct recipes needed to cover the rest: 4
+
+Entries no two-label recipe in the grammar can serve, with what they need:
+    2  H2p_r1 + H-_r2 <=> H2 + H          [H+].[H] (+1) + [H-] (-1) -> [H][H] (+0) + [H] (+0)
+   14  NOp_r1 + O_r2 <=> NO + Op          N#[O+] (+1) + [O] (+0) -> [N]=O (+0) + [O+] (+1)
+   16  NOp_r1 + N_r2 <=> NO + Np          N#[O+] (+1) + [N] (+0) -> [N]=O (+0) + [N+] (+1)
+   21  NOp_r1 + O2_r2 <=> O2p + NO        N#[O+] (+1) + [O][O] (+0) -> [O][O+] (+1) + [N]=O (+0)
+
+====================================================================================================
+SUMMARY
+====================================================================================================
+  shipped recipe, demo pairs unchanged      : 3 of 3
+  shipped recipe, reactions generated       : 0
+  mainline charge-only recipes              : 0 of 20
+  candidate recipes tried                   : 4
+  entries served by a single recipe (best)  : 16 of 27
+  entries served by no recipe at all        : 4
+
+What this probe could NOT reach:
+  - Recipes using a THIRD label. The template is two-label, so a bond action inside one
+    reactant cannot be written without changing the template as well as the recipe.
+    PART 3 lists the entries that would need one; it does not design that template.
+  - Whether the narrowed groups can still be written so every node samples and descends.
+    That is the twelve-check question and is measured separately.
+  - The reverse family, which does not exist in this repository.
+
+VERDICT: OUTCOME 2 -- no single recipe serves all 27 entries, but 16 of them are
+served by one, and the grammar does express charge transfer. The family must narrow.
+exit status: 1

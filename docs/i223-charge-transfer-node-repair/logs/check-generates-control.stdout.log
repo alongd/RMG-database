@@ -1,0 +1,22 @@
+database.directory = /home/alon/Code/RMG-database-plasma/input
+families to audit  = 1  (first 25 training entries each)
+
+family                                           generates  nothing  raises  verdict
+------------------------------------------------------------------------------------
+Plasma_Charge_Transfer                                   0       24       0  INERT -- generates nothing from its own training set
+
+audited  : 1
+ok       : 0
+skipped  : 0  []
+INERT    : 1  ['Plasma_Charge_Transfer']
+UNLOADABLE: 0  []
+
+What this check does NOT catch:
+  - A family that generates SOME reactions but the wrong products for a given entry.
+    That needs the declared products compared against what the recipe makes, which is
+    probe_producibility.py; this check is the cheap always-on version.
+  - Families with no training set at all. They are skipped, not passed.
+  - Anything beyond the first 25 entries of a family.
+
+VERDICT: 1 family generate nothing from their own training reactions.
+exit status: 1

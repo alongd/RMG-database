@@ -30,15 +30,19 @@ reports at most one failing node per family and silently never runs the later ch
 > the one genuinely new measurement, and it confirms the reparenting it documents is numerically
 > inert to 1.000000×.
 
-> **STOP — read §11 before acting on anything else in this report.** The producibility audit that
-> §8 listed as outstanding has now been run, and it inverted the premise the whole ticket rests on.
-> **This family's recipe is a no-op: it hands back its own reactants, so the family generates zero
-> reactions.** Not 26 entries with wrong products — the recipe never moves a charge at all, because
-> `LOSE_CHARGE` sets `atom.charge` and `apply_recipe` then re-derives that same charge from the
-> structure the action did not touch. All twelve checks stay green on it, by construction. Nothing
-> below is wrong — the nodes are repaired, the rates are audited, the splits hold — but every one of
-> those statements is about a family that cannot currently react. I have **not** repaired it: §11
-> measures what a repair needs and it is a family redesign, which is yours to direct.
+> **READ §11 AND §12 BEFORE ANYTHING ELSE.** §11 records the finding that inverted this ticket:
+> the family's charge-only recipe was a **no-op**, so it generated **zero reactions** while all
+> twelve checks stayed green. §12 records the repair, which is a **narrowing**, not a fix — the
+> recipe now moves the electron structurally (`GAIN_RADICAL`/`LOSE_PAIR`, no charge action at all),
+> the two root templates are narrowed to what that recipe can process without crashing, and the
+> family **generates 45 reactions and reproduces all 15 of its remaining training entries
+> correctly, none wrongly, with zero crashes**.
+>
+> **Twelve of the 27 training entries left the family** — their chemistry is not expressible on a
+> two-label charge-transfer template, and they are preserved with their audited rates in
+> `training/reactions-unrepresentable.py`. §12 says which, why, and what survives of the thirteen
+> commits that came before. Sections 1–10 describe the family as it was; where §12 overturns them
+> it says so.
 
 ---
 
@@ -852,6 +856,10 @@ their primaries, the splits hold. All of it describes a family that cannot prese
 | `probe_averaging.py` | **what the new nodes reparent, and what `fill_rules_by_averaging_up` then does about it** |
 | `probe_ozawa_aiken.py` | **`[Aiken2023]` Table 3.16 audited against the primary; `[Ozawa2008]` Table III recorded unreachable and bounded by three surrogates** |
 | `probe_producibility.py` | **§11 — all 27 training entries run through the recipe; the inert-recipe finding, the mainline recipe census, and the per-entry action sets a repair would need** |
+| `probe_grammar.py` | **§12 — the nine-action grammar measured, and all four possible recipes against all 27 entries** |
+| `probe_narrow.py` | **§12 — twelve candidate root pairs, scored on crashes, reactions and wrongly-served entries** |
+| `probe_generate.py` | **§12 — what the family on disk generates: the 0 → 45 measurement** |
+| `check_family_generates.py` | **§12 — the check that would have caught the inert recipe; runs over every installed family** |
 | `run.sh` | runner — pins cwd and `PYTHONPATH`, persists **both** streams per probe |
 | `logs/*.{stdout,stderr}.log` | one pair per measurement |
 | `kT-comparison.png` | k(T) and ratio for the duplicate |
@@ -874,5 +882,227 @@ dying on a `KeyError` — it is an argument about the pre-edit file and says so.
 | `ozawa-aiken` | HEAD | `[Aiken2023]` three of three verified; `[Ozawa2008]` unreachable, surrogates, and the `300^(n₁−n₂)` bound showing neither split can be overturned |
 | `producibility` | HEAD | **0 of 27 training entries producible; the recipe returns its reactants; `generate_reactions` → 0; 20 of 20 mainline charge recipes pair the action with a structural one** |
 | `checks-recheck` | HEAD | all twelve still pass **after** the producibility finding — the suite cannot see it |
+| `grammar` | HEAD | the action grammar measured; the 16/4/2/1/4 partition of the training set |
+| `narrow` | HEAD | twelve candidate root pairs; only four are crash-free |
+| `generate` | HEAD | **45 reactions, 0 crashes, 15 of 15 entries reproduced, 0 wrong** |
+| `checks-narrowed` / `nodes-narrowed` | HEAD | all twelve pass and all 18 nodes descend after the narrowing |
+| `check-generates` | HEAD | 103 installed families audited, none inert |
+| `check-generates-control` | i202 staged copy | the same check on the UNREPAIRED copy: INERT, exit 1 |
 | `t0` | base | the `[Gupta1990]` `T0` argument |
 | `t0-head` | HEAD | the precondition message, demonstrated |
+
+---
+
+## 12. OUTCOME 2 — the grammar can express charge transfer, but not for this whole family
+
+§11 stopped at "the recipe is inert, and repairing it is a redesign". This section is that
+redesign, measured. The question it had to answer first:
+
+> Can a single recipe in RMG's action grammar express "one electron moves from `*2` to `*1`" for
+> every structure the family's templates admit — and if not, what is the narrowest set of
+> templates for which it can?
+
+**The answer is outcome 2 of the three the brief named, explicitly: no single recipe serves all 27
+training entries; one serves 16 of them; and after narrowing the templates so it cannot crash, 15.**
+
+### 12.1 The two prior numbers, re-measured on `RMG-Py-plasma@311818121`
+
+Both reproduced as my own measurements before anything was built on them
+(`logs/grammar.stdout.log`, PART 0):
+
+| claim | measured here |
+|---|---|
+| the shipped recipe is inert | `apply_recipe` returned the reactants unchanged for **3 of 3** demonstration pairs |
+| the family generates nothing | `generate_reactions` returned **0** for all three |
+| no mainline family has a bare charge recipe | **20** families use a charge action, **20 of 20** pair it with a structural one, **0** are charge-only |
+
+The census is parsed from `input/kinetics/families/*/groups.py` on every run rather than quoted, so
+it cannot drift from the repo.
+
+### 12.2 The grammar, read from the engine and then measured
+
+`valid_actions` (`family.py:809-812`) is exactly nine. What each does to the **derived** charge was
+measured by applying it to a probe molecule and reading `update_charge` back — not asserted:
+
+| action | labels needed | Δcharge on `*1` | electrons moved |
+|---|---|---|---|
+| `GAIN_RADICAL` / `LOSE_RADICAL` | 1 | −1 / +1 | **one** |
+| `GAIN_PAIR` / `LOSE_PAIR` | 1 | −2 / +2 | two |
+| `CHANGE_BOND(+1)` / `FORM_BOND` / `BREAK_BOND` | **2** | −1 / −1 / +1 | one, onto *each* of two atoms |
+| `GAIN_CHARGE` / `LOSE_CHARGE` | 1 | **0** | **none** |
+
+The last row is the whole of §11 in one line: the two charge actions are the only ones in the
+grammar with no effect on the quantity the charge is derived from.
+
+So exactly four two-label recipes can move one electron from `*2` to `*1`:
+
+| | accept on `*1` | donate from `*2` |
+|---|---|---|
+| **A1** | `GAIN_RADICAL` — electron stays unpaired | |
+| **A2** | `LOSE_RADICAL + GAIN_PAIR` — electron pairs up | |
+| **B1** | | `LOSE_RADICAL` — an unpaired electron leaves |
+| **B2** | | `GAIN_RADICAL + LOSE_PAIR` — a pair is broken |
+
+### 12.3 All four, against all 27 entries
+
+Every combination was run against every entry (`logs/grammar.stdout.log`, PART 2). The partition is
+**exact — no entry is served by more than one**:
+
+| recipe | entries served | which |
+|---|---|---|
+| **A1 \| B2** | **16** | 1, 3, 4, 6, 7, 8, 10, 11, 15, 18, 23, 24, 25, 26, 27, 28 |
+| A2 \| B2 | 4 | 5, 9, 12, 19 (H₂O⁺, Ar⁺) |
+| A1 \| B1 | 2 | 13, 22 (O(³P), N(⁴S) as donor) |
+| A2 \| B1 | 1 | 20 |
+| **none** | **4** | 2, 14, 16, 21 (H₂⁺ and all three NO⁺ entries) |
+
+**This is not a matter of convention.** The wrong choice does not produce a different molecule — it
+`raises`. `LOSE_RADICAL` on a closed-shell atom is an `ActionError` because radical counts cannot go
+negative. H⁺ (`u0`) cannot use A2; N₂ (`u0` on `*2`) cannot use B1.
+
+Two chemically real facts sit underneath, and neither is expressible as a uniform action:
+
+- **Ar⁺ → Ar pairs the electron up; O⁺ → O does not.** Ar⁺ `u1 p3` → Ar `u0 p4`, but O⁺ `u1 p2` →
+  O `u2 p2`. Same `u`, opposite action. Whether the arriving electron pairs depends on the
+  acceptor's ground state.
+- **NO⁺ → NO changes a bond order** (`N#[O+]` → `[N]=O`). `CHANGE_BOND` takes **two** labelled
+  atoms; this template has one per reactant, on different molecules. No two-label recipe can do it.
+
+I checked whether RMG's resonance machinery quietly identifies these states — it does not. Ar `u2p3`
+vs `u0p4`, O `u0p3` vs `u2p2`, O⁺ `u3p1` vs `u1p2`: each generates only itself, and
+`Species.is_isomorphic` is `False` after `generate_resonance_structures` in every case. A bonus from
+that check: the A1 product of H₂O⁺ (`O u2 p1`, two single bonds) **has no atom type at all**, which
+is why those entries raise rather than mismatch.
+
+### 12.4 Narrowing the templates — a crash-safety requirement before a chemistry preference
+
+The shipped roots are `*1 R ux px c[+1..+4]` and `*2 R ux px c[0..-4]`, and with a *working* recipe
+they are dangerous, because **an RMG group constrains atoms, not molecules**:
+
+- `*2 R ux px c[0,...]` matches any neutral atom — **including the hydrogen inside OH⁺**. The family
+  then tries to take an electron from it, `LOSE_PAIR` finds none, and `ActionError` propagates out
+  of `generate_reactions`.
+- `GAIN_RADICAL` on H₂O⁺ or NO⁺ produces untypeable oxygen → `AtomTypeError`, likewise out.
+
+**Those are crashes, not over-generation: they abort the whole RMG job.** Twelve candidate root
+pairs were measured (`logs/narrow.stdout.log`); only four reach zero crashes. The chosen pair:
+
+```
+A: 1 *1 R ux p[0,2]         c[+1,+2,+3,+4]
+B: 1 *2 R u[0,1] p[1,2,3,4] c[0,-1,-2,-3,-4]
+```
+
+**N⁺ is the painful casualty.** `N u2 p1 c+1` works perfectly with this recipe and is excluded only
+because a group's `u` and `p` lists are a **cross product, not a disjunction**: any root admitting
+`N u2 p1` also admits `O u1 p1` (H₂O⁺) and `O u0 p1` (NO⁺), which crash. The vocabulary that would
+separate them is a charge-specific atom type per element, and the engine defines exactly six —
+`Li+ Na+ K+ Mg+ Ca+ Ar+`, none for N, O or H. **Adding one is an engine change and out of scope, so
+this is reported rather than done.** It is the single cheapest thing that would widen this family.
+
+### 12.5 Two traps found while doing it, both worth more than this ticket
+
+**A family forbidden group without atom labels is inert.** Group templates cannot require a *molecule*
+to be neutral, so root B matches the neutral N of NO⁺ and the neutral O of O₂⁺, and the family
+generated cation + cation "charge transfer" — **19 of 82 reactions**, producing dications like
+`[O+][O+]`. Forbidden groups are the right tool, and the obvious form of them does nothing:
+
+| forbidden group | `is_molecule_forbidden` on the bare molecule | blocks generation? |
+|---|---|---|
+| unlabelled | `True` | **No** |
+| same group, `*2` on one atom | `True` | **Yes** |
+
+At generation time the product still carries `*1`/`*2`, and an unlabelled group fails to match it.
+`apply_recipe`'s docstring hints at this ("product atom labels … to assist in identifying forbidden
+structures") but nothing enforces it, so **an unlabelled entry looks like a guard and is not one**.
+With the labelled forms: 0 like-charge reactions of 45.
+
+**`reversible = True` on a non-own-reverse family generates a reverse you cannot author.**
+`generate_reactions` runs the reverse whenever `not own_reverse and reversible`
+(`family.py:1882-1891`), using `reverse_template` — which for this family **RMG fabricates** by
+applying the recipe to the roots. Nothing in `groups.py` can narrow it. Measured: the reverse applies
+`LOSE_RADICAL` to `*1`, and on O⁺ that gives `O u0 p2 c+2` — an O²⁺ with no atom type — so
+`generate_reactions` raised on 2 of 91 pairs, **one of which was training entry 7 itself**. Setting
+`reversible = False` is the only database-side lever and is what the family now carries. The cost is
+stated at the declaration: RMG will not construct the reverse of these reactions, and the
+`Plasma_Charge_Transfer_Reverse` family that is supposed to hold that chemistry **does not exist in
+this repository**, so the reverse is currently unrepresented rather than handled elsewhere.
+
+### 12.6 Before and after
+
+Measured against the family **as it stands on disk**, not an in-memory mock
+(`probe_generate.py`, `logs/generate.stdout.log`):
+
+| | before | after |
+|---|---:|---:|
+| reactions generated over its own training species | **0** | **45** |
+| crashes (`generate_reactions` raised) | 0 of 231 | **0 of 91** |
+| training entries reproduced with declared products | **0 of 27** | **15 of 15** |
+| training entries reproduced *wrongly* | 0 | **0** |
+| like-charge (cation+cation) reactions | 0 | **0** |
+| twelve family checks | all pass | **all pass** (`logs/checks-narrowed.stdout.log`) |
+
+"0 crashes before" is not a virtue — an inert recipe cannot crash. 25 of the 45 reactions are
+outside the training set; that is a family generalising and is not an error.
+
+### 12.7 The check that would have caught this
+
+`check_family_generates.py` — family-agnostic, with a real exit code. It hands each training entry's
+own reactants to `generate_reactions` and fails a family that generates **nothing** for every entry.
+
+Controls both ways, which is the point:
+
+- **Negative control**: run against the unrepaired 24-entry copy at
+  `docs/i202-charge-transfer-carry/staged-family/` (still charge-only, untouched by this ticket) →
+  `0 generates, 24 nothing`, **INERT, exit 1**.
+- **Positive**: all **103** installed families plus this one → all generate, `INERT: 0`, exit 0.
+  No other family in the repository has this defect.
+
+**Where it belongs, and why it is not there.** Beside the other twelve, in
+`test/database/databaseTest.py`, as `kinetics_check_family_generates_its_training_reactions`. That
+file is in the **RMG-Py repository**, which this ticket may not modify — so **the place where it
+would run automatically does not yet exist for this repo**. This file is the runnable stand-in; it
+has to be invoked rather than collected. Landing it upstream is a separate change to a separate repo.
+
+One weakness I found in my own check and fixed: a family that fails to *load* was being reported as
+"skipped", which would let the check pass on a family it never saw — the same shape of hole it
+exists to close. It now fails on that.
+
+### 12.8 What this means for the thirteen commits already on the branch
+
+None of the rate work is retracted. What changes is how much of the family it applies to.
+
+| # | commit | survives? |
+|---|---|---|
+| 1 | `f41e544f3` repair `Noble_cation` and `H2_ion` | **half**. The `H2_ion` finding survives. `Noble_cation` is now **deleted** — Ar⁺ is `p3`, outside the narrowed root. The repair was correct and its subject left the family. |
+| 2 | `527dd5a73` correct both `[Gupta1990]` entries vs RP-1232 | **as record**. Entry 17 was already deleted; entry 13 has moved to `reactions-unrepresentable.py` carrying its corrected `T0`. The 561× finding stands and is why the stop rule exists. |
+| 3 | `f4caa64fc` add `O2_neutral` so the NO⁺/O₂ rate is reachable | **undone**. `O2_neutral` is removed and entry 21 has left. The node existed to make one entry reachable; that entry is not representable. |
+| 4 | `9ddfd0fb5` probes, logs, report | superseded in part by §11–§12; the probes still run. |
+| 5 | `7942025ed` delete `H2_ion`, split `N2_neutral` | **mostly**. The `H2_ion` deletion stands. `N2_neutral` stands and is still load-bearing — entries 15 and 23 use it. |
+| 6 | `0ca642c53` audit `[Tanarro2015]` vs Table 1 | **fully**. All twelve audits stand; 8 of those entries remain in the family, 4 moved out with their corrected rates. |
+| 7 | `eaec8710a` rework after spar 47 | stands as record. |
+| 8 | `006e72456` what `N2_neutral` actually moves | **partly stale**. Its reparenting analysis references `O_neutral`, which is now removed. The 1.000000× averaging measurement still holds for `N2_neutral`. |
+| 9 | `30c7c221f` measure what the new nodes reparent | same: `N2_neutral` half stands, `O2_neutral` half is moot. |
+| 10 | `88ff98e83` `[Aiken2023]` verified, `[Ozawa2008]` unreachable | **as record only.** All **3 of 3** Aiken entries (18, 19, 20) and **4 of 6** Ozawa entries (14, 16, 21, 22) have left the family. The verification was correct; it now describes chemistry in the unrepresentable file. |
+| 11 | `bfa54579b` bound what the unreadable Ozawa table can cost | **moot.** It defended two splits — `N2_neutral` (22 vs 23) and `O2_neutral` (14 vs 21). Entry 22 has left, `O2_neutral` is removed, 14 and 21 have left. **Both splits it was protecting are gone**, so the bound protects nothing that remains. The reasoning — same-source cancellation, `300^(n₁−n₂)` — is still correct and still the right method; it has no live subject here. |
+| 12 | `37e52073a` say that the recipe does nothing | **superseded** by the repair, kept as the record of the defect. |
+| 13 | `847eb57b2` audit every training entry, and stop | **discharged.** The stop is resolved by §12. |
+
+The short version: **the node repairs and the tree splits were the most affected, and the source
+audits the least.** Rates were never the problem. Of the two tree splits this branch was proudest
+of, one (`O2_neutral`) is removed outright and the other (`N2_neutral`) survives and is still used.
+
+### 12.9 What §12 could not reach
+
+- **Species outside the training set.** The pool is the 13 species the surviving entries name. A
+  root pair that is crash-free over those is **not proven** crash-free over every molecule a real
+  mechanism contains, and the crashes here were severe. This is the largest untested surface.
+- **A real RMG run.** Nothing was put through `main.py`, a reactor, or `add_rules_from_training`
+  with a real thermo database.
+- **The four "no recipe" entries as their own families.** Groups 1 and 2 of
+  `reactions-unrepresentable.py` each have a known, written-out recipe and would each make a
+  coherent family. That is a new ticket; none was created.
+- **A LogicOr top.** It might express the exact acceptable set where a flat group cannot, but tops
+  are consumed as `Group`s by `_match_reactant_to_template`, so it is a separate experiment and was
+  not attempted.
+- **The reverse family.** `Plasma_Charge_Transfer_Reverse` does not exist here, and `reversible` is
+  now `False` partly because of that.

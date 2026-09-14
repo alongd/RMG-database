@@ -82,11 +82,23 @@ entry(
 
 # The charge-specific `Ar+` is listed first on purpose, and generic `Ar` is kept after it.
 #
-# `pick_wildcards` takes the *first* atomtype when it builds the sample molecule. Neither `He`
-# nor `Ne` has a charged subtype or any `lone_pairs` of its own, so a He-first sample falls back
-# to neutral-helium defaults and comes out as `[He]` at charge 0 -- which the root `A`
-# (c[+1,+2,+3,+4]) then rejects. `Ar+` carries lone_pairs=[3] and charge=[1], so putting it first
-# builds the sample at +1 ([ArH+]).
+# `pick_wildcards` takes the *first* atomtype when it builds the sample molecule
+# (rmgpy/molecule/group.py:2857). Neither `He` nor `Ne` has a charged subtype or any `lone_pairs`
+# of its own, so a He-first sample falls back to neutral-helium defaults and comes out as `[He]` at
+# charge 0 -- which the root `A` (c[+1,+2,+3,+4]) then rejects. `Ar+` carries lone_pairs=[3] and
+# charge=[1], so putting it first builds the sample at +1 ([ArH+]).
+#
+# "Takes the first atomtype" is only half the mechanism. `pick_wildcards` has a second stage at
+# group.py:2921-2925: after the first pass it walks each atom again and, if the chosen atomtype is
+# still *generic*, replaces it with the first entry of that atomtype's `.specific` list in
+# `allElements` order. `Ar+` is already specific, so it passes through that stage untouched; a
+# generic `Ar` in first position would not, and what it became would be decided by `allElements`
+# rather than by this file.
+#
+# The ordering survives a save/load round trip. `to_adjacency_list` emits the list with a plain
+# ','.join and no sort (rmgpy/molecule/adjlist.py:967), so re-reading a written-out copy of this
+# family preserves `Ar+` in first position. The repair is therefore fragile only against a human
+# re-sorting the list by hand, not against RMG's own serialization.
 #
 # Generic `Ar` must stay in the list as well: the child `Ar_ion` is written on the generic `Ar`
 # atomtype, and `Ar+` is *more* specific than `Ar`, so an `Ar+`-only parent stops being a proper
@@ -127,22 +139,29 @@ entry(
     kinetics = None,
 )
 
-# H2+ is held together by a one-electron bond, which RMG's integer bond orders cannot express:
-# writing it as a single bond hands both bonding electrons to the pair, and the sample then comes
-# out as `[H][H-]` at charge -1. The family's own training dictionary already avoids this -- its
-# `H2p_r1` is two *unbonded* atoms, `[H+].[H]` -- so the bonded form here matched nothing: H2p_r1
-# descended only as far as `H_ion`, and this node was dead. The unbonded form below matches it and
-# samples at +1.
-entry(
-    index = 102,
-    label = "H2_ion",
-    group =
-"""
-1 *1 H u0 p0 c+1
-2    H u1 p0 c0
-""",
-    kinetics = None,
-)
+# There is no H2_ion node here, and index 102 is deliberately left unused. I-223 removed it.
+#
+# As authored it was `H u0 p0 c+1` single-bonded to `H u0 p0 c0`, which is not H2+: the one-electron
+# bond H2+ actually has cannot be written with integer bond orders, so a single bond hands both
+# bonding electrons to the pair and the node sampled as `[H][H-]` at charge -1, failing to descend
+# to root A. It also matched nothing -- the family's own dictionary writes H2p_r1 as two *unbonded*
+# atoms, `[H+].[H]`, and is_subgraph_isomorphic against the bonded node is False, so training
+# reaction 2 descended only as far as H_ion (logs/candidates.stdout.log). The node was dead.
+#
+# Rewriting it in the unbonded form did make it sample at +1 and match H2p_r1 -- and turned
+# kinetics_check_sample_can_react red, because the recipe cannot process the result. LOSE_CHARGE on
+# *1 of `[H+].[H]` gives `[H].[H]`, which _generate_product_structures splits into two structures;
+# with the partner's product that is three against a product_num of two, so apply_recipe returns
+# None (logs/h2-recipe.stdout.log, logs/checks-h2kept.*.log). The family's recipe only moves charge
+# and has no bond-forming action, so it can never make H2 out of H2+ -- this chemistry is not a
+# member of a charge-only family regardless of how the node is written.
+#
+# Deleting the node instead turns all twelve family checks green (logs/checks-h2del.stdout.log).
+# The cost is that training reaction 2 falls back to the template H_ion;H_anion and is shadowed by
+# reaction 1 there -- which is exactly where it sat before this branch (logs/rules-before.stdout.log)
+# and costs nothing measurable: the two Tanarro rates differ by 1.064x, and reaction 2 describes a
+# reaction this family provably cannot generate, so its rule could only ever have been applied to
+# H+ + H-, which reaction 1 already describes (logs/collisions.stdout.log).
 
 # Oxygen Cations
 entry(
@@ -347,9 +366,16 @@ entry(
 # defect as the duplicate entry this ticket deleted, one level up. Written concretely, as the
 # ground-state triplet, to match the training dictionary's O2_r2.
 #
-# Three sibling merges of the same kind are still open and deliberately NOT repaired here:
-# O_anion catches both O- and OH- (colliding training 8/10 and 9/12), and N_neutral catches
-# both N and N2 (colliding training 22/23). See docs/i223-charge-transfer-node-repair/report.md.
+# O_anion still catches both O- and OH- (colliding training 8/10 and 9/12). That merge is left in
+# place, and the reason is measured rather than deferred -- but it is provisional, which is the
+# part worth reading. Those four entries carry the *identical* rate, so the two templates hold the
+# same number and splitting them would change nothing today (logs/collisions.stdout.log). They are
+# identical because Tanarro's Table 1 gives 18 of its 23 ion-ion neutralization rows one generic
+# value, 16 of them citing a single kinetic-scheme review (logs/tanarro.stdout.log) -- the SOURCE
+# does not distinguish these pairs, which is not the same as the tree being at the right
+# granularity. The first pair-specific measurement for O- or OH- makes this merge start silently
+# discarding data exactly as the N/N2 merge did. So the question of whether OH_anion is a sibling
+# or a child of O_anion stays open; it has no rate consequence yet, not no rate consequence ever.
 entry(
     index = 213,
     label = "O2_neutral",
@@ -357,6 +383,24 @@ entry(
 """
 1 *2 O u1 p2 c0 {2,S}
 2    O u1 p2 c0 {1,S}
+""",
+    kinetics = None,
+)
+
+# Added by I-223 for the same reason as O2_neutral, and on the same criterion. `N_neutral` is
+# `N ux px c0`, so atomic N and molecular N2 both landed on it: training 22 (O2p_r1 + N_r2) and
+# training 23 (O2p_r1 + N2_r2) both resolved to `O2_ion;N_neutral`, and get_rule kept the lower
+# index, discarding the N2 rate. Unlike the O-/OH- merge these two rates are genuinely different
+# -- both [Ozawa2008] Table III, but 107x apart at 10000 K and further apart at every lower
+# temperature (logs/collisions.stdout.log) -- so the merge was destroying real information.
+# Written concretely, as the triply-bonded ground state, to match the training dictionary's N2_r2.
+entry(
+    index = 214,
+    label = "N2_neutral",
+    group =
+"""
+1 *2 N u0 p1 c0 {2,T}
+2    N u0 p1 c0 {1,T}
 """,
     kinetics = None,
 )
@@ -370,7 +414,6 @@ tree(
 L1: A
     L2: H_cation
         L3: H_ion
-            L4: H2_ion
     L2: O_cation
         L3: O_atom_ion
         L3: OH_ion
@@ -396,5 +439,6 @@ L1: B
         L3: O_neutral
             L4: O2_neutral
         L3: N_neutral
+            L4: N2_neutral
 """
 )

@@ -1,11 +1,11 @@
-...FF............................................F...................... [ 29%]
-........................................................................ [ 59%]
-........................................................................ [ 89%]
-............F............                                                [100%]
+...FF............................................F...................... [ 28%]
+........................................................................ [ 56%]
+........................................................................ [ 85%]
+.........................F............                                   [100%]
 =================================== FAILURES ===================================
 __________ test_the_dication_builds_and_raises_the_loud_databaseerror __________
 
-argon_capable_db = <rmgpy.data.thermo.ThermoDatabase object at 0x7c4783d25340>
+argon_capable_db = <rmgpy.data.thermo.ThermoDatabase object at 0x721ebdae2e20>
 
     def test_the_dication_builds_and_raises_the_loud_databaseerror(argon_capable_db):
         """The dication Ar(2+) (monatomic, +2) is the "Ar2+" reading that builds yet raises the
@@ -40,7 +40,7 @@ multiplicity 3
 1 Ar u2 p2 c+2
 ________ test_the_dimer_cation_builds_and_raises_the_loud_databaseerror ________
 
-argon_capable_db = <rmgpy.data.thermo.ThermoDatabase object at 0x7c4783d25340>
+argon_capable_db = <rmgpy.data.thermo.ThermoDatabase object at 0x721ebdae2e20>
 
     def test_the_dimer_cation_builds_and_raises_the_loud_databaseerror(argon_capable_db):
         """The dimer Ar2(+) (diatomic, +1) also builds and also raises a loud DatabaseError,
@@ -118,7 +118,7 @@ E         ?   +
 test/test_argon_cation_thermo.py:688: AssertionError
 _________ test_three_body_recombination_still_cannot_be_stored_at_all __________
 
-tmp_path = PosixPath('/tmp/claude-1000/pytest-of-alon/pytest-121/test_three_body_recombination_0')
+tmp_path = PosixPath('/tmp/claude-1000/pytest-of-alon/pytest-147/test_three_body_recombination_0')
 
     def test_three_body_recombination_still_cannot_be_stored_at_all(tmp_path):
         """The dominant volume sink is blocked by representation, not only by missing data.
@@ -147,4 +147,4 @@ FAILED test/test_argon_cation_buildtime.py::test_the_dication_builds_and_raises_
 FAILED test/test_argon_cation_buildtime.py::test_the_dimer_cation_builds_and_raises_the_loud_databaseerror
 FAILED test/test_argon_cation_thermo.py::test_argon_atom_type_now_declares_a_charge_envelope_but_still_parses_any_charge
 FAILED test/test_plasma_radiative_recombination.py::test_three_body_recombination_still_cannot_be_stored_at_all
-4 failed, 237 passed in 51.39s
+4 failed, 250 passed in 68.33s (0:01:08)

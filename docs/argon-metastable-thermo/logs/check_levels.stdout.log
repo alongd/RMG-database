@@ -1,0 +1,90 @@
+
+1. Ar I 4s LEVELS, NIST ASD ver. 5.12 (transcribed) AND THEIR ENERGY EQUIVALENTS
+--------------------------------------------------------------------------------
+label       configuration / term / J                    E (cm^-1)   g     E (eV)   E (kJ/mol)  character
+Ar ground   3s2.3p6           1S    J=0                    0.0000   1    0.00000       0.0000  ground
+1s5 (3P2)   3s2.3p5.(2P*<3/2>).4s  2[3/2]*  J=2        93143.7600   5   11.54835    1114.2468  METASTABLE
+1s4 (3P1)   3s2.3p5.(2P*<3/2>).4s  2[3/2]*  J=1        93750.5978   3   11.62359    1121.5062  resonant
+1s3 (3P0)   3s2.3p5.(2P*<1/2>).4s  2[1/2]*  J=0        94553.6652   1   11.72316    1131.1130  METASTABLE
+1s2 (1P1)   3s2.3p5.(2P*<1/2>).4s  2[1/2]*  J=1        95399.8276   3   11.82807    1141.2354  resonant
+
+2. THE BRIEF'S LEVEL FIGURES, CHECKED
+-------------------------------------
+  3P2: ASD   93143.7600 cm^-1 -> 11.54835 eV; brief says 11.548 eV; agree to 3.54e-04 eV
+  3P0: ASD   94553.6652 cm^-1 -> 11.72316 eV; brief says 11.723 eV; agree to 1.60e-04 eV
+  dE(3P0 - 3P2) = 1409.9052 cm^-1 = 0.174806 eV = 16.8662 kJ/mol   (brief: 0.175 eV, 16.88 kJ/mol)
+  RT at 298.15 K = 2.478957 kJ/mol   (brief: 2.479)
+  exp(-dE/RT)    = 1.109603e-03             (brief: 1.1e-3)
+
+3. THE LUMPING QUESTION: degeneracy-weighted {3P2 + 3P0} vs 3P2 ALONE
+---------------------------------------------------------------------
+  The brief's route is R*ln(Q/Q0) only. The electronic entropy of a multi-level
+  manifold is S_el = R*ln(Q) + R*<E>/(RT); the second term is what the brief omits.
+
+   T (K)              Q        R ln(Q/5)          R<E>/RT         dS total    Cp_el(lump)
+  100.00       5.000000         0.000000         0.000000         0.000000       0.000001
+  150.00       5.000001         0.000002         0.000030         0.000032       0.000407
+  200.00       5.000039         0.000065         0.000664         0.000729       0.006734
+  207.10       5.000056         0.000093         0.000908         0.001000       0.008891
+  250.00       5.000299         0.000498         0.004038         0.004535       0.032762
+  298.15       5.001110         0.001845         0.012551         0.014396       0.085376
+  400.00       5.006274         0.010426         0.052843         0.063269       0.267648
+  500.00       5.017299         0.028718         0.116308         0.145026       0.470245
+ 1000.00       5.131528         0.215889         0.432302         0.648191       0.854465
+ 2000.00       5.362667         0.582208         0.570315         1.152524       0.539334
+ 3000.00       5.508556         0.805377         0.519036         1.324413       0.318560
+ 4000.00       5.602219         0.945560         0.453264         1.398825       0.205156
+ 5000.00       5.666505         1.040427         0.396767         1.437194       0.142038
+ 6000.00       5.713131         1.108562         0.350882         1.459444       0.103822
+
+  At 298.15 K: brief's R*ln(5.0011/5) = 0.001845 J/(mol*K)
+               TRUE dS               = 0.014396 J/(mol*K)  -> brief low by 7.8x
+               dH298 (lump - 3P2)    = 0.003742 kJ/mol
+  At 6000 K:   brief's R*ln(Q/5)     = 1.108562 J/(mol*K)  (brief said ~1.1)
+               TRUE dS               = 1.459444 J/(mol*K)
+
+4. WHERE THE LUMPING DIFFERENCE CROSSES THE PRECISION WE QUOTE
+--------------------------------------------------------------
+  dS first exceeds 0.001   J/(mol*K), the last digit of S298  at T =    207.1 K
+  dS first exceeds 0.01    J/(mol*K)                          at T =    281.0 K
+  dS first exceeds 0.1     J/(mol*K)                          at T =    449.1 K
+  dS first exceeds 1       J/(mol*K)                          at T =   1560.5 K
+
+5. THE NUMBERS THAT GO INTO THE ENTRY (3P2 alone)
+-------------------------------------------------
+  H298 = E(1s5) * h*c*N_A
+       = 93143.7600 cm^-1 * 11.9626565957 J/(mol*cm^-1) = 1114.246815 kJ/mol -> 1114.247 kJ/mol
+  (dfH298 = dfH0 exactly: [H298-H0] is 5/2 RT = 6.197 kJ/mol for BOTH Ar(1s5) and Ar,
+   a single level having no internal structure to contribute; JANAF Ar-001 T=0 row gives
+   -6.197 kJ/mol for the ground state, so the two cancel and E0 = H298.)
+
+  S298 = S298(Ar, JANAF Ar-001) + R ln(g*/g0)
+       = 154.845 + 8.3144626180 * ln(5/1) = 154.845 + 13.3816 = 168.226611 -> 168.227 J/(mol*K)
+
+  Cp(T) = 5/2 R = 20.7861565450 -> 20.786 J/(mol*K) at EVERY T (translation only; one level)
+  Cp0 = CpInf = 20.7862 J/(mol*K)
+
+6. ALTERNATIVES, SO THE CHOICE CAN BE OVERRULED FROM ONE READ
+-------------------------------------------------------------
+entry would be                  E (cm^-1)   g  H298 (kJ/mol) S298 (J/mol/K)
+1s5 (3P2) alone                93143.7600   5       1114.247        168.227
+1s4 (3P1) alone                93750.5978   3       1121.506        163.979
+1s3 (3P0) alone                94553.6652   1       1131.113        154.845
+1s2 (1P1) alone                95399.8276   3       1141.235        163.979
+{3P2 + 3P0} lumped @298.15              - 5.0011       1114.251        168.241
+
+7. WHY 1P1 CANNOT BE WRITTEN AT ALL, AND WHY 3P1 IS NOT A RESERVOIR
+-------------------------------------------------------------------
+  Ar valence = 8 electrons. With p3 (6 in lone pairs) and no bonds, charge neutrality
+  forces u = 2: `Ar u2 p3 c0` is the ONLY neutral bond-free p3 adjacency list, and it
+  is a TRIPLET (multiplicity 3). The singlet 1s2 (1P1) therefore has no adjacency list
+  in RMG at all -- it is not an option this entry declines, it is unrepresentable.
+
+  Radiative rates, NIST ASD ver. 5.12 (lines 104-108 nm, both from the ground state):
+    1s2 (1P1) -> ground  104.8220 nm  A = 5.32e+08 s^-1  -> tau = 1.88 ns
+    1s4 (3P1) -> ground  106.6660 nm  A = 1.320e+08 s^-1 -> tau = 7.58 ns
+  Against the metastables:
+    1s5 (3P2)  tau = 38 (+8/-5) s   measured, Katori & Shimizu, PRL 70 (1993) 3545
+    1s5 (3P2)  tau = 55.9 s         computed, Small-Warren & Chiu, PRA 11 (1975) 1777
+    1s3 (3P0)  tau = 44.9 s         computed, Small-Warren & Chiu, PRA 11 (1975) 1777
+  Ratio 3P2 : 3P1 lifetime = 5.02e+09 -- nine to ten orders of magnitude.

@@ -1,0 +1,62 @@
+
+1. EVERY LIBRARY THAT CARRIES GROUND-STATE ARGON, IN LOAD ORDER
+---------------------------------------------------------------
+order  library                        label        S298 (API)   vs JANAF
+    9  BurkeH2O2                      Ar             154.7348    -0.1102
+   14  JetSurF2.0                     AR             154.7323    -0.1127
+   22  Narayanaswamy                  AR             154.8459    +0.0009
+   25  SulfurGlarborgMarshall         Ar             154.8459    +0.0009
+   28  2-BTP                          AR             154.7323    -0.1127
+   37  primaryThermoLibrary           Ar             154.8459    +0.0009
+   41  Chernov                        AR             154.7323    -0.1127
+   43  FFCM1(-)                       Ar             154.8459    +0.0009
+   44  Fluorine                       AR             154.7323    -0.1127
+   49  USC-Mech-ii                    AR             154.7323    -0.1127
+   50  GRI-Mech3.0                    Ar             154.7323    -0.1127
+   51  Klippenstein_Glarborg2016      AR             154.8459    +0.0009
+   58  CurranPentane                  AR             154.8459    +0.0009
+   65  JetSurF1.0                     Ar             154.7323    -0.1127
+   72  NOx2018                        AR             154.8462    +0.0012
+
+  -> the FIRST of these in load order wins; get_thermo_data_from_libraries
+     returns on the first match (rmgpy/data/thermo.py:1923-1927).
+
+  and for the metastable, for contrast:
+   21  PlasmaExcitedNeutralThermo     Ar(3P2)        168.2375
+  -> exactly one carrier, so this entry cannot be shadowed. That is uniqueness,
+     not precedence: it would be shadowed too if a second library ever carried it.
+
+2. WHAT SETS load_library ORDER WHEN NOTHING IS DECLARED
+--------------------------------------------------------
+  db.library_order == os.walk order : True
+  db.library_order == sorted order  : False
+  first 8 in load order: ['PlasmaCationThermo', 'LithiumAdditionalThermo', 'SulfurLibrary', 'halogens', 'CO2RR_Adsorbates_Cu111', 'primaryNS', 'CH', 'CHOFCl_G4']
+
+  load_libraries(path) with libraries=None appends in os.walk order
+  (rmgpy/data/thermo.py:944-954) -- i.e. filesystem order, uncurated and
+  machine-dependent. A deck that declares thermoLibraries gets THAT list instead,
+  so precedence is curated in a real run and arbitrary everywhere else:
+  databaseTest.py, these probes, and any script calling load_libraries(path).
+
+3. THE CONSEQUENCE FOR AN 'ANCHORED' ENTRY
+------------------------------------------
+  Ar(3P2) S298 was built as  JANAF Ar-001 154.8450 + R ln 5 = 168.2266
+  the runtime's ground state is BurkeH2O2 at 154.7348 J/(mol*K)
+  so the resolved excitation entropy is high by +0.1102 J/(mol*K)
+
+  had a different carrier won, the same anchoring would be off by:
+    BurkeH2O2                      +0.1102 J/(mol*K)
+    JetSurF2.0                     +0.1127 J/(mol*K)
+    Narayanaswamy                  -0.0009 J/(mol*K)
+    SulfurGlarborgMarshall         -0.0009 J/(mol*K)
+    2-BTP                          +0.1127 J/(mol*K)
+    primaryThermoLibrary           -0.0009 J/(mol*K)
+    Chernov                        +0.1127 J/(mol*K)
+    FFCM1(-)                       -0.0009 J/(mol*K)
+    Fluorine                       +0.1127 J/(mol*K)
+    USC-Mech-ii                    +0.1127 J/(mol*K)
+    GRI-Mech3.0                    +0.1127 J/(mol*K)
+    Klippenstein_Glarborg2016      -0.0009 J/(mol*K)
+    CurranPentane                  -0.0009 J/(mol*K)
+    JetSurF1.0                     +0.1127 J/(mol*K)
+    NOx2018                        -0.0012 J/(mol*K)

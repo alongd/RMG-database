@@ -38,12 +38,16 @@ without touching it, because that size of error is a units or convention problem
 to make k(T) look right buries it. Entry 13 below is the precedent: it read as a wrong number and
 was a wrong T0 convention worth 561x.
 
-A caution on Table 1 that matters when reading rates out of it: 18 of its 23 ion-ion
-neutralization rows carry the identical 2e-7 (Tg/300)^-0.5, and 16 of those cite one reference,
-Kossyi 1992, a kinetic-scheme review rather than a measurement of any particular ion pair. Rows
-with a pair-specific source carry pair-specific numbers (IN1, IN4, IN12, IN17, IN23). So where
-two of these entries agree exactly, that is one class estimate quoted twice, not two independent
-determinations -- see docs/i223-charge-transfer-node-repair/logs/tanarro.stdout.log.
+A caution on Table 1 that matters when reading rates out of it: 17 of its 23 ion-ion
+neutralization rows carry the identical 2e-7 (Tg/300)^-0.5, and 14 of those cite one reference,
+Kossyi 1992, a kinetic-scheme review rather than a measurement of any particular ion pair. Six
+rows differ -- IN1, IN4, IN8, IN12, IN17, IN23 -- and five of those six carry a pair-specific
+source; IN17 cites Kossyi and differs anyway, so "cites Kossyi" and "carries the generic value"
+are not the same predicate. So where two of these entries agree exactly, that is one class
+estimate quoted twice, not two independent determinations.
+These counts are recomputed from the transcribed table on every run of
+docs/i223-charge-transfer-node-repair/probe_tanarro.py; an earlier hand tally in this note said
+18 and 16, having miscounted IN8 (2.3e-7) as generic. The conclusion is unchanged.
 
 Deleted entry 17 (I-223): a second copy of NOp_r1 + O2_r2 <=> O2p + NO, from [Gupta1990]
 Table II R19, k = 1.8e15 T^0.17 exp(-3.3e4/T). It duplicated entry 21 at the same rank 6,
@@ -101,10 +105,15 @@ index 17 was a rival fit for a reaction this family DOES cover, so deleting it l
 could not be recovered from the surviving entry. This is the only sourced rate in the repo for
 H2+ + H-, so deleting it would destroy information with no fallback.
 
-It is inert where it sits. It resolves to the template H_ion;H_anion, where entry 1 wins the
-rank-6 tie on the lower index, and that is the correct outcome: a rule at that template can only
-ever be applied to reactions this family can actually generate, i.e. H+ + H-, which entry 1
-describes exactly. The two rates differ by 1.1x in any case (logs/collisions.stdout.log).
+It is inert where it sits, and the reason is narrower than "nothing else can land there". It
+resolves to the template H_ion;H_anion, where entry 1 wins the rank-6 tie on the lower index.
+H_ion is a one-atom group, `H u0 p0 c+1`, with no bond constraint, so the template catches any
+reaction whose *1 atom is a bare proton -- within THIS training set that is only H+ + H-, which
+entry 1 describes exactly, but a real run carrying a larger H-bearing cation could reach it too.
+What makes the shadowing harmless is not that nothing else matches; it is that the number being
+shadowed is within 1.1x of the one that wins (logs/collisions.stdout.log), so the choice between
+them cannot change an answer either way. Whether entry 1's H+ + H- rate is the right value for
+some larger cation that descends to H_ion is a separate question this ticket did not examine.
 """
 )
 

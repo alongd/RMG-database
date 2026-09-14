@@ -141,6 +141,14 @@ entry(
 
 # There is no H2_ion node here, and index 102 is deliberately left unused. I-223 removed it.
 #
+# "Left unused" holds only for as long as nobody writes this family back out through RMG. Both
+# save paths -- KineticsFamily.save_groups (family.py:965) and Database.save(reindex=True)
+# (base.py:371) -- go through Group.get_entries_to_save, which renumbers EVERY entry 0..N-1 in tree
+# order (base.py:295-296). One save and this file's authored scheme (0, 1, 10, 11, ... 213, 214)
+# and every gap in it, including this one, is gone. The gaps carry meaning for a human reader and
+# none for RMG, so do not rely on them surviving, and do not read a gap in a machine-written copy
+# of this family as evidence that something was deleted.
+#
 # As authored it was `H u0 p0 c+1` single-bonded to `H u0 p0 c0`, which is not H2+: the one-electron
 # bond H2+ actually has cannot be written with integer bond orders, so a single bond hands both
 # bonding electrons to the pair and the node sampled as `[H][H-]` at charge -1, failing to descend
@@ -370,8 +378,8 @@ entry(
 # place, and the reason is measured rather than deferred -- but it is provisional, which is the
 # part worth reading. Those four entries carry the *identical* rate, so the two templates hold the
 # same number and splitting them would change nothing today (logs/collisions.stdout.log). They are
-# identical because Tanarro's Table 1 gives 18 of its 23 ion-ion neutralization rows one generic
-# value, 16 of them citing a single kinetic-scheme review (logs/tanarro.stdout.log) -- the SOURCE
+# identical because Tanarro's Table 1 gives 17 of its 23 ion-ion neutralization rows one generic
+# value, 14 of them citing a single kinetic-scheme review (logs/tanarro.stdout.log) -- the SOURCE
 # does not distinguish these pairs, which is not the same as the tree being at the right
 # granularity. The first pair-specific measurement for O- or OH- makes this merge start silently
 # discarding data exactly as the N/N2 merge did. So the question of whether OH_anion is a sibling
@@ -391,9 +399,26 @@ entry(
 # `N ux px c0`, so atomic N and molecular N2 both landed on it: training 22 (O2p_r1 + N_r2) and
 # training 23 (O2p_r1 + N2_r2) both resolved to `O2_ion;N_neutral`, and get_rule kept the lower
 # index, discarding the N2 rate. Unlike the O-/OH- merge these two rates are genuinely different
-# -- both [Ozawa2008] Table III, but 107x apart at 10000 K and further apart at every lower
-# temperature (logs/collisions.stdout.log) -- so the merge was destroying real information.
+# -- both [Ozawa2008] Table III, but at least 107x apart everywhere both fits are used (5000-10000
+# K; logs/collisions.stdout.log) -- so the merge was destroying real information.
 # Written concretely, as the triply-bonded ground state, to match the training dictionary's N2_r2.
+#
+# THIS NODE MOVES FOUR TRAINING REACTIONS, NOT ONE. Every reaction whose *2 partner is N2 now
+# descends here, so besides training 23 it reparents 15 (Op_r1 + N2_r2), 18 (Np_r1 + N2_r2) and
+# 19 (Arp_r1 + N2_r2). Measured before and after in logs/rules-before.stdout.log and
+# logs/rules.stdout.log. Those three had no collision and were not the reason for the node; they
+# move because a tree node applies to everything that descends to it, which is the point of a tree
+# and is worth saying out loud rather than letting a reader infer the change was surgical.
+#
+# The knock-on: O_atom_ion;N_neutral, N_atom_ion;N_neutral and Ar_ion;N_neutral held exact rules
+# from training 15, 18 and 19 before, and now hold nothing exact. fill_rules_by_averaging_up --
+# which a real rate-rules job always runs, rmgpy/rmg/main.py:610 -- fills each of them by
+# averaging over N_neutral's children, of which N2_neutral is the only one carrying a rule. So an
+# average over exactly one entry. Measured in logs/averaging.stdout.log: the value those three
+# templates return is unchanged to 1.000000x at 1000, 5000 and 10000 K. What changed is the
+# PROVENANCE -- "rate rule from training reaction 15" becomes "Average of [training reaction 15
+# used for O_atom_ion;N2_neutral]" in the kinetics comment. No number moves; a label does.
+# Contrast O2_neutral above, which reparented only training 21 and left nothing empty behind it.
 entry(
     index = 214,
     label = "N2_neutral",

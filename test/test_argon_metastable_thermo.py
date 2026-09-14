@@ -79,6 +79,13 @@ ASD_1S3_3P0 = 94553.6652      # g = 1, metastable
 ASD_1S2_1P1 = 95399.8276      # g = 3, resonant, A(104.8220 nm) = 5.32e8 s^-1
 A_1S4 = 1.320e8               # s^-1
 A_1S2 = 5.32e8                # s^-1
+#: (Paschen, LS, E cm^-1, g) for the whole 3p5.4s manifold.
+LEVELS_4S = [('1s5', '3P2', ASD_1S5_3P2, 5),
+             ('1s4', '3P1', ASD_1S4_3P1, 3),
+             ('1s3', '3P0', ASD_1S3_3P0, 1),
+             ('1s2', '1P1', ASD_1S2_1P1, 3)]
+#: Ar II (3p5 2P*<3/2>) ionisation limit, same ASD retrieval.
+ASD_AR_II_LIMIT = 127109.842  # cm^-1
 #: Measured metastable lifetime, Katori & Shimizu, Phys. Rev. Lett. 70 (1993) 3545.
 TAU_1S5_MEASURED = 38.0       # s
 
@@ -224,17 +231,52 @@ def test_h298_is_the_level_energy_times_hc_na(entry):
     assert entry.data.H298.value_si / 1000.0 == ENTERED_H298
 
 
-def test_h298_equals_e0_and_that_is_an_identity_not_a_coincidence(entry, thermo_db):
-    """dfH(298.15) = dfH(0) + [H298-H0]_excited - [H298-H0]_ground, and both increments
-    are 5/2 R T because a single level has no internal structure. They cancel exactly.
+def test_e0_is_not_stated_so_there_is_exactly_one_source_of_truth_for_it(entry):
+    """Round 55, HIGH-1. An earlier version of this entry stated E0 = H298 = 1114.247,
+    reasoning that the spectroscopic term value IS a 0 K quantity and the thermochemical
+    dfH(0) of this species IS 1114.247 by cancellation. Both of those are true and the
+    field was still wrong, because RMG's E0 is a third quantity: the species' enthalpy at
+    0 K obtained by integrating ITS OWN Cp down from the reference temperature, with no
+    element correction. The two differ by exactly that correction.
 
-    The contrast is the argon cation, whose 2P fine structure makes its own increment
-    6.206 rather than 6.197, so its H298 and E0 differ by 0.008 kJ/mol. If that contrast
-    ever disappears, one of the two entries has been mis-edited."""
-    assert entry.data.E0.value_si == entry.data.H298.value_si
+    The field is now absent, so the derivation is the only source."""
+    assert entry.data.E0 is None, (
+        'E0 must not be stated; see "E0 IS DERIVED, NOT STATED" in the longDesc')
+    for required in ('E0 IS DERIVED, NOT STATED', '1108.0527', 'to_wilhoit'):
+        assert required in entry.long_desc, required
+
+
+def test_both_api_paths_now_agree_on_one_e0(entry):
+    """The disagreement measured in round 55 was 1114.2470 stored against 1108.0527
+    derived. With the field gone there is one number, and it is the derived one."""
+    derived = entry.data.to_wilhoit(B=1000.0).E0.value_si / 1000.0
+    assert derived == pytest.approx(1108.0527, abs=1e-3)
+    assert entry.data.E0 is None
+
+
+def test_the_e0_gap_is_five_halves_r_at_298_not_298_15(entry):
+    """The size of the trap, pinned so the explanation in the longDesc stays checkable.
+
+    Note the reference temperature: to_wilhoit calls get_enthalpy(298), so the gap is
+    5/2*R*298 = 6.1943, not 5/2*R*298.15 = 6.1974. Round 55 quoted the latter. The 0.003
+    difference is the same 298-vs-298.15 field convention this file documents elsewhere,
+    showing up a second time."""
+    derived = entry.data.to_wilhoit(B=1000.0).E0.value_si / 1000.0
+    gap = ENTERED_H298 - derived
+    assert gap == pytest.approx(2.5 * R * 298.0 / 1000.0, abs=1e-3)
+    assert gap == pytest.approx(6.1943, abs=1e-3)
+    assert gap != pytest.approx(2.5 * R * T0 / 1000.0, abs=1e-4)
+
+
+def test_the_cation_library_carries_the_same_unfixed_e0_collision(thermo_db):
+    """Disclosure, not approval, and deliberately not fixed: PlasmaCationThermo is out of
+    this ticket's scope. If someone repairs it, this fails and points them here."""
     arp = thermo_db.libraries[CATION_LIBRARY].entries['[Arp]']
-    assert (arp.data.H298.value_si - arp.data.E0.value_si) / 1000.0 == pytest.approx(
-        0.008, abs=1e-3)
+    stated = arp.data.E0.value_si / 1000.0
+    derived = arp.data.to_wilhoit(B=1000.0).E0.value_si / 1000.0
+    assert stated == pytest.approx(1520.5730, abs=1e-3)
+    assert derived == pytest.approx(1514.3867, abs=1e-3)
+    assert stated - derived == pytest.approx(6.1863, abs=1e-3)
 
 
 def test_s298_is_the_ground_state_plus_the_exact_degeneracy_term(entry):
@@ -391,13 +433,51 @@ def test_where_the_lumping_difference_crosses_the_precision_we_quote():
     assert excess(6000.0) == pytest.approx(1.4594, abs=1e-3)
 
 
-def test_the_lump_is_rejected_for_being_fitted_not_for_being_large(entry):
-    """The magnitudes above argue mildly FOR lumping being harmless, so the reason it is
-    declined has to be stated and has to be the real one: a degeneracy-weighted lump
-    assumes the two metastables are Boltzmann-distributed at the GAS temperature, which
-    in a discharge they are not - that ratio is an output of the plasma kinetics."""
-    assert 'FITTED' in entry.long_desc
+def test_the_lump_is_declined_as_conditional_not_as_fitted(entry):
+    """Round 55 correction, in the entry's favour. An earlier draft called the Boltzmann
+    state sum FITTED and refused it on charter grounds. That was wrong: the sum is
+    analytical, has a closed form and no adjustable parameter, and this file's charter
+    does not forbid it. It is declined for being CONDITIONAL on an equilibration that a
+    low-pressure discharge does not provide - which is a narrower claim and, unlike the
+    charter one, tells a reader when they MAY use it."""
+    assert 'analytical, not fitted' in entry.long_desc.lower().replace('  ', ' ')
+    assert 'CONDITIONAL' in entry.long_desc
     assert 'Boltzmann' in entry.long_desc
+    # and the wrong reason must not have survived anywhere
+    assert 'would be a FITTED' not in entry.long_desc
+
+
+def test_the_lumping_cost_table_is_present_and_its_numbers_are_right(entry):
+    """What a reader whose conditions DO justify lumping needs, and the answer depends on
+    their temperature. Two-level is the two metastables; four-level is the whole 3p5.4s
+    manifold. Re-derived here rather than quoted from the longDesc."""
+    single = R * math.log(5.0)
+    two = [(g, e) for _p, _t, e, g in LEVELS_4S if _p in ('1s5', '1s3')]
+    four = [(g, e) for _p, _t, e, g in LEVELS_4S]
+
+    def manifold(levels, T):
+        e0 = min(e for _g, e in levels)
+        xs = [(g, (e - e0) * HC_NA / (R * T)) for g, e in levels]
+        q = sum(g * math.exp(-x) for g, x in xs)
+        mean = sum(g * x * math.exp(-x) for g, x in xs) / q
+        return R * (math.log(q) + mean), mean * R * T / 1000.0, q
+
+    s2_298, h2_298, _ = manifold(two, T0)
+    assert s2_298 - single == pytest.approx(0.0144, abs=1e-4)
+    assert h2_298 == pytest.approx(0.0037, abs=1e-4)
+
+    s2_6k, h2_6k, _ = manifold(two, 6000.0)
+    assert s2_6k - single == pytest.approx(1.4594, abs=1e-3)
+    assert h2_6k == pytest.approx(2.1053, abs=1e-3)
+
+    s4_6k, h4_6k, q4_6k = manifold(four, 6000.0)
+    assert s4_6k - single == pytest.approx(7.1004, abs=1e-3)
+    assert h4_6k == pytest.approx(7.7578, abs=1e-3)
+    # population of the whole 4s manifold relative to 1s5 alone
+    assert q4_6k / 5.0 == pytest.approx(2.011, abs=1e-3)
+
+    for required in ('WHAT LUMPING WOULD COST', '7.1004', '2.1053', '2.011'):
+        assert required in entry.long_desc, required
 
 
 # =====================================================================================
@@ -413,13 +493,61 @@ def test_the_argon_cation_entry_is_untouched(thermo_db):
     assert 'Thermo library: %s' % CATION_LIBRARY in data.comment
 
 
-def test_neutral_argon_still_resolves_to_burke_and_not_to_this_library(thermo_db):
-    """Disclosure, not approval. The ground-state argon a running mechanism resolves to is
-    ``BurkeH2O2``'s 4-figure combustion value (36.98 cal/(mol*K)), 0.110 J/(mol*K) below
-    the JANAF Ar-001 figure this entry is anchored on. So the excitation step comes out
-    with the right enthalpy and an entropy 0.121 J/(mol*K) high. Re-anchoring BurkeH2O2 is
-    another ticket; this test exists so that if anyone does it, the disclosure in the
-    longDesc gets revisited with it."""
+#: Every loaded library that carries ground-state argon, with the S298 its entry gives
+#: through the API. Measured; two camps 0.113 J/(mol*K) apart. Which one a mechanism gets
+#: is decided purely by position in ``library_order``.
+AR_CARRIERS = {
+    'BurkeH2O2': 154.7348, 'JetSurF2.0': 154.7323, 'Narayanaswamy': 154.8459,
+    'SulfurGlarborgMarshall': 154.8459, '2-BTP': 154.7323, 'primaryThermoLibrary': 154.8459,
+    'Chernov': 154.7323, 'FFCM1(-)': 154.8459, 'Fluorine': 154.7323, 'USC-Mech-ii': 154.7323,
+    'GRI-Mech3.0': 154.7323, 'Klippenstein_Glarborg2016': 154.8459, 'CurranPentane': 154.8459,
+    'JetSurF1.0': 154.7323, 'NOx2018': 154.8462,
+}
+
+
+def test_the_ground_state_argon_an_entry_is_anchored_on_is_decided_by_library_order(pinned):
+    """Round 55 MEDIUM: this used to hardcode whichever library won locally, so it tested
+    the filesystem rather than precedence. It now SETS the order and asserts the rule.
+
+    The finding it guards: an S298 built as "ground state + R ln g" is only as good as the
+    ground state the runtime resolves, and fifteen libraries offer one, 0.113 J/(mol*K)
+    apart. get_thermo_data_from_libraries returns on the first match over library_order."""
+    from rmgpy.data.thermo import ThermoDatabase
+
+    for winner in ('BurkeH2O2', 'primaryThermoLibrary', 'NOx2018'):
+        db = ThermoDatabase()
+        db.load_libraries(LIBRARY_DIR, libraries=[winner, LIBRARY])
+        assert db.library_order[0] == winner
+        ar = db.get_thermo_data(_species(AR, 'Ar'))
+        assert 'Thermo library: %s' % winner in ar.comment
+        assert ar.get_entropy(T0) == pytest.approx(AR_CARRIERS[winner], abs=2e-3)
+
+        meta = db.get_thermo_data(_species(AR_META, 'Ar(3P2)'))
+        assert 'Thermo library: %s' % LIBRARY in meta.comment
+        d_h = (meta.get_enthalpy(T0) - ar.get_enthalpy(T0)) / 1000.0
+        d_s = meta.get_entropy(T0) - ar.get_entropy(T0)
+        # The excitation ENTHALPY is right to millijoules whichever ground state wins -
+        # every carrier has dfH = 0 for argon, the element. The 0.003 kJ/mol tolerance is
+        # the 298-vs-298.15 K field offset again, and it is present or absent depending on
+        # whether the winner is a ThermoData (offset, cancels against this entry's) or a
+        # NASA (no offset, does not cancel). Contrast the entropy below, which moves by
+        # 0.11 - forty times larger - purely on which library won.
+        assert d_h == pytest.approx(ASD_1S5_3P2 * HC_NA / 1000.0, abs=5e-3)
+        # ... and the entropy error is the winner's own offset from the JANAF value this
+        # entry is anchored on, compared like for like on the API scale. The +offset_s is
+        # the 298-vs-298.15 K field convention: this entry's anchor 154.845 is a 298.15 K
+        # number written into a 298 K field, so it reads back 0.0105 higher, exactly as
+        # this entry's own S298 does. The two traps COMPOUND - the 0.121 seen with the
+        # shipped library set is 0.110 of precedence plus 0.011 of field convention.
+        offset_s = ENTERED_CP * math.log(T0 / 298.0)
+        assert d_s - R * math.log(5.0) == pytest.approx(
+            JANAF_AR_S298 + offset_s - AR_CARRIERS[winner], abs=3e-3)
+
+
+def test_with_every_library_loaded_the_winner_is_burke_and_the_error_is_0_121(thermo_db):
+    """The state of the world as shipped, separate from the rule above. Disclosure, not
+    approval: if anyone re-anchors BurkeH2O2 or changes precedence, this fails and points
+    them at the longDesc paragraph that has to be revisited with it."""
     ar = thermo_db.get_thermo_data(_species(AR, 'Ar'))
     assert 'Thermo library: BurkeH2O2' in ar.comment
     assert LIBRARY not in ar.comment
@@ -432,40 +560,207 @@ def test_neutral_argon_still_resolves_to_burke_and_not_to_this_library(thermo_db
     assert d_s - R * math.log(5.0) == pytest.approx(0.1211, abs=2e-3)
 
 
-#: The one kinetics file that MENTIONS the structure, and does so only in prose: the
-#: I-224 commentary recording that this family's old over-broad top would have matched
-#: ``Ar u2 p3 c0`` once the atom type landed, and that it no longer does. A mention in a
-#: docstring is not a presence in a mechanism; this test tells the two apart.
-KINETICS_PROSE_MENTION = os.path.join(
-    'kinetics', 'families', 'Plasma_Associative_Ionization_Alkaline_Alkaline', 'groups.py')
+def test_no_deck_or_dictionary_DECLARES_the_metastable(pinned):
+    """A weak but still meaningful check: no species dictionary or group adjacency list in
+    the kinetics tree contains this structure, so nothing ships it as a named species.
 
-
-def test_no_deck_dictionary_or_kinetics_file_declares_the_metastable(pinned):
-    """The species becomes constructible; it does not become present. If some later commit
-    puts it into a mechanism, that is a kinetics decision and this test should be the thing
-    that makes it deliberate.
-
-    'Declares' means an adjacency-list line, i.e. a real structure in a species dictionary
-    or a group. The single prose mention is allowed and is asserted to BE prose."""
-    declared, mentioned = [], []
+    It is NOT a reachability check, and an earlier version of this file wrongly used it as
+    one. Families match GROUPS, so a literal search cannot see a template match. The real
+    question is answered by generation, below."""
+    declared = []
     for root, _dirs, files in os.walk(KINETICS_DIR):
         for name in files:
             if not name.endswith(('.py', '.txt', '.yaml', '.yml')):
                 continue
             path = os.path.join(root, name)
-            rel = os.path.relpath(path, THIS_DATABASE)
             with open(path, encoding='utf-8', errors='replace') as handle:
                 lines = handle.read().splitlines()
             for line in lines:
-                if 'Ar u2 p3 c0' not in line and 'Ar0e' not in line:
+                if 'Ar u2 p3 c0' not in line:
                     continue
-                mentioned.append(rel)
-                # An adjacency-list line is the whole line, optionally numbered.
                 stripped = line.strip()
                 if stripped.split(maxsplit=1)[0].rstrip('.').isdigit():
-                    declared.append((rel, stripped))
+                    declared.append((os.path.relpath(path, THIS_DATABASE), stripped))
     assert declared == [], declared
-    assert set(mentioned) == {KINETICS_PROSE_MENTION}, sorted(set(mentioned))
+
+
+# ---- reachability: the round-55 HIGH-2 measurement -----------------------------------
+
+PLASMA_FAMILIES = ['Plasma_Electron_Impact_Ionization',
+                   'Plasma_Electron_Attachment',
+                   'Plasma_Radiative_Recombination',
+                   'Plasma_Associative_Ionization_Alkali_Alkali',
+                   'Plasma_Associative_Ionization_Alkali_Alkaline',
+                   'Plasma_Associative_Ionization_Alkaline_Alkaline']
+EII = 'Plasma_Electron_Impact_Ionization'
+
+
+@pytest.fixture(scope='module')
+def kinetics_db(pinned):
+    from rmgpy.data.kinetics.database import KineticsDatabase
+    db = KineticsDatabase()
+    db.load_families(os.path.join(THIS_DATABASE, 'kinetics', 'families'),
+                     families=PLASMA_FAMILIES, depositories=['training'])
+    return db
+
+
+def test_the_metastable_is_REACHABLE_and_exactly_one_family_reaches_it(kinetics_db):
+    """Round 55, HIGH-2, and the finding this file got most wrong first time.
+
+    Loading this library does not add an isolated number: it activates a stepwise
+    ionisation channel for argon. Measured by generating, not by grepping - the previous
+    version of this check searched kinetics files for the literal adjacency text, which
+    could never have found a template match because families match groups."""
+    hits = {}
+    for name in PLASMA_FAMILIES:
+        reactions = kinetics_db.generate_reactions_from_families(
+            [_species(AR_META, 'Ar(3P2)')], products=None, only_families=[name],
+            resonance=True)
+        if reactions:
+            hits[name] = reactions
+    assert list(hits) == [EII], sorted(hits)
+
+    reactions = hits[EII]
+    assert len(reactions) == 1
+    rxn = reactions[0]
+    assert [g if isinstance(g, str) else g.label for g in rxn.template] == ['A_rad']
+    assert rxn.degeneracy == pytest.approx(1.0)
+    assert rxn.electrons == +1
+    assert rxn.reversible is False
+    assert len(rxn.products) == 1
+    product = rxn.products[0].molecule[0]
+    assert product.is_isomorphic(Molecule().from_adjacency_list(ARP))
+
+
+def test_the_rate_that_channel_is_handed_is_a_rank_10_lithium_placeholder(kinetics_db):
+    """What a user actually gets, and its provenance. The rule is honest about itself -
+    its own shortDesc says ESTIMATE - and this pins that honesty in place so that if the
+    rule is ever quietly promoted, or re-anchored, this fails."""
+    family = kinetics_db.families[EII]
+    rules = [e for entries in family.rules.entries.values() for e in entries]
+    assert len(rules) == 1, [e.label for e in rules]
+    rule = rules[0]
+    assert rule.rank == 10
+    assert 'ESTIMATE' in rule.short_desc
+    assert rule.data.A.value_si == pytest.approx(1.292979e+08, rel=1e-6)
+    for required in ('Voronov', 'lithium', 'PLACEHOLDER'):
+        assert required in rule.long_desc or required in rule.long_desc.lower(), required
+
+
+def test_that_rules_premise_that_the_family_cannot_generate_argon_is_now_false(kinetics_db):
+    """The rule's longDesc argues its anchor choice partly from "this family CANNOT
+    generate argon at all". That was true when written - ground-state argon is u0, outside
+    the u[1,2,3,4] template - and this library falsifies it.
+
+    Both halves are pinned: the ground state still generates nothing, and the metastable
+    generates one. Fixing the rule's prose is a kinetics ticket this work does not hold, so
+    this test is the referral, deliberately failing-visible rather than silent."""
+    family = kinetics_db.families[EII]
+    ground = kinetics_db.generate_reactions_from_families(
+        [_species(AR, 'Ar')], products=None, only_families=[EII], resonance=True)
+    assert ground == [], 'ground-state argon should still be outside the template'
+    meta = kinetics_db.generate_reactions_from_families(
+        [_species(AR_META, 'Ar(3P2)')], products=None, only_families=[EII], resonance=True)
+    assert len(meta) == 1
+    rule = [e for entries in family.rules.entries.values() for e in entries][0]
+    assert 'CANNOT generate argon at all' in rule.long_desc, (
+        'the stale premise sentence has moved or been fixed; revisit the disclosure in '
+        'PlasmaExcitedNeutralThermo.longDesc with it')
+
+
+def test_the_metastables_ionisation_threshold_is_below_lithiums(entry):
+    """The arithmetic that runs in the rule's favour, and the reason the placeholder is
+    not as bad for this species as the rule's own warning implies.
+
+    The rule warns it over-predicts for high-threshold species and names argon at 15.76 eV.
+    That is GROUND-STATE argon. Ionising an already-excited atom costs only what is left,
+    and 4.21 eV is below the 5.4 eV lithium the estimate is built on - so by the rule's own
+    criterion this species is inside its stated range, not outside it."""
+    threshold_ev = (ASD_AR_II_LIMIT - ASD_1S5_3P2) / CM_PER_EV
+    assert threshold_ev == pytest.approx(4.2113, abs=1e-3)
+    assert threshold_ev < 5.4
+    assert ASD_AR_II_LIMIT / CM_PER_EV == pytest.approx(15.7596, abs=1e-3)
+    assert '4.2113 eV' in entry.long_desc
+    assert 'INERT ISLAND' in entry.long_desc
+
+
+def test_the_island_claim_is_retracted_in_the_file_itself(entry):
+    """The retraction has to live where the wrong claim lived, not only in a report."""
+    assert 'inert, unreachable island' not in entry.long_desc
+    assert 'no channel populates it' not in entry.long_desc
+    for required in ('That was false', 'Absence of a string is not absence of a channel'):
+        assert required in entry.long_desc, required
+
+
+# ---- the temperature range actually delivered: round-55 HIGH-3 -----------------------
+
+def test_the_advertised_6000_K_does_not_survive_normal_processing(thermo_db):
+    """The entry declares 6000 K, which is true of the DATA. Standard processing refits any
+    non-NASA library entry to a hard-coded 100-5000 K (thermoengine.py:86-99) and then
+    raises above it. Pinned so that the day someone widens that range, this fails and the
+    longDesc's disclosure gets revisited."""
+    pytest.importorskip('rmgpy.thermo.thermoengine')
+    from rmgpy.data.rmg import RMGDatabase
+    from rmgpy.thermo import NASA
+    from rmgpy.thermo.thermoengine import process_thermo_data
+
+    full = RMGDatabase()
+    full.load(THIS_DATABASE, thermo_libraries=None, kinetics_families=[EII],
+              reaction_libraries=[], seed_mechanisms=[], kinetics_depositories=['training'],
+              depository=False, solvation=True, surface=False)
+    spc = _species(AR_META, 'Ar(3P2)')
+    resolved = full.thermo.get_thermo_data(spc)
+    nasa = process_thermo_data(spc, resolved, thermo_class=NASA)
+
+    assert nasa.Tmin.value_si == pytest.approx(100.0)
+    assert nasa.Tmax.value_si == pytest.approx(5000.0)
+    assert nasa.get_heat_capacity(5000.0) == pytest.approx(2.5 * R, abs=1e-3)
+    with pytest.raises(ValueError):
+        nasa.get_enthalpy(6000.0)
+
+    # and the derived E0 is what reaches the conformer, on this same path
+    assert nasa.E0.value_si / 1000.0 == pytest.approx(1108.0527, abs=1e-3)
+    assert spc.conformer.E0.value_si / 1000.0 == pytest.approx(1108.0527, abs=1e-3)
+    # the degeneracy RMG carries here is NOT the 5 this entry's S298 assumes
+    assert spc.conformer.spin_multiplicity == 1
+    assert spc.molecule[0].multiplicity == 3
+
+
+def test_raw_thermodata_freezes_entropy_above_its_grid_while_enthalpy_keeps_climbing(entry):
+    """Engine behaviour, not a defect in these numbers, but this file advertises the range
+    so it has to be true about it. At and below 6000 K the entry is right; above it, S stops
+    and H does not, so any free energy built from the pair is wrong and worsens with T.
+
+    is_temperature_valid is accurate and nothing in the accessor path calls it."""
+    data = entry.data
+    assert data.get_entropy(6000.0) == pytest.approx(230.6353, abs=1e-3)
+    frozen = data.get_entropy(6000.0)
+    for T in (8000.0, 10000.0):
+        assert data.get_entropy(T) == pytest.approx(frozen, abs=1e-6), (
+            'entropy is expected to be frozen above the grid')
+        exact = data.S298.value_si + 2.5 * R * math.log(T / 298.0)
+        assert exact > frozen + 5.0
+        # enthalpy, by contrast, stays correct
+        assert data.get_enthalpy(T) / 1000.0 == pytest.approx(
+            (data.H298.value_si + 2.5 * R * (T - 298.0)) / 1000.0, abs=1e-2)
+    assert data.is_temperature_valid(6000.0) is True
+    assert data.is_temperature_valid(8000.0) is False
+
+
+def test_three_different_electronic_state_counts_coexist_for_this_species(entry, thermo_db):
+    """Round 55 MEDIUM. g = 5 is what S298 is built on (2J+1 for J = 2); RMG's
+    spin_multiplicity is 2S+1 and says 3; an untouched Conformer says 1. They disagree
+    because they count different things, and an adjacency list has no J to fix it with.
+
+    Not fixable from the database side - pinned as a disclosure and a tripwire."""
+    from rmgpy.statmech import Conformer
+    assert Conformer().spin_multiplicity == 1
+    spc = _species(AR_META, 'Ar(3P2)')
+    assert spc.molecule[0].multiplicity == 3
+    assert R * math.log(5.0 / 3.0) == pytest.approx(4.2472, abs=1e-3)
+    assert R * math.log(5.0) == pytest.approx(13.3816, abs=1e-3)
+    for required in ('RMG GIVES THREE DIFFERENT ANSWERS', '4.2472', 'Is it fixable'):
+        assert required in entry.long_desc, required
 
 
 def test_plasma_air_advertises_metastable_quenching_but_carries_no_metastable(pinned):

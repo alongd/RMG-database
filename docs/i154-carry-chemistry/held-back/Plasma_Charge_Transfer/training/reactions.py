@@ -22,8 +22,22 @@ entry must carry T0 = 1 K. Entries 13 and 17 sat immediately after the Tanarro b
 had inherited its T0 = 300 K while copying Cf verbatim, which makes every k they return
 wrong by 300^n: 561x too high for entry 13 (n = -1.11), 2.64x too low for entry 17
 (n = +0.17). Entry 13's T0 is corrected below; entry 17 was deleted (see next paragraph).
-[Ozawa2008] Table III and [Aiken2023] Table 3.16 are likewise bare-T and already carry
-T0 = 1 K. [Ozawa2008] and [Aiken2023] have NOT been checked against their primary documents.
+[Aiken2023] Table 3.16 prints its own form, k = A T^eta exp(-theta/T_tr) -- bare T, so the
+three entries citing it carry T0 = 1 K and that is now READ, not inferred. All three (18, 19,
+20) were audited against it and match; note its A column is in m^3/s per particle, so the
+conversion to the cm^3/(mol*s) used here is x6.02214e29.
+[Ozawa2008] Table III is ALSO bare-T on the entries here, but that has NOT been read. The paper
+is closed and there is no open copy: pubs.aip.org returns 403, and OpenAlex and Semantic Scholar
+independently report oa_status "closed" with no repository full text. So entries 14, 15, 16, 21,
+22 and 23 are checked by surrogate only -- their Ea against spectroscopic ionization energies
+(all six within 1%), their theta against [Gupta1990] RP-1232 Table II where the two compilations
+overlap (four of six, within 1.2%), and their A against the Langevin capture rate. Their n and
+their T0 are NOT verified. Do not read the surrogates as more than they are.
+What that gap can cost is bounded, and the bound is why it does not block: a wrong T0 rescales A
+by 300^n, but both tree splits this family makes are Ozawa-against-Ozawa (14 vs 21, 22 vs 23), so
+the ratio the split criterion tests moves only by 300^(n1-n2). Under the wrong convention the
+splits fall to 22.2x and 48.1x, still far above the 4x criterion. See
+docs/i223-charge-transfer-node-repair/probe_ozawa_aiken.py.
 
 [Tanarro2015] has (I-223). All twelve entries, indices 1-12, were audited row by row against
 Table 1 of the open author manuscript (europepmc.org/articles/PMC4685741) -- reaction, A,
@@ -31,7 +45,8 @@ exponent, T0, Ea and units. Eleven match exactly. One correction, recorded on th
 
   entry 1, row IN1, H+ + H- -> 2H : A was 1.88e-7, Table 1 prints 1.8e-7. 1.044x, corrected.
 
-The rule used, worth keeping for the remaining two sources: a discrepancy under 10x is a
+The rule used -- since applied unchanged to [Aiken2023], and the one still owed to [Ozawa2008] if
+its table is ever reached: a discrepancy under 10x is a
 transcription slip and gets corrected in place with its table row recorded; a discrepancy of an
 order of magnitude or more, or any mismatch in exponent, T0, Ea or units, is STOPPED and reported
 without touching it, because that size of error is a units or convention problem and rescaling A

@@ -123,29 +123,47 @@ up, so the node below it is redundant. Two bare roots is also the shape of the s
 | — unintended | 78 | **0** | all removed |
 | species matching top `A` | 10 (3 int, 7 unint) | 2 (2 int, 0 unint) | |
 | species matching top `B` | 10 (3 int, 7 unint) | 2 (2 int, 0 unint) | |
-| training reactions generatable | 3 of 3 | **2 of 3** | **O + O orphaned** |
+| training reactions generatable | 3 of 3 | **2 of 2** | the third was moved out, see below |
 | family checks passing, individually | 12 of 12 | **12 of 12** | no regression |
+| `add_rules_from_training` | returns normally | **returns normally** | gate exercised, not assumed |
 
 Retained: `Mg + Mg`, `Mg + Ca`, `Ca + Ca` (2 reactions each, the two charge assignments).
 Dropped and intended: `O + O`, `O + Mg`, `O + Ca`. Dropped and unintended: every pair drawn from
 C, N, S, CH2, NH, the polyatomic carbene, and OH⁺ — 78 reactions, to zero.
 
-## The orphaned training reaction — measured, not assumed
+## The orphaned training reaction — measured, then moved
 
-The O + O entry is **kept**, with the orphaning recorded in `training/reactions.py` itself (both in
-the depository `longDesc` and in the entry's own `longDesc`) and in the `groups.py` docstring. Its
-rate, rank and reference are untouched.
+This ticket went through two states, and both are reported because the intermediate one carries the
+finding.
+
+**State 2 — narrowed, entry left in place.** The O + O entry was kept where it was, with the
+orphaning recorded in `training/reactions.py` and in the `groups.py` docstring.
+
+**State 3 — entry moved out (what is committed).** The entry now lives at
+`docs/i224-alkaline-family-top/held-back/Plasma_Associative_Ionization_Alkaline_Alkaline/training/`,
+the layout `docs/i154-carry-chemistry/held-back/` already uses for chemistry the campaign is not
+ready to install. It is **not deleted and not installed**: `docs/`, never `input/`. `diff` against
+the pre-I-224 original shows the entry identical in index, label, degeneracy, kinetics, rank and
+reference, differing only by an added provenance note in its `longDesc`; the three species
+definitions (`O_A`, `O_B`, `O2p`) moved with it and are byte-identical. The surviving entries keep
+indices **2 and 3** — index 1 is deliberately absent from the family, so the two files match up by
+number. The held-back copy records what it is, that it left because the narrowing put oxygen
+outside the template rather than because it was judged wrong, that it wants a family named for
+neutral associative ionization, and that the prerequisite for such a family is an RMG-Py change
+this ticket does not make.
 
 What the orphan does, measured one call at a time (`logs/addrules-*.stdout.log`):
 
-| call | baseline | landed |
-|---|---|---|
-| `get_reaction_template_labels(O + O)` | `['A', 'B']` | **raises `UndeterminableKineticsError`** |
-| `get_reaction_template_labels(Mg + Mg)` | `['alkaline_A', 'alkaline_B']` | `['A', 'B']` |
-| `get_reaction_template_labels(Ca + Ca)` | `['alkaline_A', 'alkaline_B']` | `['A', 'B']` |
-| `add_rules_from_training(thermo_database=<real>)` | returns normally | **raises `UndeterminableKineticsError`** |
-| rate-rule nodes produced | 2 (`A;B` rank 6, `alkaline_A;alkaline_B` rank 9 ×2) | 1 (`A;B` rank 9 ×2), then the raise |
-| all 12 family checks | PASS | **PASS** |
+| call | 1. baseline | 2. narrowed, entry in place | 3. entry moved out (committed) |
+|---|---|---|---|
+| training entries in the family | 3 | 3 | 2 |
+| `get_reaction_template_labels(O + O)` | `['A', 'B']` | **raises `UndeterminableKineticsError`** | n/a — entry is held back |
+| `get_reaction_template_labels(Mg + Mg)` | `['alkaline_A', 'alkaline_B']` | `['A', 'B']` | `['A', 'B']` |
+| `get_reaction_template_labels(Ca + Ca)` | `['alkaline_A', 'alkaline_B']` | `['A', 'B']` | `['A', 'B']` |
+| `add_rules_from_training(thermo_database=<real>)` | returns normally | **raises `UndeterminableKineticsError`** | **returns normally** |
+| rate-rule nodes produced | 2 (`A;B` rank 6, `alkaline_A;alkaline_B` rank 9 ×2) | 1 (`A;B` rank 9 ×2), then the raise | 1 (`A;B` rank 9 ×2), no raise |
+| all 12 family checks, one at a time | PASS | **PASS** | PASS |
+| wider suite | 6 passed | 6 passed | 6 passed |
 
 **This is the result you asked to see, and it is worse than a red check.** No check goes red. The
 family is green through every method in `databaseTest.py`, invoked individually, and it still takes
@@ -164,12 +182,18 @@ reverse (`[O][O+] -> ...`) does not match the template either, and that second f
 That was the probe's defect, not the family's — the reverse-entry path needs a real thermo database.
 Re-run with one, the failure is the `UndeterminableKineticsError` above.
 
-**So the landed state is green-and-broken-at-run-time, and that is a gate, not a footnote.** It is
-not repairable inside this ticket: the only fixes are to give oxygen a charge row in RMG-Py (out of
-scope, sibling ticket owns that file), or to move the entry into the family that will own O + O
-(the brief forbids editing training entries, and keeping it is your explicit instruction). It is
-recorded in the file so it cannot be lost, and it should block merging this branch into a tree that
-runs RMG until one of those two things happens.
+**State 2 was green-and-broken-at-run-time — a merge gate, not a footnote.** State 3 clears it, and
+the clearance was exercised rather than assumed: `add_rules_from_training`, called with a real
+thermo database exactly as `main.py:590` calls it, **returns normally** and produces the one
+expected rule node `A;B` carrying the two rank-9 alkaline-earth rates. Nothing was left on stderr.
+So the orphan was the only trigger of the uncaught reverse-miss path for this family; had it not
+cleared, that would have meant a second trigger at `family.py:1184-1191`, and the instruction was
+to stop and report rather than chase it.
+
+**What remains open is chemistry, not a defect.** O + O associative ionization is still real,
+sourced, rank-6 chemistry with nowhere to live. It is preserved verbatim under `docs/`, and it
+needs a family named for neutral associative ionization — which needs the oxygen atom types to gain
+a charge row in RMG-Py first. Neither is built here.
 
 ## Finding: the wildcard top may be a workaround for an incomplete atom-type action table
 
@@ -257,13 +281,15 @@ under test, once per tree, in separate processes.
 
 | tree | collected | passed | failed | wall |
 |---|---|---|---|---|
-| baseline (pristine family) | 6 | **6** | 0 | 511.88 s |
-| landed | 6 | **6** | 0 | 493.58 s |
+| 1. baseline (pristine family) | 6 | **6** | 0 | 511.88 s |
+| 2. narrowed, entry in place | 6 | **6** | 0 | 493.58 s |
+| 3. entry moved out (committed) | 6 | **6** | 0 | 468.19 s |
 
-Same six tests in both, same outcome each: `test_kinetics`, `test_thermo`, `test_transport`,
+Same six tests in all three, same outcome each: `test_kinetics`, `test_thermo`, `test_transport`,
 `test_solvation`, `test_statmech`, `test_metal_libraries`. No new failure, and no test that passed
-at baseline stopped passing. Note what that does *not* mean: `test_kinetics` is green on the landed
-tree while `add_rules_from_training` raises on it, for the structural reason given above.
+at baseline stopped passing. Note what that does *not* mean: on tree 2, `test_kinetics` is green
+while `add_rules_from_training` raises, for the structural reason given above — which is exactly
+why the gate had to be exercised separately rather than inferred from a green suite.
 
 ## What this could not reach
 
@@ -289,3 +315,13 @@ tree while `add_rules_from_training` raises on it, for the structural reason giv
 - **The sibling families' own tops.** `Plasma_Associative_Ionization_Alkali_Alkali` uses
   `alkali u1 px cx` for `*2`, which is a single generic and therefore matches correctly; it was read
   but not measured, and not touched.
+- **The held-back copy is a fragment, not a family.** It carries a training depository only — no
+  `groups.py`, no `rules.py` — because the family it belongs to does not exist yet. It was never
+  loaded by RMG, so nothing here proves it parses as a depository in its new location; what is
+  verified is that it is byte-identical to what left, by `diff`.
+- **The destination family.** Not designed, not named, not stubbed. Whether neutral associative
+  ionization is best served by one family or several, and what its `*2` side should admit, is
+  untouched work.
+- **That a real RMG run now starts.** The cleared gate is measured at the level of the call
+  `main.py:590` makes, with a real thermo database. No RMG job was launched, so nothing here proves
+  the wider deck runs — only that this family no longer raises at that call.

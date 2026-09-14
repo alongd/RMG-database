@@ -25,12 +25,15 @@ the narrowed top, would fail `kinetics_check_child_parent_relationships`. The tw
 matches the sibling family Plasma_Associative_Ionization_Alkali_Alkaline, whose B top likewise
 carries no children.
 
-WHAT THIS NARROWING COSTS. The docstring above used to read "e.g.: alkaline earth metal atoms or O
-atoms", and `training/reactions.py` entry 1 is O + O <=> O2+ + e- with a rank-6 literature rate
-[Aiken2025]. Under an `alkaline` top that reaction is ORPHANED: O is not in the `alkaline` specific
-list, so the family can no longer generate its own training reaction. The entry is deliberately
-kept, not deleted -- see the note in `training/reactions.py`. O + O associative ionization is real
-chemistry and still needs a home in a family named for it.
+WHAT THIS NARROWING COST. The docstring above used to read "e.g.: alkaline earth metal atoms or O
+atoms", and `training/reactions.py` entry 1 was O + O <=> O2+ + e- with a rank-6 literature rate
+[Aiken2025]. O is not in the `alkaline` specific list, so under these tops the family can no longer
+template that reaction. It was MOVED OUT, not deleted, and now lives verbatim at
+`docs/i224-alkaline-family-top/held-back/Plasma_Associative_Ionization_Alkaline_Alkaline/training/`
+with its species; the surviving entries keep indices 2 and 3. Leaving it here was not an option: an
+unreachable training entry escapes `add_rules_from_training` as an `UndeterminableKineticsError` on
+the path `rmgpy/rmg/main.py:590` takes, while every database check stays green. O + O associative
+ionization is real chemistry and still needs a home in a family named for it.
 
 WHY THE `*1` TOP COULD NOT SIMPLY NAME OXYGEN. The recipe applies GAIN_CHARGE to *1, and
 `GroupAtom._gain_charge` (rmgpy/molecule/group.py:362-385) raises ActionError unless *every* atom

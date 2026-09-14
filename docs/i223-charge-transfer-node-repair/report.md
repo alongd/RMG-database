@@ -44,6 +44,17 @@ reports at most one failing node per family and silently never runs the later ch
 > commits that came before. Sections 1–10 describe the family as it was; where §12 overturns them
 > it says so.
 
+> **§13 THEN OVERTURNED §12's ROOTS.** §12 proved the roots crash-free over the **13 species its
+> own training entries name**, and flagged the wider pool as the largest untested surface. It was
+> measured: over the **22,344 species the installed thermo libraries name, 17,009 (76%) aborted
+> the family**, 630 of its 645 root-A matchers aborted it, **633 of those matchers were not
+> cations at all**, and — worst — **N₂⁺, a product the family makes itself in training entries 15
+> and 23, aborted it when fed back in as a reactant**. An abort is not a missing reaction; it kills
+> the RMG job. The cause was that both roots said `R` while their subtrees name only four elements.
+> Narrowing each root to the elements its own children name takes every one of those counts to
+> **zero** with the family still generating 45 reactions and reproducing 15 of 15 entries. §13 has
+> the numbers, the rejected alternative and the engine finding behind it.
+
 ---
 
 ## 1. The two failures, reproduced before any edit
@@ -860,6 +871,8 @@ their primaries, the splits hold. All of it describes a family that cannot prese
 | `probe_narrow.py` | **§12 — twelve candidate root pairs, scored on crashes, reactions and wrongly-served entries** |
 | `probe_generate.py` | **§12 — what the family on disk generates: the 0 → 45 measurement** |
 | `check_family_generates.py` | **§12 — the check that would have caught the inert recipe; runs over every installed family** |
+| `probe_rootsafety.py` | **§13 — the roots driven over all 22,344 species the installed thermo libraries name, plus the family's own products fed back in as reactants** |
+| `probe_narrow2.py` | **§13 — nine candidate root pairs scored on that crash surface and on the training set at once** |
 | `run.sh` | runner — pins cwd and `PYTHONPATH`, persists **both** streams per probe |
 | `logs/*.{stdout,stderr}.log` | one pair per measurement |
 | `kT-comparison.png` | k(T) and ratio for the duplicate |
@@ -888,6 +901,10 @@ dying on a `KeyError` — it is an argument about the pre-edit file and says so.
 | `checks-narrowed` / `nodes-narrowed` | HEAD | all twelve pass and all 18 nodes descend after the narrowing |
 | `check-generates` | HEAD | 103 installed families audited, none inert |
 | `check-generates-control` | i202 staged copy | the same check on the UNREPAIRED copy: INERT, exit 1 |
+| `rootsafety-before` | HEAD before §13 | **17,009 of 22,344 species abort the family; 630 of 645 root-A matchers abort it; 633 of those matchers are not cations; N₂⁺ — its own product — aborts it** |
+| `narrow2` | HEAD before §13 | nine candidate root pairs; both roots must narrow; two designs score identically at 0 crashes |
+| `rootsafety-after` | HEAD | **0 crashes on all 22,344, 0 on root A, 0 on feedback; 11 root-A matchers, all cations** |
+| `nodes-rootsafety` / `generate-rootsafety` / `checks-rootsafety` / `check-generates-rootsafety` | HEAD | 18 nodes descend, 45 reactions and 15 of 15 reproduced, twelve checks green, 103 families still non-inert — the full verifier set re-run after the §13 narrowing |
 | `t0` | base | the `[Gupta1990]` `T0` argument |
 | `t0-head` | HEAD | the precondition message, demonstrated |
 
@@ -1103,6 +1120,122 @@ of, one (`O2_neutral`) is removed outright and the other (`N2_neutral`) survives
   coherent family. That is a new ticket; none was created.
 - **A LogicOr top.** It might express the exact acceptable set where a flat group cannot, but tops
   are consumed as `Group`s by `_match_reactant_to_template`, so it is a separate experiment and was
-  not attempted.
+  not attempted. **§13 measured this and it is wrong**: `_match_reactant_to_template`
+  (family.py:1817-1829) has an explicit `LogicNode` branch that iterates `get_possible_structures`,
+  and an `OR{}` top matches correctly. It was scored in §13.3 and rejected on other grounds.
 - **The reverse family.** `Plasma_Charge_Transfer_Reverse` does not exist here, and `reversible` is
   now `False` partly because of that.
+
+---
+
+## 13. The roots were not crash-safe, and the family aborted on its own product
+
+§12.9 named "species outside the training set" as the largest untested surface. It was measured
+this round, and it inverted: **the family as committed could not be installed.** The measurement
+is `probe_rootsafety.py` over the 22,344 distinct species named by all 78 installed thermo
+libraries — 1,700× the 13-species pool §12 used.
+
+### 13.1 What the sweep found
+
+| measured over 22,344 species | committed roots | narrowed roots |
+|---|---|---|
+| species that abort the family as the `*2` partner | **17,009 (76%)** | **0** |
+| root-A matchers | 645 | 11 |
+| …of which are **not cations at all** | **633** | **0** |
+| root-A matchers that abort the family as the `*1` reactant | **630** | **0** |
+| the family's own training **products**, fed back in, that abort it | **1 (N₂⁺)** | **0** |
+| training entries reproduced correctly / wrongly | 15 / 0 | 15 / 0 |
+| reactions over the training pool | 45 | 45 |
+
+Every failure is an `AtomTypeError` raised by `update_atomtypes` inside `apply_recipe`, and
+`generate_reactions` propagates it to the caller. It **aborts the run**; it does not omit a
+reaction. Logs: `logs/rootsafety-before.stdout.log`, `logs/rootsafety-after.stdout.log`.
+
+### 13.2 The three findings, in order of severity
+
+**(a) The family aborted on a species it makes itself.** Training entries 15 (`O⁺ + N₂`) and 23
+(`O₂⁺ + N₂`) both produce **N₂⁺**. N₂⁺ is `N u1 p0 c+1 {2,T} | N u0 p1 c0 {1,T}` — its charged N
+matched root A, and `GAIN_RADICAL *1` turned it into `N u2 p0 c0` holding a triple bond, which has
+no atom type. So an RMG job would fire entry 15, put N₂⁺ into the core, and abort on the **next**
+iteration.
+
+`probe_generate.py` could not see this, because it drives training **reactants** only. A product
+is a future reactant by construction, and that is now a separate stage (`PART 1c`) rather than an
+assumption. This is the single most transferable thing in §13: **a family that is safe on its
+reactants is not thereby safe, and the gap is exactly one RMG iteration wide.**
+
+**(b) "A cation" is not a thing a group can say.** A group constrains **atoms**, not molecules, so
+`R ux p[0,2] c[+1,+2,+3,+4]` does not mean "a cation" — it means "a molecule containing a formally
+positive atom". **633 of the 645 root-A matchers were neutral molecules**: nitro compounds
+(`[O-][N+](=O)CCC[N+](=O)[O-]`, BurcatNS), N-oxides, nitrile oxides, azides. Nitroalkanes are
+ordinary combustion species. This is the same "atoms, not molecules" trap recorded in §12.5, biting
+on the other root, and it is worth stating as a rule: **a charge in a group is a statement about
+one atom, and every root written to mean a molecular charge is wrong by construction.**
+
+**(c) The roots were broader than their own subtrees.** Root A said `R`; its three children name
+`H`, `O` and `metal`. Root B said `R`; its children name `H`, `O` and `N`. Generation matches the
+**root**, not the children, so that gap was the whole crash surface — everything with a bromine, a
+sulfur, a phosphorus. Nothing in the twelve checks compares a root to the union of its children.
+
+### 13.3 The repair, chosen by measurement
+
+`probe_narrow2.py` scored nine candidate root pairs on the crash surface **and** on the training
+set simultaneously, because a root that is crash-free by matching nothing is not a repair
+(`logs/narrow2.stdout.log`). Narrowings only — every widening measured in this ticket traded one
+crash for another or for silently wrong products.
+
+| root A | root B | crash-pool | crash-A | crash-back | right | rxns |
+|---|---|---|---|---|---|---|
+| `R` (committed) | `R` (committed) | 17,009 | 630 | 1 | 15/15 | 45 |
+| `R` | `[H,O,N]` | 0 | 630 | 1 | 15/15 | 45 |
+| `[H,O,metal]` | `R` | 17,009 | 0 | 0 | 15/15 | 45 |
+| **`[H,O,metal]`** | **`[H,O,N]`** | **0** | **0** | **0** | **15/15** | **45** |
+| `OR{children}` | `OR{children}` | 0 | 0 | 0 | 15/15 | 45 |
+
+Both roots had to change: narrowing either one alone leaves the other's crashes intact. The two
+crash-free designs score **identically** on every column, so the choice was made on other grounds:
+
+- **Element lists were taken.** A `Group` root has a sample molecule, and
+  `kinetics_check_sample_descends_to_group` needs one. The tree's existing `Anion` LogicOr already
+  shows up in `probe_nodes.py` as `SKIP (not a Group)` — acceptable for an interior node, not for a
+  top that two checks descend from.
+- **`OR{children}` was rejected**, not untried. It works — contrary to §12.9 — and would make the
+  root exactly equal to the union of its children, which is arguably the more honest statement. It
+  is the better design the day RMG's checks handle a LogicOr top.
+
+Both narrowed roots stay strictly **broader** than their children, so the family still generalises:
+root B admits an ether oxygen no child names. What it no longer admits is an element whose ion RMG
+cannot type.
+
+### 13.4 Why this is the database's defect and not RMG's — and where it is RMG's
+
+The database's part is unambiguous: a root that claims `R` while its subtree covers four elements is
+a database error, and it is fixed here.
+
+The engine's part is the one that cannot be fixed here, and it is the same finding §12 already
+carries: **RMG has no atom types for most ionised heavy atoms.** `Br u1 p2 c+1` with one bond, `S⁺`,
+four-bonded `N⁺` — none is typeable, so no charge-transfer family in RMG can generalise past H, O,
+N and the six charge-specific metal types (`Li+ Na+ K+ Mg+ Ca+ Ar+`). The narrowing above is not a
+chemistry judgement that bromine does not accept charge; it is the database declining to ask the
+engine a question the engine cannot answer. Per the standing gate, that stays a line in this report.
+
+### 13.5 A count worth flagging, which is not a crash
+
+With the narrowed roots, **12,283 of 22,344 species still react** with a single test cation (Li⁺),
+producing 19,100 reactions in that one sweep. That is legitimate family generalisation, not a
+defect — but the rate rules behind it were measured for atomic and diatomic ions, and the tree will
+hand a nitroalkane the same number. It over-generates within its element set. Nothing was changed
+for it; it is recorded because a reviewer sizing the family's cost in a real job needs the number.
+
+### 13.6 What §13 could not reach
+
+- **Species RMG *generates* rather than reads from a library.** The pool is every species the
+  installed thermo libraries can name. A running job invents more, and they are not covered.
+- **Real cations at scale.** The whole installed database holds **four** cations across 78
+  libraries, one of which is this campaign's own `[Ar+]`. Root A's genuine exposure is those plus
+  the family's own training and unrepresentable sets — 11 species after narrowing. Root B was
+  exercised over all 22,344; root A was not.
+- **A real RMG run.** Still nothing through `main.py`, a reactor, or `add_rules_from_training` with
+  a real thermo database. Reactor admissibility remains untested (the I-157 precedent: loading is
+  not admissibility).
+- **Rate correctness**, which is the source audits of §5–§6 and is untouched by a root change.

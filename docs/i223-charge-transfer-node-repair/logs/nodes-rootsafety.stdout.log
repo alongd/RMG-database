@@ -1,0 +1,33 @@
+cwd                 = /home/alon/Code/RMG-Py-plasma
+database.directory  = /home/alon/Code/RMG-database-plasma/input
+family loaded from  = /home/alon/Code/RMG-database-i223-charge-transfer-node-repair/docs/i154-carry-chemistry/held-back/Plasma_Charge_Transfer
+
+training entries    = 15
+group entries       = 21
+
+ignored (products)  = ['A-', 'B+']
+
+node             root           sample molecule          charge descends to      verdict
+----------------------------------------------------------------------------------------
+A                A              [H+]                          1 H_ion            PASS
+B                B              [H-]                         -1 H_anion          PASS
+H_cation         A              [H+]                          1 H_ion            PASS
+O_cation         A              [OH+]                         1 OH_ion           PASS
+Metal_cation     A              [Li+]                         1 Li_ion           PASS
+H_ion            A              [H+]                          1 H_ion            PASS
+O_atom_ion       A              [O+]                          1 O_atom_ion       PASS
+OH_ion           A              [OH+]                         1 OH_ion           PASS
+O2_ion           A              [O][O+]                       1 O2_ion           PASS
+Li_ion           A              [Li+]                         1 Li_ion           PASS
+Na_ion           A              [Na+]                         1 Na_ion           PASS
+K_ion            A              [K+]                          1 K_ion            PASS
+Mg_ion           A              [Mg+]                         1 Mg_ion           PASS
+Ca_ion           A              [Ca+]                         1 Ca_ion           PASS
+Anion            -              (LogicNode)                   - -                SKIP (not a Group)
+H_anion          B              [H-]                         -1 H_anion          PASS
+O_anion          B              [OH-]                        -1 O_anion          PASS
+N_neutral        B              N                             0 N_neutral        PASS
+N2_neutral       B              N#N                           0 N2_neutral       PASS
+
+PASS 18   FAIL 0   SKIP 1
+exit status: 0

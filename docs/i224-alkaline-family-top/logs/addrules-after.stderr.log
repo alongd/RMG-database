@@ -1,0 +1,18 @@
+WARNING:matplotlib:/home/alon/.config/matplotlib is not a writable directory
+WARNING:matplotlib:Matplotlib created a temporary cache directory at /tmp/claude-1000/matplotlib-03f9x5bz because there was an issue with the default path (/home/alon/.config/matplotlib); it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+INFO:matplotlib.font_manager:Failed to extract font properties from /usr/share/fonts/truetype/noto/NotoColorEmoji.ttf: In FT2Font: Could not set the fontsize (invalid pixel size; error code 0x17)
+INFO:matplotlib.font_manager:generated new fontManager
+INFO:root:Loading transport group database from /home/alon/Code/RMG-database-i224-alkaline-family-top/input/transport/groups...
+INFO:root:Loading frequencies group database from /home/alon/Code/RMG-database-i224-alkaline-family-top/input/statmech/groups...
+INFO:root:Loading thermodynamics group database from /home/alon/Code/RMG-database-i224-alkaline-family-top/input/thermo/groups...
+INFO:root:Loading thermodynamics SIDTs from /home/alon/Code/RMG-database-i224-alkaline-family-top/input/thermo/sidt...
+Traceback (most recent call last):
+  File "/tmp/claude-1000/-home-alon-Code-RMG-database-i224-alkaline-family-top/f05da8f7-fd2c-4709-84e7-1a5ca6d85921/scratchpad/probe_training_rules.py", line 55, in <module>
+    family.add_rules_from_training(thermo_database=THERMO)
+  File "/home/alon/Code/RMG-Py-plasma/rmgpy/data/kinetics/family.py", line 1308, in add_rules_from_training
+    template = self.get_reaction_template(item)
+  File "/home/alon/Code/RMG-Py-plasma/rmgpy/data/kinetics/family.py", line 2605, in get_reaction_template
+    return self.groups.get_reaction_template(reaction)
+  File "/home/alon/Code/RMG-Py-plasma/rmgpy/data/kinetics/groups.py", line 199, in get_reaction_template
+    raise UndeterminableKineticsError(reaction, message=msg)
+rmgpy.exceptions.UndeterminableKineticsError: (TemplateReaction(reactants=[Molecule(smiles="[O][O+]")], products=[Molecule(smiles="[O]"), Molecule(smiles="[O]")]), 'Kinetics could not be determined. Unable to find matching template for reaction <Molecule "[O][O+]"> <=> <Molecule "[O]"> + <Molecule "[O]"> in reaction family <KineticsGroups "Plasma_Associative_Ionization_Alkaline_Alkaline/groups">.Trying to match [<Entry index=0 label="A">, <Entry index=10 label="B">] but matched []')

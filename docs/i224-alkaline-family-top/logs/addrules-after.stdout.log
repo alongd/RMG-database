@@ -1,0 +1,13 @@
+RESOLVED database.directory = /home/alon/Code/RMG-database-i224-alkaline-family-top/input
+tag = addrules-after
+thermo groups loaded: ['adsorptionLi', 'adsorptionPt111', 'group', 'longDistanceInteraction_cyclic']
+training entries: 3
+rate rules BEFORE add_rules_from_training: 0
+TEMPLATE-MATCH  O_A + O_B <=> O2p            RAISED UndeterminableKineticsError: (Reaction(reactants=[Species(label="O_A", molecule=[Molecule(smiles="[O]")], molecular_weight=(15.9994,'amu')), Species(label="O_B", molecule=[Molecule(smiles="[O]")], molecular_weight=(15.9994,'amu')
+TEMPLATE-MATCH  Mg_A + Mg_B <=> Mg2p         template=['A', 'B']
+TEMPLATE-MATCH  Ca_A + Ca_B <=> Ca2p         template=['A', 'B']
+ADD_RULES_FROM_TRAINING: RAISED UndeterminableKineticsError: (TemplateReaction(reactants=[Molecule(smiles="[O][O+]")], products=[Molecule(smiles="[O]"), Molecule(smiles="[O]")]), 'Kinetics could not be determined. Unable to find matching template for reaction <Molecule "[O][O+]"> <=> <Molecule "[O]"> + <Molecule "[O]"> in reaction family <KineticsGroups "Plasma_Associative_Ionization_Alkaline_Alkaline/groups">.Trying to match [<Entry index=0 label="A">, <En
+rate rules AFTER  add_rules_from_training: 1
+  RULE A;B                          rank=9 kinetics=ArrheniusEP(A=(3.01e+13,'cm^3/(mol*s)'), n=0, alpha=0, E0=(0,'J/mol'), Tmin=(300,'K'), Tmax=(10000,'K'), comment="""From training reaction 2 used for A;B""")
+  RULE A;B                          rank=9 kinetics=ArrheniusEP(A=(9.35e+12,'cm^3/(mol*s)'), n=0, alpha=0, E0=(0,'J/mol'), Tmin=(300,'K'), Tmax=(10000,'K'), comment="""From training reaction 3 used for A;B""")
+DONE addrules-after

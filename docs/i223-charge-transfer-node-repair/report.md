@@ -495,6 +495,54 @@ number and was a wrong `T0` convention worth 561×. No row in this audit hit the
 moves from 1.06× to **1.11×**, still far below the 4× threshold, so the `H_ion;H_anion` verdict is
 unchanged and the lossless finding is unaffected. Stated here so no reader has to re-derive it.
 
+### `[Aiken2023]` verified, `[Ozawa2008]` unreachable — and what that costs
+
+`probe_ozawa_aiken.py` / `logs/ozawa-aiken.stdout.log`. This closes the item §8 previously carried as
+"nine entries unverified". It closes it unevenly, and the uneven part is the point.
+
+**`[Aiken2023]` Table 3.16 — read, three of three verified.** The thesis is open
+(`colorado.edu/lab/ngpdl/.../aiken.pdf`; direct `curl` is refused by this sandbox, `WebFetch` +
+`pdftotext -layout` works). The table prints its own rate form, `k = A T^η exp(−θ/T_tr)` — **bare T,
+so `T0 = 1 K` is now read rather than inferred.** Its `A` column is in **m³/s per particle**, so the
+conversion into this database's `cm³/(mol·s)` is ×6.02214e29:
+
+| entry | reaction (as printed) | `A` Table 3.16 | → cm³/(mol·s) | `A` entered | ratio |
+|---|---|---|---|---|---|
+| 18 | N⁺ + N₂(X) → N₂⁺(X) + N(⁴S) | 1.16e−23 m³/s | 6.9857e6 | 6.99e6 | 1.0006 |
+| 19 | Ar⁺(1) + N₂(X) → N₂⁺(X) + Ar(1) | 2.57e−17 m³/s | 1.5477e13 | 1.55e13 | 1.0015 |
+| 20 | Ar⁺(1) + O(³P) → O⁺ + Ar(1) | 6.39e−18 m³/s | 3.8481e12 | 3.85e12 | 1.0005 |
+
+All three agree to three-significant-figure rounding, with `η` and `θ` exact. No slips, nothing to fix.
+
+**`[Ozawa2008]` Table III — not reached, and this is a confirmed negative rather than a failed
+search.** `pubs.aip.org` returns HTTP 403; OpenAlex reports `is_oa: false`, `oa_status: "closed"`,
+`best_oa_location: null`, `any_repository_has_fulltext: false`, `locations_count: 1`; Semantic Scholar
+independently reports `CLOSED` with an empty `openAccessPdf`. **There is no open copy to find.** The
+six entries are therefore checked by surrogate, and the surrogates bound rather than verify:
+
+| surrogate | what it tests | result |
+|---|---|---|
+| `Ea` vs IE(B) − IE(A) | value **and** units of `Ea`, independent of every compilation | all six within **1%** |
+| `θ` vs RP-1232 Table II | corroboration against a second tabulation (4 of 6 overlap) | within **1.2%** (R16/R17/R18/R19) |
+| `A` vs Langevin capture | order of magnitude; a mole-vs-particle slip is 6e23 | all nine **0.02–4.3×** capture |
+
+**`n` and `T0` are not verified for these six.** Both compilations being Park-derived means RP-1232
+corroborates rather than independently confirms, and the surrogates should not be read as more.
+
+**What the gap can cost, which is the part that decides whether it blocks.** A wrong `T0` rescales `A`
+by `300^n` — up to 10.4× for entry 21. But **both splits this branch made are Ozawa-against-Ozawa**
+(14 vs 21; 22 vs 23), so a convention error hits both sides of each comparison and the ratio the §6
+criterion tests moves only by `300^(n₁−n₂)`:
+
+| split | as decided | under the other convention | vs the 4× criterion |
+|---|---|---|---|
+| `N2_neutral` (O₂⁺ + N vs O₂⁺ + N₂) | 106.8× | 48.1× | 12.0× margin — **survives** |
+| `O2_neutral` (NO⁺ + O vs NO⁺ + O₂) | 217.7× | 22.2× | 5.6× margin — **survives** |
+
+So the unread table is **a gap in the record, not a risk to a decision already in the branch**. The
+handoff flagged this as the one remaining item that could invalidate the N/N₂ split; measured, it
+cannot. Entry 23 is immune outright (`n = 0.0`, so `300^n = 1.000`).
+
 ---
 
 ## 7. Every authored node, and every check, after
@@ -567,12 +615,13 @@ expiry stated:
   It stops being free the moment a pair-specific rate for O⁻ or OH⁻ enters the file. The choice
   decides what an unlisted anion falls back to and is not derivable from the training set.
 
-**Source verification still undone.** `[Gupta1990]` (RP-1232 Table II) and `[Tanarro2015]` (Table 1,
-all twelve entries, §6) are now verified against their primary documents. **`[Ozawa2008]` Table III
-and `[Aiken2023]` Table 3.16 are not** — nine entries, including both sides of the N/N₂ split this
-ticket just made on the strength of their numbers. Their `T0 = 1 K` is inferred from internal
-consistency (θ values line up with bare-T fits), not read. The audit rule in §6 is written down so
-whoever takes those two can apply the same one.
+**Source verification: three of four sources done, the fourth is unreachable.** `[Gupta1990]`
+(RP-1232 Table II), `[Tanarro2015]` (Table 1, all twelve entries, §6) and now `[Aiken2023]`
+(Table 3.16, all three entries) are verified against their primary documents. **`[Ozawa2008]`
+Table III is not, and cannot be** — see §6 for the audit and the bound on what that costs. The
+short version: the paper is closed with no open copy anywhere, so its six entries are checked by
+surrogate only, and the two splits that rest on them survive the worst case of the unread
+convention by 5.6× and 12×.
 
 **Unprovable until the family is installed under `input/`:**
 
@@ -675,6 +724,7 @@ under `input/`.**
 | `probe_collisions.py` | **the split criterion, applied to all five collisions with rate ratios and source provenance** |
 | `probe_tanarro.py` | all twelve `[Tanarro2015]` entries audited against Table 1, with the stop rule; provenance counts computed from the full 23-row block |
 | `probe_averaging.py` | **what the new nodes reparent, and what `fill_rules_by_averaging_up` then does about it** |
+| `probe_ozawa_aiken.py` | **`[Aiken2023]` Table 3.16 audited against the primary; `[Ozawa2008]` Table III recorded unreachable and bounded by three surrogates** |
 | `run.sh` | runner — pins cwd and `PYTHONPATH`, persists **both** streams per probe |
 | `logs/*.{stdout,stderr}.log` | one pair per measurement |
 | `kT-comparison.png` | k(T) and ratio for the duplicate |
@@ -694,5 +744,6 @@ dying on a `KeyError` — it is an argument about the pre-edit file and says so.
 | `after` / `checks-after` / `rules` / `collisions` / `tanarro` / `candidates` / `parent` | HEAD | the final state |
 | `rules-before` | base | `H_ion;H_anion` already collided before this branch; the N-template assignments before `N2_neutral` |
 | `averaging` / `averaging-before` | HEAD / base | the reparenting of training 15/18/19, and the exact-to-averaged demotion with its 1.000000× numeric check |
+| `ozawa-aiken` | HEAD | `[Aiken2023]` three of three verified; `[Ozawa2008]` unreachable, surrogates, and the `300^(n₁−n₂)` bound showing neither split can be overturned |
 | `t0` | base | the `[Gupta1990]` `T0` argument |
 | `t0-head` | HEAD | the precondition message, demonstrated |

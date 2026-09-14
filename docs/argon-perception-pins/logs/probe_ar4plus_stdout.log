@@ -1,0 +1,2 @@
+Ar4+ u4 p0 c+4         RAISED AtomTypeError: Unable to determine atom type for atom Ar....++++, which has 0 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 benzene bonds, 0 lone pairs, and +4 charge.
+Ar ground u0 p4 c0     OK atomtypes=['Ar0']

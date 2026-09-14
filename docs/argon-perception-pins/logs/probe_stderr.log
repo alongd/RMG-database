@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/home/alon/Code/RMG-database-i226-argon-perception-pins/docs/argon-perception-pins/probe_argon_perception.py", line 79, in <module>
+    mol = Molecule().from_adjacency_list(adjlist)
+  File "rmgpy/molecule/molecule.py", line 1942, in rmgpy.molecule.molecule.Molecule.from_adjacency_list
+  File "rmgpy/molecule/molecule.py", line 1951, in rmgpy.molecule.molecule.Molecule.from_adjacency_list
+  File "/home/alon/Code/RMG-Py-plasma/rmgpy/molecule/adjlist.py", line 880, in from_adjacency_list
+    ConsistencyChecker.check_partial_charge(atom)
+  File "/home/alon/Code/RMG-Py-plasma/rmgpy/molecule/adjlist.py", line 112, in check_partial_charge
+    raise InvalidAdjacencyListError(
+rmgpy.exceptions.InvalidAdjacencyListError: Invalid valency for atom Ar (Ar) with 0 unpaired electrons, 2 pairs of electrons, 2 charge, and bonds [].

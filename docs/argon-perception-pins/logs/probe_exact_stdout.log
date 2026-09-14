@@ -1,0 +1,159 @@
+
+==============================================================================
+BUILD PROVENANCE
+==============================================================================
+atomtype module file : /home/alon/Code/RMG-Py-plasma/rmgpy/molecule/atomtype.cpython-39-x86_64-linux-gnu.so
+
+==============================================================================
+THE THREE CONSTANTS, AS THE TEST MODULE DEFINES THEM
+==============================================================================
+ARP      = 'multiplicity 2\n1 Ar u1 p3 c+1\n'
+DICATION = 'multiplicity 3\n1 Ar u2 p2 c+2\n'
+DIMER    = 'multiplicity 2\n1 Ar u0 p3 c+1 {2,S}\n2 Ar u1 p3 c0 {1,S}\n'
+
+==============================================================================
+STEP 1 - Molecule().from_adjacency_list on each
+==============================================================================
+
+--- ARP  (Ar+, u1 p3 c+1) ---
+adjlist (verbatim from the test module):
+'multiplicity 2\n1 Ar u1 p3 c+1\n'
+from_adjacency_list OK     : Molecule(smiles="[Ar+]")
+  net charge : 1
+  atom[0] element=Ar  atomtype=Ar+    radical=1 lone_pairs=3 charge=+1 bonds=0
+
+--- DICATION (Ar(2+), u2 p2 c+2) ---
+adjlist (verbatim from the test module):
+'multiplicity 3\n1 Ar u2 p2 c+2\n'
+from_adjacency_list RAISED : AtomTypeError: Unable to determine atom type for atom Ar..++, which has 0 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 benzene bonds, 2 lone pairs, and +2 charge.
+Traceback (most recent call last):
+  File "/home/alon/Code/RMG-database-i226-argon-perception-pins/docs/argon-perception-pins/probe_argon_exact_cases.py", line 41, in show
+    mol = Molecule().from_adjacency_list(adjlist)
+  File "rmgpy/molecule/molecule.py", line 1942, in rmgpy.molecule.molecule.Molecule.from_adjacency_list
+  File "rmgpy/molecule/molecule.py", line 1953, in rmgpy.molecule.molecule.Molecule.from_adjacency_list
+  File "rmgpy/molecule/molecule.py", line 1571, in rmgpy.molecule.molecule.Molecule.update_atomtypes
+  File "rmgpy/molecule/molecule.py", line 1592, in rmgpy.molecule.molecule.Molecule.update_atomtypes
+  File "rmgpy/molecule/molecule.py", line 1587, in rmgpy.molecule.molecule.Molecule.update_atomtypes
+  File "rmgpy/molecule/atomtype.py", line 1061, in rmgpy.molecule.atomtype.get_atomtype
+  File "rmgpy/molecule/atomtype.py", line 1089, in rmgpy.molecule.atomtype.get_atomtype
+rmgpy.exceptions.AtomTypeError: Unable to determine atom type for atom Ar..++, which has 0 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 benzene bonds, 2 lone pairs, and +2 charge.
+
+--- DIMER (Ar2(+), u0 p3 c+1 -S- u1 p3 c0) ---
+adjlist (verbatim from the test module):
+'multiplicity 2\n1 Ar u0 p3 c+1 {2,S}\n2 Ar u1 p3 c0 {1,S}\n'
+from_adjacency_list OK     : Molecule(smiles="[Ar][Ar+]")
+  net charge : 1
+  atom[0] element=Ar  atomtype=Ar0s   radical=1 lone_pairs=3 charge=+0 bonds=1
+  atom[1] element=Ar  atomtype=Ar+    radical=0 lone_pairs=3 charge=+1 bonds=1
+
+==============================================================================
+STEP 2 - _species(): Species + generate_resonance_structures
+==============================================================================
+
+--- _species(ARP) ---
+_species OK     : 1 resonance structure(s)
+  structure[0] Molecule(smiles="[Ar+]")  atomtypes=['Ar+']
+
+--- _species(DICATION) ---
+_species RAISED : AtomTypeError: Unable to determine atom type for atom Ar..++, which has 0 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 benzene bonds, 2 lone pairs, and +2 charge.
+Traceback (most recent call last):
+  File "/home/alon/Code/RMG-database-i226-argon-perception-pins/docs/argon-perception-pins/probe_argon_exact_cases.py", line 73, in <module>
+    sp = bt._species(adjlist, name)
+  File "/home/alon/Code/RMG-database-i226-argon-perception-pins/docs/argon-perception-pins/../../test/test_argon_cation_buildtime.py", line 82, in _species
+    s = Species(label=label, molecule=[Molecule().from_adjacency_list(adjacency_list)])
+  File "rmgpy/molecule/molecule.py", line 1942, in rmgpy.molecule.molecule.Molecule.from_adjacency_list
+  File "rmgpy/molecule/molecule.py", line 1953, in rmgpy.molecule.molecule.Molecule.from_adjacency_list
+  File "rmgpy/molecule/molecule.py", line 1571, in rmgpy.molecule.molecule.Molecule.update_atomtypes
+  File "rmgpy/molecule/molecule.py", line 1592, in rmgpy.molecule.molecule.Molecule.update_atomtypes
+  File "rmgpy/molecule/molecule.py", line 1587, in rmgpy.molecule.molecule.Molecule.update_atomtypes
+  File "rmgpy/molecule/atomtype.py", line 1061, in rmgpy.molecule.atomtype.get_atomtype
+  File "rmgpy/molecule/atomtype.py", line 1089, in rmgpy.molecule.atomtype.get_atomtype
+rmgpy.exceptions.AtomTypeError: Unable to determine atom type for atom Ar..++, which has 0 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 benzene bonds, 2 lone pairs, and +2 charge.
+
+--- _species(DIMER) ---
+_species OK     : 1 resonance structure(s)
+  structure[0] Molecule(smiles="[Ar][Ar+]")  atomtypes=['Ar0s', 'Ar+']
+
+==============================================================================
+STEP 3 - get_thermo_data on the argon-capable deck (where the tests assert)
+==============================================================================
+
+--- get_thermo_data(_species(ARP)) ---
+  get_thermo_data OK  : comment='Thermo library: PlasmaCationThermo'
+  H298 (kJ/mol)       : 1520.584147563514
+
+--- get_thermo_data(_species(DICATION)) ---
+  species construction RAISED : AtomTypeError: Unable to determine atom type for atom Ar..++, which has 0 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 benzene bonds, 2 lone pairs, and +2 charge.
+
+--- get_thermo_data(_species(DIMER)) ---
+  get_thermo_data RAISED : AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 benzene bonds, 3 lone pairs, and +0 charge.
+  exception module       : rmgpy.exceptions
+  exception MRO          : ['AtomTypeError', 'Exception', 'BaseException', 'object']
+Traceback (most recent call last):
+  File "/home/alon/Code/RMG-database-i226-argon-perception-pins/docs/argon-perception-pins/probe_argon_exact_cases.py", line 93, in <module>
+    data = db.get_thermo_data(sp)
+  File "/home/alon/Code/RMG-Py-plasma/rmgpy/data/thermo.py", line 1497, in get_thermo_data
+    tdata = self.estimate_radical_thermo_via_hbi(molecule, self.get_thermo_data_from_libraries)
+  File "/home/alon/Code/RMG-Py-plasma/rmgpy/data/thermo.py", line 2247, in estimate_radical_thermo_via_hbi
+    added = saturated_struct.saturate_radicals()
+  File "rmgpy/molecule/molecule.py", line 2512, in rmgpy.molecule.molecule.Molecule.saturate_radicals
+  File "rmgpy/molecule/molecule.py", line 2534, in rmgpy.molecule.molecule.Molecule.saturate_radicals
+  File "rmgpy/molecule/molecule.py", line 1571, in rmgpy.molecule.molecule.Molecule.update_atomtypes
+  File "rmgpy/molecule/molecule.py", line 1592, in rmgpy.molecule.molecule.Molecule.update_atomtypes
+  File "rmgpy/molecule/molecule.py", line 1587, in rmgpy.molecule.molecule.Molecule.update_atomtypes
+  File "rmgpy/molecule/atomtype.py", line 1061, in rmgpy.molecule.atomtype.get_atomtype
+  File "rmgpy/molecule/atomtype.py", line 1089, in rmgpy.molecule.atomtype.get_atomtype
+rmgpy.exceptions.AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 benzene bonds, 3 lone pairs, and +0 charge.
+
+==============================================================================
+STEP 4 - the reference-deck refusal (the test that still passes)
+==============================================================================
+  RAISED : DatabaseError: Unable to determine thermo parameters for atom {'*': <Atom 'Ar+'>} in molecule <Molecule "[ArH+]">: no data for node R or any of its ancestors in database group.
+1 Ar u0 p3 c+1 {2,S}
+2 H  u0 p0 c0 {1,S}
+
+
+==============================================================================
+STEP 5 - what the HBI saturation of the dimer actually looks like
+==============================================================================
+  saturate_radicals RAISED : AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 benzene bonds, 3 lone pairs, and +0 charge.
+Traceback (most recent call last):
+  File "/home/alon/Code/RMG-database-i226-argon-perception-pins/docs/argon-perception-pins/probe_argon_exact_cases.py", line 117, in <module>
+    sat.saturate_radicals()
+  File "rmgpy/molecule/molecule.py", line 2512, in rmgpy.molecule.molecule.Molecule.saturate_radicals
+  File "rmgpy/molecule/molecule.py", line 2534, in rmgpy.molecule.molecule.Molecule.saturate_radicals
+  File "rmgpy/molecule/molecule.py", line 1571, in rmgpy.molecule.molecule.Molecule.update_atomtypes
+  File "rmgpy/molecule/molecule.py", line 1592, in rmgpy.molecule.molecule.Molecule.update_atomtypes
+  File "rmgpy/molecule/molecule.py", line 1587, in rmgpy.molecule.molecule.Molecule.update_atomtypes
+  File "rmgpy/molecule/atomtype.py", line 1061, in rmgpy.molecule.atomtype.get_atomtype
+  File "rmgpy/molecule/atomtype.py", line 1089, in rmgpy.molecule.atomtype.get_atomtype
+rmgpy.exceptions.AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 benzene bonds, 3 lone pairs, and +0 charge.
+
+==============================================================================
+STEP 6 - which argon adjacency lists DO have an atom type today
+==============================================================================
+
+--- Ar ground state      u0 p4 c0 ---
+  OK  atomtypes=['Ar0']
+
+--- Ar+  u1 p3 c+1 ---
+  OK  atomtypes=['Ar+']
+
+--- Ar+  u0 p3 c+1 (closed shell) ---
+  RAISED : InvalidAdjacencyListError: Invalid valency for atom Ar (Ar+) with 0 unpaired electrons, 3 pairs of electrons, 1 charge, and bonds [].
+
+--- Ar2+ u2 p2 c+2 (3P, the physical ground state) ---
+  RAISED : AtomTypeError: Unable to determine atom type for atom Ar..++, which has 0 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 benzene bonds, 2 lone pairs, and +2 charge.
+
+--- Ar2+ u0 p3 c+2 (what the Ar++ leaf describes) ---
+  OK  atomtypes=['Ar++']
+
+==============================================================================
+STEP 7 - the Ar++ leaf's envelope vs the physical 3P ground state
+==============================================================================
+Ar++ single=[0, 1, 2] lone_pairs=[3] charge=[2]
+DICATION as spelled needs lone_pairs=2 (u2 p2 c+2); leaf admits lone_pairs=[3]
+
+==============================================================================
+DONE
+==============================================================================

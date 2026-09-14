@@ -1,0 +1,1226 @@
+============================= test session starts ==============================
+platform linux -- Python 3.9.23, pytest-8.4.1, pluggy-1.6.0 -- /home/alon/anaconda3/envs/rmg_env/bin/python
+cachedir: .pytest_cache
+rootdir: /home/alon/Code/RMG-database-i226-argon-perception-pins
+plugins: check-2.5.3, cov-6.2.1, anyio-4.10.0
+collecting ... collected 218 items
+
+test/test_argon_cation_buildtime.py::test_the_reference_deck_does_not_load_this_library PASSED [  0%]
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity PASSED [  0%]
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly PASSED [  1%]
+test/test_argon_cation_buildtime.py::test_the_dication_builds_and_raises_the_loud_databaseerror FAILED [  1%]
+test/test_argon_cation_buildtime.py::test_the_dimer_cation_builds_and_raises_the_loud_databaseerror FAILED [  2%]
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero PASSED [  2%]
+test/test_argon_cation_thermo.py::test_the_runtime_adds_no_electron_term_to_a_charge_transfer_free_energy PASSED [  3%]
+test/test_argon_cation_thermo.py::test_the_entered_enthalpy_is_the_ion_convention_value_by_two_routes PASSED [  3%]
+test/test_argon_cation_thermo.py::test_the_source_table_is_electron_convention_by_its_own_arithmetic PASSED [  4%]
+test/test_argon_cation_thermo.py::test_the_two_conventions_free_energies_coincide_near_room_temperature PASSED [  4%]
+test/test_argon_cation_thermo.py::test_the_entry_transcribes_the_janaf_table PASSED [  5%]
+test/test_argon_cation_thermo.py::test_the_entry_reproduces_the_janaf_columns_across_the_whole_range[300.0-166.533-0.039] PASSED [  5%]
+test/test_argon_cation_thermo.py::test_the_entry_reproduces_the_janaf_columns_across_the_whole_range[500.0-177.461-4.325] PASSED [  5%]
+test/test_argon_cation_thermo.py::test_the_entry_reproduces_the_janaf_columns_across_the_whole_range[1000.0-193.065-15.606] PASSED [  6%]
+test/test_argon_cation_thermo.py::test_the_entry_reproduces_the_janaf_columns_across_the_whole_range[2000.0-208.596-37.96] PASSED [  6%]
+test/test_argon_cation_thermo.py::test_the_entry_reproduces_the_janaf_columns_across_the_whole_range[6000.0-232.04-122.994] PASSED [  7%]
+test/test_argon_cation_thermo.py::test_e0_reproduces_argons_ionisation_energy_from_an_unrelated_database PASSED [  7%]
+test/test_argon_cation_thermo.py::test_the_heat_capacity_is_not_five_halves_R_and_that_is_the_physics PASSED [  8%]
+test/test_argon_cation_thermo.py::test_the_entropy_is_the_neutrals_plus_the_electronic_degeneracy PASSED [  8%]
+test/test_argon_cation_thermo.py::test_the_structure_is_the_gas_phase_ground_state PASSED [  9%]
+test/test_argon_cation_thermo.py::test_the_smiles_round_trip_still_corrupts_this_species PASSED [  9%]
+test/test_argon_cation_thermo.py::test_no_argon_dimer_cation_was_entered PASSED [ 10%]
+test/test_argon_cation_thermo.py::test_the_library_loads_alongside_every_other_thermo_library PASSED [ 10%]
+test/test_argon_cation_thermo.py::test_the_species_resolves_to_this_library PASSED [ 11%]
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused PASSED [ 11%]
+test/test_argon_cation_thermo.py::test_an_equilibrium_constant_involving_the_cation_is_finite[300.0] PASSED [ 11%]
+test/test_argon_cation_thermo.py::test_an_equilibrium_constant_involving_the_cation_is_finite[500.0] PASSED [ 12%]
+test/test_argon_cation_thermo.py::test_an_equilibrium_constant_involving_the_cation_is_finite[1000.0] PASSED [ 12%]
+test/test_argon_cation_thermo.py::test_an_equilibrium_constant_involving_the_cation_is_finite[2000.0] PASSED [ 13%]
+test/test_argon_cation_thermo.py::test_an_equilibrium_constant_involving_the_cation_is_finite[6000.0] PASSED [ 13%]
+test/test_argon_cation_thermo.py::test_the_runtime_refuses_to_reverse_that_equilibrium PASSED [ 14%]
+test/test_argon_cation_thermo.py::test_the_argon_ionisation_reaction_loads_and_balances PASSED [ 14%]
+test/test_argon_cation_thermo.py::test_the_argon_ionisation_reaction_resolves_its_electrons PASSED [ 15%]
+test/test_argon_cation_thermo.py::test_the_plasma_reactor_accepts_the_argon_ionisation_reaction PASSED [ 15%]
+test/test_argon_cation_thermo.py::test_the_only_gas_phase_cations_in_this_database_are_these_set PASSED [ 16%]
+test/test_argon_cation_thermo.py::test_no_element_in_either_shipped_table_has_thermochemistry_above_charge_one PASSED [ 16%]
+test/test_argon_cation_thermo.py::test_the_shipped_lithium_cation_disagrees_with_lithiums_ionisation_energy PASSED [ 16%]
+test/test_argon_cation_thermo.py::test_group_additivity_answers_for_monatomic_cations_and_the_answer_is_wrong[N-multiplicity 3\n1 N u2 p1 c+1\n-multiplicity 4\n1 N u3 p1 c0\n-14.53413] PASSED [ 17%]
+test/test_argon_cation_thermo.py::test_group_additivity_answers_for_monatomic_cations_and_the_answer_is_wrong[O-multiplicity 4\n1 O u3 p1 c+1\n-multiplicity 3\n1 O u2 p2 c0\n-13.618055] PASSED [ 17%]
+test/test_argon_cation_thermo.py::test_group_additivity_answers_for_monatomic_cations_and_the_answer_is_wrong[Si-multiplicity 2\n1 Si u1 p1 c+1\n-multiplicity 3\n1 Si u2 p1 c0\n-8.15168] PASSED [ 18%]
+test/test_argon_cation_thermo.py::test_the_other_noble_gas_cations_are_refused_by_the_estimator[He-multiplicity 2\n1 He u1 p0 c+1\n] PASSED [ 18%]
+test/test_argon_cation_thermo.py::test_the_other_noble_gas_cations_are_refused_by_the_estimator[Ne-multiplicity 2\n1 Ne u1 p3 c+1\n] PASSED [ 19%]
+test/test_argon_cation_thermo.py::test_the_gate_before_thermochemistry_is_the_atom_type[C-multiplicity 2\n1 C u1 p1 c+1\n-AtomTypeError] PASSED [ 19%]
+test/test_argon_cation_thermo.py::test_the_gate_before_thermochemistry_is_the_atom_type[F-multiplicity 3\n1 F u2 p2 c+1\n-AtomTypeError] PASSED [ 20%]
+test/test_argon_cation_thermo.py::test_the_gate_before_thermochemistry_is_the_atom_type[Al-1 Al u0 p1 c+1\n-KeyError] PASSED [ 20%]
+test/test_argon_cation_thermo.py::test_alkali_and_alkaline_earth_cations_now_build[Na-1 Na u0 p0 c+1\n-Na+] PASSED [ 21%]
+test/test_argon_cation_thermo.py::test_alkali_and_alkaline_earth_cations_now_build[Mg-multiplicity 2\n1 Mg u1 p0 c+1\n-Mg+] PASSED [ 21%]
+test/test_argon_cation_thermo.py::test_alkali_and_alkaline_earth_cations_now_build[K-1 K u0 p0 c+1\n-K+] PASSED [ 22%]
+test/test_argon_cation_thermo.py::test_alkali_and_alkaline_earth_cations_now_build[Ca-multiplicity 2\n1 Ca u1 p0 c+1\n-Ca+] PASSED [ 22%]
+test/test_argon_cation_thermo.py::test_argon_atom_type_now_declares_a_charge_envelope_but_still_parses_any_charge FAILED [ 22%]
+test/test_argon_cation_thermo.py::test_the_lithium_channel_species_are_untouched[Li-multiplicity 2\n1 Li u1 p0 c0\n-157.5723-138.662-LithiumPrimaryThermo] PASSED [ 23%]
+test/test_argon_cation_thermo.py::test_the_lithium_channel_species_are_untouched[Li+-1 Li u0 p0 c+1\n-532.9358-132.8988-LithiumPrimaryThermo] PASSED [ 23%]
+test/test_argon_cation_thermo.py::test_neutral_argon_is_untouched PASSED [ 24%]
+test/test_argon_cation_thermo.py::test_noblegas_entered_enthalpy_is_ion_convention_by_two_routes[multiplicity 2\n1 He u1 p0 c+1\n-2378.522-2372.324-6.197-6.197-2372.325] PASSED [ 24%]
+test/test_argon_cation_thermo.py::test_noblegas_entered_enthalpy_is_ion_convention_by_two_routes[multiplicity 2\n1 Ne u1 p3 c+1\n-2086.966-2080.662-6.304-6.197-2080.769] PASSED [ 25%]
+test/test_argon_cation_thermo.py::test_noblegas_entry_transcribes_the_janaf_table[hep_entry-131.913-20.786-2372.324-6000.0] PASSED [ 25%]
+test/test_argon_cation_thermo.py::test_noblegas_entry_transcribes_the_janaf_table[nep_entry-158.307-22.119-2080.662-6000.0] PASSED [ 26%]
+test/test_argon_cation_thermo.py::test_noblegas_e0_reproduces_ionisation_energy[hep_entry-24.5873888] PASSED [ 26%]
+test/test_argon_cation_thermo.py::test_noblegas_e0_reproduces_ionisation_energy[nep_entry-21.56454] PASSED [ 27%]
+test/test_argon_cation_thermo.py::test_helium_cation_entropy_is_the_neutrals_plus_r_ln_2 PASSED [ 27%]
+test/test_argon_cation_thermo.py::test_neon_cation_entropy_is_the_neutrals_plus_r_ln_4_plus_fine_structure PASSED [ 27%]
+test/test_argon_cation_thermo.py::test_helium_cation_heat_capacity_is_flat_five_halves_R PASSED [ 28%]
+test/test_argon_cation_thermo.py::test_neon_cation_heat_capacity_has_a_schottky_bump_peaking_near_500 PASSED [ 28%]
+test/test_argon_cation_thermo.py::test_noblegas_reproduces_the_janaf_columns_across_the_whole_range[hep_entry-rows0] PASSED [ 29%]
+test/test_argon_cation_thermo.py::test_noblegas_reproduces_the_janaf_columns_across_the_whole_range[nep_entry-rows1] PASSED [ 29%]
+test/test_argon_cation_thermo.py::test_noblegas_cation_resolves_to_this_library[multiplicity 2\n1 He u1 p0 c+1\n] PASSED [ 30%]
+test/test_argon_cation_thermo.py::test_noblegas_cation_resolves_to_this_library[multiplicity 2\n1 Ne u1 p3 c+1\n] PASSED [ 30%]
+test/test_argon_cation_thermo.py::test_noblegas_cation_smiles_round_trip_still_corrupts[multiplicity 2\n1 He u1 p0 c+1\n] PASSED [ 31%]
+test/test_argon_cation_thermo.py::test_noblegas_cation_smiles_round_trip_still_corrupts[multiplicity 2\n1 Ne u1 p3 c+1\n] PASSED [ 31%]
+test/test_argon_cation_thermo.py::test_the_helium_dication_was_not_entered PASSED [ 32%]
+test/test_cation_r_recombination_sei.py::test_label_is_recorded_verbatim_everywhere_it_is_claimed PASSED [ 32%]
+test/test_cation_r_recombination_sei.py::test_the_family_is_not_labelled_validated PASSED [ 33%]
+test/test_cation_r_recombination_sei.py::test_the_family_is_declared_electrochemistry_and_not_plasma PASSED [ 33%]
+test/test_cation_r_recombination_sei.py::test_the_recovered_physical_domain_is_documented_beside_the_family PASSED [ 33%]
+test/test_cation_r_recombination_sei.py::test_twelve_database_objects_rest_on_five_calculations PASSED [ 34%]
+test/test_cation_r_recombination_sei.py::test_the_family_belongs_to_no_plasma_facing_curated_set PASSED [ 34%]
+test/test_cation_r_recombination_sei.py::test_the_alkali_plasma_configuration_neither_loads_nor_generates_this_family PASSED [ 35%]
+test/test_cation_r_recombination_sei.py::test_the_quarantine_criterion_covers_all_twelve_objects PASSED [ 35%]
+test/test_cation_r_recombination_sei.py::test_a_plasma_consumer_cannot_silently_receive_a_marcus_rate PASSED [ 36%]
+test/test_cation_r_recombination_sei.py::test_no_default_potential_is_used_anywhere_in_this_reclassification PASSED [ 36%]
+test/test_cation_r_recombination_sei.py::test_the_independent_lithium_plasma_kinetics_survive[voronov.yaml-electron-impact ionisation-expected_n0] PASSED [ 37%]
+test/test_cation_r_recombination_sei.py::test_the_independent_lithium_plasma_kinetics_survive[badnell.yaml-radiative recombination-expected_n1] PASSED [ 37%]
+test/test_cation_r_recombination_sei.py::test_the_lithium_plasma_data_files_are_untouched_by_this_ticket PASSED [ 38%]
+test/test_cation_r_recombination_sei.py::test_the_sei_example_still_selects_this_family_through_electrochem PASSED [ 38%]
+test/test_cation_r_recombination_sei.py::test_the_family_still_generates_its_sei_reaction PASSED [ 38%]
+test/test_cation_r_recombination_sei.py::test_no_scientific_value_changed PASSED [ 39%]
+test/test_cation_r_recombination_sei.py::test_nothing_was_deleted_from_the_family PASSED [ 39%]
+test/test_cation_r_recombination_sei.py::test_the_family_identifier_was_not_renamed PASSED [ 40%]
+test/test_plasma_air_noble_gas_ionization.py::test_argon_ionization_is_present_with_branch_99_cross_section PASSED [ 40%]
+test/test_plasma_air_noble_gas_ionization.py::test_helium_ionization_is_present_with_branch_99_cross_section PASSED [ 41%]
+test/test_plasma_air_noble_gas_ionization.py::test_helium_radiative_recombination_matches_branch_99[Hep + e- => He-1.21e-09--0.87-0.19] PASSED [ 41%]
+test/test_plasma_air_noble_gas_ionization.py::test_helium_radiative_recombination_matches_branch_99[Hep2 + e- => Hep-7.68e-09--0.91-0.22] PASSED [ 42%]
+test/test_plasma_alkali_reversible_te_admissibility.py::test_carried_irreversible_form_is_admitted_by_the_reactor[Lip + e- => Li] PASSED [ 42%]
+test/test_plasma_alkali_reversible_te_admissibility.py::test_carried_irreversible_form_is_admitted_by_the_reactor[Nap + e- => Na] PASSED [ 43%]
+test/test_plasma_alkali_reversible_te_admissibility.py::test_carried_irreversible_form_is_admitted_by_the_reactor[Mgp2 + e- => Mgp] PASSED [ 43%]
+test/test_plasma_alkali_reversible_te_admissibility.py::test_same_reaction_reversible_is_still_refused[Lip + e- => Li] PASSED [ 44%]
+test/test_plasma_alkali_reversible_te_admissibility.py::test_same_reaction_reversible_is_still_refused[Nap + e- => Na] PASSED [ 44%]
+test/test_plasma_alkali_reversible_te_admissibility.py::test_same_reaction_reversible_is_still_refused[Mgp2 + e- => Mgp] PASSED [ 44%]
+test/test_plasma_alkali_sodium_pair.py::test_sodium_recombination_loads_with_verner_ferland_rate_and_molecule_units PASSED [ 45%]
+test/test_plasma_alkali_sodium_pair.py::test_sodium_ionisation_loads_with_golyatina_cross_section_and_threshold PASSED [ 45%]
+test/test_plasma_alkali_sodium_pair.py::test_molecule_and_mol_rate_units_differ_by_avogadro_and_neither_raises PASSED [ 46%]
+test/test_plasma_argon.py::test_library_loads_with_exactly_one_entry PASSED [ 46%]
+test/test_plasma_argon.py::test_the_one_entry_is_argon_electron_impact_ionisation PASSED [ 47%]
+test/test_plasma_argon.py::test_the_kinetics_are_a_cross_section_table_not_a_fitted_rate PASSED [ 47%]
+test/test_plasma_argon.py::test_it_is_the_golyatina_grid_not_the_superseded_lxcat_grid PASSED [ 48%]
+test/test_plasma_argon.py::test_the_entry_is_one_way PASSED              [ 48%]
+test/test_plasma_argon.py::test_the_reaction_balances_in_charge PASSED   [ 49%]
+test/test_plasma_electron_attachment.py::test_recipe_is_lose_radical_plus_gain_pair PASSED [ 49%]
+test/test_plasma_electron_attachment.py::test_electron_is_carried_by_the_electrons_flag PASSED [ 50%]
+test/test_plasma_electron_attachment.py::test_root_is_a_union_of_exactly_the_trained_groups PASSED [ 50%]
+test/test_plasma_electron_attachment.py::test_group_tree_is_legal PASSED [ 50%]
+test/test_plasma_electron_attachment.py::test_no_union_member_lacks_an_l2_child PASSED [ 51%]
+test/test_plasma_electron_attachment.py::test_training_set_is_populated_and_each_entry_templates PASSED [ 51%]
+test/test_plasma_electron_attachment.py::test_every_rate_rule_generation_can_reach_is_an_exact_training_hit PASSED [ 52%]
+test/test_plasma_electron_attachment.py::test_the_only_averaged_rule_is_the_root_which_generation_never_reaches PASSED [ 52%]
+test/test_plasma_electron_attachment.py::test_no_rate_rule_generation_can_reach_mixes_pressure_baked_with_radiative PASSED [ 53%]
+test/test_plasma_electron_attachment.py::test_trained_species_resolve_to_their_own_rate_through_their_own_node[O2] PASSED [ 53%]
+test/test_plasma_electron_attachment.py::test_trained_species_resolve_to_their_own_rate_through_their_own_node[OH] PASSED [ 54%]
+test/test_plasma_electron_attachment.py::test_trained_species_resolve_to_their_own_rate_through_their_own_node[O] PASSED [ 54%]
+test/test_plasma_electron_attachment.py::test_o2_attachment_is_generated_with_the_right_product PASSED [ 55%]
+test/test_plasma_electron_attachment.py::test_o2_rate_comes_from_the_training_set_not_a_library PASSED [ 55%]
+test/test_plasma_electron_attachment.py::test_every_match_yields_a_mono_anion_of_the_same_formula[O2] PASSED [ 55%]
+test/test_plasma_electron_attachment.py::test_every_match_yields_a_mono_anion_of_the_same_formula[OH] PASSED [ 56%]
+test/test_plasma_electron_attachment.py::test_every_match_yields_a_mono_anion_of_the_same_formula[O] PASSED [ 56%]
+test/test_plasma_electron_attachment.py::test_each_trained_group_pins_its_ground_state_multiplicity PASSED [ 57%]
+test/test_plasma_electron_attachment.py::test_o2_spin_states PASSED      [ 57%]
+test/test_plasma_electron_attachment.py::test_known_limitation_resonance_generation_erases_declared_multiplicity PASSED [ 58%]
+test/test_plasma_electron_attachment.py::test_atomic_oxygen_spin_states PASSED [ 58%]
+test/test_plasma_electron_attachment.py::test_hydroxyl_multiplicity_constraint_loses_no_match PASSED [ 59%]
+test/test_plasma_electron_attachment.py::test_root_group_matches_expected_species[O2] PASSED [ 59%]
+test/test_plasma_electron_attachment.py::test_root_group_matches_expected_species[OH] PASSED [ 60%]
+test/test_plasma_electron_attachment.py::test_root_group_matches_expected_species[O] PASSED [ 60%]
+test/test_plasma_electron_attachment.py::test_root_group_excludes_expected_species[H2O] PASSED [ 61%]
+test/test_plasma_electron_attachment.py::test_root_group_excludes_expected_species[N2] PASSED [ 61%]
+test/test_plasma_electron_attachment.py::test_root_group_excludes_expected_species[CO2] PASSED [ 61%]
+test/test_plasma_electron_attachment.py::test_root_group_excludes_expected_species[O3] PASSED [ 62%]
+test/test_plasma_electron_attachment.py::test_root_group_excludes_expected_species[Ar] PASSED [ 62%]
+test/test_plasma_electron_attachment.py::test_root_group_excludes_expected_species[H] PASSED [ 63%]
+test/test_plasma_electron_attachment.py::test_root_group_excludes_expected_species[Cl] PASSED [ 63%]
+test/test_plasma_electron_attachment.py::test_root_group_excludes_expected_species[HO2] PASSED [ 64%]
+test/test_plasma_electron_attachment.py::test_root_group_excludes_expected_species[CH3O] PASSED [ 64%]
+test/test_plasma_electron_attachment.py::test_root_group_excludes_expected_species[CH3] PASSED [ 65%]
+test/test_plasma_electron_attachment.py::test_root_group_excludes_expected_species[N] PASSED [ 65%]
+test/test_plasma_electron_attachment.py::test_root_group_excludes_expected_species[S] PASSED [ 66%]
+test/test_plasma_electron_attachment.py::test_untrained_open_shell_species_are_not_matched_at_all[HO2] PASSED [ 66%]
+test/test_plasma_electron_attachment.py::test_untrained_open_shell_species_are_not_matched_at_all[CH3O] PASSED [ 66%]
+test/test_plasma_electron_attachment.py::test_untrained_open_shell_species_are_not_matched_at_all[CH3] PASSED [ 67%]
+test/test_plasma_electron_attachment.py::test_untrained_open_shell_species_are_not_matched_at_all[N] PASSED [ 67%]
+test/test_plasma_electron_attachment.py::test_untrained_open_shell_species_are_not_matched_at_all[S] PASSED [ 68%]
+test/test_plasma_electron_attachment.py::test_closed_shell_species_are_excluded_by_the_recipe PASSED [ 68%]
+test/test_plasma_electron_attachment.py::test_hydrogen_and_chlorine_are_excluded_by_element PASSED [ 69%]
+test/test_plasma_electron_attachment.py::test_charged_reactants_are_refused_by_declaration_not_by_group_shape PASSED [ 69%]
+test/test_plasma_electron_impact_ionization.py::test_library_loads_with_exactly_one_entry PASSED [ 70%]
+test/test_plasma_electron_impact_ionization.py::test_entry_is_lithium_first_ionization_written_without_an_explicit_electron PASSED [ 70%]
+test/test_plasma_electron_impact_ionization.py::test_kinetics_come_from_the_shipped_voronov_table_not_from_transcribed_numbers PASSED [ 71%]
+test/test_plasma_electron_impact_ionization.py::test_the_electron_count_is_propagated_off_the_rate_law_onto_the_reaction PASSED [ 71%]
+test/test_plasma_electron_impact_ionization.py::test_the_entry_is_one_way PASSED [ 72%]
+test/test_plasma_electron_impact_ionization.py::test_the_canonical_reaction_balances PASSED [ 72%]
+test/test_plasma_electron_impact_ionization.py::test_a_library_label_is_a_valid_placement_key PASSED [ 72%]
+test/test_plasma_electron_impact_ionization.py::test_an_undeclared_library_is_refused_by_name_never_guessed_from_the_net_count PASSED [ 73%]
+test/test_plasma_electron_impact_ionization.py::test_the_declaration_is_one_electron_in_two_out PASSED [ 73%]
+test/test_plasma_electron_impact_ionization.py::test_the_declaration_validates_against_the_reactions_own_electron_count PASSED [ 74%]
+test/test_plasma_electron_impact_ionization.py::test_placement_resolves_to_lithium_plus_electron_gives_cation_plus_two_electrons PASSED [ 74%]
+test/test_plasma_electron_impact_ionization.py::test_the_resolved_view_balances_in_the_E_pseudo_element PASSED [ 75%]
+test/test_plasma_electron_impact_ionization.py::test_the_rate_order_cross_check_agrees_at_order_two PASSED [ 75%]
+test/test_plasma_electron_impact_ionization.py::test_the_canonical_reaction_is_not_mutated_by_resolution PASSED [ 76%]
+test/test_plasma_electron_impact_ionization.py::test_a_declaration_that_does_not_match_this_reaction_is_refused[wrong0-right net, wrong order: one reactant against an order-2 coefficient] PASSED [ 76%]
+test/test_plasma_electron_impact_ionization.py::test_a_declaration_that_does_not_match_this_reaction_is_refused[wrong1-right net, wrong order: three reactants against an order-2 coefficient] PASSED [ 77%]
+test/test_plasma_electron_impact_ionization.py::test_a_declaration_that_does_not_match_this_reaction_is_refused[wrong2-wrong net: declares +2 against a reaction carrying +1] PASSED [ 77%]
+test/test_plasma_electron_impact_ionization.py::test_a_declaration_that_does_not_match_this_reaction_is_refused[wrong3-the attachment declaration: net -1 against a reaction carrying +1] PASSED [ 77%]
+test/test_plasma_electron_impact_ionization.py::test_the_plasma_reactor_accepts_the_reaction_and_evaluates_it_at_the_voronov_rate PASSED [ 78%]
+test/test_plasma_electron_impact_ionization.py::test_the_reactor_would_refuse_the_reaction_without_a_declaration PASSED [ 78%]
+test/test_plasma_electron_impact_ionization.py::test_a_species_outside_the_fits_gets_no_reaction_at_all_and_no_rate PASSED [ 79%]
+test/test_plasma_electron_impact_ionization.py::test_the_voronov_table_holds_far_more_than_this_library_claims PASSED [ 79%]
+test/test_plasma_electron_impact_ionization.py::test_three_covered_elements_cannot_be_built_by_rmg_at_all[Mg-InvalidAdjacencyListError] PASSED [ 80%]
+test/test_plasma_electron_impact_ionization.py::test_three_covered_elements_cannot_be_built_by_rmg_at_all[Al-KeyError] PASSED [ 80%]
+test/test_plasma_electron_impact_ionization.py::test_three_covered_elements_cannot_be_built_by_rmg_at_all[Ca-InvalidAdjacencyListError] PASSED [ 81%]
+test/test_plasma_electron_impact_ionization.py::test_two_covered_elements_now_build_since_the_atom_type_port[Na-Na0] PASSED [ 81%]
+test/test_plasma_electron_impact_ionization.py::test_two_covered_elements_now_build_since_the_atom_type_port[K-K0] PASSED [ 82%]
+test/test_plasma_electron_impact_ionization.py::test_the_two_pre_existing_declarations_still_read_one_in_none_out PASSED [ 82%]
+test/test_plasma_electron_impact_ionization.py::test_attachment_and_cation_recombination_resolve_identically_with_and_without_this_library[_attachment_reaction-expected_reactants0-expected_products0] PASSED [ 83%]
+test/test_plasma_electron_impact_ionization.py::test_attachment_and_cation_recombination_resolve_identically_with_and_without_this_library[_cation_recombination_reaction-expected_reactants1-expected_products1] PASSED [ 83%]
+test/test_plasma_radiative_recombination.py::test_library_loads_with_exactly_one_entry PASSED [ 83%]
+test/test_plasma_radiative_recombination.py::test_entry_is_lithium_cation_recombination_written_without_an_explicit_electron PASSED [ 84%]
+test/test_plasma_radiative_recombination.py::test_kinetics_come_from_the_shipped_badnell_table_not_from_transcribed_numbers PASSED [ 84%]
+test/test_plasma_radiative_recombination.py::test_the_stage_index_means_electrons_before_recombination_so_N_is_two_for_lithium PASSED [ 85%]
+test/test_plasma_radiative_recombination.py::test_the_electron_count_is_propagated_off_the_rate_law_onto_the_reaction PASSED [ 85%]
+test/test_plasma_radiative_recombination.py::test_the_entry_is_one_way PASSED [ 86%]
+test/test_plasma_radiative_recombination.py::test_the_canonical_reaction_balances PASSED [ 86%]
+test/test_plasma_radiative_recombination.py::test_a_library_label_is_a_valid_placement_key PASSED [ 87%]
+test/test_plasma_radiative_recombination.py::test_an_undeclared_library_is_refused_by_name_never_guessed_from_the_net_count PASSED [ 87%]
+test/test_plasma_radiative_recombination.py::test_the_declaration_is_one_electron_in_none_out PASSED [ 88%]
+test/test_plasma_radiative_recombination.py::test_the_declaration_validates_against_the_reactions_own_electron_count PASSED [ 88%]
+test/test_plasma_radiative_recombination.py::test_placement_resolves_to_cation_plus_electron_gives_the_neutral PASSED [ 88%]
+test/test_plasma_radiative_recombination.py::test_the_resolved_view_balances_in_the_E_pseudo_element PASSED [ 89%]
+test/test_plasma_radiative_recombination.py::test_the_rate_order_cross_check_agrees_at_order_two PASSED [ 89%]
+test/test_plasma_radiative_recombination.py::test_the_canonical_reaction_is_not_mutated_by_resolution PASSED [ 90%]
+test/test_plasma_radiative_recombination.py::test_a_declaration_that_does_not_match_this_reaction_is_refused[wrong0-right net, wrong order: three reactants against an order-2 coefficient] PASSED [ 90%]
+test/test_plasma_radiative_recombination.py::test_a_declaration_that_does_not_match_this_reaction_is_refused[wrong1-wrong net: declares +1 against a reaction carrying -1] PASSED [ 91%]
+test/test_plasma_radiative_recombination.py::test_a_declaration_that_does_not_match_this_reaction_is_refused[wrong2-the ionisation declaration: net +1 against a reaction carrying -1] PASSED [ 91%]
+test/test_plasma_radiative_recombination.py::test_a_declaration_that_does_not_match_this_reaction_is_refused[wrong3-wrong net: declares -2 against a reaction carrying -1] PASSED [ 92%]
+test/test_plasma_radiative_recombination.py::test_a_declaration_that_does_not_match_this_reaction_is_refused[wrong4-wrong net: declares 0 against a reaction carrying -1] PASSED [ 92%]
+test/test_plasma_radiative_recombination.py::test_the_plasma_reactor_accepts_the_reaction_and_evaluates_it_at_the_badnell_rate PASSED [ 93%]
+test/test_plasma_radiative_recombination.py::test_the_reactor_would_refuse_the_reaction_without_a_declaration PASSED [ 93%]
+test/test_plasma_radiative_recombination.py::test_the_implementable_sink_is_three_orders_weaker_than_the_source PASSED [ 94%]
+test/test_plasma_radiative_recombination.py::test_three_body_recombination_still_cannot_be_stored_at_all FAILED [ 94%]
+test/test_plasma_radiative_recombination.py::test_the_badnell_table_holds_far_more_than_this_library_claims PASSED [ 94%]
+test/test_plasma_radiative_recombination.py::test_argon_can_be_ionised_here_but_cannot_be_radiatively_recombined PASSED [ 95%]
+test/test_plasma_radiative_recombination.py::test_a_species_outside_the_fits_gets_no_reaction_at_all_and_no_rate PASSED [ 95%]
+test/test_plasma_radiative_recombination.py::test_three_covered_elements_cannot_be_built_by_rmg_at_all[Be-KeyError] PASSED [ 96%]
+test/test_plasma_radiative_recombination.py::test_three_covered_elements_cannot_be_built_by_rmg_at_all[B-KeyError] PASSED [ 96%]
+test/test_plasma_radiative_recombination.py::test_three_covered_elements_cannot_be_built_by_rmg_at_all[Mg-InvalidAdjacencyListError] PASSED [ 97%]
+test/test_plasma_radiative_recombination.py::test_sodium_now_builds_since_the_atom_type_port PASSED [ 97%]
+test/test_plasma_radiative_recombination.py::test_dissociative_recombination_has_no_reactant_to_write PASSED [ 98%]
+test/test_plasma_radiative_recombination.py::test_the_two_pre_existing_family_declarations_still_read_one_in_none_out PASSED [ 98%]
+test/test_plasma_radiative_recombination.py::test_attachment_and_cation_recombination_resolve_identically_with_and_without_this_library[_attachment_reaction-expected_reactants0-expected_products0] PASSED [ 99%]
+test/test_plasma_radiative_recombination.py::test_attachment_and_cation_recombination_resolve_identically_with_and_without_this_library[_cation_recombination_reaction-expected_reactants1-expected_products1] PASSED [ 99%]
+test/test_plasma_radiative_recombination.py::test_the_ionisation_channel_resolves_unchanged_with_this_library_declared PASSED [100%]
+
+=================================== FAILURES ===================================
+__________ test_the_dication_builds_and_raises_the_loud_databaseerror __________
+
+argon_capable_db = <rmgpy.data.thermo.ThermoDatabase object at 0x774a2fd4e310>
+
+    def test_the_dication_builds_and_raises_the_loud_databaseerror(argon_capable_db):
+        """The dication Ar(2+) (monatomic, +2) is the "Ar2+" reading that builds yet raises the
+        loud DatabaseError - group additivity has no group for a charge-+2 argon atom."""
+>       species = _species(DICATION, 'Ar2+')
+
+test/test_argon_cation_buildtime.py:143: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test/test_argon_cation_buildtime.py:82: in _species
+    s = Species(label=label, molecule=[Molecule().from_adjacency_list(adjacency_list)])
+rmgpy/molecule/molecule.py:1942: in rmgpy.molecule.molecule.Molecule.from_adjacency_list
+    ???
+rmgpy/molecule/molecule.py:1953: in rmgpy.molecule.molecule.Molecule.from_adjacency_list
+    ???
+rmgpy/molecule/molecule.py:1571: in rmgpy.molecule.molecule.Molecule.update_atomtypes
+    ???
+rmgpy/molecule/molecule.py:1592: in rmgpy.molecule.molecule.Molecule.update_atomtypes
+    ???
+rmgpy/molecule/molecule.py:1587: in rmgpy.molecule.molecule.Molecule.update_atomtypes
+    ???
+rmgpy/molecule/atomtype.py:1061: in rmgpy.molecule.atomtype.get_atomtype
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+>   ???
+E   rmgpy.exceptions.AtomTypeError: Unable to determine atom type for atom Ar..++, which has 0 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 benzene bonds, 2 lone pairs, and +2 charge.
+
+rmgpy/molecule/atomtype.py:1089: AtomTypeError
+------------------------------ Captured log call -------------------------------
+ERROR    root:test_argon_cation_buildtime.py:82 Could not update atomtypes for this molecule:
+multiplicity 3
+1 Ar u2 p2 c+2
+________ test_the_dimer_cation_builds_and_raises_the_loud_databaseerror ________
+
+argon_capable_db = <rmgpy.data.thermo.ThermoDatabase object at 0x774a2fd4e310>
+
+    def test_the_dimer_cation_builds_and_raises_the_loud_databaseerror(argon_capable_db):
+        """The dimer Ar2(+) (diatomic, +1) also builds and also raises a loud DatabaseError,
+        via HBI saturation rather than a bare atom type - still loud, still not fabricated."""
+        species = _species(DIMER, 'Ar2+dimer')
+        assert species.molecule[0].get_net_charge() == 1
+        with pytest.raises(DatabaseError):
+>           argon_capable_db.get_thermo_data(species)
+
+test/test_argon_cation_buildtime.py:156: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+../RMG-Py-plasma/rmgpy/data/thermo.py:1497: in get_thermo_data
+    tdata = self.estimate_radical_thermo_via_hbi(molecule, self.get_thermo_data_from_libraries)
+../RMG-Py-plasma/rmgpy/data/thermo.py:2247: in estimate_radical_thermo_via_hbi
+    added = saturated_struct.saturate_radicals()
+rmgpy/molecule/molecule.py:2512: in rmgpy.molecule.molecule.Molecule.saturate_radicals
+    ???
+rmgpy/molecule/molecule.py:2534: in rmgpy.molecule.molecule.Molecule.saturate_radicals
+    ???
+rmgpy/molecule/molecule.py:1571: in rmgpy.molecule.molecule.Molecule.update_atomtypes
+    ???
+rmgpy/molecule/molecule.py:1592: in rmgpy.molecule.molecule.Molecule.update_atomtypes
+    ???
+rmgpy/molecule/molecule.py:1587: in rmgpy.molecule.molecule.Molecule.update_atomtypes
+    ???
+rmgpy/molecule/atomtype.py:1061: in rmgpy.molecule.atomtype.get_atomtype
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+>   ???
+E   rmgpy.exceptions.AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 benzene bonds, 3 lone pairs, and +0 charge.
+
+rmgpy/molecule/atomtype.py:1089: AtomTypeError
+------------------------------ Captured log call -------------------------------
+ERROR    root:thermo.py:2247 Could not update atomtypes for this molecule:
+multiplicity 2
+1 Ar u0 p3 c0 {2,S} {3,S}
+2 Ar u0 p3 c+1 {1,S}
+3 H  u0 p0 c0 {1,S}
+_ test_argon_atom_type_now_declares_a_charge_envelope_but_still_parses_any_charge _
+
+    def test_argon_atom_type_now_declares_a_charge_envelope_but_still_parses_any_charge():
+        """Argon's atom type used to declare no charge constraint at all; it now declares
+        ``charge=[0, 1, 2]``, and the uncomfortable corollary that outlived the change belongs
+        on the record.
+    
+        RMG-Py commit ``b52045138`` ("Narrow the placement declarations, and let noble gases be
+        cations") gave He, Ne and Ar ``charge=[0, 1, 2]`` so that ``GroupAtom.make_sample_molecule``
+        would stop refusing the noble-gas cations (Ar+, He+, He+2, Ne+) that are real species in
+        the carried ``PlasmaAir`` library. That falsified the old assertion ``not
+        ATOMTYPES['Ar'].charge``, which is what turned this test red.
+    
+        The envelope narrows what group-sample *construction* will emit; it does not gate what
+        ``from_adjacency_list`` will *parse*, because argon is in ``nonSpecifics`` and
+        ``get_atomtype`` returns it without consulting the charge features. So a nonsense Ar(4+)
+        still parses exactly as before - Ar+ builds for the same reason Ar(4+) does - and the
+        entry added by this branch is the ground state and matches only the ground state.
+    
+        This test PINS OBSERVED CURRENT BEHAVIOUR so it cannot regress silently; it does not
+        bless that behaviour as intended. Whether an atom type declaring ``charge=[0, 1, 2]``
+        while still parsing any charge through ``nonSpecifics`` is coherent RMG-Py design is an
+        open question owned in RMG-Py (where the Ar0/Ar+/Ar++ specifics belong), not resolvable
+        from this database test."""
+        from rmgpy.molecule.atomtype import ATOMTYPES
+    
+        ground = Molecule().from_adjacency_list(ARP)
+        assert ATOMTYPES['Ar'].charge == [0, 1, 2]
+>       assert ground.atoms[0].atomtype.label == 'Ar'
+E       AssertionError: assert 'Ar+' == 'Ar'
+E         
+E         - Ar
+E         + Ar+
+E         ?   +
+
+test/test_argon_cation_thermo.py:688: AssertionError
+_________ test_three_body_recombination_still_cannot_be_stored_at_all __________
+
+tmp_path = PosixPath('/tmp/claude-1000/pytest-of-alon/pytest-108/test_three_body_recombination_0')
+
+    def test_three_body_recombination_still_cannot_be_stored_at_all(tmp_path):
+        """The dominant volume sink is blocked by representation, not only by missing data.
+    
+        ``TwoTemperaturePlasma`` is the only shipped rate law that can express a
+        Te-dependent third-order coefficient, and it carries no ``electrons`` field.
+        ``KineticsLibrary.load`` copies an electron count onto the reaction only from a rate
+        law that declares one, and ``load_entry`` takes no electron argument, so a three-body
+        entry arrives at ``is_balanced`` claiming zero electrons against a +1 -> 0 charge
+        change and is rejected before anything about the *number* is asked.
+    
+        This is a tripwire, not a wish: if RMG-Py gives ``TwoTemperaturePlasma`` an
+        ``electrons`` field, this test fails, and whoever made that change is pointed at
+        ``docs/i119-recombination-loss.md`` to finish the job with a sourced coefficient.
+        """
+>       assert not hasattr(TwoTemperaturePlasma(A=(8.75e-27, 'cm^6/(molecule^2*s)'), n=-4.5,
+                                                Ea_g=(0, 'kJ/mol'), Ea_e=(0, 'kJ/mol')),
+                           'electrons')
+E       AssertionError: assert not True
+E        +  where True = hasattr(TwoTemperaturePlasma(A=(8.75e-27,'cm^6/(molecule^2*s)'), n=-4.5, Ea_g=(0,'kJ/mol'), Ea_e=(0,'kJ/mol')), 'electrons')
+E        +    where TwoTemperaturePlasma(A=(8.75e-27,'cm^6/(molecule^2*s)'), n=-4.5, Ea_g=(0,'kJ/mol'), Ea_e=(0,'kJ/mol')) = TwoTemperaturePlasma(A=(8.75e-27, 'cm^6/(molecule^2*s)'), n=-4.5, Ea_g=(0, 'kJ/mol'), Ea_e=(0, 'kJ/mol'))
+
+test/test_plasma_radiative_recombination.py:500: AssertionError
+=============================== warnings summary ===============================
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:5427: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:5539: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:5628: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:5672: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:5698: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:5860: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:5904: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:5930: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:6097: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:6141: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:6167: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:6295: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:7200: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:7470: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:7726: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:7840: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:8025: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:8128: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:9315: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:10169: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:10258: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:11178: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:20791: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:20884: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:21052: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:21078: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:21531: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:21711: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:21739: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:21927: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:22858: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:22951: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:23114: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:23297: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:23392: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:24051: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:24336: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:27050: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:27143: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:27280: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:27308: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:27491: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:28152: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:30542: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:38231: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:38277: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:38304: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:38507: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:39316: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:41060: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:41126: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:41383: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:42688: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:42759: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:43026: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:43634: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:43680: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:43707: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:51842: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:51867: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:51916: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:52269: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:52295: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:52359: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:52384: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:52461: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:22378: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:22405: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:22458: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:22486: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:22515: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:22545: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:22574: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:22602: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:22631: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:23066: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:23095: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:23125: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:23156: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:23186: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:23214: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:23242: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:23479: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:23508: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:23537: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:24531: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:24668: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:24742: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:24769: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:24798: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:26751: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:26779: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:33222: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:33684: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:33736: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:33780: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:34311: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:34339: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:34368: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:34817: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:34845: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:34938: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:35231: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:35330: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:35376: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:36210: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:36236: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:36783: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:37597: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:40266: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:40293: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:40321: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:40350: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:40378: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:40405: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:40433: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:40458: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:40484: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:40511: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:40537: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:41052: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:41160: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:41225: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:41874: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:44422: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:44449: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:44476: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:49272: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:50344: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:50369: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:50397: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:50424: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:50450: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:50610: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:50636: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:50663: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:50689: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:50716: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:50984: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:51613: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:51732: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity
+test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+test/test_argon_cation_thermo.py::test_every_electron_entry_in_this_database_prices_the_electron_at_zero
+test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refused
+  <string>:51756: DeprecationWarning: invalid escape sequence \D
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED test/test_argon_cation_buildtime.py::test_the_dication_builds_and_raises_the_loud_databaseerror
+FAILED test/test_argon_cation_buildtime.py::test_the_dimer_cation_builds_and_raises_the_loud_databaseerror
+FAILED test/test_argon_cation_thermo.py::test_argon_atom_type_now_declares_a_charge_envelope_but_still_parses_any_charge
+FAILED test/test_plasma_radiative_recombination.py::test_three_body_recombination_still_cannot_be_stored_at_all
+================= 4 failed, 214 passed, 568 warnings in 26.38s =================

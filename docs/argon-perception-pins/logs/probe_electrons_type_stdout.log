@@ -1,0 +1,12 @@
+repr      : 0
+type      : <class 'rmgpy.quantity.ScalarQuantity'>
+e == 0    : False
+int(e)    : no __int__
+e.value   : 0.0
+dir       : ['as_dict', 'conversionFactors', 'conversion_factors_from_si_to_cm_mol_s', 'copy', 'equals', 'get_conversion_factor_from_si', 'get_conversion_factor_from_si_to_cm_mol_s', 'get_conversion_factor_to_si', 'is_uncertainty_additive', 'is_uncertainty_multiplicative', 'make_object', 'uncertainty', 'uncertainty_si', 'uncertainty_type', 'units', 'value', 'value_si']
+e2 repr   : -1 type <class 'rmgpy.quantity.ScalarQuantity'>
+e2 == -1  : False
+kinetics.electrons type : <class 'rmgpy.quantity.ScalarQuantity'> repr -1
+reaction.electrons type : <class 'int'> repr -1
+reaction.electrons==-1  : True
+kinetics.electrons.value: -1.0

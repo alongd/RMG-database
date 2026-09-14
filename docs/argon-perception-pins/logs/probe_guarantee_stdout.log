@@ -1,0 +1,69 @@
+
+==============================================================================
+A. IS THERE A +2 ARGON THAT STILL BUILDS, AND IS IT STILL REFUSED LOUDLY?
+==============================================================================
+
+--- DICATION as the test spells it (3P ground state) ---
+adjlist : 'multiplicity 3\n1 Ar u2 p2 c+2\n'
+  BUILD RAISED    : AtomTypeError: Unable to determine atom type for atom Ar..++, which has 0 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 benzene bonds, 2 lone pairs, and +2 charge.
+
+--- closed-shell +2 argon, u0 p3 c+2 ---
+adjlist : '1 Ar u0 p3 c+2\n'
+  BUILD OK        : Molecule(smiles="[Ar+2]") atomtypes=['Ar++'] net_charge=2
+  THERMO RAISED   : DatabaseError: Unable to determine thermo parameters for atom {'*': <Atom 'Ar++'>} in molecule <Molecule "[Ar+2]">: no data for node R or any of its ancestors in database group.
+1 Ar u0 p3 c+2
+
+    -> type       : DatabaseError
+    -> 'Ar++' in message : True
+
+==============================================================================
+B. THE TRIPWIRE: DOES TwoTemperaturePlasma NOW CARRY AN electrons FIELD?
+==============================================================================
+
+==============================================================================
+A. IS THERE A +2 ARGON THAT STILL BUILDS, AND IS IT STILL REFUSED LOUDLY?
+==============================================================================
+
+--- DICATION as the test spells it (3P ground state) ---
+adjlist : 'multiplicity 3\n1 Ar u2 p2 c+2\n'
+  BUILD RAISED    : AtomTypeError: Unable to determine atom type for atom Ar..++, which has 0 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 benzene bonds, 2 lone pairs, and +2 charge.
+
+--- closed-shell +2 argon, u0 p3 c+2 ---
+adjlist : '1 Ar u0 p3 c+2\n'
+  BUILD OK        : Molecule(smiles="[Ar+2]") atomtypes=['Ar++'] net_charge=2
+  THERMO RAISED   : DatabaseError: Unable to determine thermo parameters for atom {'*': <Atom 'Ar++'>} in molecule <Molecule "[Ar+2]">: no data for node R or any of its ancestors in database group.
+1 Ar u0 p3 c+2
+
+    -> type       : DatabaseError
+    -> 'Ar++' in message : True
+
+==============================================================================
+B. THE TRIPWIRE: DOES TwoTemperaturePlasma NOW CARRY AN electrons FIELD?
+==============================================================================
+hasattr(k, 'electrons')            : True
+k.electrons                        : 0
+_NET_ELECTRON_KINETICS_CLASSES     : ('BadnellRRArrhenius', 'VoronovEIArrhenius', 'TwoTemperaturePlasma')
+'TwoTemperaturePlasma' in it       : True
+
+==============================================================================
+B2. CAN A THREE-BODY TWO-TEMPERATURE ENTRY NOW BE STORED?
+==============================================================================
+
+--- store attempt: electrons=None ---
+  DatabaseError : Reaction [Lip] => [Li] in kinetics library ThreeBodyTrial was not balanced! Please reformulate.
+    'was not balanced' in message : True
+
+--- store attempt: electrons=-1 ---
+  STORED OK -- 1 entry/entries
+    Reaction(reactants=[Species(label="[Lip]", molecule=[Molecule(smiles="[Li+]")], molecular_weight=(6.941,'amu'))], products=[Species(label="[Li]", molecule=[Molecule(smiles="[Li]")], molecular_weight=(6.941,'amu'))], reversible=False, electrons=-1)
+    kinetics            : TwoTemperaturePlasma(A=(8.75e-27,'cm^6/(molecule^2*s)'), n=-4.5, Ea_g=(0,'kJ/mol'), Ea_e=(0,'kJ/mol'), electrons=-1)
+    reaction.electrons  : -1
+    kinetics.electrons  : -1
+
+--- store attempt: electrons=1 ---
+  DatabaseError : Reaction [Lip] => [Li] in kinetics library ThreeBodyTrial was not balanced! Please reformulate.
+    'was not balanced' in message : True
+
+==============================================================================
+DONE
+==============================================================================

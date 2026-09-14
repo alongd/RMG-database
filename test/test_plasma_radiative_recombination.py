@@ -31,11 +31,19 @@ from over-reading a green run:
 * ``test_the_implementable_sink_is_three_orders_weaker_than_the_source`` pins
   k_ion/k_RR ~ 1e3 at Te = 1 eV. The channel that ships cannot hold the electron
   density down; it only fixes where the ionisation balance lands.
-* ``test_three_body_recombination_still_cannot_be_stored_at_all`` pins the *reason* the
-  dominant volume sink is absent - ``TwoTemperaturePlasma`` carries no ``electrons``
-  field, so a three-body entry fails the loader's balance check before any question of
-  data arises. If RMG-Py ever gives that rate law an electron count, this test fails and
-  whoever made that change is told to come back here.
+* ``test_three_body_recombination_can_now_be_stored_and_the_remaining_blocker_is_data``
+  pins the *reason* the dominant volume sink is absent. **That reason changed under
+  I-226, and the test caught it.** It used to read ``..._still_cannot_be_stored_at_all``
+  and pinned that ``TwoTemperaturePlasma`` carried no ``electrons`` field, so a
+  three-body entry failed the loader's balance check before any question of data arose;
+  it promised to fail if RMG-Py ever gave that rate law an electron count. RMG-Py then
+  did (the merge *"give TwoTemperaturePlasma a signed-net electron count"*), the test
+  fired as designed, and it is now re-pinned: a three-body entry declaring
+  ``electrons=-1`` **stores**, so the block is **data only**. The wrong-sign refusal and
+  the "no coefficient ships here" guard are split into their own tests beside it.
+  Consequence for readers of ``docs/i119-recombination-loss.md``: that document's
+  "blocked twice over" headline is now half stale, and its "data alone would not unblock
+  it" is inverted - data alone is now what is missing.
 
 WHERE THE DECLARATION LIVES
 ---------------------------
@@ -483,29 +491,18 @@ def test_the_implementable_sink_is_three_orders_weaker_than_the_source(reaction)
     assert at(ionization, 0.3) / at(recombination, 0.3) < 1e-3
 
 
-def test_three_body_recombination_still_cannot_be_stored_at_all(tmp_path):
-    """The dominant volume sink is blocked by representation, not only by missing data.
-
-    ``TwoTemperaturePlasma`` is the only shipped rate law that can express a
-    Te-dependent third-order coefficient, and it carries no ``electrons`` field.
-    ``KineticsLibrary.load`` copies an electron count onto the reaction only from a rate
-    law that declares one, and ``load_entry`` takes no electron argument, so a three-body
-    entry arrives at ``is_balanced`` claiming zero electrons against a +1 -> 0 charge
-    change and is rejected before anything about the *number* is asked.
-
-    This is a tripwire, not a wish: if RMG-Py gives ``TwoTemperaturePlasma`` an
-    ``electrons`` field, this test fails, and whoever made that change is pointed at
-    ``docs/i119-recombination-loss.md`` to finish the job with a sourced coefficient.
-    """
-    assert not hasattr(TwoTemperaturePlasma(A=(8.75e-27, 'cm^6/(molecule^2*s)'), n=-4.5,
-                                            Ea_g=(0, 'kJ/mol'), Ea_e=(0, 'kJ/mol')),
-                       'electrons')
-    assert 'TwoTemperaturePlasma' not in electron_placement._NET_ELECTRON_KINETICS_CLASSES
-
+def _write_three_body_trial(tmp_path, electrons_literal=None):
+    """Write a minimal one-entry library whose rate law is a third-order
+    ``TwoTemperaturePlasma``, optionally declaring ``electrons``. Returns the library root."""
     trial = tmp_path / 'ThreeBodyTrial'
     trial.mkdir()
     (trial / 'dictionary.txt').write_text(
         '[Lip]\n1 Li u0 p0 c+1\n\n[Li]\nmultiplicity 2\n1 Li u1 p0 c0\n\n')
+    kinetics = ("TwoTemperaturePlasma(A=(8.75e-27, 'cm^6/(molecule^2*s)'), n=-4.5,\n"
+                "                                    Ea_g=(0, 'kJ/mol'), Ea_e=(0, 'kJ/mol')")
+    if electrons_literal is not None:
+        kinetics += ', electrons=%s' % electrons_literal
+    kinetics += ')'
     (trial / 'reactions.py').write_text(
         'name = "ThreeBodyTrial"\n'
         'shortDesc = u""\n'
@@ -515,16 +512,109 @@ def test_three_body_recombination_still_cannot_be_stored_at_all(tmp_path):
         '    label = "[Lip] => [Li]",\n'
         '    degeneracy = 1,\n'
         '    reversible = False,\n'
-        "    kinetics = TwoTemperaturePlasma(A=(8.75e-27, 'cm^6/(molecule^2*s)'), n=-4.5,\n"
-        "                                    Ea_g=(0, 'kJ/mol'), Ea_e=(0, 'kJ/mol')),\n"
+        '    kinetics = %s,\n'
         '    shortDesc = u"Li+ + 2 e- => Li + e-",\n'
         '    longDesc = u"",\n'
-        ')\n')
+        ')\n' % kinetics)
+    return trial
 
+
+def test_three_body_recombination_can_now_be_stored_and_the_remaining_blocker_is_data(tmp_path):
+    """THE TRIPWIRE FIRED, AND IT WAS RIGHT TO. This test has been re-pinned under I-226.
+
+    **What this test was written for, and why it was right.** It pinned the *reason* the
+    dominant volume sink is absent: ``TwoTemperaturePlasma`` is the only shipped rate law
+    that can express a Te-dependent third-order coefficient, and it carried **no**
+    ``electrons`` field. ``KineticsLibrary.load`` copies an electron count onto the reaction
+    only from a rate law that declares one, so a three-body entry reached ``is_balanced``
+    claiming zero electrons against a +1 -> 0 charge change and was refused as unbalanced -
+    before any question of *data* arose. So the sink was blocked **twice over**: no shipped
+    fit, and no way to store one. That is exactly what ``docs/i119-recombination-loss.md``
+    records in its headline, and it was true when written.
+
+    Its docstring then said, in terms: *"if RMG-Py ever gives that rate law an electron
+    count, this test fails and whoever made that change is told to come back here."*
+
+    **RMG-Py did exactly that.** The engine tip is the merge *"give TwoTemperaturePlasma a
+    signed-net electron count"*. This test went red for precisely the reason it was built to
+    go red for - it is a tripwire that worked, not a stale pin - and this re-pin is the
+    "come back here" being honoured.
+
+    **What is now measured** (``docs/argon-perception-pins/logs/probe_guarantee_stdout.log``):
+
+      * ``TwoTemperaturePlasma`` **has** an ``electrons`` field, defaulting to ``0``;
+      * it **is** in ``_NET_ELECTRON_KINETICS_CLASSES``;
+      * a three-body entry declaring ``electrons=-1`` **loads and stores**, carrying
+        ``electrons=-1`` onto both the kinetics and the reaction;
+      * declaring nothing, or the wrong sign (``electrons=1``), is still refused as
+        ``"was not balanced"`` - the balance check still does its job.
+
+    **So one of the two blockers is gone.** Representation no longer blocks the dominant
+    volume sink; ``i119``'s "blocked twice over" is now half stale, and its claim that "data
+    alone would not unblock it" has been inverted - data alone is now exactly what is
+    missing. This test is re-pointed accordingly: it pins that the block is now **data
+    only**, and that this repository still ships no three-body coefficient.
+
+    **What this test deliberately does NOT claim.** That a stored three-body entry would be
+    *correct*. ``TwoTemperaturePlasma`` is a ``k(T, Te)`` law; three-body recombination is
+    second order in the electron density, and whether the reactor multiplies through by
+    ``n_e`` the right number of times is an engine question that was not measured here - no
+    reactor was run. Storing it is necessary, not sufficient. See the referral in
+    ``docs/argon-perception-pins/report.md``; the sourced-coefficient half of the job that
+    ``i119`` asks for is still open and is not done by this ticket."""
+    # The field the old tripwire guarded now exists, with a default of zero. It is a
+    # ScalarQuantity, so it is compared through .value - the same convention this file
+    # already uses at test_the_loader_copies_the_electron_count_onto_the_reaction.
+    law = TwoTemperaturePlasma(A=(8.75e-27, 'cm^6/(molecule^2*s)'), n=-4.5,
+                               Ea_g=(0, 'kJ/mol'), Ea_e=(0, 'kJ/mol'))
+    assert hasattr(law, 'electrons')
+    assert law.electrons.value == pytest.approx(0)
+    assert 'TwoTemperaturePlasma' in electron_placement._NET_ELECTRON_KINETICS_CLASSES
+
+    # Declaring the correct count, a three-body entry now STORES. This is the inversion.
+    _write_three_body_trial(tmp_path, electrons_literal='-1')
+    db = KineticsDatabase()
+    db.load_libraries(str(tmp_path), libraries=['ThreeBodyTrial'])
+    entries = list(db.libraries['ThreeBodyTrial'].entries.values())
+    assert len(entries) == 1
+    assert entries[0].data.electrons.value == pytest.approx(-1)   # ScalarQuantity
+    assert entries[0].item.electrons == -1                        # plain int on the reaction
+
+
+@pytest.mark.parametrize('electrons_literal,why', [
+    (None, 'declaring nothing leaves the default 0 against a +1 -> 0 charge change'),
+    ('1', 'the wrong sign is a gain, not a loss, of an electron'),
+])
+def test_a_three_body_entry_with_the_wrong_electron_count_is_still_refused(
+        tmp_path, electrons_literal, why):
+    """The balance check did not become permissive when the field arrived - only reachable.
+
+    Split out from the tripwire above under I-226. The original test could assert this only
+    as "nothing can be stored"; now that the *correct* declaration stores, the fact that an
+    *incorrect* one still does not is a separate and newly meaningful guarantee, and it is
+    what stops the lifted representational block from becoming a way to ship an unbalanced
+    reaction quietly."""
+    _write_three_body_trial(tmp_path, electrons_literal=electrons_literal)
     db = KineticsDatabase()
     with pytest.raises(DatabaseError) as exc:
         db.load_libraries(str(tmp_path), libraries=['ThreeBodyTrial'])
-    assert 'was not balanced' in str(exc.value)
+    assert 'was not balanced' in str(exc.value), why
+
+
+def test_this_repository_still_ships_no_three_body_coefficient():
+    """The blocker that remains, pinned where the old representational one used to be.
+
+    This is the new tripwire, and it fires in the direction the campaign actually wants: if
+    somebody adds a three-body entry to ``PlasmaRadiativeRecombination``, this test fails and
+    sends them to ``docs/i119-recombination-loss.md`` to confirm the coefficient is *sourced*
+    and that the ``n_e``-order question in that document's section 8 has been answered."""
+    path = os.path.join(settings['database.directory'], 'kinetics', 'libraries',
+                        'PlasmaRadiativeRecombination', 'reactions.py')
+    with open(path) as handle:
+        text = handle.read()
+    assert text.count('entry(') == 1, 'a second entry appeared; see docs/i119-recombination-loss.md'
+    assert 'TwoTemperaturePlasma' not in text
+    assert 'cm^6' not in text
 
 
 # ---------------------------------------------------------------------------

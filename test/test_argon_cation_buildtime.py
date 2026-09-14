@@ -28,9 +28,23 @@ entry: the entry is correct, and an argon-capable deck must add the library to i
 
 The last two tests put on the record which of the two species both written "Ar2+" raises
 the loud failure: the dication ``Ar(2+)`` (monatomic, +2) and the dimer ``Ar2(+)``
-(diatomic, +1) each build and each raise ``DatabaseError`` - neither is silently
-fabricated. "Loud failure, not silent fabrication" is the distinction this campaign cares
-about.
+(diatomic, +1). "Loud failure, not silent fabrication" is the distinction this campaign
+cares about, and it still holds for both - but **not by the same mechanism it once did**,
+and the two tests' names and docstrings were rewritten under I-226 to say so:
+
+  * the dication's ``3P`` spelling no longer perceives at all and dies at
+    ``AtomTypeError``; the loud ``DatabaseError`` guarantee was *relocated* onto the
+    closed-shell spelling the ``Ar++`` leaf admits, where it is still asserted;
+  * the dimer still builds, but is refused during HBI saturation by ``AtomTypeError``
+    before the thermo database is consulted at all - still loud, but a *narrower*
+    guarantee than the original ``DatabaseError``, which proved the database itself
+    refused it.
+
+Both changes trace to RMG-Py moving argon out of ``nonSpecifics`` into the leaves
+``Ar0``/``Ar0s``/``Ar+``/``Ar++`` and then narrowing ``Ar0s`` to ``single=[1]``. The
+measurements behind every re-pinned assertion are in
+``docs/argon-perception-pins/logs/`` and the findings in
+``docs/argon-perception-pins/report.md``.
 
 Run with the runtime pinned::
 
@@ -47,7 +61,7 @@ import pytest
 
 from rmgpy import settings
 from rmgpy.data.thermo import ThermoDatabase
-from rmgpy.exceptions import DatabaseError
+from rmgpy.exceptions import AtomTypeError, DatabaseError
 from rmgpy.molecule import Molecule
 from rmgpy.species import Species
 
@@ -72,6 +86,10 @@ ARGON_CAPABLE_DECK = REFERENCE_DECK_THERMO_LIBRARIES + [LIBRARY]
 
 ARP = 'multiplicity 2\n1 Ar u1 p3 c+1\n'                  # Ar+  monatomic +1, the entry
 DICATION = 'multiplicity 3\n1 Ar u2 p2 c+2\n'             # Ar(2+) monatomic +2, ground 3P
+#: The +2 argon the engine's ``Ar++`` leaf actually admits: closed-shell, 3 lone pairs.
+#: ``DICATION`` above (the physical ``3P`` ground state, 2 lone pairs) no longer perceives
+#: at all - see ``test_the_dication_no_longer_builds_...`` and the report's referral.
+DICATION_CLOSED_SHELL = '1 Ar u0 p3 c+2\n'                # Ar(2+) monatomic +2, closed shell
 DIMER = ('multiplicity 2\n'                               # Ar2(+) diatomic +1
          '1 Ar u0 p3 c+1 {2,S}\n'
          '2 Ar u1 p3 c0 {1,S}\n')
@@ -137,20 +155,93 @@ def test_at_build_time_with_the_reference_deck_argon_is_refused_loudly(reference
         reference_deck_db.get_thermo_data(_species(ARP, 'Ar+'))
 
 
-def test_the_dication_builds_and_raises_the_loud_databaseerror(argon_capable_db):
-    """The dication Ar(2+) (monatomic, +2) is the "Ar2+" reading that builds yet raises the
-    loud DatabaseError - group additivity has no group for a charge-+2 argon atom."""
-    species = _species(DICATION, 'Ar2+')
+def test_the_dication_no_longer_builds_but_the_loud_refusal_survives_on_the_spelling_that_does(
+        argon_capable_db):
+    """The dication's guarantee was RELOCATED, not lost - and this test now pins both ends.
+
+    **What this test was written for, and why it was right.** The dication Ar(2+)
+    (monatomic, +2) was the "Ar2+" reading that *builds* yet raises a loud ``DatabaseError``
+    from the thermo layer: group additivity has no group for a charge-+2 argon atom, so the
+    species is refused rather than handed a fabricated number. When it was written, argon was
+    a ``nonSpecifics`` catch-all, so ``DICATION`` - spelled ``u2 p2 c+2``, the physical
+    ``3P`` ground state - perceived as the generic ``Ar`` and built without complaint. The
+    assertion chain (builds -> net charge 2 -> DatabaseError mentioning ``Ar++``) was an
+    accurate description of the engine of the day.
+
+    **What changed.** Argon left ``nonSpecifics`` and grew the leaves
+    ``Ar0``/``Ar0s``/``Ar+``/``Ar++``. The ``Ar++`` leaf admits ``lone_pairs=[3]`` only -
+    i.e. the closed-shell configuration - so the ``3P`` spelling ``u2 p2 c+2`` (2 lone pairs)
+    matches **no** leaf and now raises ``AtomTypeError`` inside ``from_adjacency_list``,
+    before ``get_thermo_data`` is ever called. The "builds" half of this test's premise is
+    gone.
+
+    **Why the guarantee is not lost.** A +2 argon that the engine *does* admit still exists:
+    ``u0 p3 c+2`` perceives as ``Ar++``, builds, and is still refused by the thermo layer
+    with the same loud ``DatabaseError`` naming ``Ar++``
+    (``docs/argon-perception-pins/logs/probe_guarantee_stdout.log``). So the property this
+    test protects - **loud failure, never silent fabrication, for a charge-+2 argon** - is
+    intact; only the adjacency list that reaches it has changed. Both halves are pinned here
+    so neither can regress silently.
+
+    **Referral, not a fix.** That the engine's ``Ar++`` leaf refuses the *physical ground
+    state* of Ar(2+) while admitting a closed-shell configuration is a finding about the
+    atom-type work, owned in RMG-Py. It is written up in
+    ``docs/argon-perception-pins/report.md`` and deliberately not patched here."""
+    # Half one: the 3P spelling no longer builds at all - it dies at perception.
+    with pytest.raises(AtomTypeError) as build_exc:
+        _species(DICATION, 'Ar2+')
+    assert '+2 charge' in str(build_exc.value)
+    assert '2 lone pairs' in str(build_exc.value)
+
+    # Half two: the spelling the Ar++ leaf DOES admit still reaches the thermo layer,
+    # and is still refused loudly rather than fabricated. This is the original guarantee.
+    species = _species(DICATION_CLOSED_SHELL, 'Ar2+')
     assert species.molecule[0].get_net_charge() == 2
+    assert species.molecule[0].atoms[0].atomtype.label == 'Ar++'
     with pytest.raises(DatabaseError) as exc:
         argon_capable_db.get_thermo_data(species)
     assert 'Ar++' in str(exc.value)
 
 
-def test_the_dimer_cation_builds_and_raises_the_loud_databaseerror(argon_capable_db):
-    """The dimer Ar2(+) (diatomic, +1) also builds and also raises a loud DatabaseError,
-    via HBI saturation rather than a bare atom type - still loud, still not fabricated."""
+def test_the_dimer_cation_still_builds_but_is_now_refused_one_layer_earlier(argon_capable_db):
+    """The dimer still fails loudly, but from a different layer - and that IS a partial loss.
+
+    **What this test was written for, and why it was right.** The dimer Ar2(+) (diatomic,
+    +1) built, then raised a loud ``DatabaseError`` from ``get_thermo_data`` - reached "via
+    HBI saturation rather than a bare atom type", as the original docstring correctly said.
+    RMG saturates the radical to look up a closed-shell parent, the saturated argon has no
+    thermo group, and the database refuses it. Still loud, still not fabricated.
+
+    **What changed.** Nothing about *building* it: measurement confirms the dimer still
+    parses, as ``Ar0s`` bonded to ``Ar+`` (``[Ar][Ar+]``). What changed is one step deeper.
+    HBI saturation adds an H to the neutral argon, producing an argon with **two** single
+    bonds, 3 lone pairs and charge 0 - and the merge that narrowed ``Ar0s`` to ``single=[1]``
+    left no leaf that admits it. So ``saturate_radicals`` now raises ``AtomTypeError`` from
+    inside ``estimate_radical_thermo_via_hbi``, at the same call site where the
+    ``DatabaseError`` used to come from
+    (``docs/argon-perception-pins/logs/probe_exact_stdout.log``, steps 3 and 5).
+
+    **The guarantee question, answered.** The campaign's property - *loud failure, not
+    silent fabrication* - **holds**: the run still aborts, and no number is invented. But the
+    guarantee is **narrower than it was**, and the honest word is partially lost. The old
+    assertion demonstrated something about the **thermo database**: that it has no group for
+    this species and says so. Today the thermo database is never consulted, because the
+    molecule machinery fails first. This test can no longer witness the database's refusal of
+    the dimer; it can only witness that the dimer is unreachable. That is a smaller
+    guarantee, and it is pinned as such rather than dressed up as equivalent.
+
+    **Referral, not a fix.** Whether ``Ar0s`` narrowed to ``single=[1]`` *should* admit the
+    HBI-saturated two-bond argon is an RMG-Py question - HBI saturation can manufacture
+    valences the narrowing never considered. See ``docs/argon-perception-pins/report.md``."""
+    # Building it is unchanged - this half of the original premise still holds.
     species = _species(DIMER, 'Ar2+dimer')
     assert species.molecule[0].get_net_charge() == 1
-    with pytest.raises(DatabaseError):
+    assert [a.atomtype.label for a in species.molecule[0].atoms] == ['Ar0s', 'Ar+']
+
+    # It is still refused loudly, but now by perception during HBI saturation rather than
+    # by the thermo database. Pinned as AtomTypeError precisely because it is NOT the same
+    # guarantee: DatabaseError would mean the database was reached and said no.
+    with pytest.raises(AtomTypeError) as exc:
         argon_capable_db.get_thermo_data(species)
+    assert '2 single bonds' in str(exc.value)
+    assert '+0 charge' in str(exc.value)

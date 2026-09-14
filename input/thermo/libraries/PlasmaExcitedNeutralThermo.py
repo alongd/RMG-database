@@ -66,11 +66,14 @@ WHAT THE READER MUST NOT ASSUME
    any reactor. The simulation input files in this campaign declare argon as ground state plus
    cation only; this file does not change that and is not meant to. No deck was edited.
 
-4. **No kinetics is authorised by anything here.** These are thermochemical values. Not one
-   reaction, family, training entry or rate accompanies them. In particular, metastable argon
-   having thermochemistry does NOT mean this database can produce it: no channel populates it and
-   no channel destroys it. Until kinetics exists, a mechanism containing this species would hold
-   an inert, unreachable island.
+4. **No kinetics is added here, but kinetics is UNLOCKED here, and the two are different.** Not
+   one reaction, family, training entry or rate ships in this file. But a thermo entry is what
+   makes a species real enough for a family to generate on, and measured, one does: loading this
+   library lets ``Plasma_Electron_Impact_Ionization`` produce ``Ar(3P2) => Ar+`` on a rank-10
+   placeholder rate generalised from lithium. Read "THIS IS NOT AN INERT ISLAND" in the entry's
+   longDesc before loading this library for anything but thermochemistry. An earlier draft of
+   this file claimed the species was unreachable; that claim was false and the grep that produced
+   it could not have established it.
 """
 
 entry(
@@ -96,7 +99,9 @@ multiplicity 3
         CpInf = (20.7862, 'J/(mol*K)'),
         Tmin = (298.15, 'K'),
         Tmax = (6000, 'K'),
-        E0 = (1114.247, 'kJ/mol'),
+        # E0 is deliberately NOT stated. See "E0 IS DERIVED, NOT STATED" in the longDesc:
+        # RMG's E0 is not the excitation energy, the two are 5/2*R*298 apart, and stating
+        # one gives the file two sources of truth that measurably disagree.
     ),
     shortDesc = u"Ar(4s 3P2), the 1s5 metastable ONLY, NIST ASD level 93143.7600 cm^-1, g = 5",
     longDesc =
@@ -145,17 +150,60 @@ THE THREE NUMBERS, ONE LINE OF ARITHMETIC EACH
 
     H298 = E(1s5) * h*c*N_A = 93143.7600 cm^-1 * 11.9626565957 J/(mol*cm^-1)
          = 1114.2468 kJ/mol -> 1114.247 kJ/mol.
-        ``E0`` carries the SAME number, and that is an identity rather than an oversight:
+        This is a FORMATION enthalpy and the thermal correction cancels inside it:
             dfH(298.15) = dfH(0) + [H(298)-H(0)]_Ar(3P2) - [H(298)-H(0)]_Ar
         with dfH(0) = the level energy (ground-state argon's dfH(0) being zero), and both
-        bracketed increments equal to 5/2*R*T = 6.197 kJ/mol -- Ar(3P2) because a single level
-        has no internal structure, Ar because JANAF Ar-001's T = 0 row gives exactly -6.197.
-        They cancel, so dfH(298.15) = dfH(0) = 1114.247 kJ/mol. For Ar+ the same two increments
-        do NOT cancel (6.206 against 6.197), which is why that entry's H298 and E0 differ by
-        0.008 kJ/mol and this one's do not.
+        bracketed increments equal to 5/2*R*T -- Ar(3P2) because a single level has no
+        internal structure, Ar because JANAF Ar-001's T = 0 row gives exactly -6.197.
+        They cancel, so the THERMOCHEMICAL dfH(0) of this species is also 1114.247. Read
+        the next section before concluding that this number belongs in the ``E0`` field.
 
     Cross-check, not a second measurement: 93143.7600 cm^-1 = 11.54835 eV, against the 11.548 eV
     that the plasma literature routinely quotes for the argon 4s metastable.
+
+E0 IS DERIVED, NOT STATED -- AND WHY THE OBVIOUS VALUE IS THE WRONG ONE
+    The ``E0`` field is absent from the entry above. That is deliberate, it was got wrong first,
+    and the trap is a collision of names worth writing out because it is what makes the wrong
+    answer look exact.
+
+    The spectroscopic term value 93143.76 cm^-1 genuinely IS a 0 K quantity, and the
+    thermochemical dfH(0) of this species genuinely IS 1114.247 kJ/mol by the cancellation just
+    above. So writing ``E0 = (1114.247, 'kJ/mol')`` feels like transcription. It is not, because
+    RMG's ``E0`` is a different quantity that happens to be numerically close.
+
+    RMG's ``E0`` is the species' enthalpy at 0 K obtained by integrating THE SPECIES' OWN Cp down
+    from the reference temperature -- with no element correction, because RMG's convention drops
+    it (it cancels in any balanced reaction, which is all RMG uses E0 for). Measured on this very
+    entry (``docs/argon-metastable-thermo/logs/round55_probe.stdout.log``):
+
+        entry.data.E0 as it was stated      1114.2470 kJ/mol
+        data.to_wilhoit(B=1000).E0          1108.0527 kJ/mol
+        difference                            +6.1943 kJ/mol  = 5/2 * R * 298
+
+    Note the 298, not 298.15: ``ThermoData.to_wilhoit`` calls ``get_enthalpy(298)``
+    (``rmgpy/thermo/thermodata.pyx:366-389``), the same 298 K field convention documented under
+    "WHERE THIS RECIPE BREAKS" below. 5/2*R*298.15 would be 6.1974.
+
+    Two further facts settle it:
+
+    * ``to_wilhoit`` reads ``Tdata``/``Cpdata``/``H298``/``S298`` and NEVER consults ``self.E0``,
+      and ``thermoengine.process_thermo_data`` then sets ``spc.conformer.E0 = wilhoit.E0``
+      (``rmgpy/thermo/thermoengine.py:75-78``). So a stated ``E0`` is INERT on the path the
+      runtime actually uses and visible only to code that reads the field directly. Measured
+      end to end: after ``process_thermo_data``, both ``NASA.E0`` and ``spc.conformer.E0`` are
+      1108.0527.
+    * Stating it therefore gives one species two zero-point energies that disagree by 6.19
+      kJ/mol depending on which API reaches it. Deriving it gives one.
+
+    The alternative -- state ``E0 = 1108.053`` to match -- was considered and rejected: it is a
+    number with no source, obtained by subtracting a thermal correction from a transcribed value
+    purely to satisfy a field, and it would drift silently the moment ``Tdata``, ``Cpdata`` or
+    ``H298`` changed. Leaving the field empty makes the derivation the single source of truth and
+    costs nothing, because the derivation is exactly what the runtime does anyway.
+
+    The same collision exists, unfixed, in ``PlasmaCationThermo``: measured, ``[Arp]`` states
+    E0 = 1520.5730 while ``to_wilhoit`` derives 1514.3867, a gap of 6.1863 kJ/mol. That library
+    is out of this ticket's scope and is reported, not edited.
 
 WHY THIS FORM AND NOT NASA
     ``ThermoData``, matching ``PlasmaCationThermo``, not the ``NASA`` form that ground-state
@@ -229,14 +277,58 @@ QUESTION 2 -- HOW THE ADMITTED LEVELS ARE WEIGHTED: WHY 1s5 ALONE AND NOT {1s5 +
     0.854 J/(mol*K) near 1000 K instead of a flat 5/2 R.
 
     None of that is why the lump is rejected, and it is worth being clear that the magnitudes
-    argue mildly FOR lumping being harmless. The lump is rejected because it would be a FITTED
-    number under a charter that forbids fitted numbers. A degeneracy-weighted lump assumes the
-    two metastables are Boltzmann-distributed with respect to one another at the GAS temperature.
-    In a low-pressure discharge they are not: their populations are set by electron-impact
-    excitation and by their own very different quenching, and the 1s5/1s3 ratio is an OUTPUT of
-    the plasma kinetics, not a function of T. Writing the Boltzmann lump would be quietly
-    asserting an equilibrium the model exists to test. A single named level asserts nothing: it
-    is a transcribed energy, an exact degeneracy and an exact translational Cp.
+    argue mildly FOR lumping being harmless at 298.15 K.
+
+    The lump is NOT rejected for being a fitted number, and an earlier draft of this file said so
+    and was wrong. A degeneracy-weighted Boltzmann state sum is ANALYTICAL, not fitted: it has a
+    closed form, no adjustable parameter, and nothing in this file's charter forbids it. It is
+    rejected for a different and narrower reason -- it is CONDITIONAL, and its condition does not
+    hold where this species is used. The lump is exact given that the two metastables are
+    equilibrated with each other at the gas temperature. In a low-pressure discharge they are
+    not: their populations are set by electron-impact excitation and by their own very different
+    quenching, so the 1s5/1s3 ratio is an OUTPUT of the plasma kinetics rather than a function of
+    T. Writing the lump would silently carry an antecedent the model exists to test. A single
+    named level carries no antecedent at all: a transcribed energy, an exact degeneracy, an exact
+    translational Cp.
+
+    That distinction matters practically, not just verbally. "Fitted" would mean the lump may
+    never be used here. "Conditional" means it may be used exactly when its condition holds --
+    a thermal or near-LTE argon plasma, an afterglow late enough to have equilibrated, any
+    situation where the 4s manifold is collisionally mixed. The table below is what such a reader
+    needs, and the answer visibly depends on their temperature.
+
+WHAT LUMPING WOULD COST, IF SOMEONE'S CONDITIONS JUSTIFY IT
+    Shifts RELATIVE to this entry (1s5 alone), computed by the two-term expression above over
+    NIST ASD level energies and degeneracies. "2-level" = {1s5, 1s3}, the two metastables;
+    "4-level" = the whole 3p5.4s manifold, the two metastables plus the two resonant levels.
+    Measured, ``docs/argon-metastable-thermo/round55_probe.py``:
+
+        T (K)  |  dS 2-lvl   dH 2-lvl  |  dS 4-lvl   dH 4-lvl  |  n(4s)/n(1s5)
+        -------+------------------------+------------------------+--------------
+         298.15|    0.0144     0.0037  |    1.0345     0.2296  |     1.032
+         500   |    0.1450     0.0582  |    2.3801     0.7598  |     1.109
+        1000   |    0.6482     0.4323  |    4.4082     2.2251  |     1.300
+        2000   |    1.1525     1.1406  |    6.0872     4.5819  |     1.579
+        3000   |    1.3244     1.5571  |    6.6580     5.9647  |     1.754
+        4000   |    1.3988     1.8131  |    6.9032     6.8078  |     1.869
+        5000   |    1.4372     1.9838  |    7.0284     7.3649  |     1.951
+        6000   |    1.4594     2.1053  |    7.1004     7.7578  |     2.011
+
+    dS in J/(mol*K), dH in kJ/mol. The last column is the equilibrium population of the WHOLE 4s
+    manifold relative to 1s5 alone, sum(g exp(-E/RT)) / 5 -- so 2.011 at 6000 K means the manifold
+    holds twice what 1s5 does, i.e. the other three levels together have caught up with it.
+
+    Read it this way. At the reference temperature this entry IS the 4s manifold to within
+    1 J/(mol*K) and 0.23 kJ/mol, and the two-metastable question is worth 0.0144 J/(mol*K). The
+    gap opens exactly where a discharge lives: by 2000 K the four-level lump differs by 6.1
+    J/(mol*K) and 4.6 kJ/mol, which is no longer a rounding question. So this entry is the right
+    object for a species-resolved kinetic model -- the case it was written for, where 1s5 is
+    tracked separately because it has its own production and loss -- and is NOT the right object
+    for a reader who wants one lumped "Ar*" pseudo-species at several thousand kelvin. That reader
+    should build the manifold sum for their own conditions using the level table above, and should
+    be aware that the two resonant levels they would then be lumping in are radiatively coupled to
+    the ground state (see Question 1), so whether they belong in a reservoir at all depends on the
+    vessel's radiation trapping and not on this table.
 
     The physical case for 1s5 in particular, had the two been equally defensible: it is the lower
     level, it carries g = 5 against g = 1, and it therefore holds roughly 5/6 of the metastable
@@ -292,13 +384,81 @@ WHERE THIS RECIPE BREAKS IF IT IS REUSED CARELESSLY
     difference above. It is NOT corrected for here: writing 168.216 to make the API return 168.227
     would break the identity this entry is built on and would differ from every sibling entry.
 
-VALIDITY RANGE
+VALIDITY RANGE -- AND THE RANGE YOU WILL ACTUALLY GET, WHICH IS NOT THE SAME
     ``Tmin``/``Tmax`` are 298.15 K and 6000 K, matching ``PlasmaCationThermo`` and JANAF Ar-001's
-    own ceiling. The functions themselves have no upper bound -- 5/2 R and R*ln 5 do not expire --
-    but the IDENTIFICATION of "metastable argon" with the 1s5 level alone weakens as temperature
-    rises, because the 4p manifold sits only ~10000 cm^-1 higher and begins to populate. Those are
-    different species, not this one, so nothing here becomes wrong; it becomes incomplete. This is
-    a GAS temperature range and says nothing about the electron temperature.
+    own ceiling. That is a statement about the DATA: 5/2 R and R*ln 5 do not expire, and the
+    tabulated Cp is exact at every point on the grid.
+
+    **Standard RMG processing will not give you 6000 K.** Measured
+    (``docs/argon-metastable-thermo/logs/reachability_probe.stdout.log``):
+
+        process_thermo_data(spc, <this entry>, NASA)  ->  NASA, Tmin = 100.0 K, Tmax = 5000.0 K
+        NASA at  298.15 K:  Cp = 20.7862  S = 168.2375  H = 1114.2501
+        NASA at 5000.00 K:  Cp = 20.7862  S = 226.8462  H = 1211.9837
+        NASA at 6000.00 K:  RAISED ValueError: No valid NASA polynomial at temperature 6000 K.
+
+    The cause is one branch in ``rmgpy/thermo/thermoengine.py:86-99``: a library entry that is
+    ALREADY a ``NASA`` is kept verbatim, and anything else is refit with a hard-coded
+    ``to_nasa(Tmin=100.0, Tmax=5000.0, Tint=1000.0)``. This entry is a ``ThermoData`` -- chosen on
+    charter grounds, see "WHY THIS FORM AND NOT NASA" -- so it is refit, and the declared ceiling
+    is discarded on the way. That is an engine limit, not a defect in these numbers, but this file
+    is what advertises 6000 K so this file has to say it.
+
+    Two consequences worth having explicitly:
+
+    * The charter-driven form choice has a behavioural price that was not visible when it was
+      made. Emitting NASA would preserve 6000 K; it would also mean fitting coefficients, which
+      the charter forbids. The form choice stands -- a truthful 5000 K beats a fitted 6000 K --
+      but the price is now on the record rather than discovered later by someone whose reactor
+      stopped at 5000 K.
+    * Ground-state argon loses its range the same way, for a different reason. Its
+      ``primaryThermoLibrary`` entry IS a NASA valid to 6000 K and would be kept verbatim -- but
+      that entry does not win the lookup; ``BurkeH2O2``'s ``ThermoData`` does (see "WHERE THIS
+      RECIPE BREAKS", point four), and gets refit to 5000 K like this one. Measured.
+
+    **Above the tabulated grid, the raw functions go wrong silently.** ``ThermoData`` extrapolates
+    Cp and H but FREEZES S at its last tabulated point:
+
+        T (K)      Cp        S (this entry)   S (exact)     H (this entry)   H (exact)
+        6000    20.7860        230.6353       230.6358        1232.7688      1232.7697
+        8000    20.7860        230.6353       236.6156        1274.3408      1274.3420
+       10000    20.7860        230.6353       241.2539        1315.9128      1315.9143
+
+    So at and below 6000 K the entry is right; above it, enthalpy keeps climbing correctly while
+    entropy stops, and any free energy built from the pair is wrong and gets worse with T.
+    ``is_temperature_valid`` returns ``False`` at 8000 K and correctly ``True`` at 6000 -- the
+    guard exists and is accurate; nothing in the accessor path calls it. Reported as an RMG-Py
+    referral, not worked around here: a data file cannot make an accessor raise.
+
+    Finally, and separately from all of the above: the IDENTIFICATION of "metastable argon" with
+    the 1s5 level alone weakens as temperature rises, because the rest of the 4s manifold catches
+    up (see the lumping table -- by 6000 K it holds twice what 1s5 does) and the 4p manifold sits
+    only ~10000 cm^-1 higher and begins to populate. Those are different species, not this one, so
+    nothing here becomes wrong; it becomes incomplete. All of this is a GAS temperature range and
+    says nothing about the electron temperature.
+
+HOW MANY ELECTRONIC STATES DOES THIS SPECIES HAVE? RMG GIVES THREE DIFFERENT ANSWERS
+    Measured on one and the same ``Species`` built from the adjacency list below:
+
+        this entry's S298, via R*ln(g) with g = 2J+1 = 5           g = 5
+        conformer after thermoengine.process_thermo_data           spin_multiplicity = 1
+        conformer after Species.generate_statmech()                spin_multiplicity = 3
+        the molecule itself                                        multiplicity = 3
+
+    The three disagree because they are counting different things. ``g = 5`` is the TOTAL
+    electronic degeneracy 2J+1 of the ``3P2`` level, which is what thermochemistry needs. RMG's
+    ``spin_multiplicity`` is 2S+1 and knows only about unpaired electrons, so it says 3 and has
+    no way to express the orbital part; a freshly constructed ``Conformer`` says 1 because nothing
+    has told it otherwise. The spread is R*ln(5/3) = 4.2472 J/(mol*K) against statmech and
+    R*ln 5 = 13.3816 against the untouched conformer.
+
+    **Is it fixable from the database side? No.** An RMG adjacency list carries u, p and c; it has
+    no J, and there is no library field that sets a conformer's electronic degeneracy. The entry's
+    S298 is correct as a thermochemical quantity, and any code path that rebuilds a partition
+    function from the conformer instead of reading S298 -- pressure-dependent networks are the
+    obvious one -- will disagree with it by the amounts above. The repair is an engine concept
+    (electronic degeneracy decoupled from spin multiplicity), not a data change, and is reported
+    as such. Until then: **use this entry's S298; do not let statmech regenerate it.**
 
 STRUCTURE
     ``1 Ar u2 p3 c0``, multiplicity 3: three lone pairs, two unpaired electrons, no bonds, net
@@ -314,14 +474,88 @@ STRUCTURE
       ``[Arp]``/``[Hep]``/``[Nep]`` in ``PlasmaCationThermo``, where ``from_smiles`` returns a
       doubled charge. The adjacency list above is the only interchange form to use.
 
-NOT A CHANNEL, AND NOT IN ANY DECK
-    This entry supplies thermochemistry only and authorises no reaction. Argon metastables are
-    produced by electron-impact excitation and destroyed by stepwise ionisation, two- and
-    three-body quenching, and wall loss; NONE of those has an entry anywhere in this database,
-    and none was added with this file. ``input/kinetics/libraries/PlasmaAir`` advertises
-    "metastable quenching" in its own longDesc but its dictionary carries only ``Ar`` and
-    ``Arp`` -- no metastable species and no metastable reaction. The simulation inputs in this
-    campaign declare argon as ground state plus cation only and were not edited. After this file,
-    metastable argon CAN exist; it still appears nowhere.
+THIS IS NOT AN INERT ISLAND. READ THIS BEFORE LOADING THE LIBRARY
+    An earlier draft of this file said metastable argon was unreachable -- that no channel could
+    produce or destroy it, so loading this library added an isolated number and nothing else.
+    **That was false, and the way it was established was invalid.** The claim rested on grepping
+    the kinetics files for the literal string ``Ar u2 p3 c0``. Families do not match literals,
+    they match GROUPS, so a literal search can never establish that no family matches a species.
+    Absence of a string is not absence of a channel. The only way to settle it is to generate
+    reactions and look at what comes back, which is now done
+    (``docs/argon-metastable-thermo/reachability_probe.py``).
+
+    MEASURED. Of the six plasma families in this database, five generate nothing from this
+    species and one does:
+
+        Plasma_Electron_Impact_Ionization  ->  [Ar] => [Ar+]
+            template A_rad, degeneracy 1.0, electrons +1, irreversible
+            products: multiplicity 2 | 1 Ar u1 p3 c+1
+        Plasma_Electron_Attachment                       ->  0
+        Plasma_Radiative_Recombination                   ->  0
+        Plasma_Associative_Ionization_Alkali_Alkali      ->  0
+        Plasma_Associative_Ionization_Alkali_Alkaline    ->  0
+        Plasma_Associative_Ionization_Alkaline_Alkaline  ->  0
+
+    So loading this library alongside that family activates a STEPWISE IONISATION channel for
+    argon: Ar(3P2) + e- -> Ar+ + 2 e-, which is exactly the process that makes metastables matter
+    in a discharge. That is chemistry appearing, not a number sitting still.
+
+    WHAT RATE THAT CHANNEL GETS, AND WHERE IT COMES FROM. The family has one rate rule, on node
+    ``A_rad``, rank 10, A = 1.292979e+08 m^3/(mol*s). Its own shortDesc calls it an ESTIMATE and
+    its longDesc is explicit and honest about what it is: a ONE-POINT GENERALIZATION of the
+    sourced Voronov electron-impact ionisation rate for LITHIUM, evaluated once at Te = 1 eV and
+    frozen as a temperature-independent Arrhenius, handed flat to every radical the template
+    matches. It is a placeholder, not a prediction, and it says so. Adding this library therefore
+    does not merely add a sourced number to the database -- it gives argon a stepwise-ionisation
+    rate derived from lithium.
+
+    AND IT FALSIFIES THAT RULE'S OWN STATED PREMISE. The ``A_rad`` longDesc argues its choice of
+    anchor partly like this:
+
+        "this family CANNOT generate argon at all (closed-shell Ar has u0, outside the
+         template's u[1,2,3,4]; generate_reactions([Ar]) returns 0 reactions)"
+
+    That was true when it was written, because ground-state argon was the only argon in the
+    database. It is FALSE as of this file: Ar(3P2) has u2, squarely inside ``u[1,2,3,4]``, and the
+    family generates it. The rule's validity paragraph then warns that the estimate "is NOT
+    defensible for high-threshold species: a noble gas (Ar 15.76 eV, He 24.6 eV) ionises orders of
+    magnitude more slowly at 1 eV than lithium (5.4 eV) does, so on those this rule OVER-predicts
+    badly", and brackets the spread as Li 1.29e8 against Ar 1.25e3 m^3/(mol*s), five orders apart.
+
+    ONE ARITHMETIC CORRECTION IN THE RULE'S FAVOUR, WHICH IS THE INTERESTING PART. That warning
+    is about GROUND-STATE argon. It does not transfer to this species, because ionising an already
+    excited atom costs only what is left:
+
+        Ar II limit                    127109.842 cm^-1
+        minus the 1s5 level             93143.7600 cm^-1
+        = threshold from Ar(3P2)        33966.082 cm^-1 = 4.2113 eV
+
+    4.21 eV is BELOW lithium's 5.4 eV. By the rule's own criterion -- "defensible as an
+    order-of-magnitude estimate for LOW-THRESHOLD light atoms near the 1 eV working point" --
+    Ar(3P2) is a better fit for that placeholder than the ground-state argon the rule was
+    re-anchored away from. The five-orders-of-magnitude over-prediction the rule warns about is a
+    ground-state hazard, not a metastable one. That is lucky rather than designed, and it is not a
+    reason to leave the rule's premise sentence standing: the sentence is now factually wrong, and
+    the next species someone adds may not be lucky.
+
+    NONE OF THAT IS TOUCHED HERE. Changing the family, its template, its rules or that longDesc is
+    a different ticket and a different piece of chemistry, and it needs the owner before anyone
+    starts. This file's obligation is to say what a user gets, and the above is what a user gets.
+    ``test/test_argon_metastable_thermo.py`` pins the reaction count, the template and the rule's
+    rank, so the day any of them moves, something fails loudly instead of drifting.
+
+STILL NOT IN ANY DECK, AND STILL WITHOUT PRODUCTION OR LOSS CHEMISTRY
+    Everything above is about what a family GENERATES on demand. Nothing in this library puts
+    anything into a reactor. Separately, the channels that would make this species physical are
+    still absent: metastables are PRODUCED by electron-impact excitation and destroyed by two- and
+    three-body quenching and wall loss, and none of those has an entry anywhere in this database.
+    So the picture after this file is a species with one generated loss channel carrying a
+    lithium-derived placeholder rate, no production channel at all, and no appearance in any deck
+    -- which is worse than an island in one specific way: an island is visibly incomplete, whereas
+    a species with loss and no production will quietly go to zero.
+    ``input/kinetics/libraries/PlasmaAir`` advertises "metastable quenching" in its own longDesc
+    but its dictionary carries only ``Ar`` and ``Arp`` -- no metastable species and no metastable
+    reaction. The simulation inputs in this campaign declare argon as ground state plus cation
+    only and were not edited.
 """,
 )

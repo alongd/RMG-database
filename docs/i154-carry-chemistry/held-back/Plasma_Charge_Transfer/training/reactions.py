@@ -39,6 +39,23 @@ the ratio the split criterion tests moves only by 300^(n1-n2). Under the wrong c
 splits fall to 22.2x and 48.1x, still far above the 4x criterion. See
 docs/i223-charge-transfer-node-repair/probe_ozawa_aiken.py.
 
+BEFORE TRUSTING ANY RATE BELOW, KNOW THAT NONE OF THEM IS CURRENTLY REACHABLE (I-223).
+The family's recipe is charge-only -- LOSE_CHARGE *1, GAIN_CHARGE *2 -- and a charge-only recipe
+cannot move a charge in RMG. LOSE_CHARGE sets atom.charge and nothing else (molecule.py:538-548);
+apply_recipe then calls update_charge() on every product (family.py:1547), which re-derives the
+charge as valence - bonds - radicals - 2*lone_pairs (molecule.py:596-598) and so puts it straight
+back. Measured: all 27 entries below come out of apply_recipe as their own reactants, and
+generate_reactions returns ZERO reactions. All twelve family checks pass anyway, because the only
+one that runs the recipe, kinetics_check_sample_can_react, checks that nothing throws and never
+compares products to reactants. Every mainline family that uses a charge action -- 20 of them --
+pairs it with a radical, lone-pair or bond action; this is the only recipe in the repository that
+does not. The rates below are still correct transcriptions of their sources, and the audits of
+them still stand; they are simply attached to a family that does not presently react. The repair
+is a family redesign and is the owner's call: the 27 entries need 4 distinct cation-side action
+sets and 2 partner-side ones, and 4 of them need a bond-order change that a two-label template
+cannot express at all. See docs/i223-charge-transfer-node-repair/probe_producibility.py and
+report.md section 11.
+
 [Tanarro2015] has (I-223). All twelve entries, indices 1-12, were audited row by row against
 Table 1 of the open author manuscript (europepmc.org/articles/PMC4685741) -- reaction, A,
 exponent, T0, Ea and units. Eleven match exactly. One correction, recorded on the entry itself:
@@ -112,6 +129,13 @@ integer order), so the dictionary writes H2p_r1 as two unbonded atoms, `[H+].[H]
 recipe to that gives `[H].[H]`, two separate H atoms, never the bonded H2 this reaction produces.
 apply_recipe returns None on it (logs/h2-recipe.stdout.log). This is mutual neutralisation
 followed by recombination and it belongs in a library, not in a charge-transfer family.
+
+Amended (I-223, producibility audit): this entry is NOT the exception it was written up as. It is
+the only one apply_recipe returns None for -- the other 26 it accepts and hands back unchanged --
+but none of the 27 is producible, for the reason in the header note above. What is specific to
+this entry is the bond, not the charge: even a recipe that correctly neutralised H2+ would still
+have to FORM the H-H bond, and no other entry here needs that. The paragraph below about why it
+is kept rather than deleted is unaffected.
 The H2_ion group node that used to try to host it was removed by I-223 for the same reason; see
 the comment at its former position in groups.py.
 

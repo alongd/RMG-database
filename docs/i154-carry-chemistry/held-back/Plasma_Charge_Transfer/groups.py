@@ -17,6 +17,23 @@ reversible = True
 allowChargedSpecies = True
 electrons = 0
 
+# THIS RECIPE DOES NOTHING, and that is measured, not suspected (I-223).
+# LOSE_CHARGE/GAIN_CHARGE set atom.charge and touch nothing else (molecule.py:538-548).
+# apply_recipe then calls update_charge() on each product (family.py:1547), which re-derives
+# charge = valence - bonds - radicals - 2*lone_pairs (molecule.py:596-598) -- none of which this
+# recipe changed -- so the charge returns to where it started. The products come back isomorphic
+# to the reactants and _create_reaction discards them (family.py:1757-1759): the family generates
+# ZERO reactions. All twelve checks pass regardless; the only one that runs the recipe merely
+# checks that nothing throws.
+# Every one of the 20 mainline families using a charge action pairs it with a radical, lone-pair
+# or bond action. This is the only recipe in the repository that does not.
+# Do NOT just bolt GAIN_RADICAL on: Ar+ -> Ar pairs the electron up (LOSE_RADICAL + GAIN_PAIR)
+# while O+ -> O leaves it unpaired (GAIN_RADICAL), and NO+ -> NO needs a bond-order change that
+# two labels on two different molecules cannot express. The training set needs 4 distinct
+# cation-side action sets and 2 partner-side ones.
+# Evidence and the full per-entry table: docs/i223-charge-transfer-node-repair/probe_producibility.py,
+# logs/producibility.stdout.log, report.md section 11. Left unrepaired deliberately -- it is a
+# family redesign and a chemistry decision, which the contract routes to the owner.
 recipe(actions=[
     ['LOSE_CHARGE', '*1', 1],
     ['GAIN_CHARGE', '*2', 1],

@@ -1,6 +1,6 @@
 cwd                = /home/alon/Code/RMG-Py-i223-ct-node-repair
 database.directory = /home/alon/Code/RMG-database-i223-charge-transfer-node-repair/input
-family loaded from  = /tmp/claude-1000/i223-before/Plasma_Charge_Transfer
+family loaded from  = /home/alon/Code/RMG-database-i223-charge-transfer-node-repair/docs/i154-carry-chemistry/held-back/Plasma_Charge_Transfer
 
 ==============================================================================
 1. Can RMG build and type these ions? (no atom type may be added)

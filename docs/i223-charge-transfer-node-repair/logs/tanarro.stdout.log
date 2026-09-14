@@ -1,0 +1,49 @@
+cwd                = /home/alon/Code/RMG-Py-i223-ct-node-repair
+database.directory = /home/alon/Code/RMG-database-i223-charge-transfer-node-repair/input
+family loaded from  = /home/alon/Code/RMG-database-i223-charge-transfer-node-repair/docs/i154-carry-chemistry/held-back/Plasma_Charge_Transfer
+
+idx  row    reaction (as in Table 1)         A source  A entered  n src  n ent     T0 verdict
+---------------------------------------------------------------------------------------------
+1    IN1    H+ + H- -> 2H                     1.8e-07    1.8e-07   -0.5   -0.5    300 OK
+2    IN2    H2+ + H- -> H + H2                  2e-07      2e-07   -0.5   -0.5    300 OK
+3    IN4    O+ + H- -> H + O                  2.3e-07    2.3e-07   -0.5   -0.5    300 OK
+4    IN5    O2+ + H- -> H + O2                  2e-07      2e-07   -0.5   -0.5    300 OK
+5    IN7    H2O+ + H- -> H + H2O                2e-07      2e-07   -0.5   -0.5    300 OK
+6    IN9    H+ + O- -> H + O                    2e-07      2e-07   -0.5   -0.5    300 OK
+7    IN12   O+ + O- -> 2O                       2e-07      2e-07   -1.0   -1.0    300 OK
+8    IN13   O2+ + O- -> O2 + O                  2e-07      2e-07   -0.5   -0.5    300 OK
+9    IN15   H2O+ + O- -> O + H2O                2e-07      2e-07   -0.5   -0.5    300 OK
+10   IN20   O2+ + OH- -> OH + O2                2e-07      2e-07   -0.5   -0.5    300 OK
+11   IN21   OH+ + OH- -> 2OH                    2e-07      2e-07   -0.5   -0.5    300 OK
+12   IN22   H2O+ + OH- -> H2O + OH              2e-07      2e-07   -0.5   -0.5    300 OK
+
+cited source per row (from Table 1, not from this file):
+  entry  1  IN1    [21] Konstantinovskii 2005
+  entry  2  IN2    [71] Scott 1996
+  entry  3  IN4    [60] Millar 1997 (UMIST)
+  entry  4  IN5    [56] Kossyi 1992
+  entry  5  IN7    [56] Kossyi 1992
+  entry  6  IN9    [56] Kossyi 1992
+  entry  7  IN12   [57] Stafford 2004
+  entry  8  IN13   [73] Gudmundsson 2007
+  entry  9  IN15   [56] Kossyi 1992
+  entry 10  IN20   [56] Kossyi 1992
+  entry 11  IN21   [56] Kossyi 1992
+  entry 12  IN22   [56] Kossyi 1992
+
+provenance of the repeated value
+  18 of the 23 ion-ion neutralization rows in Table 1 carry 2e-7 (Tg/300)^-0.5;
+  16 of those cite one reference, Kossyi 1992, a kinetic-scheme review.
+  Rows with a pair-specific source carry pair-specific numbers (IN1, IN4, IN12,
+  IN17, IN23).  Agreement among the rest is one estimate quoted many times.
+  => where two of these entries are merged onto one template node, the merge is
+     lossless because the SOURCE is coarse, not because the tree is right.
+
+rule applied to each mismatch
+  below 10x  -> transcription slip; correct the digit in place, record the row.
+  at or above, or any n / T0 / Ea / units mismatch -> STOP, report, leave it alone:
+    that size of error is a units or convention problem, and rescaling A to make k(T)
+    look right would bury it.  Entry 13 of this family was exactly that case (561x).
+
+0 of 12 [Tanarro2015] entries disagree with Table 1
+exit status: 0

@@ -1,0 +1,19 @@
+cwd                = /home/alon/Code/RMG-Py-i223-ct-node-repair
+database.directory = /home/alon/Code/RMG-database-i223-charge-transfer-node-repair/input
+family loaded from  = /home/alon/Code/RMG-database-i223-charge-transfer-node-repair/docs/i154-carry-chemistry/held-back/Plasma_Charge_Transfer
+
+PRECONDITION NOT MET
+  training entries present : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28]
+  missing                  : [17]
+
+  This probe reads the two [Gupta1990] entries as originally transcribed, index 13
+  and index 17.  Index 17 is the duplicate NO+/O2 rate that I-223 deleted and index
+  13's T0 was corrected in the same commit, so neither is in this branch's HEAD in
+  its original form.  Point the probe at a pre-edit checkout of the family:
+
+      git worktree add <dir> d07add74a   # or any commit at or before the base
+      I223_FAMILY_ROOT=<dir>/docs/i154-carry-chemistry/held-back \
+          ./run.sh t0 probe_t0.py
+
+  The saved evidence for the original run is logs/t0.stdout.log.
+exit status: 2

@@ -10,13 +10,17 @@ to the code worktree.
 printed at the top of every log in `logs/`. Every probe also prints `family loaded from`, because
 the family was **never installed under `input/`** — it is loaded straight from
 `docs/i154-carry-chemistry/held-back/Plasma_Charge_Transfer/` via `KineticsDatabase.load_families`,
-and the "before" runs load a pristine `git show HEAD:` checkout in `$TMPDIR/i223-before/`, so
-before and after are measured by identical code against different files.
+and the "before" runs load a pristine checkout of the family at the branch base `d07add74a` in
+`$TMPDIR/i223-before/`, so before and after are measured by identical code against different files.
 
 Every check was run **one at a time** (`probe_checks.py`). This is not optional here:
 `kinetics_check_groups_nonidentical` and three of its neighbours do not return `False`, they raise
 `ValueError`, which escapes the `with check:` block and aborts the whole family — so a suite run
 reports at most one failing node per family and silently never runs the later checks.
+
+> **Status: all twelve family checks pass.** The first round of this ticket left
+> `kinetics_check_sample_can_react` red; it was green before the branch, so the branch had traded
+> one red check for another. §3 is the account of how that was found and fixed.
 
 ---
 
@@ -39,7 +43,9 @@ Exactly the two the brief named, with the charges it predicted. Note where the c
 `H2_ion` sample: the labelled `*1` came out **neutral** and the −1 landed on the *unlabelled* atom.
 
 `logs/checks-before.stdout.log`: all eleven other family checks pass; only
-`kinetics_check_sample_descends_to_group` fails. That baseline matters for §3.
+`kinetics_check_sample_descends_to_group` fails. **That baseline is the contract the repair has to
+meet — no check green there may be red at the end.** It is also the only reason the first round's
+regression was catchable at all.
 
 ### Why each one failed
 
@@ -67,9 +73,7 @@ before this ticket, not merely un-sampleable.
 
 ---
 
-## 2. The repairs
-
-### `Noble_cation`: `[He,Ne,Ar] ux px c+1` → `[Ar+,Ar,He,Ne] ux px c+1`
+## 2. `Noble_cation`: `[He,Ne,Ar] ux px c+1` → `[Ar+,Ar,He,Ne] ux px c+1`
 
 Measured against every candidate (`logs/noble.stdout.log`, `logs/parent.stdout.log`):
 
@@ -96,45 +100,317 @@ idiom this copy already uses for `Anion` — drops Ar₂⁺ and ArH⁺, because 
 concrete children and there is no atom type for a *bonded* noble-gas cation other than `Ar+`. A node
 that passes by being narrowed into something it does not mean is worse than one that fails.
 
-### `H2_ion`: bond removed
+### How fragile the ordering is — the two things the first round left unsaid
+
+The comment in `groups.py` originally said only "`pick_wildcards` takes the first atomtype". Both
+halves of what makes that safe are now recorded there, because both were verified in the source and
+neither is obvious from the file:
+
+- **`pick_wildcards` has a second stage.** After the first pass it walks each atom again
+  (`rmgpy/molecule/group.py:2921-2925`) and, if the chosen atomtype is still *generic*, replaces it
+  with the first entry of that atomtype's `.specific` list in `allElements` order. `Ar+` is already
+  specific and passes through untouched. A generic `Ar` in first position would not — what it became
+  would be decided by `allElements`, not by this file. Leading with a charge-specific atomtype is
+  what takes that decision away from RMG.
+- **The ordering survives a round trip.** `to_adjacency_list` emits the atomtype list with a plain
+  `','.join` and no sort (`rmgpy/molecule/adjlist.py:967`), so re-reading a written-out copy of this
+  family preserves `Ar+` in first position. The repair is fragile only against a human re-sorting the
+  list by hand, not against RMG's own serialization. That is worth knowing before anyone runs this
+  family through a save/load cycle and assumes the worst.
+
+---
+
+## 3. `H2_ion`: deleted, after the first round's repair traded one red check for another
+
+This is the part of the first round that was wrong, and it is worth stating plainly rather than
+folding into a summary.
+
+The first round rewrote the node in the unbonded form, `[H+].[H]`. That fixed the sampling — the node
+reached root `A` at +1 and matched `H2p_r1` for the first time — and it turned
+`kinetics_check_sample_can_react` red:
 
 ```
-1 *1 H u0 p0 c+1        (was:  1 *1 H u0 p0 c+1 {2,S}  )
-2    H u1 p0 c0         (      2    H u1 p0 c0  {1,S}  )
+Error in family Plasma_Charge_Transfer when reacting [H+].[H] + [H][H].
+apply_recipe returned None, indicating wrong number of products or a charged product.
 ```
+(`logs/checks-h2kept.stderr.log`)
 
-Samples `[H+].[H]` at **+1** and — unlike the authored form — actually matches `H2p_r1`. Training
-entry 2 now resolves to the template `H2_ion;H_anion` instead of falling back to `H_ion;H_anion`
-(`logs/rules.stdout.log`). This preserves the node's meaning exactly: it is the same "the H⁺ centre
-of a molecular hydrogen cation" it always claimed to be, now written the way the dictionary writes
-it.
+That check was **PASS in `logs/checks-before.stdout.log`**. So the branch closed
+`sample_descends_to_group` and opened `sample_can_react`, and the family still had one failing check.
+The first round argued the new red was more honest than the old green — the pre-edit pass *is*
+vacuous, for the reason below — and left it red on that argument. That was the wrong call: an
+argument about which failure is more informative does not license shipping a family that cannot pass
+its own suite, and it would have blocked the install gate this ticket exists to clear.
 
-### `O2_neutral`: new node (index 213), child of `O_neutral`
+### Why the node cannot be made to work
+
+Measured in `logs/h2-recipe.stdout.log`:
+
+- training entry 2 is **H2⁺ + H⁻ → H₂ + H**. The electron arriving on H2⁺ becomes the *second*
+  electron of the H–H bond;
+- the recipe is charge-only (`LOSE_CHARGE *1`, `GAIN_CHARGE *2`) — it has no bond-forming action;
+- so from an unbonded `[H+].[H]` it can only produce `[H].[H]`, two separate H atoms.
+  `_generate_product_structures` calls `product_structure.split()`, gets 3 structures where
+  `product_num` is 2, and returns `None`.
+
+This is not a property of how the node is written. It is a property of the recipe: **a charge-only
+family can never produce bonded H₂ from H2⁺**, so there is no adjacency list for this node that both
+matches `H2p_r1` and reacts. The pre-edit pass was vacuous in the same direction — the old sample
+`[H][H-]` is a molecule RMG refuses to build as a species, and `apply_recipe` on it returned
+`['[H][H-]', '[H][H]']`, i.e. the charge never moved. A third option, giving H2⁺ a `vdW` bond in both
+group and dictionary, turns the check green and was rejected as green-and-wrong: measured, it returns
+`['[H+].[H]', '[H][H]']` — an "H₂" that is two unbonded H atoms and a charge that never transferred.
+
+### The fix, and what it costs
+
+Deleting the node turns **all twelve family checks green** (`logs/checks-h2del.stdout.log`, then
+`logs/checks-after.stdout.log` at HEAD). Index 102 is left unused rather than renumbering, and the
+reasoning above sits in `groups.py` at the node's former position, so the next reader does not
+re-derive it and re-add the node.
+
+It is not free, and the first round's stated reason for keeping the node — that dropping it would
+create a second equal-rank duplicate — was **half right**. Training entry 2 does fall back to
+`H_ion;H_anion`, where entry 1 already sits, so the family goes from four colliding template labels
+to five. Two measurements say to accept that anyway:
+
+1. **It is not a regression, it is the status quo ante.** `logs/rules-before.stdout.log` shows
+   `H_ion;H_anion` holding entries 1 and 2 at the branch base. The first round's node was *preventing*
+   a collision that had always been there; deleting it restores the base, it does not introduce
+   anything.
+2. **The collision is inert.** Entry 2 describes a reaction this family provably cannot generate, so
+   a rule at `H_ion;H_anion` can only ever be applied to H⁺ + H⁻ — which entry 1 describes exactly.
+   Entry 1 winning the tie is the *correct* outcome, not a silent loss. The two rates differ by 1.11×
+   in any case (`logs/collisions.stdout.log`).
+
+### Training entry 2 is kept, and annotated
+
+Entry 2 is the only sourced rate in this repo for H2⁺ + H⁻, and it is a reaction that belongs in a
+library, not in a charge-only family. It is kept with a `longDesc` saying exactly that.
+
+This is deliberately **not** the treatment entry 17 got, and the difference is the whole point: entry
+17 was a *duplicate* — a rival fit for a reaction this family does cover — so deleting it lost nothing
+that could not be recovered from the surviving entry. Entry 2 is a *unique* rate for a reaction the
+family cannot cover, so deleting it would destroy information with no fallback. The two look like the
+same action and are not.
+
+---
+
+## 4. Two more tree changes: `O2_neutral` and `N2_neutral`
+
+These are separate decisions with separate justifications, and the first round ran them together.
+Splitting them apart matters because only one of them is coupled to the entry-17 deletion.
+
+### `O2_neutral` (index 213, child of `O_neutral`) — coupled to the deletion
 
 ```
 1 *2 O u1 p2 c0 {2,S}
 2    O u1 p2 c0 {1,S}
 ```
 
-Added **because of the coupling between two of your decisions**, not as independent scope. Deleting
-entry 17 (§4) to make the Ozawa2008 NO⁺/O₂ value the surviving one accomplishes nothing at the rule
-level while O₂ and atomic O both descend to `O_neutral` (`O ux px c0`): training 14 (NO⁺ + O) and
-training 21 (NO⁺ + O₂) both resolved to `NO_ion;O_neutral`, and `get_rule` keeps the lower index, so
-entry 14 shadowed entry 21 regardless. Without this node the entry-17 deletion is inert and the
-ticket is internally inconsistent. `O2_neutral` is the minimum that makes that earlier decision take
-effect: training 21 now resolves to `NO_ion;O2_neutral` and the Ozawa rate is actually used. It is
-written concretely, as the ground-state triplet, to match the dictionary's `O2_r2`; it is the only
-training reaction with an O₂ partner, so the blast radius is one reaction.
+This node exists **because deleting entry 17 would otherwise have been inert**. `O_neutral` is
+`O ux px c0`, so atomic O and molecular O₂ both landed on it: training 14 (NO⁺ + O) and training 21
+(NO⁺ + O₂) both resolved to `NO_ion;O_neutral`, and the tie-break keeps the lower index, so entry 14
+shadowed entry 21 regardless of which NO⁺/O₂ fit survived. Choosing Ozawa over Gupta at index 21
+changes nothing at the rule level while that is true. `O2_neutral` is the minimum change that makes
+the entry-17 decision take effect: training 21 now resolves to `NO_ion;O2_neutral` and the Ozawa rate
+is actually reachable.
+
+The deletion is the chemistry call (§5); this node is the plumbing that makes it bite. Neither is a
+reason for the other — the deletion would still be right if the tree had already been fine, and this
+node would still be needed if a different fit had won.
+
+### `N2_neutral` (index 214, child of `N_neutral`) — independent, and required by the criterion in §6
+
+```
+1 *2 N u0 p1 c0 {2,T}
+2    N u0 p1 c0 {1,T}
+```
+
+Not coupled to anything above. `N_neutral` is `N ux px c0`, so atomic N and N₂ both landed on it, and
+training 22 (O₂⁺ + N) shadowed training 23 (O₂⁺ + N₂). Unlike the O⁻/OH⁻ merges, these two rates are
+genuinely different — both `[Ozawa2008]` Table III, but pair-specific, and **107× apart at 10000 K,
+further apart at every lower temperature** (`logs/collisions.stdout.log`). The merge was discarding a
+real, sourced number. §6 states the criterion that says so; this is the ticket applying it rather
+than stating it and declining to act on it.
 
 ---
 
-## 3. Every authored node, after (`logs/after.stdout.log`)
+## 5. The duplicate rate
 
-`PASS 27  FAIL 0  SKIP 1`. 27 authored group entries + the new `O2_neutral` = 28 authored; the
-loaded family reports 30 because `template(products=["A-","B+"])` names two entries `groups.py`
-never defines and RMG fabricates them — they are auto-generated product templates, correctly
-excluded by the check's own `ignore` list. **The brief's "27 group entries" is right for the file
-and wrong for the loaded object.**
+### The brief's premise was wrong, and the primary source says why
+
+`training/reactions.py` carried `NOp_r1 + O2_r2 <=> O2p + NO` twice, both at `rank = 6`:
+
+| index | source | A (cm³/mol·s) | n | Ea | **T0** |
+|---|---|---|---|---|---|
+| 17 | `[Gupta1990]` Table II R19 | 1.8e15 | 0.17 | 65600 cal/mol | **300 K** |
+| 21 | `[Ozawa2008]` Table III | 2.4e13 | 0.41 | 271.1 kJ/mol | **1 K** |
+
+The brief reads the pre-exponentials as differing by ~75×. **They do not share a `T0`**, so that
+comparison is not meaningful. Through rmgpy's own `Arrhenius` objects (`logs/kt.stdout.log`), the
+ratio runs 1.87 (300 K) to 3.76 (1690 K); index 17 only exceeds 1e6 cm³/mol·s above **1530 K**, and
+over that live window the ratio is **3.00–3.76**. A factor of ~3, not 75. Plot in `kT-comparison.png`.
+
+Chasing the provenance settled it. NASA RP-1232 (Gupta, Yos, Thompson & Lee, 1990), Table II, p.45:
+**R19 is `O₂ + NO⁺ ⇌ NO + O₂⁺`, `1.8e15 T^0.17 exp(−3.3e4/T)` cm³/mole·sec** — a bare `T`, no
+`(T/300)` normalisation. Ea = 65600 cal/mol is exactly θ_d = 3.3e4 K (Ea/R = 33011 K), confirming the
+row. **Entry 17 copied Cf verbatim and left `T0 = 300 K`, which makes every k it returns 300^0.17 =
+2.64× too low** (`logs/t0.stdout.log`). The 300 came from the twelve `[Tanarro2015]` entries
+immediately above it in the file, whose Table 1 *is* written `k = A(T/300)^n`.
+
+### Decision: entry 17 deleted, `[Ozawa2008]` (index 21) kept
+
+Three independent reasons, in order of weight:
+
+1. **Physical.** Dividing `A·Tⁿ` by the Langevin capture rate for NO⁺ + O₂
+   (4.51e14 cm³/mol·s, α(O₂) = 1.58 Å³, μ = 15.48 amu) asks how many times the ion–molecule collision
+   limit each fit would demand if every super-threshold collision reacted. Gupta's fit demands
+   **10–19×** the capture limit over 300–10000 K; Ozawa's stays at **0.55–2.3×**, the ordinary range
+   for a polarisable target. For a capture-limited charge transfer, 19× is unphysical.
+2. **Thermochemical.** Ozawa's Ea of 271.1 kJ/mol matches the endothermicity
+   IE(O₂) − IE(NO) = 12.0697 − 9.2642 eV = 2.8055 eV = **270.7 kJ/mol** almost exactly. Gupta's
+   θ_d·R = 274.4 kJ/mol is 3.7 kJ/mol high.
+3. **Internal consistency.** Entries 14, 15, 16, 21, 22 and 23 — the whole air-plasma
+   charge-exchange block — are `[Ozawa2008]` Table III. Keeping index 21 makes the set one model.
+
+Index 17 is deleted and the index left unused rather than renumbering. The Gupta value, its correct
+form, and the reasoning are recorded in the `longDesc` at the top of `training/reactions.py` and in
+index 21's own `longDesc`, so nothing is lost from the record.
+
+### How the shadowing actually happens — both paths, not one
+
+The first round named only `KineticsRules.get_rule`. That is the rate-rule path, and it is not the
+one a real run hits first for a reaction that is *in* the training depository. Both were verified in
+source:
+
+- **Depository first.** `KineticsFamily.get_kinetics` (`rmgpy/data/kinetics/family.py:2667+`) walks
+  `self.depositories` **before** it ever calls `get_kinetics_for_template`. With the default
+  `kineticsDepositories = 'default'` → `['training']` (`rmgpy/rmg/input.py:154-155`), the training
+  depository is in that list, so for the exact reaction NO⁺ + O₂ the depository answers first.
+  `_select_best_kinetics` (`family.py:2655-2664`) then sorts on `(rank, index)` and takes `[0]` —
+  entry 17 over entry 21, on index alone, at equal rank 6.
+- **Rate rules second.** `KineticsRules.get_rule` (`rmgpy/data/kinetics/rules.py:148-154`) sorts on
+  `(1000 if not rank else rank, index)` and takes `[0]`, for any *other* reaction that lands on the
+  same template.
+
+The two paths agree here — index 17 wins both — which is why the first round's conclusion held
+despite naming only one of them. They will not always agree: `_select_best_kinetics` sorts on the
+**training entry** index while `get_rule` sorts on the **rule** index, and those diverge as soon as a
+training entry is deleted or reordered. The mechanism worth remembering is that **`rank` is the field
+that exists to express preference, and at equal rank it discriminates nothing, so an accident of
+numbering decides** — in two places, by two different numbers.
+
+### Entry 13 carried the same `T0` bug — fixed
+
+RP-1232 Table II **R11** is `O + O₂⁺ ⇌ O₂ + O⁺`, `2.92e18 T^−1.11 exp(−2.8e4/T)`. Entry 13
+(`O2p_r1 + O_r2 <=> O2 + Op`) copied Cf verbatim with `T0 = 300 K` and `n = −1.11`. Because n is
+negative and large, that made it **561× too high at every temperature** (`logs/t0.stdout.log`).
+`T0` corrected to 1 K; `A = 2.92e18` is Gupta's Cf, untouched. Outside the brief, on your explicit
+call.
+
+### No reaction is left at equal rank
+
+`logs/rules.stdout.log` runs `add_rules_from_training` the way a real run does and reports every rule
+label holding more than one entry. **No reaction label appears twice**, in training or in the rules.
+
+---
+
+## 6. When is a merged template node a defect? A criterion, and all five collisions measured
+
+The first round found five template labels each catching two training reactions, split one of them,
+and annotated the rest as "a tree-granularity question, not a duplicate-entry defect". Those two
+things cannot both stand without a rule saying which collisions matter. Here is the rule, and the
+measurement for every pair (`probe_collisions.py`, `logs/collisions.stdout.log`).
+
+**Split a merged template when both hold:**
+
+1. the two reactants are distinguishable by a group RMG's existing atom types can express, **and** the
+   family's recipe can process the resulting sample — a node the recipe turns into `None` is not a
+   repair, it is §3;
+2. the two rates differ, somewhere in their shared validity range, by more than **4×**.
+
+The 4× is not arbitrary. This ticket measured the disagreement between two independent literature fits
+of the *same* reaction — Gupta R19 vs Ozawa Table III for NO⁺ + O₂ — at **1.9–3.8×** (§5). Below that,
+two rates merged onto one node disagree by less than the source-to-source scatter for a single
+reaction, so splitting buys a distinction the underlying data cannot support. Above it, the merge is
+discarding real information.
+
+| template pair | worst ratio | expressible | verdict | why the verdict holds |
+|---|---|---|---|---|
+| 1 / 2 · H⁺+H⁻ vs H2⁺+H⁻ | 1.11× | **no** | leave merged | recipe cannot process an H2⁺ node (§3) |
+| 9 / 12 · H₂O⁺+O⁻ vs H₂O⁺+OH⁻ | 1.00× | yes | leave merged | **coarse source — expires, see below** |
+| 8 / 10 · O₂⁺+O⁻ vs O₂⁺+OH⁻ | 1.00× | yes | leave merged | **coarse source — expires, see below** |
+| 22 / 23 · O₂⁺+N vs O₂⁺+N₂ | 6.4e18× (107× at 10000 K) | yes | **split** | rates genuinely differ → `N2_neutral`, §4 |
+| 14 / 21 · NO⁺+O vs NO⁺+O₂ | 3.6e27× | yes | **split** | rates genuinely differ → `O2_neutral`, §4 |
+
+Zero merged pairs are left that the criterion condemns. Both splits it demands are in the branch.
+
+### The two "lossless" merges are lossless because the *source* is coarse — and that expires
+
+Entries 8, 9, 10 and 12 return **bit-identical** rates, so splitting `O_anion` would change nothing
+any rate depends on. Four independent measurements do not land on the same three digits, so I read the
+primary document rather than concluding the tree was right.
+
+`[Tanarro2015]` Table 1, open author manuscript at
+[europepmc.org/articles/PMC4685741](https://europepmc.org/articles/PMC4685741), section "Ion-ion
+neutralization", rows IN1–IN23:
+
+- **18 of the 23 rows carry the identical `2×10⁻⁷ (Tg/300)^−0.5`**, and **16 of those cite one
+  reference** — [56] Kossyi, Kostinsky, Matveyev & Silakov, *Plasma Sources Sci. Technol.* **1** (1992)
+  207, a kinetic-scheme review, not a measurement of any particular ion pair.
+- The rows that *differ* are exactly the ones with a pair-specific source: IN1 `1.8e-7` [21], IN4
+  `2.3e-7` [60], IN12 exponent −1 [57], IN17 `1e-7` with no T dependence, IN23 `4e-7` [21]. The table
+  carries pair-specific values wherever the authors had them.
+- The authors say why they did not refine the rest: *"Other mechanisms such as electron impact
+  neutralization and ion-ion recombination are also considered, but their importance is orders of
+  magnitude lower"*, and *"The relevance of the negative ion processes in the global chemistry of the
+  discharge is low"*.
+
+So the answer is the second kind: **one class estimate applied to a family of reactions, not four
+determinations that agree.** Specifically, entries 9 and 12 both quote [56] directly; entries 8 and 10
+reach the same number by two citations ([73] Gudmundsson and [56] Kossyi) that are themselves quoting
+it.
+
+That changes what the follow-up should say. Those merges cost nothing **today**, because the source
+does not distinguish the pairs — not because `O_anion` is at the right granularity. **The first
+pair-specific measurement for O⁻ or OH⁻ makes this merge start silently discarding data, exactly as
+the N/N₂ merge did until §4.** The finding has an expiry date and is labelled as one in
+`logs/collisions.stdout.log`, in the `groups.py` comment, and in §8 below. The `OH_anion`
+sibling-vs-child question stays open on that basis.
+
+### `[Tanarro2015]` audited in full: eleven rows exact, one slip corrected
+
+With Table 1 open, all twelve Tanarro entries were audited row by row — reaction, A, exponent, T0, Ea,
+units (`probe_tanarro.py`, `logs/tanarro.stdout.log`). Eleven match exactly. One correction:
+
+| entry | row | as entered | Table 1 | factor | action |
+|---|---|---|---|---|---|
+| 1 | IN1 · H⁺ + H⁻ → 2H | `A = 1.88e-7` | `1.8e-7` | 1.044× | corrected in place |
+
+Finding a wrong digit in the first row checked is evidence the block was never verified against its
+source, which is why the audit went to all twelve rather than stopping at one.
+
+**The rule the audit applied, and it is the load-bearing part.** A discrepancy under **10×** is a
+transcription slip: correct the digit in place, recording the row so each correction is independently
+checkable. A discrepancy of an order of magnitude or more — or *any* mismatch in exponent, T0, Ea or
+units — is **stopped and reported, not fixed**, because an error that size is usually a units or
+convention mismatch rather than a typo, and rescaling A to make k(T) look right leaves the real defect
+in the file and much harder to find. Entry 13 of this family is the precedent: it read as a wrong
+number and was a wrong `T0` convention worth 561×. No row in this audit hit the stop threshold.
+
+**Consequence of the entry-1 correction on §6's own conclusions: none.** The entry-1 vs entry-2 ratio
+moves from 1.06× to **1.11×**, still far below the 4× threshold, so the `H_ion;H_anion` verdict is
+unchanged and the lossless finding is unaffected. Stated here so no reader has to re-derive it.
+
+---
+
+## 7. Every authored node, and every check, after
+
+`logs/after.stdout.log`: **PASS 27  FAIL 0  SKIP 1**. 26 surviving authored group entries + `O2_neutral`
++ `N2_neutral` = 28 authored (`H2_ion` deleted); the loaded family reports 30 because
+`template(products=["A-","B+"])` names two entries `groups.py` never defines and RMG fabricates them —
+auto-generated product templates, correctly excluded by the check's own `ignore` list. **The brief's
+"27 group entries" is right for the file and wrong for the loaded object.**
 
 | node | root | sample | charge | descends to | verdict |
 |---|---|---|---|---|---|
@@ -146,7 +422,6 @@ and wrong for the loaded object.**
 | **Noble_cation** | A | `[ArH+]` | **+1** | Noble_cation | **PASS** |
 | Metal_cation | A | `[Li+]` | +1 | Li_ion | PASS |
 | H_ion | A | `[H+]` | +1 | H_ion | PASS |
-| **H2_ion** | A | `[H+].[H]` | **+1** | H2_ion | **PASS** |
 | O_atom_ion | A | `[O+]` | +1 | O_atom_ion | PASS |
 | OH_ion | A | `[OH+]` | +1 | OH_ion | PASS |
 | H2O_ion | A | `[OH2+]` | +1 | H2O_ion | PASS |
@@ -163,181 +438,48 @@ and wrong for the loaded object.**
 | O_neutral | B | `O` | 0 | O_neutral | PASS |
 | N_neutral | B | `N` | 0 | N_neutral | PASS |
 | **O2_neutral** | B | `[O][O]` | 0 | O2_neutral | **PASS** |
+| **N2_neutral** | B | `N#N` | 0 | N2_neutral | **PASS** |
 
-### Full per-check status (`logs/checks-after.stdout.log`)
+### Full per-check status
 
-| check | before | after |
-|---|---|---|
-| correct_number_of_nodes_in_rules | PASS | PASS |
-| nodes_in_rules_found_in_groups | PASS | PASS |
-| groups_found_in_tree | PASS | PASS |
-| **groups_nonidentical** | PASS | PASS |
-| child_parent_relationships | PASS | PASS |
-| siblings_for_parents | PASS | PASS |
-| cd_atom_type | PASS | PASS |
-| reactant_and_product_template | PASS | PASS |
-| num_reactant_and_product | PASS | PASS |
-| family_electrons_reach_training_reactions | PASS | PASS |
-| **sample_descends_to_group** | **RAISED ValueError** | **PASS** |
-| **sample_can_react** | PASS (vacuously — see below) | **RAISED ValueError** |
-
-### `sample_can_react` — the one red check, and why it is progress
-
-One error, on one pair (`logs/checks-after.stderr.log`):
-
-```
-Error in family Plasma_Charge_Transfer when reacting [H+].[H] + [H][H].
-apply_recipe returned None, indicating wrong number of products or a charged product.
-```
-
-`Noble_cation`'s `[ArH+]` reacts fine. The cause is structural, measured in
-`logs/h2-recipe.stdout.log`:
-
-- training entry 2 is **H2⁺ + H⁻ → H₂ + H**. The electron arriving on H2⁺ becomes the *second*
-  electron of the H–H bond;
-- the recipe is charge-only (`LOSE_CHARGE *1`, `GAIN_CHARGE *2`) — it has no bond-forming action;
-- so from an unbonded `[H+].[H]` it can only produce `[H].[H]`, two separate H atoms.
-  `_generate_product_structures` calls `product_structure.split()`, gets 3 where `product_num` is 2,
-  and returns `None`.
-
-**The pre-edit pass was vacuous.** The old sample `[H][H-]` is a molecule RMG refuses to build as a
-species, and `apply_recipe` on it returned `['[H][H-]', '[H][H]']` — the charge never moved at all.
-The check passed on a pair that meant nothing. A third option (give H2⁺ a `vdW` bond in both group
-and dictionary) would turn the check green and was rejected for the same reason: measured, it
-returns `['[H+].[H]', '[H][H]']`, i.e. it "produces" an H₂ that is two unbonded H atoms and a
-charge that never transferred. Green and wrong.
-
-Dropping `H2_ion` instead would have pushed training entry 2 onto `H_ion;H_anion` — the *same*
-template as training entry 1 — creating a second equal-rank duplicate, which is the defect this
-ticket exists to remove.
-
-So the red check is a real limitation now stated out loud: **this family's recipe cannot represent
-the H2⁺ mutual-neutralisation channel**, because RMG cannot represent H2⁺'s bond. If that channel is
-wanted, it needs a library entry, not this family.
-
----
-
-## 4. The duplicate rate
-
-### The brief's premise was wrong, and the primary source says why
-
-`training/reactions.py` carried `NOp_r1 + O2_r2 <=> O2p + NO` twice, both at `rank = 6`:
-
-| index | source | A (cm³/mol·s) | n | Ea | **T0** |
-|---|---|---|---|---|---|
-| 17 | `[Gupta1990]` Table II R19 | 1.8e15 | 0.17 | 65600 cal/mol | **300 K** |
-| 21 | `[Ozawa2008]` Table III | 2.4e13 | 0.41 | 271.1 kJ/mol | **1 K** |
-
-The brief reads the pre-exponentials as differing by ~75×. **They do not share a `T0`**, so that
-comparison is not meaningful. Through rmgpy's own `Arrhenius` objects (`logs/kt.stdout.log`):
-
-| T / K | index 17 | index 21 | 17/21 |
+| check | before (`checks-before`) | first round (`checks-h2kept`) | now (`checks-after`) |
 |---|---|---|---|
-| 300 | 2.93e−33 | 1.56e−33 | 1.87 |
-| 1000 | 1.02e+01 | 2.82e+00 | 3.61 |
-| 2000 | 1.69e+08 | 4.50e+07 | 3.75 |
-| 4000 | 7.28e+11 | 2.07e+11 | 3.51 |
-| 6000 | 1.22e+13 | 3.71e+12 | 3.30 |
-| 10000 | 1.20e+14 | 4.02e+13 | 3.00 |
+| correct_number_of_nodes_in_rules | PASS | PASS | PASS |
+| nodes_in_rules_found_in_groups | PASS | PASS | PASS |
+| groups_found_in_tree | PASS | PASS | PASS |
+| groups_nonidentical | PASS | PASS | PASS |
+| child_parent_relationships | PASS | PASS | PASS |
+| siblings_for_parents | PASS | PASS | PASS |
+| cd_atom_type | PASS | PASS | PASS |
+| reactant_and_product_template | PASS | PASS | PASS |
+| num_reactant_and_product | PASS | PASS | PASS |
+| family_electrons_reach_training_reactions | PASS | PASS | PASS |
+| **sample_descends_to_group** | **RAISED** | PASS | **PASS** |
+| **sample_can_react** | PASS (vacuously) | **RAISED** | **PASS** |
 
-Ratio min 1.87 (300 K), max 3.76 (1690 K); index 17 only exceeds 1e6 cm³/mol·s above **1530 K**, and
-over that live window the ratio runs **3.00–3.76**. So: a factor of ~3, not 75. Plot in
-`kT-comparison.png`.
-
-Chasing the provenance settled it. I pulled NASA RP-1232 (Gupta, Yos, Thompson & Lee, 1990) and OCRd
-Table II, p.45. **R19 is `O₂ + NO⁺ ⇌ NO + O₂⁺`, `1.8e15 T^0.17 exp(−3.3e4/T)` cm³/mole·sec** — a
-bare `T`, no `(T/300)` normalisation. Ea = 65600 cal/mol is exactly θ_d = 3.3e4 K (Ea/R = 33011 K),
-confirming the row. **Entry 17 copied Cf verbatim and left `T0 = 300 K`, which makes every k it
-returns 300^0.17 = 2.64× too low** (`logs/t0.stdout.log`). The 300 came from the twelve
-`[Tanarro2015]` entries immediately above it in the file, whose Table 1 *is* written `k = A(T/300)^n`
-— for them T0 = 300 K is correct.
-
-### Decision: entry 17 deleted, `[Ozawa2008]` (index 21) kept
-
-Three independent reasons, in order of weight:
-
-1. **Physical.** Dividing `A·Tⁿ` by the Langevin capture rate for NO⁺ + O₂
-   (4.51e14 cm³/mol·s, α(O₂) = 1.58 Å³, μ = 15.48 amu) asks how many times the ion–molecule collision
-   limit each fit would demand if every super-threshold collision reacted:
-
-   | T / K | Gupta (T0 corrected) | Ozawa idx 21 | G/O | G prefac/k_L | O prefac/k_L |
-   |---|---|---|---|---|---|
-   | 300 | 8.02e−33 | 1.56e−33 | 5.13 | 10.5 | 0.55 |
-   | 2000 | 4.47e+08 | 4.50e+07 | 9.94 | 14.6 | 1.20 |
-   | 6000 | 3.23e+13 | 3.71e+12 | 8.71 | 17.5 | 1.89 |
-   | 10000 | 3.18e+14 | 4.02e+13 | 7.91 | **19.1** | **2.33** |
-
-   Gupta's fit demands 10–19× the capture limit; Ozawa's stays at 0.55–2.3×, which is the ordinary
-   range for a polarisable target. For a capture-limited charge transfer, 19× is unphysical.
-2. **Thermochemical.** Ozawa's Ea of 271.1 kJ/mol matches the endothermicity
-   IE(O₂) − IE(NO) = 12.0697 − 9.2642 eV = 2.8055 eV = **270.7 kJ/mol** almost exactly. Gupta's
-   θ_d·R = 274.4 kJ/mol is 3.7 kJ/mol high.
-3. **Internal consistency.** Entries 14, 15, 16, 21, 22 and 23 — the whole air-plasma
-   charge-exchange block — are `[Ozawa2008]` Table III. Keeping index 21 makes the set one model.
-
-Index 17 is deleted and the index left unused rather than renumbering. The Gupta value, its correct
-form, and the reasoning are recorded in the `longDesc` at the top of `training/reactions.py` and in
-index 21's own `longDesc`, so nothing is lost from the record.
-
-### Entry 13 carried the same `T0` bug — fixed
-
-RP-1232 Table II **R11** is `O + O₂⁺ ⇌ O₂ + O⁺`, `2.92e18 T^−1.11 exp(−2.8e4/T)`. Entry 13
-(`O2p_r1 + O_r2 <=> O2 + Op`) copied Cf verbatim with `T0 = 300 K` and `n = −1.11`. Because n is
-negative and large, that made it **561× too high at every temperature** (`logs/t0.stdout.log`):
-
-| T / K | as entered | source form | ratio |
-|---|---|---|---|
-| 300 | 8.42e−23 | 1.52e−25 | 0.00180 |
-| 4000 | 1.50e+14 | 2.67e+11 | 0.00178 |
-| 10000 | 3.62e+15 | 6.45e+12 | 0.00178 |
-
-`T0` corrected to 1 K; `A = 2.92e18` is Gupta's Cf, untouched. This was outside the brief and is
-here on your explicit call.
-
-### No reaction is left at equal rank
-
-`logs/rules.stdout.log` runs `add_rules_from_training` the way a real run does and reports every rule
-label holding more than one entry. **No reaction label appears twice**, in training or in the rules.
+**No check that was green before this branch is red now**, and both originally-failing conditions are
+closed. `logs/checks-h2del.stdout.log` is the isolated measurement that the deletion, and not
+something else in the branch, is what turns the twelfth check green.
 
 ---
 
-## 5. Clean `git status`
+## 8. What this could not reach
 
-```
-$ git status --porcelain -- input/ docs/i202-charge-transfer-carry/
-[no output]
+**Open, and needing your decision.** One tree-design question, now with its cost quantified and its
+expiry stated:
 
-$ git diff --stat
- .../held-back/Plasma_Charge_Transfer/groups.py     | 48 +++++++++++++++++++--
- .../Plasma_Charge_Transfer/training/reactions.py   | 50 +++++++++++++++-------
- 2 files changed, 80 insertions(+), 18 deletions(-)
-```
+- **Should `OH_anion` be a sibling of `O_anion` or a child of it?** `O_anion` = `O ux p3 c-1` catches
+  both O⁻ and OH⁻, merging training 8/10 and 9/12. Per §6 this costs **nothing today** and the reason
+  is a property of `[Tanarro2015]`, not of the tree: the source gives both sides one class estimate.
+  It stops being free the moment a pair-specific rate for O⁻ or OH⁻ enters the file. The choice
+  decides what an unlisted anion falls back to and is not derivable from the training set.
 
-Nothing under `input/` changed. The 24-entry copy under `docs/i202-charge-transfer-carry/` is
-untouched. `test/conftest.py` untouched. The RMG-Py worktree has no commits and no tracked-file
-changes (build artifacts only). No atom type was added or changed. `autoGenerated` and
-`own_reverse` were not set. Nothing pushed, nothing merged.
-
----
-
-## 6. What this could not reach
-
-**Left open deliberately, needing your decision.** Three more template nodes are coarser than their
-chemistry, in the same way `O_neutral` was, and I stopped at the one that unblocked the entry-17
-decision (`logs/rules.stdout.log`):
-
-| template | colliding training reactions | what is merged |
-|---|---|---|
-| `O2_ion;O_anion` | 8 (O₂⁺ + O⁻), 10 (O₂⁺ + OH⁻) | O⁻ and OH⁻ both match `O_anion` = `O ux p3 c-1` |
-| `H2O_ion;O_anion` | 9 (H₂O⁺ + O⁻), 12 (H₂O⁺ + OH⁻) | same |
-| `O2_ion;N_neutral` | 22 (O₂⁺ + N), 23 (O₂⁺ + N₂) | N and N₂ both match `N_neutral` = `N ux px c0` |
-
-In each, `get_rule` keeps the lower index and the other training reaction's rate is never used —
-silently, with nothing logged. That is the same shadowing that motivated `O2_neutral`, and the four
-colliding pairs above are the evidence a follow-up should start from. The blocking sub-question is a
-tree-design call that needs the owner, not a worker: **should `OH_anion` be a sibling of `O_anion` or
-a child of it?** That choice decides what an unlisted anion falls back to, and it is not derivable
-from the training set.
+**Source verification still undone.** `[Gupta1990]` (RP-1232 Table II) and `[Tanarro2015]` (Table 1,
+all twelve entries, §6) are now verified against their primary documents. **`[Ozawa2008]` Table III
+and `[Aiken2023]` Table 3.16 are not** — nine entries, including both sides of the N/N₂ split this
+ticket just made on the strength of their numbers. Their `T0 = 1 K` is inferred from internal
+consistency (θ values line up with bare-T fits), not read. The audit rule in §6 is written down so
+whoever takes those two can apply the same one.
 
 **Unprovable until the family is installed under `input/`:**
 
@@ -349,8 +491,11 @@ from the training set.
 - `get_reaction_template` matches on **reactant-side labelled atoms only and never inspects
   `reaction.products`**. Every green here — the descent table, the template assignments, the rule
   generation — is therefore evidence about the *reactant* side of each entry. It is not evidence that
-  the recipe produces the stated products. The one place I did test the product side,
-  `sample_can_react`, is exactly where the H2⁺ defect surfaced.
+  the recipe produces the stated products. The one place the product side is tested,
+  `sample_can_react`, is exactly where the H2⁺ defect surfaced — and note that it surfaced only for a
+  node whose *sample* the recipe rejected. Entry 2 remains in the training set as a reaction whose
+  products this family cannot make, and **no check in the suite catches that**; it is caught here only
+  because §3 went looking. Other training entries have not been audited that way.
 - Reactor admissibility is untested. I-157 established that loading ≠ admissible: reversible
   Te-dependent recombinations are refused at `initialize_model`. Nothing here was put through a
   reactor.
@@ -363,18 +508,46 @@ from the training set.
   0.36 kJ/mol — but it means the library-level and cross-family checks in `test_kinetics` were not
   run at all.
 
-**Source verification I did not do.** Only `[Gupta1990]` was checked against the primary document
-(NASA RP-1232 Table II, OCRd from the Caltech mirror). `[Tanarro2015]`, `[Ozawa2008]` and
-`[Aiken2023]` were not fetched; their `T0` conventions are inferred from internal consistency
-(Tanarro's `(T/300)` form is standard for low-temperature plasma tables; Ozawa and Aiken already
-carry `T0 = 1 K` and their θ values line up with bare-T fits). A full `T0` audit of all 27 entries
-against their four primary sources remains undone — it is the natural companion to the entry-13 fix
-and would be a materially larger job than it looks.
-
 **OCR caveat.** RP-1232 is a scanned document. The exponent in R19 rendered as `10lG`, which I read
 as 10¹⁵ on the strength of n = 0.17 and θ_d = 3.3e4 matching the database entry exactly, and of the
-same OCR rendering 10¹⁸ as `10 1S` in R11. If that digit is wrong, the *relative* argument in §4
+same OCR rendering 10¹⁸ as `10 1S` in R11. If that digit is wrong, the *relative* argument in §5
 changes but the `T0` finding does not — the bare-`T` form of the table is unambiguous in the scan.
+`[Tanarro2015]`, by contrast, was read from a text-layer PDF, not OCR.
+
+---
+
+## 9. Deviations from the brief, each on an explicit decision of yours
+
+| deviation | why it is outside the brief | your call |
+|---|---|---|
+| `H2_ion` **deleted**, not repaired | the brief said make it sample and descend | rework directive's lean, confirmed by measurement: deletion is the only state where all twelve checks pass |
+| `sample_can_react` no longer red | the first round shipped it red on my argument | reversed — a more informative failure is still a failure |
+| entry 13's `T0` corrected | a different reaction from the duplicate | yours, first round |
+| `O2_neutral` added | tree change, outside "repair these two nodes" | yours, first round — it is what makes the entry-17 deletion take effect |
+| `N2_neutral` added | second tree change, outside the brief entirely | yours, this round — the criterion in §6 condemns the merge at 107× |
+| training entry 2 annotated, not deleted | training-data edit outside the brief | yours, this round — unique rate, no fallback, unlike entry 17 |
+| training entry 1 `A` corrected 1.88e-7 → 1.8e-7 | training-data edit outside the brief | yours, this round |
+| all twelve `[Tanarro2015]` entries audited | source verification outside the brief | yours, this round |
+
+---
+
+## 10. Clean `git status`
+
+```
+$ git status --porcelain -- input/ docs/i202-charge-transfer-carry/ test/conftest.py
+[no output]
+
+$ git diff --stat d07add74a -- docs/i154-carry-chemistry/
+ .../held-back/Plasma_Charge_Transfer/groups.py     | 110 ++++++++++++++++++---
+ .../Plasma_Charge_Transfer/training/reactions.py   |  99 ++++++++++++++++---
+ 2 files changed, 181 insertions(+), 28 deletions(-)
+```
+
+Nothing under `input/` changed. The 24-entry copy under `docs/i202-charge-transfer-carry/` is
+untouched. `test/conftest.py` untouched. The RMG-Py worktree is at `535c679cf` with no commits and no
+tracked-file changes (build artifacts only). No atom type was added or changed. `autoGenerated` and
+`own_reverse` were not set. **Nothing pushed, nothing merged, and the family is still not installed
+under `input/`.**
 
 ---
 
@@ -387,10 +560,29 @@ changes but the `T0` finding does not — the bare-`T` form of the table is unam
 | `probe_candidates.py` | can RMG build He⁺/Ne⁺/H2⁺; does the old node match anything |
 | `probe_noble.py` | the four `Noble_cation` candidates, sampling and matched set |
 | `probe_parent.py` | parent/child validity of each `Noble_cation` candidate |
-| `probe_h2_recipe.py` | why the repaired `H2_ion` sample cannot react |
+| `probe_h2_recipe.py` | why an H2⁺ node cannot react, in any adjacency list |
 | `probe_kt.py` | k(T) over 300–10000 K for the two duplicate fits |
 | `probe_t0.py` | the `T0` error in both `[Gupta1990]` entries, and the Langevin comparison |
 | `probe_rules.py` | template each training reaction resolves to; equal-rank collisions |
+| `probe_collisions.py` | **the split criterion, applied to all five collisions with rate ratios and source provenance** |
+| `probe_tanarro.py` | **all twelve `[Tanarro2015]` entries audited against Table 1, with the stop rule** |
 | `run.sh` | runner — pins cwd and `PYTHONPATH`, persists **both** streams per probe |
 | `logs/*.{stdout,stderr}.log` | one pair per measurement |
 | `kT-comparison.png` | k(T) and ratio for the duplicate |
+
+Every probe honours `I223_FAMILY_ROOT`, so any of them can be pointed at a pre-edit checkout and the
+before/after comparison is made by identical code. `probe_t0.py` additionally prints a precondition
+message naming that variable when run against a HEAD where entry 17 no longer exists, instead of
+dying on a `KeyError` — it is an argument about the pre-edit file and says so.
+
+### Log index
+
+| log | family read | shows |
+|---|---|---|
+| `before` / `checks-before` | base `d07add74a` | the two node failures; eleven checks green, `sample_descends_to_group` red |
+| `checks-h2kept` | first round's HEAD | `sample_can_react` red — the regression |
+| `checks-h2del` / `nodes-h2del` / `rules-h2del` | deletion variant, in isolation | all twelve green; the `H_ion;H_anion` collision returning |
+| `after` / `checks-after` / `rules` / `collisions` / `tanarro` / `candidates` / `parent` | HEAD | the final state |
+| `rules-before` | base | `H_ion;H_anion` already collided before this branch |
+| `t0` | base | the `[Gupta1990]` `T0` argument |
+| `t0-head` | HEAD | the precondition message, demonstrated |

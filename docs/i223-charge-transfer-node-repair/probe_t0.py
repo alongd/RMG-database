@@ -56,6 +56,28 @@ def main():
     dep = family.get_training_depository()
     by_index = {e.index: e for e in dep.entries.values()}
 
+    # This probe is an argument ABOUT the pre-edit file: it needs both [Gupta1990] entries as they
+    # were originally transcribed, including index 17, which the edit it justifies then deletes.
+    # Run against this branch's HEAD it would otherwise die on a bare KeyError, so say what it wants.
+    missing = sorted(i for i in GUPTA if i not in by_index)
+    if missing:
+        print('PRECONDITION NOT MET')
+        print('  training entries present : {0}'.format(sorted(by_index)))
+        print('  missing                  : {0}'.format(missing))
+        print('')
+        print('  This probe reads the two [Gupta1990] entries as originally transcribed, index 13')
+        print('  and index 17.  Index 17 is the duplicate NO+/O2 rate that I-223 deleted and index')
+        print("  13's T0 was corrected in the same commit, so neither is in this branch's HEAD in")
+        print('  its original form.  Point the probe at a pre-edit checkout of the family:')
+        print('')
+        print('      git worktree add <dir> {0}   # or any commit at or before the base'.format(
+            'd07add74a'))
+        print('      I223_FAMILY_ROOT=<dir>/docs/i154-carry-chemistry/held-back \\')
+        print('          ./run.sh t0 probe_t0.py')
+        print('')
+        print('  The saved evidence for the original run is logs/t0.stdout.log.')
+        return 2
+
     for idx, g in GUPTA.items():
         e = by_index[idx]
         k = e.data

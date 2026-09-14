@@ -1,9 +1,9 @@
 cwd                 = /home/alon/Code/RMG-Py-i223-ct-node-repair
 database.directory  = /home/alon/Code/RMG-database-i223-charge-transfer-node-repair/input
-family loaded from  = /home/alon/Code/RMG-database-i223-charge-transfer-node-repair/docs/i154-carry-chemistry/held-back/Plasma_Charge_Transfer
+family loaded from  = /tmp/claude-1000/i223-h2del/Plasma_Charge_Transfer
 
 training entries    = 27
-group entries       = 30
+group entries       = 29
 
 ignored (products)  = ['A-', 'B+']
 
@@ -36,7 +36,6 @@ O_anion          B              [OH-]                        -1 O_anion         
 O_neutral        B              O                             0 O_neutral        PASS
 N_neutral        B              N                             0 N_neutral        PASS
 O2_neutral       B              [O][O]                        0 O2_neutral       PASS
-N2_neutral       B              N#N                           0 N2_neutral       PASS
 
-PASS 27   FAIL 0   SKIP 1
+PASS 26   FAIL 0   SKIP 1
 exit status: 0

@@ -6,14 +6,31 @@ NOT A DEPOSITORY. This file is never loaded by RMG and must not be renamed to re
 Depositories are discovered by DIRECTORY name -- `load` walks the family directory and reads
 `<subdir>/reactions.py` (family.py:749-762) -- so this file sits harmlessly beside the real one.
 
-WHAT THESE TWELVE ENTRIES ARE.
+WHAT THESE ELEVEN ENTRIES ARE.
 
-They are the chemistry that left Plasma_Charge_Transfer when I-223 narrowed it. Every rate below
-is correct and was audited against its primary source; what each has lost is a family able to
-generate its reaction. They are kept here, rather than deleted, because the rate is the expensive
-part and none of it is in question -- see report.md sections 5, 6 and 11 for the audits.
+They are the chemistry that left Plasma_Charge_Transfer when I-223 narrowed it. What each has lost
+is a family able to generate its reaction, not its rate. They are kept here, rather than deleted,
+because the rate is the expensive part -- see report.md sections 5, 6 and 11 for the audits.
 
-WHY EACH ONE LEFT, in four groups:
+ONE RATE HERE IS NOT PRIMARY-SOURCE VERIFIED, and an earlier version of this header wrongly said
+they all were. The [Ozawa2008] entries -- indices 14 and 21 -- rest on a Table III that this ticket
+could not obtain: every route to it was blocked (report.md section 6, "Ozawa unreachable"). They
+are carried on the secondary transcription they arrived with. Everything else here was read
+against its primary table.
+
+TWELVE ENTRIES LEFT AND ELEVEN REMAIN. Entry 18 (N+ + N2) came back in round 61: it was set aside
+on a claim of impossibility that turned out to be wrong, which is recorded in its own longDesc in
+training/reactions.py and in groups.py at root A. The count in this header, and the group 4 that
+used to hold it, are corrected accordingly.
+
+WHY EACH ONE LEFT. The headline distinction is NOT "needs more than two labels" -- that applies to
+only four of the eleven. Seven need a DIFFERENT RECIPE on the same two-label template, which is a
+much smaller obstacle, and one of the twelve needed neither and is no longer here:
+
+GROUPS 1 AND 2 -- SEVEN DISTINCT ENTRIES (5, 9, 12, 13, 19, 20, 22; entry 20 is in both because
+its cation and its donor each need a different action). These fit the two-label template perfectly.
+What they need is a different RECIPE, and each recipe is already written out in report.md section
+12.3. They are a sibling family waiting to be written, not a grammar limit.
 
 1. THE CATION ACCEPTS ITS ELECTRON BY PAIRING, NOT AS A RADICAL  -- entries 5, 9, 12, 19, 20.
    H2O+ (`O u1 p1 c+1`) and Ar+ (`Ar u1 p3 c+1`) become closed-shell H2O and Ar, which is
@@ -25,22 +42,23 @@ WHY EACH ONE LEFT, in four groups:
    O(3P) `u2 p2` and N(4S) `u3 p1` donate by LOSE_RADICAL. The recipe's GAIN_RADICAL + LOSE_PAIR
    would give O+ as `u3 p1` where the database writes `u1 p2`.
 
+GROUP 3 -- THE ONLY FOUR THAT EXCEED THE TEMPLATE ITSELF.
+
 3. THE REACTION NEEDS A BOND-ORDER CHANGE -- entries 2, 14, 16, 21.
    NO+ `N#[O+]` -> NO `[N]=O` and H2+ `[H+].[H]` -> H2 `[H][H]`. CHANGE_BOND and FORM_BOND take
    TWO labelled atoms; this family labels one atom per reactant and they are on different
    molecules, so no recipe on this template can express it. These four are unreachable by ANY of
-   the four possible two-label recipes, not merely by the one chosen.
+   the four possible two-label recipes, not merely by the one chosen. THESE FOUR, and only these
+   four, are the ones a two-label template genuinely cannot reach.
 
-4. COLLATERAL OF A TEMPLATE THAT CANNOT EXPRESS A DISJUNCTION -- entry 18.
-   N+ `N u2 p1 c+1` works perfectly with this recipe. It is excluded because a group's `u` and `p`
-   lists form a cross product: any root admitting `N u2 p1` also admits `O u1 p1` (H2O+) and
-   `O u0 p1` (NO+), both of which crash generate_reactions with AtomTypeError. Separating them
-   needs a charge-specific atom type for nitrogen, and the engine has none (it defines six:
-   Li+ Na+ K+ Mg+ Ca+ Ar+). This is the one entry here that a modest engine change would restore.
+FORMER GROUP 4 -- entry 18, which is no longer here. It was set aside as needing a new atom type;
+round 61 showed that a LogicOr root separates N+ from H2O+ and NO+ without one, and the entry is
+back in training/reactions.py. It is named here so that a reader of an older report section does
+not go looking for it.
 
-WHERE THE CHEMISTRY GOES NOW. Nowhere, yet. Groups 1 and 2 are each a coherent family in their own
-right -- the recipes are known and written out in report.md section 12 -- and splitting them off is
-a new ticket, not this one. Group 3 needs a three-label template. Group 4 needs an atom type.
+WHERE THE CHEMISTRY GOES NOW. Nowhere, yet. Groups 1 and 2 -- seven entries, the majority of this
+file -- are a coherent sibling family whose recipes are already written out in report.md section
+12.3; splitting them off is a new ticket, not this one. Group 3's four need a three-label template.
 Until then this chemistry is UNREPRESENTED, and a mechanism that needs it will silently lack it.
 """
 
@@ -177,18 +195,6 @@ Table III
 # longDesc at the top of this file for the evidence behind keeping the [Ozawa2008] fit.
 # The index is deliberately left unused rather than renumbering the entries after it.
 
-entry(
-    index = 18,
-    label = "Np_r1 + N2_r2 <=> N2p + N",
-    degeneracy = 1,
-    kinetics=Arrhenius(A=(6.99e6, 'cm^3/(mol*s)'), n=1.47, Ea=(26090, 'cal/mol'),
-                       T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(10000, 'K')),
-    rank = 6,
-    shortDesc = u"[Aiken2023]",
-    longDesc = u"""
-Table 3.16
-"""
-)
 
 entry(
     index = 19,

@@ -108,6 +108,10 @@ EXPECTED = [
      'charge-only recipe: apply_recipe returns the reactants, so nothing is generated'),
     ('Fixture_Own_Product_Raises', 'feedback',
      'root A says R, so the family raises on the N2+ it makes itself'),
+    ('Fixture_Wrong_Products', 'wrong',
+     'generates a reaction from every entry, but never the reaction the entry declares'),
+    ('Fixture_Unary_Product_Raises', 'feedback',
+     'unary family: its product raises only when fed back ALONE, which a two-reactant probe misses'),
 ]
 
 
@@ -120,8 +124,42 @@ def bare(species_list):
     return mols
 
 
+def same_set(a, b):
+    """Are these two molecule lists the same multiset of species, up to isomorphism?"""
+    if len(a) != len(b):
+        return False
+    rem = list(b)
+    for x in a:
+        for i, y in enumerate(rem):
+            try:
+                if x.is_isomorphic(y):
+                    rem.pop(i)
+                    break
+            except Exception:
+                continue
+        else:
+            return False
+    return True
+
+
+def arity(family):
+    """How many reactants this family's forward template takes."""
+    try:
+        return len(family.forward_template.reactants)
+    except Exception:
+        return 2
+
+
 def audit(family):
-    """Return (generates, nothing, raises, feedback, checked)."""
+    """Return (reproduces, other, nothing, raises, feedback, checked).
+
+    `reproduces` counts entries for which the family generated the entry's OWN declared reaction.
+    `other` counts entries for which it generated something else and nothing matching. Those two
+    were one number until round 61 pointed out that "returned a non-empty list" and "generates its
+    training reactions" are different claims -- a variant of Plasma_Charge_Transfer scored ok with
+    3 of 15 entries generating, where all three products were wrong and no training reaction was
+    reproduced at all.
+    """
     try:
         dep = family.get_training_depository()
     except Exception:
@@ -129,11 +167,13 @@ def audit(family):
     entries = sorted(dep.entries.values(), key=lambda e: e.index)[:MAX_ENTRIES]
     if not entries:
         return None
-    generates = nothing = raises = 0
+    n_react = arity(family)
+    reproduces = other = nothing = raises = 0
     feedback = []
     for entry in entries:
         try:
             mols = bare(entry.item.reactants)
+            declared = bare(entry.item.products)
         except Exception:
             raises += 1
             continue
@@ -142,26 +182,62 @@ def audit(family):
         except Exception:
             raises += 1
             continue
-        if rxns:
-            generates += 1
+
+        generated = []
+        hit = False
+        for rx in rxns:
+            # BOTH SIDES, and that is not defensive padding. A reaction found in the reverse
+            # direction is stored family-forward, so the molecules that were handed in can come
+            # back as `rx.products` and the real products as `rx.reactants`. Reading `rx.products`
+            # alone made this check report three installed families -- 1,4_Cyclic_birad_scission,
+            # Li_Abstraction, Surface_Dissociation_Beta_vdW -- as generating the wrong products,
+            # when what it had actually extracted was their own input handed straight back.
+            sides = [[(o.molecule[0] if hasattr(o, 'molecule') else o) for o in side]
+                     for side in (rx.products, rx.reactants)]
+            far = [s for s in sides if not same_set(s, mols)] or [sides[0]]
+            generated.extend(far[0])
+            if any(same_set(s, declared) for s in sides):
+                hit = True
+        if hit:
+            reproduces += 1
+        elif rxns:
+            other += 1
         else:
             nothing += 1
 
-        # The product side. A product is a future reactant: RMG adds it to the core and hands it
-        # back to react() next iteration. Driven against this entry's own reactants, which are the
-        # species guaranteed to be in the core beside it.
-        try:
-            prods = bare(entry.item.products)
-        except Exception:
-            continue
-        for p in prods:
-            for r in mols:
+        # THE PRODUCT SIDE. A product is a future reactant: RMG adds it to the core and hands it
+        # back to react() next iteration.
+        #
+        # Drive what the family actually MAKES, not only what the entry declares -- round 61's
+        # point, and the sharper test, because a family that makes the wrong product will meet
+        # that wrong product again next iteration and the declared one never. Declared products
+        # are driven too: they are in the core by virtue of being in the training set.
+        #
+        # And respect the family's ARITY. Feeding two molecules to a unary family matches nothing
+        # and returns [] without ever applying the recipe, so the old version reported such a
+        # family ok while its real product raised when fed back alone.
+        seen = set()
+        candidates = []
+        for p in generated + declared:
+            try:
+                k = p.to_smiles()
+            except Exception:
+                continue
+            if k not in seen:
+                seen.add(k)
+                candidates.append(p)
+        for p in candidates:
+            if n_react <= 1:
+                trials = [[p]]
+            else:
+                trials = [[p] + [r] * (n_react - 1) for r in mols]
+            for trial in trials:
                 try:
-                    family.generate_reactions([p.copy(deep=True), r.copy(deep=True)])
+                    family.generate_reactions([m.copy(deep=True) for m in trial])
                 except Exception as exc:
                     feedback.append((entry.index, p.to_smiles(), type(exc).__name__))
                     break
-    return generates, nothing, raises, feedback, len(entries)
+    return reproduces, other, nothing, raises, feedback, len(entries)
 
 
 def classify(path, label):
@@ -173,13 +249,16 @@ def classify(path, label):
     res = audit(family)
     if res is None:
         return 'skip', 'no training entries', None
-    gen, none_, rais, feedback, n = res
-    if gen == 0:
+    rep, other, none_, rais, feedback, n = res
+    if rep == 0 and other == 0:
         return 'inert', '{0} of {1} entries generated nothing'.format(none_, n), res
+    if rep == 0:
+        return 'wrong', '{0} of {1} entries generate, none reproducing its own reaction'.format(
+            other, n), res
     if feedback:
         return 'feedback', '; '.join(
             'entry {0}: {1} -> {2}'.format(*f) for f in feedback[:3]), res
-    return 'ok', '{0} of {1} entries generate'.format(gen, n), res
+    return 'ok', '{0} of {1} entries reproduce their own reaction'.format(rep, n), res
 
 
 def selftest():
@@ -223,7 +302,6 @@ def main():
     logging.getLogger().setLevel(logging.CRITICAL)
     if '--selftest' in sys.argv[1:]:
         return selftest()
-    print('database.directory = {0}'.format(settings['database.directory']))
 
     targets = []
     if len(sys.argv) >= 3:
@@ -239,15 +317,34 @@ def main():
         if os.path.isdir(os.path.join(held, 'Plasma_Charge_Transfer')):
             targets.append((held, 'Plasma_Charge_Transfer'))
 
+    # PRINT THE PATHS ACTUALLY LOADED, not settings['database.directory'].
+    #
+    # This used to open by printing `database.directory` from rmgpy.settings, which is whatever
+    # the engine worktree's rmgrc says and has nothing to do with what this script loads -- main()
+    # resolves every target from __file__ and load() passes that path explicitly. The committed
+    # sweep log therefore opened by naming a database that does not contain Plasma_Charge_Transfer
+    # at all, while correctly auditing this tree, and run.sh tells its reader to check exactly
+    # that line before trusting anything. The result was right and the only line a reader was told
+    # to check was wrong.
     print('families to audit  = {0}  (first {1} training entries each)'.format(
         len(targets), MAX_ENTRIES))
+    for p in sorted({t[0] for t in targets}):
+        print('  loaded from      : {0}   ({1} famil{2})'.format(
+            p, sum(1 for t in targets if t[0] == p),
+            'y' if sum(1 for t in targets if t[0] == p) == 1 else 'ies'))
+    print('  rmgpy settings database.directory = {0}'.format(settings['database.directory']))
+    print('    ^ NOT used by this script. Shown only so the difference is visible rather than')
+    print('      silent; the paths above are the ones that were read.')
     print('')
-    row = '{0:<48} {1:>9} {2:>8} {3:>7}  {4}'
-    header = row.format('family', 'generates', 'nothing', 'raises', 'verdict')
+    row = '{0:<44} {1:>10} {2:>7} {3:>8} {4:>7}  {5}'
+    header = row.format('family', 'reproduces', 'other', 'nothing', 'raises', 'verdict')
     print(header)
     print('-' * len(header))
+    print('"reproduces" = entries whose OWN declared reaction the family generated.')
+    print('"other"      = entries where it generated something, but never that reaction.')
+    print('')
 
-    inert, skipped, ok, raisers, unloadable, feeders = [], [], 0, [], [], []
+    inert, skipped, ok, raisers, unloadable, feeders, wrongs = [], [], 0, [], [], [], []
     for path, label in targets:
         try:
             family = load(path, label)
@@ -255,20 +352,23 @@ def main():
             # A load failure is NOT a skip. A family that will not load cannot be audited, and
             # reporting that as "skipped" would let this check pass on a family it never saw --
             # the same shape of hole it exists to close.
-            print(row.format(label[:48], '-', '-', '-',
+            print(row.format(label[:44], '-', '-', '-', '-',
                              'FAIL (will not load: {0})'.format(type(exc).__name__)))
             unloadable.append(label)
             continue
-        res = audit(family)
+        verdict_key, detail, res = classify(path, label)
         if res is None:
-            print(row.format(label[:48], '-', '-', '-', 'SKIP (no training entries)'))
+            print(row.format(label[:44], '-', '-', '-', '-', 'SKIP (no training entries)'))
             skipped.append(label)
             continue
-        gen, none_, rais, feedback, n = res
-        if gen == 0:
+        rep, other, none_, rais, feedback, n = res
+        if verdict_key == 'inert':
             verdict = 'INERT -- generates nothing from its own training set'
             inert.append(label)
-        elif feedback:
+        elif verdict_key == 'wrong':
+            verdict = 'FAIL -- generates, but reproduces NONE of its own reactions'
+            wrongs.append(label)
+        elif verdict_key == 'feedback':
             verdict = 'FAIL -- {0} of its own products RAISE when fed back in'.format(
                 len(set(f[1] for f in feedback)))
             feeders.append((label, feedback))
@@ -277,13 +377,15 @@ def main():
             ok += 1
         if rais:
             raisers.append((label, rais))
-        print(row.format(label[:48], gen, none_, rais, verdict))
+        print(row.format(label[:44], rep, other, none_, rais, verdict))
 
     print('')
     print('audited  : {0}'.format(len(targets) - len(skipped)))
     print('ok       : {0}'.format(ok))
     print('skipped  : {0}  {1}'.format(len(skipped), skipped if len(skipped) < 12 else ''))
     print('INERT    : {0}  {1}'.format(len(inert), inert))
+    print('WRONG    : {0}  {1}   (generate, but reproduce none of their own)'.format(
+        len(wrongs), wrongs))
     print('UNLOADABLE: {0}  {1}'.format(len(unloadable), unloadable))
     print('OWN PRODUCT RAISES: {0}  {1}'.format(len(feeders), [f[0] for f in feeders]))
     for label, feedback in feeders:
@@ -299,12 +401,13 @@ def main():
 
     print('')
     print('What this check does NOT catch:')
-    print('  - A family that generates SOME reactions but the wrong products for a given entry.')
-    print('    That needs the declared products compared against what the recipe makes, which is')
-    print('    probe_producibility.py; this check is the cheap always-on version.')
+    print('  - A family that reproduces SOME of its entries and gets others wrong. It fails only')
+    print('    when NOT ONE entry is reproduced; the per-entry breakdown is probe_producibility.py.')
     print('  - Families with no training set at all. They are skipped, not passed.')
     print('  - Products beyond the FIRST generation. A product of a product is not driven back in.')
     print('  - Anything beyond the first {0} entries of a family.'.format(MAX_ENTRIES))
+    print('  - Whether the RATE attached to a reproduced reaction is right. Reproduction here is')
+    print('    structural: the generated products are isomorphic to the declared ones.')
     print('')
     if unloadable:
         print('VERDICT: {0} famil{1} would not load, so {2} not audited at all.'.format(
@@ -315,6 +418,12 @@ def main():
         print('VERDICT: {0} famil{1} generate nothing from their own training reactions.'.format(
             len(inert), 'y' if len(inert) == 1 else 'ies'))
         return 1
+    if wrongs:
+        print('VERDICT: {0} famil{1} reactions from their own training reactants but'.format(
+            len(wrongs), 'y generates' if len(wrongs) == 1 else 'ies generate'))
+        print('reproduce NONE of their own training reactions. Generating something is not the')
+        print('same as generating the right thing.')
+        return 1
     if feeders:
         print('VERDICT: {0} famil{1} on a species {2} produce{3} themselves. A job using'.format(
             len(feeders),
@@ -323,7 +432,8 @@ def main():
             's' if len(feeders) == 1 else ''))
         print('such a family fires the reaction, then dies on the next iteration.')
         return 1
-    print('VERDICT: every audited family generates at least one of its own training reactions.')
+    print('VERDICT: every audited family reproduced at least one of its own training reactions')
+    print('with the products that entry declares, and none raised on a species it produces.')
     return 0
 
 

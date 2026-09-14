@@ -19,7 +19,7 @@ from rmgpy.molecule.group import Group
 from rmgpy.molecule.molecule import Molecule
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from probe_nodes import load_family  # noqa: E402
+from probe_nodes import load_family, FAMILY_ROOT, FAMILY  # noqa: E402
 
 VARIANTS = {
     'unbonded  (matches the dictionary)': """
@@ -52,7 +52,16 @@ def hdr(t):
 
 def main():
     print('cwd                = {0}'.format(os.getcwd()))
-    print('database.directory = {0}'.format(settings['database.directory']))
+    # The path this probe actually loads, derived as load_family() derives it. Printing
+    # settings['database.directory'] alone names the engine rmgrc's database, which is not where
+    # this family comes from -- run.sh tells its reader to check that line, so it has to be the
+    # right one. (Round 61.)
+    print('family loaded from = {0}'.format(
+        os.path.normpath(os.path.join(FAMILY_ROOT, FAMILY))))
+    print('I223_FAMILY_ROOT   = {0}'.format(
+        os.environ.get('I223_FAMILY_ROOT', '(unset -- the default above)')))
+    print('rmgpy database.directory = {0}   <- NOT used by this probe'.format(
+        settings['database.directory']))
 
     family = load_family()
 

@@ -17,9 +17,13 @@ name -- which is what a real job meets when those species appear in a mechanism:
   right        training entries the family reproduces with their declared products.
   WRONG        training entries it reproduces with DIFFERENT products. Silent bad chemistry, and
                the only category here that is worse than generating nothing.
-  like-charge  generated reactions whose reactants are both cations or both anions. An RMG group
-               constrains atoms, not molecular charge, so these are blocked by labelled forbidden
-               groups rather than by the templates.
+  like-charge  generated reactions whose reactants are both cations or both anions.
+
+               READ THE ZERO CAREFULLY. It is zero over THIS pool, which is the 13 species the
+               training entries name. It does NOT mean the family generates no like-charge
+               reactions: the forbidden groups only block two BONDED positive centres, and
+               probe_likecharge.py measures 470 like-charge reactions over a 150-cation set that
+               nothing here can block. See report.md section 15.
 
 It also reports reactions generated BEYOND the training set. Those are not errors -- a family is
 supposed to generalise -- so they are counted and shown, not judged.
@@ -34,7 +38,7 @@ import traceback
 from rmgpy import settings
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from probe_nodes import load_family  # noqa: E402
+from probe_nodes import load_family, FAMILY_ROOT, FAMILY  # noqa: E402
 
 
 def hdr(t):
@@ -69,7 +73,13 @@ def main():
     print('cwd                 = {0}'.format(os.getcwd()))
     print('engine              = {0}'.format(os.environ.get('RMGPY_ROOT', '(default)')))
     print('database.directory  = {0}'.format(settings['database.directory']))
-    print('family loaded from  = docs/i154-carry-chemistry/held-back/Plasma_Charge_Transfer')
+    # The path is derived the same way load_family() derives it, rather than written out here.
+    # It was hardcoded until round 61 pointed out that loading honours I223_FAMILY_ROOT while the
+    # printed line did not, so a run against a pre-edit checkout printed the post-edit path.
+    print('family loaded from  = {0}'.format(
+        os.path.normpath(os.path.join(FAMILY_ROOT, FAMILY))))
+    print('I223_FAMILY_ROOT    = {0}'.format(
+        os.environ.get('I223_FAMILY_ROOT', '(unset -- the default above)')))
     print('')
     print('NOTE: database.directory above points at a DIFFERENT worktree -- the engine\'s rmgrc')
     print('decides it and this probe never uses it. The family is loaded from the explicit path')
@@ -79,10 +89,12 @@ def main():
     family = load_family()
     print('')
     print('recipe              = {0}'.format([list(a) for a in family.forward_recipe.actions]))
-    print('root A (*1)         = {0}'.format(
-        family.forward_template.reactants[0].item.to_adjacency_list().strip().replace('\n', ' | ')))
-    print('root B (*2)         = {0}'.format(
-        family.forward_template.reactants[1].item.to_adjacency_list().strip().replace('\n', ' | ')))
+    for i, star in ((0, '*1'), (1, '*2')):
+        item = family.forward_template.reactants[i].item
+        # A root may be a LogicOr, which has no adjacency list. Root A is one.
+        shown = (item.to_adjacency_list().strip().replace('\n', ' | ')
+                 if hasattr(item, 'to_adjacency_list') else 'LogicNode {0}'.format(item))
+        print('root {0} ({1})         = {2}'.format('AB'[i], star, shown))
     forb = sorted(family.forbidden.entries) if family.forbidden else []
     print('forbidden groups    = {0}'.format(forb))
     if family.forbidden:

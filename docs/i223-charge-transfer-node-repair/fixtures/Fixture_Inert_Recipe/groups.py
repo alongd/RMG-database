@@ -21,16 +21,28 @@ the recipe at all, and it asserts only that nothing throws.
 
 The check should report this fixture as INERT and exit 1.
 
-BOTH ROOTS SAY `R` HERE, AND THEY HAVE TO. A charge action forces the root's atom types to be
-charge-resolvable: `generate_product_template` applies the recipe to the ROOT GROUPS at load time
-(family.py:717 -> 1077), and `GroupAtom._lose_charge` raises ActionError -- "Unknown atom type
-produced from set [H, O, metal]" -- because RMG defines charge-specific atom types for only six
-species. So a charge-only recipe and an element-named root cannot coexist: the family will not
-load at all.
+BOTH ROOTS SAY `R` HERE, AND THEY HAVE TO -- BUT THE REASON IS NARROWER THAN IT FIRST LOOKS.
 
-That is worth knowing in its own right. It means the element narrowing in Fixture_Healthy would
-have caught the inert recipe LOUDLY, at load time, rather than silently -- the two defects these
-fixtures carry are not independent, and the broad `R` root is what let the inert one hide.
+`generate_product_template` applies the recipe to the ROOT GROUPS at load time (family.py:717 ->
+1077). With root A narrowed to `[H,O,metal]`, `GroupAtom._lose_charge` raises
+`ActionError: Unknown atom type produced from set [H, O, metal]` and the family will not load.
+
+The correct statement of the rule is about TRANSITIONS, not about element lists:
+
+    a charge action requires every atom type the root admits to have a charge transition
+    available from it.
+
+It is NOT "element-named roots and charge actions cannot coexist". A charge-only family whose
+roots name the six atom types that DO carry charge transitions -- `Li+ Na+ K+ Mg+ Ca+ Ar+` -- loads
+perfectly well, and stays just as inert. The owner verified both halves of this independently, by
+narrowing a copy of this fixture's root A to `[H,O]` (refuses to load, same ActionError) and by
+building the six-type variant (loads, inert). An earlier version of this file drew the wider
+conclusion from the first half alone.
+
+What survives, and is still worth having: the broad `R` root is what let the inert recipe hide
+here. Narrowing root A by element in THIS family would have surfaced the dead recipe loudly at
+load time instead of silently. That is a property of these two defects together, not a general
+incompatibility.
 """
 
 template(reactants=["A", "B"], products=["A-", "B+"], ownReverse=False)

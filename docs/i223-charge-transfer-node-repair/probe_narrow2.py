@@ -43,9 +43,8 @@ from rmgpy.molecule.group import Group
 from rmgpy.data.base import make_logic_node
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from probe_rootsafety import (load_pool, matches, run, hdr)  # noqa: E402
-
-SAFE_CATION, SAFE_NEUTRAL = '[Li+]|+1', 'N#N|+0'
+from probe_rootsafety import (load_pool, matches, run, hdr,  # noqa: E402
+                              SAFE_CATION, SAFE_NEUTRAL)
 
 CAND_A = collections.OrderedDict([
     ('A0 committed  R ux p[0,2] c+',

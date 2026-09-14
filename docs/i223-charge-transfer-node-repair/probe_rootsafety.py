@@ -64,6 +64,13 @@ INPUT = os.path.normpath(os.path.join(HERE, '..', '..', 'input'))
 UNREP = os.path.normpath(os.path.join(
     FAMILY_ROOT, FAMILY, 'training', 'reactions-unrepresentable.py'))
 
+# The fixed partners for the per-molecule stages. Both MUST come from the family's own training
+# set, where they are measured crash-free -- a fallback to "whatever matched first" silently makes
+# every stage-2 pair crash on the PARTNER and reports it against the species, which is what the
+# first run of this probe did. Li+ matches root A only; N2 matches root B only; neither is
+# ambiguous. Module-level so that the other probes share one definition rather than three.
+SAFE_CATION, SAFE_NEUTRAL = '[Li+]|+1', 'N#N|+0'
+
 
 def hdr(t):
     print('')
@@ -200,10 +207,13 @@ def main():
     family, pool, n_thermo, n_unrep, train_r, train_p = load_pool()
     print('')
     print('recipe              = {0}'.format([list(a) for a in family.forward_recipe.actions]))
-    print('root A (*1)         = {0}'.format(
-        family.forward_template.reactants[0].item.to_adjacency_list().strip().replace('\n', ' | ')))
-    print('root B (*2)         = {0}'.format(
-        family.forward_template.reactants[1].item.to_adjacency_list().strip().replace('\n', ' | ')))
+    for i, star in ((0, '*1'), (1, '*2')):
+        item = family.forward_template.reactants[i].item
+        # A root may be a LogicOr, which has no adjacency list. Root A is one.
+        print('root {0} ({1})         = {2}'.format(
+            'AB'[i], star,
+            item.to_adjacency_list().strip().replace('\n', ' | ')
+            if hasattr(item, 'to_adjacency_list') else 'LogicNode {0}'.format(item)))
     print('reversible          = {0}'.format(family.reversible))
     print('pool                = {0} distinct species  ({1} from thermo libraries, '
           '+{2} from the unrepresentable set, rest from training) in {3:.1f}s'.format(
@@ -252,11 +262,7 @@ def main():
     print('{0} species match NEITHER root and can never reach this family.'.format(
         len(keys) - len(set(a_keys) | set(b_keys))))
 
-    # Fixed partners. Both MUST come from the family's own training set, where they are measured
-    # crash-free -- a fallback to "whatever matched first" silently makes every stage-2 pair crash
-    # on the PARTNER and reports it against the species. That is what the first run of this probe
-    # did. Li+ matches root A only; N2 matches root B only; neither is ambiguous.
-    safe_cation, safe_neutral = '[Li+]|+1', 'N#N|+0'
+    safe_cation, safe_neutral = SAFE_CATION, SAFE_NEUTRAL  # see the module-level comment
     for k in (safe_cation, safe_neutral):
         if k not in pool:
             print('')
@@ -430,7 +436,12 @@ def main():
     print('  stage 3 crashes (root A, per matcher): {0}'.format(len(crashes_a)))
     print('  stage 4 crashes (cross product)      : {0}  ({1} unexplained by stages 2/3)'.format(
         len(crashes_x), len(crashes_x_new)))
-    print('  like-charge reactions surviving      : {0}'.format(like))
+    print('  like-charge reactions surviving      : {0}   <- SEE THE CAVEAT BELOW'.format(like))
+    print('')
+    print('DO NOT READ THE LIKE-CHARGE ZERO AS "THIS FAMILY GENERATES NO LIKE-CHARGE REACTIONS".')
+    print('This corpus is the installed thermo libraries, which hold FOUR cations across 78 files,')
+    print('so it is nearly blind to the pair type that produces them. probe_likecharge.py adds')
+    print('protonated cations and measures 470 like-charge reactions that nothing here blocks.')
     print('')
     print('What this probe could NOT reach:')
     print('  - Species RMG GENERATES rather than reads from a library. The pool is every species')

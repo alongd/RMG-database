@@ -217,6 +217,25 @@ Table III
 )
 
 entry(
+    index = 18,
+    label = "Np_r1 + N2_r2 <=> N2p + N",
+    degeneracy = 1,
+    kinetics=Arrhenius(A=(6.99e6, 'cm^3/(mol*s)'), n=1.47, Ea=(26090, 'cal/mol'),
+                       T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(10000, 'K')),
+    rank = 6,
+    shortDesc = u"[Aiken2023]",
+    longDesc = u"""
+Table 3.16
+
+Set aside by I-223 as unrepresentable, and brought back in round 61 when that turned out to be
+wrong. The claim was that root A could not admit N+ (`N u2 p1 c+1`) without also admitting H2O+
+and NO+, which crash. True of a FLAT root; false of a LogicOr over per-element children, which is
+what root A is now. The rate and its source are untouched -- only the family's ability to make the
+reaction changed. Measured back at 16 of 27 entries reproduced, 0 crashes (logs/nitrogen.stdout.log).
+"""
+)
+
+entry(
     index = 23,
     label = "O2p_r1 + N2_r2 <=> N2p + O2",
     degeneracy = 1,

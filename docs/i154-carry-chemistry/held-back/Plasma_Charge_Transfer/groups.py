@@ -13,8 +13,34 @@ template(reactants=["A", "B"], products=["A-", "B+"], ownReverse=False)
 
 reverse = "Plasma_Charge_Transfer_Reverse"
 
-# reversible was True until I-223. It is False because RMG generates the reverse direction from a
-# template this file cannot author, and that reverse crashes.
+# reversible is False, and round 61 was right that this costs more than it looks like it costs.
+#
+# WHAT IT ALSO DOES, which was not understood when it was set. `reversible` does not merely decide
+# whether RMG generates the reverse DIRECTION. `_create_reaction` passes it straight into
+# `TemplateReaction(reversible=...)`, so it also makes every GENERATED reaction irreversible.
+# Training entry 15's own reaction is reversible and comes out of this family irreversible, and its
+# reverse kinetics are therefore SUPPRESSED rather than derived from equilibrium. That is a real
+# loss of chemistry, not a bookkeeping detail, and "the reverse family does not exist" was never a
+# reason for it.
+#
+# SO WHY IS IT STILL FALSE? Because True still crashes, measured on the narrowed roots with N+
+# admitted (logs/generate-r61-reversible.stdout.log): 6 crashes over the 14 training species,
+# including TRAINING ENTRY 7 ITSELF (O+ + O-), which the family then cannot reproduce -- 15 of 16
+# instead of 16 of 16. The reverse applies LOSE_RADICAL to *1 and on O+ (`O u1 p2 c+1`) that gives
+# `O u0 p2 c+2`, an O++ with no atom type. Narrowing the roots did NOT remove this; it was the
+# root-B crash surface that the narrowing removed.
+#
+# A WARNING ABOUT MEASURING THIS. Setting `family.reversible = True` on a LOADED family proves
+# nothing. `reverse_template` is built at load time and ONLY if reversible was true then
+# (family.py:721-724), so a post-load flip leaves it None, the reverse pass never runs, and you
+# measure zero crashes and conclude the opposite of the truth. This comment nearly said exactly
+# that. Measure it by editing this line and reloading.
+#
+# The only real alternative is to write Plasma_Charge_Transfer_Reverse, which is a new family and
+# a new ticket. Until then reverse chemistry from this family is UNREPRESENTED -- stated plainly
+# here and in report.md section 16 rather than left implicit in one keyword.
+#
+# The original observation, kept because it is still true of the fabricated template:
 #
 # generate_reactions runs the reverse whenever `not own_reverse and reversible`
 # (family.py:1882-1891), using `reverse_template`. For this family that template is not written
@@ -22,18 +48,21 @@ reverse = "Plasma_Charge_Transfer_Reverse"
 # `A-` and `B+` named in template() above come from. So the reverse admits whatever the forward
 # roots produce, and nothing in this file can narrow it.
 #
-# Measured: the reverse applies LOSE_RADICAL to *1, and on O+ (`O u1 p2 c+1`) that gives
-# `O u0 p2 c+2` -- an O++ with no atom type -- so generate_reactions raises AtomTypeError and takes
-# the job with it. Two of 91 reactant pairs drawn from this family's own training set crash that
-# way, and one of them IS training entry 7 (O+ + O- -> O + O), so the family could not even
-# reproduce its own entry. With reversible = False: 0 crashes, 45 reactions, 15 of 15 entries
-# reproduced. See logs/generate.stdout.log.
+# Measured, and re-measured in round 61 on the narrowed roots with N+ admitted: the reverse
+# applies LOSE_RADICAL to *1, and on O+ (`O u1 p2 c+1`) that gives `O u0 p2 c+2` -- an O++ with no
+# atom type -- so generate_reactions raises AtomTypeError and takes the job with it. 6 of the 105
+# reactant pairs drawn from this family's own training species crash that way, and one of them IS
+# training entry 7 (O+ + O- -> O + O), so the family cannot reproduce its own entry: 15 of 16
+# instead of 16 of 16. With reversible = False: 0 crashes, 50 reactions, 16 of 16 reproduced.
+# See logs/generate-r61-reversible.stdout.log against logs/generate-r61-final.stdout.log.
 #
-# What this COSTS, stated plainly: RMG will not construct the reverse of these reactions. That is
-# tolerable here only because this family already declares its reverse to be a DIFFERENT family
-# (`reverse = "Plasma_Charge_Transfer_Reverse"`, below) -- and that family does not exist in this
-# repository, so the reverse chemistry is currently UNREPRESENTED rather than handled elsewhere.
-# If the reverse family is ever written, revisit this line first.
+# A second thing the fabricated reverse template gets WRONG, recorded because it is invisible: the
+# product templates keep the REACTANT-side charge lists. GAIN_RADICAL and LOSE_PAIR change a
+# GroupAtom's u and p but never its c, so the generated `A-` is
+# `[H,O,metal] u[1,2,3,4] p[0,2] c[+1,+2,+3,+4]` -- still positive, when the acceptor has just
+# been neutralised -- and `B+` is `[N,O,H] u[1,2] p[0,1,2,3] c[0,-1,-2,-3,-4]` -- still neutral or
+# negative, when the donor has just become a cation. Both are charge-wrong. Anyone reasoning about
+# the reverse from `template()` will otherwise trust two groups that are backwards.
 reversible = False
 allowChargedSpecies = True
 electrons = 0
@@ -58,8 +87,10 @@ electrons = 0
 #     *2 donates one by breaking a lone pair           -> GAIN_RADICAL *2 + LOSE_PAIR *2
 #
 # This is one of exactly four possible two-label recipes, and it is the one that serves the most
-# training entries -- 16 of 27 before the templates were narrowed for crash-safety, 15 after.
-# The other three, and the eleven entries that no recipe in the grammar can serve, are in
+# training entries -- 16 of 27, both before the templates were narrowed for crash-safety and
+# after, once round 61 restored N+ to root A.
+# The other three, and the eleven entries this recipe cannot serve -- only FOUR of which exceed
+# the two-label template at all -- are in
 # report.md section 12. Do not "generalise" this recipe: LOSE_RADICAL on a closed-shell atom
 # RAISES ActionError rather than misbehaving, which is why one recipe cannot cover the rest.
 recipe(actions=[
@@ -80,6 +111,32 @@ recipe(actions=[
 # therefore matches a neutral atom sitting inside a cation -- the nitrogen of NO+, the neutral
 # oxygen of O2+ -- and without these the family generates cation + cation "charge transfer",
 # 19 of 82 reactions, producing dications like [O+][O+]. With them: 0 of 45.
+#
+# READ THIS BEFORE TRUSTING THEM. THEY ONLY BLOCK **BONDED** POSITIVE CENTRES, AND THAT IS NOT THE
+# SAME AS BLOCKING LIKE-CHARGE REACTIONS. Round 61 found the gap and probe_likecharge.py measured
+# it. When the two positive centres are not bonded, nothing fires:
+#
+#     Li+  +  [NH3+]CCO   ->   [Li]  +  [NH3+]CC[OH+]
+#
+# one reaction, reactant charges (+1, +1), product charges (0, +2), is_balanced() True, every
+# guard silent -- and it then inherits the Li_ion;B rate estimated from Li+/H- MUTUAL
+# NEUTRALISATION, the opposite physical process. Over a 150-cation set there are 470 such
+# reactions (logs/likecharge.stdout.log).
+#
+# THIS CANNOT BE FIXED HERE. Four candidate root-B narrowings were measured, down to writing N2
+# out atom by atom alongside the anion nodes; the count goes 470 -> 200 -> 40 and never reaches 0,
+# because the donor ATOM is legitimately neutral or negative while the MOLECULE it sits in is a
+# cation, and no subgraph match can see the difference. The engine says so itself, in
+# `is_charged_reactant_forbidden`'s docstring (family.py:1726): "A group cannot express this: RMG
+# groups match subgraphs, so a `c0` constrains the atom it is written on and never the molecule as
+# a whole." The one engine lever that exists, `allowChargedReactants`, is all-or-nothing and would
+# bar this family's own ion reactants.
+#
+# So these two entries are kept for the bonded case they do catch, and the unbonded case is an
+# OPEN DEFECT of this family, recorded in report.md section 15 with the engine change that would
+# close it. Do not read "0 like-charge" in any earlier log as meaning none exist: those logs were
+# measured on a corpus holding four cations in 78 thermo libraries, which was blind to the
+# reactant class this family is made of.
 forbidden(
     label = "like_charge_transfer_star1",
     group =
@@ -150,13 +207,32 @@ left once the roots are narrowed, and blocking it takes the wrongly-served train
 # admits an ether oxygen that no child names. What it no longer admits is an element whose cation
 # RMG cannot type.
 
+# Root A is a LogicOr over its own children, NOT a flat group, and that is what lets N+ in.
+#
+# An earlier round of this ticket wrote here that N+ was impossible without a new atom type,
+# reasoning that a group's `u` and `p` lists are a cross product so any root admitting `N u2 p1`
+# also admits `O u1 p1` (H2O+) and `O u0 p1` (NO+), which crash. The premise is right and the
+# conclusion does not follow: a flat group is not the only thing a root can be.
+# `_match_reactant_to_template` (family.py:1817-1829) has an explicit LogicNode branch, so an
+# `OR{}` over per-element children separates `N u2 p1` from `O u1 p1` exactly, with no new atom
+# type. Measured over all 27 entries and the 22,344-species corpus (probe_nitrogen.py,
+# logs/nitrogen.stdout.log):
+#
+#     flat  [H,O,N,metal] ux p[0,1,2]   16 of 27 reproduced, but 638 root-A crashes and 1 feedback
+#                                       crash -- the cross-product argument, confirmed
+#     OR{H_cation, O_cation, Metal_cation, N_atom_ion}
+#                                       16 of 27, 0 crashes of any kind, 0 wrong, 0 like-charge
+#
+# So the flat root really cannot do it and the OR root can, at no measured cost. Training entry 18
+# (N+ + N2) came back out of reactions-unrepresentable.py on the strength of that measurement.
+#
+# The cost of an OR root, which is real: it has no sample molecule of its own, so `probe_nodes.py`
+# reports it as SKIP rather than PASS and the twelve checks descend from its children instead.
+# That is why root B below is still a flat group -- it does not need the separation.
 entry(
     index = 0,
     label = "A",
-    group =
-"""
-1 *1 [H,O,metal] ux p[0,2] c[+1,+2,+3,+4]
-""",
+    group = "OR{H_cation, O_cation, Metal_cation, N_atom_ion}",
     kinetics = None,
 )
 
@@ -204,6 +280,28 @@ entry(
 1 *1 metal ux p0 c+1
 """,
     kinetics = None,
+)
+
+entry(
+    index = 15,
+    label = "N_atom_ion",
+    group =
+"""
+1 *1 N u2 p1 c+1
+""",
+    kinetics = None,
+    shortDesc = u"""Atomic N+, written out so that root A can admit it without admitting H2O+.""",
+    longDesc = u"""
+N+ is `N u2 p1 c+1`: nitrogen has five valence electrons, c+1 leaves four, and u2 p1 is exactly
+four. The engine types it as N3sc, and GAIN_RADICAL takes it to `N u3 p1 c0`, which is
+ground-state atomic nitrogen -- the declared product of training entry 18.
+
+This node exists as a SEPARATE child rather than as a widening of the p list on root A. Widening
+p to [0,1,2] admits `O u1 p1` (H2O+) and `O u0 p1` (NO+) at the same time, because a group's u
+and p lists are a cross product; those two have no atom type after GAIN_RADICAL and raise. The
+measurement is in logs/nitrogen.stdout.log: the flat widening costs 638 root-A crashes, this node
+costs none.
+""",
 )
 
 # --- Level 2: Specific Structures ---
@@ -296,13 +394,20 @@ entry(
 # AN ATOM TYPE, so generate_reactions raises AtomTypeError and takes the RMG job with it. Ar+
 # does have a typeable product but the wrong one: `Ar u2 p3`, not ground-state `Ar u0 p4`.
 #
-# N+ is the painful one. It needs `p1`, it would work perfectly well with this recipe, and it is
-# excluded only because a group's `u` and `p` lists are a CROSS PRODUCT, not a disjunction: any
-# root admitting `N u2 p1` also admits `O u1 p1` (H2O+) and `O u0 p1` (NO+), which crash. The
-# vocabulary that would separate them is a charge-specific atom type per element, and the engine
-# defines exactly six -- Li+ Na+ K+ Mg+ Ca+ Ar+ -- none for N, O or H. Adding one is an engine
-# change and out of scope. Training entry 18 (N+ + N2) is the cost, and it is recorded with the
-# other eleven in training/reactions-unrepresentable.py.
+# N+ WAS RECORDED HERE AS IMPOSSIBLE, AND THAT WAS WRONG. This comment used to say that any root
+# admitting `N u2 p1` also admits `O u1 p1` (H2O+) and `O u0 p1` (NO+), and concluded that only a
+# new charge-specific atom type could separate them. The premise holds -- measured, a flat
+# `[H,O,N,metal] ux p[0,1,2]` costs 638 root-A crashes -- but the conclusion does not, because a
+# root need not be a flat group. Root A is now `OR{H_cation, O_cation, Metal_cation, N_atom_ion}`
+# and `N_atom_ion` is `N u2 p1 c+1` exactly, which admits N+ and nothing else. 16 of 27 entries
+# reproduce, with zero crashes of any kind (probe_nitrogen.py, logs/nitrogen.stdout.log).
+# Training entry 18 (N+ + N2) is back in training/reactions.py.
+#
+# H2O+, NO+ and Ar+ remain out, each for its own measured reason, and none of them is "no atom
+# type for the ion": all three type fine. The recipe simply does not fit them -- GAIN_RADICAL
+# makes H2O+ into `O u2 p1` and NO+ into `O u1 p1`, neither of which types, and makes Ar+ into
+# `Ar u2 p3` rather than ground-state `Ar u0 p4`, which is a WRONG product rather than a crash.
+# Each would need a different recipe, not a wider root. See report.md section 14 for argon.
 
 # Metal cations
 entry(
@@ -446,6 +551,7 @@ L1: A
         L3: K_ion
         L3: Mg_ion
         L3: Ca_ion
+    L2: N_atom_ion
 
 L1: B
     L2: Anion

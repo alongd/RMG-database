@@ -12,6 +12,12 @@ case is unreachable is a check nobody can trust.
 | `Fixture_Healthy` | yes | no | `ok` |
 | `Fixture_Inert_Recipe` | **no** | — | `INERT` |
 | `Fixture_Own_Product_Raises` | yes | **yes** | `FAIL — 1 of its own products RAISE when fed back in` |
+| `Fixture_Wrong_Products` | generates, but never the declared reaction | no | `FAIL — reproduces NONE of its own` |
+| `Fixture_Unary_Product_Raises` | yes (**unary**) | **yes, only when fed back alone** | `FAIL — 1 of its own products RAISE` |
+
+The last two were added in round 61, against two holes in the check rather than in a family:
+it counted "returned a non-empty list" as generating, and it always handed the product-side
+assertion **two** reactants, so a unary family was never tested at all.
 
 All three carry the same one reaction, `O⁺ + N₂ → N₂⁺ + O`, and differ minimally:
 
@@ -26,14 +32,15 @@ All three carry the same one reaction, `O⁺ + N₂ → N₂⁺ + O`, and differ
   reactants and `_create_reaction` discards them. Zero reactions, and the twelve standard family
   checks all pass on it.
 
-  **It also has to revert both roots to `R`, and that is a finding rather than a detail.** A
-  charge action forces the root's atom types to be charge-resolvable: `generate_product_template`
-  applies the recipe to the root **groups** at load time (`family.py:717` → `1077`), and
-  `GroupAtom._lose_charge` raises `ActionError: Unknown atom type produced from set [H, O, metal]`,
-  because RMG defines charge-specific atom types for only six species. A charge-only recipe and an
-  element-named root cannot coexist — the family will not load. So the two defects are **not
-  independent**: the broad `R` root is what let the inert recipe hide, and narrowing the roots
-  would have exposed it loudly at load time.
+  **It also has to revert both roots to `R`.** `generate_product_template` applies the recipe to
+  the root **groups** at load time (`family.py:717` → `1077`), and with `[H,O,metal]` on root A
+  `GroupAtom._lose_charge` raises `ActionError: Unknown atom type produced from set [H, O, metal]`.
+  The rule is about **transitions, not element lists**: a charge action requires every atom type
+  the root admits to have a charge transition available from it. A charge-only family whose roots
+  name the six types that *do* carry one — `Li+ Na+ K+ Mg+ Ca+ Ar+` — loads fine and is just as
+  inert. What survives is narrower and still useful: in *this* family the broad `R` root is what
+  let the inert recipe hide, and an element-named root A would have surfaced it loudly at load
+  time.
 
 **The rate in each is a placeholder and is not a measurement.** `A = 1.0e-12 cm³/(molecule·s)`,
 `n = 0`, `Ea = 0`. These families are test data; nothing here should ever be cited as chemistry.

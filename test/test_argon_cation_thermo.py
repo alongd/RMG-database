@@ -364,7 +364,9 @@ def test_the_library_loads_alongside_every_other_thermo_library(thermo_db):
     on_disk = [f for f in os.listdir(LIBRARY_DIR) if f.endswith('.py')]
     assert len(thermo_db.libraries) == len(on_disk)
     assert LIBRARY in thermo_db.libraries
-    assert list(thermo_db.libraries[LIBRARY].entries) == ['[Arp]']
+    # Ar+ was the only entry when this branch was cut from i179; the i186 noble-gas
+    # ticket added He+ and Ne+ from NIST-JANAF He-002 / Ne-002.
+    assert list(thermo_db.libraries[LIBRARY].entries) == ['[Arp]', '[Hep]', '[Nep]']
 
 
 def test_the_species_resolves_to_this_library(thermo_db):
@@ -497,19 +499,23 @@ def test_the_plasma_reactor_accepts_the_argon_ionisation_reaction(thermo_db,
 # 4. Coverage, and the two defects found while measuring it
 # =====================================================================================
 
-def test_the_only_gas_phase_cations_in_this_database_are_these_three(thermo_db):
-    """The coverage audit's headline, as a set rather than a count. Four distinct
-    charged species exist in the whole database; two of them - ``proton`` and
-    ``Li_ion`` - are electrochemical reference species with H298 = 0 by construction and
-    are not gas-phase thermochemistry at all."""
+def test_the_only_gas_phase_cations_in_this_database_are_these_set(thermo_db):
+    """The coverage audit's headline, as a set rather than a count. Beyond the two
+    electrochemical reference species (``proton`` and ``Li_ion``, H298 = 0 by
+    construction, not gas-phase thermochemistry at all) and ``[Lip]``/``H3O``, the free
+    monatomic noble-gas cations with real gas-phase thermochemistry are the three this
+    library carries: Ar+ (from i179), and He+ and Ne+ added by the i186 ticket."""
     cations = {}
     for name, library in thermo_db.libraries.items():
         for label, e in library.entries.items():
             if e.item is None or e.item.get_net_charge() <= 0:
                 continue
             cations.setdefault(label, set()).add(name)
-    assert set(cations) == {'proton', 'H3O', 'Li_ion', '[Lip]', '[Arp]'}, sorted(cations)
+    assert set(cations) == {'proton', 'H3O', 'Li_ion', '[Lip]', '[Arp]', '[Hep]',
+                            '[Nep]'}, sorted(cations)
     assert cations['[Arp]'] == {LIBRARY}
+    assert cations['[Hep]'] == {LIBRARY}
+    assert cations['[Nep]'] == {LIBRARY}
 
     # the two electrochemical ones are zero by construction, not by measurement
     for label, expected_libraries in (('proton', {'electrocatThermo',
@@ -595,11 +601,14 @@ def test_group_additivity_answers_for_monatomic_cations_and_the_answer_is_wrong(
     ('He', 'multiplicity 2\n1 He u1 p0 c+1\n'),
     ('Ne', 'multiplicity 2\n1 Ne u1 p3 c+1\n'),
 ])
-def test_the_other_noble_gas_cations_are_still_refused(estimator_only, symbol,
-                                                       adjacency_list):
+def test_the_other_noble_gas_cations_are_refused_by_the_estimator(estimator_only, symbol,
+                                                                  adjacency_list):
     """The noble gases are the one place group additivity fails loudly instead of
-    quietly, because no thermo group covers them. Ar+ was in this set until this branch;
-    He+ and Ne+ still are, and each needs its own sourced entry."""
+    quietly, because no thermo group covers them. He+ and Ne+ now HAVE library entries
+    (from the i186 ticket, verified in section 5 below), but the estimator with every
+    library unloaded still refuses them - which is exactly what makes those entries
+    load-bearing: nothing but the hand-written library entry can give a noble-gas cation
+    thermochemistry here."""
     with pytest.raises(Exception):
         estimator_only.get_thermo_data(_species(adjacency_list))
 
@@ -705,3 +714,206 @@ def test_neutral_argon_is_untouched(thermo_db):
     assert LIBRARY not in data.comment
     assert abs(data.get_enthalpy(T0)) < 10.0          # J/mol; argon is a reference state
     assert data.get_entropy(T0) == pytest.approx(154.735, abs=0.2)
+
+
+# =====================================================================================
+# 5. The noble-gas cations He+ and Ne+ (i186 ticket)
+# =====================================================================================
+#
+# Same class of free monatomic noble-gas cation as Ar+, same NIST-JANAF source family
+# (He-002, Ne-002), same ion convention. Every number below is quoted from the JANAF
+# table so a test can check the file against it, exactly as for Ar+ above.
+
+HEP = 'multiplicity 2\n1 He u1 p0 c+1\n'
+NEP = 'multiplicity 2\n1 Ne u1 p3 c+1\n'
+HE = '1 He u0 p0 c0\n'
+NE = '1 Ne u0 p3 c0\n'
+
+#: NIST-JANAF He-002 "Helium, Ion (He+)".
+JANAF_HEP_H298_EC = 2378.522    # kJ/mol, electron convention (298.15 K row)
+JANAF_HEP_H0 = 2372.324         # kJ/mol, 0 K row = delta-f H(0)
+JANAF_HEP_DH_298_0 = 6.197      # kJ/mol, -(H-H(Tr)) at T=0
+JANAF_HEP_S298 = 131.913        # J/(mol*K)
+JANAF_HEP_CP298 = 20.786        # J/(mol*K), flat 5/2 R (2S, hydrogen-like)
+JANAF_HE_S298 = 126.152         # J/(mol*K), neutral He (He-001)
+JANAF_HE_DH_298_0 = 6.197       # kJ/mol, neutral He
+IE_HE_EV = 24.58738880          # NIST ASD
+
+#: NIST-JANAF Ne-002 "Neon, Ion (Ne+)".
+JANAF_NEP_H298_EC = 2086.966    # kJ/mol, electron convention (298.15 K row)
+JANAF_NEP_H0 = 2080.662         # kJ/mol, 0 K row = delta-f H(0)
+JANAF_NEP_DH_298_0 = 6.304      # kJ/mol, -(H-H(Tr)) at T=0 (>6.197 by the 2P fine structure)
+JANAF_NEP_S298 = 158.307        # J/(mol*K)
+JANAF_NEP_CP298 = 22.119        # J/(mol*K), 2P with a Schottky bump
+JANAF_NE_S298 = 146.327         # J/(mol*K), neutral Ne (Ne-001)
+JANAF_NE_DH_298_0 = 6.197       # kJ/mol, neutral Ne
+IE_NE_EV = 21.564540            # NIST ASD
+
+#: Entered ion-convention enthalpies (EC value minus the electron's 5/2 R T).
+ENTERED_HEP_H298 = 2372.325
+ENTERED_NEP_H298 = 2080.769
+
+
+@pytest.fixture(scope='module')
+def hep_entry(thermo_db):
+    return thermo_db.libraries[LIBRARY].entries['[Hep]']
+
+
+@pytest.fixture(scope='module')
+def nep_entry(thermo_db):
+    return thermo_db.libraries[LIBRARY].entries['[Nep]']
+
+
+@pytest.mark.parametrize('adj,h298_ec,h0,dh,dh_neutral,entered', [
+    (HEP, JANAF_HEP_H298_EC, JANAF_HEP_H0, JANAF_HEP_DH_298_0, JANAF_HE_DH_298_0,
+     ENTERED_HEP_H298),
+    (NEP, JANAF_NEP_H298_EC, JANAF_NEP_H0, JANAF_NEP_DH_298_0, JANAF_NE_DH_298_0,
+     ENTERED_NEP_H298),
+])
+def test_noblegas_entered_enthalpy_is_ion_convention_by_two_routes(thermo_db, adj,
+                                                                   h298_ec, h0, dh,
+                                                                   dh_neutral, entered):
+    """The one piece of arithmetic on any sourced number, for He+ and Ne+ as for Ar+.
+    Route 1 converts JANAF's 298.15 K electron-convention value by the electron's 5/2 R T;
+    route 2 rebuilds it from the 0 K row where the conventions coincide. They close to
+    0.002 kJ/mol, and the entered value is neither the raw electron-convention value."""
+    thermal_electron = 2.5 * R * T0 / 1000.0
+    route_1 = h298_ec - thermal_electron
+    route_2 = h0 + dh - dh_neutral
+    assert route_1 == pytest.approx(route_2, abs=0.002)
+    assert route_1 == pytest.approx(entered, abs=0.002)
+    # get_thermo_data round-trips through Wilhoit (~0.003 kJ/mol); still nowhere near the
+    # 6.197 kJ/mol convention gap.
+    got = thermo_db.get_thermo_data(_species(adj)).get_enthalpy(T0) / 1000.0
+    assert got == pytest.approx(entered, abs=0.01)
+    assert abs(got - h298_ec) == pytest.approx(thermal_electron, abs=0.02)
+
+
+@pytest.mark.parametrize('entry_fixture,s298,cp298,h0,tmax', [
+    ('hep_entry', JANAF_HEP_S298, JANAF_HEP_CP298, JANAF_HEP_H0, 6000.0),
+    ('nep_entry', JANAF_NEP_S298, JANAF_NEP_CP298, JANAF_NEP_H0, 6000.0),
+])
+def test_noblegas_entry_transcribes_the_janaf_table(request, entry_fixture, s298, cp298,
+                                                    h0, tmax):
+    entry = request.getfixturevalue(entry_fixture)
+    data = entry.data
+    assert type(data).__name__ == 'ThermoData'
+    assert data.S298.value_si == pytest.approx(s298, abs=1e-6)
+    assert data.get_heat_capacity(T0) == pytest.approx(cp298, abs=1e-6)
+    assert data.E0.value_si / 1000.0 == pytest.approx(h0, abs=1e-6)
+    assert data.Tmin.value_si == pytest.approx(T0, abs=1e-6)
+    assert data.Tmax.value_si == pytest.approx(tmax, abs=1e-6)
+
+
+@pytest.mark.parametrize('entry_fixture,ie_ev', [
+    ('hep_entry', IE_HE_EV),
+    ('nep_entry', IE_NE_EV),
+])
+def test_noblegas_e0_reproduces_ionisation_energy(request, entry_fixture, ie_ev):
+    """A monatomic cation's 0 K enthalpy of formation is the neutral's ionisation energy.
+    NIST ASD measures it spectroscopically; agreement to 0.002 kJ/mol is what makes the
+    transcription right. This is the free, independent check the ticket named."""
+    entry = request.getfixturevalue(entry_fixture)
+    assert entry.data.E0.value_si / 1000.0 == pytest.approx(ie_ev * EV, abs=0.005)
+
+
+def test_helium_cation_entropy_is_the_neutrals_plus_r_ln_2(hep_entry):
+    """He+ is 2S(1/2) hydrogen-like: S(He+) - S(He) is R ln 2 from the ground-level
+    degeneracy, with NO fine-structure term (an S term has no orbital angular momentum).
+    That is the whole entropy difference, unlike the 2P Ne+/Ar+ which add R ln 4."""
+    difference = JANAF_HEP_S298 - JANAF_HE_S298
+    assert difference == pytest.approx(R * math.log(2.0), abs=0.01)
+    assert hep_entry.data.S298.value_si - JANAF_HE_S298 == pytest.approx(difference,
+                                                                        abs=1e-6)
+
+
+def test_neon_cation_entropy_is_the_neutrals_plus_r_ln_4_plus_fine_structure(nep_entry):
+    """Ne+ is 2P(3/2) ground: S(Ne+) - S(Ne) is R ln 4 plus a small 2P(1/2) contribution,
+    the same structure as Ar+."""
+    difference = JANAF_NEP_S298 - JANAF_NE_S298
+    assert difference == pytest.approx(R * math.log(4.0), abs=0.5)   # dominated by R ln 4
+    assert difference > R * math.log(4.0)                            # + fine structure
+    assert nep_entry.data.S298.value_si - JANAF_NE_S298 == pytest.approx(difference,
+                                                                        abs=1e-6)
+
+
+def test_helium_cation_heat_capacity_is_flat_five_halves_R(hep_entry):
+    """The physics distinction from Ar+/Ne+: He+ has an S ground term, no low-lying
+    fine-structure partner, so no Schottky bump. Cp is a flat 5/2 R across the whole
+    table. A bump here would be a transcription error, not physics."""
+    monatomic = 2.5 * R
+    for T in (298.15, 400.0, 600.0, 1000.0, 2000.0, 4000.0, 6000.0):
+        assert hep_entry.data.get_heat_capacity(T) == pytest.approx(monatomic, abs=0.01)
+
+
+def test_neon_cation_heat_capacity_has_a_schottky_bump_peaking_near_500(nep_entry):
+    """Ne+ is 2P with a 2P(1/2) level ~780 cm^-1 above the ground level - a smaller
+    splitting than Ar+'s 1431.6 cm^-1, so the Schottky bump peaks near 500 K rather than
+    1000 K. An entry with a flat Cp would be wrong by ~10% over 400-1500 K."""
+    monatomic = 2.5 * R
+    assert nep_entry.data.get_heat_capacity(T0) > monatomic
+    peak_T = max((300.0, 400.0, 500.0, 600.0, 800.0, 1000.0, 1500.0, 2000.0),
+                 key=nep_entry.data.get_heat_capacity)
+    assert peak_T == 500.0
+    assert nep_entry.data.get_heat_capacity(6000.0) == pytest.approx(monatomic, abs=0.1)
+
+
+@pytest.mark.parametrize('entry_fixture,rows', [
+    # (T, JANAF S, JANAF H-H(Tr)) from He-002
+    ('hep_entry', [(300.0, 132.042, 0.038), (500.0, 142.660, 4.196),
+                   (1000.0, 157.068, 14.589), (2000.0, 171.476, 35.375),
+                   (6000.0, 194.311, 118.519)]),
+    # from Ne-002
+    ('nep_entry', [(300.0, 158.444, 0.041), (500.0, 169.967, 4.558),
+                   (1000.0, 185.567, 15.788), (2000.0, 200.537, 37.340),
+                   (6000.0, 223.591, 121.149)]),
+])
+def test_noblegas_reproduces_the_janaf_columns_across_the_whole_range(request,
+                                                                     entry_fixture, rows):
+    """Walk the table: entropy to 0.03 J/(mol*K) and the enthalpy increment to 0.06 kJ/mol
+    at every decade to the 6000 K ceiling, so a thinned or mistyped Cp grid is caught. The
+    enthalpy tolerance is looser than S because the increment is a Cp integral from 298 K
+    to T reconstructed from a 13-point grid through a Wilhoit fit; at the 6000 K ceiling
+    that spline integration drifts ~0.045 kJ/mol from JANAF's own quadrature (0.04 % of a
+    121 kJ/mol increment) - a grid artefact, not a transcription error, since every Cpdata
+    value is the JANAF value verbatim."""
+    entry = request.getfixturevalue(entry_fixture)
+    for T, janaf_s, janaf_dh in rows:
+        assert entry.data.get_entropy(T) == pytest.approx(janaf_s, abs=0.03)
+        increment = (entry.data.get_enthalpy(T) - entry.data.get_enthalpy(T0)) / 1000.0
+        assert increment == pytest.approx(janaf_dh, abs=0.06)
+
+
+@pytest.mark.parametrize('adj', [HEP, NEP])
+def test_noblegas_cation_resolves_to_this_library(thermo_db, adj):
+    data = thermo_db.get_thermo_data(_species(adj))
+    assert LIBRARY in data.comment
+
+
+@pytest.mark.parametrize('adj', [HEP, NEP])
+def test_noblegas_cation_smiles_round_trip_still_corrupts(thermo_db, adj):
+    """``to_smiles()`` writes ``[He+]``/``[Ne+]`` correctly (no phantom hydrogen), but the
+    monatomic-ion SMILES ROUND TRIP reads that string back as charge +2 - the same
+    from_smiles defect the Ar+ entry documents. Adjacency lists are the only safe
+    interchange form. (Separately, the [HeH+]/[NeH+] that appears in group-additivity error
+    messages is NOT this - it is GA's own radical-saturation reference, saturate_radicals
+    turning He+ into helium hydride to find an HBI base; that is a misleading diagnostic,
+    not a SMILES-writer bug.)"""
+    entry = thermo_db.libraries[LIBRARY].entries[
+        '[Hep]' if adj is HEP else '[Nep]']
+    smiles = entry.item.to_smiles()
+    assert Molecule().from_smiles(smiles).get_net_charge() == 2
+
+
+def test_the_helium_dication_was_not_entered(thermo_db):
+    """He2+ (He(2+), monatomic, +2) has no NIST-JANAF table - He-003 returns HTTP 404 -
+    so there is no tabulated Cp(T)/S(T) to transcribe, and it was deliberately not entered,
+    exactly as for the argon dication. If a defensible source is ever reached, this test
+    is the place that says so."""
+    for library in thermo_db.libraries.values():
+        for e in library.entries.values():
+            if e.item is None:
+                continue
+            if all(a.element.symbol == 'He' for a in e.item.atoms) and \
+                    e.item.get_net_charge() >= 2:
+                pytest.fail(f'unexpected helium dication entry {e.label!r}')

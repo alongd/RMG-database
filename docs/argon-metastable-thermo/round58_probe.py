@@ -78,29 +78,60 @@ for adj, label in ((AR, 'Ar (ground, u0 p4)'), (AR_META, 'Ar(3P2) (u2 p3)')):
     for r in rxns:
         print("        %s" % r)
 
-reactions = db.kinetics.generate_reactions_from_families(
-    [species(AR_META, 'Ar(3P2)')], products=None, only_families=[FAMILY], resonance=True)
-assert len(reactions) == 1, "expected exactly one reaction, got %d" % len(reactions)
-rxn = reactions[0]
+def generate_metastable_reaction(announce=False):
+    """The family's one reaction for Ar(3P2), with thermo attached.
+
+    Kinetics estimation asks for G298, so every participant needs thermo first.
+    """
+    reactions = db.kinetics.generate_reactions_from_families(
+        [species(AR_META, 'Ar(3P2)')], products=None, only_families=[FAMILY], resonance=True)
+    assert len(reactions) == 1, "expected exactly one reaction, got %d" % len(reactions)
+    generated = reactions[0]
+    for s in list(generated.reactants) + list(generated.products):
+        if s.is_electron():
+            continue
+        if not s.label:
+            s.label = str(s)
+        if s.thermo is None:
+            s.thermo = db.thermo.get_thermo_data(s)
+            if announce:
+                print("  thermo for %-10s <- %s"
+                      % (s.label, (s.thermo.comment or '').strip()[:60]))
+    return generated
+
 
 # =====================================================================================
 banner("2. MODEL ADMISSION: WHAT KINETICS CLASS ACTUALLY ARRIVES")
 # =====================================================================================
 from rmgpy.rmg.model import CoreEdgeReactionModel              # noqa: E402
 
-# Kinetics estimation asks for G298, so every participant needs thermo first.
-for s in list(rxn.reactants) + list(rxn.products):
-    if s.is_electron():
-        continue
-    if not s.label:
-        s.label = str(s)
-    if s.thermo is None:
-        s.thermo = db.thermo.get_thermo_data(s)
-        print("  thermo for %-10s <- %s" % (s.label, (s.thermo.comment or '').strip()[:60]))
+rxn = generate_metastable_reaction(announce=True)
 
 cerm = CoreEdgeReactionModel()
 cerm.kinetics_estimator = 'rate rules'
-cerm.apply_kinetics_to_reaction(rxn)
+
+# The family now carries a quarantine manifest, written BECAUSE of what this probe
+# measures, so admission refuses before it can measure anything. Confirm the refusal,
+# then detach the quarantine on the loaded object -- touching no file -- so the evidence
+# that justifies the manifest stays reproducible after the manifest lands. The full gate
+# is probed on its own in quarantine_probe.py.
+from rmgpy.exceptions import QuarantinedKineticsError            # noqa: E402
+
+sub("the quarantine fires here first")
+held = fam.quarantine
+try:
+    cerm.apply_kinetics_to_reaction(rxn)
+except QuarantinedKineticsError as exc:
+    print("  admission REFUSED by %s" % (held.path if held else '(unknown manifest)'))
+    print("  reason: %s" % (held.reason if held else str(exc).splitlines()[0]))
+else:
+    print("  NOT refused -- no manifest is in force for this family in this runtime")
+fam.quarantine = None
+if rxn.kinetics is None:
+    rxn = generate_metastable_reaction()
+    cerm.apply_kinetics_to_reaction(rxn)
+fam.quarantine = held
+print("  quarantine detached for the measurement below, then restored")
 
 kin = rxn.kinetics
 print("  reaction                       : %s" % rxn)

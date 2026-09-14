@@ -16,18 +16,24 @@
 ======================================================================================
   thermo for [Ar]       <- Thermo library: PlasmaExcitedNeutralThermo
   thermo for [Ar+]      <- Thermo library: PlasmaCationThermo
+
+  the quarantine fires here first
+  -------------------------------
+  admission REFUSED by /home/alon/Code/RMG-database-i221-argon-metastable-thermo/input/kinetics/families/Plasma_Electron_Impact_Ionization/quarantine.py
+  reason: estimated rates reach the solver without uses_electron_temperature and are evaluated at the GAS temperature
+  quarantine detached for the measurement below, then restored
   reaction                       : [Ar] => [Ar+]
   kinetics class AS ESTIMATED    : ArrheniusEP
   comment at point of use:
       Exact match found for rate rule [A_rad]
       Euclidian distance = 0
       family: Plasma_Electron_Impact_Ionization
-  dHrxn(298)                     : 406.3340 kJ/mol
+  dHrxn(298)                     : 406.3371 kJ/mol
 
   what make_new_reaction does next (model.py:644)
   -----------------------------------------------
   kinetics class AFTER fix_barrier_height : Arrhenius
-  Ea (barrier)                   : 412.5203 kJ/mol
+  Ea (barrier)                   : 412.5234 kJ/mol
   A                              : 1.292979e+08 m^3/(mol*s)
   reversible                     : False
 
@@ -52,28 +58,28 @@
   kf as the solver actually evaluates it
   --------------------------------------
       T_gas (K)      Te (eV)      kf  [m^3/(mol*s)]
-      300.0          1.0          1.936048e-64
-      300.0          3.0          1.936048e-64
-      1000.0         1.0          3.665970e-14
-      1000.0         3.0          3.665970e-14
+      300.0          1.0          1.933634e-64
+      300.0          3.0          1.933634e-64
+      1000.0         1.0          3.664598e-14
+      1000.0         3.0          3.664598e-14
 
   does Te move the answer at all?
   -------------------------------
-      T_gas=300.0    Te 1 eV -> 3 eV : 1.936048e-64 -> 1.936048e-64   UNCHANGED
-      T_gas=1000.0   Te 1 eV -> 3 eV : 3.665970e-14 -> 3.665970e-14   UNCHANGED
+      T_gas=300.0    Te 1 eV -> 3 eV : 1.933634e-64 -> 1.933634e-64   UNCHANGED
+      T_gas=1000.0   Te 1 eV -> 3 eV : 3.664598e-14 -> 3.664598e-14   UNCHANGED
 
   what the SAME Arrhenius gives at the electron temperature it never sees
   -----------------------------------------------------------------------
       Te = 3 eV = 34813.6 K
-      k(34813.5 K) = 3.109234e+07 m^3/(mol*s)
-      k(34813.6 K) = 3.109240e+07 m^3/(mol*s)
+      k(34813.5 K) = 3.109200e+07 m^3/(mol*s)
+      k(34813.6 K) = 3.109207e+07 m^3/(mol*s)
 
   scale of the shortfall
   ----------------------
       published state-resolved argon model, 3 eV : 2.0583e+10
       same Arrhenius evaluated at 34813.5 K      : 3.1092e+07
-      DELIVERED at 300 K gas                     : 1.9360e-64  (74.0 orders low vs published)
-      DELIVERED at 1000 K gas                    : 3.6660e-14  (23.7 orders low vs published)
+      DELIVERED at 300 K gas                     : 1.9336e-64  (74.0 orders low vs published)
+      DELIVERED at 1000 K gas                    : 3.6646e-14  (23.7 orders low vs published)
 
   VERDICT: the channel is not over-predicted. It is UNDER-delivered, and the
            electron temperature never reaches it.
@@ -84,11 +90,11 @@
 
   E0 as each sibling library supplies it
   --------------------------------------
-      [Ar]       stated E0 = (none)       derived E0 = 1108.0527 kJ/mol   -> uses derived
+      [Ar]       stated E0 = (none)       derived E0 = 1108.0496 kJ/mol   -> uses derived
       [Ar+]      stated E0 = 1520.5730    derived E0 = 1514.3867 kJ/mol   -> uses STATED
 
-      H0  (mixed convention, what the code uses) = 412.5203 kJ/mol
-      H298(both consistent)                      = 406.3340 kJ/mol
+      H0  (mixed convention, what the code uses) = 412.5234 kJ/mol
+      H298(both consistent)                      = 406.3371 kJ/mol
       leak                                       = 6.1863 kJ/mol
 
       The barrier is set from the MIXED value. The cation library states E0 and this

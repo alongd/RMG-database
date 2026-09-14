@@ -1,11 +1,11 @@
-...FF............................................F...................... [ 28%]
-........................................................................ [ 56%]
-........................................................................ [ 85%]
-.........................F............                                   [100%]
+...FF............................................F...................... [ 26%]
+........................................................................ [ 52%]
+........................................................................ [ 78%]
+............................................................             [100%]
 =================================== FAILURES ===================================
 __________ test_the_dication_builds_and_raises_the_loud_databaseerror __________
 
-argon_capable_db = <rmgpy.data.thermo.ThermoDatabase object at 0x721ebdae2e20>
+argon_capable_db = <rmgpy.data.thermo.ThermoDatabase object at 0x70b970091d60>
 
     def test_the_dication_builds_and_raises_the_loud_databaseerror(argon_capable_db):
         """The dication Ar(2+) (monatomic, +2) is the "Ar2+" reading that builds yet raises the
@@ -40,7 +40,7 @@ multiplicity 3
 1 Ar u2 p2 c+2
 ________ test_the_dimer_cation_builds_and_raises_the_loud_databaseerror ________
 
-argon_capable_db = <rmgpy.data.thermo.ThermoDatabase object at 0x721ebdae2e20>
+argon_capable_db = <rmgpy.data.thermo.ThermoDatabase object at 0x70b970091d60>
 
     def test_the_dimer_cation_builds_and_raises_the_loud_databaseerror(argon_capable_db):
         """The dimer Ar2(+) (diatomic, +1) also builds and also raises a loud DatabaseError,
@@ -52,9 +52,9 @@ argon_capable_db = <rmgpy.data.thermo.ThermoDatabase object at 0x721ebdae2e20>
 
 test/test_argon_cation_buildtime.py:156: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
-../RMG-Py-plasma/rmgpy/data/thermo.py:1497: in get_thermo_data
+../RMG-Py-i222-metastable-argon-atomtype/rmgpy/data/thermo.py:1497: in get_thermo_data
     tdata = self.estimate_radical_thermo_via_hbi(molecule, self.get_thermo_data_from_libraries)
-../RMG-Py-plasma/rmgpy/data/thermo.py:2247: in estimate_radical_thermo_via_hbi
+../RMG-Py-i222-metastable-argon-atomtype/rmgpy/data/thermo.py:2247: in estimate_radical_thermo_via_hbi
     added = saturated_struct.saturate_radicals()
 rmgpy/molecule/molecule.py:2512: in rmgpy.molecule.molecule.Molecule.saturate_radicals
     ???
@@ -116,35 +116,8 @@ E         + Ar+
 E         ?   +
 
 test/test_argon_cation_thermo.py:688: AssertionError
-_________ test_three_body_recombination_still_cannot_be_stored_at_all __________
-
-tmp_path = PosixPath('/tmp/claude-1000/pytest-of-alon/pytest-147/test_three_body_recombination_0')
-
-    def test_three_body_recombination_still_cannot_be_stored_at_all(tmp_path):
-        """The dominant volume sink is blocked by representation, not only by missing data.
-    
-        ``TwoTemperaturePlasma`` is the only shipped rate law that can express a
-        Te-dependent third-order coefficient, and it carries no ``electrons`` field.
-        ``KineticsLibrary.load`` copies an electron count onto the reaction only from a rate
-        law that declares one, and ``load_entry`` takes no electron argument, so a three-body
-        entry arrives at ``is_balanced`` claiming zero electrons against a +1 -> 0 charge
-        change and is rejected before anything about the *number* is asked.
-    
-        This is a tripwire, not a wish: if RMG-Py gives ``TwoTemperaturePlasma`` an
-        ``electrons`` field, this test fails, and whoever made that change is pointed at
-        ``docs/i119-recombination-loss.md`` to finish the job with a sourced coefficient.
-        """
->       assert not hasattr(TwoTemperaturePlasma(A=(8.75e-27, 'cm^6/(molecule^2*s)'), n=-4.5,
-                                                Ea_g=(0, 'kJ/mol'), Ea_e=(0, 'kJ/mol')),
-                           'electrons')
-E       AssertionError: assert not True
-E        +  where True = hasattr(TwoTemperaturePlasma(A=(8.75e-27,'cm^6/(molecule^2*s)'), n=-4.5, Ea_g=(0,'kJ/mol'), Ea_e=(0,'kJ/mol')), 'electrons')
-E        +    where TwoTemperaturePlasma(A=(8.75e-27,'cm^6/(molecule^2*s)'), n=-4.5, Ea_g=(0,'kJ/mol'), Ea_e=(0,'kJ/mol')) = TwoTemperaturePlasma(A=(8.75e-27, 'cm^6/(molecule^2*s)'), n=-4.5, Ea_g=(0, 'kJ/mol'), Ea_e=(0, 'kJ/mol'))
-
-test/test_plasma_radiative_recombination.py:500: AssertionError
 =========================== short test summary info ============================
 FAILED test/test_argon_cation_buildtime.py::test_the_dication_builds_and_raises_the_loud_databaseerror
 FAILED test/test_argon_cation_buildtime.py::test_the_dimer_cation_builds_and_raises_the_loud_databaseerror
 FAILED test/test_argon_cation_thermo.py::test_argon_atom_type_now_declares_a_charge_envelope_but_still_parses_any_charge
-FAILED test/test_plasma_radiative_recombination.py::test_three_body_recombination_still_cannot_be_stored_at_all
-4 failed, 250 passed in 68.33s (0:01:08)
+3 failed, 273 passed in 73.80s (0:01:13)

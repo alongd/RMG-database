@@ -937,20 +937,47 @@ def admitted(pinned):
         pass
     fam.fill_rules_by_averaging_up(verbose=True)
 
-    reactions = db.kinetics.generate_reactions_from_families(
-        [_species(AR_META, 'Ar(3P2)')], products=None, only_families=[EII], resonance=True)
-    assert len(reactions) == 1
-    rxn = reactions[0]
-    for s in list(rxn.reactants) + list(rxn.products):
-        if s.is_electron():
-            continue
-        if not s.label:
-            s.label = str(s)
-        s.thermo = db.thermo.get_thermo_data(s)
+    def generated():
+        reactions = db.kinetics.generate_reactions_from_families(
+            [_species(AR_META, 'Ar(3P2)')], products=None, only_families=[EII],
+            resonance=True)
+        assert len(reactions) == 1
+        one = reactions[0]
+        for s in list(one.reactants) + list(one.products):
+            if s.is_electron():
+                continue
+            if not s.label:
+                s.label = str(s)
+            s.thermo = db.thermo.get_thermo_data(s)
+        return one
+
+    rxn = generated()
 
     cerm = CoreEdgeReactionModel()
     cerm.kinetics_estimator = 'rate rules'
-    cerm.apply_kinetics_to_reaction(rxn)
+
+    # The family now carries a quarantine manifest, written BECAUSE of what the tests below
+    # measure, so admission refuses before any of it can be measured. Assert the refusal
+    # here rather than suppressing it - a fixture that quietly swallowed the exception would
+    # keep passing after the gate stopped firing - then detach the quarantine on the loaded
+    # object, which touches no file, so the evidence that justifies the manifest stays
+    # reproducible now that the manifest exists. The gate itself is tested in
+    # test/test_eii_quarantine.py.
+    from rmgpy.exceptions import QuarantinedKineticsError
+    quarantine = db.kinetics.families[EII].quarantine
+    assert quarantine is not None, (
+        'this family must carry a quarantine manifest; without it the rate these tests '
+        'measure would be admitted to a real mechanism')
+    with pytest.raises(QuarantinedKineticsError):
+        cerm.apply_kinetics_to_reaction(rxn)
+    assert rxn.kinetics is None, 'a refused reaction must be left exactly as generated'
+
+    db.kinetics.families[EII].quarantine = None
+    try:
+        rxn = generated()
+        cerm.apply_kinetics_to_reaction(rxn)
+    finally:
+        db.kinetics.families[EII].quarantine = quarantine
     estimated_class = rxn.kinetics.__class__.__name__
     estimated_comment = rxn.kinetics.comment
     rxn.fix_barrier_height(force_positive=True, solvent="")
@@ -993,17 +1020,24 @@ def test_the_barrier_is_set_by_the_mixed_sibling_e0_convention(admitted):
     inconsistency lands directly in an activation energy.
 
     The review question expected 406.334 kJ/mol - which is dHrxn(298), the value both
-    conventions agree on. The delivered barrier is 412.5203, and the 6.1863 difference is
-    exactly the cation library's own stated-minus-derived gap."""
+    conventions agree on. The delivered barrier is 412.5234, and the 6.1863 difference is
+    exactly the cation library's own stated-minus-derived gap.
+
+    The tolerances are deliberately tight. Both absolute numbers moved by +0.0031 kJ/mol
+    when this entry became a NASA - that is 5/2*R*0.15, the 298-vs-298.15 K field offset
+    ThermoData carried - and the abs=5e-3 this test first used was wide enough to keep
+    passing across that move while pinning the superseded value. A tolerance larger than
+    the effect under test is not a tolerance. The LEAK is the invariant: it did not move,
+    because it belongs to the cation library and not to this one."""
     _db, rxn, _cls, _comment = admitted
 
     ea = rxn.kinetics.Ea.value_si / 1000.0
     d_h298 = rxn.get_enthalpy_of_reaction(298.0) / 1000.0
-    assert d_h298 == pytest.approx(406.3340, abs=5e-3)
-    assert ea == pytest.approx(412.5203, abs=5e-3)
+    assert d_h298 == pytest.approx(406.3371, abs=1e-3)
+    assert ea == pytest.approx(412.5234, abs=1e-3)
 
     leak = ea - d_h298
-    assert leak == pytest.approx(6.1863, abs=5e-3)
+    assert leak == pytest.approx(6.1863, abs=1e-3)
 
     # ... and that leak is the cation library's collision, not a new number.
     arp = _db.thermo.libraries[CATION_LIBRARY].entries['[Arp]']
@@ -1065,8 +1099,13 @@ def test_the_delivered_rate_is_evaluated_at_the_GAS_temperature(admitted):
     # 2. The delivered value tracks the GAS temperature instead.
     assert k1000_3ev > k300_3ev * 1e40, (
         'the rate responds to Tgas, which is what proves it is evaluated there')
-    assert k300_3ev == pytest.approx(1.936048e-64, rel=0.05)
-    assert k1000_3ev == pytest.approx(3.665970e-14, rel=0.05)
+    # Tolerances tight enough to notice a barrier shift: 5% spans 0.4 kJ/mol at 1000 K and
+    # would have absorbed the 0.0031 kJ/mol convention offset that moved these very numbers
+    # when the entry became a NASA (they were 1.936048e-64 and 3.665970e-14 on the earlier
+    # ThermoData form). 0.2% is still loose against any real regression here, since every
+    # input is a fixed constant, and tight enough that the next such shift fails loudly.
+    assert k300_3ev == pytest.approx(1.933634e-64, rel=2e-3)
+    assert k1000_3ev == pytest.approx(3.664598e-14, rel=2e-3)
 
     # 3. The direction and scale of the error, against a published value at the same Te.
     assert k1000_3ev < PUBLISHED_EII_3EV

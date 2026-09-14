@@ -82,8 +82,11 @@ WHAT THE READER MUST NOT ASSUME
    branch on that flag defaults to ``False``. The result is ~24 orders of magnitude too SMALL at
    1000 K, and changing Te from 1 eV to 3 eV does not change it at all. Read "THIS IS NOT AN INERT
    ISLAND" in the entry's longDesc before loading this library for anything but thermochemistry.
-   The engine hole is filed separately and is not fixed here; until it is closed or the family is
-   refused admission, use this library for thermochemistry only.
+   The engine hole is filed separately and is not fixed here. What IS done, on the owner's ruling,
+   is the containment: ``Plasma_Electron_Impact_Ionization`` now carries a quarantine manifest, so
+   that rate is REFUSED at model admission rather than admitted silently. A refusal is not a
+   repair - the channel remains unrepresented, and a runtime whose RMG-Py has no quarantine loader
+   gets no refusal - so this library is still for thermochemistry only.
 """
 
 entry(
@@ -210,8 +213,8 @@ E0 IS DERIVED, NOT STATED -- AND WHY THE OBVIOUS VALUE IS THE WRONG ONE
       and ``thermoengine.process_thermo_data`` then sets ``spc.conformer.E0 = wilhoit.E0``
       (``rmgpy/thermo/thermoengine.py:75-78``). So a stated ``E0`` is INERT on the path the
       runtime actually uses and visible only to code that reads the field directly. Measured
-      end to end: after ``process_thermo_data``, both ``NASA.E0`` and ``spc.conformer.E0`` are
-      1108.0527.
+      end to end on the entry as shipped: after ``process_thermo_data``, both ``NASA.E0`` and
+      ``spc.conformer.E0`` are 1108.0496.
     * Stating it therefore gives one species two zero-point energies that disagree by 6.19
       kJ/mol depending on which API reaches it. Deriving it gives one.
 
@@ -271,10 +274,15 @@ E0 IS DERIVED, NOT STATED -- AND WHY THE OBVIOUS VALUE IS THE WRONG ONE
     (``docs/argon-metastable-thermo/logs/round58_probe.stdout.log``)::
 
         [Ar+]  stated   E0 = 1520.5730      <- PlasmaCationThermo states it
-        [Ar]   derived  E0 = 1108.0527      <- this file derives it
-        barrier actually applied            412.5203 kJ/mol
-        dHrxn(298), both consistent         406.3340 kJ/mol
+        [Ar]   derived  E0 = 1108.0496      <- this file derives it
+        barrier actually applied            412.5234 kJ/mol
+        dHrxn(298), both consistent         406.3371 kJ/mol
         leak from the mixed convention        6.1863 kJ/mol
+
+    (The first four numbers each sit 0.0031 kJ/mol above the ones measured on the earlier
+    ``ThermoData`` form of this entry -- the 5/2*R*0.15 reference-temperature offset noted above.
+    The LEAK is identical to four decimals under both forms, because it belongs to the cation
+    library rather than to this one. That invariance is what identifies it.)
 
     That 6.1863 is exactly the cation library's stated-minus-derived gap. It is not lost in the
     noise: an Arrhenius barrier appears in an exponent, so the leak multiplies the delivered rate
@@ -678,11 +686,11 @@ THIS IS NOT AN INERT ISLAND. READ THIS BEFORE LOADING THE LIBRARY
     placeholder has nothing to do with it
     (``docs/argon-metastable-thermo/logs/round58_probe.stdout.log``)::
 
-        delivered kf at T_gas =  300 K, Te = 1 eV   1.936048e-64 m^3/(mol*s)
-        delivered kf at T_gas =  300 K, Te = 3 eV   1.936048e-64      <- IDENTICAL
-        delivered kf at T_gas = 1000 K, Te = 1 eV   3.665970e-14
-        delivered kf at T_gas = 1000 K, Te = 3 eV   3.665970e-14      <- IDENTICAL
-        the same Arrhenius evaluated at Te = 3 eV   3.109234e+07
+        delivered kf at T_gas =  300 K, Te = 1 eV   1.933634e-64 m^3/(mol*s)
+        delivered kf at T_gas =  300 K, Te = 3 eV   1.933634e-64      <- IDENTICAL
+        delivered kf at T_gas = 1000 K, Te = 1 eV   3.664598e-14
+        delivered kf at T_gas = 1000 K, Te = 3 eV   3.664598e-14      <- IDENTICAL
+        the same Arrhenius evaluated at Te = 3 eV   3.109200e+07
         a published state-resolved argon model      2.0583e+10
 
     The delivered rate is roughly 24 orders of magnitude BELOW a physically reasonable value at
@@ -729,9 +737,14 @@ THIS IS NOT AN INERT ISLAND. READ THIS BEFORE LOADING THE LIBRARY
     moves, something fails loudly instead of drifting.
 
     CONSEQUENCE FOR MERGE: this library must not be used for QUANTITATIVE plasma work until either
-    the engine hole is closed or the family is refused admission. See
-    ``docs/argon-metastable-thermo/report.md`` for the proposed family-level quarantine manifest,
-    which is a ``input/kinetics/`` change and therefore outside this ticket's scope.
+    the engine hole is closed or the family is refused admission. **The second of those is now
+    done.** On the owner's ruling, the family carries a quarantine manifest --
+    ``input/kinetics/families/Plasma_Electron_Impact_Ionization/quarantine.py`` -- so the rate
+    above is refused at ``apply_kinetics_to_reaction`` instead of being admitted silently. It
+    refuses; it does not repair. The engine hole is untouched and is still somebody else's ticket,
+    and a runtime whose RMG-Py lacks ``rmgpy/data/kinetics/quarantine.py`` gets no refusal at all.
+    See ``docs/argon-metastable-thermo/report.md`` section 13.3 and
+    ``test/test_eii_quarantine.py``.
 
 STILL NOT IN ANY DECK, AND STILL WITHOUT PRODUCTION OR LOSS CHEMISTRY
     Everything above is about what a family GENERATES on demand. Nothing in this library puts

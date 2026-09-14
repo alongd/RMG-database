@@ -9,7 +9,10 @@ captured in `logs/` with both streams.
 
 ## 1. What was added
 
-One new thermo library and one entry in it.
+One new thermo library and one entry in it — plus, after round 58 and on the owner's ruling, one
+quarantine manifest under `input/kinetics/` that refuses the rate this entry makes reachable
+(§13.3). This section describes the entry as it stands *today*: it was a `ThermoData` until §13.4
+replaced it with an algebraic `NASA`, and several numbers below moved by 0.0031 kJ/mol when it did.
 
 | | |
 |---|---|
@@ -17,18 +20,18 @@ One new thermo library and one entry in it.
 | **Scope** | Gas-phase thermochemistry of electronically excited, electrically **neutral** species of plasma interest, each entry pinned to one named spectroscopic level |
 | **Entry** | `Ar(3P2)` — `multiplicity 3 / 1 Ar u2 p3 c0` |
 | **H298** | 1114.247 kJ/mol |
-| **E0** | *not stated* — derived, 1108.0527 kJ/mol. See §10, HIGH-1 |
+| **E0** | *not stated* — derived, 1108.0496 kJ/mol. See §10, HIGH-1 and §13.1 |
 | **S298** | 168.227 J/(mol·K) |
 | **Cp(T)** | 20.786 J/(mol·K) = 5/2·R, at every tabulated T |
-| **Declared range** | 298.15 – 6000 K, of which standard processing delivers **100 – 5000 K**. See §10, HIGH-3 |
+| **Declared range** | 200 – 6000 K, and since §13.4 made it a `NASA` that is also what standard processing delivers. The 100 – 5000 K refit described in §10, HIGH-3 applied to the `ThermoData` form |
 
-Plus `test/test_argon_metastable_thermo.py` (36 tests) and this directory.
+Plus `test/test_argon_metastable_thermo.py` (44 tests), `test/test_eii_quarantine.py` (14 tests),
+and this directory.
 
-Nothing else. Three commits on `i221-argon-metastable-thermo` above `04846619b`, split the way
-the work divides — the library entry, the test suite, the report and probes. Every path they
-touch is inside `input/thermo/libraries/`, `test/` and `docs/`; **no pre-existing tracked file is
-modified at all**, only new ones added. `input/kinetics/` was not touched. Nothing pushed, nothing
-merged, no PR.
+Nothing else. Every path touched is inside `input/thermo/libraries/`, `test/`, `docs/` and — since
+the ruling of 2026-09-15 — one added file under `input/kinetics/families/`. Measured against the
+branch point `04846619b`, **every path is an addition: not one pre-existing tracked file is
+modified**. Nothing pushed, nothing merged, no PR.
 
 ### Why a new library rather than an existing home
 
@@ -735,7 +738,7 @@ are captured in `logs/round58_probe.{stdout,stderr}.log`.
 
 ### 13.1 The one place my measurement contradicts the round — and it makes the finding worse
 
-The round stated the admitted barrier as **406.334 kJ/mol**. Measured, it is **412.5203**.
+The round stated the admitted barrier as **406.334 kJ/mol**. Measured, it is **412.5234**.
 
 That is not a rounding disagreement, and the cause is a finding the round half-identified and
 filed under a different heading. `Reaction.fix_barrier_height` raises an endothermic barrier to the
@@ -750,10 +753,21 @@ and a species whose entry does not state `E0` falls back to `to_wilhoit().E0`. S
 | quantity | value (kJ/mol) | provenance |
 |---|---|---|
 | `[Ar+]` E0 | 1520.5730 | **stated** by `PlasmaCationThermo` |
-| `[Ar]` E0 | 1108.0527 | **derived**, because this library states none |
-| barrier actually applied | **412.5203** | the difference of those two |
-| dHrxn(298) | 406.3340 | what both conventions agree on |
+| `[Ar]` E0 | 1108.0496 | **derived**, because this library states none |
+| barrier actually applied | **412.5234** | the difference of those two |
+| dHrxn(298) | 406.3371 | what both conventions agree on |
 | leak | **6.1863** | exactly the cation library's stated-minus-derived gap |
+
+**A correction to this section's own first draft, which quoted 1108.0527 / 412.5203 / 406.3340.**
+Those were measured on the `ThermoData` form of this entry, before §13.4 replaced it with a `NASA`;
+the probe log was not regenerated after the switch, so three numbers here described a version of
+the entry that had already been superseded. Re-measured on the entry as shipped, each of the three
+sits **+0.0031 kJ/mol** higher — that is 5/2·R·0.15, the 298-vs-298.15 K reference-temperature
+offset that `ThermoData.to_wilhoit` carries and the NASA form does not. The **leak is identical to
+four decimals under both forms**, because it belongs to `PlasmaCationThermo` and not to this
+library; that invariance is what identifies it, and it is now asserted at `abs=1e-3` rather than the
+original `abs=5e-3`, which was wide enough to straddle the move and keep passing on the stale value.
+A tolerance larger than the effect under test is not a tolerance.
 
 The round reported 412.5203 as an *Arkane-lookup* curiosity in the E0 residuals. It is not a
 curiosity: **the mixed sibling convention sets the activation energy of the one reaction this
@@ -761,13 +775,13 @@ library makes reachable.** An Arrhenius barrier sits in an exponent, so the leak
 delivered rate by `exp(-6186.3/RT)` — 11.94× at 300 K, 2.10× at 1000 K.
 
 This also reconciles the round's three rate numbers with mine exactly. Every one of the round's
-values corresponds to a 406.334 barrier and every one of mine to 412.5203:
+values corresponds to a 406.334 barrier and every one of mine to 412.5234:
 
 | T (K) | round | measured here | ratio | `exp(ΔEa/RT)` |
 |---|---|---|---|---|
-| 300 | 2.312e-63 | 1.936048e-64 | 11.9419 | 11.9429 |
-| 1000 | 7.715e-14 | 3.665970e-14 | 2.1045 | 2.1044 |
-| 34813.5 | 3.1764e7 | 3.109234e7 | 1.0216 | 1.0216 |
+| 300 | 2.312e-63 | 1.933634e-64 | 11.9568 | 11.9577 |
+| 1000 | 7.715e-14 | 3.664598e-14 | 2.1053 | 2.1052 |
+| 34813.5 | 3.1764e7 | 3.109200e7 | 1.0216 | 1.0216 |
 
 The round's qualitative conclusion is untouched and correct. The direction and the scale stand.
 
@@ -778,11 +792,11 @@ metastable generates one, and `u0` versus `u2` is genuinely the discriminator. W
 not what either the previous disclosure or the review question said:
 
 ```
-delivered kf, T_gas =  300 K, Te = 1 eV   1.936048e-64 m^3/(mol*s)
-delivered kf, T_gas =  300 K, Te = 3 eV   1.936048e-64      <- IDENTICAL
-delivered kf, T_gas = 1000 K, Te = 1 eV   3.665970e-14
-delivered kf, T_gas = 1000 K, Te = 3 eV   3.665970e-14      <- IDENTICAL
-same Arrhenius evaluated at Te = 3 eV     3.109234e+07
+delivered kf, T_gas =  300 K, Te = 1 eV   1.933634e-64 m^3/(mol*s)
+delivered kf, T_gas =  300 K, Te = 3 eV   1.933634e-64      <- IDENTICAL
+delivered kf, T_gas = 1000 K, Te = 1 eV   3.664598e-14
+delivered kf, T_gas = 1000 K, Te = 3 eV   3.664598e-14      <- IDENTICAL
+same Arrhenius evaluated at Te = 3 eV     3.109200e+07
 published state-resolved argon model      2.0583e+10
 ```
 
@@ -806,9 +820,14 @@ pins that, so if the comment ever gains a qualification the disclosure gets revi
 
 The engine hole itself is untouched, per the ruling.
 
-### 13.3 The merge question — can the existing quarantine be pointed at this?
+### 13.3 The merge question — the quarantine, investigated, then written
 
-**Yes, precisely — but not from this ticket's scope.** Investigated as directed.
+**Yes, precisely. Investigated as directed, proposed, and — on the owner's ruling of 2026-09-15 —
+written.** The manifest is
+`input/kinetics/families/Plasma_Electron_Impact_Ionization/quarantine.py`; the gate is measured in
+`quarantine_probe.py` (both streams in `logs/quarantine_probe.*.log`) and pinned by the 14 tests in
+`test/test_eii_quarantine.py`. The investigation that led to it is kept below unchanged, because
+the two refinements it produced are the reasons the manifest reads the way it does.
 
 The mechanism is real and well-built: per-family manifests at
 `input/kinetics/families/<Family>/quarantine.py`, loaded by `rmgpy/data/kinetics/quarantine.py`,
@@ -831,7 +850,8 @@ Two refinements to the round's framing, both measured:
   whoever adds a proper Te-dependent rule to come back and remove the manifest is the behaviour you
   want.
 
-Proposed manifest, **not written**, because `input/kinetics/` is outside this ticket's scope:
+Manifest as proposed (the shipped file says the same and carries the measurement and the lift
+conditions in full):
 
 ```python
 # input/kinetics/families/Plasma_Electron_Impact_Ionization/quarantine.py
@@ -851,9 +871,36 @@ One correction for whoever owns that file: the `Cation_R_Recombination` manifest
 is present in both `RMG-Py-plasma` and `RMG-Py-i222-metastable-argon-atomtype`. (It is absent from
 the shared `RMG-Py` primary checkout, which is on `polymer`.)
 
-**Merge position.** I agree with the ruling and it needs no softening: this branch should not merge
-for quantitative plasma use until the engine hole is closed or the family is refused admission. The
-thermochemistry is sound and is not what is blocking. The library now says so in its own header.
+**What the gate does, measured** (`logs/quarantine_probe.stdout.log`):
+
+* the manifest loads, resolves `KineticsModel` to the real class, and covers **1 of the family's 1
+  rules**, computed from the loaded database rather than from a list;
+* `apply_kinetics_to_reaction` on `Ar(3P2) => Ar+` raises `QuarantinedKineticsError`, naming the
+  family, the rule (`A_rad`, rank 10), the kinetics class, the reason and the manifest path;
+* the refused reaction is left **exactly as generated** — `reaction.kinetics` is still `None`, so
+  nothing is half-applied and nothing is substituted;
+* a sibling plasma family with no manifest is unaffected;
+* generation, loading and the rate law itself are untouched.
+
+**One measured refinement to the criterion argument, stronger than the version above.** The root
+rule is written as an `Arrhenius` in `rules.py` and is an **`ArrheniusEP` once loaded**. So an
+`appliesToKineticsClass = "Arrhenius"` manifest would not merely be direction-dependent — its
+`affected_entries` reports **0 of 1 rules**. It would read correctly in the file and gate nothing.
+That is pinned as a test by constructing the hypothetical `Arrhenius` quarantine in memory and
+asserting it covers nothing.
+
+**Two things the quarantine does *not* buy.** It is not a repair: the channel remains
+unrepresented, which is the honest outcome but still a hole in the chemistry. And it is only as
+real as the runtime — where `rmgpy/data/kinetics/quarantine.py` is absent the manifest is an inert
+data file. Unlike `Cation_R_Recombination`, this family has **no declared-configuration fallback**:
+it belongs to no set in `input/kinetics/families/recommended.py`, so it is reached only by being
+named, and once named the gate is the whole of the protection. `test_eii_quarantine.py` therefore
+*asserts* the loader is present rather than skipping without it, and asserts the family is in no
+set — if it is ever added to one, the manifest matters more, not less.
+
+**Merge position.** Unchanged in substance, and one of its two conditions is now met: the family is
+refused admission. The engine hole is still open and still not this branch's to close. The
+thermochemistry is sound and was never what was blocking.
 
 ### 13.4 HIGH — the `ThermoData` justification was false, and the entry is now a `NASA`
 
@@ -985,12 +1032,15 @@ All three confirmed.
 
 | check | result |
 |---|---|
-| `test/test_argon_metastable_thermo.py` | **44 passed** (was 36; 8 added) |
-| `test/` (whole repository) | 259 passed, 3 failed — a strict **subset** of the 4 pre-existing failures recorded at `logs/pytest_repo_suite.stdout.log`; no new failure |
-| `test/database/databaseTest.py` | **6 passed** |
-| `round58_probe.py` | exit 0 |
+| `test/test_argon_metastable_thermo.py` | **44 passed** |
+| `test/test_eii_quarantine.py` | **14 passed** (new) |
+| `test/` (whole repository) | **273 passed, 3 failed** — the same 3 as before this work, a strict **subset** of the 4 pre-existing failures; no new failure |
+| `test/database/databaseTest.py`, `database.directory` pinned at this worktree | **6 passed** in 490.9 s, *with the manifest in place* |
+| `round58_probe.py` (re-run against the shipped `NASA`) | exit 0 |
+| `quarantine_probe.py` | exit 0, every in-probe assertion passed |
 
 Every run captured both streams into `docs/argon-metastable-thermo/logs/`.
 
-Still in no deck. No kinetics written. Nothing under `input/kinetics/` touched. Not pushed, not
-merged, no pull request.
+Still in no deck. No rate, reaction, training entry or group was written or edited. One file was
+added under `input/kinetics/` — the quarantine manifest, on the owner's explicit ruling, and it
+refuses data rather than supplying any. Not pushed, not merged, no pull request.

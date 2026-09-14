@@ -1,0 +1,23 @@
+cross-repo-check
+  database : /home/alon/Code/RMG-database-i226-argon-perception-pins  @ 7b403cf7b (i226-argon-perception-pins)
+  engine   : /home/alon/Code/RMG-Py-plasma  @ 311818121 (plasma)
+  built    : 52 extension(s); atomtype -> /home/alon/Code/RMG-Py-plasma/rmgpy/molecule/atomtype.cpython-39-x86_64-linux-gnu.so
+  built    : atomtype .so is 10 min old and not older than its source
+
+  pytest   : 1 failed, 220 passed, 568 warnings in 26.45s
+
+  RED -- these assert something the other repository owns, and it moved:
+    FAILED test/test_argon_cation_thermo.py::test_argon_atom_type_resolves_to_a_specific_leaf_and_no_longer_parses_any_charge
+
+  A red test here is not necessarily a defect in either checkout. It is a
+  coupling that crossed the repository boundary without a check following
+  it. Decide per test whether the pin or the behaviour is wrong.
+cross-repo-check
+  database : /home/alon/Code/RMG-database-i226-argon-perception-pins  @ 7b403cf7b (i226-argon-perception-pins)
+  engine   : /home/alon/Code/RMG-Py-plasma  @ 311818121 (plasma)
+  built    : 52 extension(s); atomtype -> /home/alon/Code/RMG-Py-plasma/rmgpy/molecule/atomtype.cpython-39-x86_64-linux-gnu.so
+  built    : atomtype .so is 12 min old and not older than its source
+
+  pytest   : 221 passed, 568 warnings in 26.34s
+
+  CLEAN -- every collected test in the database checkout passes against this engine.

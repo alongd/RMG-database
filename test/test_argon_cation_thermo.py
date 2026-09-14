@@ -659,38 +659,76 @@ def test_alkali_and_alkaline_earth_cations_now_build(symbol, adjacency_list, ato
     assert cation.atoms[0].atomtype.label == atomtype
 
 
-def test_argon_atom_type_now_declares_a_charge_envelope_but_still_parses_any_charge():
-    """Argon's atom type used to declare no charge constraint at all; it now declares
-    ``charge=[0, 1, 2]``, and the uncomfortable corollary that outlived the change belongs
-    on the record.
+def test_argon_atom_type_resolves_to_a_specific_leaf_and_no_longer_parses_any_charge():
+    """Argon perception moved twice, and this pin moved with it. Both the history and
+    today's measured behaviour are on the record.
 
-    RMG-Py commit ``b52045138`` ("Narrow the placement declarations, and let noble gases be
-    cations") gave He, Ne and Ar ``charge=[0, 1, 2]`` so that ``GroupAtom.make_sample_molecule``
-    would stop refusing the noble-gas cations (Ar+, He+, He+2, Ne+) that are real species in
-    the carried ``PlasmaAir`` library. That falsified the old assertion ``not
-    ATOMTYPES['Ar'].charge``, which is what turned this test red.
+    **Round one (what this test was written for).** Argon's atom type used to declare no
+    charge constraint at all. RMG-Py commit ``b52045138`` ("Narrow the placement
+    declarations, and let noble gases be cations") gave He, Ne and Ar ``charge=[0, 1, 2]``
+    so that ``GroupAtom.make_sample_molecule`` would stop refusing the noble-gas cations
+    (Ar+, He+, He+2, Ne+) that are real species in the carried ``PlasmaAir`` library. That
+    falsified the old assertion ``not ATOMTYPES['Ar'].charge``. The pin was then rewritten
+    to assert ``charge == [0, 1, 2]`` *and* ``atomtype.label == 'Ar'``, on the reasoning
+    that the envelope gated group-sample construction only, while ``from_adjacency_list``
+    still returned the generic ``Ar`` without consulting charge features **because argon
+    was in** ``nonSpecifics``. **That reasoning was correct when it was written**: with
+    argon a ``nonSpecifics`` catch-all, ``get_atomtype`` genuinely did hand back ``Ar``
+    for anything, which is why a nonsense Ar(4+) parsed exactly as readily as Ar+.
 
-    The envelope narrows what group-sample *construction* will emit; it does not gate what
-    ``from_adjacency_list`` will *parse*, because argon is in ``nonSpecifics`` and
-    ``get_atomtype`` returns it without consulting the charge features. So a nonsense Ar(4+)
-    still parses exactly as before - Ar+ builds for the same reason Ar(4+) does - and the
-    entry added by this branch is the ground state and matches only the ground state.
+    **Round two (why it is red today, and what this pin now says).** Argon left
+    ``nonSpecifics`` and grew specific leaves, and a later merge narrowed ``Ar0s``. Both
+    halves of the old assertion are now false, and measurement (see
+    ``docs/argon-perception-pins/logs/probe_stdout.log``) says:
+
+      * ``nonSpecifics`` is now ``['He', 'Ne', 'e']`` - argon is **not** in it;
+      * ``ATOMTYPES['Ar'].specific`` is ``['Ar0', 'Ar0s', 'Ar0e', 'Ar+', 'Ar++']``;
+      * ``Ar+`` (``u1 p3 c+1``) perceives as the **specific leaf** ``Ar+``, not ``Ar``;
+      * the nonsense Ar(4+) no longer parses **at all** - no leaf admits ``+4``, so
+        ``from_adjacency_list`` raises ``AtomTypeError``.
+
+    **Round three, which happened while I-226 was being written.** The leaf list above was
+    first pinned as the four ``['Ar0', 'Ar0s', 'Ar+', 'Ar++']`` against engine
+    ``fced5e836``. Within the hour, RMG-Py merged ``i222-metastable-argon-atomtype``
+    (``311818121``), adding a fifth leaf ``Ar0e`` for metastable argon
+    (``single=[0], lone_pairs=[3], charge=[0]``) - and **this pin caught it immediately**,
+    which is the entire reason it asserts the list exactly rather than loosely. Nothing else
+    in this file moved: ``Ar+``, ``Ar0``, the dimer and the Ar(4+) refusal were all
+    unaffected. The list is deliberately still exact; a sixth leaf should fail here too.
+
+    The generic ``Ar`` keeps ``charge=[0, 1, 2]``, so that half of the old pin survives
+    verbatim. What died is the corollary the old docstring called uncomfortable: argon no
+    longer parses any charge. That incoherence has been **resolved** in RMG-Py, in the
+    direction the old docstring hoped for - the envelope and what parses now agree.
 
     This test PINS OBSERVED CURRENT BEHAVIOUR so it cannot regress silently; it does not
-    bless that behaviour as intended. Whether an atom type declaring ``charge=[0, 1, 2]``
-    while still parsing any charge through ``nonSpecifics`` is coherent RMG-Py design is an
-    open question owned in RMG-Py (where the Ar0/Ar+/Ar++ specifics belong), not resolvable
-    from this database test."""
+    bless that behaviour as intended. The open question it still does not settle is owned
+    in RMG-Py: the ``Ar++`` leaf admits only ``lone_pairs=[3]`` (closed-shell), and so
+    refuses the physical ``3P`` ground state of Ar(2+) (``u2 p2 c+2``). See the referral in
+    ``docs/argon-perception-pins/report.md``."""
     from rmgpy.molecule.atomtype import ATOMTYPES
+    from rmgpy.exceptions import AtomTypeError
 
     ground = Molecule().from_adjacency_list(ARP)
-    assert ATOMTYPES['Ar'].charge == [0, 1, 2]
-    assert ground.atoms[0].atomtype.label == 'Ar'
 
-    # a nonsense argon cation parses just as readily, and is NOT this entry's species
-    nonsense = Molecule().from_adjacency_list('multiplicity 5\n1 Ar u4 p0 c+4\n')
-    assert nonsense.get_net_charge() == 4
-    assert not ground.is_isomorphic(nonsense)
+    # The generic Ar keeps the charge envelope b52045138 gave it ...
+    assert ATOMTYPES['Ar'].charge == [0, 1, 2]
+    # ... but argon is no longer a nonSpecifics catch-all, and has specific leaves.
+    from rmgpy.molecule.atomtype import nonSpecifics
+    assert 'Ar' not in nonSpecifics
+    # Exact on purpose: this list gaining Ar0e is what this assertion caught mid-ticket.
+    assert [t.label for t in ATOMTYPES['Ar'].specific] == [
+        'Ar0', 'Ar0s', 'Ar0e', 'Ar+', 'Ar++']
+
+    # Ar+ now resolves to its own leaf rather than the generic parent.
+    assert ground.atoms[0].atomtype.label == 'Ar+'
+    # and the neutral ground state resolves to its own leaf too
+    assert Molecule().from_adjacency_list(AR).atoms[0].atomtype.label == 'Ar0'
+
+    # The nonsense argon cation that used to parse "just as readily" is now refused
+    # outright: no argon leaf admits +4. This is the assertion that inverted.
+    with pytest.raises(AtomTypeError):
+        Molecule().from_adjacency_list('multiplicity 5\n1 Ar u4 p0 c+4\n')
 
 
 # =====================================================================================

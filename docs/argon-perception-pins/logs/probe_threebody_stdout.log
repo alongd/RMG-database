@@ -1,0 +1,80 @@
+
+==============================================================================
+A. FAMILY_ELECTRON_PLACEMENT: SIZE, AND IS (2, 1) THERE?
+==============================================================================
+len(FAMILY_ELECTRON_PLACEMENT) : 9
+  Plasma_Electron_Attachment                       (1, 0)
+  Cation_R_Recombination                           (1, 0)
+  PlasmaRadiativeRecombination                     (1, 0)
+  PlasmaElectronImpactIonization                   (1, 2)
+  Plasma_Associative_Ionization_Alkali_Alkali      (0, 1)
+  Plasma_Associative_Ionization_Alkali_Alkaline    (0, 1)
+  Plasma_Associative_Ionization_Alkaline_Alkaline  (0, 1)
+  Plasma_Electron_Impact_Ionization                (1, 2)
+  Plasma_Radiative_Recombination                   (1, 0)
+
+any declaration == (2, 1) : False
+owners declaring (2, 1)   : []
+
+==============================================================================
+B. STORED UNDER AN OWNER ABSENT FROM THE MAP -> WHAT DOES PLACEMENT DO?
+==============================================================================
+owner 'PlasmaThreeBodyRecombination' in map : False
+stored OK       : Reaction(reactants=[Species(label="[Lip]", molecule=[Molecule(smiles="[Li+]")], molecular_weight=(6.941,'amu'))], products=[Species(label="[Li]", molecule=[Molecule(smiles="[Li]")], molecular_weight=(6.941,'amu'))], reversible=False, electrons=-1)
+
+==============================================================================
+A. FAMILY_ELECTRON_PLACEMENT: SIZE, AND IS (2, 1) THERE?
+==============================================================================
+len(FAMILY_ELECTRON_PLACEMENT) : 9
+  Plasma_Electron_Attachment                       (1, 0)
+  Cation_R_Recombination                           (1, 0)
+  PlasmaRadiativeRecombination                     (1, 0)
+  PlasmaElectronImpactIonization                   (1, 2)
+  Plasma_Associative_Ionization_Alkali_Alkali      (0, 1)
+  Plasma_Associative_Ionization_Alkali_Alkaline    (0, 1)
+  Plasma_Associative_Ionization_Alkaline_Alkaline  (0, 1)
+  Plasma_Electron_Impact_Ionization                (1, 2)
+  Plasma_Radiative_Recombination                   (1, 0)
+
+any declaration == (2, 1) : False
+owners declaring (2, 1)   : []
+
+==============================================================================
+B. STORED UNDER AN OWNER ABSENT FROM THE MAP -> WHAT DOES PLACEMENT DO?
+==============================================================================
+owner 'PlasmaThreeBodyRecombination' in map : False
+stored OK       : LibraryReaction(reactants=[Species(label="[Lip]", molecule=[Molecule(smiles="[Li+]")], molecular_weight=(6.941,'amu'))], products=[Species(label="[Li]", molecule=[Molecule(smiles="[Li]")], molecular_weight=(6.941,'amu'))], kinetics=TwoTemperaturePlasma(A=(8.75e-27,'cm^6/(molecule^2*s)'), n=-4.5, Ea_g=(0,'kJ/mol'), Ea_e=(0,'kJ/mol'), electrons=-1), reversible=False, electrons=-1)
+reaction.family : 'PlasmaThreeBodyRecombination'
+reaction.electrons : -1
+resolve RAISED  : ElectronPlacementError
+  message       : Family 'PlasmaThreeBodyRecombination' has no electron-placement declaration (reaction [Lip] => [Li], electrons=-1); refusing to infer electron placement from the net electron count. Only owners declared in FAMILY_ELECTRON_PLACEMENT can resolve.
+
+==============================================================================
+C. FORCED UNDER PlasmaRadiativeRecombination, DECLARED (1, 0)
+==============================================================================
+owner 'PlasmaRadiativeRecombination' in map : True -> (1, 0)
+stored OK       : LibraryReaction(reactants=[Species(label="[Lip]", molecule=[Molecule(smiles="[Li+]")], molecular_weight=(6.941,'amu'))], products=[Species(label="[Li]", molecule=[Molecule(smiles="[Li]")], molecular_weight=(6.941,'amu'))], kinetics=TwoTemperaturePlasma(A=(8.75e-27,'cm^6/(molecule^2*s)'), n=-4.5, Ea_g=(0,'kJ/mol'), Ea_e=(0,'kJ/mol'), electrons=-1), reversible=False, electrons=-1)
+reaction.family : 'PlasmaRadiativeRecombination'
+net electrons   : -1  (declaration net = -1)
+resolve RAISED  : ElectronPlacementError
+  message       : Electron placement for reaction [Lip] => [Li] (family 'PlasmaRadiativeRecombination') built a view with 2 reactant(s), but its kinetics TwoTemperaturePlasma has a rate coefficient of order 3. The family declaration (1, 0) and the rate law disagree about the incident-electron order, so the view would be evaluated at the wrong order — the rate wrong by a factor of the electron density while the reaction looks well formed. Refusing the view; the declaration is not corrected from the rate units.
+  mentions electron density : True
+
+==============================================================================
+D. get_plasma_rate_order FOR THIRD-ORDER COEFFICIENTS IN SEVERAL SPELLINGS
+==============================================================================
+  cm^6/(molecule^2*s)      A.units='cm^6/(molecule^2*s)'    order=3
+  m^6/(molecule^2*s)       A.units='m^6/(molecule^2*s)'     order=3
+  cm^6/(mol^2*s)           A.units='cm^6/(mol^2*s)'         order=3
+  m^6/(mol^2*s)            A.units='m^6/(mol^2*s)'          order=3
+  cm^3/(molecule*s)        A.units='cm^3/(molecule*s)'      order=2
+  m^3/(mol*s)              A.units='m^3/(mol*s)'            order=2
+
+==============================================================================
+D2. THE SHIPPED LIBRARY, INTERROGATED SEMANTICALLY
+==============================================================================
+  entry 0      kinetics=BadnellRRArrhenius     A.units='cm^3/(molecule*s)'      order=2
+
+==============================================================================
+DONE
+==============================================================================

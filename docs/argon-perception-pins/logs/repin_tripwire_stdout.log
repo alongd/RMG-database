@@ -1,0 +1,61 @@
+.......................F...............                                  [100%]
+=================================== FAILURES ===================================
+_ test_three_body_recombination_can_now_be_stored_and_the_remaining_blocker_is_data _
+
+tmp_path = PosixPath('/tmp/claude-1000/pytest-of-alon/pytest-109/test_three_body_recombination_0')
+
+    def test_three_body_recombination_can_now_be_stored_and_the_remaining_blocker_is_data(tmp_path):
+        """THE TRIPWIRE FIRED, AND IT WAS RIGHT TO. This test has been re-pinned under I-226.
+    
+        **What this test was written for, and why it was right.** It pinned the *reason* the
+        dominant volume sink is absent: ``TwoTemperaturePlasma`` is the only shipped rate law
+        that can express a Te-dependent third-order coefficient, and it carried **no**
+        ``electrons`` field. ``KineticsLibrary.load`` copies an electron count onto the reaction
+        only from a rate law that declares one, so a three-body entry reached ``is_balanced``
+        claiming zero electrons against a +1 -> 0 charge change and was refused as unbalanced -
+        before any question of *data* arose. So the sink was blocked **twice over**: no shipped
+        fit, and no way to store one. That is exactly what ``docs/i119-recombination-loss.md``
+        records in its headline, and it was true when written.
+    
+        Its docstring then said, in terms: *"if RMG-Py ever gives that rate law an electron
+        count, this test fails and whoever made that change is told to come back here."*
+    
+        **RMG-Py did exactly that.** The engine tip is the merge *"give TwoTemperaturePlasma a
+        signed-net electron count"*. This test went red for precisely the reason it was built to
+        go red for - it is a tripwire that worked, not a stale pin - and this re-pin is the
+        "come back here" being honoured.
+    
+        **What is now measured** (``docs/argon-perception-pins/logs/probe_guarantee_stdout.log``):
+    
+          * ``TwoTemperaturePlasma`` **has** an ``electrons`` field, defaulting to ``0``;
+          * it **is** in ``_NET_ELECTRON_KINETICS_CLASSES``;
+          * a three-body entry declaring ``electrons=-1`` **loads and stores**, carrying
+            ``electrons=-1`` onto both the kinetics and the reaction;
+          * declaring nothing, or the wrong sign (``electrons=1``), is still refused as
+            ``"was not balanced"`` - the balance check still does its job.
+    
+        **So one of the two blockers is gone.** Representation no longer blocks the dominant
+        volume sink; ``i119``'s "blocked twice over" is now half stale, and its claim that "data
+        alone would not unblock it" has been inverted - data alone is now exactly what is
+        missing. This test is re-pointed accordingly: it pins that the block is now **data
+        only**, and that this repository still ships no three-body coefficient.
+    
+        **What this test deliberately does NOT claim.** That a stored three-body entry would be
+        *correct*. ``TwoTemperaturePlasma`` is a ``k(T, Te)`` law; three-body recombination is
+        second order in the electron density, and whether the reactor multiplies through by
+        ``n_e`` the right number of times is an engine question that was not measured here - no
+        reactor was run. Storing it is necessary, not sufficient. See the referral in
+        ``docs/argon-perception-pins/report.md``; the sourced-coefficient half of the job that
+        ``i119`` asks for is still open and is not done by this ticket."""
+        # The field the old tripwire guarded now exists, with a default of zero.
+        law = TwoTemperaturePlasma(A=(8.75e-27, 'cm^6/(molecule^2*s)'), n=-4.5,
+                                   Ea_g=(0, 'kJ/mol'), Ea_e=(0, 'kJ/mol'))
+        assert hasattr(law, 'electrons')
+>       assert law.electrons == 0
+E       AssertionError: assert 0 == 0
+E        +  where 0 = TwoTemperaturePlasma(A=(8.75e-27,'cm^6/(molecule^2*s)'), n=-4.5, Ea_g=(0,'kJ/mol'), Ea_e=(0,'kJ/mol')).electrons
+
+test/test_plasma_radiative_recombination.py:569: AssertionError
+=========================== short test summary info ============================
+FAILED test/test_plasma_radiative_recombination.py::test_three_body_recombination_can_now_be_stored_and_the_remaining_blocker_is_data
+1 failed, 38 passed in 1.26s

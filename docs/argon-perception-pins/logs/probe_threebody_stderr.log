@@ -1,0 +1,5 @@
+INFO:root:Loading kinetics library PlasmaThreeBodyRecombination from /tmp/claude-1000/tb-_dfr8pm9/PlasmaThreeBodyRecombination/reactions.py...
+Traceback (most recent call last):
+  File "/home/alon/Code/RMG-database-i226-argon-perception-pins/docs/argon-perception-pins/probe_threebody_representability.py", line 86, in <module>
+    print('reaction.family : %r' % rxn.family)
+AttributeError: 'rmgpy.reaction.Reaction' object has no attribute 'family'

@@ -1,0 +1,89 @@
+
+==============================================================================
+BUILD PROVENANCE
+==============================================================================
+atomtype module file : /home/alon/Code/RMG-Py-plasma/rmgpy/molecule/atomtype.cpython-39-x86_64-linux-gnu.so
+molecule module file : /home/alon/Code/RMG-Py-plasma/rmgpy/molecule/molecule.cpython-39-x86_64-linux-gnu.so
+rmgpy package dir    : /home/alon/Code/RMG-Py-plasma/rmgpy
+
+==============================================================================
+ATOMTYPES['Ar'] AND ITS LEAVES
+==============================================================================
+Ar.label      : Ar
+Ar.generic    : ['R', 'R!H', 'R!H!Val7', 'Rx', 'Rx!H']
+Ar.specific   : ['Ar0', 'Ar0s', 'Ar+', 'Ar++']
+len(specific) : 4
+
+leaf Ar     single=[]         all_double=[]       lone_pairs=[]       charge=[0, 1, 2]
+              generic=['R', 'R!H', 'R!H!Val7', 'Rx', 'Rx!H'] specific=['Ar0', 'Ar0s', 'Ar+', 'Ar++']
+
+leaf Ar0    single=[0]        all_double=[0]      lone_pairs=[4]      charge=[0]
+              generic=['R', 'R!H', 'R!H!Val7', 'Rx', 'Rx!H', 'Ar'] specific=[]
+
+leaf Ar0s   single=[1]        all_double=[0]      lone_pairs=[3]      charge=[0]
+              generic=['R', 'R!H', 'R!H!Val7', 'Rx', 'Rx!H', 'Ar'] specific=[]
+
+leaf Ar+    single=[0, 1]     all_double=[0]      lone_pairs=[3]      charge=[1]
+              generic=['R', 'R!H', 'R!H!Val7', 'Rx', 'Rx!H', 'Ar'] specific=[]
+
+leaf Ar++   single=[0, 1, 2]  all_double=[0]      lone_pairs=[3]      charge=[2]
+              generic=['R', 'R!H', 'R!H!Val7', 'Rx', 'Rx!H', 'Ar'] specific=[]
+
+==============================================================================
+IS 'Ar' STILL IN nonSpecifics?
+==============================================================================
+nonSpecifics : ['He', 'Ne', 'e']
+'Ar' in nonSpecifics : False
+allElements  : ['H', 'C', 'O', 'N', 'S', 'P', 'Si', 'F', 'Cl', 'Br', 'I', 'Li', 'Na', 'K', 'Mg', 'Ca', 'Ne', 'Ar', 'He', 'X', 'e']
+
+==============================================================================
+PERCEPTION OF CONCRETE ADJACENCY LISTS
+==============================================================================
+
+--- ground-state argon (u0 p4 c0) ---
+adjlist:
+1 Ar u0 p4 c0
+
+OK       : Molecule(smiles="[Ar]")
+charge   : 0
+  atom[0] element=Ar  atomtype=Ar0    radical=0 lone_pairs=4 charge=+0
+
+--- Ar+ cation (u1 p3 c+1) ---
+adjlist:
+1 Ar u1 p3 c+1
+
+OK       : Molecule(smiles="[Ar+]")
+charge   : 1
+  atom[0] element=Ar  atomtype=Ar+    radical=1 lone_pairs=3 charge=+1
+
+--- dication, exactly as test_argon_cation_buildtime spells it ---
+adjlist:
+1 Ar u0 p2 c+2
+
+RAISED   : InvalidAdjacencyListError: Invalid valency for atom Ar (Ar) with 0 unpaired electrons, 2 pairs of electrons, 2 charge, and bonds [].
+
+--- dimer cation, exactly as test_argon_cation_buildtime spells it ---
+adjlist:
+1 Ar u0 p3 c+1 {2,S}
+2 Ar u1 p3 c0  {1,S}
+
+OK       : Molecule(smiles="[Ar][Ar+]")
+charge   : 1
+  atom[0] element=Ar  atomtype=Ar0s   radical=1 lone_pairs=3 charge=+0
+  atom[1] element=Ar  atomtype=Ar+    radical=0 lone_pairs=3 charge=+1
+
+==============================================================================
+DOES A LEAF ADMIT THE TWO NONSENSE CONSTRUCTIONS?
+==============================================================================
+dication requirement    : single=0, lone_pairs=2, charge=+2
+dimer-cation atom 1 req : single=1, lone_pairs=3, charge=+1
+dimer-cation atom 2 req : single=1, lone_pairs=3, charge=0
+  Ar     single=[]         lone_pairs=[]       charge=[0, 1, 2]
+  Ar0    single=[0]        lone_pairs=[4]      charge=[0]
+  Ar0s   single=[1]        lone_pairs=[3]      charge=[0]
+  Ar+    single=[0, 1]     lone_pairs=[3]      charge=[1]
+  Ar++   single=[0, 1, 2]  lone_pairs=[3]      charge=[2]
+
+==============================================================================
+DONE
+==============================================================================

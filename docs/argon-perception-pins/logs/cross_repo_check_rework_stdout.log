@@ -1,0 +1,10 @@
+cross-repo-check
+  database : /home/alon/Code/RMG-database-i226-argon-perception-pins  @ 20a1c687a (i226-argon-perception-pins)
+  engine   : /home/alon/Code/RMG-Py-plasma  @ 311818121 (plasma)
+  built    : 52 extension(s); atomtype -> /home/alon/Code/RMG-Py-plasma/rmgpy/molecule/atomtype.cpython-39-x86_64-linux-gnu.so
+  python   : python on PATH (/home/alon/anaconda3/envs/rmg_env/bin/python)
+  built    : atomtype .so is 41 min old and not older than its source
+
+  pytest   : 223 passed, 568 warnings in 27.63s
+
+  CLEAN -- every collected test in the database checkout passes against this engine.

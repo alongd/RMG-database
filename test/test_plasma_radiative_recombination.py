@@ -39,11 +39,16 @@ from over-reading a green run:
   it promised to fail if RMG-Py ever gave that rate law an electron count. RMG-Py then
   did (the merge *"give TwoTemperaturePlasma a signed-net electron count"*), the test
   fired as designed, and it is now re-pinned: a three-body entry declaring
-  ``electrons=-1`` **stores**, so the block is **data only**. The wrong-sign refusal and
-  the "no coefficient ships here" guard are split into their own tests beside it.
+  ``electrons=-1`` **stores**. But **storage is not representability**: the channel still
+  cannot resolve, because no owner declares the ``(2, 1)`` shape it needs, and forcing it
+  under the ``(1, 0)`` radiative declaration trips an active rate-order guard that says
+  the rate would be wrong by a factor of the electron density. Five tests now cover what
+  one did - storage, the wrong-sign refusal, the missing placement declaration, the
+  rate-order guard, and a semantic "no third-order coefficient ships here" tripwire.
   Consequence for readers of ``docs/i119-recombination-loss.md``: that document's
-  "blocked twice over" headline is now half stale, and its "data alone would not unblock
-  it" is inverted - data alone is now what is missing.
+  "blocked twice over" headline is still true in *count*, but its second blocker has
+  changed identity - from "cannot be stored at all" to "has no placement declaration" -
+  while its "Data alone would not unblock it" remains **correct**.
 
 WHERE THE DECLARATION LIVES
 ---------------------------
@@ -90,7 +95,9 @@ settings['database.directory'] = THIS_DATABASE
 
 from rmgpy.data.kinetics.database import KineticsDatabase  # noqa: E402
 from rmgpy.data.kinetics.family import TemplateReaction  # noqa: E402
-from rmgpy.electron_balance import get_species_electron_count  # noqa: E402
+from rmgpy.electron_balance import (  # noqa: E402
+    get_plasma_rate_order, get_species_electron_count,
+)
 from rmgpy.exceptions import DatabaseError, ElectronPlacementError  # noqa: E402
 from rmgpy.kinetics import (  # noqa: E402
     Arrhenius, BadnellRRArrhenius, TwoTemperaturePlasma, VoronovEIArrhenius)
@@ -491,10 +498,12 @@ def test_the_implementable_sink_is_three_orders_weaker_than_the_source(reaction)
     assert at(ionization, 0.3) / at(recombination, 0.3) < 1e-3
 
 
-def _write_three_body_trial(tmp_path, electrons_literal=None):
+def _write_three_body_trial(tmp_path, electrons_literal=None, name='ThreeBodyTrial'):
     """Write a minimal one-entry library whose rate law is a third-order
-    ``TwoTemperaturePlasma``, optionally declaring ``electrons``. Returns the library root."""
-    trial = tmp_path / 'ThreeBodyTrial'
+    ``TwoTemperaturePlasma``, optionally declaring ``electrons``. ``name`` is the library
+    label, which is what ``LibraryReaction`` exposes as ``.family`` and hence what electron
+    placement looks up. Returns the library root."""
+    trial = tmp_path / name
     trial.mkdir()
     (trial / 'dictionary.txt').write_text(
         '[Lip]\n1 Li u0 p0 c+1\n\n[Li]\nmultiplicity 2\n1 Li u1 p0 c0\n\n')
@@ -504,7 +513,7 @@ def _write_three_body_trial(tmp_path, electrons_literal=None):
         kinetics += ', electrons=%s' % electrons_literal
     kinetics += ')'
     (trial / 'reactions.py').write_text(
-        'name = "ThreeBodyTrial"\n'
+        'name = "%s"\n'
         'shortDesc = u""\n'
         'longDesc = u""\n'
         'entry(\n'
@@ -515,7 +524,7 @@ def _write_three_body_trial(tmp_path, electrons_literal=None):
         '    kinetics = %s,\n'
         '    shortDesc = u"Li+ + 2 e- => Li + e-",\n'
         '    longDesc = u"",\n'
-        ')\n' % kinetics)
+        ')\n' % (name, kinetics))
     return trial
 
 
@@ -549,19 +558,35 @@ def test_three_body_recombination_can_now_be_stored_and_the_remaining_blocker_is
       * declaring nothing, or the wrong sign (``electrons=1``), is still refused as
         ``"was not balanced"`` - the balance check still does its job.
 
-    **So one of the two blockers is gone.** Representation no longer blocks the dominant
-    volume sink; ``i119``'s "blocked twice over" is now half stale, and its claim that "data
-    alone would not unblock it" has been inverted - data alone is now exactly what is
-    missing. This test is re-pointed accordingly: it pins that the block is now **data
-    only**, and that this repository still ships no three-body coefficient.
+    **The STORAGE blocker is gone. The channel is still not representable.** An earlier draft
+    of this re-pin said the block was now "data only". **That was wrong, and it is retracted
+    here**, because storage is not representability. What I-178 did was lift one blocker and
+    *narrow* the others, not remove them:
 
-    **What this test deliberately does NOT claim.** That a stored three-body entry would be
-    *correct*. ``TwoTemperaturePlasma`` is a ``k(T, Te)`` law; three-body recombination is
-    second order in the electron density, and whether the reactor multiplies through by
-    ``n_e`` the right number of times is an engine question that was not measured here - no
-    reactor was run. Storing it is necessary, not sufficient. See the referral in
-    ``docs/argon-perception-pins/report.md``; the sourced-coefficient half of the job that
-    ``i119`` asks for is still open and is not done by this ticket."""
+      * a three-body entry now **stores** (this test);
+      * it then **fails electron placement**, because no owner declares the ``(2, 1)`` shape
+        the channel needs - measured in
+        ``test_three_body_recombination_has_no_placement_declaration_and_cannot_resolve``;
+      * forced under an owner that *is* declared, it is refused again by an **active
+        rate-order guard** - measured in
+        ``test_forcing_three_body_under_the_radiative_declaration_trips_the_rate_order_guard``.
+
+    So the missing pieces are a **placement declaration in RMG-Py** *and* a **sourced
+    third-order coefficient**. A declaration is a line of engine code, not data, so "data
+    alone" was wrong in kind rather than merely in degree.
+
+    The engine says so itself, in the comment directly above ``FAMILY_ELECTRON_PLACEMENT``
+    (``rmgpy/electron_placement.py``): three-body recombination *"would declare ``(2, 1)``.
+    That declaration is absent, but the reason narrowed with I-178 ... the storage blocker is
+    lifted; what remains absent is this placement declaration and a sourced third-order
+    coefficient, neither of which I-178 adds."*
+
+    **Consequence for ``docs/i119-recombination-loss.md``.** That document's "blocked twice
+    over" headline is still *true in count*, but its second blocker has changed identity -
+    from "cannot be stored at all" to "has no placement declaration" - and its line "Data
+    alone would not unblock it" remains **correct**, which the earlier draft wrongly called
+    inverted. The document is not edited from this branch; the recommended correction is
+    written up in ``docs/argon-perception-pins/report.md``."""
     # The field the old tripwire guarded now exists, with a default of zero. It is a
     # ScalarQuantity, so it is compared through .value - the same convention this file
     # already uses at test_the_loader_copies_the_electron_count_onto_the_reaction.
@@ -571,7 +596,8 @@ def test_three_body_recombination_can_now_be_stored_and_the_remaining_blocker_is
     assert law.electrons.value == pytest.approx(0)
     assert 'TwoTemperaturePlasma' in electron_placement._NET_ELECTRON_KINETICS_CLASSES
 
-    # Declaring the correct count, a three-body entry now STORES. This is the inversion.
+    # Declaring the correct count, a three-body entry now STORES. Storage only - the two
+    # tests below show it still cannot resolve.
     _write_three_body_trial(tmp_path, electrons_literal='-1')
     db = KineticsDatabase()
     db.load_libraries(str(tmp_path), libraries=['ThreeBodyTrial'])
@@ -579,6 +605,9 @@ def test_three_body_recombination_can_now_be_stored_and_the_remaining_blocker_is
     assert len(entries) == 1
     assert entries[0].data.electrons.value == pytest.approx(-1)   # ScalarQuantity
     assert entries[0].item.electrons == -1                        # plain int on the reaction
+
+    # ... and the shape the channel would need is declared by nobody.
+    assert (2, 1) not in electron_placement.FAMILY_ELECTRON_PLACEMENT.values()
 
 
 @pytest.mark.parametrize('electrons_literal,why', [
@@ -601,20 +630,119 @@ def test_a_three_body_entry_with_the_wrong_electron_count_is_still_refused(
     assert 'was not balanced' in str(exc.value), why
 
 
-def test_this_repository_still_ships_no_three_body_coefficient():
-    """The blocker that remains, pinned where the old representational one used to be.
+def _stored_three_body_reaction(tmp_path, owner):
+    """Store the three-body trial under library label ``owner`` and return it as a
+    ``LibraryReaction``, whose ``.family`` is that label - which is what the resolver reads.
+    ``entry.item`` is a bare ``Reaction`` and carries no ``family``, so it will not do."""
+    _write_three_body_trial(tmp_path, electrons_literal='-1', name=owner)
+    db = KineticsDatabase()
+    db.load_libraries(str(tmp_path), libraries=[owner])
+    reactions = db.libraries[owner].get_library_reactions()
+    assert len(reactions) == 1
+    return reactions[0]
+
+
+def test_three_body_recombination_has_no_placement_declaration_and_cannot_resolve(
+        tmp_path, electron):
+    """Blocker two, after I-178 narrowed it: the channel stores, then fails to resolve.
+
+    The shape three-body recombination needs is ``(2, 1)`` - two electrons incident, one
+    liberated. Nothing declares it, and ``resolve_electron_placement`` refuses to infer a
+    placement from the net count alone, so an entry under an undeclared owner dies with a
+    named error. This is what makes "data alone is what is missing" false: the missing piece
+    here is a line in RMG-Py's ``FAMILY_ELECTRON_PLACEMENT``, not a number from a paper.
+
+    Measured in ``docs/argon-perception-pins/logs/probe_threebody_stdout.log``."""
+    registry = electron_placement.FAMILY_ELECTRON_PLACEMENT
+    assert (2, 1) not in registry.values()
+    assert [owner for owner, decl in registry.items() if decl == (2, 1)] == []
+
+    owner = 'PlasmaThreeBodyRecombination'
+    assert owner not in registry, 'an owner appeared; see docs/i119-recombination-loss.md'
+    reaction = _stored_three_body_reaction(tmp_path, owner)
+    assert reaction.family == owner
+    assert reaction.electrons == -1
+
+    species_list = list(reaction.reactants) + list(reaction.products) + [electron]
+    with pytest.raises(ElectronPlacementError) as exc:
+        electron_placement.resolve_electron_placement(reaction, species_list)
+    assert 'no electron-placement declaration' in str(exc.value)
+
+
+def test_forcing_three_body_under_the_radiative_declaration_trips_the_rate_order_guard(
+        tmp_path, electron, declaration):
+    """The rate-order guard is an ACTIVE REFUSAL, not an open question.
+
+    An earlier draft of this ticket framed "does the reactor multiply through by ``n_e`` the
+    right number of times?" as an unmeasured engine question. It is not open: the engine
+    already guards it, and the guard fires here.
+
+    ``PlasmaRadiativeRecombination`` is declared ``(1, 0)``, whose **net** (-1) matches a
+    three-body entry exactly - so net-charge balance alone cannot tell the two apart. What
+    separates them is the **incident order**: the declaration builds a two-reactant view,
+    while the coefficient is order 3. The engine cross-checks the two and refuses, saying in
+    its own message that the rate would otherwise be *"wrong by a factor of the electron
+    density while the reaction looks well formed"*.
+
+    So an ad-hoc attempt to smuggle three-body recombination in under the existing
+    declaration does not silently produce a wrong rate - it is caught. Pinned so that
+    remains true."""
+    decl, _was_shipped = declaration
+    assert decl == (1, 0)
+
+    owner = 'PlasmaRadiativeRecombination'
+    reaction = _stored_three_body_reaction(tmp_path, owner)
+    assert reaction.family == owner
+    # The net matches the declaration, which is exactly why this case needs its own guard.
+    assert reaction.electrons == decl[1] - decl[0] == -1
+    assert get_plasma_rate_order(reaction.kinetics) == 3
+
+    species_list = list(reaction.reactants) + list(reaction.products) + [electron]
+    with pytest.raises(ElectronPlacementError) as exc:
+        electron_placement.resolve_electron_placement(reaction, species_list)
+    message = str(exc.value)
+    assert 'rate coefficient of order 3' in message
+    assert 'electron density' in message
+
+
+def test_this_repository_still_ships_no_three_body_coefficient(library):
+    """The data blocker that remains, pinned semantically rather than by grepping the file.
 
     This is the new tripwire, and it fires in the direction the campaign actually wants: if
-    somebody adds a three-body entry to ``PlasmaRadiativeRecombination``, this test fails and
-    sends them to ``docs/i119-recombination-loss.md`` to confirm the coefficient is *sourced*
-    and that the ``n_e``-order question in that document's section 8 has been answered."""
-    path = os.path.join(settings['database.directory'], 'kinetics', 'libraries',
-                        'PlasmaRadiativeRecombination', 'reactions.py')
-    with open(path) as handle:
-        text = handle.read()
-    assert text.count('entry(') == 1, 'a second entry appeared; see docs/i119-recombination-loss.md'
-    assert 'TwoTemperaturePlasma' not in text
-    assert 'cm^6' not in text
+    somebody gives ``PlasmaRadiativeRecombination`` a third-order coefficient, this test
+    fails and sends them to ``docs/i119-recombination-loss.md`` to confirm the coefficient is
+    *sourced* - and to
+    ``test_forcing_three_body_under_the_radiative_declaration_trips_the_rate_order_guard``,
+    which shows that adding one here without a ``(2, 1)`` declaration cannot resolve anyway.
+
+    **Why it is not a text search.** The first version of this test read ``reactions.py`` as
+    raw characters and asserted an ``entry(`` count of one, no ``TwoTemperaturePlasma``, and
+    no ``cm^6``. Review pointed out that such a check is walked past by a coefficient written
+    in ``m^6``, by a third-order rate expressed through a different kinetics class, and -
+    likeliest of the three - by somebody editing the *existing* entry to third order without
+    adding a second ``entry(`` at all. A tripwire a unit change defeats is not a tripwire.
+
+    This version loads the library and asks the engine for the reaction order implied by each
+    coefficient's units. ``get_plasma_rate_order`` recognises ``m^6`` and ``cm^6``, per mole
+    and per molecule alike (measured, ``logs/probe_threebody_stdout.log`` section D), so no
+    spelling of a third-order coefficient slips through. An **unrecognised** unit returns
+    ``None``, which this test also refuses: a coefficient whose order the engine cannot
+    determine is exactly the case that must not pass silently."""
+    entries = list(library.entries.values())
+    assert len(entries) == 1, 'entries changed; see docs/i119-recombination-loss.md'
+
+    for entry in entries:
+        kinetics = entry.data
+        order = get_plasma_rate_order(kinetics)
+        assert order is not None, (
+            'the order of %s (A units %r) cannot be determined by the engine, so this '
+            'tripwire cannot tell whether it is third order; see '
+            'docs/i119-recombination-loss.md'
+            % (kinetics.__class__.__name__, getattr(getattr(kinetics, 'A', None), 'units', None)))
+        assert order == 2, (
+            'a rate coefficient of order %d appeared in this library - a three-body '
+            'coefficient needs a sourced value AND a (2, 1) placement declaration in '
+            'RMG-Py; see docs/i119-recombination-loss.md' % order)
 
 
 # ---------------------------------------------------------------------------

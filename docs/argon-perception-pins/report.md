@@ -6,6 +6,17 @@ corrected below by measurement.** The most consequential correction is that the 
 buildtime tests protected was **not uniformly lost**: for the dication it is **relocated and still
 asserted**, for the dimer it is **partially lost** and now pinned as the smaller thing it is.
 
+> **Revision note (after adversarial review).** This report previously concluded that I-178 had
+> lifted the representational blocker on three-body recombination so that *"data alone is now
+> exactly what is missing"*. **That conclusion was wrong and is retracted in §4a.** Storage is not
+> representability: the channel stores and then fails electron placement, because no owner declares
+> the `(2, 1)` shape it needs — and a placement declaration is engine code, not data. I verified the
+> correction myself rather than accepting it; the measurements are in
+> `logs/probe_threebody_stdout.log`. Two further changes followed: the rate-order caveat I had filed
+> as an open question is in fact an **active guard that refuses the entry** (§4b), and the data
+> tripwire, which was a text grep that an `m^6` spelling could walk past, is now a semantic check
+> (§4d).
+
 Everything below is measured against a freshly built engine, resolved to
 `/home/alon/Code/RMG-Py-plasma/rmgpy/molecule/atomtype.cpython-39-x86_64-linux-gnu.so`. Logs are in
 `docs/argon-perception-pins/logs/`; the probes that produced them are the three `probe_*.py` scripts
@@ -189,27 +200,83 @@ Measured (`logs/probe_guarantee_stdout.log`):
 | three-body entry, no `electrons` | refused, `"was not balanced"` |
 | three-body entry, `electrons=1` | refused, `"was not balanced"` |
 
-**The representational blocker is gone.** This inverts two claims in
-`docs/i119-recombination-loss.md`: its headline *"blocked twice over"* is now half stale, and its
-*"Data alone would not unblock it"* is **backwards** — data alone is now exactly what is missing.
+### 4a. RETRACTED: "the representational blocker is gone, data alone is what is missing"
 
-The re-pin splits the old single test into three, because the old one could only say "nothing can be
-stored" and there are now three separable facts:
+**An earlier revision of this report said exactly that. It is wrong, and this section replaces it.**
+Adversarial review caught it, I verified the correction myself rather than taking it on trust, and
+the measurement backs the reviewer on every point (`logs/probe_threebody_stdout.log`).
 
-1. `..._can_now_be_stored_and_the_remaining_blocker_is_data` — the inversion itself;
+**Storage is not representability.** Being able to *persist* an entry says nothing about whether the
+engine can *resolve* it into something a reactor can evaluate. Three-body recombination still cannot
+be resolved, for a reason that is not data:
+
+| step | result |
+|---|---|
+| `FAMILY_ELECTRON_PLACEMENT` size | **9 entries** |
+| any declaration `(2, 1)` — the shape three-body needs | **None.** `[o for o, d in ... if d == (2, 1)] == []` |
+| stored under an owner absent from the map | `ElectronPlacementError`: *"Family 'PlasmaThreeBodyRecombination' has no electron-placement declaration ... refusing to infer electron placement from the net electron count."* |
+| forced under `PlasmaRadiativeRecombination`, declared `(1, 0)` | net matches (−1 = −1), but refused: *"built a view with 2 reactant(s), but its kinetics TwoTemperaturePlasma has a rate coefficient of order 3 ... the rate wrong by a factor of the electron density while the reaction looks well formed."* |
+
+So the blocker count did **not** go two → one. It went **(no storage, no data) → (no placement
+declaration, no data)**. A placement declaration is a line in `rmgpy/electron_placement.py`, not a
+number from a paper — so "data alone" was wrong **in kind**, not merely in degree.
+
+The engine states this itself, in the comment directly above `FAMILY_ELECTRON_PLACEMENT`, inside the
+very table my test asserts membership in. Three-body recombination *"would declare `(2, 1)`. That
+declaration is absent, but the reason narrowed with I-178 ... the storage blocker is lifted; what
+remains absent is this placement declaration and a sourced third-order coefficient, neither of which
+I-178 adds."* I had asserted membership in that dict without reading the paragraph above it.
+
+**The honest statement**, which now appears in the test docstring, the module docstring and here:
+I-178 lifted the **storage** blocker and **narrowed** the remaining ones; the channel is **still not
+representable end to end**; what is missing is a **`(2, 1)` placement declaration in RMG-Py** *plus*
+a **sourced third-order coefficient**.
+
+### 4b. The rate-order caveat was real, and I undersold it
+
+My first report framed "does the reactor multiply through by `n_e` correctly?" as an unmeasured
+engine question. **It is not an open question — it is an active guard that refuses the entry**, at
+`electron_placement.py:704-720`, and its own message names the failure mode: *"the rate wrong by a
+factor of the electron density while the reaction looks well formed."*
+
+This matters more than a caveat, because the `(1, 0)` declaration's **net is identical** to what a
+three-body entry needs (−1). Net-charge balance alone therefore cannot distinguish them; only the
+incident order can, and the order check is what catches it. An attempt to smuggle three-body
+recombination in under the existing declaration does not silently produce a wrong rate — it is
+refused. That is now pinned, not merely noted.
+
+### 4c. What the five tests cover
+
+The old single test became five, because it could only say "nothing can be stored":
+
+1. `..._can_now_be_stored_and_the_remaining_blocker_is_data` — storage works; `(2, 1)` is absent;
 2. `..._with_the_wrong_electron_count_is_still_refused` (parametrized over "absent" and "+1") — the
-   balance check became *reachable*, not *permissive*, which is what stops the lifted block from
-   becoming a quiet way to ship an unbalanced reaction;
-3. `test_this_repository_still_ships_no_three_body_coefficient` — **the new tripwire**, pointing the
-   same way the old one did. It fires if anybody adds a three-body entry to
-   `PlasmaRadiativeRecombination` (verified read-only: that library ships exactly one `entry(`, no
-   `TwoTemperaturePlasma`, no `cm^6`), and sends them back to `i119`.
+   balance check became *reachable*, not *permissive*;
+3. `..._has_no_placement_declaration_and_cannot_resolve` — **new**; the named placement failure;
+4. `..._trips_the_rate_order_guard` — **new**; the order refusal, quoting its own message;
+5. `test_this_repository_still_ships_no_three_body_coefficient` — the data tripwire, rebuilt (§4d).
 
-**What I deliberately did not claim.** That a stored three-body entry would be *correct*.
-`TwoTemperaturePlasma` is a `k(T, Te)` law; three-body recombination is second order in the electron
-density, and whether the reactor multiplies through by `n_e` the right number of times is an engine
-question I did **not** measure — no reactor was run. Storing it is necessary, not sufficient. This
-is flagged in the test docstring and in §5.
+### 4d. The tripwire was a text grep, and could be walked past
+
+Review flagged that the first version read `reactions.py` as characters — `entry(` count of one, no
+`TwoTemperaturePlasma`, no `cm^6`. That is defeated by a coefficient in `m^6`, by a different
+kinetics class, and most likely of all by **editing the existing entry to third order without adding
+a second `entry(`**.
+
+It now loads the library and asks the engine for the order implied by the coefficient's units.
+Measured (`logs/probe_threebody_stdout.log` §D): `get_plasma_rate_order` returns `3` for all four
+third-order spellings — `cm^6`/`m^6`, per mole and per molecule — and `2` for second-order ones. An
+unrecognised unit returns `None`, which the test also refuses, since an order the engine cannot
+determine must not pass silently.
+
+A mutation test confirms the fix is not cosmetic (`logs/tripwire_mutation_stdout.log`):
+
+| mutation (edit the existing entry, no new `entry(`) | new tripwire | old grep |
+|---|---|---|
+| `cm^6/(molecule^2*s)` | **FAIL (order 3)** | FAIL |
+| `m^6/(molecule^2*s)` | **FAIL (order 3)** | **pass — walked past** |
+| `m^6/(mol^2*s)` | **FAIL (order 3)** | **pass — walked past** |
+| unmutated (shipped `BadnellRRArrhenius`, order 2) | pass | pass |
 
 ---
 
@@ -230,13 +297,52 @@ saturated structure. Any radical argon species reached through the HBI path will
 asymmetry — `Ar++` *does* allow `single=[0, 1, 2]`, so two bonds are admissible at +2 but not at 0.
 Whether that is intended is the engine's call.
 
+**R0 — the `(2, 1)` placement declaration for three-body recombination is absent.** This is the
+blocker that replaced the storage one, and it is engine work: a line in `FAMILY_ELECTRON_PLACEMENT`.
+Until it lands, no three-body entry can resolve no matter how good its coefficient is. The engine's
+own comment already names it as outstanding; nothing in this branch changes that, and nothing in
+this branch should.
+
 **R3 — `TwoTemperaturePlasma.electrons` is a `ScalarQuantity`, not an `int`, and compares unequal to
 the integer it displays.** `repr()` shows `-1`; `law.electrons == -1` is **`False`**; there is no
 `__int__`. This cost me one red test until I found that this repository already has the convention
 (`kinetics.electrons.value == pytest.approx(-1)` for the rate law, plain `int` on
 `Reaction.electrons`). It is a live trap for the next person, though **not** a defect — the balance
-check reads it correctly, and my wrong-sign measurements prove the semantics work. Recorded so it is
-not rediscovered.
+check reads it correctly, and my wrong-sign measurements prove the semantics work. Review adds the
+mechanism: `Reaction.electrons` is copied as a plain value at `library.py:612`, which is why the two
+compare differently. Recorded so it is not rediscovered.
+
+---
+
+## 5b. What `docs/i119-recombination-loss.md` should say — recommendation, not an edit
+
+It is **not** edited from this branch. Two of its lines are now inaccurate in detail, and one that I
+previously called wrong is in fact correct:
+
+| line | status | recommended wording |
+|---|---|---|
+| *"blocked twice over"* | **still true in count**; the second blocker changed identity | keep the count; replace the second blocker *"it **cannot be stored at all**"* with *"it has **no `(2, 1)` electron-placement declaration**, so it stores but cannot resolve"* |
+| *"the only Te-aware third-order rate law carries no electron count and the loader therefore refuses it as unbalanced"* | **stale since I-178** | *"I-178 gave `TwoTemperaturePlasma` a signed-net `electrons` field, so such an entry now loads; it then fails electron placement, and — forced under the `(1, 0)` radiative declaration — is refused by the rate-order guard"* |
+| *"Data alone would not unblock it"* | **correct; I was wrong to call it backwards** | leave exactly as it stands |
+
+Its §8 argument (every volume recombination channel is higher order in `n_e` than the source) is
+untouched by any of this and needs no change.
+
+---
+
+## 5c. Known fragility in the dimer re-pin
+
+Accepted by review as-is, recorded here so whoever moves the code finds it. The dimer test now pins
+`pytest.raises(AtomTypeError)` on a failure raised inside `estimate_radical_thermo_via_hbi` →
+`saturate_radicals`. That ties the test to an **implementation detail of the HBI path**, which is
+more fragile than the `DatabaseError` it replaced: any rework of how RMG saturates radicals, or of
+where thermo estimation gives up, will move or remove this exception and turn the test red without
+anything about argon having changed.
+
+If that happens, the question to ask is the one this ticket asked: *is the dimer still refused
+loudly and not fabricated?* If yes, re-pin to wherever the refusal now lives. The test asserts on
+`'2 single bonds'` and `'+0 charge'` precisely so the next reader can tell whether they are looking
+at the same underlying refusal in a new place, or at a genuinely different outcome.
 
 ---
 
@@ -267,7 +373,7 @@ the run that actually answers the Verifier. Both results are in §7.
 | 2 | every rewritten assertion justified by a printed measurement | yes — §1, §3a, §4; logs named per assertion |
 | 3 | each docstring records what changed and why the old pin was right | yes — all four rewritten docstrings carry a "what this was written for, and why it was right" section |
 | 4 | guarantee question answered in the stated terms | yes — §3a **relocated, not lost**; §3b **partially lost** |
-| 5 | whole `test/` run, every red listed | yes — §2 C4; the 4 reds named; now **221 passed, 0 failed** |
+| 5 | whole `test/` run, every red listed | yes — §2 C4; the 4 reds named; now **223 passed, 0 failed** |
 | 6 | `databaseTest.py` still `6 passed` | **6 passed** both against `RMG-database-plasma` and, re-run pinned, against this worktree (§6) |
 | 7 | nothing under `input/`, nothing in `rmgpy/`, `git status` clean | see the close-out check |
 | 8 | `stdout.log`/`stderr.log` for every measurement | yes — `docs/argon-perception-pins/logs/` |
@@ -276,16 +382,18 @@ Definition of done, per the tool:
 
 ```
 $ bin/cross-repo-check --db <this worktree> --py /home/alon/Code/RMG-Py-plasma
-  database : ... @ 7b403cf7b (i226-argon-perception-pins)
+  database : ... @ <rework tip> (i226-argon-perception-pins)
   engine   : ... @ 311818121 (plasma)
   built    : 52 extension(s); atomtype -> .../atomtype.cpython-39-x86_64-linux-gnu.so
   built    : atomtype .so is 12 min old and not older than its source
-  pytest   : 221 passed, 568 warnings in 26.34s
+  pytest   : 223 passed, 568 warnings in 27.63s
   CLEAN -- every collected test in the database checkout passes against this engine.
   exit 0
 ```
 
-221 = the previous 218 collected, plus 3 from splitting the tripwire into four tests.
+223 = the original 218 collected, plus 5 from splitting the single tripwire into six items (storage,
+two wrong-sign cases, the missing placement declaration, the rate-order guard, and the data
+tripwire).
 
 Three `cross-repo-check` runs are in `logs/`, and the middle one is the interesting one:
 
@@ -293,7 +401,8 @@ Three `cross-repo-check` runs are in `logs/`, and the middle one is the interest
 2. at `311818121`, before the `Ar0e` re-pin — `1 failed, 220 passed`, exit 1, naming
    `test_argon_atom_type_resolves_to_a_specific_leaf_and_no_longer_parses_any_charge`. This is the
    new pin catching a real engine change, unprompted, within the hour;
-3. at `311818121`, after it — `221 passed`, exit 0. This is the final state.
+3. at `311818121`, after it — `221 passed`, exit 0;
+4. at `311818121`, after the post-review rework — **`223 passed`, exit 0**. This is the final state.
 
 ---
 

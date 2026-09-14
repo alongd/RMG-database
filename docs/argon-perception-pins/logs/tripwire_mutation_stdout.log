@@ -1,0 +1,11 @@
+shipped: BadnellRRArrhenius   order=2
+
+unmutated                      -> pass
+edited existing entry -> cm^6/(molecule^2*s)    -> FAIL (order 3)
+edited existing entry -> m^6/(molecule^2*s)     -> FAIL (order 3)
+edited existing entry -> m^6/(mol^2*s)          -> FAIL (order 3)
+
+OLD grep on an m^6 third-order edit:
+  entry( count == 1        -> True
+  'cm^6' not in text       -> True
+  => old tripwire verdict  -> pass (WALKED PAST)

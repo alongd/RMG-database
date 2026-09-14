@@ -720,3 +720,277 @@ for the same reason and are the same kind of thing. Flagged, not touched.
 
 `docs/contracts/` (gitignored) holds the closed contract note for this ticket, carrying the same
 evidence in the form `contract close` expects.
+
+---
+
+## 13. Round 58 — the reachability disclosure was inverted, and the form choice rested on a false premise
+
+Round 58 confirmed the three round-55 HIGHs as answered and found three new things. Two are mine
+and are fixed or disclosed below; one is an engine hole that is explicitly not mine. Everything
+here was re-measured against the engine before acting, and where my measurement disagrees with the
+round's, the disagreement is stated first.
+
+All numbers in this section come from `docs/argon-metastable-thermo/round58_probe.py`; both streams
+are captured in `logs/round58_probe.{stdout,stderr}.log`.
+
+### 13.1 The one place my measurement contradicts the round — and it makes the finding worse
+
+The round stated the admitted barrier as **406.334 kJ/mol**. Measured, it is **412.5203**.
+
+That is not a rounding disagreement, and the cause is a finding the round half-identified and
+filed under a different heading. `Reaction.fix_barrier_height` raises an endothermic barrier to the
+reaction enthalpy at **zero** K, not at 298 (`rmgpy/reaction.py:1401-1403`):
+
+```
+H0 = sum(products' E0) - sum(reactants' E0)
+```
+
+and a species whose entry does not state `E0` falls back to `to_wilhoit().E0`. So:
+
+| quantity | value (kJ/mol) | provenance |
+|---|---|---|
+| `[Ar+]` E0 | 1520.5730 | **stated** by `PlasmaCationThermo` |
+| `[Ar]` E0 | 1108.0527 | **derived**, because this library states none |
+| barrier actually applied | **412.5203** | the difference of those two |
+| dHrxn(298) | 406.3340 | what both conventions agree on |
+| leak | **6.1863** | exactly the cation library's stated-minus-derived gap |
+
+The round reported 412.5203 as an *Arkane-lookup* curiosity in the E0 residuals. It is not a
+curiosity: **the mixed sibling convention sets the activation energy of the one reaction this
+library makes reachable.** An Arrhenius barrier sits in an exponent, so the leak multiplies the
+delivered rate by `exp(-6186.3/RT)` — 11.94× at 300 K, 2.10× at 1000 K.
+
+This also reconciles the round's three rate numbers with mine exactly. Every one of the round's
+values corresponds to a 406.334 barrier and every one of mine to 412.5203:
+
+| T (K) | round | measured here | ratio | `exp(ΔEa/RT)` |
+|---|---|---|---|---|
+| 300 | 2.312e-63 | 1.936048e-64 | 11.9419 | 11.9429 |
+| 1000 | 7.715e-14 | 3.665970e-14 | 2.1045 | 2.1044 |
+| 34813.5 | 3.1764e7 | 3.109234e7 | 1.0216 | 1.0216 |
+
+The round's qualitative conclusion is untouched and correct. The direction and the scale stand.
+
+### 13.2 HIGH — the reachability disclosure, rewritten to the measured behaviour
+
+Confirmed exactly as the round described. Ground-state argon generates zero reactions, the
+metastable generates one, and `u0` versus `u2` is genuinely the discriminator. What happens next is
+not what either the previous disclosure or the review question said:
+
+```
+delivered kf, T_gas =  300 K, Te = 1 eV   1.936048e-64 m^3/(mol*s)
+delivered kf, T_gas =  300 K, Te = 3 eV   1.936048e-64      <- IDENTICAL
+delivered kf, T_gas = 1000 K, Te = 1 eV   3.665970e-14
+delivered kf, T_gas = 1000 K, Te = 3 eV   3.665970e-14      <- IDENTICAL
+same Arrhenius evaluated at Te = 3 eV     3.109234e+07
+published state-resolved argon model      2.0583e+10
+```
+
+Under-delivered by ~24 orders of magnitude at 1000 K gas, ~74 at 300 K, and **Te does not enter at
+all**. Verified mechanism: the estimate arrives as `ArrheniusEP`, `fix_barrier_height` converts it
+to ordinary `Arrhenius`, and neither carries `uses_electron_temperature`. Only four classes set
+that flag anywhere in `rmgpy/kinetics/arrhenius.pyx`, and — measured — **none is a superclass of
+`Arrhenius`**, so no estimate can ever inherit it. `PlasmaReactor.generate_rate_coefficients`
+branches on `getattr(kin, 'uses_electron_temperature', False)` (`plasma.pyx:875`) and the else
+branch evaluates at `self.T` (`plasma.pyx:886`).
+
+The longDesc section is rewritten to say this, with the numbers and the mechanism. The previous
+"five orders of magnitude too large / lucky threshold" framing is retracted in the file, and the
+4.2113 eV threshold arithmetic is kept but demoted: it is true, and it is irrelevant, because the
+rate never sees an electron temperature. **Re-anchoring that rule from lithium to argon would not
+move the delivered number at all** — which is the part that makes this not a provenance problem.
+
+Also recorded, as the round asked: the point-of-use comment reads `Exact match found for rate rule
+[A_rad]`, with no mention of rank 10, of the rule being a placeholder, or of lithium. A test now
+pins that, so if the comment ever gains a qualification the disclosure gets revisited.
+
+The engine hole itself is untouched, per the ruling.
+
+### 13.3 The merge question — can the existing quarantine be pointed at this?
+
+**Yes, precisely — but not from this ticket's scope.** Investigated as directed.
+
+The mechanism is real and well-built: per-family manifests at
+`input/kinetics/families/<Family>/quarantine.py`, loaded by `rmgpy/data/kinetics/quarantine.py`,
+enforced by `check_quarantine` at three points in `rmgpy/rmg/model.py` — kinetics estimation
+(`:1069`), core admission (`:1612`) and edge admission (`:1644`). The first of those is exactly
+where our bad rate enters, and it fires *before* `reaction.kinetics` is bound, so a refused reaction
+is left as generated. One precedent exists, `Cation_R_Recombination`.
+
+Two refinements to the round's framing, both measured:
+
+* **`appliesToKineticsClass = "KineticsModel"` is the right criterion, and `"Arrhenius"` is not.**
+  `applies_to` uses `isinstance`. `ArrheniusEP` is **not** a subclass of `Arrhenius` — it derives
+  directly from `KineticsModel`, as do all four flag-carrying plasma classes. So an `Arrhenius`
+  criterion would catch the converted estimate but miss the `ArrheniusEP` it arrives as, and would
+  be silently direction-dependent on where in the pipeline the check fires.
+* **The cost of `KineticsModel` is that it is blunt**, and this should be stated when proposing it:
+  it also refuses a future *correct* `VoronovEIArrhenius` rule. No single criterion expresses
+  "anything that is not one of the four safe classes", because they are all siblings. I judge the
+  bluntness acceptable and arguably correct — the family today has only the placeholder, and forcing
+  whoever adds a proper Te-dependent rule to come back and remove the manifest is the behaviour you
+  want.
+
+Proposed manifest, **not written**, because `input/kinetics/` is outside this ticket's scope:
+
+```python
+# input/kinetics/families/Plasma_Electron_Impact_Ionization/quarantine.py
+state = "quarantined"
+appliesToKineticsClass = "KineticsModel"
+reason = """
+Any rate this family supplies as an ESTIMATE is delivered to PlasmaReactor as an ordinary
+Arrhenius, which does not carry uses_electron_temperature, so it is evaluated at the GAS
+temperature (plasma.pyx:875/886). Measured for Ar(3P2) => Ar+: 3.67e-14 m^3/(mol*s) at
+1000 K gas against 2.06e10 for a published state-resolved model at the same Te, and
+changing Te from 1 eV to 3 eV changes nothing. Lift this when the engine gap is closed.
+"""
+```
+
+One correction for whoever owns that file: the `Cation_R_Recombination` manifest states that
+`RMG-Py-plasma` lacks the quarantine loader. **That is now stale** — `rmgpy/data/kinetics/quarantine.py`
+is present in both `RMG-Py-plasma` and `RMG-Py-i222-metastable-argon-atomtype`. (It is absent from
+the shared `RMG-Py` primary checkout, which is on `polymer`.)
+
+**Merge position.** I agree with the ruling and it needs no softening: this branch should not merge
+for quantitative plasma use until the engine hole is closed or the family is refused admission. The
+thermochemistry is sound and is not what is blocking. The library now says so in its own header.
+
+### 13.4 HIGH — the `ThermoData` justification was false, and the entry is now a `NASA`
+
+**Decision: switched to an algebraic NASA.** The round is right that there was nothing to fit, and
+keeping the form for a reason that is not true was not defensible.
+
+For constant Cp the coefficients follow algebraically, three lines, no regression and no residual:
+
+```
+Cp/R   = a1               ->  a1 = 5/2 exactly
+H/(RT) = a1 + a6/T        ->  a6 = H298/R - a1*298.15 = 133267.5845721773
+S/R    = a1*ln(T) + a7    ->  a7 = S298/R - a1*ln(298.15) = 5.9890428524
+```
+
+with a2..a5 identically zero. Measured: the entry returns H(298.15) = 1114.247000 kJ/mol and
+S(298.15) = 168.227000 J/(mol·K) — the entered values to every digit — and `Tmax = 6000` survives
+`process_thermo_data` intact.
+
+I chose the switch over keeping `ThermoData` with a corrected justification because it closes
+**four** disclosed defects rather than one:
+
+1. The advertised 6000 K becomes real; the whole "delivered range" section is deleted, not reworded.
+2. The 298-versus-298.15 field offset disappears. A `NASA` has no 298 K field, so the file and the
+   API now agree exactly. The `ThermoData` form read 168.227 in the file and 168.2375 through the API.
+3. The `ThermoData` entropy-extrapolation defect (§13.6) no longer applies to this entry at all.
+4. The database writer drops `Cp0`/`CpInf` for `ThermoData` (`rmgpy/data/thermo.py:89-99`) but
+   writes them for `NASA` (`:113-125`), so the save-reload → `to_wilhoit` → `AttributeError`
+   residual is closed by construction.
+
+The real cost — a tabulated grid is marginally easier to audit by eye — is paid by keeping the grid
+in the longDesc as the audit trail the coefficients derive from.
+
+**Three traps found while doing it, none of which the round mentioned, all now in the file:**
+
+* **Use `rmgpy.constants.R` = 8.314472, not current CODATA 8.314462618.** Deriving with CODATA and
+  letting RMG evaluate with its own puts 1.26 J/mol into H298. Invisible unless checked.
+* **`Tmin` must be ≤ 298.** `to_wilhoit()` evaluates `get_enthalpy(298)`, so a polynomial starting
+  at 298.15 is refused outright — `No valid NASA polynomial at temperature 298 K` — and the entry
+  cannot be processed at all. It is 200 K, which is exact rather than an extrapolation because
+  Cp = 5/2 R holds at every temperature for a free atom. This is the same 298/298.15 convention that
+  bites twice elsewhere in this file; here it is fatal rather than cosmetic.
+* **Being a `NASA` is not sufficient to preserve the range.** The gate is
+  `if "Thermo library" in thermo0.comment and isinstance(thermo0, NASA)` (`thermoengine.py:93`) —
+  the *comment* is load-bearing. A bare `NASA` is refit to 100–5000 K regardless of its declared
+  range. I initially mis-measured this and briefly believed the round was wrong about NASA
+  preservation; my shim had an empty comment. Both arms are now measured and tested.
+
+One new caveat found and disclosed: the writer emits coefficients at **six significant figures**, so
+a programmatic save-reload shifts H298 by 3.45 J/mol — slightly more than the 1 J/mol precision at
+which H298 is quoted. It does not affect the shipped, hand-maintained file.
+
+### 13.5 HIGH (conditional) — the degeneracy path that reports ready with Q = 0
+
+Confirmed at 5, 1, 3, 3, and confirmed that it reaches calculations. `Q` is linear in
+`spin_multiplicity` (measured: g = 1, 3, 5 → Q(298.15) = 1.0000, 3.0000, 5.0000), so a TST rate or
+density of states built from the conformer is wrong by 5× against the g = 5 this entry's S298
+asserts, or 5/3 once statmech has run, while the library entropy does not move.
+
+The path the round flagged as missing from both my disclosure and my tests is real and is now in
+both. `Species.has_statmech` shortcuts single-atom species (`rmgpy/species.py:528`), checking **only**
+that `conformer.E0` is not `None` — not modes, not multiplicity. An ordinary Arkane structure-only
+declaration defaults `spin_multiplicity` to **0** (`arkane/input.py:157`). Composed:
+
+```
+thermo lookup supplies E0    -> conformer.E0 is set
+has_statmech()               -> True          (reported READY)
+get_partition_function(T)    -> 0.0           (measured, 298.15 K and 1000 K)
+get_entropy(T)               -> -inf
+```
+
+A partition function of exactly zero on a species that reports itself ready, and nothing raises.
+Not specific to metastable argon — available to any monatomic species declared by structure alone —
+but this library ships a monatomic species and therefore ships the exposure. Disclosed in the
+longDesc and pinned by two tests. Not fixable from the database side: an adjacency list has no J,
+and there is no library field that sets a conformer's multiplicity.
+
+### 13.6 MEDIUM, raised in severity — the `ThermoData` entropy defect is broader than written
+
+The round is right that I understated it. `ThermoData` freezes S whenever the **final Cp slope** is
+nonpositive — not merely above the declared `Tmax`. Two consequences, both now pinned by a test
+constructed directly on `ThermoData` so it stays true of the *class*:
+
+* It fires **inside** a declared `Tmax` whenever the tabulated grid ends earlier. A flat Cp — exactly
+  right for any monatomic species — is a nonpositive slope, so this is not an exotic case.
+* `is_temperature_valid` cannot repair it: that guard tests the **declared** range, which is not the
+  condition that triggers the freeze. It is accurate, nothing calls it, and calling it would not help.
+
+Gibbs error for these numbers: **47.838 kJ/mol at 8000 K, 106.180 at 10000 K** — enough to invert an
+equilibrium. Reproduced. Referral raised in severity; affects the `ThermoData` class generally.
+
+### 13.7 MEDIUM — the tests did not provide the protection they claimed
+
+All three confirmed.
+
+1. **The rate test inspected the rule and never carried it through admission or the solver** — which
+   is precisely why §13.2 was invisible to it. A rule-level assertion cannot see a defect that
+   happens after the rule is read. Fixed: there is now a module-scoped `admitted` fixture that runs
+   the real path (rate-rule estimate → `fix_barrier_height`), and four tests over it covering the
+   kinetics class and the missing flag, the barrier and its convention leak, the delivered rate
+   through actual `PlasmaReactor` initialisation at two gas temperatures and two electron
+   temperatures, and the point-of-use comment.
+2. **The Burke assertion pinned the filesystem, not the design.** It asserted
+   `Thermo library: BurkeH2O2` outright; under alphabetical enumeration `2-BTP` wins and it failed
+   for a reason unrelated to this entry. **A test that pins a defect as if it were the design is
+   worse than no test.** Rewritten to assert what is actually meant: some carrier wins, the winner
+   is the first Ar-carrying library in `library_order` (the rule), and the anchor error is that
+   winner's own departure from JANAF (the consequence). The winner's identity is printed, not
+   asserted.
+3. **No CI collects this file.** Reported, not fixed, as directed. `make test-database` runs
+   `pytest -m "database"` from inside RMG-Py (`.github/workflows/CI.yml:117`, `Makefile:148-149`);
+   it collects `test/database/databaseTest.py` and nothing in this repository's own `test/`
+   directory. All eleven test files here — 262 tests — run only by hand. That is the gap that let a
+   green-and-wrong branch stay green; closing it is a CI change and needs an owner.
+
+### 13.8 Two literal corrections
+
+* **The 298-versus-298.15 distinction does not explain the E0 gap.** The longDesc leaned on it as
+  though it did. It is worth `5/2·R·0.15 = 3.118 J/mol` — three thousandths of a kJ — against a gap
+  of 6.19 kJ/mol, which is simply `5/2·R·T`, the monatomic thermal enthalpy. Corrected, and a test
+  now pins the ratio so the misattribution cannot come back. (The `NASA` form also changes the
+  derived value slightly: 1108.0496 with a gap of 6.1974 = 5/2·R·298.15, where the `ThermoData` form
+  gave 1108.0527 and 6.1943 because `ThermoData.to_wilhoit` evaluates at 298. The 3.118 J/mol is the
+  entire difference between those two readings — which is the cleanest possible illustration of the
+  point.)
+* **"To within 1 J/(mol·K)" was wrong against my own table**, which says 1.0345 for the four-level
+  difference at the reference temperature. Sentence fixed to 1.04; the table was right.
+
+### 13.9 Checks run
+
+| check | result |
+|---|---|
+| `test/test_argon_metastable_thermo.py` | **44 passed** (was 36; 8 added) |
+| `test/` (whole repository) | 259 passed, 3 failed — a strict **subset** of the 4 pre-existing failures recorded at `logs/pytest_repo_suite.stdout.log`; no new failure |
+| `test/database/databaseTest.py` | **6 passed** |
+| `round58_probe.py` | exit 0 |
+
+Every run captured both streams into `docs/argon-metastable-thermo/logs/`.
+
+Still in no deck. No kinetics written. Nothing under `input/kinetics/` touched. Not pushed, not
+merged, no pull request.

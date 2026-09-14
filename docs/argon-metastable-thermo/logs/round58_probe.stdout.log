@@ -1,0 +1,147 @@
+
+======================================================================================
+0. LOAD
+======================================================================================
+  loaded; family = Plasma_Electron_Impact_Ionization
+
+======================================================================================
+1. GENERATION IS CONFIRMED -- u0 vs u2 IS THE DISCRIMINATOR
+======================================================================================
+  Ar (ground, u0 p4)         -> 0 reaction(s)
+  Ar(3P2) (u2 p3)            -> 1 reaction(s)
+        [Ar] => [Ar+]
+
+======================================================================================
+2. MODEL ADMISSION: WHAT KINETICS CLASS ACTUALLY ARRIVES
+======================================================================================
+  thermo for [Ar]       <- Thermo library: PlasmaExcitedNeutralThermo
+  thermo for [Ar+]      <- Thermo library: PlasmaCationThermo
+  reaction                       : [Ar] => [Ar+]
+  kinetics class AS ESTIMATED    : ArrheniusEP
+  comment at point of use:
+      Exact match found for rate rule [A_rad]
+      Euclidian distance = 0
+      family: Plasma_Electron_Impact_Ionization
+  dHrxn(298)                     : 406.3340 kJ/mol
+
+  what make_new_reaction does next (model.py:644)
+  -----------------------------------------------
+  kinetics class AFTER fix_barrier_height : Arrhenius
+  Ea (barrier)                   : 412.5203 kJ/mol
+  A                              : 1.292979e+08 m^3/(mol*s)
+  reversible                     : False
+
+  does this kinetics carry the electron-temperature flag?
+  -------------------------------------------------------
+  uses_electron_temperature = False   <-- if False, PlasmaReactor evaluates at Tgas
+
+  which classes set that flag at all
+  ----------------------------------
+      Arrhenius                flag=False  subclass_of_Arrhenius=True
+      ArrheniusEP              flag=False  subclass_of_Arrhenius=False
+      TwoTemperaturePlasma     flag=True   subclass_of_Arrhenius=False
+      ElectronCollisionPlasma  flag=True   subclass_of_Arrhenius=False
+      BadnellRRArrhenius       flag=True   subclass_of_Arrhenius=False
+      VoronovEIArrhenius       (could not instantiate: ValueError)
+
+======================================================================================
+3. THE DELIVERED RATE, THROUGH ACTUAL REACTOR INITIALISATION
+======================================================================================
+  core species: [Ar](1), [Ar+](2), e-(3)
+
+  kf as the solver actually evaluates it
+  --------------------------------------
+      T_gas (K)      Te (eV)      kf  [m^3/(mol*s)]
+      300.0          1.0          1.936048e-64
+      300.0          3.0          1.936048e-64
+      1000.0         1.0          3.665970e-14
+      1000.0         3.0          3.665970e-14
+
+  does Te move the answer at all?
+  -------------------------------
+      T_gas=300.0    Te 1 eV -> 3 eV : 1.936048e-64 -> 1.936048e-64   UNCHANGED
+      T_gas=1000.0   Te 1 eV -> 3 eV : 3.665970e-14 -> 3.665970e-14   UNCHANGED
+
+  what the SAME Arrhenius gives at the electron temperature it never sees
+  -----------------------------------------------------------------------
+      Te = 3 eV = 34813.6 K
+      k(34813.5 K) = 3.109234e+07 m^3/(mol*s)
+      k(34813.6 K) = 3.109240e+07 m^3/(mol*s)
+
+  scale of the shortfall
+  ----------------------
+      published state-resolved argon model, 3 eV : 2.0583e+10
+      same Arrhenius evaluated at 34813.5 K      : 3.1092e+07
+      DELIVERED at 300 K gas                     : 1.9360e-64  (74.0 orders low vs published)
+      DELIVERED at 1000 K gas                    : 3.6660e-14  (23.7 orders low vs published)
+
+  VERDICT: the channel is not over-predicted. It is UNDER-delivered, and the
+           electron temperature never reaches it.
+
+======================================================================================
+4. WHERE THE BARRIER COMES FROM -- THE MIXED SIBLING CONVENTION SETS IT
+======================================================================================
+
+  E0 as each sibling library supplies it
+  --------------------------------------
+      [Ar]       stated E0 = (none)       derived E0 = 1108.0527 kJ/mol   -> uses derived
+      [Ar+]      stated E0 = 1520.5730    derived E0 = 1514.3867 kJ/mol   -> uses STATED
+
+      H0  (mixed convention, what the code uses) = 412.5203 kJ/mol
+      H298(both consistent)                      = 406.3340 kJ/mol
+      leak                                       = 6.1863 kJ/mol
+
+      The barrier is set from the MIXED value. The cation library states E0 and this
+      library derives it, so the sibling inconsistency lands directly in a rate.
+
+======================================================================================
+5. AN ALGEBRAIC NASA FOR CONSTANT Cp -- NOTHING IS FITTED
+======================================================================================
+      rmgpy.constants.R = 8.314472000   (current CODATA is 8.314462618)
+
+  coefficients, one line of arithmetic each
+  -----------------------------------------
+      a1 = Cp/R                   = 5/2                            = 2.5000000000
+      a6 = H298/R - a1*298.15     = 1114247/8.314472 - 2.5*298.15    = 133267.584572
+      a7 = S298/R - a1*ln(298.15) = 168.227/8.314472 - 2.5*ln(298.15) = 5.9890428524
+
+  does it reproduce the entry's three numbers exactly?
+  ----------------------------------------------------
+      Cp(298.15) = 20.786180   (entered 20.786)
+      H (298.15) = 1114.247000 kJ/mol   (entered 1114.247)
+      S (298.15) = 168.227000   (entered 168.227)
+      Cp(6000)   = 20.786180   (flat, as physics requires)
+
+  does processing preserve the 6000 K ceiling?
+  --------------------------------------------
+      bare NASA (no library comment)   -> NASA   Tmin= 100.00 Tmax=5000.00
+          6000 K RAISES: No valid NASA polynomial at temperature 6000 K.
+          (note: a refit NASA fails LOUDLY above its ceiling, where
+           ThermoData silently freezes S and keeps climbing in H)
+      NASA as a library entry          -> NASA   Tmin= 200.00 Tmax=6000.00
+          S(6000)=230.6254  H(6000)=1232.7667 kJ/mol  Cp(6000)=20.7862
+
+======================================================================================
+6. THE DEGENERACY PATH THAT REPORTS READY WITH Q = 0
+======================================================================================
+
+  the atomic has_statmech shortcut (rmgpy/species.py:528)
+  -------------------------------------------------------
+      for a 1-atom molecule it checks ONLY conformer.E0 --
+      not modes, not spin_multiplicity.
+
+      spin_multiplicity   = 0   (Arkane structure-only default)
+      has_statmech()      = True   <-- reported READY
+      T=298.15   Q = 0.0000   conformer S = -inf
+      T=1000.00  Q = 0.0000   conformer S = -inf
+
+  the three counts that coexist, and what each one drives
+  -------------------------------------------------------
+      thermo S298 carries g = 5 (the entry's R*ln(5) term)
+      spin_multiplicity=1 -> Q(298.15) = 1.0000
+      spin_multiplicity=3 -> Q(298.15) = 3.0000
+      spin_multiplicity=5 -> Q(298.15) = 5.0000
+
+      Q is LINEAR in spin_multiplicity, so a TST rate built from the conformer
+      scales by 5/1 = 5x or 5/3 ~ 1.667x against the g the thermo actually asserts,
+      while the library entropy does not move at all.

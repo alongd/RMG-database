@@ -905,6 +905,8 @@ dying on a `KeyError` — it is an argument about the pre-edit file and says so.
 | `narrow2` | HEAD before §13 | nine candidate root pairs; both roots must narrow; two designs score identically at 0 crashes |
 | `rootsafety-after` | HEAD | **0 crashes on all 22,344, 0 on root A, 0 on feedback; 11 root-A matchers, all cations** |
 | `nodes-rootsafety` / `generate-rootsafety` / `checks-rootsafety` / `check-generates-rootsafety` | HEAD | 18 nodes descend, 45 reactions and 15 of 15 reproduced, twelve checks green, 103 families still non-inert — the full verifier set re-run after the §13 narrowing |
+| `check-generates-feedback` | HEAD | the product-side assertion over 103 installed families + this one: **0 own-product raises** |
+| `check-generates-control-feedback` | throwaway pre-§13 copy | the same check **FAILS**, naming entries 15 and 23 and the product `N#[N+]` |
 | `t0` | base | the `[Gupta1990]` `T0` argument |
 | `t0-head` | HEAD | the precondition message, demonstrated |
 
@@ -1227,7 +1229,30 @@ defect — but the rate rules behind it were measured for atomic and diatomic io
 hand a nitroalkane the same number. It over-generates within its element set. Nothing was changed
 for it; it is recorded because a reviewer sizing the family's cost in a real job needs the number.
 
-### 13.6 What §13 could not reach
+### 13.6 The check that would have caught it
+
+`check_family_generates.py` gained a second assertion: **for each training entry, drive the entry's
+own PRODUCTS back in as reactants, and fail the family if any raises.** It is four lines of the same
+loop the check already runs, and it is the only thing in this repository that looks at the product
+side at all.
+
+It fails rather than merely reporting, unlike the existing `raises` column. A zero has a benign
+reading — a forbidden product, a species the roots exclude on purpose. A raise on a species the
+family *makes itself* has none: it means a job that uses the family kills itself using it.
+
+Controlled both ways, as the §12.7 check was:
+
+| run | result |
+|---|---|
+| 103 installed families + the repaired family | all ok, **0 own-product raises**, exit 0 |
+| the pre-§13 roots, on a throwaway copy | **FAIL**, naming entries 15 and 23 and the product `N#[N+]`, exit 1 |
+
+Logs: `check-generates-feedback`, `check-generates-control-feedback`. Same caveat as §12.7 — this
+belongs in RMG-Py's `test/database/databaseTest.py`, which this ticket may not modify, so it must
+be invoked rather than collected. It also does not reach products of products: only the first
+generation is fed back.
+
+### 13.7 What §13 could not reach
 
 - **Species RMG *generates* rather than reads from a library.** The pool is every species the
   installed thermo libraries can name. A running job invents more, and they are not covered.

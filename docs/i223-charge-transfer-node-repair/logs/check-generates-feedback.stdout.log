@@ -1,0 +1,164 @@
+database.directory = /home/alon/Code/RMG-database-plasma/input
+families to audit  = 141  (first 25 training entries each)
+
+family                                           generates  nothing  raises  verdict
+------------------------------------------------------------------------------------
+1+2_Cycloaddition                                       12        0       0  ok
+1,2-Birad_to_alkene                                     10        0       0  ok
+1,2_Elimination_LiR                                     10        0       0  ok
+1,2_Insertion_CO                                         7        0       0  ok
+1,2_Insertion_carbene                                   12        0       0  ok
+1,2_Intra_Elimination_LiR                                4        0       0  ok
+1,2_NH3_elimination                                      4        0       0  ok
+1,2_XY_interchange                                       -        -       -  SKIP (no training entries)
+1,2_shiftC                                               7        0       0  ok
+1,2_shiftS                                               -        -       -  SKIP (no training entries)
+1,3_Insertion_CO2                                        8        0       0  ok
+1,3_Insertion_ROR                                       22        0       0  ok
+1,3_Insertion_RSR                                       16        0       0  ok
+1,3_NH3_elimination                                      4        0       0  ok
+1,3_sigmatropic_rearrangement                           10        0       0  ok
+1,4_Cyclic_birad_scission                                2        0       0  ok
+1,4_Linear_birad_scission                                1        0       0  ok
+2+2_cycloaddition                                        6        0       0  ok
+6_membered_central_C-C_shift                             7        0       0  ok
+Baeyer-Villiger_step1_cat                                4        0       0  ok
+Baeyer-Villiger_step2                                    2        0       0  ok
+Baeyer-Villiger_step2_cat                                2        0       0  ok
+Bimolec_Hydroperoxide_Decomposition                      4        0       0  ok
+Birad_R_Recombination                                    7        0       0  ok
+Birad_recombination                                      8        0       0  ok
+Br_Abstraction                                          25        0       0  ok
+CO_Disproportionation                                   13        0       0  ok
+Cation_Addition_MultipleBond                             3        0       0  ok
+Cation_Addition_MultipleBond_Disprop                     7        0       0  ok
+Cation_Li_Abstraction                                    3        0       0  ok
+Cation_NO_Ring_Opening                                   4        0       0  ok
+Cation_NO_Substitution                                  18        0       0  ok
+Cation_R_Recombination                                   5        0       0  ok
+Cl_Abstraction                                          25        0       0  ok
+Concerted_Intra_Diels_alder_monocyclic_1,2_shift         1        0       0  ok
+Cyclic_Ether_Formation                                  25        0       0  ok
+Cyclic_Thioether_Formation                               -        -       -  SKIP (no training entries)
+Cyclopentadiene_scission                                 1        0       0  ok
+Diels_alder_addition                                    23        0       0  ok
+Diels_alder_addition_Aromatic                            6        1       0  ok
+Disproportionation                                      25        0       0  ok
+Disproportionation-Y                                    25        0       0  ok
+F_Abstraction                                           25        0       0  ok
+H2_Loss                                                  2        0       0  ok
+HO2_Elimination_from_PeroxyRadical                      16        0       0  ok
+H_Abstraction                                           25        0       0  ok
+Intra_2+2_cycloaddition_Cd                               2        0       0  ok
+Intra_5_membered_conjugated_C=C_C=C_addition             1        0       0  ok
+Intra_Diels_alder_monocyclic                             2        0       0  ok
+Intra_Disproportionation                                 2        0       0  ok
+Intra_RH_Add_Endocyclic                                  -        -       -  SKIP (no training entries)
+Intra_RH_Add_Exocyclic                                   -        -       -  SKIP (no training entries)
+Intra_R_Add_Endocyclic                                  25        0       0  ok
+Intra_R_Add_ExoTetCyclic                                 -        -       -  SKIP (no training entries)
+Intra_R_Add_Exo_scission                                 2        0       0  ok
+Intra_R_Add_Exocyclic                                   25        0       0  ok
+Intra_Retro_Diels_alder_bicyclic                         -        -       -  SKIP (no training entries)
+Intra_ene_reaction                                      20        1       0  ok
+Ketoenol                                                25        0       0  ok
+Korcek_step1                                             -        -       -  SKIP (no training entries)
+Korcek_step1_cat                                         -        -       -  SKIP (no training entries)
+Korcek_step2                                             -        -       -  SKIP (no training entries)
+Li_Abstraction                                           2        0       0  ok
+Li_Addition_MultipleBond                                 4        0       0  ok
+Li_NO_Ring_Opening                                       5        0       0  ok
+Li_NO_Substitution                                      19        0       0  ok
+Peroxyl_Disproportionation                               8        0       0  ok
+Peroxyl_Termination                                     13        0       0  ok
+Plasma_Associative_Ionization_Alkali_Alkali              4        0       0  ok
+Plasma_Associative_Ionization_Alkali_Alkaline            1        0       0  ok
+Plasma_Associative_Ionization_Alkaline_Alkaline          3        0       0  ok
+Plasma_Electron_Attachment                               3        0       0  ok
+Plasma_Electron_Impact_Ionization                        -        -       -  SKIP (no training entries)
+Plasma_Radiative_Recombination                           -        -       -  SKIP (no training entries)
+R_Addition_COm                                          15        0       0  ok
+R_Addition_CSm                                           4        0       0  ok
+R_Addition_MultipleBond                                 25        0       0  ok
+R_Addition_MultipleBond_Disprop                          2        0       0  ok
+R_Recombination                                         25        0       0  ok
+Retroene                                                25        0       0  ok
+Singlet_Carbene_Intra_Disproportionation                 4        0       0  ok
+Singlet_Val6_to_triplet                                  2        0       0  ok
+SubstitutionS                                           25        0       0  ok
+Substitution_O                                          25        0       0  ok
+Surface_Abstraction                                      4        0       0  ok
+Surface_Abstraction_Beta                                 -        -       -  SKIP (no training entries)
+Surface_Abstraction_Beta_double_vdW                      -        -       -  SKIP (no training entries)
+Surface_Abstraction_Beta_vdW                             -        -       -  SKIP (no training entries)
+Surface_Abstraction_Charge_Separation                    -        -       -  SKIP (no training entries)
+Surface_Abstraction_Charge_Single                        -        -       -  SKIP (no training entries)
+Surface_Abstraction_Single_vdW                           -        -       -  SKIP (no training entries)
+Surface_Abstraction_vdW                                  6        0       0  ok
+Surface_Abstraction_vdWBidentate_Beta                    -        -       -  SKIP (no training entries)
+Surface_Adsorption_Bidentate                             3        0       0  ok
+Surface_Adsorption_Dissociative                          2        0       0  ok
+Surface_Adsorption_Dissociative_Double                   -        -       -  SKIP (no training entries)
+Surface_Adsorption_Double                                -        -       -  SKIP (no training entries)
+Surface_Adsorption_Single                                1        0       0  ok
+Surface_Adsorption_vdW                                   3        0       0  ok
+Surface_Bidentate_Dissociation                           7        0       0  ok
+Surface_Carbonate_2F_Decomposition                       -        -       -  SKIP (no training entries)
+Surface_Carbonate_CO_2F_Decomposition                    -        -       -  SKIP (no training entries)
+Surface_Carbonate_CO_Decomposition                       -        -       -  SKIP (no training entries)
+Surface_Carbonate_Deposition                             -        -       -  SKIP (no training entries)
+Surface_Carbonate_F_CO_Decomposition                     -        -       -  SKIP (no training entries)
+Surface_Dissociation                                    20        0       0  ok
+Surface_Dissociation_Beta                                -        -       -  SKIP (no training entries)
+Surface_Dissociation_Beta_vdW                            8        0       0  ok
+Surface_Dissociation_Charge_Separation                   -        -       -  SKIP (no training entries)
+Surface_Dissociation_Charge_Single                       -        -       -  SKIP (no training entries)
+Surface_Dissociation_Double                              -        -       -  SKIP (no training entries)
+Surface_Dissociation_Double_vdW                          2        0       0  ok
+Surface_Dissociation_to_Bidentate                        4        0       0  ok
+Surface_Dissociation_vdW                                 9        0       0  ok
+Surface_Dissociation_vdWBidentate                        -        -       -  SKIP (no training entries)
+Surface_Dissociation_vdWBidentate_Beta                   -        -       -  SKIP (no training entries)
+Surface_Dissociation_vdW_to_vdWBidentate                 -        -       -  SKIP (no training entries)
+Surface_EleyRideal_Addition_Multiple_Bond                4        0       0  ok
+Surface_Migration                                        3        0       0  ok
+Surface_Monodentate_to_Bidentate                         3        0       0  ok
+Surface_Monodentate_to_vdWBidentate                      -        -       -  SKIP (no training entries)
+Surface_Proton_Electron_Reduction_Alpha                  6        0       0  ok
+Surface_Proton_Electron_Reduction_Alpha_vdW              3        0       0  ok
+Surface_Proton_Electron_Reduction_Beta                   -        -       -  SKIP (no training entries)
+Surface_Proton_Electron_Reduction_Beta_Dissociat         -        -       -  SKIP (no training entries)
+Surface_Proton_Electron_Reduction_Beta_vdW               3        0       0  ok
+Surface_vdW_to_Bidentate                                 3        0       0  ok
+XY_Addition_MultipleBond                                25        0       0  ok
+XY_elimination_hydroxyl                                 13        1       0  ok
+halocarbene_recombination                                9        0       0  ok
+halocarbene_recombination_double                         6        0       0  ok
+intra_H_migration                                       25        0       0  ok
+intra_NO2_ONO_conversion                                 1        0       0  ok
+intra_OH_migration                                       8        0       0  ok
+intra_halogen_migration                                  3       12       0  ok
+intra_substitutionCS_cyclization                         -        -       -  SKIP (no training entries)
+intra_substitutionCS_isomerization                       3        0       0  ok
+intra_substitutionS_cyclization                          8        0       0  ok
+intra_substitutionS_isomerization                        2        0       0  ok
+lone_electron_pair_bond                                  -        -       -  SKIP (no training entries)
+Plasma_Charge_Transfer                                  15        0       0  ok
+
+audited  : 103
+ok       : 103
+skipped  : 38  
+INERT    : 0  []
+UNLOADABLE: 0  []
+OWN PRODUCT RAISES: 0  []
+
+What this check does NOT catch:
+  - A family that generates SOME reactions but the wrong products for a given entry.
+    That needs the declared products compared against what the recipe makes, which is
+    probe_producibility.py; this check is the cheap always-on version.
+  - Families with no training set at all. They are skipped, not passed.
+  - Products beyond the FIRST generation. A product of a product is not driven back in.
+  - Anything beyond the first 25 entries of a family.
+
+VERDICT: every audited family generates at least one of its own training reactions.
+exit status: 0

@@ -22,6 +22,20 @@ It also reports, separately and without failing on them, entries that RAISE. A r
 a zero in production -- it aborts the whole job rather than quietly omitting a reaction -- so the
 count is surfaced even though a family may have reasons for one.
 
+SECOND ASSERTION, added after I-223 section 13: **a family must survive its own products.**
+
+    For each training entry, the entry's PRODUCTS are driven back in as reactants.
+
+RMG puts a generated product into the core and hands it to react() on the next iteration, so every
+product is a future reactant. Plasma_Charge_Transfer passed every check and every reactant-side
+probe while N2+ -- which it makes itself, in training entries 15 and 23 -- raised an AtomTypeError
+the moment it came back as a reactant. A job would have fired the reaction, then died on the next
+iteration. The gap between "safe on its reactants" and "safe" is exactly one RMG iteration wide,
+and nothing in the twelve checks is on the product side at all.
+
+This one FAILS the family rather than merely reporting, because unlike a zero there is no benign
+reading of it: the family cannot run a job that uses the family.
+
 WHY THE EXISTING SUITE MISSES THIS. `kinetics_check_sample_can_react` is the only one of the twelve
 family checks that runs the recipe, and it asserts that `apply_recipe` does not raise, does not
 return None, and that resonance generation on the output does not throw. Its own comment is
@@ -59,8 +73,17 @@ def load(path, label):
     return kdb.families[label]
 
 
+def bare(species_list):
+    mols = []
+    for s in species_list:
+        m = s.molecule[0].copy(deep=True)
+        m.clear_labeled_atoms()
+        mols.append(m)
+    return mols
+
+
 def audit(family):
-    """Return (generates, nothing, raises, checked)."""
+    """Return (generates, nothing, raises, feedback, checked)."""
     try:
         dep = family.get_training_depository()
     except Exception:
@@ -69,13 +92,10 @@ def audit(family):
     if not entries:
         return None
     generates = nothing = raises = 0
+    feedback = []
     for entry in entries:
-        mols = []
         try:
-            for s in entry.item.reactants:
-                m = s.molecule[0].copy(deep=True)
-                m.clear_labeled_atoms()
-                mols.append(m)
+            mols = bare(entry.item.reactants)
         except Exception:
             raises += 1
             continue
@@ -88,7 +108,22 @@ def audit(family):
             generates += 1
         else:
             nothing += 1
-    return generates, nothing, raises, len(entries)
+
+        # The product side. A product is a future reactant: RMG adds it to the core and hands it
+        # back to react() next iteration. Driven against this entry's own reactants, which are the
+        # species guaranteed to be in the core beside it.
+        try:
+            prods = bare(entry.item.products)
+        except Exception:
+            continue
+        for p in prods:
+            for r in mols:
+                try:
+                    family.generate_reactions([p.copy(deep=True), r.copy(deep=True)])
+                except Exception as exc:
+                    feedback.append((entry.index, p.to_smiles(), type(exc).__name__))
+                    break
+    return generates, nothing, raises, feedback, len(entries)
 
 
 def main():
@@ -117,7 +152,7 @@ def main():
     print(header)
     print('-' * len(header))
 
-    inert, skipped, ok, raisers, unloadable = [], [], 0, [], []
+    inert, skipped, ok, raisers, unloadable, feeders = [], [], 0, [], [], []
     for path, label in targets:
         try:
             family = load(path, label)
@@ -134,10 +169,14 @@ def main():
             print(row.format(label[:48], '-', '-', '-', 'SKIP (no training entries)'))
             skipped.append(label)
             continue
-        gen, none_, rais, n = res
+        gen, none_, rais, feedback, n = res
         if gen == 0:
             verdict = 'INERT -- generates nothing from its own training set'
             inert.append(label)
+        elif feedback:
+            verdict = 'FAIL -- {0} of its own products RAISE when fed back in'.format(
+                len(set(f[1] for f in feedback)))
+            feeders.append((label, feedback))
         else:
             verdict = 'ok'
             ok += 1
@@ -151,6 +190,10 @@ def main():
     print('skipped  : {0}  {1}'.format(len(skipped), skipped if len(skipped) < 12 else ''))
     print('INERT    : {0}  {1}'.format(len(inert), inert))
     print('UNLOADABLE: {0}  {1}'.format(len(unloadable), unloadable))
+    print('OWN PRODUCT RAISES: {0}  {1}'.format(len(feeders), [f[0] for f in feeders]))
+    for label, feedback in feeders:
+        for idx, smi, exc in feedback[:6]:
+            print('   {0:<40} entry {1}: product {2} -> {3}'.format(label[:40], idx, smi, exc))
     if raisers:
         print('')
         print('Families where at least one training entry made generate_reactions RAISE.')
@@ -165,6 +208,7 @@ def main():
     print('    That needs the declared products compared against what the recipe makes, which is')
     print('    probe_producibility.py; this check is the cheap always-on version.')
     print('  - Families with no training set at all. They are skipped, not passed.')
+    print('  - Products beyond the FIRST generation. A product of a product is not driven back in.')
     print('  - Anything beyond the first {0} entries of a family.'.format(MAX_ENTRIES))
     print('')
     if unloadable:
@@ -175,6 +219,14 @@ def main():
     if inert:
         print('VERDICT: {0} famil{1} generate nothing from their own training reactions.'.format(
             len(inert), 'y' if len(inert) == 1 else 'ies'))
+        return 1
+    if feeders:
+        print('VERDICT: {0} famil{1} on a species {2} produce{3} themselves. A job using'.format(
+            len(feeders),
+            'y raises' if len(feeders) == 1 else 'ies raise',
+            'it' if len(feeders) == 1 else 'they',
+            's' if len(feeders) == 1 else ''))
+        print('such a family fires the reaction, then dies on the next iteration.')
         return 1
     print('VERDICT: every audited family generates at least one of its own training reactions.')
     return 0

@@ -63,6 +63,17 @@ reports at most one failing node per family and silently never runs the later ch
 > **zero** with the family still generating 45 reactions and reproducing 15 of 15 entries. §13 has
 > the numbers, the rejected alternative and the engine finding behind it.
 
+> **§19 REORDERS WHAT IS LEFT.** Every "what remains" list on this ticket has carried *install it
+> and run a real reactor* as the next measurement, with the install gate named as the blocker. The
+> gate is not the blocker. Of the **25 species** in the 16 training entries, **16 have no thermo in
+> any of the 78 installed libraries** — every anion, every molecular cation, and every metal but
+> lithium — so **0 of the 16 entries can be simulated today**. The thermo is not missing from the
+> world: **14 of those 16 species are written on branch `99`**, uncarried, so what remains is a
+> thermo *carry* and a **14-of-16** ceiling on it. But that library **does not load** — 13 of its
+> 139 entries, `NO⁺` among them, have no atom type today. And the one `H⁺` the installed database
+> holds is a computational-hydrogen-electrode proton, off by ~1530 kJ/mol for gas-phase use, with
+> nothing to request in its place.
+
 ---
 
 ## 1. The two failures, reproduced before any edit
@@ -884,6 +895,7 @@ their primaries, the splits hold. All of it describes a family that cannot prese
 | `fixtures/` | **§13.6, §17 — five minimal one-entry families, self-contained, giving the check a failing case for each assertion and a passing case for all; `--selftest` runs them** |
 | `probe_nitrogen.py` | **§14 — four candidate root-A forms scored over all 27 entries and the corpus; re-derives the N⁺ impossibility claim and refutes it** |
 | `probe_likecharge.py` | **§15 — synthesises a cation set by protonation, because the corpus holds four cations in 78 libraries, and measures the like-charge reactions no guard blocks** |
+| `probe_thermo_coverage.py` | **§19 — every species of the training set matched by isomorphism against all 78 thermo libraries; the 0-of-16 simulatable result, and PART 2 against the uncarried branch-99 source library** |
 | `run.sh` | runner — pins cwd and `PYTHONPATH`, persists **both** streams per probe |
 | `logs/*.{stdout,stderr}.log` | one pair per measurement |
 | `kT-comparison.png` | k(T) and ratio for the duplicate |
@@ -923,6 +935,7 @@ dying on a `KeyError` — it is an argument about the pre-edit file and says so.
 | `likecharge` | HEAD before r61 | **470 like-charge reactions over a 150-cation set; no root-B narrowing reaches 0** |
 | `generate-r61-reversible` | `reversible = True` | **6 crashes including training entry 7; 15 of 16** — why §16 keeps it False |
 | `nodes-r61` / `checks-r61` / `generate-r61-final` / `rootsafety-r61` / `check-generates-r61` / `check-selftest-r61` | HEAD | 18 PASS 2 SKIP; twelve checks; 50 reactions and 16 of 16; 0 crashes over 22,344; 103 families ok under the strengthened assertions; five fixtures |
+| `thermo-coverage` | HEAD + `99:…/plasma.py` | **9 of 25 species have library thermo; 0 of 16 training entries are simulatable; the only H⁺ is a CHE-convention proton; branch 99 holds 14 of the 16 missing but 13 of its 139 entries have no atom type** |
 | `t0` | base | the `[Gupta1990]` `T0` argument |
 | `t0-head` | HEAD | the precondition message, demonstrated |
 
@@ -1537,7 +1550,101 @@ all. Its fix is for the record.
 | reverse chemistry | lost, under-documented | **lost, documented, §16** |
 
 **What is still not established.** General safety — everything above is a corpus result. A real RMG
-run through `main.py` with a reactor. Reactor admissibility (I-157: loading is not admissibility).
+run through `main.py` with a reactor, which **§19 now shows is not merely un-run but unassemblable
+today**, for want of thermo rather than for want of the install gate. Reactor admissibility (I-157:
+loading is not admissibility).
 Rate correctness beyond the §5–§6 audits, and the two `[Ozawa2008]` rates that could not be checked
 at all. Products of products. And the like-charge defect of §15, which is open by measurement, not
 by omission.
+
+---
+
+## 19. The reactor run is not blocked by the install gate. It is blocked by thermo, and by more than the gate would cost
+
+The step every version of this ticket's "what remains" list has carried — *install it and run a real
+reactor* — rests on a premise nobody had measured: that a reactor can be assembled from the species
+this family touches. It cannot. Not one of its sixteen training reactions can be simulated by this
+database today.
+
+`probe_thermo_coverage.py` takes each of the 25 distinct species in the 16 active training entries —
+from the entry's own `Molecule` object, never from a label and never from a SMILES string, because
+RMG's SMILES round trip corrupts monatomic ions of both signs — and asks
+`ThermoDatabase.get_thermo_data_from_libraries` whether any of the **78** installed libraries matches
+it by isomorphism. Log: `logs/thermo-coverage.stdout.log`.
+
+| | |
+|---|---|
+| distinct species in the training set | 25 |
+| with library thermo | **9** |
+| without | **16** |
+| training entries with every species covered | **0 of 16** |
+
+Covered: `H`, `O`, `O2`, `OH`, `N2` (all from `BurkeH2O2`), `N` (`primaryNS`), `Li` and `Li+`
+(`LithiumPrimaryThermo`), and `H+` — on which see §19.1, because that one is worse than a miss.
+
+Missing: **every anion** (`H⁻`, `O⁻`, `OH⁻`), every molecular cation (`O⁺`, `O2⁺`, `OH⁺`, `N⁺`,
+`N2⁺`), and every metal except lithium (`Na⁺/Na`, `K⁺/K`, `Mg⁺/Mg`, `Ca⁺/Ca`). Across the whole
+campaign the database holds free-cation thermo for exactly three species — `Ar⁺`, `He⁺`, `Ne⁺`, all
+noble gases, from I-127/I-179/I-186 — and this family consumes none of them.
+
+**This reorders the remaining work.** Installing the family under `input/` would produce a family
+that loads, passes its checks, and still cannot appear in any reactor, because RMG needs thermo for
+every species it puts in the core and an ion's thermo must come from a library (group additivity
+fabricates 0.0 for a disconnected ion and is not defined for a free monatomic one — the I-157/I-127
+rule). The gate is not what stands between this family and a run.
+
+**The cheapest first reaction is entry 24**, `Li⁺ + H⁻ → Li + H`: three of its four species are
+covered, so **one sourced `H⁻` entry makes it the first charge-transfer reaction this database can
+simulate**. Entry 18, `N⁺ + N2 → N2⁺ + N`, needs two (`N⁺`, `N2⁺`); entries 15 and 23 need three.
+Sourcing thermo is outside what this ticket owns, so this is a scope statement for whoever picks it
+up, not work done here.
+
+### 19.1 The only H⁺ in the database is a computational-hydrogen-electrode proton
+
+`H⁺` does match — in `electrocatLiThermo`, an electrocatalysis library, with `H298 = 0` and the
+comment `1/2 free energy of H2(g)`. That is the CHE reference convention: the proton is *defined*
+to be half a hydrogen molecule because it is always paired with an electrode electron. A gas-phase
+proton's ΔfH₂₉₈ is about **+1530 kJ/mol**. A deck that requests that library and lets it serve
+`H⁺` to training entries 1 and 6 is wrong by roughly that much, silently, with no check anywhere
+that would say so — the same green-and-wrong shape as I-204.
+
+It only bites a deck that names `electrocatLiThermo` in its `thermoLibraries`, since a run loads
+only the libraries it asks for. But the corollary is the point: **there is no gas-phase H⁺ entry to
+ask for instead** — not in the installed database. There is one on branch `99`; see §19.2. For the
+plasma campaign this is a missing-library finding with a convention trap attached, and it belongs
+with the I-127 cation-convention rule rather than in this family.
+
+### 19.2 The thermo exists. It is on branch `99`, uncarried, and it does not load wholesale
+
+`99:input/thermo/libraries/plasma.py` is a **139-entry** library of charged and metallic species
+that no carry ticket has brought into the target database. PART 2 of the probe matches the sixteen
+missing species against it, and the answer changes what kind of item this is:
+
+| | |
+|---|---|
+| missing species branch 99 **holds** | **14 of 16** |
+| missing species it lacks too | 2 — neutral **Ca** and **Mg** (their *cations* `Ca⁺`, `Mg⁺` are both there) |
+| training entries a full carry would make simulatable | **14 of 16** — all but 27 and 28, the Mg and Ca entries |
+
+So the remaining work is a **thermo carry**, not original sourcing: `H⁻`, `O⁻`, `OH⁻`, `O⁺`, `O2⁺`,
+`OH⁺`, `N⁺`, `N2⁺`, `Na⁺/Na`, `K⁺/K`, `Ca⁺`, `Mg⁺` are all written and waiting. Branch 99 also
+carries a **correct gas-phase proton** (NASA `a₆ = 184021.49 K`, i.e. ΔfH₂₉₈ ≈ 1530 kJ/mol), which
+is the entry §19.1 says the database has no way to ask for.
+
+Two things a carry ticket has to know before it starts, both measured here rather than assumed:
+
+**1. The library does not load.** RMG's `ThermoDatabase.load_libraries` executes a library file
+whole, so one bad adjacency list takes the file with it. **13 of the 139 entries build no molecule
+against today's engine** — `O+2`, `O+3`, `O+4`, `O+5`, `N2-`, `N2H+`, `C+`, `CH+`, `CH-(S)`, `K-`,
+`Li-`, `Na-`, and **`NO+`** — each an `AtomTypeError` for an ionised heavy atom RMG has no atom type
+for. That is the same engine limit §13 and §14 ran into from the group side, seen from the thermo
+side. The probe therefore parses the file entry by entry; a carry must split, not copy.
+
+`NO+` in that list is worth naming twice: it is the species behind the family's duplicate-rate
+work (§5) and several set-aside entries. **It has thermo written, and cannot be loaded today.**
+
+**2. One entry in it carries a units error, in a comment.** The `H+` entry's `longDesc` offers an
+"alternative source" `ThermoData` with `H298 = (1530.047,'kcal/mol')`. The gas-phase proton is
+1530.0 **kJ**/mol — 365.7 kcal/mol. The active NASA polynomial beside it is correct, so nothing is
+wrong today, but the commented block is wrong by 4.184× and is exactly the kind of thing a carry
+copies. This is on branch 99 and is not mine to change; it is recorded so the carry sees it.

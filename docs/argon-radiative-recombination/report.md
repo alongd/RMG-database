@@ -92,7 +92,7 @@ different kinetics class, a transcribed rather than table-loaded coefficient, an
 evaluator instead of an electron-temperature one. Verified by diffing collected test ids against the
 base commit.
 
-### 0.1 The same trap is still armed in two sibling files — measured, not fixed
+### 0.1 The same trap was armed in two sibling files — measured, then disarmed
 
 Having found the pattern, I searched for it. It is not unique to this file:
 
@@ -110,11 +110,58 @@ ionisation). Each also has a `test_library_loads_with_exactly_one_entry` asserti
 and both are libraries this campaign is actively expanding, so this is a live hazard rather than a
 theoretical one.
 
-**Not fixed here, deliberately.** Both libraries have exactly one entry today, so the corrected
-fixture would be a no-op with no failing test to demonstrate it works, and changing tests you
-cannot exercise is its own risk. The fix pattern is proven in this file against a genuinely
-two-entry library and transfers mechanically. Flagged for its own ticket rather than folded in
-silently.
+**Both are now fixed, and the reasoning that first deferred them was wrong.** My original position
+was that the corrected fixture would be a no-op while each library has one entry, with no failing
+test to demonstrate it works, so it should wait for whichever commit adds a second entry. Two things
+overturned that. First, the objection argues against *inventing* a test to justify the change, not
+for leaving a known-armed trap in two files this campaign is actively growing — the fix is the
+removal of a hazard, and a hazard does not need a green test to be worth removing. Second, and
+decisively: the `i235-three-body-recombination` worktree independently converted this same fixture
+in `test_plasma_radiative_recombination.py` to identity selection in its own uncommitted work,
+keying on `r.reactants[0].label == '[Lip]'`. That is a second session paying for the same repair
+without knowing the first had made it, which is the cost of deferral made concrete.
+
+What changed, in both files:
+
+- the `reaction` fixture selects by the reactants it is about (`['Ar', 'e-']`, `['[Li]']`) and
+  asserts exactly one match *for that species*, so growth can never silently disable the checks
+  about the entry that is still there;
+- the count assertion stays in `test_library_loads_with_exactly_one_entry`, where it is a claim
+  that fails rather than a precondition that errors. It stays in both files *because* it is
+  deliberate in both — each module's own opening docstring argues the smallness is the deliverable
+  — which is the one respect this differs from `test_plasma_radiative_recombination.py`, where the
+  count was incidental and the test was renamed to pin coverage instead;
+- each of those tests additionally pins the coverage *set*, since a bare count is satisfied by any
+  second entry, including a wrong one that replaced the entry the file is about.
+
+The collected test-id set is unchanged at 245 — the new assertions were folded into existing tests
+rather than added as new ones, so nothing here can be a green count bought by adding tests.
+
+**The deferral's premise was also simply false, and I only found that out by trying.** I had said
+the fix was unverifiable while each library holds one entry. The entry count is a property of the
+*loaded* object, and a loaded object can be grown in memory — so it is verifiable, in about thirty
+lines. `docs/argon-radiative-recombination/logs/probe_fixture_survives_growth.py` loads each library
+for real, injects a synthetic second entry, and runs both selection strategies against the grown
+object:
+
+```
+PlasmaArgon                      shipped=1 grown=2
+    old (by position): AssertionError -> pytest SETUP ERROR, every test on this fixture silently skipped
+    new (by identity): returned Ar + e-
+PlasmaElectronImpactIonization   shipped=1 grown=2
+    old (by position): AssertionError -> pytest SETUP ERROR, every test on this fixture silently skipped
+    new (by identity): returned [Li]
+PlasmaRadiativeRecombination     shipped=2 grown=3        <- control, already two-entry
+    old (by position): AssertionError -> pytest SETUP ERROR, every test on this fixture silently skipped
+    new (by identity): returned [Arp]
+```
+
+So the change is not "proven elsewhere and transferred mechanically", which is the weaker claim I
+made when deferring — it is measured on the two libraries themselves. The third row is a control:
+it is the file already fixed, grown a third time, confirming the probe detects the failure it
+claims to detect rather than reporting PASS unconditionally. Worth naming the general shape, since
+it is the same error as §6's: **"I cannot test this" is itself a claim, and it deserves the same
+thirty seconds of refutation as any other.** I let it stand unprobed for a whole session.
 
 ---
 
@@ -526,6 +573,17 @@ not a reversal of that judgement but a consequence of the campaign having advanc
 | "Its validity range in Te could not be sourced" | **Addressed by changing source.** Still true of the CHIANTI/AP74 fit I-120 examined — A&A still returns 403, *Rev. Bras. Fis.* 4, 491 still unobtainable. Sidestepped by using SVS82, whose exercised grid is readable (§3.3). | measured |
 | "It would be inert — no argon cation has thermochemistry" | **False now.** `PlasmaCationThermo` carries `[Arp]`; the deck builds the reactant and runs. | I-127/I-179 |
 | "The problem does not occur at the campaign's working point" | **False at this deck's conditions.** Established at Te = 1 eV, below the Te ≈ 1.33 eV runaway threshold I-120 itself identified. This deck runs at **3 eV**, above it. | §6 |
+
+**Which runaway threshold, and why there are two numbers.** The 1.33 eV above is I-120's figure and
+is quoted as I-120 stated it. I-237 has since measured the same crossover at **1.4247 eV**, and the
+difference is not an error in either: I-120 compared radiative recombination against the **Voronov**
+fit in `voronov.yaml`, while I-237 compared it against the **Golyatina2021 cross-section table
+`PlasmaArgon` actually ships** and this deck actually integrates. The shipped-table figure is the
+one that applies to the deck as built. Nothing in this section turns on which is used — this deck
+sits at 3 eV, above both — but anyone carrying the threshold forward should carry 1.4247 eV and cite
+I-237, not carry 1.33 eV out of this table. I-237's calculation also corroborates §6 of this report
+from outside it: its `alpha/k_iz = 1.2144e-03` reproduces the neutral fraction measured here from
+the solver, `1.214449e-03`, to four significant figures without running a reactor.
 
 A fourth item on I-120's "what would unblock it" list has also landed: **`TwoTemperaturePlasma` is
 now in `_NET_ELECTRON_KINETICS_CLASSES`**, which is what lets a power-law Te form carry a net

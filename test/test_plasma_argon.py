@@ -60,16 +60,39 @@ def library():
 
 @pytest.fixture
 def reaction(library):
-    """A fresh ``LibraryReaction`` per test, so mutation cannot leak between them."""
-    reactions = library.get_library_reactions()
-    assert len(reactions) == 1
-    return reactions[0]
+    """A fresh ``LibraryReaction`` per test, so mutation cannot leak between them.
+
+    Selected by the reactants it is *about*, never by position. A fixture that asserted
+    ``len(reactions) == 1`` and returned ``reactions[0]`` would not fail when this library
+    grows -- it would raise during *setup*, and pytest reports setup errors separately from
+    failures, so every test this fixture feeds would stop asserting while the rest of the
+    run still printed green. A failure argues with you; a setup error just removes the
+    check. The library's smallness is still pinned, once, in
+    ``test_library_loads_with_exactly_one_entry`` below, where it is a claim rather than a
+    precondition. Measured instance of the trap:
+    ``docs/argon-radiative-recombination/report.md`` section 0.
+    """
+    matches = [r for r in library.get_library_reactions()
+               if [s.label for s in r.reactants] == ['Ar', 'e-']]
+    assert len(matches) == 1, (
+        f'expected exactly one Ar + e- reaction in {LIBRARY}, found {len(matches)}'
+    )
+    return matches[0]
 
 
 def test_library_loads_with_exactly_one_entry(library):
-    """Small library, and it stays small: any second entry fails here."""
+    """Small library, and it stays small: any second entry fails here.
+
+    The count is the deliberate claim of this file's opening docstring -- an incomplete
+    library we can name is the deliverable -- so it is asserted here, where growth produces
+    a *failure* someone has to answer, rather than inside a fixture where it would produce
+    a setup error nobody sees. The coverage set is pinned alongside it, because a bare count
+    is satisfied by any second entry, including a wrong one that replaced this one.
+    """
     assert library.label == LIBRARY
     assert len(library.entries) == 1
+    assert {tuple(s.label for s in r.reactants)
+            for r in library.get_library_reactions()} == {('Ar', 'e-')}
 
 
 def test_the_one_entry_is_argon_electron_impact_ionisation(reaction):

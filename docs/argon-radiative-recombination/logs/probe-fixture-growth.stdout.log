@@ -1,0 +1,18 @@
+database.directory = /home/alon/Code/RMG-database-i234-argon-radiative-recombination/input
+
+PlasmaArgon                      shipped=1 grown=2
+    old (by position): AssertionError -> pytest SETUP ERROR, every test on this fixture silently skipped
+    new (by identity): returned Ar + e-
+    -> PASS
+
+PlasmaElectronImpactIonization   shipped=1 grown=2
+    old (by position): AssertionError -> pytest SETUP ERROR, every test on this fixture silently skipped
+    new (by identity): returned [Li]
+    -> PASS
+
+PlasmaRadiativeRecombination     shipped=2 grown=3
+    old (by position): AssertionError -> pytest SETUP ERROR, every test on this fixture silently skipped
+    new (by identity): returned [Arp]
+    -> PASS
+
+All three libraries: identity selection survives growth, positional selection does not.

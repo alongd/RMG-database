@@ -1,0 +1,18 @@
+SELFTEST -- the check against the fixtures in /home/alon/Code/RMG-database-i223-charge-transfer-node-repair/docs/i223-charge-transfer-node-repair/fixtures
+
+A check is worth what its FAILING case proves. Both defects below were found in a real
+family that has since been repaired, so the real family can now only demonstrate the
+passing case; these fixtures hold the failing ones. See fixtures/README.md.
+
+fixture                          expected   got        detail
+-------------------------------------------------------------------------------------------
+Fixture_Healthy                  ok         ok         1 of 1 entries generate
+                                                       why: generates its training reaction and survives its own product
+Fixture_Inert_Recipe             inert      inert      1 of 1 entries generated nothing
+                                                       why: charge-only recipe: apply_recipe returns the reactants, so nothing is generated
+Fixture_Own_Product_Raises       feedback   feedback   entry 1: N#[N+] -> AtomTypeError
+                                                       why: root A says R, so the family raises on the N2+ it makes itself
+
+SELFTEST PASSED. Both assertions fire on their own control and stay quiet on the
+healthy fixture, so a green run over real families is evidence.
+exit status: 0

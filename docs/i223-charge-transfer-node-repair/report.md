@@ -873,6 +873,7 @@ their primaries, the splits hold. All of it describes a family that cannot prese
 | `check_family_generates.py` | **§12 — the check that would have caught the inert recipe; runs over every installed family** |
 | `probe_rootsafety.py` | **§13 — the roots driven over all 22,344 species the installed thermo libraries name, plus the family's own products fed back in as reactants** |
 | `probe_narrow2.py` | **§13 — nine candidate root pairs scored on that crash surface and on the training set at once** |
+| `fixtures/` | **§13.6 — three minimal one-entry families, self-contained, giving the check a failing case for each of its two assertions and a passing case for both; `--selftest` runs them** |
 | `run.sh` | runner — pins cwd and `PYTHONPATH`, persists **both** streams per probe |
 | `logs/*.{stdout,stderr}.log` | one pair per measurement |
 | `kT-comparison.png` | k(T) and ratio for the duplicate |
@@ -907,6 +908,7 @@ dying on a `KeyError` — it is an argument about the pre-edit file and says so.
 | `nodes-rootsafety` / `generate-rootsafety` / `checks-rootsafety` / `check-generates-rootsafety` | HEAD | 18 nodes descend, 45 reactions and 15 of 15 reproduced, twelve checks green, 103 families still non-inert — the full verifier set re-run after the §13 narrowing |
 | `check-generates-feedback` | HEAD | the product-side assertion over 103 installed families + this one: **0 own-product raises** |
 | `check-generates-control-feedback` | throwaway pre-§13 copy | the same check **FAILS**, naming entries 15 and 23 and the product `N#[N+]` |
+| `check-selftest` | `fixtures/` | all three fixtures produce their expected verdict — `ok`, `inert`, `feedback` — so both assertions are proven to fire *and* to stay quiet |
 | `t0` | base | the `[Gupta1990]` `T0` argument |
 | `t0-head` | HEAD | the precondition message, demonstrated |
 
@@ -1247,10 +1249,34 @@ Controlled both ways, as the §12.7 check was:
 | 103 installed families + the repaired family | all ok, **0 own-product raises**, exit 0 |
 | the pre-§13 roots, on a throwaway copy | **FAIL**, naming entries 15 and 23 and the product `N#[N+]`, exit 1 |
 
-Logs: `check-generates-feedback`, `check-generates-control-feedback`. Same caveat as §12.7 — this
-belongs in RMG-Py's `test/database/databaseTest.py`, which this ticket may not modify, so it must
-be invoked rather than collected. It also does not reach products of products: only the first
-generation is fed back.
+Logs: `check-generates-feedback`, `check-generates-control-feedback`.
+
+**The controls are now permanent, and self-contained.** Both defects this ticket found live in a
+family that has since been repaired, so the real family can only ever demonstrate the *passing*
+case — a check whose failing case is unreachable is one nobody can re-verify. `fixtures/` holds
+three minimal one-entry families, `Fixture_Healthy`, `Fixture_Inert_Recipe` and
+`Fixture_Own_Product_Raises`, which between them exercise both assertions in both directions and
+depend on nothing outside their own directory. `python check_family_generates.py --selftest` runs
+all three and asserts each produces its expected verdict; it exits 0 today
+(`logs/check-selftest.stdout.log`).
+
+**Building them turned up a fourth finding.** `Fixture_Inert_Recipe` could not keep the narrowed
+roots: a charge action forces the root's atom types to be charge-resolvable, because
+`generate_product_template` applies the recipe to the root **groups** at load time (`family.py:717`
+→ `1077`) and `GroupAtom._lose_charge` raises `ActionError: Unknown atom type produced from set
+[H, O, metal]`. **A charge-only recipe and an element-named root cannot coexist — the family will
+not load at all.** So §11's inert recipe and §13's broad roots are not independent defects: the
+broad `R` root is precisely what let the inert recipe hide, and had the roots named their elements
+from the start, the inert recipe would have failed loudly at load time instead of passing twelve
+checks for three review rounds.
+
+Same caveat as §12.7 on where it belongs — RMG-Py's `test/database/databaseTest.py`, which this
+ticket may not modify, so it must be invoked rather than collected. **A separate RMG-Py ticket is
+being filed by the owner to land it**, on its own branch in a fresh worktree; nothing here is
+copied into RMG-Py. The top of `check_family_generates.py` carries the block that ticket needs:
+what the two assertions are, that they should become two methods rather than one, what they proved
+over the 103 installed families, and where the fixtures go. It does not reach products of
+products — only the first generation is fed back.
 
 ### 13.7 What §13 could not reach
 

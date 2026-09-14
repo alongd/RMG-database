@@ -5,6 +5,34 @@ A CHECK THAT WOULD HAVE CAUGHT THE INERT RECIPE. Family-agnostic; run it over an
 
     python check_family_generates.py                 # every family under input/kinetics/families/
     python check_family_generates.py <path> <label>  # one family loaded from an explicit path
+    python check_family_generates.py --selftest      # both assertions, against both controls
+
+FOR THE RMG-Py TICKET PICKING THIS UP COLD -- read this block and you can stop reading.
+
+    WHAT IT ASSERTS: two things, both about a family's own training set. (1) A family that
+    generates NOTHING from its own training reactants is inert. (2) A family that RAISES on a
+    species it produces itself cannot be used, because RMG puts that product in the core and hands
+    it back to react() on the next iteration.
+
+    WHERE IT GOES: `test/database/databaseTest.py`, beside the twelve existing family checks, as
+    two methods on the same generator -- `kinetics_check_family_generates_its_training_reactions`
+    and `kinetics_check_family_survives_its_own_products`. They are two assertions, not one, and
+    keeping them separate matters: the first is about a family that does nothing, the second about
+    a family that does something and then dies.
+
+    WHAT IT PROVED HERE: run over all 103 families installed in RMG-database, plus the held-back
+    family it was written for, every one passes both assertions -- 0 inert, 0 own-product raises.
+    So landing it upstream is not expected to turn anything red. Both failing cases are covered by
+    the fixtures in `fixtures/`, which are self-contained and carry no dependency on this
+    repository; `--selftest` runs them.
+
+    WHY IT IS NOT ALREADY THERE: the ticket that wrote it (I-223, RMG-database) may not modify
+    RMG-Py. This file is the runnable stand-in -- a real check with a real exit code that has to be
+    invoked rather than collected.
+
+    WHAT IT DOES NOT CATCH: wrong products (that is probe_producibility.py), families with no
+    training set at all (skipped, not passed), products of products (only the first generation is
+    fed back), and anything past the first MAX_ENTRIES entries of a family.
 
 WHAT IT ASSERTS.
 
@@ -44,14 +72,11 @@ recipe that returns its input passes by construction. Nothing else in the suite 
 depository except the electron-count check, which returns True immediately for a family declaring
 `electrons = 0`.
 
-WHERE THIS CHECK BELONGS, AND WHY IT IS NOT THERE.
-
-It belongs beside the other twelve, in `test/database/databaseTest.py`, as
-`kinetics_check_family_generates_its_training_reactions`. **That file is in the RMG-Py repository,
-not this one, and this ticket may not modify it.** So the place where it would run automatically
-DOES NOT YET EXIST for this repo, and this file is the runnable stand-in: it is a real check with a
-real exit code, it just has to be invoked rather than collected. Landing it upstream is a separate
-change to a separate repo, and until that happens nothing runs it on its own.
+THE CONTROLS. A check is only worth what its failing case proves, and both defects above were
+found in a family that has since been repaired -- so the real family can now only ever demonstrate
+the passing case. `fixtures/` holds three minimal families, one training entry each, that
+demonstrate both failing cases and the passing case, and depend on nothing outside themselves.
+`--selftest` asserts each produces its expected verdict.
 """
 
 import glob
@@ -71,6 +96,19 @@ def load(path, label):
     kdb.recommended_families = {}
     kdb.load_families(path, families=[label], depositories=['training'])
     return kdb.families[label]
+
+
+FIXTURES = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'fixtures')
+
+# Each fixture carries exactly one defect, or none. See fixtures/README.md.
+EXPECTED = [
+    ('Fixture_Healthy', 'ok',
+     'generates its training reaction and survives its own product'),
+    ('Fixture_Inert_Recipe', 'inert',
+     'charge-only recipe: apply_recipe returns the reactants, so nothing is generated'),
+    ('Fixture_Own_Product_Raises', 'feedback',
+     'root A says R, so the family raises on the N2+ it makes itself'),
+]
 
 
 def bare(species_list):
@@ -126,8 +164,65 @@ def audit(family):
     return generates, nothing, raises, feedback, len(entries)
 
 
+def classify(path, label):
+    """The check's verdict for one family: one of unloadable/skip/inert/feedback/ok."""
+    try:
+        family = load(path, label)
+    except Exception as exc:
+        return 'unloadable', type(exc).__name__, None
+    res = audit(family)
+    if res is None:
+        return 'skip', 'no training entries', None
+    gen, none_, rais, feedback, n = res
+    if gen == 0:
+        return 'inert', '{0} of {1} entries generated nothing'.format(none_, n), res
+    if feedback:
+        return 'feedback', '; '.join(
+            'entry {0}: {1} -> {2}'.format(*f) for f in feedback[:3]), res
+    return 'ok', '{0} of {1} entries generate'.format(gen, n), res
+
+
+def selftest():
+    """Both assertions, against both of their controls. Exits 0 only if every fixture matches."""
+    print('SELFTEST -- the check against the fixtures in {0}'.format(FIXTURES))
+    print('')
+    print('A check is worth what its FAILING case proves. Both defects below were found in a real')
+    print('family that has since been repaired, so the real family can now only demonstrate the')
+    print('passing case; these fixtures hold the failing ones. See fixtures/README.md.')
+    print('')
+    if not os.path.isdir(FIXTURES):
+        print('FAIL: {0} does not exist. The controls are missing, so this run proves'.format(
+            FIXTURES))
+        print('nothing about the check.')
+        return 2
+    row = '{0:<32} {1:<10} {2:<10} {3}'
+    header = row.format('fixture', 'expected', 'got', 'detail')
+    print(header)
+    print('-' * (len(header) + 30))
+    bad = []
+    for label, expected, why in EXPECTED:
+        got, detail, _ = classify(FIXTURES, label)
+        print(row.format(label[:32], expected, got,
+                         detail if got == expected else '*** MISMATCH *** ' + detail))
+        print(row.format('', '', '', 'why: ' + why))
+        if got != expected:
+            bad.append((label, expected, got))
+    print('')
+    if bad:
+        print('SELFTEST FAILED. The check did not behave as its own fixtures say it must:')
+        for label, expected, got in bad:
+            print('   {0}: expected {1}, got {2}'.format(label, expected, got))
+        print('Until this passes, a green run of the check over real families means nothing.')
+        return 1
+    print('SELFTEST PASSED. Both assertions fire on their own control and stay quiet on the')
+    print('healthy fixture, so a green run over real families is evidence.')
+    return 0
+
+
 def main():
     logging.getLogger().setLevel(logging.CRITICAL)
+    if '--selftest' in sys.argv[1:]:
+        return selftest()
     print('database.directory = {0}'.format(settings['database.directory']))
 
     targets = []

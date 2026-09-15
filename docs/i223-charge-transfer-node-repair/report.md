@@ -1548,6 +1548,13 @@ all. Its fix is for the record.
 | 103-family sweep | ok, weaker assertion | **ok, against declared products and generated products** |
 | like-charge reactions | reported 0 | **470 measured, open defect, §15** |
 | reverse chemistry | lost, under-documented | **lost, documented, §16** |
+| training entries a reactor could simulate | assumed to await the install gate | **0 of 16, §19 — the gate was never the blocker** |
+
+**Disposition, 2026-09-15.** On the measurement above the owner closed I-223's family work here: the
+16-entry family stands as it is, the sibling-family split of the seven set-aside entries is **not**
+done on this branch, and the branch-99 thermo carry becomes **its own ticket** (§19.3). The reason
+for stopping rather than splitting is that nothing further on this branch can be judged by anything
+stronger than the corpus probes that already pass — the ceiling is thermo, not family shape.
 
 **What is still not established.** General safety — everything above is a corpus result. A real RMG
 run through `main.py` with a reactor, which **§19 now shows is not merely un-run but unassemblable
@@ -1648,3 +1655,36 @@ work (§5) and several set-aside entries. **It has thermo written, and cannot be
 1530.0 **kJ**/mol — 365.7 kcal/mol. The active NASA polynomial beside it is correct, so nothing is
 wrong today, but the commented block is wrong by 4.184× and is exactly the kind of thing a carry
 copies. This is on branch 99 and is not mine to change; it is recorded so the carry sees it.
+
+### 19.3 For the thermo-carry ticket, picking this up cold
+
+The owner's disposition (2026-09-15) is that this is **its own RMG-database ticket**, not part of
+I-223 and not folded into whichever ticket installs the family. Everything it needs:
+
+    git show 99:input/thermo/libraries/plasma.py > <somewhere>/libraries/plasma.py
+    I223_THERMO99=<somewhere>/libraries ./run.sh thermo-coverage probe_thermo_coverage.py
+
+Full output: `logs/thermo-coverage.stdout.log`. The probe is family-agnostic — point it at any
+family and it answers the same question for that one.
+
+**The 14 to carry**, as `<needed species> ← <branch-99 entry label>`:
+
+    H-_r2  ← H-      O-_r2  ← O-      OH-_r2 ← OH-     Op_r1  ← O+
+    O2p_r1 ← O2+     OHp_r1 ← OH+     Np_r1  ← N+      N2p    ← N2+
+    Nap_r1 ← Na+     Na     ← Na      Kp_r1  ← K+      K      ← K
+    Mgp_r1 ← Mg+     Cap_r1 ← Ca+
+
+Neutral **Mg** and **Ca** are in no library anywhere and need real sourcing; they are the only
+reason the ceiling is 14 of 16 rather than 16 of 16.
+
+Three constraints on the work, each measured above rather than assumed:
+
+1. **Split, do not copy** — 13 of the 139 entries have no atom type today (§19.2). A file-level copy
+   makes the whole library unloadable, which is its state on branch 99 right now.
+2. **Per-entry convention check** — every carried ion needs the JANAF-electron-convention vs
+   ion-convention subtraction and the ionisation-energy cross-check that the I-127/I-186 tickets
+   established. Availability is not validity, and `[Lip]` in `LithiumPrimaryThermo` is already a
+   pinned ~20 kJ/mol defect that check catches.
+3. **`NO⁺` is an RMG-Py dependency, not a database one.** It has thermo written and no atom type, so
+   it cannot be carried until the engine gains one — the same wall §13 and §14 hit from the group
+   side.

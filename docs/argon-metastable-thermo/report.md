@@ -1352,6 +1352,7 @@ the defect is worse than reported.
 | `red_green.py` | **13 cases, 13 shown red then green**, every restore SHA-verified, exit 0 |
 | `containment_probe.py` | 0 ordinary families reach `Ar(3P2)`, 0 of 22 controls moved |
 | `atomtype_escalation_probe.py` | 4 candidates measured, no narrowing separates the wanted channel from the unwanted ones |
+| `test/database/databaseTest.py` (engine) | **6 passed**, 482.8 s — see §14.11 |
 
 Both streams of every run are in `docs/argon-metastable-thermo/logs/`. Not pushed, not merged, no
 pull request.
@@ -1392,3 +1393,39 @@ passes.
 
 Re-run clean, single instance, foreground: **13 cases, 13 red-then-green, 0 leftover
 perturbations**, and the full suite back to 281 / 4.
+
+### 14.11 The engine's own database suite, run against the containment
+
+The unit suite shows the five contained families still generate the chemistry they exist for. It
+says nothing about whether their *group trees* still satisfy the database's own structural
+invariants, and a `forbidden(...)` block appended to a `groups.py` is exactly the kind of edit that
+those invariants exist to catch. That suite is `test/database/databaseTest.py` in the engine, and it
+is the one check round 59 had not re-run.
+
+Run now, green:
+
+```
+6 passed in 482.81s (0:08:02)
+```
+
+— `test_kinetics`, `test_thermo`, `test_solvation`, `test_statmech`, `test_transport`,
+`test_metal_libraries`, all PASSED, against round 58's baseline of the same six in 521.1 s. `stderr`
+carries two `coverage` warnings and nothing else. Logs:
+`docs/argon-metastable-thermo/logs/round59-databaseTest-{stdout,stderr}.log`.
+
+**The pin is the part worth writing down.** `databaseTest.py` lives in the engine tree, so
+RMG-database's `test/conftest.py` is never collected for it, and `database.directory` resolves to
+the **shared primary checkout** — a run that ignores this worktree entirely and reports on somebody
+else's tree. It was pinned with a one-line pytest plugin, and the plugin prints what it pinned and
+refuses to load unless the containment and the library are actually present in that tree:
+
+```
+PIN database.directory = .../RMG-database-i221-argon-metastable-thermo/input
+PIN containment present in Birad_R_Recombination/groups.py = True
+PIN PlasmaExcitedNeutralThermo.py present = True
+```
+
+Those three lines are the head of the stdout log. Without them a green result here would be
+unfalsifiable — the check cannot fail in the direction the defect lies if it is reading the wrong
+tree. The suite was run from a scratch directory so that its `htmlcov/` and `.coverage`, neither of
+which this repository ignores, land outside the worktree.

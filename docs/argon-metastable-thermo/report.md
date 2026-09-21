@@ -183,7 +183,22 @@ under the equilibrium assumption being declined.
 
 ---
 
-## 5. The three numbers, one identity each
+## 5. The three numbers, one identity each — and they are consistency checks, not corroboration
+
+**Read this before the three.** An earlier version of this section presented "three numbers, one
+identity each" as though three independent things had been checked. They are not independent, and
+saying so costs nothing. `Cp`, `H` and `S` here are **construction identities**: `H` is the ASD
+level energy times `h·c·N_A`, the eV cross-check below divides the *same* ASD energy by a unit
+conversion, and `S` combines the *same* ASD level's `J` with JANAF's ground-state entropy. Each
+identity confirms that the arithmetic that produced a number reproduces that number. None of them
+tests the physics, and none of them would notice if the wrong ASD level had been transcribed —
+only the level-identification work in §4 does that.
+
+They are still worth having and are still pinned by tests, for what they actually are: they catch
+transcription slips, unit errors and drift between the file and the report. The campaign withdrew
+exactly this shape of claim three days ago on another ticket, where `1213 × 0.0085` was offered as
+independent confirmation and was a first-order identity. Same correction, applied here before it
+had to be pointed out twice.
 
 - **Cp(T) = 5/2·R = 20.786 J/(mol·K), exact at every T.** A free monatomic species pinned to *one*
   electronic level has translation and nothing else — no rotation, no vibration, and no internal
@@ -208,12 +223,17 @@ intervals. Measured, it evaluates to S(298.15) = 154.8459 J/(mol·K) and Cp = 20
 JANAF Ar-001 to 0.001 J/(mol·K). (See §8 for the one that a *running mechanism* actually gets,
 which is neither of those.)
 
-**Form emitted: `ThermoData`, not `NASA`.** `ThermoData` states Cp on a grid plus H298/S298 at the
-reference temperature, which is exactly the shape of what is known: three transcribed-or-derived
-constants and a constant Cp. Emitting a NASA polynomial would mean *choosing coefficients* — i.e.
-fitting — for a function that has a closed form, and this file's charter forbids that even where
-the fit would be exact. Anything downstream that wants a polynomial can convert, and the
-conversion is then visibly downstream of the data. It also matches `PlasmaCationThermo`.
+**Form emitted: `NASA`, one polynomial over 200 – 6000 K.** The coefficients follow
+*algebraically* from a constant Cp — `a1 = 5/2`, `a6 = H298/R − a1·298.15`, `a7 = S298/R −
+a1·ln 298.15`, `a2..a5 ≡ 0` — so nothing is fitted and the charter is satisfied. It is what makes
+the advertised 6000 K real: `process_thermo_data` keeps an already-`NASA` library entry verbatim
+and refits anything else to a hard-coded 100 – 5000 K.
+
+*Superseded, and left here as the record of what changed:* this entry was a `ThermoData` until
+§13.4, justified on the ground that emitting a NASA would mean fitting. **That justification was
+false** — see §13.4 for the retraction and for the four things the switch fixed. Wherever a section
+below describes a `ThermoData`, it is describing the form before §13.4; the numbers that moved with
+it are listed in §13.4 rather than restated in place.
 
 **Where this recipe breaks if reused carelessly** (written into the `longDesc`): (1) any
 polyatomic — the borrowed Cp stops being exact the moment there are vibrations, which is why
@@ -377,15 +397,26 @@ it selects matches the one an excited-state entry was built on.
 (`logs/roundtrip_probe.stdout.log`):
 
 ```
-dH298(Ar -> Ar(3P2)) = 1114.2470 kJ/mol      against 1114.2468 exact   (agrees)
-dS298(Ar -> Ar(3P2)) =   13.5027 J/(mol*K)   against   13.3816 exact   (+0.1211)
+dH298(Ar -> Ar(3P2)) = 1114.2439 kJ/mol      against 1114.2468 exact   (-0.0029)
+dS298(Ar -> Ar(3P2)) =   13.4922 J/(mol*K)   against   13.3816 exact   (+0.1106)
 ```
 
-The enthalpy of excitation is right to 0.0002 kJ/mol; the entropy is 0.121 J/(mol·K) high, worth
-−0.036 kJ/mol in ΔG at 298.15 K. Two components, and the test now separates them: **0.110 of
-precedence** (BurkeH2O2's rounding against JANAF) **plus 0.011 of the 298-vs-298.15 K field
-convention** of §8.3 — the two traps compound. Had one of the seven JANAF-agreeing libraries won
-instead, only the second would remain, ≈ +0.010. The number is small; the *mechanism* is not, because nothing about it is
+The enthalpy of excitation is low by 0.0029 kJ/mol; the entropy is 0.111 J/(mol·K) high, worth
+−0.033 kJ/mol in ΔG at 298.15 K. **These are the numbers the entry as shipped delivers today**, and
+they are not the ones this section carried until round 59 — see §13.4 for the superseded pair and
+why both moved when the entry became a `NASA`. In one line: on the old form both sides carried the
+same 298-vs-298.15 K field offset and it cancelled in each difference; a `NASA` has no such field,
+so now the enthalpy residual is the winner's offset showing through and the entropy residual is
+precedence measured on the API scale. Had one of the seven JANAF-agreeing libraries won instead,
+the entropy residual would be ≈ −0.001 rather than +0.111.
+
+**This hazard now has a detector**, which it did not before:
+`test_the_anchor_error_the_engine_delivers_is_the_one_the_library_discloses` reads the pair above
+out of the entry's own text and compares it with what the engine delivers with every library
+loaded. It goes red when the file drifts from the measurement — which is exactly how the superseded
+pair survived §13.4 — and when the resolved ground state changes. It does **not** close the hazard:
+closing it means re-anchoring `BurkeH2O2` or giving RMG a way to require a ground-state anchor, and
+both are other tickets. It makes it loud. The number is small; the *mechanism* is not, because nothing about it is
 specific to argon or to this entry — every "plus R·ln g" or "plus an absorption energy" entry in
 this database rests on the same unchecked assumption, `O2(S)` in `primaryThermoLibrary` included.
 
@@ -535,7 +566,9 @@ NASA at 6000.00 K:  RAISED ValueError: No valid NASA polynomial at temperature 6
 
 The cause is one branch in `thermoengine.py:86-99`: a library entry that is **already** a `NASA` is
 kept verbatim; anything else is refit with a hard-coded `to_nasa(Tmin=100, Tmax=5000, Tint=1000)`.
-This entry is a `ThermoData` — chosen on charter grounds — so the declared ceiling is discarded.
+This entry *was* a `ThermoData` — chosen on charter grounds — so the declared ceiling was discarded.
+(§13.4 replaced it with an algebraic `NASA` and the ceiling is now delivered; this paragraph records
+the round-N finding that led there, not the state today.)
 
 Above the grid, the raw functions go wrong asymmetrically:
 
@@ -952,6 +985,24 @@ One new caveat found and disclosed: the writer emits coefficients at **six signi
 a programmatic save-reload shifts H298 by 3.45 J/mol — slightly more than the 1 J/mol precision at
 which H298 is quoted. It does not affect the shipped, hand-maintained file.
 
+**What the switch moved, recorded here and nowhere else (round 59).** §13.4 changed numbers in
+other sections and, for one pair, the correction was written without removing what it superseded —
+so §8's anchor disclosure and the entry's own longDesc carried *two* pairs with nothing to say
+which was live. That is worse than the original error and is now fixed: the live pair appears once,
+in §8 and in the entry, and the superseded pair appears once, here.
+
+| quantity | `ThermoData` form (superseded) | `NASA` form (live) | exact |
+|---|---|---|---|
+| ΔH298(Ar → Ar(³P₂)) | 1114.2470 (+0.0002) | **1114.2439 (−0.0029)** | 1114.2468 kJ/mol |
+| ΔS298(Ar → Ar(³P₂)) | 13.5027 (+0.1211) | **13.4922 (+0.1106)** | 13.3816 J/(mol·K) |
+
+Both moved for one reason. The old form carried the same +0.0031 kJ/mol / +0.0105 J/(mol·K)
+298-vs-298.15 K field offset as `BurkeH2O2`, the winner of the ground-state lookup, so in a
+*difference* the two offsets cancelled and each residual was a file-value comparison. A `NASA` has
+no such field, so neither cancels: the enthalpy residual became the winner's offset showing through
+and the entropy residual *shrank* by that same offset. The asymmetry §8.3 warns about, visible in
+this entry's own disclosure.
+
 ### 13.5 HIGH (conditional) — the degeneracy path that reports ready with Q = 0
 
 Confirmed at 5, 1, 3, 3, and confirmed that it reaches calculations. `Q` is linear in
@@ -1044,3 +1095,300 @@ Every run captured both streams into `docs/argon-metastable-thermo/logs/`.
 Still in no deck. No rate, reaction, training entry or group was written or edited. One file was
 added under `input/kinetics/` — the quarantine manifest, on the owner's explicit ruling, and it
 refuses data rather than supplying any. Not pushed, not merged, no pull request.
+
+*(§13.9's counts are round 58's and are superseded by §14.9. The sentence above about no group
+being edited is superseded by §14.1: round 59 added one `forbidden` group to each of five
+families, in a separable commit.)*
+
+---
+
+## 14. Round 59 — the reachability claim, and four smaller things
+
+Five defects came back. One was the claim the library made about its own reachability; the review's
+measurement of it was right in direction and wrong in size, in both directions, and the corrections
+are recorded below with the numbers. Every new or repaired check in this round was shown **red**
+against broken shipped data and then green, with both runs in
+`logs/red_green.stdout.log` — 13 cases, 13 demonstrated, every restore verified by SHA rather than
+by `git`.
+
+### 14.1 HIGH — "exactly one family reaches it" was false, and the review's figure was also wrong
+
+**The claim.** The entry said that of the six plasma families, one reaches this species, and the
+library repeated that as "exactly one family reaches it". The six numbers behind it were correct.
+The denominator was six, and this database ships **140** loadable families.
+
+**Reproduced independently before touching anything**
+(`all_family_reachability_probe.py`, then `silent_number_probe.py` with 50 partners):
+
+| | |
+|---|---|
+| family directories on disk | 141 (140 + `__pycache__`) |
+| families loaded by `load_families(families='all')` | **140** |
+| ordinary gas-phase partners tried | **50** |
+| families that generate from `Ar(3P2)` | **6** |
+| reactions generated | **67** |
+| reactions carrying a product whose thermo raises | **66** |
+| reactions whose products all resolve | **1** — the intended ionisation, already quarantined |
+| distinct first-generation products | 66, of which **57 raise** and 9 return a number |
+
+**Two corrections to the review's own figures, both in its favour and against it.** The review named
+five *partners* (H, OH, CH₃, O₂, N₂) and two families. Measured: **six families**, five of them
+ordinary — `Birad_R_Recombination`, `R_Addition_MultipleBond`, `Disproportionation`,
+`CO_Disproportionation` and `Cl_Abstraction`. The last three were not in the review's table at all,
+and `Disproportionation` matters most of the three because it produces `[ArH]` directly. So the
+problem is larger than reported, not smaller.
+
+**Is it in a deck a real user gets?** Four of the five are in `recommended.py`'s `default` set — the
+set a deck gets when it names no families. Only `Cl_Abstraction` is not. Ending 3 of the review
+("show the reachability is not reachable in practice") is therefore dead, and it is dead on a
+measurement rather than on a judgement.
+
+**The "silent bad rate" case was searched for specifically, and it does not exist.** Answered
+structurally rather than by trying partners until one stopped failing:
+
+1. RMG refuses `1 Ar u0 p3 c0 {2,S}` outright — *"Invalid valency for atom Ar (Ar0s)"* — so a
+   **neutral argon carrying a covalent bond is necessarily a radical**;
+2. a radical's thermo is estimated by HBI, which saturates the radical site first;
+3. saturating a one-bond argon gives a two-bond argon, and no atom type exists for that.
+
+So it cannot be a number, by construction rather than by exhaustion. The 50-partner sweep agrees:
+of 67 reactions, exactly one has all products resolvable and it is
+`Plasma_Electron_Impact_Ionization`'s `Ar(3P2) => Ar+`, which the manifest already refuses. **The
+failure mode is loud. Reported as asked, in both directions.**
+
+**The ending chosen: close it, disclose it, and escalate the root cause** — the owner's ruling of
+2026-09-21, after the closure was measured.
+
+*Why a quarantine could not have been the answer, measured not argued* (`job_level_crash_probe.py`):
+`CoreEdgeReactionModel.process_new_reactions` on `Ar(3P2) + H` with the `default` families loaded
+raises `AtomTypeError`, unpatched; `CH3 + H` through the identical path completes. Instrumenting
+both functions shows product thermo is generated inside `make_new_species` (`model.py:569` →
+`:401`) **before** the first `apply_kinetics_to_reaction` (`:628`). A manifest would have refused a
+rate the job never survives to ask for.
+
+*What does work.* Each family's own `forbidden(...)` mechanism, which fires inside
+`__generate_product_structures` — on reactants at `family.py:1669` and on products at `:1690` —
+during generation. `Birad_R_Recombination` already uses it, and its existing entries say why in
+their own words: **"This family is intended to handle [O] u2 p2, or [S] u2 p2, or [NH] u2 p1,
+instances with a different number of lone pairs are forbidden."** `Ar u2 p3` is exactly such an
+instance, so this writes down a rule the family already claims about itself.
+
+*The label is load-bearing and silently so.* `ForbiddenStructures.is_molecule_forbidden` honours
+atom labels, so an **unlabelled** `1 Ar u2 p3 c0` group matches nothing during generation — by then
+the molecule's argon is tagged and cannot map to an unlabelled group atom. Measured both ways: the
+unlabelled version left every reaction in place and looked like a working fix. The shipped entries
+carry `*2`, `*3`, `*1`, `*1`, `*3` respectively.
+
+*Measured with the containment in place* (`containment_probe.py`):
+
+```
+ordinary families still reaching Ar(3P2)     0   (was 5)
+Plasma_Electron_Impact_Ionization survives   yes
+control reactions that disappeared           0   of 22
+```
+
+The controls are what each family exists **for**; `Birad_R_Recombination`'s three are the ones its
+own longDesc names — `[O] + [CH3]`, `[S] + [CH3]`, `[NH] + [CH3]`, all unmoved. One control,
+`[H] + HCl` under `Cl_Abstraction`, reads zero with and without the containment: it is the
+degenerate identity reaction. That was measured on the reverted file rather than assumed, and it is
+recorded in the probe rather than dropped from the control list.
+
+*The blast radius, stated because it is the reason for the commit structure.* Five ordinary families
+that every RMG user loads, four in `default`. It lands as **its own commit**, five files and
+nothing else, so the owner can drop it without touching the thermochemistry. If it is dropped, the
+suite goes red at the tests that assert the containment — which is the intended behaviour, because
+the entry's paragraph describing the containment would then be false and needs rewriting.
+
+### 14.2 The `Ar0e` escalation — hand this over verbatim
+
+> **The root cause of I-221's reachability defect is in `rmgpy/molecule/atomtype.py`, and no
+> narrowing of `Ar0e` can fix it.** Measured, not argued.
+>
+> `ATOMTYPES['Ar0e']` is declared `generic=['R', 'R!H', 'R!H!Val7', 'Rx', 'Rx!H', 'Ar']`
+> (`atomtype.py:484`). The edge that matters at match time is the *reverse* one — `Ar0e` in
+> `ATOMTYPES['R'].specific` — because `is_specific_case_of` is `self is other or self in
+> other.specific` (`atomtype.py:209-214`). The constructor stores both directions and only
+> `specific` is read; a change that edits `generic` alone is a no-op. (My first probe did exactly
+> that and reported that all four candidate narrowings behaved identically. That was a broken probe,
+> not a finding, and the tell was that every arm agreed.)
+>
+> The six families that reach `Ar u2 p3 c0` are written on exactly two generics:
+>
+> | family | group | generic |
+> |---|---|---|
+> | `Plasma_Electron_Impact_Ionization` | `A_rad` | `1 *1 R u[1,2,3,4] px c[...]` |
+> | `Disproportionation` | `Root`, atom `*1` | `1 *1 R u[1,2,3,4]` |
+> | `CO_Disproportionation` | `Root`, atom `*1` | `1 *1 R u[1,2,3,4]` |
+> | `Cl_Abstraction` | `Root`, atom `*3` | `1 *3 R u[1,2,3,4]` |
+> | `Birad_R_Recombination` | `Birad` | `1 *2 R!H u2` |
+> | `R_Addition_MultipleBond` | `Y_1centerbirad` | `1 *3 R!H u2` |
+>
+> **The family this species is supposed to react in and three of the five it must not are written on
+> the same generic with the same `u` range.** They are indistinguishable at the group level.
+>
+> Measured over all 140 families by mutating both directions at runtime
+> (`docs/argon-metastable-thermo/atomtype_escalation_probe.py`, with the database-side containment
+> lifted so the atom type is what is being measured):
+>
+> | candidate | ordinary families still reaching `Ar(3P2)` | `Ar(3P2) => Ar+` |
+> |---|---|---|
+> | as shipped | 5 | kept |
+> | drop `R!H` | 3 | kept |
+> | drop `R` | 2 | **LOST** |
+> | drop both | **0** | **LOST** |
+>
+> The control `CH3 + H` is unmoved in all four arms, and `Ar+ => Ar++` survives in all four (`Ar+`
+> is its own atom type and was not touched). So the only narrowing that closes everything also
+> destroys the one channel metastable argon is supposed to have, and the best narrowing that keeps
+> that channel still leaves three ordinary families reaching the species.
+>
+> **What an `Ar0e` change would therefore have to do.** Not narrow the generality — add a
+> distinction RMG does not currently have: a constraint that an atom type *may not form covalent
+> bonds*, enforced where a recipe is applied rather than where a group is matched, so `GAIN_CHARGE`
+> and `LOSE_RADICAL` on argon stay legal while `FORM_BOND` and `CHANGE_BOND` do not. That is a new
+> engine concept, not an edit to a list.
+>
+> **Two alternatives, and why both are worse.** (a) *Add a bonded-argon atom type so the products
+> become well-formed.* This converts a loud `AtomTypeError` into a group-additivity **number** for a
+> species that does not exist, which is strictly the worse failure — and there is no
+> group-additivity data for argon to produce it from. (b) *Make `estimate_radical_thermo_via_hbi`
+> refuse noble gases.* This lives in `rmgpy/data/thermo.py`, not `atomtype.py`, and it only changes
+> which exception is raised; the spurious reaction is still generated.
+>
+> **What else a change here touches.** `ATOMTYPES['R'].specific` and `ATOMTYPES['R!H'].specific`;
+> `atomtypeTest.py`, which already carries `Ar0s` in `EXPECTED_FAILING_ATOMTYPES` and would need the
+> new behaviour pinned; and in principle every group in the database written on `R`/`R!H` — measured,
+> the ordinary-radical control is unmoved, but the sweep was 50 partners and not a proof.
+>
+> **Until then**, the database-side containment (five `forbidden` groups, I-221 round 59) closes the
+> five families measured to reach the species and closes nothing else. A seventh family would reopen
+> it exactly as before.
+
+### 14.3 MEDIUM — the `2.0583e10` comparator had no citation and is withdrawn
+
+The quarantine's justification quoted "a published state-resolved argon model, 2.0583e+10
+m³/(mol·s)" and a **23.7-order** shortfall. Searched: that constant has **no citation and no
+derivation anywhere in this repository**; `git log -S` finds it entering with this ticket's own
+round-58 commits and nowhere earlier. It is withdrawn from both the entry and the manifest.
+
+It is **not** replaced with another external number, and the reason is worth recording. The
+state-resolved 1s5 expression offered in review, `6.8e-15 · Te^0.67 · exp(−4.2/Te)`, gives
+**2.108e9** m³/(mol·s) at 3 eV if the prefactor is read as m³/s and **2.108e3** if it is read as
+cm³/s — the convention such expressions are normally written in. Six orders of magnitude turn on a
+unit convention only the source can settle. An uncited comparator has no place in an argument about
+orders of magnitude, whichever way it points.
+
+What replaces it is what the review recommended and what was always the stronger claim:
+
+* **The quarantine rests on Te-independence alone.** The delivered rate is *bit-identical* at
+  Te = 1 eV and Te = 3 eV. An electron-impact ionisation rate that does not depend on the electron
+  temperature is disqualified by inspection, and that statement needs no external number.
+* **For scale, an internal comparison:** this family's own rule evaluated at Te = 3 eV gives
+  3.109200e+07 m³/(mol·s) against the 3.664598e-14 delivered at 1000 K gas — **20.9 orders**,
+  measured entirely within this repository.
+
+### 14.4 MEDIUM — §9's load-order hazard now has a detector
+
+Reproduced: `BurkeH2O2` first → ΔS = 13.4922, residual **+0.1106**; `primaryThermoLibrary` first →
+−0.00053; `NOx2018` first → −0.00076. The two existing tests pin the *rule* (first Ar-carrying
+library in `library_order` wins) and the *identity* (the residual is that winner's own departure
+from JANAF), and both are satisfied by whichever library happens to win — so neither would notice
+the anchor moving.
+
+`test_the_anchor_error_the_engine_delivers_is_the_one_the_library_discloses` reads the ΔH/ΔS pair
+out of the entry's own text and compares it with what the engine delivers with every library
+loaded. It goes red when the file drifts from the measurement — which is exactly how §13.4's
+superseded pair survived — and when the resolved ground state changes. Shown red two ways (a
+disclosed number moved; the superseded pair put back) and green.
+
+**It does not close the hazard**, and the entry says so. Closing it means re-anchoring `BurkeH2O2`
+or giving RMG a way to require a ground-state anchor; both are other tickets. It makes it loud.
+
+### 14.5 MEDIUM — §13's correction left its old numbers shipped
+
+Confirmed. The entry carried `dS = 13.5027 / +0.1211` — the `ThermoData`-form values — next to the
+new ones, and the report described the emitted form as `ThermoData`. Both fixed: the live pair
+(ΔH = 1114.2439, ΔS = 13.4922, residual +0.1106) appears once, in §8 and in the entry; the
+superseded pair appears once, in §13.4, as history with the reason it moved. §5's "Form emitted"
+paragraph and §10's `ThermoData` sentence now say what is true today and point at §13.4.
+
+### 14.6 LOW — five tests that could not detect wrong shipped data
+
+All five confirmed. Four recomputed module constants and never read the entry; the fifth declared
+an `entry` argument and never touched it. Repointed, and each shown red against broken shipped data:
+
+| test | now reads | shown red by |
+|---|---|---|
+| `..._level_energy_in_ev_matches...` | the entry's H298, back through `H = E·h·c·N_A` | moving `a6` |
+| `..._two_metastable_levels_are_separated...` | the entry's own alternatives table | moving the 1s3 row |
+| `..._r_ln_q_alone_understates...` | the table, plus the three magnitudes in the entry's prose | moving `R*ln term` |
+| `..._where_the_lumping_difference_crosses...` | the table, the entry's four crossing temperatures, and the precision its S298 is written to | moving a crossing |
+| `..._thermodata_freezes_entropy...` | the shipped Cp/H298/S298, and asserts the NASA *raises* out of range where a ThermoData freezes | moving `a1` |
+
+### 14.7 The correction to my own §5 — accepted in full
+
+"Three numbers, one identity each" was presented as though three independent things had been
+checked. They are not independent: `H` is the ASD level energy times `h·c·N_A`, the eV cross-check
+divides the *same* energy by a unit conversion, and `S` combines the *same* level's `J` with JANAF's
+ground entropy. They validate the arithmetic, not the physics, and none of them would notice the
+wrong ASD level having been transcribed. §5 and the entry now say so. Same shape as the
+`1213 × 0.0085` withdrawal three days ago on I-235.
+
+### 14.8 One thing the review got wrong, reported as asked
+
+The review's Defect 1 header says "Five more do". Measured: **two** more families in its own partner
+set, and **five** more across 50 partners — the count of *families* is 6 of 140, not 6 of 6 and not
+2. The review's table lists 2 families over 5 partners; the extra three (`Disproportionation`,
+`CO_Disproportionation`, `Cl_Abstraction`) it did not have. The direction of the finding stands and
+the defect is worse than reported.
+
+### 14.9 Checks run
+
+| check | result |
+|---|---|
+| `test/test_argon_metastable_thermo.py` | **53 passed** (was 44) |
+| `test/test_eii_quarantine.py` | **14 passed**, unchanged |
+| `test/` (whole repository) | **281 passed, 4 failed** against the **272 passed, 4 failed** head baseline — the same four pre-existing failures, no new failure |
+| `red_green.py` | **13 cases, 13 shown red then green**, every restore SHA-verified, exit 0 |
+| `containment_probe.py` | 0 ordinary families reach `Ar(3P2)`, 0 of 22 controls moved |
+| `atomtype_escalation_probe.py` | 4 candidates measured, no narrowing separates the wanted channel from the unwanted ones |
+
+Both streams of every run are in `docs/argon-metastable-thermo/logs/`. Not pushed, not merged, no
+pull request.
+
+### 14.10 The red/green driver failed once, and what it cost
+
+Recorded because it is the same class of defect this round was sent to fix, committed by the person
+fixing it.
+
+The driver was launched in the background, appeared to have died — its log was zero bytes and no
+process matched — and was relaunched. **It had not died**; the log was empty because Python buffers
+stdout when piped. Two instances then perturbed and restored the same four files concurrently. Each
+verified its own restore by SHA against a baseline the other had already moved, so every case
+reported red-then-green correctly *and* an `ArH` entry — a deliberately wrong covalent-argon thermo
+entry, written to make one check fail — was left in `PlasmaExcitedNeutralThermo.py`. I committed it.
+
+It was caught by re-running the full suite after the commit: 8 failed instead of 4, and the extra
+four were the tests that the `ArH` entry exists to break, plus
+`test_the_library_loads_alongside_every_other_thermo_library`, which asserts the library carries
+exactly one entry. That last one is the reason it could not have shipped quietly, and it is a test
+from an earlier round.
+
+**The lesson is not "check the restores".** Every restore *was* checked. Per-case SHA verification
+compares a file against a baseline, and a baseline is not a fixed point when something else can
+write the file. Two guards were added:
+
+* a **lock file**, so a second instance refuses to start; and
+* a **contamination sweep** over every file the script can touch, for every marker it writes, run
+  at the end regardless of how the cases went — plus positive checks for the two cases that
+  *replace* rather than add, where there is nothing to grep for afterwards.
+
+The sweep immediately paid for itself in a way worth recording: its first marker list included
+`1 Ar u2 p3 c0` and `1 *2 R!H u2`, which are the entry's own molecule and
+`Birad_R_Recombination`'s own `Birad` group. It refused to start, correctly, and the markers were
+what was wrong. A guard that refuses on its first run is doing its job; the response is to check
+whether it caught a real defect or exposed a false positive in itself, not to loosen it until it
+passes.
+
+Re-run clean, single instance, foreground: **13 cases, 13 red-then-green, 0 leftover
+perturbations**, and the full suite back to 281 / 4.

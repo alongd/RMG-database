@@ -1,0 +1,43 @@
+
+0. ARE THE MATCHING FAMILIES IN THE DEFAULT SET A DECK ACTUALLY GETS?
+=====================================================================
+  families in recommended.py 'default': 51
+    Birad_R_Recombination      in default: True
+    R_Addition_MultipleBond    in default: True
+    Disproportionation         in default: True
+    CO_Disproportionation      in default: True
+    Cl_Abstraction             in default: False
+  matched families that a default deck loads: 4 of 5
+
+1. LOAD THE DEFAULT FAMILY SET, PLUS THE ONE PLASMA FAMILY
+==========================================================
+  families loaded: 51
+
+2. ORDERING: WHICH RUNS FIRST, PRODUCT THERMO OR THE QUARANTINE GATE?
+=====================================================================
+
+3. NEGATIVE CONTROL: CH3 + H through the same path
+==================================================
+
+  CH3 + H -> 2 reaction(s) generated
+      H_Abstraction              [H] + [CH3] <=> [H][H] + [CH2]
+      R_Recombination            [H] + [CH3] <=> C
+  process_new_reactions completed with no exception
+  call order recorded: generate_thermo -> generate_thermo -> generate_thermo -> generate_thermo -> apply_kinetics_to_reaction -> generate_thermo
+  control clean, so a raise below belongs to the chemistry and not the setup
+
+4. THE REAL CASE: Ar(3P2) + H through the same path
+===================================================
+
+  Ar(3P2) + H -> 1 reaction(s) generated
+      Birad_R_Recombination      [Ar] + [H] <=> [ArH]
+  process_new_reactions RAISED AtomTypeError
+      Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 benzene bonds, 3 lone pairs, and +0 charge.
+  call order recorded: generate_thermo -> generate_thermo -> generate_thermo
+
+5. WHAT THIS SETTLES
+====================
+  first call in the control run          : generate_thermo
+  Ar(3P2) + H raised                     : AtomTypeError
+  a kinetics quarantine could stop it    : NO - product thermo runs first
+  matched families inside the default set: 4 of 5

@@ -1,0 +1,63 @@
+
+0. WHAT IS LOADED, AND DOES THE CONTAINMENT EXIST?
+==================================================
+  families loaded: 140
+  Birad_R_Recombination      forbidden entries: ['Ar_metastable_biradical', 'O2_p1', 'OS_chain', 'S2_p0', 'S2_p1']
+                                 group labels: ['*2']
+  R_Addition_MultipleBond    forbidden entries: ['Ar_metastable_biradical', 'O2d', 'carbonatebreak', 'carbonaterad']
+                                 group labels: ['*3']
+  Disproportionation         forbidden entries: ['Ar_metastable_biradical', 'O2d', 'OS_XH_birad_singlet', 'O_Srad', 'XH_N_birad_singlet', 'XH_birad_singlet', 'XH_quadrad_singlet']
+                                 group labels: ['*1']
+  CO_Disproportionation      forbidden entries: ['Ar_metastable_biradical', 'O2d', 'OS_XH_birad_singlet', 'O_Orad', 'XH_N_birad_singlet', 'XH_birad_singlet', 'XH_quadrad_singlet']
+                                 group labels: ['*1']
+  Cl_Abstraction             forbidden entries: ['Ar_metastable_biradical', 'C_quintet', 'disprop1_OS_rad', 'disprop1_base_case', 'disprop1_hyperS_H', 'disprop1_hyperS_rad', 'disprop2', 'disprop3', 'disprop4', 'disprop5', 'disprop6_mul_bonds', 'disprop7_birad']
+                                 group labels: ['*3']
+
+1. CLOSURE: does any ordinary family still generate from Ar(3P2)?
+=================================================================
+  unimolecular   Plasma_Electron_Impact_Ionization [Ar] => [Ar+]
+
+  partners tried                              : 19
+  ordinary families still reaching Ar(3P2)    : 0  []
+  intended ionisation channel still generated : True
+
+2. CONTROLS: the chemistry each family exists FOR
+=================================================
+
+  Birad_R_Recombination
+      OK   O     + CH3   -> 1 reaction(s)   [O] + [CH3] <=> C[O]
+      OK   S     + CH3   -> 1 reaction(s)   [S] + [CH3] <=> C[S]
+      OK   NH    + CH3   -> 1 reaction(s)   [NH] + [CH3] <=> C[NH]
+      OK   O     + H     -> 1 reaction(s)   [O] + [H] <=> [OH]
+      OK   S     + OH    -> 1 reaction(s)   [S] + [OH] <=> O[S]
+
+  R_Addition_MultipleBond
+      OK   H     + C2H4  -> 1 reaction(s)   [H] + C=C <=> C[CH2]
+      OK   CH3   + C2H2  -> 1 reaction(s)   [CH3] + C#C <=> [CH]=CC
+      OK   OH    + C2H4  -> 1 reaction(s)   [OH] + C=C <=> [CH2]CO
+      OK   H     + CO2   -> 2 reaction(s)   [H] + O=C=O <=> O=[C]O; [H] + O=C=O <=> [O]C=O
+      OK   CH3   + CH2O  -> 2 reaction(s)   [CH3] + C=O <=> [CH2]OC; [CH3] + C=O <=> CC[O]
+
+  Disproportionation
+      OK   CH3   + C2H5  -> 1 reaction(s)   C[CH2] + [CH3] <=> C + C=C
+      OK   OH    + C2H5  -> 1 reaction(s)   C[CH2] + [OH] <=> O + C=C
+      OK   H     + C2H5  -> 1 reaction(s)   C[CH2] + [H] <=> [H][H] + C=C
+      OK   O2    + C2H5  -> 1 reaction(s)   C[CH2] + [O][O] <=> [O]O + C=C
+      OK   NH2   + C2H5  -> 1 reaction(s)   C[CH2] + [NH2] <=> N + C=C
+
+  CO_Disproportionation
+      OK   H     + HCO   -> 1 reaction(s)   [CH]=O + [H] <=> [H][H] + [C-]#[O+]
+      OK   CH3   + HCO   -> 1 reaction(s)   [CH]=O + [CH3] <=> C + [C-]#[O+]
+      OK   OH    + HCO   -> 1 reaction(s)   [CH]=O + [OH] <=> O + [C-]#[O+]
+      OK   SH    + HCO   -> 1 reaction(s)   [CH]=O + [SH] <=> S + [C-]#[O+]
+
+  Cl_Abstraction
+      ZERO H     + HCl   -> 0 reaction(s)   ALREADY ZERO BEFORE: degenerate identity reaction; measured 0 on the reverted groups.py as well
+      OK   CH3   + HCl   -> 1 reaction(s)   Cl + [CH3] <=> CCl + [H]
+      OK   OH    + HCl   -> 1 reaction(s)   Cl + [OH] <=> OCl + [H]
+
+3. VERDICT
+==========
+  ordinary families still reaching Ar(3P2) : 0
+  intended ionisation channel survives     : True
+  control reactions that DISAPPEARED       : 0 []

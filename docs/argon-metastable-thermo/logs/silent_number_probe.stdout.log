@@ -1,0 +1,414 @@
+families loaded: 140
+
+1+2. WIDE PARTNER SWEEP, THERMO THROUGH thermoengine.submit
+===========================================================
+  H         Birad_R_Recombination        [Ar] + [H] <=> [ArH]
+  O2        Birad_R_Recombination        [Ar] + [O][O] <=> [O]O[Ar]
+  OH        Birad_R_Recombination        [Ar] + [OH] <=> O[Ar]
+  HO2       Birad_R_Recombination        [Ar] + [O]O <=> OO[Ar]
+  N2        R_Addition_MultipleBond      [Ar] + N#N <=> [Ar]N=[N]
+  NH2       Birad_R_Recombination        [Ar] + [NH2] <=> N[Ar]
+  NO        Birad_R_Recombination        [Ar] + [N]=O <=> [Ar]N=O
+  NO2       Birad_R_Recombination        [Ar] + [O]N=O <=> [Ar]ON=O
+  NO2       R_Addition_MultipleBond      [Ar] + [O]N=O <=> [O][N]O[Ar]
+  NO2       R_Addition_MultipleBond      [Ar] + [O]N=O <=> [O]N([Ar])[O]
+  NO2       Birad_R_Recombination        [Ar] + [O-][N+]=O <=> [O-][N+](=O)[Ar]
+  N2O       R_Addition_MultipleBond      [Ar] + [N-]=[N+]=O <=> [N-]=[N+]O[Ar]
+  N2O       R_Addition_MultipleBond      [Ar] + [N-]=[N+]=O <=> [N-]=[N+]([Ar])[O]
+  N2O       R_Addition_MultipleBond      [Ar] + [N-]=[N+]=O <=> [N-]([N+]=O)[Ar]
+  CH3       Birad_R_Recombination        [Ar] + [CH3] <=> C[Ar]
+  C2H2      R_Addition_MultipleBond      [Ar] + C#C <=> [CH]=C[Ar]
+  C2H3      Birad_R_Recombination        [Ar] + [CH]=C <=> C=C[Ar]
+  C2H3      Disproportionation           [CH]=C + [Ar] <=> [ArH] + C#C
+  C2H4      R_Addition_MultipleBond      [Ar] + C=C <=> [CH2]C[Ar]
+  C2H5      Birad_R_Recombination        [Ar] + C[CH2] <=> CC[Ar]
+  C2H5      Disproportionation           C[CH2] + [Ar] <=> [ArH] + C=C
+  HCO       Birad_R_Recombination        [Ar] + [CH]=O <=> O=C[Ar]
+  HCO       CO_Disproportionation        [CH]=O + [Ar] <=> [ArH] + [C-]#[O+]
+  CH2O      R_Addition_MultipleBond      [Ar] + C=O <=> [CH2]O[Ar]
+  CH2O      R_Addition_MultipleBond      [Ar] + C=O <=> [O]C[Ar]
+  CH3O      Birad_R_Recombination        [Ar] + C[O] <=> CO[Ar]
+  CH3O      Disproportionation           C[O] + [Ar] <=> [ArH] + C=O
+  CH2OH     Birad_R_Recombination        [Ar] + [CH2]O <=> OC[Ar]
+  CH2OH     Disproportionation           [CH2]O + [Ar] <=> [ArH] + C=O
+  CO2       R_Addition_MultipleBond      [Ar] + O=C=O <=> O=[C]O[Ar]
+  CO2       R_Addition_MultipleBond      [Ar] + O=C=O <=> [O]C(=O)[Ar]
+  CH3OO     Birad_R_Recombination        [Ar] + CO[O] <=> COO[Ar]
+  HCCO      Birad_R_Recombination        [Ar] + [CH]=C=O <=> O=C=C[Ar]
+  HCCO      R_Addition_MultipleBond      [Ar] + [CH]=C=O <=> [CH]=[C]O[Ar]
+  HCCO      R_Addition_MultipleBond      [Ar] + [CH]=C=O <=> [CH]=C([O])[Ar]
+  HCCO      Birad_R_Recombination        [Ar] + C#C[O] <=> C#CO[Ar]
+  HCCO      R_Addition_MultipleBond      [Ar] + C#C[O] <=> [O][C]=C[Ar]
+  C3H3      Birad_R_Recombination        [Ar] + C#C[CH2] <=> C#CC[Ar]
+  C3H3      R_Addition_MultipleBond      [Ar] + C#C[CH2] <=> [CH]=C([CH2])[Ar]
+  C3H3      R_Addition_MultipleBond      [Ar] + C#C[CH2] <=> [CH2][C]=C[Ar]
+  C3H3      Birad_R_Recombination        [Ar] + [CH]=C=C <=> C=C=C[Ar]
+  C3H3      R_Addition_MultipleBond      [Ar] + [CH]=C=C <=> [CH]=[C]C[Ar]
+  C3H5      Birad_R_Recombination        [Ar] + [CH2]C=C <=> C=CC[Ar]
+  C3H5      Disproportionation           [CH2]C=C + [Ar] <=> [ArH] + C=C=C
+  C3H5      R_Addition_MultipleBond      [Ar] + [CH2]C=C <=> [CH2]C([CH2])[Ar]
+  C3H5      R_Addition_MultipleBond      [Ar] + [CH2]C=C <=> [CH2][CH]C[Ar]
+  C6H6      R_Addition_MultipleBond      [Ar] + c1ccccc1 <=> [Ar]C1[CH]C=CC=C1
+  C6H5      Birad_R_Recombination        [Ar] + [c]1ccccc1 <=> [Ar]c1ccccc1
+  C6H5      Disproportionation           [c]1ccccc1 + [Ar] <=> [ArH] + C1=C=CC=CC=1
+  C6H5      R_Addition_MultipleBond      [Ar] + [c]1ccccc1 <=> [Ar]C1[CH]C=[C]C=C1
+  C6H5      R_Addition_MultipleBond      [Ar] + [c]1ccccc1 <=> [Ar]C1[CH]C=C[C]=C1
+  C6H5      R_Addition_MultipleBond      [Ar] + [c]1ccccc1 <=> [Ar]C1[C]=CC=C[CH]1
+  C7H7      Birad_R_Recombination        [Ar] + [CH2]c1ccccc1 <=> [Ar]Cc1ccccc1
+  C7H7      R_Addition_MultipleBond      [Ar] + [CH2]c1ccccc1 <=> [CH2]C1([Ar])[CH]C=CC=C1
+  C7H7      R_Addition_MultipleBond      [Ar] + [CH2]c1ccccc1 <=> [CH2][C]1C=CC=CC1[Ar]
+  C7H7      R_Addition_MultipleBond      [Ar] + [CH2]c1ccccc1 <=> [CH2]C1=CC=CC([Ar])[CH]1
+  C7H7      R_Addition_MultipleBond      [Ar] + [CH2]c1ccccc1 <=> [CH2]C1=C[CH]C([Ar])C=C1
+  C7H7      Birad_R_Recombination        [Ar] + C=C1[CH]C=CC=C1 <=> C=C1C=CC=CC1[Ar]
+  C7H7      Disproportionation           C=C1[CH]C=CC=C1 + [Ar] <=> [ArH] + C=C1C=C=CC=C1
+  C7H7      R_Addition_MultipleBond      [Ar] + C=C1[CH]C=CC=C1 <=> [Ar]C[C]1[CH]C=CC=C1
+  C7H7      Birad_R_Recombination        [Ar] + C=C1C=C[CH]C=C1 <=> C=C1C=CC([Ar])C=C1
+  SH        Birad_R_Recombination        [Ar] + [SH] <=> S[Ar]
+  SO2       R_Addition_MultipleBond      [Ar] + O=S=O <=> [O]S(=O)[Ar]
+  SO2       R_Addition_MultipleBond      [Ar] + O=S=O <=> [Ar]O[S]=O
+  Cl        Birad_R_Recombination        [Ar] + [Cl] <=> Cl[Ar]
+  HCl       Cl_Abstraction               Cl + [Ar] <=> Cl[Ar] + [H]
+
+  partners tried                 : 50
+  families loaded                : 140
+  families that matched Ar(3P2)  : 6  ['Birad_R_Recombination', 'CO_Disproportionation', 'Cl_Abstraction', 'Disproportionation', 'Plasma_Electron_Impact_Ionization', 'R_Addition_MultipleBond']
+      Birad_R_Recombination              via ['C2H3', 'C2H5', 'C3H3', 'C3H5', 'C6H5', 'C7H7', 'CH2OH', 'CH3', 'CH3O', 'CH3OO', 'Cl', 'H', 'HCCO', 'HCO', 'HO2', 'NH2', 'NO', 'NO2', 'O2', 'OH', 'SH']
+      CO_Disproportionation              via ['HCO']
+      Cl_Abstraction                     via ['HCl']
+      Disproportionation                 via ['C2H3', 'C2H5', 'C3H5', 'C6H5', 'C7H7', 'CH2OH', 'CH3O']
+      Plasma_Electron_Impact_Ionization  via ['(unimolecular)']
+      R_Addition_MultipleBond            via ['C2H2', 'C2H4', 'C3H3', 'C3H5', 'C6H5', 'C6H6', 'C7H7', 'CH2O', 'CO2', 'HCCO', 'N2', 'N2O', 'NO2', 'SO2']
+  distinct first-generation products: 66
+
+  verdict per product:
+    NUMBER  Disproportionation         C6H5      1  C u0 p0 c0 {2,D} {3,S} {7,S} | 2  C u0 p0 c0 {1,D} {4,S} {8,S} | 3  C u0 p0 c0 {1,S} {5,D} {9,S} | 4  C u0 p0 c0 {2,S} {6,D} {10,S} | 5  C u0 p0 c0 {3,D} {6,D} | 6  C u0 p0 c0 {4,D} {5,D} | 7  H u0 p0 c0 {1,S} | 8  H u0 p0 c0 {2,S} | 9  H u0 p0 c0 {3,S} | 10 H u0 p0 c0 {4,S}
+            H298 = 446.0241 kJ/mol  S298 = 283.2858  src = Thermo library: JetSurF2.0
+    NUMBER  Disproportionation         C7H7      1  C u0 p0 c0 {2,S} {4,S} {6,D} | 2  C u0 p0 c0 {1,S} {3,D} {8,S} | 3  C u0 p0 c0 {2,D} {5,S} {9,S} | 4  C u0 p0 c0 {1,S} {7,D} {11,S} | 5  C u0 p0 c0 {3,S} {7,D} {10,S} | 6  C u0 p0 c0 {1,D} {12,S} {13,S} | 7  C u0 p0 c0 {4,D} {5,D} | 8  H u0 p0 c0 {2,S} | 9  H u0 p0 c0 {3,S} | 10 H u0 p0 c0 {5,S} | 11 H u0 p0 c0 {4,S} | 12 H u0 p0 c0 {6,S} | 13 H u0 p0 c0 {6,S}
+            H298 = 482.0958 kJ/mol  S298 = 286.8753  src = Thermo group additivity estimation: group(Cds-Cds(Cds-Cds)(Cds-Cds)) + group(Cds-Cds(Cds-Cds)H) + group(Cds-Cds(Cds-Cds)
+    NUMBER  Disproportionation         C2H5      1 C u0 p0 c0 {2,D} {3,S} {4,S} | 2 C u0 p0 c0 {1,D} {5,S} {6,S} | 3 H u0 p0 c0 {1,S} | 4 H u0 p0 c0 {1,S} | 5 H u0 p0 c0 {2,S} | 6 H u0 p0 c0 {2,S}
+            H298 = 52.5115 kJ/mol  S298 = 219.1753  src = Thermo library: CH
+    NUMBER  Disproportionation         C2H3      1 C u0 p0 c0 {2,T} {3,S} | 2 C u0 p0 c0 {1,T} {4,S} | 3 H u0 p0 c0 {1,S} | 4 H u0 p0 c0 {2,S}
+            H298 = 228.2062 kJ/mol  S298 = 200.8542  src = Thermo library: CH
+    NUMBER  Disproportionation         C3H5      1 C u0 p0 c0 {3,D} {4,S} {5,S} | 2 C u0 p0 c0 {3,D} {6,S} {7,S} | 3 C u0 p0 c0 {1,D} {2,D} | 4 H u0 p0 c0 {1,S} | 5 H u0 p0 c0 {1,S} | 6 H u0 p0 c0 {2,S} | 7 H u0 p0 c0 {2,S}
+            H298 = 190.9122 kJ/mol  S298 = 243.6975  src = Thermo library: CH
+    NUMBER  CO_Disproportionation      HCO       1 O u0 p1 c+1 {2,T} | 2 C u0 p1 c-1 {1,T}
+            H298 = -110.5369 kJ/mol  S298 = 197.5413  src = Thermo library: BurkeH2O2
+    NUMBER  Disproportionation         CH3O      1 O u0 p2 c0 {2,D} | 2 C u0 p0 c0 {1,D} {3,S} {4,S} | 3 H u0 p0 c0 {2,S} | 4 H u0 p0 c0 {2,S}
+            H298 = -108.5904 kJ/mol  S298 = 218.5356  src = Thermo library: CHO
+    CRASH   Birad_R_Recombination      C7H7      multiplicity 2 | 1  Ar u1 p3 c0 {2,S} | 2  C  u0 p0 c0 {1,S} {3,S} {4,S} {9,S} | 3  C  u0 p0 c0 {2,S} {5,S} {8,D} | 4  C  u0 p0 c0 {2,S} {6,D} {10,S} | 5  C  u0 p0 c0 {3,S} {7,D} {11,S} | 6  C  u0 p0 c0 {4,D} {7,S} {13,S} | 7  C  u0 p0 c0 {5,D} {6,S} {12,S} | 8  C  u0 p0 c0 {3,D} {14,S} {15,S} | 9  H  u0 p0 c0 {2,S} | 10 H  u0 p0 c0 {4,S} | 11 H  u0 p0 c0 {5,S} | 12 H  u0 p0 c0 {7,S} | 13 H  u0 p0 c0 {6,S} | 14 H  u0 p0 c0 {8,S} | 15 H  u0 p0 c0 {8,S}
+            AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 b
+    CRASH   Birad_R_Recombination      C7H7      multiplicity 2 | 1  Ar u1 p3 c0 {2,S} | 2  C  u0 p0 c0 {1,S} {3,S} {9,S} {10,S} | 3  C  u0 p0 c0 {2,S} {4,B} {5,B} | 4  C  u0 p0 c0 {3,B} {6,B} {11,S} | 5  C  u0 p0 c0 {3,B} {8,B} {15,S} | 6  C  u0 p0 c0 {4,B} {7,B} {12,S} | 7  C  u0 p0 c0 {6,B} {8,B} {13,S} | 8  C  u0 p0 c0 {5,B} {7,B} {14,S} | 9  H  u0 p0 c0 {2,S} | 10 H  u0 p0 c0 {2,S} | 11 H  u0 p0 c0 {4,S} | 12 H  u0 p0 c0 {6,S} | 13 H  u0 p0 c0 {7,S} | 14 H  u0 p0 c0 {8,S} | 15 H  u0 p0 c0 {5,S}
+            AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 b
+    CRASH   Birad_R_Recombination      C7H7      multiplicity 2 | 1  Ar u1 p3 c0 {2,S} | 2  C  u0 p0 c0 {1,S} {4,S} {5,S} {9,S} | 3  C  u0 p0 c0 {6,S} {7,S} {8,D} | 4  C  u0 p0 c0 {2,S} {6,D} {10,S} | 5  C  u0 p0 c0 {2,S} {7,D} {11,S} | 6  C  u0 p0 c0 {3,S} {4,D} {12,S} | 7  C  u0 p0 c0 {3,S} {5,D} {13,S} | 8  C  u0 p0 c0 {3,D} {14,S} {15,S} | 9  H  u0 p0 c0 {2,S} | 10 H  u0 p0 c0 {4,S} | 11 H  u0 p0 c0 {5,S} | 12 H  u0 p0 c0 {6,S} | 13 H  u0 p0 c0 {7,S} | 14 H  u0 p0 c0 {8,S} | 15 H  u0 p0 c0 {8,S}
+            AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 b
+    CRASH   Birad_R_Recombination      C6H5      multiplicity 2 | 1  Ar u1 p3 c0 {7,S} | 2  C  u0 p0 c0 {3,B} {4,B} {9,S} | 3  C  u0 p0 c0 {2,B} {5,B} {8,S} | 4  C  u0 p0 c0 {2,B} {6,B} {10,S} | 5  C  u0 p0 c0 {3,B} {7,B} {11,S} | 6  C  u0 p0 c0 {4,B} {7,B} {12,S} | 7  C  u0 p0 c0 {1,S} {5,B} {6,B} | 8  H  u0 p0 c0 {3,S} | 9  H  u0 p0 c0 {2,S} | 10 H  u0 p0 c0 {4,S} | 11 H  u0 p0 c0 {5,S} | 12 H  u0 p0 c0 {6,S}
+            AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 b
+    NUMBER  Plasma_Electron_Impact_Ionization (unimolecular) multiplicity 2 | 1 Ar u1 p3 c+1
+            H298 = 1520.5841 kJ/mol  S298 = 166.4145  src = Thermo library: PlasmaCationThermo
+    CRASH   Birad_R_Recombination      CH3       multiplicity 2 | 1 Ar u1 p3 c0 {2,S} | 2 C  u0 p0 c0 {1,S} {3,S} {4,S} {5,S} | 3 H  u0 p0 c0 {2,S} | 4 H  u0 p0 c0 {2,S} | 5 H  u0 p0 c0 {2,S}
+            AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 b
+    CRASH   Birad_R_Recombination      C3H5      multiplicity 2 | 1 Ar u1 p3 c0 {2,S} | 2 C  u0 p0 c0 {1,S} {3,S} {5,S} {6,S} | 3 C  u0 p0 c0 {2,S} {4,D} {7,S} | 4 C  u0 p0 c0 {3,D} {8,S} {9,S} | 5 H  u0 p0 c0 {2,S} | 6 H  u0 p0 c0 {2,S} | 7 H  u0 p0 c0 {3,S} | 8 H  u0 p0 c0 {4,S} | 9 H  u0 p0 c0 {4,S}
+            AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 b
+    CRASH   Birad_R_Recombination      C3H3      multiplicity 2 | 1 Ar u1 p3 c0 {2,S} | 2 C  u0 p0 c0 {1,S} {3,S} {5,S} {6,S} | 3 C  u0 p0 c0 {2,S} {4,T} | 4 C  u0 p0 c0 {3,T} {7,S} | 5 H  u0 p0 c0 {2,S} | 6 H  u0 p0 c0 {2,S} | 7 H  u0 p0 c0 {4,S}
+            AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 b
+    CRASH   Birad_R_Recombination      Cl        multiplicity 2 | 1 Ar u1 p3 c0 {2,S} | 2 Cl u0 p3 c0 {1,S}
+            AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 b
+    CRASH   Birad_R_Recombination      H         multiplicity 2 | 1 Ar u1 p3 c0 {2,S} | 2 H  u0 p0 c0 {1,S}
+            AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 b
+    CRASH   Birad_R_Recombination      NH2       multiplicity 2 | 1 Ar u1 p3 c0 {2,S} | 2 N  u0 p1 c0 {1,S} {3,S} {4,S} | 3 H  u0 p0 c0 {2,S} | 4 H  u0 p0 c0 {2,S}
+            AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 b
+    CRASH   Birad_R_Recombination      CH3O      multiplicity 2 | 1 Ar u1 p3 c0 {2,S} | 2 O  u0 p2 c0 {1,S} {3,S} | 3 C  u0 p0 c0 {2,S} {4,S} {5,S} {6,S} | 4 H  u0 p0 c0 {3,S} | 5 H  u0 p0 c0 {3,S} | 6 H  u0 p0 c0 {3,S}
+            AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 b
+    CRASH   Birad_R_Recombination      HCCO      multiplicity 2 | 1 Ar u1 p3 c0 {2,S} | 2 O  u0 p2 c0 {1,S} {3,S} | 3 C  u0 p0 c0 {2,S} {4,T} | 4 C  u0 p0 c0 {3,T} {5,S} | 5 H  u0 p0 c0 {4,S}
+            AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 b
+    CRASH   Birad_R_Recombination      OH        multiplicity 2 | 1 Ar u1 p3 c0 {2,S} | 2 O  u0 p2 c0 {1,S} {3,S} | 3 H  u0 p0 c0 {2,S}
+            AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 b
+    CRASH   Birad_R_Recombination      NO2       multiplicity 2 | 1 Ar u1 p3 c0 {2,S} | 2 O  u0 p2 c0 {1,S} {4,S} | 3 O  u0 p2 c0 {4,D} | 4 N  u0 p1 c0 {2,S} {3,D}
+            AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 b
+    CRASH   Birad_R_Recombination      SH        multiplicity 2 | 1 Ar u1 p3 c0 {2,S} | 2 S  u0 p2 c0 {1,S} {3,S} | 3 H  u0 p0 c0 {2,S}
+            AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 b
+    CRASH   Birad_R_Recombination      C2H3      multiplicity 2 | 1 Ar u1 p3 c0 {3,S} | 2 C  u0 p0 c0 {3,D} {4,S} {5,S} | 3 C  u0 p0 c0 {1,S} {2,D} {6,S} | 4 H  u0 p0 c0 {2,S} | 5 H  u0 p0 c0 {2,S} | 6 H  u0 p0 c0 {3,S}
+            AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 b
+    CRASH   Birad_R_Recombination      C2H5      multiplicity 2 | 1 Ar u1 p3 c0 {3,S} | 2 C  u0 p0 c0 {3,S} {4,S} {5,S} {6,S} | 3 C  u0 p0 c0 {1,S} {2,S} {7,S} {8,S} | 4 H  u0 p0 c0 {2,S} | 5 H  u0 p0 c0 {2,S} | 6 H  u0 p0 c0 {2,S} | 7 H  u0 p0 c0 {3,S} | 8 H  u0 p0 c0 {3,S}
+            AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 b
+    CRASH   Birad_R_Recombination      C3H3      multiplicity 2 | 1 Ar u1 p3 c0 {3,S} | 2 C  u0 p0 c0 {4,D} {5,S} {6,S} | 3 C  u0 p0 c0 {1,S} {4,D} {7,S} | 4 C  u0 p0 c0 {2,D} {3,D} | 5 H  u0 p0 c0 {2,S} | 6 H  u0 p0 c0 {2,S} | 7 H  u0 p0 c0 {3,S}
+            AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 b
+    CRASH   Birad_R_Recombination      HCO       multiplicity 2 | 1 Ar u1 p3 c0 {3,S} | 2 O  u0 p2 c0 {3,D} | 3 C  u0 p0 c0 {1,S} {2,D} {4,S} | 4 H  u0 p0 c0 {3,S}
+            AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 b
+    CRASH   Birad_R_Recombination      NO        multiplicity 2 | 1 Ar u1 p3 c0 {3,S} | 2 O  u0 p2 c0 {3,D} | 3 N  u0 p1 c0 {1,S} {2,D}
+            AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 b
+    CRASH   Birad_R_Recombination      CH3OO     multiplicity 2 | 1 Ar u1 p3 c0 {3,S} | 2 O  u0 p2 c0 {3,S} {4,S} | 3 O  u0 p2 c0 {1,S} {2,S} | 4 C  u0 p0 c0 {2,S} {5,S} {6,S} {7,S} | 5 H  u0 p0 c0 {4,S} | 6 H  u0 p0 c0 {4,S} | 7 H  u0 p0 c0 {4,S}
+            AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 b
+    CRASH   Birad_R_Recombination      HO2       multiplicity 2 | 1 Ar u1 p3 c0 {3,S} | 2 O  u0 p2 c0 {3,S} {4,S} | 3 O  u0 p2 c0 {1,S} {2,S} | 4 H  u0 p0 c0 {2,S}
+            AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 b
+    CRASH   Birad_R_Recombination      CH2OH     multiplicity 2 | 1 Ar u1 p3 c0 {3,S} | 2 O  u0 p2 c0 {3,S} {6,S} | 3 C  u0 p0 c0 {1,S} {2,S} {4,S} {5,S} | 4 H  u0 p0 c0 {3,S} | 5 H  u0 p0 c0 {3,S} | 6 H  u0 p0 c0 {2,S}
+            AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 b
+    CRASH   Birad_R_Recombination      HCCO      multiplicity 2 | 1 Ar u1 p3 c0 {3,S} | 2 O  u0 p2 c0 {4,D} | 3 C  u0 p0 c0 {1,S} {4,D} {5,S} | 4 C  u0 p0 c0 {2,D} {3,D} | 5 H  u0 p0 c0 {3,S}
+            AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 b
+    CRASH   Birad_R_Recombination      NO2       multiplicity 2 | 1 Ar u1 p3 c0 {4,S} | 2 O  u0 p3 c-1 {4,S} | 3 O  u0 p2 c0 {4,D} | 4 N  u0 p0 c+1 {1,S} {2,S} {3,D}
+            AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 b
+    NUMBER  Cl_Abstraction             HCl       multiplicity 2 | 1 H u1 p0 c0
+            H298 = 217.9895 kJ/mol  S298 = 114.6102  src = Thermo library: BurkeH2O2
+    CRASH   R_Addition_MultipleBond    C6H6      multiplicity 3 | 1  Ar u1 p3 c0 {2,S} | 2  C  u0 p0 c0 {1,S} {3,S} {4,S} {8,S} | 3  C  u1 p0 c0 {2,S} {5,S} {9,S} | 4  C  u0 p0 c0 {2,S} {6,D} {10,S} | 5  C  u0 p0 c0 {3,S} {7,D} {11,S} | 6  C  u0 p0 c0 {4,D} {7,S} {13,S} | 7  C  u0 p0 c0 {5,D} {6,S} {12,S} | 8  H  u0 p0 c0 {2,S} | 9  H  u0 p0 c0 {3,S} | 10 H  u0 p0 c0 {4,S} | 11 H  u0 p0 c0 {5,S} | 12 H  u0 p0 c0 {7,S} | 13 H  u0 p0 c0 {6,S}
+            AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 b
+    CRASH   R_Addition_MultipleBond    C2H2      multiplicity 3 | 1 Ar u1 p3 c0 {2,S} | 2 C  u0 p0 c0 {1,S} {3,D} {4,S} | 3 C  u1 p0 c0 {2,D} {5,S} | 4 H  u0 p0 c0 {2,S} | 5 H  u0 p0 c0 {3,S}
+            AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 b
+    CRASH   R_Addition_MultipleBond    C2H4      multiplicity 3 | 1 Ar u1 p3 c0 {2,S} | 2 C  u0 p0 c0 {1,S} {3,S} {4,S} {5,S} | 3 C  u1 p0 c0 {2,S} {6,S} {7,S} | 4 H  u0 p0 c0 {2,S} | 5 H  u0 p0 c0 {2,S} | 6 H  u0 p0 c0 {3,S} | 7 H  u0 p0 c0 {3,S}
+            AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 b
+    CRASH   R_Addition_MultipleBond    N2        multiplicity 3 | 1 Ar u1 p3 c0 {2,S} | 2 N  u0 p1 c0 {1,S} {3,D} | 3 N  u1 p1 c0 {2,D}
+            AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 b
+    CRASH   R_Addition_MultipleBond    CH2O      multiplicity 3 | 1 Ar u1 p3 c0 {2,S} | 2 O  u0 p2 c0 {1,S} {3,S} | 3 C  u1 p0 c0 {2,S} {4,S} {5,S} | 4 H  u0 p0 c0 {3,S} | 5 H  u0 p0 c0 {3,S}
+            AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 b
+    CRASH   R_Addition_MultipleBond    N2O       multiplicity 3 | 1 Ar u1 p3 c0 {2,S} | 2 O  u0 p2 c0 {1,S} {3,S} | 3 N  u1 p0 c+1 {2,S} {4,D} | 4 N  u0 p2 c-1 {3,D}
+            AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 b
+    CRASH   Birad_R_Recombination      O2        multiplicity 3 | 1 Ar u1 p3 c0 {2,S} | 2 O  u0 p2 c0 {1,S} {3,S} | 3 O  u1 p2 c0 {2,S}
+            AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 b
+    CRASH   R_Addition_MultipleBond    CO2       multiplicity 3 | 1 Ar u1 p3 c0 {2,S} | 2 O  u0 p2 c0 {1,S} {4,S} | 3 O  u0 p2 c0 {4,D} | 4 C  u1 p0 c0 {2,S} {3,D}
+            AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 b
+    CRASH   R_Addition_MultipleBond    SO2       multiplicity 3 | 1 Ar u1 p3 c0 {2,S} | 2 S  u0 p1 c0 {1,S} {3,S} {4,D} | 3 O  u1 p2 c0 {2,S} | 4 O  u0 p2 c0 {2,D}
+            AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 b
+    CRASH   R_Addition_MultipleBond    CH2O      multiplicity 3 | 1 Ar u1 p3 c0 {3,S} | 2 O  u1 p2 c0 {3,S} | 3 C  u0 p0 c0 {1,S} {2,S} {4,S} {5,S} | 4 H  u0 p0 c0 {3,S} | 5 H  u0 p0 c0 {3,S}
+            AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 b
+    CRASH   R_Addition_MultipleBond    N2O       multiplicity 3 | 1 Ar u1 p3 c0 {3,S} | 2 O  u1 p2 c0 {3,S} | 3 N  u0 p0 c+1 {1,S} {2,S} {4,D} | 4 N  u0 p2 c-1 {3,D}
+            AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 b
+    CRASH   R_Addition_MultipleBond    SO2       multiplicity 3 | 1 Ar u1 p3 c0 {3,S} | 2 S  u1 p1 c0 {3,S} {4,D} | 3 O  u0 p2 c0 {1,S} {2,S} | 4 O  u0 p2 c0 {2,D}
+            AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 b
+    CRASH   R_Addition_MultipleBond    N2O       multiplicity 3 | 1 Ar u1 p3 c0 {4,S} | 2 O  u0 p2 c0 {3,D} | 3 N  u1 p0 c+1 {2,D} {4,S} | 4 N  u0 p2 c-1 {1,S} {3,S}
+            AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 b
+    CRASH   R_Addition_MultipleBond    CO2       multiplicity 3 | 1 Ar u1 p3 c0 {4,S} | 2 O  u1 p2 c0 {4,S} | 3 O  u0 p2 c0 {4,D} | 4 C  u0 p0 c0 {1,S} {2,S} {3,D}
+            AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 b
+    CRASH   R_Addition_MultipleBond    C6H5      multiplicity 4 | 1  Ar u1 p3 c0 {2,S} | 2  C  u0 p0 c0 {1,S} {3,S} {4,S} {8,S} | 3  C  u1 p0 c0 {2,S} {5,S} {9,S} | 4  C  u0 p0 c0 {2,S} {6,D} {10,S} | 5  C  u0 p0 c0 {3,S} {7,D} {11,S} | 6  C  u0 p0 c0 {4,D} {7,S} {12,S} | 7  C  u1 p0 c0 {5,D} {6,S} | 8  H  u0 p0 c0 {2,S} | 9  H  u0 p0 c0 {3,S} | 10 H  u0 p0 c0 {4,S} | 11 H  u0 p0 c0 {5,S} | 12 H  u0 p0 c0 {6,S}
+            AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 b
+    CRASH   R_Addition_MultipleBond    C7H7      multiplicity 4 | 1  Ar u1 p3 c0 {2,S} | 2  C  u0 p0 c0 {1,S} {3,S} {4,S} {8,S} | 3  C  u1 p0 c0 {2,S} {5,S} {9,S} | 4  C  u0 p0 c0 {2,S} {6,D} {10,S} | 5  C  u0 p0 c0 {3,S} {7,D} {11,S} | 6  C  u0 p0 c0 {4,D} {7,S} {13,S} | 7  C  u0 p0 c0 {5,D} {6,S} {12,S} | 8  C  u1 p0 c0 {2,S} {14,S} {15,S} | 9  H  u0 p0 c0 {3,S} | 10 H  u0 p0 c0 {4,S} | 11 H  u0 p0 c0 {5,S} | 12 H  u0 p0 c0 {7,S} | 13 H  u0 p0 c0 {6,S} | 14 H  u0 p0 c0 {8,S} | 15 H  u0 p0 c0 {8,S}
+            AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 b
+    CRASH   R_Addition_MultipleBond    C7H7      multiplicity 4 | 1  Ar u1 p3 c0 {2,S} | 2  C  u0 p0 c0 {1,S} {3,S} {4,S} {9,S} | 3  C  u1 p0 c0 {2,S} {5,S} {8,S} | 4  C  u0 p0 c0 {2,S} {6,D} {10,S} | 5  C  u0 p0 c0 {3,S} {7,D} {13,S} | 6  C  u0 p0 c0 {4,D} {7,S} {11,S} | 7  C  u0 p0 c0 {5,D} {6,S} {12,S} | 8  C  u1 p0 c0 {3,S} {14,S} {15,S} | 9  H  u0 p0 c0 {2,S} | 10 H  u0 p0 c0 {4,S} | 11 H  u0 p0 c0 {6,S} | 12 H  u0 p0 c0 {7,S} | 13 H  u0 p0 c0 {5,S} | 14 H  u0 p0 c0 {8,S} | 15 H  u0 p0 c0 {8,S}
+            AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 b
+    CRASH   R_Addition_MultipleBond    C6H5      multiplicity 4 | 1  Ar u1 p3 c0 {2,S} | 2  C  u0 p0 c0 {1,S} {3,S} {5,S} {8,S} | 3  C  u1 p0 c0 {2,S} {4,S} {9,S} | 4  C  u0 p0 c0 {3,S} {6,D} {10,S} | 5  C  u0 p0 c0 {2,S} {7,D} {11,S} | 6  C  u0 p0 c0 {4,D} {7,S} {12,S} | 7  C  u1 p0 c0 {5,D} {6,S} | 8  H  u0 p0 c0 {2,S} | 9  H  u0 p0 c0 {3,S} | 10 H  u0 p0 c0 {4,S} | 11 H  u0 p0 c0 {5,S} | 12 H  u0 p0 c0 {6,S}
+            AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 b
+    CRASH   R_Addition_MultipleBond    C6H5      multiplicity 4 | 1  Ar u1 p3 c0 {2,S} | 2  C  u0 p0 c0 {1,S} {3,S} {7,S} {8,S} | 3  C  u1 p0 c0 {2,S} {4,S} {9,S} | 4  C  u0 p0 c0 {3,S} {5,D} {10,S} | 5  C  u0 p0 c0 {4,D} {6,S} {11,S} | 6  C  u0 p0 c0 {5,S} {7,D} {12,S} | 7  C  u1 p0 c0 {2,S} {6,D} | 8  H  u0 p0 c0 {2,S} | 9  H  u0 p0 c0 {3,S} | 10 H  u0 p0 c0 {4,S} | 11 H  u0 p0 c0 {5,S} | 12 H  u0 p0 c0 {6,S}
+            AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 b
+    CRASH   R_Addition_MultipleBond    C7H7      multiplicity 4 | 1  Ar u1 p3 c0 {2,S} | 2  C  u0 p0 c0 {1,S} {3,S} {9,S} {10,S} | 3  C  u1 p0 c0 {2,S} {4,S} {5,S} | 4  C  u1 p0 c0 {3,S} {8,S} {15,S} | 5  C  u0 p0 c0 {3,S} {6,D} {11,S} | 6  C  u0 p0 c0 {5,D} {7,S} {12,S} | 7  C  u0 p0 c0 {6,S} {8,D} {13,S} | 8  C  u0 p0 c0 {4,S} {7,D} {14,S} | 9  H  u0 p0 c0 {2,S} | 10 H  u0 p0 c0 {2,S} | 11 H  u0 p0 c0 {5,S} | 12 H  u0 p0 c0 {6,S} | 13 H  u0 p0 c0 {7,S} | 14 H  u0 p0 c0 {8,S} | 15 H  u0 p0 c0 {4,S}
+            AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 b
+    CRASH   R_Addition_MultipleBond    C7H7      multiplicity 4 | 1  Ar u1 p3 c0 {2,S} | 2  C  u0 p0 c0 {1,S} {4,S} {5,S} {9,S} | 3  C  u0 p0 c0 {4,S} {6,D} {8,S} | 4  C  u1 p0 c0 {2,S} {3,S} {10,S} | 5  C  u0 p0 c0 {2,S} {7,D} {11,S} | 6  C  u0 p0 c0 {3,D} {7,S} {13,S} | 7  C  u0 p0 c0 {5,D} {6,S} {12,S} | 8  C  u1 p0 c0 {3,S} {14,S} {15,S} | 9  H  u0 p0 c0 {2,S} | 10 H  u0 p0 c0 {4,S} | 11 H  u0 p0 c0 {5,S} | 12 H  u0 p0 c0 {7,S} | 13 H  u0 p0 c0 {6,S} | 14 H  u0 p0 c0 {8,S} | 15 H  u0 p0 c0 {8,S}
+            AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 b
+    CRASH   R_Addition_MultipleBond    C7H7      multiplicity 4 | 1  Ar u1 p3 c0 {2,S} | 2  C  u0 p0 c0 {1,S} {4,S} {5,S} {9,S} | 3  C  u0 p0 c0 {6,D} {7,S} {8,S} | 4  C  u1 p0 c0 {2,S} {6,S} {10,S} | 5  C  u0 p0 c0 {2,S} {7,D} {11,S} | 6  C  u0 p0 c0 {3,D} {4,S} {12,S} | 7  C  u0 p0 c0 {3,S} {5,D} {13,S} | 8  C  u1 p0 c0 {3,S} {14,S} {15,S} | 9  H  u0 p0 c0 {2,S} | 10 H  u0 p0 c0 {4,S} | 11 H  u0 p0 c0 {5,S} | 12 H  u0 p0 c0 {6,S} | 13 H  u0 p0 c0 {7,S} | 14 H  u0 p0 c0 {8,S} | 15 H  u0 p0 c0 {8,S}
+            AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 b
+    CRASH   R_Addition_MultipleBond    C3H3      multiplicity 4 | 1 Ar u1 p3 c0 {2,S} | 2 C  u0 p0 c0 {1,S} {3,S} {4,D} | 3 C  u1 p0 c0 {2,S} {5,S} {6,S} | 4 C  u1 p0 c0 {2,D} {7,S} | 5 H  u0 p0 c0 {3,S} | 6 H  u0 p0 c0 {3,S} | 7 H  u0 p0 c0 {4,S}
+            AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 b
+    CRASH   R_Addition_MultipleBond    C3H5      multiplicity 4 | 1 Ar u1 p3 c0 {2,S} | 2 C  u0 p0 c0 {1,S} {3,S} {4,S} {5,S} | 3 C  u1 p0 c0 {2,S} {6,S} {7,S} | 4 C  u1 p0 c0 {2,S} {8,S} {9,S} | 5 H  u0 p0 c0 {2,S} | 6 H  u0 p0 c0 {3,S} | 7 H  u0 p0 c0 {3,S} | 8 H  u0 p0 c0 {4,S} | 9 H  u0 p0 c0 {4,S}
+            AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 b
+    CRASH   R_Addition_MultipleBond    C3H3      multiplicity 4 | 1 Ar u1 p3 c0 {2,S} | 2 C  u0 p0 c0 {1,S} {3,S} {5,S} {6,S} | 3 C  u1 p0 c0 {2,S} {4,D} | 4 C  u1 p0 c0 {3,D} {7,S} | 5 H  u0 p0 c0 {2,S} | 6 H  u0 p0 c0 {2,S} | 7 H  u0 p0 c0 {4,S}
+            AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 b
+    CRASH   R_Addition_MultipleBond    C3H5      multiplicity 4 | 1 Ar u1 p3 c0 {2,S} | 2 C  u0 p0 c0 {1,S} {3,S} {5,S} {6,S} | 3 C  u1 p0 c0 {2,S} {4,S} {7,S} | 4 C  u1 p0 c0 {3,S} {8,S} {9,S} | 5 H  u0 p0 c0 {2,S} | 6 H  u0 p0 c0 {2,S} | 7 H  u0 p0 c0 {3,S} | 8 H  u0 p0 c0 {4,S} | 9 H  u0 p0 c0 {4,S}
+            AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 b
+    CRASH   R_Addition_MultipleBond    HCCO      multiplicity 4 | 1 Ar u1 p3 c0 {2,S} | 2 O  u0 p2 c0 {1,S} {3,S} | 3 C  u1 p0 c0 {2,S} {4,D} | 4 C  u1 p0 c0 {3,D} {5,S} | 5 H  u0 p0 c0 {4,S}
+            AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 b
+    CRASH   R_Addition_MultipleBond    NO2       multiplicity 4 | 1 Ar u1 p3 c0 {2,S} | 2 O  u0 p2 c0 {1,S} {4,S} | 3 O  u1 p2 c0 {4,S} | 4 N  u1 p1 c0 {2,S} {3,S}
+            AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 b
+    CRASH   R_Addition_MultipleBond    C3H3      multiplicity 4 | 1 Ar u1 p3 c0 {3,S} | 2 C  u1 p0 c0 {4,S} {5,S} {6,S} | 3 C  u0 p0 c0 {1,S} {4,D} {7,S} | 4 C  u1 p0 c0 {2,S} {3,D} | 5 H  u0 p0 c0 {2,S} | 6 H  u0 p0 c0 {2,S} | 7 H  u0 p0 c0 {3,S}
+            AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 b
+    CRASH   R_Addition_MultipleBond    HCCO      multiplicity 4 | 1 Ar u1 p3 c0 {3,S} | 2 O  u1 p2 c0 {3,S} | 3 C  u0 p0 c0 {1,S} {2,S} {4,D} | 4 C  u1 p0 c0 {3,D} {5,S} | 5 H  u0 p0 c0 {4,S}
+            AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 b
+    CRASH   R_Addition_MultipleBond    HCCO      multiplicity 4 | 1 Ar u1 p3 c0 {3,S} | 2 O  u1 p2 c0 {4,S} | 3 C  u0 p0 c0 {1,S} {4,D} {5,S} | 4 C  u1 p0 c0 {2,S} {3,D} | 5 H  u0 p0 c0 {3,S}
+            AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 b
+    CRASH   R_Addition_MultipleBond    NO2       multiplicity 4 | 1 Ar u1 p3 c0 {4,S} | 2 O  u1 p2 c0 {4,S} | 3 O  u1 p2 c0 {4,S} | 4 N  u0 p1 c0 {1,S} {2,S} {3,S}
+            AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 b
+
+2b. PER-REACTION ROLL-UP -- the level at which 'silent number' is defined
+=========================================================================
+  A product-level crash is only a job-killer if the reaction that builds it is
+  generated at all; and a reaction is a SILENT NUMBER only if EVERY one of its
+  products gets thermo. Counted per reaction, not per product.
+
+  reactions generated                                     : 67
+  reactions where EVERY product gets thermo (SILENT NUMBER): 1
+      Plasma_Electron_Impact_Ionization  [Ar] => [Ar+]
+  reactions with at least one product that CRASHES         : 66
+
+3. SECOND GENERATION (latent: a real run crashes before reaching this)
+======================================================================
+  argon-bearing first-generation products fed back: 58
+  distinct second-generation products: 145
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {2,S} | 2 N  u0 p0 c+1 {1,S} {3,S} {4,D} | 3 N  u0 p1 c0 {2,S} {5,D} | 4 N  u0 p2 c-1 {2,D} | 5 N  u1 p1 c0 {3,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {2,S} | 2 O  u0 p2 c0 {1,S} {3,S} | 3 N  u0 p0 c+1 {2,S} {4,S} {5,D} | 4 N  u0 p1 c0 {3,S} {6,D} | 5 N  u0 p2 c-1 {3,D} | 6 N  u1 p1 c0 {4,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {2,S} | 2 O  u0 p2 c0 {1,S} {3,S} | 3 N  u0 p1 c0 {2,S} {4,D} | 4 N  u0 p1 c0 {3,D} {5,S} | 5 N  u0 p1 c0 {4,S} {6,D} | 6 N  u1 p1 c0 {5,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {2,S} | 2 O  u0 p2 c0 {1,S} {4,S} | 3 O  u0 p2 c0 {6,D} | 4 N  u0 p0 c+1 {2,S} {5,S} {7,D} | 5 N  u0 p2 c-1 {4,S} {6,S} | 6 N  u1 p0 c+1 {3,D} {5,S} | 7 N  u0 p2 c-1 {4,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {2,S} | 2 O  u0 p2 c0 {1,S} {4,S} | 3 O  u1 p2 c0 {5,S} | 4 N  u0 p0 c+1 {2,S} {5,S} {6,D} | 5 N  u0 p0 c+1 {3,S} {4,S} {7,D} | 6 N  u0 p2 c-1 {4,D} | 7 N  u0 p2 c-1 {5,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {2,S} | 2 O  u0 p2 c0 {1,S} {5,S} | 3 O  u1 p2 c0 {7,S} | 4 O  u0 p2 c0 {7,D} | 5 N  u0 p0 c+1 {2,S} {6,D} {7,S} | 6 N  u0 p2 c-1 {5,D} | 7 C  u0 p0 c0 {3,S} {4,D} {5,S}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {2,S} | 2 O  u0 p2 c0 {1,S} {6,S} | 3 O  u0 p2 c0 {6,D} | 4 N  u0 p1 c0 {5,D} {6,S} | 5 N  u1 p1 c0 {4,D} | 6 C  u0 p0 c0 {2,S} {3,D} {4,S}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {2,S} | 2 O  u0 p2 c0 {1,S} {6,S} | 3 O  u0 p2 c0 {6,D} | 4 O  u1 p2 c0 {7,S} | 5 O  u0 p2 c0 {7,D} | 6 C  u0 p0 c0 {2,S} {3,D} {7,S} | 7 C  u0 p0 c0 {4,S} {5,D} {6,S}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {2,S} | 2 O  u0 p2 c0 {1,S} {6,S} | 3 O  u0 p2 c0 {7,D} | 4 N  u0 p1 c0 {5,S} {6,D} | 5 N  u0 p2 c-1 {4,S} {7,S} | 6 N  u0 p1 c0 {2,S} {4,D} | 7 N  u1 p0 c+1 {3,D} {5,S}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {2,S} | 2 O  u0 p2 c0 {1,S} {6,S} | 3 O  u1 p2 c0 {4,S} | 4 N  u0 p0 c+1 {3,S} {5,S} {7,D} | 5 N  u0 p1 c0 {4,S} {6,D} | 6 N  u0 p1 c0 {2,S} {5,D} | 7 N  u0 p2 c-1 {4,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {2,S} | 2 O  u0 p2 c0 {1,S} {6,S} | 3 O  u1 p2 c0 {7,S} | 4 O  u0 p2 c0 {7,D} | 5 N  u0 p1 c0 {6,D} {7,S} | 6 N  u0 p1 c0 {2,S} {5,D} | 7 C  u0 p0 c0 {3,S} {4,D} {5,S}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {2,S} | 2 O  u0 p2 c0 {1,S} {7,S} | 3 O  u0 p2 c0 {7,D} | 4 O  u0 p2 c0 {6,D} | 5 N  u0 p2 c-1 {6,S} {7,S} | 6 N  u1 p0 c+1 {4,D} {5,S} | 7 C  u0 p0 c0 {2,S} {3,D} {5,S}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {2,S} | 2 O  u0 p2 c0 {1,S} {7,S} | 3 O  u0 p2 c0 {7,D} | 4 O  u1 p2 c0 {5,S} | 5 N  u0 p0 c+1 {4,S} {6,D} {7,S} | 6 N  u0 p2 c-1 {5,D} | 7 C  u0 p0 c0 {2,S} {3,D} {5,S}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {2,S} | 2 S  u0 p0 c0 {1,S} {3,D} {4,D} {6,S} | 3 O  u0 p2 c0 {2,D} | 4 O  u0 p2 c0 {2,D} | 5 O  u0 p2 c0 {7,D} | 6 N  u0 p2 c-1 {2,S} {7,S} | 7 N  u1 p0 c+1 {5,D} {6,S}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {2,S} | 2 S  u0 p0 c0 {1,S} {3,D} {4,D} {6,S} | 3 O  u0 p2 c0 {2,D} | 4 O  u0 p2 c0 {2,D} | 5 O  u1 p2 c0 {6,S} | 6 N  u0 p0 c+1 {2,S} {5,S} {7,D} | 7 N  u0 p2 c-1 {6,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {2,S} | 2 S  u0 p0 c0 {1,S} {3,S} {4,D} {5,D} | 3 O  u0 p2 c0 {2,S} {6,S} | 4 O  u0 p2 c0 {2,D} | 5 O  u0 p2 c0 {2,D} | 6 N  u1 p0 c+1 {3,S} {7,D} | 7 N  u0 p2 c-1 {6,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {2,S} | 2 S  u0 p1 c0 {1,S} {3,S} {4,D} | 3 O  u0 p2 c0 {2,S} {6,S} | 4 O  u0 p2 c0 {2,D} | 5 O  u0 p2 c0 {7,D} | 6 N  u0 p2 c-1 {3,S} {7,S} | 7 N  u1 p0 c+1 {5,D} {6,S}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {2,S} | 2 S  u0 p1 c0 {1,S} {3,S} {5,D} | 3 O  u0 p2 c0 {2,S} {4,S} | 4 O  u0 p2 c0 {3,S} {6,S} | 5 O  u0 p2 c0 {2,D} | 6 N  u1 p0 c+1 {4,S} {7,D} | 7 N  u0 p2 c-1 {6,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {2,S} | 2 S  u0 p1 c0 {1,S} {3,S} {5,D} | 3 O  u0 p2 c0 {2,S} {6,S} | 4 O  u1 p2 c0 {6,S} | 5 O  u0 p2 c0 {2,D} | 6 N  u0 p0 c+1 {3,S} {4,S} {7,D} | 7 N  u0 p2 c-1 {6,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {3,S} | 2 N  u0 p1 c0 {3,D} {4,S} | 3 N  u0 p1 c0 {1,S} {2,D} | 4 N  u0 p1 c0 {2,S} {5,D} | 5 N  u1 p1 c0 {4,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {3,S} | 2 O  u0 p2 c0 {3,D} | 3 N  u0 p0 c+1 {1,S} {2,D} {4,S} | 4 N  u0 p2 c-1 {3,S} {5,S} | 5 N  u0 p1 c0 {4,S} {6,D} | 6 N  u1 p1 c0 {5,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {3,S} | 2 O  u0 p2 c0 {3,S} {4,S} | 3 N  u0 p0 c+1 {1,S} {2,S} {5,D} | 4 N  u0 p1 c0 {2,S} {6,D} | 5 N  u0 p2 c-1 {3,D} | 6 N  u1 p1 c0 {4,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {3,S} | 2 O  u0 p2 c0 {3,S} {4,S} | 3 N  u0 p0 c+1 {1,S} {2,S} {5,D} | 4 N  u1 p0 c+1 {2,S} {6,D} | 5 N  u0 p2 c-1 {3,D} | 6 N  u0 p2 c-1 {4,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {3,S} | 2 O  u0 p2 c0 {3,S} {4,S} | 3 O  u0 p2 c0 {1,S} {2,S} | 4 N  u0 p1 c0 {2,S} {5,D} | 5 N  u1 p1 c0 {4,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {3,S} | 2 O  u0 p2 c0 {3,S} {5,S} | 3 O  u0 p2 c0 {1,S} {2,S} | 4 O  u0 p2 c0 {6,D} | 5 N  u0 p2 c-1 {2,S} {6,S} | 6 N  u1 p0 c+1 {4,D} {5,S}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {3,S} | 2 O  u0 p2 c0 {3,S} {5,S} | 3 O  u0 p2 c0 {1,S} {2,S} | 4 O  u1 p2 c0 {5,S} | 5 N  u0 p0 c+1 {2,S} {4,S} {6,D} | 6 N  u0 p2 c-1 {5,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {3,S} | 2 O  u0 p2 c0 {3,S} {6,S} | 3 O  u0 p2 c0 {1,S} {2,S} | 4 O  u1 p2 c0 {6,S} | 5 O  u0 p2 c0 {6,D} | 6 C  u0 p0 c0 {2,S} {4,S} {5,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {3,S} | 2 O  u0 p2 c0 {4,S} {5,S} | 3 O  u0 p2 c0 {1,S} {4,S} | 4 N  u0 p0 c+1 {2,S} {3,S} {6,D} | 5 N  u1 p0 c+1 {2,S} {7,D} | 6 N  u0 p2 c-1 {4,D} | 7 N  u0 p2 c-1 {5,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {3,S} | 2 O  u0 p2 c0 {4,S} {6,S} | 3 O  u0 p2 c0 {1,S} {5,S} | 4 N  u0 p1 c0 {2,S} {5,D} | 5 N  u0 p1 c0 {3,S} {4,D} | 6 N  u1 p0 c+1 {2,S} {7,D} | 7 N  u0 p2 c-1 {6,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {3,S} | 2 O  u0 p2 c0 {5,D} | 3 N  u0 p0 c+1 {1,S} {4,S} {6,D} | 4 N  u0 p2 c-1 {3,S} {5,S} | 5 N  u1 p0 c+1 {2,D} {4,S} | 6 N  u0 p2 c-1 {3,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {3,S} | 2 O  u0 p2 c0 {5,S} {7,S} | 3 O  u0 p2 c0 {1,S} {5,S} | 4 O  u0 p2 c0 {7,D} | 5 N  u0 p0 c+1 {2,S} {3,S} {6,D} | 6 N  u0 p2 c-1 {5,D} | 7 C  u1 p0 c0 {2,S} {4,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {3,S} | 2 O  u0 p2 c0 {5,S} {7,S} | 3 O  u0 p2 c0 {1,S} {6,S} | 4 O  u0 p2 c0 {7,D} | 5 N  u0 p1 c0 {2,S} {6,D} | 6 N  u0 p1 c0 {3,S} {5,D} | 7 C  u1 p0 c0 {2,S} {4,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {3,S} | 2 O  u0 p2 c0 {5,S} {7,S} | 3 O  u0 p2 c0 {1,S} {7,S} | 4 O  u0 p2 c0 {7,D} | 5 N  u1 p0 c+1 {2,S} {6,D} | 6 N  u0 p2 c-1 {5,D} | 7 C  u0 p0 c0 {2,S} {3,S} {4,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {3,S} | 2 O  u0 p2 c0 {6,S} {7,S} | 3 O  u0 p2 c0 {1,S} {6,S} | 4 O  u0 p2 c0 {6,D} | 5 O  u0 p2 c0 {7,D} | 6 C  u0 p0 c0 {2,S} {3,S} {4,D} | 7 C  u1 p0 c0 {2,S} {5,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {3,S} | 2 O  u1 p2 c0 {4,S} | 3 N  u0 p0 c+1 {1,S} {4,S} {5,D} | 4 N  u0 p0 c+1 {2,S} {3,S} {6,D} | 5 N  u0 p2 c-1 {3,D} | 6 N  u0 p2 c-1 {4,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {3,S} | 2 S  u0 p1 c0 {3,S} {4,D} {5,S} | 3 O  u0 p2 c0 {1,S} {2,S} | 4 O  u0 p2 c0 {2,D} | 5 N  u0 p1 c0 {2,S} {6,D} | 6 N  u1 p1 c0 {5,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {3,S} | 2 S  u0 p1 c0 {3,S} {4,D} {6,S} | 3 O  u0 p2 c0 {1,S} {2,S} | 4 O  u0 p2 c0 {2,D} | 5 O  u0 p2 c0 {7,D} | 6 N  u0 p2 c-1 {2,S} {7,S} | 7 N  u1 p0 c+1 {5,D} {6,S}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {3,S} | 2 S  u0 p1 c0 {3,S} {4,D} {6,S} | 3 O  u0 p2 c0 {1,S} {2,S} | 4 O  u0 p2 c0 {2,D} | 5 O  u1 p2 c0 {6,S} | 6 N  u0 p0 c+1 {2,S} {5,S} {7,D} | 7 N  u0 p2 c-1 {6,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {3,S} | 2 S  u0 p1 c0 {3,S} {4,D} {7,S} | 3 O  u0 p2 c0 {1,S} {2,S} | 4 O  u0 p2 c0 {2,D} | 5 O  u1 p2 c0 {7,S} | 6 O  u0 p2 c0 {7,D} | 7 C  u0 p0 c0 {2,S} {5,S} {6,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {3,S} | 2 S  u0 p1 c0 {4,S} {5,D} {6,S} | 3 O  u0 p2 c0 {1,S} {6,S} | 4 O  u1 p2 c0 {2,S} | 5 O  u0 p2 c0 {2,D} | 6 N  u0 p0 c+1 {2,S} {3,S} {7,D} | 7 N  u0 p2 c-1 {6,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {3,S} | 2 S  u0 p1 c0 {4,S} {5,D} {6,S} | 3 O  u0 p2 c0 {1,S} {7,S} | 4 O  u1 p2 c0 {2,S} | 5 O  u0 p2 c0 {2,D} | 6 N  u0 p1 c0 {2,S} {7,D} | 7 N  u0 p1 c0 {3,S} {6,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {3,S} | 2 S  u0 p1 c0 {5,S} {6,D} {7,S} | 3 O  u0 p2 c0 {1,S} {7,S} | 4 O  u0 p2 c0 {7,D} | 5 O  u1 p2 c0 {2,S} | 6 O  u0 p2 c0 {2,D} | 7 C  u0 p0 c0 {2,S} {3,S} {4,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {4,S} | 2 O  u0 p2 c0 {3,S} {4,S} | 3 O  u0 p2 c0 {2,S} {5,S} | 4 N  u0 p0 c+1 {1,S} {2,S} {6,D} | 5 N  u1 p0 c+1 {3,S} {7,D} | 6 N  u0 p2 c-1 {4,D} | 7 N  u0 p2 c-1 {5,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {4,S} | 2 O  u0 p2 c0 {3,S} {4,S} | 3 O  u0 p2 c0 {2,S} {5,S} | 4 O  u0 p2 c0 {1,S} {2,S} | 5 N  u1 p0 c+1 {3,S} {6,D} | 6 N  u0 p2 c-1 {5,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {4,S} | 2 O  u0 p2 c0 {3,S} {4,S} | 3 O  u0 p2 c0 {2,S} {6,S} | 4 O  u0 p2 c0 {1,S} {2,S} | 5 O  u0 p2 c0 {6,D} | 6 C  u1 p0 c0 {3,S} {5,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {4,S} | 2 O  u0 p2 c0 {4,D} | 3 O  u0 p2 c0 {7,D} | 4 N  u0 p0 c+1 {1,S} {2,D} {5,S} | 5 N  u0 p2 c-1 {4,S} {6,S} | 6 N  u0 p2 c-1 {5,S} {7,S} | 7 N  u1 p0 c+1 {3,D} {6,S}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {4,S} | 2 O  u0 p2 c0 {4,S} {5,S} | 3 O  u0 p2 c0 {6,D} | 4 N  u0 p0 c+1 {1,S} {2,S} {7,D} | 5 N  u0 p2 c-1 {2,S} {6,S} | 6 N  u1 p0 c+1 {3,D} {5,S} | 7 N  u0 p2 c-1 {4,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {4,S} | 2 O  u0 p2 c0 {4,S} {5,S} | 3 O  u1 p2 c0 {5,S} | 4 N  u0 p0 c+1 {1,S} {2,S} {6,D} | 5 N  u0 p0 c+1 {2,S} {3,S} {7,D} | 6 N  u0 p2 c-1 {4,D} | 7 N  u0 p2 c-1 {5,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {4,S} | 2 O  u0 p2 c0 {4,S} {6,S} | 3 O  u0 p2 c0 {5,D} | 4 N  u0 p1 c0 {1,S} {2,S} {5,S} | 5 N  u0 p1 c0 {3,D} {4,S} | 6 N  u1 p0 c+1 {2,S} {7,D} | 7 N  u0 p2 c-1 {6,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {4,S} | 2 O  u0 p2 c0 {4,S} {6,S} | 3 O  u0 p2 c0 {6,D} | 4 N  u0 p0 c+1 {1,S} {2,S} {5,D} | 5 N  u0 p2 c-1 {4,D} | 6 C  u1 p0 c0 {2,S} {3,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {4,S} | 2 O  u0 p2 c0 {5,S} {6,S} | 3 O  u0 p2 c0 {4,D} | 4 N  u0 p0 c+1 {1,S} {3,D} {5,S} | 5 N  u0 p2 c-1 {2,S} {4,S} | 6 N  u1 p0 c+1 {2,S} {7,D} | 7 N  u0 p2 c-1 {6,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {4,S} | 2 O  u0 p2 c0 {6,D} | 3 O  u0 p2 c0 {7,D} | 4 N  u0 p1 c0 {1,S} {5,S} {6,S} | 5 N  u0 p2 c-1 {4,S} {7,S} | 6 N  u0 p1 c0 {2,D} {4,S} | 7 N  u1 p0 c+1 {3,D} {5,S}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {4,S} | 2 O  u1 p2 c0 {5,S} | 3 O  u0 p2 c0 {4,D} | 4 N  u0 p0 c+1 {1,S} {3,D} {6,S} | 5 N  u0 p0 c+1 {2,S} {6,S} {7,D} | 6 N  u0 p2 c-1 {4,S} {5,S} | 7 N  u0 p2 c-1 {5,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {4,S} | 2 O  u1 p2 c0 {5,S} | 3 O  u0 p2 c0 {6,D} | 4 N  u0 p1 c0 {1,S} {5,S} {6,S} | 5 N  u0 p0 c+1 {2,S} {4,S} {7,D} | 6 N  u0 p1 c0 {3,D} {4,S} | 7 N  u0 p2 c-1 {5,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {4,S} | 2 O  u1 p2 c0 {6,S} | 3 O  u0 p2 c0 {6,D} | 4 N  u0 p0 c+1 {1,S} {5,D} {6,S} | 5 N  u0 p2 c-1 {4,D} | 6 C  u0 p0 c0 {2,S} {3,D} {4,S}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {4,S} | 2 S  u0 p1 c0 {3,S} {4,S} {5,D} | 3 O  u0 p2 c0 {2,S} {6,S} | 4 O  u0 p2 c0 {1,S} {2,S} | 5 O  u0 p2 c0 {2,D} | 6 N  u1 p0 c+1 {3,S} {7,D} | 7 N  u0 p2 c-1 {6,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {4,S} | 2 S  u0 p1 c0 {3,S} {4,S} {5,D} | 3 O  u0 p2 c0 {2,S} {7,S} | 4 O  u0 p2 c0 {1,S} {2,S} | 5 O  u0 p2 c0 {2,D} | 6 O  u0 p2 c0 {7,D} | 7 C  u1 p0 c0 {3,S} {6,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {4,S} | 2 S  u0 p1 c0 {3,S} {4,S} {5,D} | 3 S  u0 p1 c0 {2,S} {6,S} {7,D} | 4 O  u0 p2 c0 {1,S} {2,S} | 5 O  u0 p2 c0 {2,D} | 6 O  u1 p2 c0 {3,S} | 7 O  u0 p2 c0 {3,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {4,S} | 2 S  u0 p1 c0 {3,S} {5,S} {6,D} | 3 O  u0 p2 c0 {2,S} {4,S} | 4 O  u0 p2 c0 {1,S} {3,S} | 5 O  u1 p2 c0 {2,S} | 6 O  u0 p2 c0 {2,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {4,S} | 2 S  u0 p2 c0 {3,S} {4,S} | 3 O  u0 p2 c0 {2,S} {5,S} | 4 O  u0 p2 c0 {1,S} {2,S} | 5 N  u0 p1 c0 {3,S} {6,D} | 6 N  u1 p1 c0 {5,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {4,S} | 2 S  u0 p2 c0 {3,S} {4,S} | 3 O  u0 p2 c0 {2,S} {6,S} | 4 O  u0 p2 c0 {1,S} {2,S} | 5 O  u0 p2 c0 {7,D} | 6 N  u0 p2 c-1 {3,S} {7,S} | 7 N  u1 p0 c+1 {5,D} {6,S}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {4,S} | 2 S  u0 p2 c0 {3,S} {4,S} | 3 O  u0 p2 c0 {2,S} {6,S} | 4 O  u0 p2 c0 {1,S} {2,S} | 5 O  u1 p2 c0 {6,S} | 6 N  u0 p0 c+1 {3,S} {5,S} {7,D} | 7 N  u0 p2 c-1 {6,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {4,S} | 2 S  u0 p2 c0 {3,S} {4,S} | 3 O  u0 p2 c0 {2,S} {7,S} | 4 O  u0 p2 c0 {1,S} {2,S} | 5 O  u1 p2 c0 {7,S} | 6 O  u0 p2 c0 {7,D} | 7 C  u0 p0 c0 {3,S} {5,S} {6,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {4,S} | 2 S  u1 p1 c0 {3,S} {5,D} | 3 O  u0 p2 c0 {2,S} {6,S} | 4 O  u0 p2 c0 {1,S} {6,S} | 5 O  u0 p2 c0 {2,D} | 6 N  u0 p0 c+1 {3,S} {4,S} {7,D} | 7 N  u0 p2 c-1 {6,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {4,S} | 2 S  u1 p1 c0 {3,S} {5,D} | 3 O  u0 p2 c0 {2,S} {6,S} | 4 O  u0 p2 c0 {1,S} {7,S} | 5 O  u0 p2 c0 {2,D} | 6 N  u0 p1 c0 {3,S} {7,D} | 7 N  u0 p1 c0 {4,S} {6,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {4,S} | 2 S  u1 p1 c0 {3,S} {6,D} | 3 O  u0 p2 c0 {2,S} {7,S} | 4 O  u0 p2 c0 {1,S} {7,S} | 5 O  u0 p2 c0 {7,D} | 6 O  u0 p2 c0 {2,D} | 7 C  u0 p0 c0 {3,S} {4,S} {5,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {5,S} | 2 O  u0 p2 c0 {3,S} {4,S} | 3 N  u0 p1 c0 {2,S} {5,D} | 4 N  u1 p0 c+1 {2,S} {6,D} | 5 N  u0 p1 c0 {1,S} {3,D} | 6 N  u0 p2 c-1 {4,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {5,S} | 2 O  u0 p2 c0 {3,S} {5,S} | 3 O  u0 p2 c0 {2,S} {7,S} | 4 O  u0 p2 c0 {7,D} | 5 N  u0 p0 c+1 {1,S} {2,S} {6,D} | 6 N  u0 p2 c-1 {5,D} | 7 C  u1 p0 c0 {3,S} {4,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {5,S} | 2 O  u0 p2 c0 {4,S} {6,S} | 3 O  u0 p2 c0 {4,D} | 4 N  u0 p0 c+1 {2,S} {3,D} {5,S} | 5 N  u0 p2 c-1 {1,S} {4,S} | 6 N  u1 p0 c+1 {2,S} {7,D} | 7 N  u0 p2 c-1 {6,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {5,S} | 2 O  u0 p2 c0 {4,S} {6,S} | 3 O  u0 p2 c0 {6,D} | 4 N  u0 p1 c0 {2,S} {5,D} | 5 N  u0 p1 c0 {1,S} {4,D} | 6 C  u1 p0 c0 {2,S} {3,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {5,S} | 2 O  u0 p2 c0 {5,S} {7,S} | 3 O  u1 p2 c0 {7,S} | 4 O  u0 p2 c0 {7,D} | 5 N  u0 p0 c+1 {1,S} {2,S} {6,D} | 6 N  u0 p2 c-1 {5,D} | 7 C  u0 p0 c0 {2,S} {3,S} {4,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {5,S} | 2 O  u0 p2 c0 {6,S} {7,S} | 3 O  u0 p2 c0 {5,D} | 4 O  u0 p2 c0 {7,D} | 5 N  u0 p0 c+1 {1,S} {3,D} {6,S} | 6 N  u0 p2 c-1 {2,S} {5,S} | 7 C  u1 p0 c0 {2,S} {4,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {5,S} | 2 O  u1 p2 c0 {3,S} | 3 N  u0 p0 c+1 {2,S} {4,S} {6,D} | 4 N  u0 p1 c0 {3,S} {5,D} | 5 N  u0 p1 c0 {1,S} {4,D} | 6 N  u0 p2 c-1 {3,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {5,S} | 2 O  u1 p2 c0 {6,S} | 3 O  u0 p2 c0 {6,D} | 4 N  u0 p1 c0 {5,D} {6,S} | 5 N  u0 p1 c0 {1,S} {4,D} | 6 C  u0 p0 c0 {2,S} {3,D} {4,S}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {5,S} | 2 O  u1 p2 c0 {7,S} | 3 O  u0 p2 c0 {5,D} | 4 O  u0 p2 c0 {7,D} | 5 N  u0 p0 c+1 {1,S} {3,D} {6,S} | 6 N  u0 p2 c-1 {5,S} {7,S} | 7 C  u0 p0 c0 {2,S} {4,D} {6,S}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {5,S} | 2 S  u0 p1 c0 {3,S} {4,D} {5,S} | 3 O  u1 p2 c0 {2,S} | 4 O  u0 p2 c0 {2,D} | 5 N  u0 p0 c+1 {1,S} {2,S} {6,D} | 6 N  u0 p2 c-1 {5,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {5,S} | 2 S  u0 p1 c0 {4,S} {5,S} {6,D} | 3 S  u1 p1 c0 {4,S} {7,D} | 4 O  u0 p2 c0 {2,S} {3,S} | 5 O  u0 p2 c0 {1,S} {2,S} | 6 O  u0 p2 c0 {2,D} | 7 O  u0 p2 c0 {3,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {5,S} | 2 S  u0 p1 c0 {4,S} {6,S} {7,D} | 3 S  u0 p2 c0 {4,S} {5,S} | 4 O  u0 p2 c0 {2,S} {3,S} | 5 O  u0 p2 c0 {1,S} {3,S} | 6 O  u1 p2 c0 {2,S} | 7 O  u0 p2 c0 {2,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {5,S} | 2 S  u0 p2 c0 {3,S} {5,S} | 3 O  u0 p2 c0 {2,S} {4,S} | 4 O  u0 p2 c0 {3,S} {6,S} | 5 O  u0 p2 c0 {1,S} {2,S} | 6 N  u1 p0 c+1 {4,S} {7,D} | 7 N  u0 p2 c-1 {6,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {5,S} | 2 S  u0 p2 c0 {3,S} {5,S} | 3 O  u0 p2 c0 {2,S} {4,S} | 4 O  u0 p2 c0 {3,S} {7,S} | 5 O  u0 p2 c0 {1,S} {2,S} | 6 O  u0 p2 c0 {7,D} | 7 C  u1 p0 c0 {4,S} {6,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {5,S} | 2 S  u1 p1 c0 {3,S} {4,D} | 3 O  u0 p2 c0 {2,S} {5,S} | 4 O  u0 p2 c0 {2,D} | 5 N  u0 p0 c+1 {1,S} {3,S} {6,D} | 6 N  u0 p2 c-1 {5,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {5,S} | 2 S  u1 p1 c0 {4,S} {6,D} | 3 O  u0 p2 c0 {4,S} {5,S} | 4 O  u0 p2 c0 {2,S} {3,S} | 5 O  u0 p2 c0 {1,S} {3,S} | 6 O  u0 p2 c0 {2,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {6,S} | 2 O  u0 p2 c0 {3,S} {4,S} | 3 O  u0 p2 c0 {2,S} {5,S} | 4 N  u0 p1 c0 {2,S} {6,D} | 5 N  u1 p0 c+1 {3,S} {7,D} | 6 N  u0 p1 c0 {1,S} {4,D} | 7 N  u0 p2 c-1 {5,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {6,S} | 2 O  u0 p2 c0 {4,D} | 3 O  u0 p2 c0 {7,D} | 4 N  u0 p0 c+1 {2,D} {5,S} {6,S} | 5 N  u0 p2 c-1 {4,S} {7,S} | 6 N  u0 p2 c-1 {1,S} {4,S} | 7 N  u1 p0 c+1 {3,D} {5,S}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {6,S} | 2 O  u0 p2 c0 {4,D} | 3 O  u1 p2 c0 {5,S} | 4 N  u0 p0 c+1 {2,D} {5,S} {6,S} | 5 N  u0 p0 c+1 {3,S} {4,S} {7,D} | 6 N  u0 p2 c-1 {1,S} {4,S} | 7 N  u0 p2 c-1 {5,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {6,S} | 2 O  u0 p2 c0 {4,S} {5,S} | 3 O  u1 p2 c0 {4,S} | 4 N  u0 p0 c+1 {2,S} {3,S} {7,D} | 5 N  u0 p1 c0 {2,S} {6,D} | 6 N  u0 p1 c0 {1,S} {5,D} | 7 N  u0 p2 c-1 {4,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {6,S} | 2 O  u0 p2 c0 {5,D} | 3 N  u0 p2 c-1 {4,S} {5,S} | 4 N  u0 p1 c0 {3,S} {6,D} | 5 N  u1 p0 c+1 {2,D} {3,S} | 6 N  u0 p1 c0 {1,S} {4,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {6,S} | 2 S  u0 p1 c0 {3,S} {4,D} {5,S} | 3 O  u1 p2 c0 {2,S} | 4 O  u0 p2 c0 {2,D} | 5 N  u0 p1 c0 {2,S} {6,D} | 6 N  u0 p1 c0 {1,S} {5,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {6,S} | 2 S  u0 p1 c0 {3,S} {4,S} {5,D} | 3 O  u0 p2 c0 {2,S} {6,S} | 4 O  u1 p2 c0 {2,S} | 5 O  u0 p2 c0 {2,D} | 6 N  u0 p0 c+1 {1,S} {3,S} {7,D} | 7 N  u0 p2 c-1 {6,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {6,S} | 2 S  u0 p1 c0 {3,S} {5,D} {7,S} | 3 O  u1 p2 c0 {2,S} | 4 O  u0 p2 c0 {6,D} | 5 O  u0 p2 c0 {2,D} | 6 N  u0 p0 c+1 {1,S} {4,D} {7,S} | 7 N  u0 p2 c-1 {2,S} {6,S}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {6,S} | 2 S  u0 p2 c0 {4,S} {6,S} | 3 S  u1 p1 c0 {5,S} {7,D} | 4 O  u0 p2 c0 {2,S} {5,S} | 5 O  u0 p2 c0 {3,S} {4,S} | 6 O  u0 p2 c0 {1,S} {2,S} | 7 O  u0 p2 c0 {3,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {6,S} | 2 S  u1 p1 c0 {3,S} {4,D} | 3 O  u0 p2 c0 {2,S} {5,S} | 4 O  u0 p2 c0 {2,D} | 5 N  u0 p1 c0 {3,S} {6,D} | 6 N  u0 p1 c0 {1,S} {5,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {6,S} | 2 S  u1 p1 c0 {3,S} {5,D} | 3 O  u0 p2 c0 {2,S} {7,S} | 4 O  u0 p2 c0 {6,D} | 5 O  u0 p2 c0 {2,D} | 6 N  u0 p0 c+1 {1,S} {4,D} {7,S} | 7 N  u0 p2 c-1 {3,S} {6,S}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {6,S} | 2 S  u1 p1 c0 {4,S} {5,D} | 3 O  u0 p2 c0 {4,S} {6,S} | 4 O  u0 p2 c0 {2,S} {3,S} | 5 O  u0 p2 c0 {2,D} | 6 N  u0 p0 c+1 {1,S} {3,S} {7,D} | 7 N  u0 p2 c-1 {6,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {7,S} | 2 O  u0 p2 c0 {3,S} {7,S} | 3 O  u0 p2 c0 {2,S} {5,S} | 4 O  u0 p2 c0 {7,D} | 5 N  u1 p0 c+1 {3,S} {6,D} | 6 N  u0 p2 c-1 {5,D} | 7 C  u0 p0 c0 {1,S} {2,S} {4,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {7,S} | 2 O  u0 p2 c0 {4,S} {5,S} | 3 O  u0 p2 c0 {6,D} | 4 N  u0 p2 c-1 {2,S} {6,S} | 5 N  u0 p1 c0 {2,S} {7,D} | 6 N  u1 p0 c+1 {3,D} {4,S} | 7 N  u0 p1 c0 {1,S} {5,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {7,S} | 2 O  u0 p2 c0 {5,S} {7,S} | 3 O  u0 p2 c0 {7,D} | 4 O  u0 p2 c0 {6,D} | 5 N  u0 p2 c-1 {2,S} {6,S} | 6 N  u1 p0 c+1 {4,D} {5,S} | 7 C  u0 p0 c0 {1,S} {2,S} {3,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 3 | 1 Ar u1 p3 c0 {7,S} | 2 O  u0 p2 c0 {5,S} {7,S} | 3 O  u1 p2 c0 {5,S} | 4 O  u0 p2 c0 {7,D} | 5 N  u0 p0 c+1 {2,S} {3,S} {6,D} | 6 N  u0 p2 c-1 {5,D} | 7 C  u0 p0 c0 {1,S} {2,S} {4,D}
+    NUMBER  Cl_Abstraction             multiplicity 3 | 1 Ar u2 p3 c0
+            H298 = 1114.2470 kJ/mol  src = Thermo library: PlasmaExcitedNeutralThermo
+    CRASH   R_Addition_MultipleBond    multiplicity 4 | 1 Ar u1 p3 c0 {2,S} | 2 O  u0 p2 c0 {1,S} {4,S} | 3 O  u1 p2 c0 {4,S} | 4 N  u0 p1 c0 {2,S} {3,S} {5,S} | 5 N  u0 p1 c0 {4,S} {6,D} | 6 N  u1 p1 c0 {5,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 4 | 1 Ar u1 p3 c0 {2,S} | 2 O  u0 p2 c0 {1,S} {5,S} | 3 O  u1 p2 c0 {5,S} | 4 O  u0 p2 c0 {7,D} | 5 N  u0 p1 c0 {2,S} {3,S} {6,S} | 6 N  u0 p2 c-1 {5,S} {7,S} | 7 N  u1 p0 c+1 {4,D} {6,S}
+    CRASH   R_Addition_MultipleBond    multiplicity 4 | 1 Ar u1 p3 c0 {2,S} | 2 O  u0 p2 c0 {1,S} {5,S} | 3 O  u1 p2 c0 {5,S} | 4 O  u1 p2 c0 {6,S} | 5 N  u0 p1 c0 {2,S} {3,S} {6,S} | 6 N  u0 p0 c+1 {4,S} {5,S} {7,D} | 7 N  u0 p2 c-1 {6,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 4 | 1 Ar u1 p3 c0 {2,S} | 2 O  u0 p2 c0 {1,S} {6,S} | 3 O  u1 p2 c0 {6,S} | 4 O  u1 p2 c0 {7,S} | 5 O  u0 p2 c0 {7,D} | 6 N  u0 p1 c0 {2,S} {3,S} {7,S} | 7 C  u0 p0 c0 {4,S} {5,D} {6,S}
+    CRASH   R_Addition_MultipleBond    multiplicity 4 | 1 Ar u1 p3 c0 {3,S} | 2 O  u0 p2 c0 {5,S} {6,S} | 3 O  u0 p2 c0 {1,S} {5,S} | 4 O  u1 p2 c0 {5,S} | 5 N  u0 p1 c0 {2,S} {3,S} {4,S} | 6 N  u1 p0 c+1 {2,S} {7,D} | 7 N  u0 p2 c-1 {6,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 4 | 1 Ar u1 p3 c0 {3,S} | 2 O  u0 p2 c0 {6,S} {7,S} | 3 O  u0 p2 c0 {1,S} {6,S} | 4 O  u1 p2 c0 {6,S} | 5 O  u0 p2 c0 {7,D} | 6 N  u0 p1 c0 {2,S} {3,S} {4,S} | 7 C  u1 p0 c0 {2,S} {5,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 4 | 1 Ar u1 p3 c0 {3,S} | 2 S  u0 p1 c0 {5,S} {6,D} {7,S} | 3 O  u0 p2 c0 {1,S} {7,S} | 4 O  u1 p2 c0 {7,S} | 5 O  u1 p2 c0 {2,S} | 6 O  u0 p2 c0 {2,D} | 7 N  u0 p1 c0 {2,S} {3,S} {4,S}
+    CRASH   R_Addition_MultipleBond    multiplicity 4 | 1 Ar u1 p3 c0 {4,S} | 2 O  u0 p2 c0 {4,S} {5,S} | 3 O  u1 p2 c0 {4,S} | 4 N  u0 p1 c0 {1,S} {2,S} {3,S} | 5 N  u0 p1 c0 {2,S} {6,D} | 6 N  u1 p1 c0 {5,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 4 | 1 Ar u1 p3 c0 {4,S} | 2 O  u1 p2 c0 {4,S} | 3 O  u0 p3 c-1 {4,S} | 4 N  u0 p0 c+1 {1,S} {2,S} {3,S} {5,S} | 5 N  u0 p1 c0 {4,S} {6,D} | 6 N  u1 p1 c0 {5,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 4 | 1 Ar u1 p3 c0 {4,S} | 2 S  u1 p1 c0 {3,S} {6,D} | 3 O  u0 p2 c0 {2,S} {7,S} | 4 O  u0 p2 c0 {1,S} {7,S} | 5 O  u1 p2 c0 {7,S} | 6 O  u0 p2 c0 {2,D} | 7 N  u0 p1 c0 {3,S} {4,S} {5,S}
+    CRASH   R_Addition_MultipleBond    multiplicity 4 | 1 Ar u1 p3 c0 {5,S} | 2 O  u0 p2 c0 {3,S} {5,S} | 3 O  u0 p2 c0 {2,S} {6,S} | 4 O  u1 p2 c0 {5,S} | 5 N  u0 p1 c0 {1,S} {2,S} {4,S} | 6 N  u1 p0 c+1 {3,S} {7,D} | 7 N  u0 p2 c-1 {6,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 4 | 1 Ar u1 p3 c0 {5,S} | 2 O  u0 p2 c0 {5,S} {6,S} | 3 O  u1 p2 c0 {5,S} | 4 O  u0 p2 c0 {7,D} | 5 N  u0 p1 c0 {1,S} {2,S} {3,S} | 6 N  u0 p2 c-1 {2,S} {7,S} | 7 N  u1 p0 c+1 {4,D} {6,S}
+    CRASH   R_Addition_MultipleBond    multiplicity 4 | 1 Ar u1 p3 c0 {5,S} | 2 O  u0 p2 c0 {5,S} {6,S} | 3 O  u1 p2 c0 {5,S} | 4 O  u0 p3 c-1 {5,S} | 5 N  u0 p0 c+1 {1,S} {2,S} {3,S} {4,S} | 6 N  u1 p0 c+1 {2,S} {7,D} | 7 N  u0 p2 c-1 {6,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 4 | 1 Ar u1 p3 c0 {5,S} | 2 O  u0 p2 c0 {5,S} {6,S} | 3 O  u1 p2 c0 {5,S} | 4 O  u1 p2 c0 {6,S} | 5 N  u0 p1 c0 {1,S} {2,S} {3,S} | 6 N  u0 p0 c+1 {2,S} {4,S} {7,D} | 7 N  u0 p2 c-1 {6,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 4 | 1 Ar u1 p3 c0 {5,S} | 2 O  u1 p2 c0 {5,S} | 3 O  u0 p3 c-1 {5,S} | 4 O  u0 p2 c0 {7,D} | 5 N  u0 p0 c+1 {1,S} {2,S} {3,S} {6,S} | 6 N  u0 p2 c-1 {5,S} {7,S} | 7 N  u1 p0 c+1 {4,D} {6,S}
+    CRASH   R_Addition_MultipleBond    multiplicity 4 | 1 Ar u1 p3 c0 {5,S} | 2 O  u1 p2 c0 {5,S} | 3 O  u0 p3 c-1 {5,S} | 4 O  u1 p2 c0 {6,S} | 5 N  u0 p0 c+1 {1,S} {2,S} {3,S} {6,S} | 6 N  u0 p0 c+1 {4,S} {5,S} {7,D} | 7 N  u0 p2 c-1 {6,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 4 | 1 Ar u1 p3 c0 {6,S} | 2 O  u0 p2 c0 {3,S} {6,S} | 3 O  u0 p2 c0 {2,S} {7,S} | 4 O  u1 p2 c0 {6,S} | 5 O  u0 p2 c0 {7,D} | 6 N  u0 p1 c0 {1,S} {2,S} {4,S} | 7 C  u1 p0 c0 {3,S} {5,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 4 | 1 Ar u1 p3 c0 {6,S} | 2 O  u0 p2 c0 {6,S} {7,S} | 3 O  u1 p2 c0 {6,S} | 4 O  u0 p3 c-1 {6,S} | 5 O  u0 p2 c0 {7,D} | 6 N  u0 p0 c+1 {1,S} {2,S} {3,S} {4,S} | 7 C  u1 p0 c0 {2,S} {5,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 4 | 1 Ar u1 p3 c0 {6,S} | 2 O  u0 p2 c0 {6,S} {7,S} | 3 O  u1 p2 c0 {6,S} | 4 O  u1 p2 c0 {7,S} | 5 O  u0 p2 c0 {7,D} | 6 N  u0 p1 c0 {1,S} {2,S} {3,S} | 7 C  u0 p0 c0 {2,S} {4,S} {5,D}
+    CRASH   R_Addition_MultipleBond    multiplicity 4 | 1 Ar u1 p3 c0 {6,S} | 2 O  u1 p2 c0 {6,S} | 3 O  u0 p3 c-1 {6,S} | 4 O  u1 p2 c0 {7,S} | 5 O  u0 p2 c0 {7,D} | 6 N  u0 p0 c+1 {1,S} {2,S} {3,S} {7,S} | 7 C  u0 p0 c0 {4,S} {5,D} {6,S}
+    CRASH   R_Addition_MultipleBond    multiplicity 4 | 1 Ar u1 p3 c0 {7,S} | 2 S  u0 p1 c0 {3,S} {5,S} {6,D} | 3 O  u0 p2 c0 {2,S} {7,S} | 4 O  u1 p2 c0 {7,S} | 5 O  u1 p2 c0 {2,S} | 6 O  u0 p2 c0 {2,D} | 7 N  u0 p1 c0 {1,S} {3,S} {4,S}
+    CRASH   R_Addition_MultipleBond    multiplicity 4 | 1 Ar u1 p3 c0 {7,S} | 2 S  u0 p1 c0 {5,S} {6,D} {7,S} | 3 O  u1 p2 c0 {7,S} | 4 O  u0 p3 c-1 {7,S} | 5 O  u1 p2 c0 {2,S} | 6 O  u0 p2 c0 {2,D} | 7 N  u0 p0 c+1 {1,S} {2,S} {3,S} {4,S}
+    CRASH   R_Addition_MultipleBond    multiplicity 4 | 1 Ar u1 p3 c0 {7,S} | 2 S  u1 p1 c0 {3,S} {6,D} | 3 O  u0 p2 c0 {2,S} {7,S} | 4 O  u1 p2 c0 {7,S} | 5 O  u0 p3 c-1 {7,S} | 6 O  u0 p2 c0 {2,D} | 7 N  u0 p0 c+1 {1,S} {3,S} {4,S} {5,S}
+    CRASH   R_Addition_MultipleBond    multiplicity 4 | 1 Ar u1 p3 c0 {7,S} | 2 S  u1 p1 c0 {4,S} {6,D} | 3 O  u0 p2 c0 {4,S} {7,S} | 4 O  u0 p2 c0 {2,S} {3,S} | 5 O  u1 p2 c0 {7,S} | 6 O  u0 p2 c0 {2,D} | 7 N  u0 p1 c0 {1,S} {3,S} {5,S}
+    CRASH   R_Addition_MultipleBond    multiplicity 5 | 1 Ar u1 p3 c0 {2,S} | 2 O  u0 p2 c0 {1,S} {4,S} | 3 O  u0 p2 c0 {4,S} {5,S} | 4 N  u1 p1 c0 {2,S} {3,S} | 5 N  u2 p1 c0 {3,S}
+    CRASH   R_Addition_MultipleBond    multiplicity 5 | 1 Ar u1 p3 c0 {2,S} | 2 O  u0 p2 c0 {1,S} {4,S} | 3 O  u1 p2 c0 {4,S} | 4 N  u0 p1 c0 {2,S} {3,S} {5,S} | 5 N  u2 p1 c0 {4,S}
+    CRASH   R_Addition_MultipleBond    multiplicity 5 | 1 Ar u1 p3 c0 {3,S} | 2 O  u0 p2 c0 {3,S} {4,S} | 3 N  u1 p1 c0 {1,S} {2,S} | 4 N  u2 p1 c0 {2,S}
+    CRASH   R_Addition_MultipleBond    multiplicity 5 | 1 Ar u1 p3 c0 {3,S} | 2 O  u1 p2 c0 {3,S} | 3 N  u0 p1 c0 {1,S} {2,S} {4,S} | 4 N  u2 p1 c0 {3,S}
+    CRASH   R_Addition_MultipleBond    multiplicity 5 | 1 Ar u1 p3 c0 {4,S} | 2 O  u0 p2 c0 {4,S} {5,S} | 3 O  u0 p3 c-1 {4,S} | 4 N  u1 p0 c+1 {1,S} {2,S} {3,S} | 5 N  u2 p1 c0 {2,S}
+    CRASH   R_Addition_MultipleBond    multiplicity 5 | 1 Ar u1 p3 c0 {4,S} | 2 O  u1 p2 c0 {4,S} | 3 O  u0 p3 c-1 {4,S} | 4 N  u0 p0 c+1 {1,S} {2,S} {3,S} {5,S} | 5 N  u2 p1 c0 {4,S}
+    CRASH   R_Addition_MultipleBond    multiplicity 6 | 1 Ar u1 p3 c0 {2,S} | 2 S  u0 p1 c0 {1,S} {3,S} {4,S} {5,S} | 3 O  u1 p2 c0 {2,S} | 4 O  u1 p2 c0 {2,S} | 5 N  u2 p1 c0 {2,S}
+    CRASH   R_Addition_MultipleBond    multiplicity 6 | 1 Ar u1 p3 c0 {2,S} | 2 S  u1 p1 c0 {1,S} {3,S} {4,S} | 3 O  u0 p2 c0 {2,S} {5,S} | 4 O  u1 p2 c0 {2,S} | 5 N  u2 p1 c0 {3,S}
+    CRASH   R_Addition_MultipleBond    multiplicity 6 | 1 Ar u1 p3 c0 {3,S} | 2 O  u0 p2 c0 {3,S} {5,S} | 3 N  u1 p0 c+1 {1,S} {2,S} {4,S} | 4 N  u1 p2 c-1 {3,S} | 5 N  u2 p1 c0 {2,S}
+    CRASH   R_Addition_MultipleBond    multiplicity 6 | 1 Ar u1 p3 c0 {3,S} | 2 O  u1 p2 c0 {3,S} | 3 N  u0 p0 c+1 {1,S} {2,S} {4,S} {5,S} | 4 N  u2 p1 c0 {3,S} | 5 N  u1 p2 c-1 {3,S}
+    CRASH   R_Addition_MultipleBond    multiplicity 6 | 1 Ar u1 p3 c0 {3,S} | 2 O  u1 p2 c0 {3,S} | 3 N  u1 p0 c+1 {1,S} {2,S} {4,S} | 4 N  u0 p2 c-1 {3,S} {5,S} | 5 N  u2 p1 c0 {4,S}
+    CRASH   R_Addition_MultipleBond    multiplicity 6 | 1 Ar u1 p3 c0 {3,S} | 2 O  u1 p2 c0 {4,S} | 3 N  u0 p1 c0 {1,S} {4,S} {5,S} | 4 N  u1 p1 c0 {2,S} {3,S} | 5 N  u2 p1 c0 {3,S}
+    CRASH   R_Addition_MultipleBond    multiplicity 6 | 1 Ar u1 p3 c0 {4,S} | 2 O  u0 p2 c0 {3,S} {5,S} | 3 N  u1 p1 c0 {2,S} {4,S} | 4 N  u1 p1 c0 {1,S} {3,S} | 5 N  u2 p1 c0 {2,S}
+    CRASH   R_Addition_MultipleBond    multiplicity 6 | 1 Ar u1 p3 c0 {4,S} | 2 O  u1 p2 c0 {3,S} | 3 N  u0 p1 c0 {2,S} {4,S} {5,S} | 4 N  u1 p1 c0 {1,S} {3,S} | 5 N  u2 p1 c0 {3,S}
+    CRASH   R_Addition_MultipleBond    multiplicity 6 | 1 Ar u1 p3 c0 {5,S} | 2 O  u0 p2 c0 {4,S} {5,S} | 3 O  u1 p2 c0 {5,S} | 4 N  u2 p1 c0 {2,S} | 5 C  u1 p0 c0 {1,S} {2,S} {3,S}
+    CRASH   R_Addition_MultipleBond    multiplicity 6 | 1 Ar u1 p3 c0 {5,S} | 2 O  u1 p2 c0 {5,S} | 3 O  u1 p2 c0 {5,S} | 4 N  u2 p1 c0 {5,S} | 5 C  u0 p0 c0 {1,S} {2,S} {3,S} {4,S}
+
+4. CAN GROUP ADDITIVITY NUMBER A COVALENT ARGON AT ALL?
+=======================================================
+
+  CH3 (NEGATIVE CONTROL, must be NUMBER)               types=['Cs', 'H0', 'H0', 'H0']
+      NUMBER  H298 = 146.8993 kJ/mol  S298 = 194.0080  src = Thermo library: JetSurF2.0
+
+  Ar u0 p4 c0 (ground state, must be NUMBER)           types=['Ar0']
+      NUMBER  H298 = 0.0031 kJ/mol  S298 = 154.7348  src = Thermo library: BurkeH2O2
+
+  Ar(3P2) itself, must be NUMBER from this library     types=['Ar0e']
+      NUMBER  H298 = 1114.2470 kJ/mol  S298 = 168.2270  src = Thermo library: PlasmaExcitedNeutralThermo
+
+  ArH, Ar0s u1 one single bond                         types=['Ar0s', 'H0']
+      CRASH   AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 b
+
+  Ar-Ar, both Ar0s u1                                  types=['Ar0s', 'Ar0s']
+      CRASH   AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 b
+  UNBUILDABLE  ArH closed shell, Ar0s u0 one single bond            InvalidAdjacencyListError: Invalid valency for atom Ar (Ar0s) with 0 unpaired electrons, 3 pairs of electrons, 0 charge, and bonds [1.0].
+  UNBUILDABLE  Ar2+ (Ar0s-Ar+), the one bonded argon this database already ships InvalidAdjacencyListError: Invalid valency for atom Ar (Ar0s) with 0 unpaired electrons, 3 pairs of electrons, 0 charge, and bonds [1.0].
+  UNBUILDABLE  ArH2, what HBI saturation builds                     AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others)
+
+5. THE ANSWER
+=============
+  first-generation products that got a NUMBER : 9
+      1  C u0 p0 c0 {2,D} {3,S} {7,S} | 2  C u0 p0 c0 {1,D} {4,S} {8,S} | 3  C u0 p0 c0 {1,S} {5,D} {9,S} | 4  C u0 p0 c0 {2,S} {6,D} {10,S} | 5  C u0 p0 c0 {3,D} {6,D} | 6  C u0 p0 c0 {4,D} {5,D} | 7  H u0 p0 c0 {1,S} | 8  H u0 p0 c0 {2,S} | 9  H u0 p0 c0 {3,S} | 10 H u0 p0 c0 {4,S}   via Disproportionation + C6H5
+      1  C u0 p0 c0 {2,S} {4,S} {6,D} | 2  C u0 p0 c0 {1,S} {3,D} {8,S} | 3  C u0 p0 c0 {2,D} {5,S} {9,S} | 4  C u0 p0 c0 {1,S} {7,D} {11,S} | 5  C u0 p0 c0 {3,S} {7,D} {10,S} | 6  C u0 p0 c0 {1,D} {12,S} {13,S} | 7  C u0 p0 c0 {4,D} {5,D} | 8  H u0 p0 c0 {2,S} | 9  H u0 p0 c0 {3,S} | 10 H u0 p0 c0 {5,S} | 11 H u0 p0 c0 {4,S} | 12 H u0 p0 c0 {6,S} | 13 H u0 p0 c0 {6,S}   via Disproportionation + C7H7
+      1 C u0 p0 c0 {2,D} {3,S} {4,S} | 2 C u0 p0 c0 {1,D} {5,S} {6,S} | 3 H u0 p0 c0 {1,S} | 4 H u0 p0 c0 {1,S} | 5 H u0 p0 c0 {2,S} | 6 H u0 p0 c0 {2,S}   via Disproportionation + C2H5
+      1 C u0 p0 c0 {2,T} {3,S} | 2 C u0 p0 c0 {1,T} {4,S} | 3 H u0 p0 c0 {1,S} | 4 H u0 p0 c0 {2,S}   via Disproportionation + C2H3
+      1 C u0 p0 c0 {3,D} {4,S} {5,S} | 2 C u0 p0 c0 {3,D} {6,S} {7,S} | 3 C u0 p0 c0 {1,D} {2,D} | 4 H u0 p0 c0 {1,S} | 5 H u0 p0 c0 {1,S} | 6 H u0 p0 c0 {2,S} | 7 H u0 p0 c0 {2,S}   via Disproportionation + C3H5
+      1 O u0 p1 c+1 {2,T} | 2 C u0 p1 c-1 {1,T}   via CO_Disproportionation + HCO
+      1 O u0 p2 c0 {2,D} | 2 C u0 p0 c0 {1,D} {3,S} {4,S} | 3 H u0 p0 c0 {2,S} | 4 H u0 p0 c0 {2,S}   via Disproportionation + CH3O
+      multiplicity 2 | 1 Ar u1 p3 c+1   via Plasma_Electron_Impact_Ionization + (unimolecular)
+      multiplicity 2 | 1 H u1 p0 c0   via Cl_Abstraction + HCl
+  first-generation products that CRASHED      : 57
+  second-generation argon products NUMBERED   : 1
+      multiplicity 3 | 1 Ar u2 p3 c0   via Cl_Abstraction (multiplicity 2 | 1 Ar u1 + Cl)
+  reactions where EVERY product numbers       : 1
+      [Ar] => [Ar+]   (Plasma_Electron_Impact_Ionization)
+  hand-built argon structures that NUMBERED   : 3
+      CH3 (NEGATIVE CONTROL, must be NUMBER)
+      Ar u0 p4 c0 (ground state, must be NUMBER)
+      Ar(3P2) itself, must be NUMBER from this library

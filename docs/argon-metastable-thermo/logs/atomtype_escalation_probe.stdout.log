@@ -1,0 +1,48 @@
+
+WHAT THE GROUPS ACTUALLY SAY
+============================
+  Plasma_Electron_Impact_Ionization  A_rad             1 *1 R    u[1,2,3,4] px c[...]
+  Disproportionation                 Root, atom *1     1 *1 R    u[1,2,3,4]
+  CO_Disproportionation              Root, atom *1     1 *1 R    u[1,2,3,4]
+  Cl_Abstraction                     Root, atom *3     1 *3 R    u[1,2,3,4]
+  Birad_R_Recombination              Birad             1 *2 R!H  u2
+  R_Addition_MultipleBond            Y_1centerbirad    1 *3 R!H  u2
+
+  Note the first four: the family this species is SUPPOSED to react in and three of
+  the five it must not are written on the SAME generic with the SAME u range.
+
+CANDIDATE: as shipped   (generic = unchanged)
+=============================================
+  ordinary families reaching Ar(3P2) : 5  ['Birad_R_Recombination', 'CO_Disproportionation', 'Cl_Abstraction', 'Disproportionation', 'R_Addition_MultipleBond']
+  intended ionisation channel        : SURVIVES
+  control CH3 + H                    : ['H_Abstraction', 'R_Recombination']
+  Ar+ unimolecular                   : ['Plasma_Electron_Impact_Ionization']
+
+CANDIDATE: drop 'R!H'   (generic = ['R', 'R!H!Val7', 'Rx', 'Rx!H', 'Ar'])
+=========================================================================
+  ordinary families reaching Ar(3P2) : 3  ['CO_Disproportionation', 'Cl_Abstraction', 'Disproportionation']
+  intended ionisation channel        : SURVIVES
+  control CH3 + H                    : ['H_Abstraction', 'R_Recombination']
+  Ar+ unimolecular                   : ['Plasma_Electron_Impact_Ionization']
+
+CANDIDATE: drop 'R'   (generic = ['R!H', 'R!H!Val7', 'Rx', 'Rx!H', 'Ar'])
+=========================================================================
+  ordinary families reaching Ar(3P2) : 2  ['Birad_R_Recombination', 'R_Addition_MultipleBond']
+  intended ionisation channel        : LOST
+  control CH3 + H                    : ['H_Abstraction', 'R_Recombination']
+  Ar+ unimolecular                   : ['Plasma_Electron_Impact_Ionization']
+
+CANDIDATE: drop both   (generic = ['R!H!Val7', 'Rx', 'Rx!H', 'Ar'])
+===================================================================
+  ordinary families reaching Ar(3P2) : 0  []
+  intended ionisation channel        : LOST
+  control CH3 + H                    : ['H_Abstraction', 'R_Recombination']
+  Ar+ unimolecular                   : ['Plasma_Electron_Impact_Ionization']
+
+SUMMARY -- WHAT AN Ar0e NARROWING WOULD BUY
+===========================================
+  candidate      ordinary  EII        families left
+  as shipped     5         kept       ['Birad_R_Recombination', 'CO_Disproportionation', 'Cl_Abstraction', 'Disproportionation', 'R_Addition_MultipleBond']
+  drop 'R!H'     3         kept       ['CO_Disproportionation', 'Cl_Abstraction', 'Disproportionation']
+  drop 'R'       2         LOST       ['Birad_R_Recombination', 'R_Addition_MultipleBond']
+  drop both      0         LOST       []

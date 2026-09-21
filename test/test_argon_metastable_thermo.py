@@ -109,6 +109,40 @@ def _species(adjacency_list, label=''):
                    molecule=[Molecule().from_adjacency_list(adjacency_list)])
 
 
+def _levels_from_entry(entry):
+    """The 3p5.4s level table as the SHIPPED entry states it: {Paschen: (E cm^-1, g,
+    H298 kJ/mol, S298 J/(mol*K))}.
+
+    Several checks in this file used to recompute their inputs from module constants and
+    so could not fail on a wrong shipped value. Reading the table out of the entry is what
+    makes them detectors rather than decoration. The regex is deliberately anchored on the
+    Paschen label and ``J=``, so a reformatted table fails loudly here instead of silently
+    matching the wrong row.
+    """
+    import re
+
+    out = {}
+    for line in entry.long_desc.splitlines():
+        m = re.match(r'\s*(1s[2-5])\s+\S+\s+.*?J=\d+\s+([0-9.]+)\s+(\d+)\s+'
+                     r'([0-9.]+)\s+([0-9.]+)', line)
+        if m:
+            out[m.group(1)] = (float(m.group(2)), int(m.group(3)),
+                               float(m.group(4)), float(m.group(5)))
+    assert set(out) == {'1s5', '1s4', '1s3', '1s2'}, (
+        'the entry must state all four 3p5.4s levels; parsed %s' % sorted(out))
+    return out
+
+
+def _quoted(entry, pattern):
+    """One float captured out of the entry's own prose, so a test can check the file
+    against the engine rather than against a copy of itself."""
+    import re
+
+    m = re.search(pattern, entry.long_desc)
+    assert m, 'the entry no longer states %r' % pattern
+    return float(m.group(1))
+
+
 def _electronic(levels, T):
     """(S_el, H_el, Cp_el) of a manifold ``levels`` = [(g, E in kJ/mol), ...] relative to
     its lowest level, in J/(mol*K), kJ/mol, J/(mol*K).
@@ -331,11 +365,25 @@ def test_cp_is_exactly_five_halves_r_at_every_tabulated_temperature(entry):
     assert entry.data.CpInf.value_si == pytest.approx(five_halves_r, abs=1e-3)
 
 
-def test_the_level_energy_in_ev_matches_what_the_plasma_literature_quotes(pinned):
+def test_the_level_energy_in_ev_matches_what_the_plasma_literature_quotes(entry):
     """A cross-check against an unrelated statement of the same physics, not a second
-    measurement of it: 11.548 eV is the figure the discharge literature uses."""
-    assert ASD_1S5_3P2 / CM_PER_EV == pytest.approx(11.548, abs=1e-3)
-    assert ASD_1S3_3P0 / CM_PER_EV == pytest.approx(11.723, abs=1e-3)
+    measurement of it: 11.548 eV is the figure the discharge literature uses.
+
+    Repointed at the SHIPPED entry. It used to read ``ASD_1S5_3P2 / CM_PER_EV``, two
+    module constants, and so passed unchanged whatever the file said - a check that
+    cannot fail in the direction the defect lies. The level energy is now recovered from
+    the entry's own H298 through the identity that built it, so a wrong shipped H298 puts
+    the eV figure out of range and this goes red."""
+    shipped_cm = entry.data.get_enthalpy(T0) / HC_NA
+    assert shipped_cm == pytest.approx(ASD_1S5_3P2, rel=1e-6), (
+        'the shipped entry implies a level energy of %.4f cm^-1, not the ASD 1s5 value'
+        % shipped_cm)
+    assert shipped_cm / CM_PER_EV == pytest.approx(11.548, abs=1e-3)
+
+    # The 1s3 partner is a property of the entry's own alternatives table, not of a
+    # constant this file happens to hold.
+    levels = _levels_from_entry(entry)
+    assert levels['1s3'][0] / CM_PER_EV == pytest.approx(11.723, abs=1e-3)
 
 
 def test_the_entry_is_neutral_so_no_electron_convention_enters(entry):
@@ -403,42 +451,86 @@ def test_without_this_library_the_species_cannot_exist_at_all(estimator_only):
 # 4. The lumping arithmetic, and the correction this ticket made to it
 # =====================================================================================
 
-def test_the_two_metastable_levels_are_separated_by_the_asd_gap():
-    d_cm = ASD_1S3_3P0 - ASD_1S5_3P2
-    assert d_cm == pytest.approx(1409.9052, abs=1e-4)
+def test_the_two_metastable_levels_are_separated_by_the_asd_gap(entry):
+    """Repointed at the shipped entry. This used to difference two module constants and
+    could therefore not notice a wrong level table in the file.
+
+    The gap is now taken from the entry's own alternatives table, and the table's 1s5 row
+    is cross-checked against the entry's H298 - so a level energy that drifts anywhere in
+    the file, in the table or in the data, makes this red."""
+    levels = _levels_from_entry(entry)
+    assert levels['1s5'][0] == pytest.approx(ASD_1S5_3P2, abs=1e-3)
+    assert levels['1s3'][0] == pytest.approx(ASD_1S3_3P0, abs=1e-3)
+    # the table's own 1s5 row must agree with the shipped data, not merely with ASD
+    assert levels['1s5'][2] == pytest.approx(entry.data.get_enthalpy(T0) / 1000.0, abs=1e-3)
+    assert levels['1s5'][1] == 5
+
+    d_cm = levels['1s3'][0] - levels['1s5'][0]
+    assert d_cm == pytest.approx(_quoted(entry, r'dE\(1s3 - 1s5\) = ([0-9.]+) cm\^-1'),
+                                 abs=1e-4)
     assert d_cm / CM_PER_EV == pytest.approx(0.1748, abs=1e-4)
     assert d_cm * HC_NA / 1000.0 == pytest.approx(16.8662, abs=1e-3)
     assert R * T0 / 1000.0 == pytest.approx(2.478957, abs=1e-6)
     assert math.exp(-(d_cm * HC_NA) / (R * T0)) == pytest.approx(1.1096e-3, rel=1e-3)
 
 
-def test_r_ln_q_alone_understates_the_lumping_difference_by_almost_eightfold():
+def test_r_ln_q_alone_understates_the_lumping_difference_by_almost_eightfold(entry):
     """The correction this ticket returned. The electronic entropy of a manifold is
     ``R ln Q + R <E>/RT``; the brief's route carried only the first term. At 298.15 K
     the omitted term is seven times the one kept, because the second level is high and
-    thinly populated - exactly the regime where the <E> term dominates."""
-    d_kj = (ASD_1S3_3P0 - ASD_1S5_3P2) * HC_NA / 1000.0
-    levels = [(5, 0.0), (1, d_kj)]
-    s_lump, h_lump, cp_lump = _electronic(levels, T0)
-    s_single = R * math.log(5.0)
-    q = 5.0 + math.exp(-d_kj * 1000.0 / (R * T0))
+    thinly populated - exactly the regime where the <E> term dominates.
 
-    r_ln_q_only = R * math.log(q / 5.0)
+    Repointed at the shipped entry twice over: the level energies come from the entry's
+    own table, and the two term magnitudes are read out of the entry's own prose rather
+    than retyped here. The arithmetic used to run entirely on module constants, so it
+    proved the formula and said nothing about the file."""
+    table = _levels_from_entry(entry)
+    d_kj = (table['1s3'][0] - table['1s5'][0]) * HC_NA / 1000.0
+    levels = [(table['1s5'][1], 0.0), (table['1s3'][1], d_kj)]
+    s_lump, h_lump, cp_lump = _electronic(levels, T0)
+    g_single = table['1s5'][1]
+    s_single = R * math.log(g_single)
+    q = g_single + math.exp(-d_kj * 1000.0 / (R * T0))
+
+    r_ln_q_only = R * math.log(q / g_single)
     assert r_ln_q_only == pytest.approx(0.00185, abs=1e-5)
     assert s_lump - s_single == pytest.approx(0.01440, abs=1e-5)
     assert (s_lump - s_single) / r_ln_q_only == pytest.approx(7.8, abs=0.1)
     assert h_lump == pytest.approx(0.00374, abs=1e-5)
     assert cp_lump == pytest.approx(0.0854, abs=1e-3)
 
+    # ... and the entry's own prose must carry the same three magnitudes, to the digits
+    # it prints them at. This is the half that makes a wrong SHIPPED number red.
+    assert _quoted(entry, r'298\.15 K :\s*([0-9.]+) J/\(mol\*K\)') == pytest.approx(
+        s_lump - s_single, abs=5e-5)
+    assert _quoted(entry, r'R\*ln term ([0-9.]+)') == pytest.approx(r_ln_q_only, abs=5e-5)
+    assert _quoted(entry, r'<E>/RT term ([0-9.]+)') == pytest.approx(
+        (s_lump - s_single) - r_ln_q_only, abs=5e-5)
+    assert _quoted(entry, r'low by ([0-9.]+)x') == pytest.approx(
+        (s_lump - s_single) / r_ln_q_only, abs=0.1)
 
-def test_where_the_lumping_difference_crosses_the_precision_we_quote():
+
+def test_where_the_lumping_difference_crosses_the_precision_we_quote(entry):
     """S298 is written to 0.001 J/(mol*K) here. The lumping difference is BELOW that only
     under about 207 K - so at the reference temperature the choice is worth 14 last-digits,
     not the ~2 the brief's one-term arithmetic implied. It reaches 1 J/(mol*K) near 1561 K
-    and 1.46 at 6000 K."""
-    d_kj = (ASD_1S3_3P0 - ASD_1S5_3P2) * HC_NA / 1000.0
-    levels = [(5, 0.0), (1, d_kj)]
-    s_single = R * math.log(5.0)
+    and 1.46 at 6000 K.
+
+    Repointed at the shipped entry: the levels come from the entry's own table, the four
+    crossing temperatures are read out of the entry's own sentence, and the precision the
+    whole argument is measured against is taken from how many decimals the entry's S298 is
+    actually written to. Previously all of that was module constants against module
+    constants, which is an arithmetic check wearing a data check's name."""
+    table = _levels_from_entry(entry)
+    d_kj = (table['1s3'][0] - table['1s5'][0]) * HC_NA / 1000.0
+    levels = [(table['1s5'][1], 0.0), (table['1s3'][1], d_kj)]
+    s_single = R * math.log(table['1s5'][1])
+
+    # The precision this test is named for, taken from the entry rather than asserted.
+    shipped_s298 = entry.data.get_entropy(T0)
+    assert shipped_s298 == pytest.approx(ENTERED_S298, abs=1e-3)
+    quoted_precision = _quoted(entry, r'([0-9.]+) J/\(mol\*K\) precision at which S298')
+    assert quoted_precision == pytest.approx(0.001, rel=1e-9)
 
     def excess(T):
         return _electronic(levels, T)[0] - s_single
@@ -457,6 +549,15 @@ def test_where_the_lumping_difference_crosses_the_precision_we_quote():
     assert crossing(0.01) == pytest.approx(281.0, abs=0.5)
     assert crossing(0.1) == pytest.approx(449.1, abs=0.5)
     assert crossing(1.0) == pytest.approx(1560.5, abs=1.0)
+
+    # ... and the entry must state the same four crossings, so the file and the
+    # arithmetic cannot drift apart silently.
+    assert _quoted(entry, r'below one last-digit only\s*\n?\s*under about ([0-9]+) K'
+                   ) == pytest.approx(crossing(quoted_precision), abs=1.0)
+    for threshold, pattern in ((0.01, r'It crosses 0\.01 at ([0-9]+) K'),
+                               (0.1, r'0\.1 at ([0-9]+) K'),
+                               (1.0, r'1\.0 at ([0-9]+) K')):
+        assert _quoted(entry, pattern) == pytest.approx(crossing(threshold), abs=1.5)
     assert excess(6000.0) == pytest.approx(1.4594, abs=1e-3)
 
 
@@ -619,13 +720,77 @@ def test_with_every_library_loaded_the_anchor_is_whatever_os_walk_put_first(ther
           'carrier spread %.4f' % (winner, AR_CARRIERS[winner], spread))
 
 
-def test_no_deck_or_dictionary_DECLARES_the_metastable(pinned):
-    """A weak but still meaningful check: no species dictionary or group adjacency list in
-    the kinetics tree contains this structure, so nothing ships it as a named species.
+def test_the_anchor_error_the_engine_delivers_is_the_one_the_library_discloses(entry, thermo_db):
+    """The detector the load-order hazard did not have.
+
+    The two tests above pin the RULE (first carrier in library_order wins) and the
+    IDENTITY (the residual is that winner's own departure from JANAF). Neither notices
+    if the anchor moves: both are satisfied by whichever library happens to win. So the
+    hazard was disclosed in the entry, correct at the time of writing, and nothing would
+    have gone red when it stopped being correct - which is exactly how the superseded
+    ``dS = 13.5027 / +0.1211`` pair survived the move to a ``NASA`` form and sat in the
+    file beside the new numbers.
+
+    This reads the pair the entry DISCLOSES out of its own text and compares it with what
+    the engine delivers right now, with every library loaded. It goes red when either
+    moves: when the file drifts from the measurement, and when the resolved ground state
+    changes. The identity of the winner is deliberately still not asserted - what is
+    asserted is that the file and the runtime agree about the consequence.
+
+    This does NOT close the hazard. Closing it means either re-anchoring ``BurkeH2O2`` or
+    giving RMG a way to require a ground-state anchor, and both are other tickets. It
+    makes the hazard loud."""
+    import re
+
+    text = entry.long_desc
+    assert '13.5027' not in text and '+0.1211' not in text, (
+        'the superseded ThermoData-form anchor numbers are still in the file, next to '
+        'the current ones - a reader now has two and no way to tell which is live')
+
+    d_h_match = re.search(r'dH298\(Ar -> Ar\(3P2\)\)\s*=\s*([0-9.]+)\s*kJ/mol', text)
+    d_s_match = re.search(r'dS298\(Ar -> Ar\(3P2\)\)\s*=\s*([0-9.]+)\s*J/\(mol\*K\)', text)
+    assert d_h_match and d_s_match, 'the entry must disclose the delivered dH298 and dS298'
+    disclosed_h = float(d_h_match.group(1))
+    disclosed_s = float(d_s_match.group(1))
+
+    ar = thermo_db.get_thermo_data(_species(AR, 'Ar'))
+    meta = thermo_db.get_thermo_data(_species(AR_META, 'Ar(3P2)'))
+    winner = ar.comment.split('Thermo library: ')[1].split('\n')[0].strip()
+    measured_h = (meta.get_enthalpy(T0) - ar.get_enthalpy(T0)) / 1000.0
+    measured_s = meta.get_entropy(T0) - ar.get_entropy(T0)
+
+    moved = ('the ground-state anchor now resolves to %r (S298 = %.4f). The entry '
+             'discloses dH = %.4f / dS = %.4f; the engine delivers %.4f / %.4f. Either '
+             'the anchor moved or the disclosure drifted - re-measure it and rewrite the '
+             'paragraph, do not widen this tolerance.'
+             % (winner, ar.get_entropy(T0), disclosed_h, disclosed_s,
+                measured_h, measured_s))
+    assert measured_h == pytest.approx(disclosed_h, abs=1e-3), moved
+    assert measured_s == pytest.approx(disclosed_s, abs=1e-3), moved
+
+    # ... and the residual the entry quotes is the one that follows from the pair.
+    residual = measured_s - R * math.log(5.0)
+    assert '+%.4f' % residual in text, (
+        'the entry quotes an entropy residual that is not %+.4f' % residual)
+    print('\n  anchor %r: delivered dH = %.4f kJ/mol, dS = %.4f J/(mol*K), '
+          'residual %+.4f - and the entry says so' % (winner, measured_h, measured_s,
+                                                      residual))
+
+
+def test_the_only_kinetics_files_that_MENTION_the_metastable_are_the_five_containments(pinned):
+    """A weak but still meaningful check: nothing in the kinetics tree ships this structure
+    as a named species or a reacting group.
 
     It is NOT a reachability check, and an earlier version of this file wrongly used it as
     one. Families match GROUPS, so a literal search cannot see a template match. The real
-    question is answered by generation, below."""
+    question is answered by generation, below.
+
+    The expected set is no longer empty, and that is the point of the change it records:
+    five ordinary families now carry a ``forbidden`` group for this structure. Those five
+    lines are the ONLY places it may appear - a sixth would mean something started
+    declaring metastable argon as reacting chemistry, which is exactly what this check is
+    for. The assertion is against the set, not against emptiness, so it fails either way:
+    if one of the five disappears, or if a sixth arrives."""
     declared = []
     for root, _dirs, files in os.walk(KINETICS_DIR):
         for name in files:
@@ -640,7 +805,22 @@ def test_no_deck_or_dictionary_DECLARES_the_metastable(pinned):
                 stripped = line.strip()
                 if stripped.split(maxsplit=1)[0].rstrip('.').isdigit():
                     declared.append((os.path.relpath(path, THIS_DATABASE), stripped))
-    assert declared == [], declared
+
+    expected = sorted(
+        ('kinetics/families/%s/groups.py' % family, '1 %s Ar u2 p3 c0' % label)
+        for family, label in CONTAINED_FAMILIES.items())
+    assert sorted(declared) == expected, sorted(declared)
+
+    # ... and each of those lines is inside a forbidden() block, not a reacting group.
+    for family in CONTAINED_FAMILIES:
+        path = os.path.join(KINETICS_DIR, 'families', family, 'groups.py')
+        with open(path, encoding='utf-8') as handle:
+            text = handle.read()
+        head, _sep, tail = text.partition('1 %s Ar u2 p3 c0' % CONTAINED_FAMILIES[family])
+        assert head.rstrip().endswith('"""'), family
+        assert 'forbidden(' in head.rsplit('entry(', 1)[-1], (
+            '%s: the argon group must sit in a forbidden() block, not an entry()' % family)
+        assert tail.lstrip().startswith('"""'), family
 
 
 # ---- reachability: the round-55 HIGH-2 measurement -----------------------------------
@@ -663,13 +843,19 @@ def kinetics_db(pinned):
     return db
 
 
-def test_the_metastable_is_REACHABLE_and_exactly_one_family_reaches_it(kinetics_db):
-    """Round 55, HIGH-2, and the finding this file got most wrong first time.
+def test_exactly_one_PLASMA_family_reaches_it_which_is_not_the_same_as_one_family(kinetics_db):
+    """Round 55, HIGH-2, kept - and renamed, because its old name overstated it.
 
     Loading this library does not add an isolated number: it activates a stepwise
-    ionisation channel for argon. Measured by generating, not by grepping - the previous
+    ionisation channel for argon. Measured by generating, not by grepping - an earlier
     version of this check searched kinetics files for the literal adjacency text, which
-    could never have found a template match because families match groups."""
+    could never have found a template match because families match groups.
+
+    What this test measures is a statement about the SIX PLASMA families, and that is all
+    it ever measured. It used to be called ``..._and_exactly_one_family_reaches_it`` and
+    the library repeated that phrasing; with six of 140 families loaded, the denominator
+    was never there. The all-families measurement is the next test, and it finds five
+    more. Both are true; only one of them was being quoted."""
     hits = {}
     for name in PLASMA_FAMILIES:
         reactions = kinetics_db.generate_reactions_from_families(
@@ -678,6 +864,7 @@ def test_the_metastable_is_REACHABLE_and_exactly_one_family_reaches_it(kinetics_
         if reactions:
             hits[name] = reactions
     assert list(hits) == [EII], sorted(hits)
+    assert len(PLASMA_FAMILIES) == 6, 'the denominator this test speaks for'
 
     reactions = hits[EII]
     assert len(reactions) == 1
@@ -689,6 +876,382 @@ def test_the_metastable_is_REACHABLE_and_exactly_one_family_reaches_it(kinetics_
     assert len(rxn.products) == 1
     product = rxn.products[0].molecule[0]
     assert product.is_isomorphic(Molecule().from_adjacency_list(ARP))
+
+
+# ---- reachability over ALL families: the measurement with its denominator ------------
+#
+# The block above is a measurement of six families. This one is the measurement of the
+# database, and it finds five more - every one of them an ordinary combustion family that
+# builds a covalently bonded argon and then dies in get_thermo_data. Full sweep, 50
+# partners, in docs/argon-metastable-thermo/{all_family_reachability,silent_number}_probe.py;
+# the tests here use the minimum partner set that exhibits each of the five, so the suite
+# does not pay for the full sweep on every run.
+
+#: One partner per ordinary family that reaches this species, chosen to be the cheapest
+#: witness of each. The full 50-partner sweep is in the probes.
+ORDINARY_WITNESSES = [
+    ('H', 'multiplicity 2\n1 H u1 p0 c0\n', 'Birad_R_Recombination'),
+    ('N2', '1 N u0 p1 c0 {2,T}\n2 N u0 p1 c0 {1,T}\n', 'R_Addition_MultipleBond'),
+    ('C2H5', 'multiplicity 2\n1 C u0 p0 c0 {2,S} {3,S} {4,S} {5,S}\n'
+             '2 C u1 p0 c0 {1,S} {6,S} {7,S}\n3 H u0 p0 c0 {1,S}\n4 H u0 p0 c0 {1,S}\n'
+             '5 H u0 p0 c0 {1,S}\n6 H u0 p0 c0 {2,S}\n7 H u0 p0 c0 {2,S}\n',
+     'Disproportionation'),
+    ('HCO', 'multiplicity 2\n1 C u1 p0 c0 {2,D} {3,S}\n2 O u0 p2 c0 {1,D}\n'
+            '3 H u0 p0 c0 {1,S}\n', 'CO_Disproportionation'),
+    ('HCl', '1 Cl u0 p3 c0 {2,S}\n2 H u0 p0 c0 {1,S}\n', 'Cl_Abstraction'),
+]
+
+
+@pytest.fixture(scope='module')
+def all_families_db(pinned):
+    """Every family this database ships, not a hand-picked subset. The whole point."""
+    from rmgpy.data.kinetics.database import KineticsDatabase
+    db = KineticsDatabase()
+    db.load_families(os.path.join(THIS_DATABASE, 'kinetics', 'families'),
+                     families='all', depositories=['training'])
+    return db
+
+
+CONTAINED_FAMILIES = {'Birad_R_Recombination': '*2',
+                      'R_Addition_MultipleBond': '*3',
+                      'Disproportionation': '*1',
+                      'CO_Disproportionation': '*1',
+                      'Cl_Abstraction': '*3'}
+CONTAINMENT = 'Ar_metastable_biradical'
+
+#: What each contained family exists FOR. If the containment moves one of these it is not a
+#: containment, it is a regression. Birad_R_Recombination's three are the ones its own
+#: forbidden-group longDesc names.
+CONTAINMENT_CONTROLS = [
+    ('Birad_R_Recombination', 'multiplicity 3\n1 O u2 p2 c0\n',
+     'multiplicity 2\n1 C u1 p0 c0 {2,S} {3,S} {4,S}\n2 H u0 p0 c0 {1,S}\n'
+     '3 H u0 p0 c0 {1,S}\n4 H u0 p0 c0 {1,S}\n'),
+    ('Birad_R_Recombination', 'multiplicity 3\n1 S u2 p2 c0\n',
+     'multiplicity 2\n1 C u1 p0 c0 {2,S} {3,S} {4,S}\n2 H u0 p0 c0 {1,S}\n'
+     '3 H u0 p0 c0 {1,S}\n4 H u0 p0 c0 {1,S}\n'),
+    ('Birad_R_Recombination', 'multiplicity 3\n1 N u2 p1 c0 {2,S}\n2 H u0 p0 c0 {1,S}\n',
+     'multiplicity 2\n1 C u1 p0 c0 {2,S} {3,S} {4,S}\n2 H u0 p0 c0 {1,S}\n'
+     '3 H u0 p0 c0 {1,S}\n4 H u0 p0 c0 {1,S}\n'),
+    ('R_Addition_MultipleBond', 'multiplicity 2\n1 H u1 p0 c0\n',
+     '1 C u0 p0 c0 {2,D} {3,S} {4,S}\n2 C u0 p0 c0 {1,D} {5,S} {6,S}\n'
+     '3 H u0 p0 c0 {1,S}\n4 H u0 p0 c0 {1,S}\n5 H u0 p0 c0 {2,S}\n6 H u0 p0 c0 {2,S}\n'),
+    ('Disproportionation', 'multiplicity 2\n1 C u1 p0 c0 {2,S} {3,S} {4,S}\n'
+     '2 H u0 p0 c0 {1,S}\n3 H u0 p0 c0 {1,S}\n4 H u0 p0 c0 {1,S}\n',
+     'multiplicity 2\n1 C u0 p0 c0 {2,S} {3,S} {4,S} {5,S}\n'
+     '2 C u1 p0 c0 {1,S} {6,S} {7,S}\n3 H u0 p0 c0 {1,S}\n4 H u0 p0 c0 {1,S}\n'
+     '5 H u0 p0 c0 {1,S}\n6 H u0 p0 c0 {2,S}\n7 H u0 p0 c0 {2,S}\n'),
+    ('CO_Disproportionation', 'multiplicity 2\n1 H u1 p0 c0\n',
+     'multiplicity 2\n1 C u1 p0 c0 {2,D} {3,S}\n2 O u0 p2 c0 {1,D}\n3 H u0 p0 c0 {1,S}\n'),
+    ('Cl_Abstraction', 'multiplicity 2\n1 C u1 p0 c0 {2,S} {3,S} {4,S}\n'
+     '2 H u0 p0 c0 {1,S}\n3 H u0 p0 c0 {1,S}\n4 H u0 p0 c0 {1,S}\n',
+     '1 Cl u0 p3 c0 {2,S}\n2 H u0 p0 c0 {1,S}\n'),
+]
+
+
+def _detach_containment(db):
+    """Lift the five ``forbidden`` entries off the LOADED objects, touching no file.
+
+    Used to show that the containment is what is doing the work - and, in the crash test,
+    to reach the failure it prevents. The same trick ``test_eii_quarantine`` uses for the
+    quarantine manifest, and for the same reason: the evidence that justifies a guard has
+    to stay reproducible after the guard exists."""
+    saved = {}
+    for family in CONTAINED_FAMILIES:
+        if family not in db.families:
+            continue                       # this caller loaded a subset; nothing to lift
+        forbidden = db.families[family].forbidden
+        saved[family] = forbidden.entries.pop(CONTAINMENT)
+    assert saved, 'nothing was detached, so whatever follows measures nothing'
+    return saved
+
+
+def _reattach_containment(db, saved):
+    for family, entry in saved.items():
+        db.families[family].forbidden.entries[CONTAINMENT] = entry
+
+
+def test_the_containment_is_written_where_each_family_already_says_it_belongs(all_families_db):
+    """Five ordinary families carry one ``forbidden`` entry each for metastable argon.
+
+    The label is asserted because it is load-bearing and silently so:
+    ``ForbiddenStructures.is_molecule_forbidden`` honours atom labels, so an UNLABELLED
+    ``1 Ar u2 p3 c0`` group matches nothing during generation - the molecule's argon is
+    already tagged by then and cannot map to an unlabelled group atom. Measured both ways
+    while writing this: unlabelled left every reaction in place.
+
+    Also asserted: ``Birad_R_Recombination``'s pre-existing forbidden groups still carry
+    the sentence that licenses the addition. If that charter is ever rewritten, the
+    justification for the new entry needs rewriting with it."""
+    assert len(all_families_db.families) >= 140, (
+        'the denominator: %d families loaded' % len(all_families_db.families))
+    for family, label in sorted(CONTAINED_FAMILIES.items()):
+        forbidden = all_families_db.families[family].forbidden
+        assert forbidden is not None and CONTAINMENT in forbidden.entries, family
+        group = forbidden.entries[CONTAINMENT].item
+        assert sorted(group.get_all_labeled_atoms()) == [label], (
+            '%s: the forbidden group must be labelled %s or it matches nothing'
+            % (family, label))
+
+    charter = all_families_db.families['Birad_R_Recombination'].forbidden
+    licence = ' '.join(e.long_desc or '' for e in charter.entries.values()).split()
+    assert 'instances' in licence and 'lone' in licence and 'forbidden' in licence, (
+        "Birad_R_Recombination's own forbidden groups used to say that instances with a "
+        "different number of lone pairs are forbidden; that sentence is the licence for "
+        "the argon entry and it is no longer there")
+
+
+def test_no_ordinary_family_reaches_the_metastable_any_more(all_families_db):
+    """The containment, measured - and measured to be the CAUSE, not a coincidence.
+
+    Three parts, and the middle one is what stops this being a check that cannot fail:
+
+      1. with the containment in place, no ordinary family generates from Ar(3P2);
+      2. with it detached from the loaded objects, all five come back - so the assertion
+         in (1) is doing work rather than describing a database that never matched;
+      3. the intended Plasma_Electron_Impact_Ionization channel is untouched throughout.
+
+    Full 50-partner sweep in docs/argon-metastable-thermo/containment_probe.py; the
+    witnesses here are the cheapest exhibit of each family."""
+    meta = _species(AR_META, 'Ar(3P2)')
+
+    def reached():
+        found = {}
+        for label, adj, _family in ORDINARY_WITNESSES:
+            for rxn in all_families_db.generate_reactions_from_families(
+                    [meta, _species(adj, label)], products=None, resonance=True):
+                found.setdefault(rxn.family, set()).add(label)
+        return found
+
+    # 1. contained
+    contained = reached()
+    assert sorted(set(contained) - {EII}) == [], (
+        'these ordinary families still reach Ar(3P2): %s' % sorted(contained))
+
+    # 2. and the containment is why
+    saved = _detach_containment(all_families_db)
+    try:
+        uncontained = reached()
+    finally:
+        _reattach_containment(all_families_db, saved)
+    assert sorted(set(uncontained) - {EII}) == sorted(CONTAINED_FAMILIES), (
+        'detaching the forbidden entries must bring all five families back; got %s'
+        % sorted(uncontained))
+    for label, _adj, family in ORDINARY_WITNESSES:
+        assert label in uncontained[family], (label, family)
+
+    # 3. re-attached, and the one channel this species is supposed to have still works
+    assert sorted(set(reached()) - {EII}) == []
+    uni = all_families_db.generate_reactions_from_families(
+        [meta], products=None, resonance=True)
+    assert [r.family for r in uni] == [EII]
+
+
+def test_the_containment_does_not_move_the_chemistry_those_families_exist_for(all_families_db):
+    """A containment that took real chemistry with it would be a regression wearing a
+    fix's name. Each pair below is chemistry the family is FOR, and each must generate.
+
+    ``[H] + HCl`` under ``Cl_Abstraction`` is deliberately NOT in this list: it generates
+    zero reactions with the containment and generated zero without it too - it is the
+    degenerate identity reaction. That was measured on the reverted file rather than
+    assumed, and it is recorded in ``containment_probe.py`` rather than quietly dropped."""
+    for family, adj_a, adj_b in CONTAINMENT_CONTROLS:
+        rxns = [r for r in all_families_db.generate_reactions_from_families(
+            [_species(adj_a, 'a'), _species(adj_b, 'b')], products=None, resonance=True)
+            if r.family == family]
+        assert rxns, '%s lost %s + %s' % (family, adj_a.split()[-4], adj_b.split()[-4])
+
+
+def test_the_products_those_families_used_to_build_still_have_no_thermo(all_families_db,
+                                                                        thermo_db):
+    """The containment hides the crash; it does not make the structures representable.
+
+    With the forbidden entries detached, every argon-bearing product these families build
+    still raises ``AtomTypeError`` in ``get_thermo_data``. That is the finding the
+    containment is a response to, and it stays measurable after the response exists -
+    otherwise the only evidence for the fix would be the fix."""
+    meta = _species(AR_META, 'Ar(3P2)')
+    saved = _detach_containment(all_families_db)
+    try:
+        crashed = 0
+        for label, adj, family in ORDINARY_WITNESSES:
+            rxns = [r for r in all_families_db.generate_reactions_from_families(
+                [meta, _species(adj, label)], products=None, resonance=True)
+                if r.family == family]
+            assert rxns, '%s + %s generated nothing to test' % (family, label)
+            for rxn in rxns:
+                argon = [p for p in rxn.products
+                         if any(a.element.symbol == 'Ar' for a in p.molecule[0].atoms)]
+                assert argon, '%s + %s produced no argon at all' % (family, label)
+                for prod in argon:
+                    fresh = Species(molecule=[prod.molecule[0].copy(deep=True)])
+                    with pytest.raises(AtomTypeError):
+                        thermo_db.get_thermo_data(fresh)
+                    crashed += 1
+    finally:
+        _reattach_containment(all_families_db, saved)
+    assert crashed >= 5, crashed
+
+
+def test_a_covalent_neutral_argon_cannot_be_given_a_number_by_construction(thermo_db):
+    """The "silent bad rate" question, answered structurally rather than by exhaustion.
+
+    A crash stops a job. A NUMBER would be far worse - it reaches a published mechanism
+    with nothing raising - so the question is whether any of these paths can produce one.
+    It cannot, and the reason does not depend on which partners anyone tried:
+
+      1. RMG refuses ``1 Ar u0 p3 c0 {2,S}`` as an invalid valency, so a neutral argon
+         carrying a covalent bond is necessarily a RADICAL;
+      2. a radical's thermo is estimated by HBI, which saturates the radical site first;
+      3. saturating a one-bond argon gives a two-bond argon, which has no atom type.
+
+    All three are asserted. The 50-partner sweep agrees (``silent_number_probe.py``:
+    exactly one of 67 reactions has all products resolvable, and it is the intended
+    ionisation channel, which is quarantined).
+
+    Negative control included: an ordinary radical must come back with a number, or this
+    test is measuring its own setup."""
+    from rmgpy.exceptions import InvalidAdjacencyListError
+
+    # (0) control
+    control = thermo_db.get_thermo_data(_species(
+        'multiplicity 2\n1 C u1 p0 c0 {2,S} {3,S} {4,S}\n2 H u0 p0 c0 {1,S}\n'
+        '3 H u0 p0 c0 {1,S}\n4 H u0 p0 c0 {1,S}\n', 'CH3'))
+    assert control.get_enthalpy(T0) > 0.0
+
+    # (1) a closed-shell singly-bonded neutral argon does not exist
+    with pytest.raises(InvalidAdjacencyListError):
+        Molecule().from_adjacency_list('1 Ar u0 p3 c0 {2,S}\n2 H u0 p0 c0 {1,S}\n')
+
+    # (2)+(3) so every covalent neutral argon is a radical, and HBI kills it
+    for adj in ('multiplicity 2\n1 Ar u1 p3 c0 {2,S}\n2 H u0 p0 c0 {1,S}\n',
+                'multiplicity 3\n1 Ar u1 p3 c0 {2,S}\n2 Ar u1 p3 c0 {1,S}\n',
+                'multiplicity 2\n1 Ar u1 p3 c0 {2,S}\n2 C u0 p0 c0 {1,S} {3,S} {4,S} {5,S}\n'
+                '3 H u0 p0 c0 {2,S}\n4 H u0 p0 c0 {2,S}\n5 H u0 p0 c0 {2,S}\n'):
+        mol = Molecule().from_adjacency_list(adj)
+        assert [a.atomtype.label for a in mol.atoms][0] == 'Ar0s', (
+            'the molecule itself types fine; the failure is downstream, in HBI')
+        with pytest.raises(AtomTypeError):
+            thermo_db.get_thermo_data(Species(molecule=[mol]))
+
+    # ... and the thing HBI builds is itself unconstructible, which is the mechanism
+    with pytest.raises(AtomTypeError):
+        Molecule().from_adjacency_list(
+            '1 Ar u0 p3 c0 {2,S} {3,S}\n2 H u0 p0 c0 {1,S}\n3 H u0 p0 c0 {1,S}\n')
+
+    # The one bond-free argon a family does produce is the one that DOES resolve, and it
+    # is the intended channel - so the contrast is pinned rather than assumed.
+    arp = thermo_db.get_thermo_data(_species(ARP, 'Ar+'))
+    assert 'Thermo library: %s' % CATION_LIBRARY in arp.comment
+
+
+def test_the_crash_would_fire_before_any_kinetics_quarantine_could_intercept_it(pinned):
+    """Why "quarantine the families that turned red" was never an available fix, measured
+    rather than argued - and why the containment had to be a ``forbidden`` group instead.
+
+    The quarantine gate lives in ``apply_kinetics_to_reaction``. Product thermo is
+    generated earlier, inside ``make_new_species`` (``model.py:569`` -> ``:401``), which
+    ``make_new_reaction`` calls before it reaches the kinetics gate. So a manifest on
+    ``Birad_R_Recombination`` would have refused a rate the job never survives to ask for.
+    A ``forbidden`` group runs earlier still, during generation, which is why it works.
+
+    Run through the shipped enlargement path with nothing patched but two recorders, with
+    an ordinary reaction as the control, and with the containment detached so the failure
+    it prevents is still reachable and still measured."""
+    pytest.importorskip('rmgpy.rmg.model')
+    from rmgpy.data.rmg import RMGDatabase
+    from rmgpy.rmg.model import CoreEdgeReactionModel
+
+    db = RMGDatabase()
+    db.load(THIS_DATABASE,
+            thermo_libraries=['primaryThermoLibrary', LIBRARY, CATION_LIBRARY],
+            kinetics_families=['Birad_R_Recombination', 'R_Recombination'],
+            reaction_libraries=[], seed_mechanisms=[], kinetics_depositories=['training'],
+            depository=False, solvation=True, surface=False)
+    # The containment now prevents the reaction that produces the crash, so it is lifted
+    # off the loaded object to reach the failure it exists to prevent. Touches no file.
+    saved = _detach_containment(db.kinetics)
+
+    order = []
+    orig_thermo = CoreEdgeReactionModel.generate_thermo
+    orig_kinetics = CoreEdgeReactionModel.apply_kinetics_to_reaction
+
+    def traced_thermo(self, spc, rename=False):
+        order.append('generate_thermo')
+        return orig_thermo(self, spc, rename=rename)
+
+    def traced_kinetics(self, reaction):
+        order.append('apply_kinetics_to_reaction')
+        return orig_kinetics(self, reaction)
+
+    CoreEdgeReactionModel.generate_thermo = traced_thermo
+    CoreEdgeReactionModel.apply_kinetics_to_reaction = traced_kinetics
+    try:
+        def run(reactants):
+            del order[:]
+            cerm = CoreEdgeReactionModel()
+            cerm.kinetics_estimator = 'rate rules'
+            rxns = db.kinetics.generate_reactions_from_families(
+                reactants, products=None, resonance=True)
+            assert rxns, 'nothing generated, so this measures nothing'
+            cerm.process_new_reactions(rxns, reactants[0])
+
+        # control: an ordinary pair must go through, and must show the ordering
+        h = _species('multiplicity 2\n1 H u1 p0 c0\n', 'H')
+        ch3 = _species('multiplicity 2\n1 C u1 p0 c0 {2,S} {3,S} {4,S}\n'
+                       '2 H u0 p0 c0 {1,S}\n3 H u0 p0 c0 {1,S}\n4 H u0 p0 c0 {1,S}\n', 'CH3')
+        run([ch3, h])
+        assert order, 'nothing was recorded'
+        assert order[0] == 'generate_thermo', order[:4]
+        assert 'apply_kinetics_to_reaction' in order
+        assert order.index('generate_thermo') < order.index('apply_kinetics_to_reaction'), (
+            'product thermo must run BEFORE the kinetics gate, or a quarantine could help')
+
+        # the real case: the same path raises, and raises in thermo
+        with pytest.raises(AtomTypeError):
+            run([_species(AR_META, 'Ar(3P2)'), h])
+        assert 'apply_kinetics_to_reaction' not in order, (
+            'the job died before the kinetics gate was ever reached')
+    finally:
+        CoreEdgeReactionModel.generate_thermo = orig_thermo
+        CoreEdgeReactionModel.apply_kinetics_to_reaction = orig_kinetics
+        _reattach_containment(db.kinetics, saved)
+
+
+def test_the_library_retracts_the_one_family_claim_and_carries_the_reach_figure(entry):
+    """A measurement that is not written down where the reader is does not protect
+    anybody. The entry's own text must carry the retraction, the denominator, the named
+    families, and the instruction that follows from them."""
+    text = entry.long_desc
+    assert 'RETRACTED' in text
+    assert '140' in text, 'the denominator must be stated, not implied'
+    for family in sorted(CONTAINED_FAMILIES):
+        assert family in text, family
+    assert 'AtomTypeError' in text
+    assert 'default' in text, 'whether a plain deck gets these families is the whole point'
+    # the silent-number question, answered in the file rather than only in a log
+    assert 'silent bad rate' in text
+    # the containment, what it is not, and what happens if its commit is dropped
+    assert 'forbidden' in text
+    assert 'its own commit' in text
+    assert 'atomtype.py' in text, 'the root cause must be named where the reader is'
+
+
+def test_four_of_the_five_ordinary_families_are_in_the_default_recommended_set(pinned):
+    """What decides whether this is exotic or routine. ``recommended.py``'s ``default`` is
+    the set a deck gets when it names no families at all, and four of the five ordinary
+    families that reach this species are in it. Read from the database's own file, so it
+    cannot drift from what RMG would load."""
+    namespace = {}
+    with open(os.path.join(KINETICS_DIR, 'families', 'recommended.py'),
+              encoding='utf-8') as handle:
+        exec(handle.read(), namespace)                       # noqa: S102
+    default = namespace['default']
+    ordinary = ['Birad_R_Recombination', 'R_Addition_MultipleBond', 'Disproportionation',
+                'CO_Disproportionation', 'Cl_Abstraction']
+    in_default = [f for f in ordinary if f in default]
+    assert len(in_default) == 4, in_default
+    assert 'Cl_Abstraction' not in default, (
+        'the one exception, named in the entry; if it joins default, say so there')
 
 
 def test_the_rate_that_channel_is_handed_is_a_rank_10_lithium_placeholder(kinetics_db):
@@ -833,16 +1396,37 @@ def test_thermodata_freezes_entropy_whenever_the_last_cp_slope_is_nonpositive(en
         which is not the condition that triggers the freeze.
 
     A flat Cp - exactly right for any monatomic species - is a nonpositive slope, so this
-    is not an exotic case. Constructed directly on ThermoData so it stays true of the CLASS
-    rather than of this entry."""
-    from rmgpy.thermo import ThermoData
+    is not an exotic case. Constructed on ThermoData so it stays true of the CLASS rather
+    than of this entry.
+
+    Repointed: the ``entry`` argument used to be declared and never touched, so this test
+    could not have noticed a wrong shipped value at all. The surrogate ThermoData is now
+    built from the SHIPPED Cp, H298 and S298, and the first thing asserted is that the
+    entry as shipped does NOT suffer from the defect - which is the reason it is a NASA,
+    and is the claim a reader of the longDesc is relying on."""
+    from rmgpy.thermo import NASA, ThermoData
+
+    # The shipped entry is a NASA, and out of range a NASA RAISES where a ThermoData
+    # silently freezes S and keeps returning numbers. That contrast is the whole reason
+    # this entry is immune, so it is asserted first: if the entry ever reverts to a
+    # ThermoData, these two lines fail before the class-level demonstration below runs.
+    assert isinstance(entry.data, NASA)
+    assert entry.data.get_entropy(6000.0) > entry.data.get_entropy(T0)
+    for T in (8000.0, 10000.0):
+        with pytest.raises(ValueError):
+            entry.data.get_entropy(T)
+
+    shipped_cp = entry.data.get_heat_capacity(T0)
+    shipped_h298 = entry.data.get_enthalpy(T0) / 1000.0
+    shipped_s298 = entry.data.get_entropy(T0)
+    assert shipped_cp == pytest.approx(2.5 * R, abs=1e-3)
 
     def _flat(grid, tmax):
         return ThermoData(
             Tdata=(list(grid), 'K'),
-            Cpdata=([2.5 * R] * len(grid), 'J/(mol*K)'),
-            H298=(ENTERED_H298, 'kJ/mol'), S298=(ENTERED_S298, 'J/(mol*K)'),
-            Cp0=(2.5 * R, 'J/(mol*K)'), CpInf=(2.5 * R, 'J/(mol*K)'),
+            Cpdata=([shipped_cp] * len(grid), 'J/(mol*K)'),
+            H298=(shipped_h298, 'kJ/mol'), S298=(shipped_s298, 'J/(mol*K)'),
+            Cp0=(shipped_cp, 'J/(mol*K)'), CpInf=(shipped_cp, 'J/(mol*K)'),
             Tmin=(298.15, 'K'), Tmax=(tmax, 'K'))
 
     # (a) The grid reaching the declared ceiling: the freeze starts at the ceiling, and

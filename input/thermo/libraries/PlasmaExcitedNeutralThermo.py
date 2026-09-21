@@ -68,25 +68,43 @@ WHAT THE READER MUST NOT ASSUME
 
 4. **No kinetics is added here, but kinetics is UNLOCKED here, and the two are different.** Not
    one reaction, family, training entry or rate ships in this file. But a thermo entry is what
-   makes a species real enough for a family to generate on, and measured, one does: loading this
-   library lets ``Plasma_Electron_Impact_Ionization`` produce ``Ar(3P2) => Ar+`` on a rank-10
-   placeholder rate generalised from lithium. An earlier draft of this file claimed the species
-   was unreachable; that claim was false and the grep that produced it could not have established
-   it.
+   makes a species real enough for a family to generate on, and measured, SIX do -- of 140
+   families loaded, not of the six plasma families an earlier version of this file counted.
+   One of the six is the intended ``Plasma_Electron_Impact_Ionization`` channel; the other five
+   are ORDINARY combustion families that build covalently bonded argon and then terminate the
+   job in ``get_thermo_data``. Two successive claims in this file have been wrong about this --
+   first "unreachable" (established by a grep, which cannot see a template match), then "exactly
+   one family reaches it" (established over a six-family subset). Read "THIS IS NOT AN INERT
+   ISLAND" in the entry's longDesc for the reach figure with its denominator, and do not load
+   this library beside ordinary combustion families until the engine-side atom-type gap is
+   closed.
 
 5. **THIS LIBRARY IS NOT FIT FOR QUANTITATIVE PLASMA USE TODAY, AND THE REASON IS NOT THESE
    NUMBERS.** The thermochemistry below is sourced and correct. The channel it unlocks is not:
    measured through actual reactor initialisation, the delivered rate for that ionisation is
    evaluated at the GAS temperature rather than the electron temperature, because the estimated
    ``Arrhenius`` it arrives as does not carry ``uses_electron_temperature`` and the reactor's
-   branch on that flag defaults to ``False``. The result is ~24 orders of magnitude too SMALL at
-   1000 K, and changing Te from 1 eV to 3 eV does not change it at all. Read "THIS IS NOT AN INERT
+   branch on that flag defaults to ``False``. Changing Te from 1 eV to 3 eV does not change the
+   delivered number at all -- that alone is disqualifying, and it needs no external comparison to
+   say so. For scale, entirely within this repository: the same rule evaluated AT Te = 3 eV gives
+   3.109200e+07 m^3/(mol*s), against 3.664598e-14 delivered at 1000 K gas -- 20.9 orders of
+   magnitude, the family's own rule measured against its own delivery. Read "THIS IS NOT AN INERT
    ISLAND" in the entry's longDesc before loading this library for anything but thermochemistry.
    The engine hole is filed separately and is not fixed here. What IS done, on the owner's ruling,
    is the containment: ``Plasma_Electron_Impact_Ionization`` now carries a quarantine manifest, so
    that rate is REFUSED at model admission rather than admitted silently. A refusal is not a
    repair - the channel remains unrepresented, and a runtime whose RMG-Py has no quarantine loader
    gets no refusal - so this library is still for thermochemistry only.
+
+6. **FIVE ORDINARY COMBUSTION FAMILIES REACHED THIS SPECIES AND KILLED THE JOB; THEY ARE NOW
+   CONTAINED, IN A SEPARATE COMMIT.** Measured over all 140 families: five ordinary ones matched
+   this species, built a covalently bonded argon, and raised ``AtomTypeError`` during thermo
+   generation, terminating the run. Four of the five are in ``recommended.py``'s ``default`` set,
+   so this was the default combination and not an exotic one. Each now carries a
+   ``forbidden(...)`` entry for ``Ar u2 p3 c0`` -- the mechanism those families already use for
+   off-scope reactants -- and the reachability measures 0 with 0 controls moved. That fix edits
+   five families every RMG user loads, so it is a separable commit; the root cause is still an
+   engine declaration and is reported, not worked around. Same longDesc section.
 """
 
 entry(
@@ -148,7 +166,16 @@ SOURCE
     which evaluates to S(298.15) = 154.846 J/(mol*K) and Cp = 20.786 J/(mol*K), agreeing with
     JANAF Ar-001 to 0.001 J/(mol*K). (Measured, not asserted.)
 
-THE THREE NUMBERS, ONE LINE OF ARITHMETIC EACH
+THE THREE NUMBERS, ONE LINE OF ARITHMETIC EACH -- AND THEY CHECK THE ARITHMETIC, NOT THE PHYSICS
+    Stated before the three, because it changes what they are worth. These are CONSTRUCTION
+    IDENTITIES, not three independent confirmations. H298 is the ASD level energy times h*c*N_A;
+    the eV cross-check below divides the SAME ASD energy by a unit conversion; S298 combines the
+    SAME level's J with JANAF's ground-state entropy. Each one confirms that the arithmetic which
+    produced a number reproduces that number. None of them would notice if the wrong ASD level had
+    been transcribed -- only the level-identification argument under QUESTION 1 does that. They are
+    worth having, and are pinned by tests, for what they actually are: a guard against
+    transcription slips, unit errors, and drift between this file and the report.
+
     Cp(T) = 5/2 R = 20.786 J/(mol*K), exact at every T. A free monatomic species pinned to one
         electronic level has translational degrees of freedom and nothing else; there is no
         rotation, no vibration, and -- this is the part specific to a single level -- no
@@ -478,11 +505,25 @@ WHERE THIS RECIPE BREAKS IF IT IS REUSED CARELESSLY
     cal/(mol*K), sitting 0.110 J/(mol*K) below JANAF's 154.845. So a mechanism that differences
     this entry against its own ground-state argon sees, measured end to end,
 
-        dH298(Ar -> Ar(3P2)) = 1114.2470 kJ/mol      against 1114.2468 exact   (agrees)
-        dS298(Ar -> Ar(3P2)) =   13.5027 J/(mol*K)   against   13.3816 exact   (+0.1211)
+        dH298(Ar -> Ar(3P2)) = 1114.2439 kJ/mol      against 1114.2468 exact   (-0.0029)
+        dS298(Ar -> Ar(3P2)) =   13.4922 J/(mol*K)   against   13.3816 exact   (+0.1106)
 
-    i.e. the enthalpy of excitation comes out right to 0.0002 kJ/mol while the entropy carries
-    +0.121 J/(mol*K), worth -0.036 kJ/mol in dG at 298.15 K. Anchoring this entry on BurkeH2O2
+    i.e. the enthalpy of excitation is low by 0.0029 kJ/mol while the entropy carries
+    +0.111 J/(mol*K), worth -0.033 kJ/mol in dG at 298.15 K. Both numbers MOVED when this entry
+    became a ``NASA``, and the direction is instructive rather than incidental. On the earlier
+    ``ThermoData`` form the entry carried the SAME +0.0031 kJ/mol and +0.0105 J/(mol*K)
+    298-versus-298.15 K field offset that ``BurkeH2O2`` carries, so in a DIFFERENCE the two
+    offsets cancelled and each residual was effectively a file-value-against-file-value
+    comparison. A ``NASA`` has no such field, so neither cancels any more: the enthalpy residual
+    is now the winner's own offset showing through, and the entropy residual has SHRUNK by that
+    same offset, because it is now measured against the winner on the API scale rather than on
+    the file scale. The asymmetry this entry warns about two paragraphs down is visible in its
+    own disclosure. **The superseded pair this paragraph used to quote -- measured on the
+    ``ThermoData`` form and left standing beside the new numbers -- is gone; it is recorded once,
+    as history, in ``docs/argon-metastable-thermo/report.md`` section 13.4, and nowhere else.**
+    Exactly one pair is live and it is the one above. ``test_argon_metastable_thermo.py`` pins it
+    against what the engine delivers, so the disclosure cannot drift from the measurement again,
+    and goes red if the resolved anchor moves. Anchoring this entry on BurkeH2O2
     instead would make that difference exact and this entry's own absolute S298 wrong by the same
     amount; the sourced table wins, and the artefact is disclosed here rather than hidden.
     Re-anchoring BurkeH2O2 is a different ticket and was deliberately not attempted.
@@ -630,21 +671,142 @@ THIS IS NOT AN INERT ISLAND. READ THIS BEFORE LOADING THE LIBRARY
     reactions and look at what comes back, which is now done
     (``docs/argon-metastable-thermo/reachability_probe.py``).
 
-    MEASURED. Of the six plasma families in this database, five generate nothing from this
-    species and one does:
+    AND THE SECOND VERSION OF THAT CLAIM WAS ALSO FALSE. It read "of the six plasma families in
+    this database, five generate nothing from this species and one does", and concluded that
+    exactly one family reaches the metastable. The six numbers in it were right. The conclusion
+    was not, because the DENOMINATOR was six and this database ships 140 loadable families. A
+    measurement over a hand-picked subset is a measurement of the subset, and the subset picked
+    was the one this ticket happened to care about. Stated plainly: the sentence "exactly one
+    family reaches it" is RETRACTED, and what replaces it is a measurement with its denominator
+    attached.
 
-        Plasma_Electron_Impact_Ionization  ->  [Ar] => [Ar+]
+    THE REACH FIGURE, MEASURED (``docs/argon-metastable-thermo/all_family_reachability_probe.py``
+    and ``silent_number_probe.py``, both streams in ``logs/``)::
+
+        family directories on disk                                  141 (140 + __pycache__)
+        families loaded by load_families(families='all')             140
+        ordinary gas-phase partners tried                             50
+        families that GENERATE something from Ar(3P2)                  6
+        reactions generated                                           67
+        reactions carrying a product whose thermo RAISES               66
+        reactions whose products ALL resolve to thermo                  1
+
+    The six::
+
+        Plasma_Electron_Impact_Ionization  ->  [Ar] => [Ar+]     unimolecular, the intended one
             template A_rad, degeneracy 1.0, electrons +1, irreversible
             products: multiplicity 2 | 1 Ar u1 p3 c+1
-        Plasma_Electron_Attachment                       ->  0
-        Plasma_Radiative_Recombination                   ->  0
-        Plasma_Associative_Ionization_Alkali_Alkali      ->  0
-        Plasma_Associative_Ionization_Alkali_Alkaline    ->  0
-        Plasma_Associative_Ionization_Alkaline_Alkaline  ->  0
+        Birad_R_Recombination    -> [Ar] + R.  <=> R-[Ar]        21 of the 50 partners
+        R_Addition_MultipleBond  -> [Ar] + A=B <=> [Ar]-A-[B]    14 of the 50 partners
+        Disproportionation       -> [Ar] + RH. <=> [ArH] + R      7 of the 50 partners
+        CO_Disproportionation    -> [Ar] + HCO <=> [ArH] + CO
+        Cl_Abstraction           -> [Ar] + HCl <=> [ArCl] + H
 
-    So loading this library alongside that family activates a STEPWISE IONISATION channel for
-    argon: Ar(3P2) + e- -> Ar+ + 2 e-, which is exactly the process that makes metastables matter
-    in a discharge. That is chemistry appearing, not a number sitting still.
+    The other five plasma families still generate nothing, exactly as measured before:
+    Plasma_Electron_Attachment, Plasma_Radiative_Recombination and the three
+    Plasma_Associative_Ionization_* families all return 0.
+
+    FOUR OF THE FIVE ORDINARY FAMILIES ARE IN ``recommended.py``'s ``default`` SET -- the set a
+    deck gets when it does not name families at all. Measured against that file:
+    Birad_R_Recombination, R_Addition_MultipleBond, Disproportionation and CO_Disproportionation
+    are all in ``default``; only Cl_Abstraction is not. So this is not an exotic combination that
+    a user would have to construct on purpose. It is the default one.
+
+    WHY THEY MATCH. ``Ar(3P2)`` is ``Ar u2 p3 c0`` -- two unpaired electrons -- and the atom type
+    that perceives it, ``Ar0e``, is declared in RMG-Py with
+    ``generic=['R', 'R!H', 'R!H!Val7', 'Rx', 'Rx!H', 'Ar']``. Every biradical and radical-addition
+    recipe in this database writes its reacting centre as one of those generics, so metastable
+    argon is inside all of them. Nothing in this library causes that and nothing in this library
+    can undo it.
+
+    WHAT HAPPENS NEXT, MEASURED THROUGH THE ENLARGEMENT PATH A REAL RUN USES
+    (``docs/argon-metastable-thermo/job_level_crash_probe.py``). ``CoreEdgeReactionModel``'s
+    ``process_new_reactions`` on ``Ar(3P2) + H``, with the ``default`` family set loaded and
+    nothing patched, raises::
+
+        AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds,
+                       ..., 3 lone pairs, and +0 charge.
+
+    from ``estimate_radical_thermo_via_hbi`` -> ``saturate_radicals`` (``thermo.py:2247``,
+    ``molecule.pyx:2534``), reached through ``make_new_species`` -> ``generate_thermo`` ->
+    ``submit`` (``model.py:401``, ``:1017``). A run that puts this species and ordinary families
+    in the same model TERMINATES during mechanism generation. The same probe runs ``CH3 + H``
+    through the identical path as a control and it completes cleanly, so the raise belongs to the
+    chemistry and not to the setup.
+
+    IT CANNOT BE A SILENT WRONG NUMBER, AND THAT IS ESTABLISHED STRUCTURALLY RATHER THAN BY
+    TRYING PARTNERS UNTIL ONE STOPS FAILING. A crash halts a job; a NUMBER would reach a
+    published mechanism with nothing raising, and would be far worse. Measured, it cannot happen
+    here, for a reason that does not depend on which partners were tried:
+
+        1. RMG refuses ``1 Ar u0 p3 c0 {2,S}`` outright -- "Invalid valency for atom Ar (Ar0s)
+           with 0 unpaired electrons, 3 pairs of electrons, 0 charge, and bonds [1.0]". So a
+           NEUTRAL argon carrying a covalent bond is necessarily a RADICAL (``Ar0s`` at u1).
+        2. A radical's thermo is estimated by HBI, which saturates the radical site before it
+           looks anything up.
+        3. Saturating a one-bond argon gives a two-bond argon, and no atom type exists for that.
+
+    So every covalent neutral argon this database can build fails, by construction. The sweep
+    agrees: of 66 distinct first-generation products, 57 raise and 9 return a number, and every
+    one of the 9 is a non-argon co-product (``C2H4``, ``CO``, ``CH2O``, ``[H]`` and the like) or
+    the bond-free ``Ar+``. Rolled up per REACTION -- which is the level at which "silent number"
+    is defined, since one failing product is enough to kill the job -- exactly ONE of the 67
+    reactions has all of its products resolvable, and it is the intended
+    ``Plasma_Electron_Impact_Ionization`` channel, which this family's quarantine manifest already
+    refuses. **There is no silent bad rate on this species today.** The failure mode is loud.
+
+    A KINETICS QUARANTINE CANNOT CLOSE THIS, AND THAT WAS MEASURED RATHER THAN ASSUMED. The
+    quarantine gate fires in ``apply_kinetics_to_reaction``. Product thermo is generated EARLIER,
+    inside ``make_new_species`` (``model.py:569`` -> ``:401``), which ``make_new_reaction`` calls
+    before it reaches the kinetics gate at ``model.py:628``. The probe instruments both functions
+    and records the order on the control run: four ``generate_thermo`` calls precede the first
+    ``apply_kinetics_to_reaction``. A manifest on ``Birad_R_Recombination`` would therefore refuse
+    a rate that the job never survives long enough to ask for. (Quarantining those five families
+    would also be wildly disproportionate -- they are the backbone of every combustion mechanism
+    RMG generates, and they are correct for all of their other chemistry.)
+
+    WHAT IS DONE ABOUT IT ON THIS BRANCH, AND WHY THAT IS NOT THE ROOT FIX. Each of the five
+    ordinary families now carries one ``forbidden(...)`` entry for metastable argon, in the
+    mechanism those families already use for off-scope reactants. ``Birad_R_Recombination``'s
+    existing forbidden groups say it in their own words -- "This family is intended to handle
+    [O] u2 p2, or [S] u2 p2, or [NH] u2 p1, instances with a different number of lone pairs are
+    forbidden" -- and ``Ar u2 p3`` is exactly such an instance, so this writes down a rule the
+    family already claims about itself rather than suppressing an inconvenient result. The
+    mechanism fires inside ``__generate_product_structures`` (``family.py:1669`` on reactants,
+    ``:1690`` on products), i.e. during GENERATION, which is the only place early enough.
+
+    Measured with it in place (``docs/argon-metastable-thermo/containment_probe.py``)::
+
+        ordinary families still reaching Ar(3P2)     0   (was 5)
+        Plasma_Electron_Impact_Ionization survives   yes
+        control reactions that disappeared           0   of 22
+
+    The controls are the chemistry each family exists FOR -- for ``Birad_R_Recombination``, the
+    three biradicals its own longDesc names: ``[O] + [CH3]``, ``[S] + [CH3]``, ``[NH] + [CH3]``,
+    all unmoved. One control, ``[H] + HCl`` under ``Cl_Abstraction``, reads zero both with and
+    without the containment: it is the degenerate identity reaction and RMG never generated it.
+    That was measured on the reverted file rather than assumed, and is recorded in the probe.
+
+    **TWO THINGS THIS CONTAINMENT IS NOT.** It is not the root fix: ``ATOMTYPES['Ar0e']`` is
+    declared generic under ``R``/``R!H`` in ``rmgpy/molecule/atomtype.py``, and narrowing that --
+    or giving argon a bonded atom type so these products become well-formed rather than merely
+    unreachable -- is the only repair that makes the reachability go away in general. That file
+    is in this campaign's gated lane, so it is REPORTED and not attempted. And it is not
+    complete: it closes the five families measured to reach this species against 50 partners, and
+    it cannot close a family nobody has generated against yet. A sixth would reopen the crash
+    exactly as before.
+
+    It also has a blast radius wider than this ticket -- five ordinary families that every RMG
+    user loads, four of them in ``default`` -- which is why it lands as its own commit, separable
+    from the thermochemistry. **If that commit is dropped, this paragraph becomes false and the
+    rule reverts to: do not load this library in a deck that also loads ordinary combustion
+    families.** ``test_argon_metastable_thermo.py`` asserts the containment holds, so dropping the
+    commit turns the suite red at the paragraph that needs rewriting rather than leaving a stale
+    claim behind.
+
+    WHAT LOADING IT WITH THE PLASMA FAMILIES ALONE DOES. It activates a STEPWISE IONISATION
+    channel for argon: Ar(3P2) + e- -> Ar+ + 2 e-, which is exactly the process that makes
+    metastables matter in a discharge. That is chemistry appearing, not a number sitting still.
 
     WHAT RATE THAT CHANNEL GETS, AND WHERE IT COMES FROM. The family has one rate rule, on node
     ``A_rad``, rank 10, A = 1.292979e+08 m^3/(mol*s). Its own shortDesc calls it an ESTIMATE and
@@ -691,11 +853,27 @@ THIS IS NOT AN INERT ISLAND. READ THIS BEFORE LOADING THE LIBRARY
         delivered kf at T_gas = 1000 K, Te = 1 eV   3.664598e-14
         delivered kf at T_gas = 1000 K, Te = 3 eV   3.664598e-14      <- IDENTICAL
         the same Arrhenius evaluated at Te = 3 eV   3.109200e+07
-        a published state-resolved argon model      2.0583e+10
 
-    The delivered rate is roughly 24 orders of magnitude BELOW a physically reasonable value at
-    1000 K gas, and about 74 below it at 300 K. Changing the electron temperature from 1 eV to 3 eV
-    does not change the answer at all.
+    Two things, in order of how much weight they carry.
+
+    FIRST, AND SUFFICIENT ON ITS OWN: changing the electron temperature from 1 eV to 3 eV does not
+    change the answer at all. Not approximately -- bit-identically. An electron-impact ionisation
+    rate that is independent of the electron temperature is disqualified by inspection, and that
+    statement rests on nothing outside this file.
+
+    SECOND, FOR SCALE, AND MEASURED ENTIRELY WITHIN THIS REPOSITORY: the same rule, evaluated at
+    the electron temperature it never sees, gives 3.109200e+07 against the 3.664598e-14 actually
+    delivered at 1000 K gas -- 20.9 orders of magnitude between the family's own rule and the
+    family's own delivery. The comparison is internal on purpose. An earlier version of this
+    paragraph quoted "a published state-resolved argon model, 2.0583e+10" and a shortfall of 23.7
+    orders; **that constant had no citation anywhere in this repository and it is withdrawn.** It
+    is not replaced with another external number, for a reason worth recording: a state-resolved
+    1s5 expression of the usual shape, 6.8e-15 * Te^0.67 * exp(-4.2/Te), yields 2.108e9
+    m^3/(mol*s) at 3 eV if its prefactor is read as m^3/s and 2.108e3 if it is read as cm^3/s --
+    the convention such expressions are normally written in. Six orders of magnitude turn on a
+    unit convention that only the source can settle, which is exactly why an uncited comparator
+    does not belong in an argument about orders of magnitude. The internal figure needs no
+    source, and the Te-independence needs no figure.
 
     WHY. The rate rule arrives as an ordinary ``ArrheniusEP``; ``fix_barrier_height`` converts it
     to an ordinary ``Arrhenius`` and raises its barrier to the endothermicity. An ordinary
@@ -726,7 +904,7 @@ THIS IS NOT AN INERT ISLAND. READ THIS BEFORE LOADING THE LIBRARY
 
     "Exact match" -- with no mention of rank 10, no mention that the rule is a placeholder, and no
     mention of lithium. A reader who inspects the generated mechanism sees a confident phrase
-    describing a rate that is wrong by twenty-odd orders of magnitude.
+    describing a rate that sits twenty-odd orders below the same rule's own value at Te.
 
     NONE OF THAT IS TOUCHED HERE. Changing the family, its template, its rules or that longDesc is
     a different ticket and a different piece of chemistry, and it needs the owner before anyone

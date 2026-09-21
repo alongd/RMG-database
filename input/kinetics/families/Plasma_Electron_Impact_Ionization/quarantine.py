@@ -51,14 +51,30 @@ reason = "estimated rates reach the solver without uses_electron_temperature and
 #
 #     delivered, 1000 K gas            3.664598e-14 m^3/(mol*s)
 #     delivered, 300 K gas             1.933634e-64 m^3/(mol*s)
-#     published state-resolved model   2.0583e+10  m^3/(mol*s) at the same Te
-#     ratio at 1000 K                  23.7 orders of magnitude LOW
 #     Te = 1 eV vs Te = 3 eV           bit-identical -- Te does not reach the rate
+#     this family's OWN rule at 3 eV   3.109200e+07 m^3/(mol*s)
+#     ratio at 1000 K                  20.9 orders of magnitude LOW
 #
-# The last line is the one that matters: re-anchoring the placeholder to a better
-# source would not move the delivered number at all, because the two-temperature
-# machinery the whole plasma engine exists to carry never reaches an estimate.
-# Provenance is not what is wrong here, which is why no refit lifts this.
+# The THIRD line is the whole justification and it needs no external comparison: an
+# electron-impact ionisation rate that does not depend on the electron temperature
+# is disqualified by inspection. The fourth and fifth lines are scale, and they are
+# deliberately INTERNAL -- this family's own rule evaluated at the Te it never sees,
+# against what the solver actually delivers. Nothing outside this repository is
+# needed to read either of them.
+#
+# An earlier version of this manifest carried "published state-resolved model
+# 2.0583e+10 m^3/(mol*s)" and a 23.7-order shortfall. That constant had NO citation
+# anywhere in this repository and is withdrawn rather than reworded. It is not
+# replaced by another external number: a state-resolved 1s5 expression of the usual
+# shape, 6.8e-15 * Te^0.67 * exp(-4.2/Te), gives 2.108e9 m^3/(mol*s) at 3 eV read as
+# m^3/s and 2.108e3 read as cm^3/s, and only the source can say which. Six orders
+# turning on a unit convention is exactly why an uncited comparator has no place in
+# an argument about orders of magnitude. The quarantine never rested on it.
+#
+# The Te-independence line is also the one that matters for lifting: re-anchoring the
+# placeholder to a better source would not move the delivered number at all, because
+# the two-temperature machinery the whole plasma engine exists to carry never reaches
+# an estimate. Provenance is not what is wrong here, which is why no refit lifts this.
 # ---------------------------------------------------------------------------
 
 #: Stated positively so nobody has to infer it from an absence. This IS a plasma
@@ -75,7 +91,7 @@ isPlasmaFamily = True
 #: come back to this file and say so.
 criterionIsBlunt = True
 
-shortDesc = """Estimated rates from this family are delivered to the solver as ordinary Arrhenius and evaluated at the gas temperature, ~23 orders low, with no dependence on Te at all"""
+shortDesc = """Estimated rates from this family are delivered to the solver as ordinary Arrhenius and evaluated at the gas temperature, with no dependence on Te at all -- ~21 orders below this family's own rule evaluated at Te"""
 
 longDesc = """
 What refuses and what does not. The family stays registered, still generates reactions,
@@ -86,8 +102,9 @@ evaluates. Only admission to a quantitative RMG reaction model refuses -- at
 as generated and a bad rate cannot steer enlargement from the edge either.
 
 Why refusing is better than the alternatives here. The delivered number is not wrong by
-a factor that a careful reader would notice; it is ~1e-24 of the physical value and it
-is stable against the one input a plasma modeller would vary to test it. A run that
+a factor that a careful reader would notice; it is ~1e-21 of this family's own rule
+evaluated at the electron temperature, and it is stable against the one input a plasma
+modeller would vary to test it. A run that
 admitted it would converge, report success, and declare electron-impact ionisation of
 the metastable an unimportant channel -- which is the specific failure this whole
 mechanism exists to prevent.

@@ -1,0 +1,4 @@
+INFO:root:Kinetics family Cation_R_Recombination is QUARANTINED FOR QUANTITATIVE PLASMA USE (Marcus): electrochemical reference/domain unavailable
+INFO:root:Kinetics family Plasma_Electron_Impact_Ionization is QUARANTINED FOR QUANTITATIVE PLASMA USE (KineticsModel): estimated rates reach the solver without uses_electron_temperature and are evaluated at the GAS temperature
+INFO:root:Kinetics family Cation_R_Recombination is QUARANTINED FOR QUANTITATIVE PLASMA USE (Marcus): electrochemical reference/domain unavailable
+INFO:root:Kinetics family Plasma_Electron_Impact_Ionization is QUARANTINED FOR QUANTITATIVE PLASMA USE (KineticsModel): estimated rates reach the solver without uses_electron_temperature and are evaluated at the GAS temperature

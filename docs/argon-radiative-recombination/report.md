@@ -202,6 +202,27 @@ the selector restored to *raising* rather than degrading, the same duplicate inj
 **5 failed, 32 passed, 65 errors** — so the 70-versus-65 difference is the fix working, not the
 probe being lenient.
 
+**Why this shape keeps recurring in probes and not in tests.** Asked directly after the third
+instance, because three times in one ticket is a pattern and not bad luck. Four structural reasons,
+and they compound:
+
+1. **A test is born red; a probe is born green.** Test-first discipline runs the test before the fix
+   exists, so its failure path is exercised by construction. A probe is written *after* the fix, to
+   demonstrate it — at the moment of authoring it passes, and its failure path has never once run.
+2. **The probe inherits the blind spot of the fix.** Same author, same hour, same model of which
+   shapes exist. If that model omits a case, the fix omits it *and so does the probe built to check
+   the fix* — and the resulting agreement looks like corroboration.
+3. **A probe synthesises its own adversarial input.** A test consumes real data; a probe constructs
+   the case. That construction is exactly where the assumption gets baked in — here, which
+   participant to rename — and nothing checks the constructor.
+4. **A probe is consumed once, by a human, as prose.** It never enters CI and is never observed in a
+   state where it should fail, yet its single PASS gets quoted into a report, a commit message and a
+   memory. One unexercised path, three supports.
+
+The discipline that follows is cheap: **a probe is not finished until its negative control has been
+run**, not merely described — restore the bug, watch it go red, record both numbers. Every claim in
+§0.2 above now has one.
+
 ### 0.3 What round 67 changed, and the claim it retired
 
 Round 67's finding was that §0.1's guarantee was overstated rather than wrong. `assert_reactions_

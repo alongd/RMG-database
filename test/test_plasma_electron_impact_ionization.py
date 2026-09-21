@@ -81,6 +81,8 @@ THIS_DATABASE = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardi
 # checkout that does not contain this library.
 settings['database.directory'] = THIS_DATABASE
 
+from plasma_library_selection import (  # noqa: E402
+    assert_reactions_uniquely_keyed, reaction_for)
 from rmgpy.data.kinetics.database import KineticsDatabase  # noqa: E402
 from rmgpy.electron_balance import get_species_electron_count  # noqa: E402
 from rmgpy.exceptions import ElectronPlacementError  # noqa: E402
@@ -113,23 +115,16 @@ def library():
 def reaction(library):
     """A fresh lithium ``LibraryReaction`` per test, so mutation cannot leak between them.
 
-    Selected by the reactant it is *about*, never by position. A fixture that asserted
-    ``len(reactions) == 1`` and returned ``reactions[0]`` would not fail when this library
-    grows -- it would raise during *setup*, and pytest reports setup errors separately from
-    failures, so the sixteen tests this fixture feeds would stop asserting while the rest of
-    the run still printed green. A failure argues with you; a setup error just removes the
-    check. Every one of those sixteen is lithium-specific, so the shape that survives growth
-    is to name the entry wanted, not to widen each of them. The library's smallness is still
-    pinned, once, in ``test_library_loads_with_exactly_one_entry`` below, where it is a claim
-    rather than a precondition. Measured instance of the trap:
-    ``docs/argon-radiative-recombination/report.md`` section 0.
+    Selected by the channel it is *about* -- reactants and products -- never by position
+    and never by reactants alone; ``plasma_library_selection`` carries the full argument
+    for that key and the two rounds of defect behind it. Every one of the sixteen tests
+    this fixture feeds is lithium-specific, so the shape that survives growth is to name
+    the channel wanted, not to widen each of them. The library's smallness is still pinned,
+    once, in ``test_library_loads_with_exactly_one_entry`` below, where it is a claim rather
+    than a precondition, and the key's uniqueness in
+    ``test_every_reaction_is_distinguishable_from_every_other``.
     """
-    matches = [r for r in library.get_library_reactions()
-               if [s.label for s in r.reactants] == ['[Li]']]
-    assert len(matches) == 1, (
-        f'expected exactly one [Li] reaction in {LIBRARY}, found {len(matches)}'
-    )
-    return matches[0]
+    return reaction_for(library, ['[Li]'], ['[Lip]'])
 
 
 @pytest.fixture
@@ -187,6 +182,17 @@ def test_library_loads_with_exactly_one_entry(library):
     assert len(library.entries) == 1
     assert {tuple(s.label for s in r.reactants)
             for r in library.get_library_reactions()} == {('[Li]',)}
+
+
+def test_every_reaction_is_distinguishable_from_every_other(library):
+    """No two reactions here share both reactants and products.
+
+    This is what makes the ``reaction`` fixture safe: while it holds, no fixture in this
+    file can match two reactions, so the setup-error failure mode is unreachable. When it
+    stops holding it stops holding HERE, as a failure in a test whose name says what broke,
+    rather than as sixteen errors in a section people skim past.
+    """
+    assert_reactions_uniquely_keyed(library)
 
 
 def test_entry_is_lithium_first_ionization_written_without_an_explicit_electron(reaction):

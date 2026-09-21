@@ -1,103 +1,119 @@
 #!/usr/bin/env python
-"""Does the corrected fixture survive the library growing? Measure, do not assume.
+# encoding: utf-8
 
-The reason I first gave for NOT fixing the two sibling files was that the change is
-unverifiable while each library has exactly one entry. That reason is wrong: the entry
-count is a property of the loaded object, and a loaded object can be grown in memory.
+"""When a plasma library grows a same-reactant channel, do its tests FAIL or vanish?
 
-This probe loads each library for real, injects a synthetic second entry, and runs BOTH
-selection strategies against it:
+That distinction is the whole subject. A failing test argues with you. A test that raises
+during *fixture setup* is reported by pytest as an ERROR, in a separate section, and asserts
+nothing -- so a library growing one entry can remove twenty checks while the run still prints
+a green count for the rest. This campaign has now shipped that defect twice:
 
-  old: reactions = library.get_library_reactions(); assert len(reactions) == 1; reactions[0]
-  new: [r for r in ... if [s.label for s in r.reactants] == TARGET]; assert len(...) == 1
+* first as ``assert len(reactions) == 1`` inside the fixture (I-234, round 59);
+* then as the repair for it, which selected by *reactant* labels -- immune to the library
+  growing a reaction about some other species, and still ambiguous the moment it grows a
+  second channel of the SAME reactant, which is queued work.
 
-The claim under test is that the old one raises (which, inside a pytest fixture, is a setup
-ERROR that silently removes every test it feeds) and the new one still returns the entry the
-file is about. Nothing is written to the database; the growth happens in memory only.
+**And the probe that was offered as proof of the repair could not have caught the second
+one.** It injected its synthetic twin and then renamed the twin's *reactants*, so the twin
+never collided with a reactant-keyed selector; it was structurally incapable of failing in
+the direction the defect lay. Round 66 caught that. This rewrite fixes both the selector and
+the evidence:
+
+1. it grows each library with a twin sharing the original's **reactants** (products renamed),
+   which is the collision shape -- see ``grow_library_plugin.py``;
+2. it does not reimplement the selector. It runs **pytest itself**, over the real test files,
+   so whatever those files actually do is what gets measured. The previous probe kept its own
+   copy of the selection logic, and a copy is free to stay correct while the shipped code is
+   not.
+
+Run twice -- once plain, once under the growth plugin -- and compare. The plain run must be
+green. The grown run is EXPECTED to have failures: the libraries genuinely no longer hold what
+the coverage tests say they hold, and those tests are doing their job by saying so. What it
+must not have is **errors**. Errors mean the checks stopped running.
+
+    PYTHONPATH=/home/alon/Code/RMG-Py-plasma python probe_fixture_survives_growth.py
+
+Exit 0 when the grown run has zero errors and at least one failure; 1 otherwise.
 """
-import copy
+
 import os
+import re
+import subprocess
 import sys
 
-from rmgpy import settings
-from rmgpy.data.kinetics.database import KineticsDatabase
+HERE = os.path.dirname(os.path.abspath(__file__))
+ROOT = os.path.abspath(os.path.join(HERE, os.pardir, os.pardir, os.pardir))
 
-# Same pin ``test/conftest.py`` applies: without it ``database.directory`` resolves to the
-# shared checkout, not this worktree, and the probe would measure someone else's database.
-THIS_DATABASE = os.path.abspath(os.path.join(
-    os.path.dirname(__file__), os.pardir, os.pardir, os.pardir, 'input'))
-settings['database.directory'] = THIS_DATABASE
-print('database.directory = %s\n' % settings['database.directory'])
-
-CASES = [
-    ('PlasmaArgon', ['Ar', 'e-']),
-    ('PlasmaElectronImpactIonization', ['[Li]']),
-    ('PlasmaRadiativeRecombination', ['[Arp]']),  # already two-entry: control
+FILES = [
+    'test/test_plasma_argon.py',
+    'test/test_plasma_electron_impact_ionization.py',
+    'test/test_plasma_radiative_recombination.py',
 ]
 
-
-def load(label):
-    db = KineticsDatabase()
-    db.load_libraries(os.path.join(settings['database.directory'], 'kinetics', 'libraries'),
-                      libraries=[label])
-    return db.libraries[label]
+SUMMARY = re.compile(r'(\d+) (passed|failed|error|errors|skipped)')
 
 
-def select_old(library):
-    reactions = library.get_library_reactions()
-    assert len(reactions) == 1
-    return reactions[0]
+def run(grown):
+    argv = [sys.executable, '-m', 'pytest', '-q', '--no-header', '-p', 'no:cacheprovider']
+    if grown:
+        argv += ['-p', 'grow_library_plugin']
+    argv += FILES
+    env = dict(os.environ)
+    # The plugin lives beside this probe, not on the default path.
+    env['PYTHONPATH'] = HERE + os.pathsep + env.get('PYTHONPATH', '')
+    proc = subprocess.run(argv, cwd=ROOT, env=env,
+                          stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    out = proc.stdout.decode('utf-8', 'replace')
+    tail = [line for line in out.splitlines() if 'passed' in line or 'failed' in line
+            or 'error' in line]
+    counts = {'passed': 0, 'failed': 0, 'error': 0}
+    for line in tail[-3:]:
+        for number, word in SUMMARY.findall(line):
+            key = 'error' if word.startswith('error') else word
+            if key in counts:
+                counts[key] = int(number)
+    return counts, out
 
 
-def select_new(library, target):
-    matches = [r for r in library.get_library_reactions()
-               if [s.label for s in r.reactants] == target]
-    assert len(matches) == 1
-    return matches[0]
+def main():
+    print('Three plasma test files, run twice.\n')
 
+    shipped, shipped_out = run(grown=False)
+    print('AS SHIPPED        passed=%(passed)d failed=%(failed)d errors=%(error)d' % shipped)
+    if shipped['failed'] or shipped['error']:
+        print('\nThe baseline run is not green; nothing below is interpretable.\n')
+        print(shipped_out[-4000:])
+        return 1
 
-def grow(library):
-    """Inject a synthetic second entry, so the loaded library has one more than it ships."""
-    key = max(library.entries) if library.entries else 0
-    twin = copy.deepcopy(next(iter(library.entries.values())))
-    twin.index = 9999
-    twin.label = 'synthetic-probe-entry'
-    for species in twin.item.reactants:
-        species.label = species.label + '_probe'
-    library.entries['synthetic-probe-entry'] = twin
-    return key
+    grown, grown_out = run(grown=True)
+    print('LIBRARIES GROWN   passed=%(passed)d failed=%(failed)d errors=%(error)d' % grown)
+    print('                  (one twin per reaction: same reactants, products renamed)\n')
 
-
-failures = []
-for label, target in CASES:
-    library = load(label)
-    shipped = len(library.entries)
-    grow(library)
-    grown = len(library.entries)
-
-    try:
-        select_old(library)
-        old = 'returned a reaction'
-    except AssertionError:
-        old = 'AssertionError -> pytest SETUP ERROR, every test on this fixture silently skipped'
-
-    try:
-        got = select_new(library, target)
-        new = 'returned %s' % ' + '.join(s.label for s in got.reactants)
-        ok = [s.label for s in got.reactants] == target
-    except AssertionError as exc:
-        new = 'AssertionError: %s' % exc
+    ok = True
+    if grown['error']:
         ok = False
+        print('  errors=%d  -> FAIL. A fixture raised during setup, so every test it feeds'
+              % grown['error'])
+        print('              stopped asserting. These are the checks that silently vanish:')
+        for line in grown_out.splitlines():
+            if line.startswith('ERROR ') or ' ERROR at setup of ' in line:
+                print('                %s' % line.strip())
+    else:
+        print('  errors=0    -> PASS. Every check still ran against the grown library.')
 
-    print('%-32s shipped=%d grown=%d' % (label, shipped, grown))
-    print('    old (by position): %s' % old)
-    print('    new (by identity): %s' % new)
-    print('    -> %s' % ('PASS' if ok else 'FAIL'))
+    if grown['failed']:
+        print('  failed=%d   -> PASS. The coverage tests noticed the growth and said so,'
+              % grown['failed'])
+        print('              which is a test arguing with you rather than disappearing.')
+    else:
+        ok = False
+        print('  failed=0    -> FAIL. Growing a library changed what it holds and NOTHING')
+        print('              objected; the coverage claims are not being checked.')
+
     print('')
-    if not ok:
-        failures.append(label)
+    print('PASS' if ok else 'FAIL')
+    return 0 if ok else 1
 
-if failures:
-    print('FAILED for: %s' % ', '.join(failures))
-    sys.exit(1)
-print('All three libraries: identity selection survives growth, positional selection does not.')
+
+if __name__ == '__main__':
+    sys.exit(main())

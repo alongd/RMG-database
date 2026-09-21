@@ -93,6 +93,8 @@ THIS_DATABASE = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardi
 # not contain this library.
 settings['database.directory'] = THIS_DATABASE
 
+from plasma_library_selection import (  # noqa: E402
+    assert_reactions_uniquely_keyed, reaction_for)
 from rmgpy.data.kinetics.database import KineticsDatabase  # noqa: E402
 from rmgpy.data.kinetics.family import TemplateReaction  # noqa: E402
 from rmgpy.electron_balance import (  # noqa: E402
@@ -127,42 +129,37 @@ def library():
     return db.libraries[LIBRARY]
 
 
-def _reaction_for(library, reactant_label):
-    """Select one library reaction by the label of its reactant.
+def _reaction_for(library, reactant_label, product_label):
+    """Select one library reaction by the channel it is: this reactant to this product.
 
-    **Why not** ``get_library_reactions()[0]``, which is what this file did until I-234.
-    That form carried ``assert len(reactions) == 1`` inside the fixture, which encoded
-    "this library has exactly one entry" as a *precondition* of twenty tests rather than
-    as a claim made by one. When the library grew a second entry the precondition expired
-    and those twenty stopped being checks: pytest reported them as setup ERRORS, not
-    failures, so the suite lost twenty assertions about lithium while still printing a
-    green count for everything that remained. A failure argues with you; a setup error
-    just removes the check and leaves a smaller green number behind.
+    **Not** ``get_library_reactions()[0]``, which is what this file did until I-234: that
+    form carried ``assert len(reactions) == 1`` inside the fixture, encoding "this library
+    has exactly one entry" as a *precondition* of twenty tests rather than as a claim made
+    by one. When the library grew a second entry those twenty became setup ERRORS, which
+    pytest reports separately from failures -- so the suite lost twenty lithium assertions
+    while still printing green for the rest.
 
-    Selecting by identity says which reaction a test is about, and goes on saying it as
-    the library grows. The library's size is now asserted in exactly one place --
-    ``test_library_loads_with_the_expected_coverage`` -- where it is a claim that fails
-    loudly and in isolation rather than a gate on everything else.
+    **And not the reactant alone**, which is what replaced it and is the same trap one door
+    along. ``[Arp] => [Ar]`` and an excited-state ``[Arp] => Ar*`` share a reactant, so a
+    reactant-keyed selector matches two, raises in the fixture, and every dependent test is
+    an error again -- on work already queued for this library. The full argument, the
+    measured reason the entry label is not usable as a key, and the one residual case are in
+    ``plasma_library_selection``; the uniqueness of the key is itself asserted, once, in
+    ``test_every_reaction_is_distinguishable_from_every_other``.
     """
-    matches = [r for r in library.get_library_reactions()
-               if [s.label for s in r.reactants] == [reactant_label]]
-    assert len(matches) == 1, (
-        'expected exactly one library reaction with reactant {0!r}, found {1}: {2}'.format(
-            reactant_label, len(matches),
-            [str(r) for r in library.get_library_reactions()]))
-    return matches[0]
+    return reaction_for(library, [reactant_label], [product_label])
 
 
 @pytest.fixture
 def reaction(library):
     """The lithium reaction, fresh per test so mutation cannot leak between them."""
-    return _reaction_for(library, '[Lip]')
+    return _reaction_for(library, '[Lip]', '[Li]')
 
 
 @pytest.fixture
 def argon_reaction(library):
     """The argon reaction (I-234), fresh per test. Mirrors ``reaction`` exactly."""
-    return _reaction_for(library, '[Arp]')
+    return _reaction_for(library, '[Arp]', '[Ar]')
 
 
 @pytest.fixture
@@ -223,6 +220,19 @@ def test_library_loads_with_the_expected_coverage(library):
         'library coverage changed; update this test and add per-entry checks for the '
         'new entry rather than letting it ride on the existing ones')
     assert len(library.entries) == 2
+
+
+def test_every_reaction_is_distinguishable_from_every_other(library):
+    """No two reactions here share both reactants and products.
+
+    This is the claim that makes every fixture in this file safe. Both entries are
+    recombinations of a cation, so they already collide under the reactant-only key this
+    file used before round 66; they are separated by their products, and this test is what
+    keeps that true. A future ``[Arp] => Ar*`` alongside ``[Arp] => [Ar]`` passes here and
+    fails in ``test_library_loads_with_the_expected_coverage``, which is the correct pair
+    of outcomes: the selector still works, and the coverage claim argues with you.
+    """
+    assert_reactions_uniquely_keyed(library)
 
 
 def test_entry_is_lithium_cation_recombination_written_without_an_explicit_electron(reaction):

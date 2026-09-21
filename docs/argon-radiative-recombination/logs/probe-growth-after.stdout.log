@@ -1,0 +1,11 @@
+Three plasma test files, run twice.
+
+AS SHIPPED        passed=102 failed=0 errors=0
+LIBRARIES GROWN   passed=100 failed=2 errors=0
+                  (one twin per reaction: same reactants, products renamed)
+
+  errors=0    -> PASS. Every check still ran against the grown library.
+  failed=2   -> PASS. The coverage tests noticed the growth and said so,
+              which is a test arguing with you rather than disappearing.
+
+PASS

@@ -342,11 +342,16 @@ Four more things, all disclosed in the `longDesc` and pinned by tests:
    to make the API return 168.227 would break the identity the entry is built on and would differ
    from every sibling entry.
 
-4. **`Ar0e` in a *group* adjacency list does not mean "metastable".** Atom-type perception ignores
-   `u` entirely, so `1 Ar0e ux p3 c0` matches u1 argon as readily as the u2 metastable. A group
-   that means this species must write `u2` explicitly. RMG-Py's `atomtype.py` says so at length;
-   repeated in the entry because a kinetics author reading it is exactly the person who will get
-   it wrong. Also: the SMILES round trip is unsafe for monatomic species in this database
+4. **`Ar0e` in a *group* adjacency list does not mean "metastable" — but only at the group layer,
+   and round 60 corrects this item.** Atom-type perception ignores `u` entirely, so the group
+   `1 Ar0e ux p3 c0` compares equal to a u1 argon group as readily as to the u2 metastable, which
+   is what RMG-Py's `atomtype.py` warns about at length. **No such molecule exists to be matched**,
+   though: in a molecule the valency check applies, `8 - c = bonds + 2p + u` fixes `u`, and a
+   bond-free neutral argon at p3 is u2 or it is refused. Measured over the whole (u, p, c) grid,
+   exactly one molecule perceives as `Ar0e` and it is this species (§14.2). So the hazard is real
+   for group-against-group comparison and unreachable in reaction generation, which matches groups
+   against molecules. A group meaning this species should still write `u2`, for the reader.
+   Also: the SMILES round trip is unsafe for monatomic species in this database
    (documented for `[Arp]`/`[Hep]`/`[Nep]`), so the adjacency list is the only interchange form.
 
 ---
@@ -1156,8 +1161,10 @@ of 67 reactions, exactly one has all products resolvable and it is
 `Plasma_Electron_Impact_Ionization`'s `Ar(3P2) => Ar+`, which the manifest already refuses. **The
 failure mode is loud. Reported as asked, in both directions.**
 
-**The ending chosen: close it, disclose it, and escalate the root cause** — the owner's ruling of
-2026-09-21, after the closure was measured.
+**The ending chosen: close it at the family layer, and disclose it.** Round 59 proposed this as
+"close it, disclose it, escalate the root cause to the engine"; the owner's ruling of 2026-09-21
+struck the third clause, because there is no engine defect to escalate. See §14.2 — the closure is
+the fix, not a holding action.
 
 *Why a quarantine could not have been the answer, measured not argued* (`job_level_crash_probe.py`):
 `CoreEdgeReactionModel.process_new_reactions` on `Ar(3P2) + H` with the `default` families loaded
@@ -1199,70 +1206,75 @@ nothing else, so the owner can drop it without touching the thermochemistry. If 
 suite goes red at the tests that assert the containment — which is the intended behaviour, because
 the entry's paragraph describing the containment would then be false and needs rewriting.
 
-### 14.2 The `Ar0e` escalation — hand this over verbatim
+### 14.2 The `Ar0e` escalation, stood down — the atom types are correct
 
-> **The root cause of I-221's reachability defect is in `rmgpy/molecule/atomtype.py`, and no
-> narrowing of `Ar0e` can fix it.** Measured, not argued.
->
-> `ATOMTYPES['Ar0e']` is declared `generic=['R', 'R!H', 'R!H!Val7', 'Rx', 'Rx!H', 'Ar']`
-> (`atomtype.py:484`). The edge that matters at match time is the *reverse* one — `Ar0e` in
-> `ATOMTYPES['R'].specific` — because `is_specific_case_of` is `self is other or self in
-> other.specific` (`atomtype.py:209-214`). The constructor stores both directions and only
-> `specific` is read; a change that edits `generic` alone is a no-op. (My first probe did exactly
-> that and reported that all four candidate narrowings behaved identically. That was a broken probe,
-> not a finding, and the tell was that every arm agreed.)
->
-> The six families that reach `Ar u2 p3 c0` are written on exactly two generics:
->
-> | family | group | generic |
-> |---|---|---|
-> | `Plasma_Electron_Impact_Ionization` | `A_rad` | `1 *1 R u[1,2,3,4] px c[...]` |
-> | `Disproportionation` | `Root`, atom `*1` | `1 *1 R u[1,2,3,4]` |
-> | `CO_Disproportionation` | `Root`, atom `*1` | `1 *1 R u[1,2,3,4]` |
-> | `Cl_Abstraction` | `Root`, atom `*3` | `1 *3 R u[1,2,3,4]` |
-> | `Birad_R_Recombination` | `Birad` | `1 *2 R!H u2` |
-> | `R_Addition_MultipleBond` | `Y_1centerbirad` | `1 *3 R!H u2` |
->
-> **The family this species is supposed to react in and three of the five it must not are written on
-> the same generic with the same `u` range.** They are indistinguishable at the group level.
->
-> Measured over all 140 families by mutating both directions at runtime
-> (`docs/argon-metastable-thermo/atomtype_escalation_probe.py`, with the database-side containment
-> lifted so the atom type is what is being measured):
->
-> | candidate | ordinary families still reaching `Ar(3P2)` | `Ar(3P2) => Ar+` |
-> |---|---|---|
-> | as shipped | 5 | kept |
-> | drop `R!H` | 3 | kept |
-> | drop `R` | 2 | **LOST** |
-> | drop both | **0** | **LOST** |
->
-> The control `CH3 + H` is unmoved in all four arms, and `Ar+ => Ar++` survives in all four (`Ar+`
-> is its own atom type and was not touched). So the only narrowing that closes everything also
-> destroys the one channel metastable argon is supposed to have, and the best narrowing that keeps
-> that channel still leaves three ordinary families reaching the species.
->
-> **What an `Ar0e` change would therefore have to do.** Not narrow the generality — add a
-> distinction RMG does not currently have: a constraint that an atom type *may not form covalent
-> bonds*, enforced where a recipe is applied rather than where a group is matched, so `GAIN_CHARGE`
-> and `LOSE_RADICAL` on argon stay legal while `FORM_BOND` and `CHANGE_BOND` do not. That is a new
-> engine concept, not an edit to a list.
->
-> **Two alternatives, and why both are worse.** (a) *Add a bonded-argon atom type so the products
-> become well-formed.* This converts a loud `AtomTypeError` into a group-additivity **number** for a
-> species that does not exist, which is strictly the worse failure — and there is no
-> group-additivity data for argon to produce it from. (b) *Make `estimate_radical_thermo_via_hbi`
-> refuse noble gases.* This lives in `rmgpy/data/thermo.py`, not `atomtype.py`, and it only changes
-> which exception is raised; the spurious reaction is still generated.
->
-> **What else a change here touches.** `ATOMTYPES['R'].specific` and `ATOMTYPES['R!H'].specific`;
-> `atomtypeTest.py`, which already carries `Ar0s` in `EXPECTED_FAILING_ATOMTYPES` and would need the
-> new behaviour pinned; and in principle every group in the database written on `R`/`R!H` — measured,
-> the ordinary-radical control is unmoved, but the sweep was 50 partners and not a proof.
->
-> **Until then**, the database-side containment (five `forbidden` groups, I-221 round 59) closes the
-> five families measured to reach the species and closes nothing else. A seventh family would reopen
-> it exactly as before.
+Round 59 ended by writing a hand-over paragraph asking the owner to commission a change to
+`rmgpy/molecule/atomtype.py`. **The owner ruled on 2026-09-21 that there is nothing there to fix,
+and the ruling is right.** This section replaces the escalation; the paragraph was never handed on.
+
+**The ruling, in one line of arithmetic.** `u` is not a free parameter. Argon brings 8 valence
+electrons, so for argon `8 − c = bonds + 2p + u` (the constant is argon's valence count, not a
+universal one — oxygen's is 6). A bond-free neutral argon with three lone pairs therefore has
+`8 − 0 = 0 + 6 + u`, so `u = 2`, and `Ar0e` at `p3 c0` **is** metastable argon — uniquely, not as
+one reading among five. `atomtype.py`'s own comment that `Ar0e` "answers for five (u, p, c)
+triples" is a statement about **group** patterns, where `ux` can be hand-written and nothing checks
+valency. Families generate **molecules**. Round 59 read that comment at the wrong layer, and so did
+the brief and the sparring round that raised the HIGH. The arithmetic was one line and nobody did
+it, through three rounds of review.
+
+**Measured, because a ruling is a premise like any other**
+(`atomtype_u_determined_probe.py`, engine `RMG-Py-plasma@311818121`, exit 0):
+
+```
+u0  REFUSED   InvalidAdjacencyListError: Invalid valency for atom Ar (Ar0e) ...
+u1  REFUSED   InvalidAdjacencyListError: ...
+u2  ACCEPTED  atomtype=Ar0e  p=3  c=0  bonds=0
+u3  REFUSED   u4  REFUSED
+sweep over u 0–4 × p 0–4 × c −1/0/+1: total distinct triples perceiving as Ar0e = 1  (u2 p3 c0)
+positive control — argon molecules built anywhere in the sweep = 3
+8 − c = bonds + 2p + u:  Ar(3P2) 8 = 8 HOLDS   ·   Ar ground state 8 = 8 HOLDS
+```
+
+The uniqueness sweep is the block that could have refuted the ruling: any second triple would have
+kept part of round 59's framing alive. There is none.
+
+**What this changes, and it is the substance of round 60.** Every measurement from round 59 stands
+— five ordinary families really do reach `Ar(3P2)`, the crash is real, the containment really does
+close it with 0 of 22 controls moved. What changes is the **verdict** on them:
+
+* The five `forbidden(...)` blocks are **the fix**, at the layer the error is on. Not a workaround
+  held open pending an engine change. A family whose reacting site is a generic `R!H` at `u2`,
+  which intends `[O] u2 p2`, `[S] u2 p2` or `[NH] u2 p1` and *says so in its own forbidden-group
+  longDesc*, never encoded that restriction anywhere a matcher could read. The blocks encode it.
+  This is a stronger claim than round 59's and it is the true one.
+* **The incompleteness caveat stays and changes meaning.** A sixth family reaching this species
+  would still reopen the crash — but it would be a family declaring a `u2` site broader than the
+  chemistry it intends and shipping without saying so: a **family-authoring defect**, in that
+  family, fixed the same way. Not an engine defect returning. Nothing in `atomtype.py` could
+  prevent it, and no change there should be proposed on that basis.
+* **Round 59's escalation probe is not withdrawn — it is re-read.** Its measurement (drop `R!H` →
+  3 families still reach it; drop `R` → 2, channel lost; drop both → 0, channel lost) was correct
+  and is now *corroboration*: no narrowing separates the wanted channel from the unwanted ones
+  because there is nothing to narrow. The generality is not the error.
+* **One round-59 statement is inverted outright** (§8 item 4, and the entry's STRUCTURE section).
+  Round 59 repeated `atomtype.py`'s warning that `1 Ar0e ux p3 c0` "matches u1 argon as readily as
+  the u2 metastable" without its layer. True group-against-group; unreachable in generation,
+  because no u1 bond-free argon **molecule** exists to be matched. Block 4 of the probe shows it:
+  four of the five `u` values have no molecule at all.
+
+**What is *not* proposed.** No `rmgpy/` change of any kind, including a comment edit. The comment
+at `atomtype.py:466` is accurate about what it describes; that it was misread at the wrong layer
+twice — by a manager brief and by an adversarial round, before this session inherited it — is worth
+the owner knowing, and it is the owner's call whether anything is done about it. It is recorded
+here rather than raised as a ticket.
+
+**A note on how this measurement nearly went wrong.** The first run of the probe printed a
+confident, complete, **empty** answer: every molecule refused, including `u2`, which block 2 had
+just built successfully. The cause was the probe's own formatting — `'c%+d' % 0` spells `c+0`,
+which the adjacency-list parser rejects — so block 3 measured nothing and reported it as a fact
+about the database. It was caught by the disagreement between two blocks of the same run. The
+probe now carries a positive control (*"argon molecules built anywhere in the sweep"*, which is 0
+exactly when the probe is broken) and asserts on it, because next time the two blocks might agree.
 
 ### 14.3 MEDIUM — the `2.0583e10` comparator had no citation and is withdrawn
 
@@ -1351,8 +1363,10 @@ the defect is worse than reported.
 | `test/` (whole repository) | **281 passed, 4 failed** against the **272 passed, 4 failed** head baseline — the same four pre-existing failures, no new failure |
 | `red_green.py` | **13 cases, 13 shown red then green**, every restore SHA-verified, exit 0 |
 | `containment_probe.py` | 0 ordinary families reach `Ar(3P2)`, 0 of 22 controls moved |
-| `atomtype_escalation_probe.py` | 4 candidates measured, no narrowing separates the wanted channel from the unwanted ones |
+| `atomtype_escalation_probe.py` | 4 candidates measured, no narrowing separates the wanted channel from the unwanted ones — re-read in §15 as corroboration that there is nothing to narrow |
 | `test/database/databaseTest.py` (engine) | **6 passed**, 482.8 s — see §14.11 |
+
+Round 60's own checks are in §15.3.
 
 Both streams of every run are in `docs/argon-metastable-thermo/logs/`. Not pushed, not merged, no
 pull request.
@@ -1429,3 +1443,93 @@ Those three lines are the head of the stdout log. Without them a green result he
 unfalsifiable — the check cannot fail in the direction the defect lies if it is reading the wrong
 tree. The suite was run from a scratch directory so that its `htmlcov/` and `.coverage`, neither of
 which this repository ignores, land outside the worktree.
+
+---
+
+## 15. Round 60 — the owner's ruling: the argon atom types are correct
+
+Round 59 closed with one thing outstanding: a paragraph asking the owner to commission a change to
+`rmgpy/molecule/atomtype.py`. **It was never handed on.** The owner ruled on 2026-09-21 that the
+atom types are correct as they stand, and the ruling is right — verified before anything was
+written on top of it, in §14.2.
+
+Nothing measured in rounds 55–59 changes. What changes is the verdict on it, and the verdict is
+stronger than the one round 59 proposed.
+
+### 15.1 What was ruled
+
+`u` is not a free parameter. Argon brings 8 valence electrons, so `8 − c = bonds + 2p + u`, and a
+bond-free neutral argon at `p3 c0` has `u2` and no choice about it. `Ar0e` in a **molecule** is
+metastable argon uniquely — measured over the whole (u, p, c) grid, exactly one triple constructs.
+`atomtype.py`'s comment that the type "answers for five (u, p, c) triples" is about **group**
+patterns, where `ux` can be hand-written and no valency check runs. Families generate molecules.
+
+So `Ar0e` being generic under `R`/`R!H` is not a defect, a family site written `R!H` at `u2` is
+right to match this species, and **the five `forbidden(...)` blocks are the fix, at the layer the
+error is on** — a family that intends three named biradicals and never encoded that.
+
+The measurement, the probe, the uniqueness sweep and the one round-59 statement this inverts are
+all in **§14.2**, which replaced the escalation in place.
+
+### 15.2 What that changed in the shipped files
+
+| where | from | to |
+|---|---|---|
+| five families' `forbidden` longDesc | "NOT THE ROOT CAUSE, AND NOT A SUBSTITUTE FOR IT" | "THIS IS THE FIX, AT THE LAYER THE ERROR IS ON", plus the arithmetic that licenses it |
+| the same, incompleteness caveat | a sixth family reopens it (engine still owes a fix) | a sixth family would be a **family-authoring defect**, fixed the same way; no engine change would prevent it |
+| `PlasmaExcitedNeutralThermo.py`, WHY THEY MATCH | the generics are why it matches, "nothing here can undo it" | the perception is correct; what is missing is the families' own statement of scope |
+| the same, containment paragraphs | "WHY THAT IS NOT THE ROOT FIX" / "TWO THINGS THIS CONTAINMENT IS NOT" | "WHY IT IS THE FIX, NOT A WORKAROUND" / "WHAT THIS CONTAINMENT IS NOT: COMPLETE" |
+| the same, STRUCTURE section | `Ar0e ux p3 c0` "matches u1 argon as readily" | true group-against-group, **unreachable** in generation — no such molecule exists |
+| report §8 item 4 | the same unqualified warning | corrected, with the layer named |
+| commit `5b194149d`'s message | "NOT THE ROOT CAUSE" | the stronger claim, and the retraction of the old one |
+
+Commit `5b194149d` was rewritten rather than followed by a correction commit, because its message
+is what an owner deciding whether to drop it reads. The five-file diff is byte-identical to the
+original apart from the reframed longDesc paragraphs; nothing was pushed, so nothing downstream
+was based on the old SHA (checked with `git branch --contains` and `git worktree list` first).
+
+### 15.3 Checks run
+
+| check | result |
+|---|---|
+| `test/test_argon_metastable_thermo.py` + `test/test_eii_quarantine.py` | **69 passed** (was 67: one repaired, two added) |
+| `atomtype_u_determined_probe.py` | exit 0 — one triple perceives as `Ar0e`; positive control built 3 argon molecules |
+| `u_determined_red_green.py` | green → red → green, no file touched |
+| `red_green.py` | **17 cases, 17 shown red then green**, 0 leftovers, exit 0 |
+| `test/` (whole repository) | **283 passed, 4 failed** against round 59's **281 passed, 4 failed** — the same four pre-existing failures by name, and the two new tests |
+| `test/database/databaseTest.py` (engine) | **6 passed**, 481.3 s, pinned to this worktree (the three `PIN` lines head the log). Re-run because this round changed the containment commit's *content*, not only its message |
+
+Both streams of every run are in `docs/argon-metastable-thermo/logs/`, prefixed `round60-`. Not
+pushed, not merged, no pull request.
+
+### 15.4 Four things worth keeping
+
+**A comment read at the wrong layer survived a brief, a sparring round and a full round of work.**
+The `atomtype.py` comment is accurate about what it describes. It was applied to molecules, where
+it does not hold, and the error was inherited rather than invented — the manager's brief carried
+it, the adversarial round that raised the HIGH carried it, and round 59 acted on it. **The
+arithmetic that settles it is one line and nobody did it.** *Probe the premise* is usually read as
+"go measure the code"; this is the case where the premise was a sentence, and re-deriving its
+claim from scratch would have cost less than the escalation it produced.
+
+**A probe reported a confident, complete, empty answer.** The first uniqueness sweep refused every
+molecule — including the one block 2 of the same run had just built — because `'c%+d' % 0` spells
+`c+0`, which the adjacency-list parser rejects. It was caught only by the disagreement between two
+blocks. The probe now carries a positive control (*argon molecules built anywhere in the sweep*,
+which reads 0 exactly when the probe is broken) and asserts on it. **A sweep that finds nothing and
+a sweep that cannot run look identical in a log.**
+
+**The contamination sweep reported "clean" while blind.** `red_green.py`'s marker list was a flat
+hand-maintained constant beside the case list; round 60 added four cases and the sweep — the guard
+written *because* a perturbation once reached a commit — had never been told what to look for. It
+is now keyed by case name, with an explicit `None` for the three cases that replace rather than add
+text, and a startup assertion that refuses to run if the two lists drift. **A guard whose
+configuration is maintained separately from the thing it guards decays silently, and reports
+success while decaying.**
+
+**One check could not be shown red by perturbing a file**, because what it guards is engine
+behaviour and breaking it would mean editing `rmgpy/`. `u_determined_red_green.py` disables
+`ConsistencyChecker.check_partial_charge` **in memory, in one process**, which is exactly the
+counterfactual the test claims to catch — a future engine admitting a second `(u, p, c)` — and the
+test goes red (`built {0: 'Ar0', 1: 'Ar0e', 2: 'Ar0e'}`), then green on restore. No file is
+touched, and the restore is verified by object identity rather than by hash.

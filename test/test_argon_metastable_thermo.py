@@ -1233,7 +1233,81 @@ def test_the_library_retracts_the_one_family_claim_and_carries_the_reach_figure(
     # the containment, what it is not, and what happens if its commit is dropped
     assert 'forbidden' in text
     assert 'its own commit' in text
-    assert 'atomtype.py' in text, 'the root cause must be named where the reader is'
+    # Round 60. This assertion used to read `'atomtype.py' in text` with the message "the
+    # root cause must be named where the reader is", and it was pinning a false claim in
+    # place: the owner ruled the atom types correct, so the containment is the fix and not
+    # a holding action. What has to be findable now is the opposite statement, and the
+    # arithmetic that licenses it.
+    assert 'not a workaround' in text.lower(), (
+        'the entry must say the containment IS the fix; round 59 said the engine owed one')
+    assert '8 - c = bonds + 2p + u' in text, (
+        'the arithmetic is what makes the atom types correct; state it where the reader is')
+    assert 'root cause' not in text.lower(), (
+        'no passage may name a root cause elsewhere; there is none')
+
+
+def test_a_bond_free_neutral_argon_at_p3_is_u2_or_it_does_not_exist():
+    """The arithmetic the whole round-60 framing rests on, pinned against the engine.
+
+    ``8 - c = bonds + 2p + u``, so a bond-free neutral argon with three lone pairs has u2
+    and no choice about it. That is why ``Ar0e`` in a MOLECULE is metastable argon
+    uniquely, why a family's generic ``u2`` site is RIGHT to match this species, and
+    therefore why the five ``forbidden`` blocks are the fix rather than a workaround for
+    an engine defect. If a future engine admits a second (u, p, c) at this atom type, the
+    argument changes and this goes red - which is the point of asserting it here rather
+    than only in a probe log.
+
+    Note what this test is NOT: it is not a claim that ``Ar0e`` constrains ``u``. It does
+    not. ``get_atomtype`` never sees ``u``; the adjacency-list VALENCY CHECK is what
+    refuses the other four. The two are easy to confuse and the confusion is what round 59
+    got wrong, so both halves are exercised below.
+
+    Measured in full by ``docs/argon-metastable-thermo/atomtype_u_determined_probe.py``."""
+    built = {}
+    for u in range(5):
+        adj = 'multiplicity %d\n1 Ar u%d p3 c0\n' % (u + 1, u)
+        try:
+            mol = Molecule().from_adjacency_list(adj)
+            mol.update_atomtypes()
+        except Exception:                                # noqa: BLE001 - a refusal is the datum
+            continue
+        built[u] = mol.atoms[0].atomtype.label
+
+    # positive control first: if NOTHING built, this test is broken and is about to report
+    # its own bug as a fact about the database. That is exactly how the probe failed once.
+    assert built, 'no argon built at all; the test is broken, not the database'
+    assert list(built) == [2], 'only u2 may exist at bond-free p3 c0; built %s' % built
+    assert built[2] == 'Ar0e'
+
+    # the other half: perception really does ignore u, so the uniqueness above comes from
+    # the valency check and not from the atom type being narrow.
+    meta = Molecule().from_adjacency_list('multiplicity 3\n1 Ar u2 p3 c0\n')
+    meta.update_atomtypes()
+    atom = meta.atoms[0]
+    bonds = sum(bond.order for bond in atom.bonds.values())
+    assert 8 - atom.charge == bonds + 2 * atom.lone_pairs + atom.radical_electrons
+    assert 'R!H' in [generic.label for generic in atom.atomtype.generic], (
+        'Ar0e is still generic under R!H - that is correct, and is why the statement of '
+        'scope belongs to the families rather than to the atom type')
+
+
+def test_each_contained_family_says_the_block_is_the_fix_not_a_workaround(all_families_db):
+    """Round 60. The five ``forbidden`` blocks shipped with a paragraph headed "NOT THE
+    ROOT CAUSE, AND NOT A SUBSTITUTE FOR IT", which named ``Ar0e``'s genericity as the
+    root cause and this entry as a stopgap. The owner ruled that wrong. A retraction that
+    lives only in a report does not reach the person reading the family file, so each of
+    the five must carry the corrected framing in its own longDesc."""
+    for family in sorted(CONTAINED_FAMILIES):
+        text = all_families_db.families[family].forbidden.entries[CONTAINMENT].long_desc
+        assert 'NOT THE ROOT CAUSE' not in text, (
+            '%s still carries the retracted framing' % family)
+        assert '8 - c = bonds + 2p + u' in text, family
+        assert 'THIS IS THE FIX' in text, family
+        # the incompleteness caveat survives, with its meaning changed
+        assert 'NOT COMPLETE' in text, family
+        assert 'same defect as this one' in text, (
+            '%s must say a sixth family would be a family-authoring defect, not an '
+            'engine defect returning' % family)
 
 
 def test_four_of_the_five_ordinary_families_are_in_the_default_recommended_set(pinned):

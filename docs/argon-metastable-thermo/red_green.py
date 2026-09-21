@@ -98,6 +98,26 @@ CASES = [
      'is RETRACTED, and what replaces it', 'is revised, and what replaces it',
      ['test_the_library_retracts_the_one_family_claim_and_carries_the_reach_figure']),
 
+    # ---- round 60: the owner's ruling that the atom types are correct ------------------
+    ('the entry reframed back to blaming the engine', LIB,
+     'AND WHY IT IS THE FIX, NOT A WORKAROUND.', 'AND WHY THAT IS NOT THE ROOT FIX.',
+     ['test_the_library_retracts_the_one_family_claim_and_carries_the_reach_figure']),
+
+    ('the licensing arithmetic removed from the entry', LIB,
+     '``8 - c = bonds + 2p + u`` (the 8 is argon',
+     '``the valency rule`` (the 8 is argon',
+     ['test_the_library_retracts_the_one_family_claim_and_carries_the_reach_figure']),
+
+    ("a family's block reverted to naming the engine as root cause", BIRAD,
+     'THIS IS THE FIX, AT THE LAYER THE ERROR IS ON.',
+     'NOT THE ROOT CAUSE, AND NOT A SUBSTITUTE FOR IT.',
+     ['test_each_contained_family_says_the_block_is_the_fix_not_a_workaround']),
+
+    ('the "a sixth family is a family defect" caveat weakened to silence', BIRAD,
+     'the same defect as this one, in that family, and fixed the same way',
+     'something to look at if it ever happens',
+     ['test_each_contained_family_says_the_block_is_the_fix_not_a_workaround']),
+
     ('a covalent argon given thermo by a library entry', LIB,
      'entry(\n    index = 0,\n    label = "Ar(3P2)",',
      'entry(\n    index = 1,\n    label = "ArH",\n    molecule =\n'
@@ -174,10 +194,36 @@ def banner(text):
 
 
 #: Strings this script writes into repository files. None may survive it.
-MARKERS = ['RED-GREEN PERTURBATION', 'RED_GREEN_PERTURBATION', 'label = "ArH"',
-           '134000.0, 5.9890428524', 'coeffs = [3.0, 0.0', '94552.0000',
-           'R*ln term 0.0028', 'It crosses 0.01 at 291 K', '13.4000 J/(mol*K)',
-           'Previously dS = 13.5027', 'is revised, and what replaces it']
+#:
+#: Keyed BY CASE NAME, and every case must appear, because the flat list this replaced went
+#: stale the moment round 60 added four cases: the sweep ran, reported "clean", and had
+#: simply never been told what to look for. A hand-maintained list beside a case list is
+#: the same class of defect the sweep exists to catch. A value of None means "this case
+#: replaces text rather than adding it, so there is nothing distinctive to grep for" - it
+#: must then be covered by MUST_CONTAIN below, and saying None is how you assert you
+#: checked that.
+CASE_MARKERS = {
+    'a wrong shipped H298 (a6 coefficient moved)': '134000.0, 5.9890428524',
+    'a wrong 1s3 level in the shipped alternatives table': '94552.0000',
+    'a wrong R*ln term in the shipped lumping prose': 'R*ln term 0.0028',
+    'a wrong crossing temperature in the shipped prose': 'It crosses 0.01 at 291 K',
+    'a wrong shipped Cp (a1 coefficient moved)': 'coeffs = [3.0, 0.0',
+    'a disclosed anchor number that drifts from the measurement': '13.4000 J/(mol*K)',
+    'the superseded anchor pair put back beside the live one': 'Previously dS = 13.5027',
+    'the retraction removed from the entry': 'is revised, and what replaces it',
+    'the entry reframed back to blaming the engine': 'AND WHY THAT IS NOT THE ROOT FIX.',
+    'the licensing arithmetic removed from the entry': '``the valency rule``',
+    "a family's block reverted to naming the engine as root cause":
+        'NOT THE ROOT CAUSE, AND NOT A SUBSTITUTE FOR IT.',
+    'the "a sixth family is a family defect" caveat weakened to silence':
+        'something to look at if it ever happens',
+    'a covalent argon given thermo by a library entry': 'label = "ArH"',
+    'the containment group left unlabelled, so it matches nothing': None,
+    'the containment widened until it eats the chemistry the family is for': None,
+    'a contained family quietly dropped from the default set': None,
+    'the one plasma family that reaches it, contained too': 'RED_GREEN_PERTURBATION',
+}
+MARKERS = sorted({m for m in CASE_MARKERS.values() if m} | {'RED-GREEN PERTURBATION'})
 TOUCHABLE = sorted({LIB, BIRAD, RECOMMENDED, EII_GROUPS})
 
 #: Cases 10 and 11 do not ADD a marker, they REPLACE one - unlabelling the containment
@@ -194,6 +240,14 @@ MUST_CONTAIN = {
     'input/kinetics/families/Cl_Abstraction/groups.py': '1 *3 Ar u2 p3 c0',
     'input/thermo/libraries/PlasmaExcitedNeutralThermo.py': 'label = "Ar(3P2)"',
 }
+
+#: The guard that stops CASE_MARKERS going stale again: refuse to start if any case has
+#: not been given a marker or an explicit None. Cheaper than the sweep and fires earlier.
+_named = {case[0] for case in CASES}
+_declared = set(CASE_MARKERS)
+assert _named == _declared, (
+    'CASE_MARKERS is out of step with CASES; undeclared=%s, unknown=%s'
+    % (sorted(_named - _declared), sorted(_declared - _named)))
 
 LOCK = os.path.join(REPO, 'docs', 'argon-metastable-thermo', '.red_green.lock')
 

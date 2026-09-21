@@ -1,0 +1,24 @@
+=== 1. MOLECULE layer: Ar, bond-free, p3 c0, u swept ===
+  u0  REFUSED   InvalidAdjacencyListError: Invalid valency for atom Ar (Ar0e) with 0 unpaired electrons, 3 pairs of electrons, 0 charge, and bonds [].
+  u1  REFUSED   InvalidAdjacencyListError: Invalid valency for atom Ar (Ar0e) with 1 unpaired electrons, 3 pairs of electrons, 0 charge, and bonds [].
+  u2  ACCEPTED  atomtype=Ar0e  p=3  c=0  bonds=0
+  u3  REFUSED   InvalidAdjacencyListError: Invalid valency for atom Ar (Ar0e) with 3 unpaired electrons, 3 pairs of electrons, 0 charge, and bonds [].
+  u4  REFUSED   InvalidAdjacencyListError: Invalid valency for atom Ar (Ar0e) with 4 unpaired electrons, 3 pairs of electrons, 0 charge, and bonds [].
+
+=== 2. the arithmetic: 8 - c == bonds + 2p + u ===
+  Ar(3P2) metastable   Ar0e  8-c=8  bonds+2p+u=8  HOLDS
+  Ar ground state      Ar0   8-c=8  bonds+2p+u=8  HOLDS
+
+=== 3. every (u, p, c) that perceives as Ar0e -- the refutation block ===
+  constructs as Ar0e: u2 p3 c0 (written u2 p3 c0)
+  total distinct triples: 1
+  positive control -- argon molecules built anywhere in the sweep: 3 
+
+=== 4. GROUP layer: the ux spelling matches more, and the more is unreachable ===
+  u0  no such MOLECULE exists, so this group can never meet one
+  u1  no such MOLECULE exists, so this group can never meet one
+  u2  molecule exists; `1 *1 Ar0e ux p3 c0` matches = True
+  u3  no such MOLECULE exists, so this group can never meet one
+  u4  no such MOLECULE exists, so this group can never meet one
+
+RESULT: Ar0e is metastable argon uniquely in a molecule = True

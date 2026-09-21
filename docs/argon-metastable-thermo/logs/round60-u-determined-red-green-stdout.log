@@ -1,0 +1,8 @@
+loaded the shipped test from /home/alon/Code/RMG-database-i221-argon-metastable-thermo/test/test_argon_metastable_thermo.py
+=== the check that guards engine behaviour, shown red without touching rmgpy/ ===
+  unperturbed                  GREEN
+  valency check disabled       RED    AssertionError: only u2 may exist at bond-free p3 c0; built {0: 'Ar0', 1: 'Ar0e', 2: 'Ar0e'}
+  restored                     GREEN
+
+RESULT: green -> red -> green = True
+No file was modified; the restore is verified by object identity.

@@ -103,8 +103,10 @@ WHAT THE READER MUST NOT ASSUME
    so this was the default combination and not an exotic one. Each now carries a
    ``forbidden(...)`` entry for ``Ar u2 p3 c0`` -- the mechanism those families already use for
    off-scope reactants -- and the reachability measures 0 with 0 controls moved. That fix edits
-   five families every RMG user loads, so it is a separable commit; the root cause is still an
-   engine declaration and is reported, not worked around. Same longDesc section.
+   five families every RMG user loads, so it is a separable commit. It is the fix and not a
+   workaround: the argon atom types are correct (in a molecule ``8 - c = bonds + 2p + u``, so
+   ``Ar0e`` is this species uniquely), and what those five families were missing is a statement
+   of their own scope. Same longDesc section.
 """
 
 entry(
@@ -652,11 +654,19 @@ STRUCTURE
     charge 0. Measured on the engine, this perceives as atom type ``Ar0e`` and is isomorphic to
     neither ground-state argon nor Ar+. Two warnings that go with it:
 
-    * ``Ar0e`` in a GROUP adjacency list does not mean "metastable". Atom-type perception ignores
-      ``u`` entirely, so ``1 Ar0e ux p3 c0`` matches u1 argon as readily as the u2 metastable. A
-      group that means this species must write ``u2`` explicitly. (RMG-Py's own atomtype.py says
-      so at length; repeated here because a kinetics author reading this entry is exactly the
-      person who will get it wrong.)
+    * ``Ar0e`` in a GROUP adjacency list does not mean "metastable", BUT ONLY AT THE GROUP LAYER.
+      Atom-type perception ignores ``u`` entirely, so the group ``1 Ar0e ux p3 c0`` is legal and
+      compares equal to a u1 argon group as readily as to the u2 metastable -- RMG-Py's own
+      atomtype.py warns about this at length. What that warning does NOT say, and what matters
+      more here, is that **no such molecule exists to be matched**: in a MOLECULE adjacency list
+      the valency check applies, the argon arithmetic under WHY THEY MATCH fixes ``u``, and a
+      bond-free neutral
+      argon at p3 is u2 or it is refused outright. Measured over the whole (u, p, c) grid,
+      exactly ONE molecule perceives as ``Ar0e`` and it is this species
+      (``docs/argon-metastable-thermo/atomtype_u_determined_probe.py``). So the hazard is real
+      for group-against-group comparisons and unreachable in reaction generation, which only ever
+      matches groups against molecules. A group that means this species should still write ``u2``
+      explicitly, for the reader.
     * The SMILES round trip is not safe for monatomic species in this database -- documented for
       ``[Arp]``/``[Hep]``/``[Nep]`` in ``PlasmaCationThermo``, where ``from_smiles`` returns a
       doubled charge. The adjacency list above is the only interchange form to use.
@@ -712,12 +722,26 @@ THIS IS NOT AN INERT ISLAND. READ THIS BEFORE LOADING THE LIBRARY
     are all in ``default``; only Cl_Abstraction is not. So this is not an exotic combination that
     a user would have to construct on purpose. It is the default one.
 
-    WHY THEY MATCH. ``Ar(3P2)`` is ``Ar u2 p3 c0`` -- two unpaired electrons -- and the atom type
-    that perceives it, ``Ar0e``, is declared in RMG-Py with
-    ``generic=['R', 'R!H', 'R!H!Val7', 'Rx', 'Rx!H', 'Ar']``. Every biradical and radical-addition
-    recipe in this database writes its reacting centre as one of those generics, so metastable
-    argon is inside all of them. Nothing in this library causes that and nothing in this library
-    can undo it.
+    WHY THEY MATCH, AND WHERE THE ERROR ACTUALLY IS. ``Ar(3P2)`` is ``Ar u2 p3 c0`` -- two
+    unpaired electrons -- and the atom type that perceives it, ``Ar0e``, is declared in RMG-Py
+    with ``generic=['R', 'R!H', 'R!H!Val7', 'Rx', 'Rx!H', 'Ar']``. Every biradical and
+    radical-addition recipe in this database writes its reacting centre as one of those generics,
+    so metastable argon is inside all of them.
+
+    **That perception is correct and the atom types are not the defect.** Owner's ruling of
+    2026-09-21, and it is one line of arithmetic. Argon brings 8 valence electrons, so for argon
+    ``8 - c = bonds + 2p + u`` (the 8 is argon's valence count, not a universal constant). A bond-free neutral
+    argon at p3 c0 therefore has u2 and no choice about it; the valency check refuses u0, u1, u3
+    and u4 outright. Swept over the whole (u, p, c) grid, exactly ONE molecule perceives as
+    ``Ar0e`` and it is this species (``docs/argon-metastable-thermo/atomtype_u_determined_probe.py``).
+    ``Ar0e`` in a molecule IS metastable argon, uniquely and correctly, and a family site written
+    ``R!H`` with ``u2`` is right to match it. (``atomtype.py``'s own comment that ``Ar0e`` "answers
+    for five (u, p, c) triples" is about GROUP patterns, where ``ux`` can be hand-written and no
+    valency check applies. Families generate molecules. An earlier draft of this entry read that
+    comment at the molecule layer and blamed the engine for what follows; it was wrong to.)
+
+    So what these five families are missing is not an engine constraint. It is a statement of
+    their own scope that they never wrote down -- see below, where each one now writes it.
 
     WHAT HAPPENS NEXT, MEASURED THROUGH THE ENLARGEMENT PATH A REAL RUN USES
     (``docs/argon-metastable-thermo/job_level_crash_probe.py``). ``CoreEdgeReactionModel``'s
@@ -765,13 +789,17 @@ THIS IS NOT AN INERT ISLAND. READ THIS BEFORE LOADING THE LIBRARY
     would also be wildly disproportionate -- they are the backbone of every combustion mechanism
     RMG generates, and they are correct for all of their other chemistry.)
 
-    WHAT IS DONE ABOUT IT ON THIS BRANCH, AND WHY THAT IS NOT THE ROOT FIX. Each of the five
-    ordinary families now carries one ``forbidden(...)`` entry for metastable argon, in the
+    WHAT IS DONE ABOUT IT ON THIS BRANCH -- AND WHY IT IS THE FIX, NOT A WORKAROUND. Each of the
+    five ordinary families now carries one ``forbidden(...)`` entry for metastable argon, in the
     mechanism those families already use for off-scope reactants. ``Birad_R_Recombination``'s
     existing forbidden groups say it in their own words -- "This family is intended to handle
     [O] u2 p2, or [S] u2 p2, or [NH] u2 p1, instances with a different number of lone pairs are
-    forbidden" -- and ``Ar u2 p3`` is exactly such an instance, so this writes down a rule the
-    family already claims about itself rather than suppressing an inconvenient result. The
+    forbidden" -- and ``Ar u2 p3`` is exactly such an instance. **The family already knew its own
+    scope and had encoded three quarters of it; this writes down the rest.** A family whose
+    reacting site is a generic ``R!H`` at ``u2``, which means three specific biradicals and says
+    so in prose, is the layer at which "and not metastable argon" belongs. It is not a suppression
+    of an inconvenient result and it is not an engine workaround: the atom types are correct (see
+    WHY THEY MATCH above), so this is the only layer where the missing statement could go. The
     mechanism fires inside ``__generate_product_structures`` (``family.py:1669`` on reactants,
     ``:1690`` on products), i.e. during GENERATION, which is the only place early enough.
 
@@ -787,14 +815,15 @@ THIS IS NOT AN INERT ISLAND. READ THIS BEFORE LOADING THE LIBRARY
     without the containment: it is the degenerate identity reaction and RMG never generated it.
     That was measured on the reverted file rather than assumed, and is recorded in the probe.
 
-    **TWO THINGS THIS CONTAINMENT IS NOT.** It is not the root fix: ``ATOMTYPES['Ar0e']`` is
-    declared generic under ``R``/``R!H`` in ``rmgpy/molecule/atomtype.py``, and narrowing that --
-    or giving argon a bonded atom type so these products become well-formed rather than merely
-    unreachable -- is the only repair that makes the reachability go away in general. That file
-    is in this campaign's gated lane, so it is REPORTED and not attempted. And it is not
-    complete: it closes the five families measured to reach this species against 50 partners, and
-    it cannot close a family nobody has generated against yet. A sixth would reopen the crash
-    exactly as before.
+    **WHAT THIS CONTAINMENT IS NOT: COMPLETE.** It closes the five families measured to reach this
+    species against 50 partners, and it cannot close a family nobody has generated against yet. A
+    sixth would reopen the crash exactly as before. But note what such a sixth family would MEAN,
+    because it changes what to do about it: it would be a family declaring a ``u2`` biradical site
+    broader than the chemistry it intends, and shipping without saying so -- a defect in THAT
+    family, of the same kind as these five, to be fixed the same way. It would not be an engine
+    defect resurfacing, and no change to ``atomtype.py`` would prevent it. (Nothing in RMG stops a
+    family from being written this way, which is the general observation behind the specific
+    ticket; it belongs to whoever owns family-authoring conventions, not to this entry.)
 
     It also has a blast radius wider than this ticket -- five ordinary families that every RMG
     user loads, four of them in ``default`` -- which is why it lands as its own commit, separable

@@ -295,8 +295,11 @@ runs any of this automatically — see §10, the last MEDIUM.
 `databaseTest.py`'s six tests each run many sub-assertions under `pytest_check`, so "6 passed"
 means every thermo-group, kinetics-family, solvation, statmech, transport and metal check passed.
 
-**The 4 failures are pre-existing and unrelated**, identical before and after — engine-drift
-tripwires that fire because RMG-Py moved under them:
+**The 4 failures pre-date this work on the base it was cut from (`04846619b`) and are unrelated**,
+identical before and after — engine-drift tripwires that fire because RMG-Py moved under them.
+**They are NOT failures of the project**: they were already repaired at plasma head `96f2afa4a`,
+and they go green here the moment this branch is rebasable onto it. See §16, which is the
+correction; "pre-existing" below means *against this branch's base*, nowhere else:
 
 - `test_argon_cation_buildtime.py::test_the_dication_builds_and_raises_the_loud_databaseerror`
 - `test_argon_cation_buildtime.py::test_the_dimer_cation_builds_and_raises_the_loud_databaseerror`
@@ -1090,7 +1093,7 @@ All three confirmed.
 |---|---|
 | `test/test_argon_metastable_thermo.py` | **44 passed** |
 | `test/test_eii_quarantine.py` | **14 passed** (new) |
-| `test/` (whole repository) | **273 passed, 3 failed** — the same 3 as before this work, a strict **subset** of the 4 pre-existing failures; no new failure |
+| `test/` (whole repository) | **273 passed, 3 failed** — the same 3 as before this work, a strict **subset** of the 4 failures carried by this branch's base `04846619b`; no new failure. All 4 are repaired at plasma head and green after §16's rebase |
 | `test/database/databaseTest.py`, `database.directory` pinned at this worktree | **6 passed** in 490.9 s, *with the manifest in place* |
 | `round58_probe.py` (re-run against the shipped `NASA`) | exit 0 |
 | `quarantine_probe.py` | exit 0, every in-probe assertion passed |
@@ -1360,7 +1363,7 @@ the defect is worse than reported.
 |---|---|
 | `test/test_argon_metastable_thermo.py` | **53 passed** (was 44) |
 | `test/test_eii_quarantine.py` | **14 passed**, unchanged |
-| `test/` (whole repository) | **281 passed, 4 failed** against the **272 passed, 4 failed** head baseline — the same four pre-existing failures, no new failure |
+| `test/` (whole repository) | **281 passed, 4 failed** against the **272 passed, 4 failed** baseline *of this branch's base `04846619b`* — the same four failures, no new failure. That baseline is the BASE, not the project's head; all four are repaired at head and green after §16's rebase |
 | `red_green.py` | **13 cases, 13 shown red then green**, every restore SHA-verified, exit 0 |
 | `containment_probe.py` | 0 ordinary families reach `Ar(3P2)`, 0 of 22 controls moved |
 | `atomtype_escalation_probe.py` | 4 candidates measured, no narrowing separates the wanted channel from the unwanted ones — re-read in §15 as corroboration that there is nothing to narrow |
@@ -1496,7 +1499,7 @@ was based on the old SHA (checked with `git branch --contains` and `git worktree
 | `atomtype_u_determined_probe.py` | exit 0 — one triple perceives as `Ar0e`; positive control built 3 argon molecules |
 | `u_determined_red_green.py` | green → red → green, no file touched |
 | `red_green.py` | **17 cases, 17 shown red then green**, 0 leftovers, exit 0 |
-| `test/` (whole repository) | **283 passed, 4 failed** against round 59's **281 passed, 4 failed** — the same four pre-existing failures by name, and the two new tests |
+| `test/` (whole repository) | **283 passed, 4 failed** against round 59's **281 passed, 4 failed** — the same four failures by name (of the *base*, `04846619b`; already repaired at head), and the two new tests. Superseded by §16: **318 passed, 0 failed** after the rebase |
 | `test/database/databaseTest.py` (engine) | **6 passed**, 481.3 s, pinned to this worktree (the three `PIN` lines head the log). Re-run because this round changed the containment commit's *content*, not only its message |
 
 Both streams of every run are in `docs/argon-metastable-thermo/logs/`, prefixed `round60-`. Not
@@ -1533,3 +1536,108 @@ behaviour and breaking it would mean editing `rmgpy/`. `u_determined_red_green.p
 counterfactual the test claims to catch — a future engine admitting a second `(u, p, c)` — and the
 test goes red (`built {0: 'Ar0', 1: 'Ar0e', 2: 'Ar0e'}`), then green on restore. No file is
 touched, and the restore is verified by object identity rather than by hash.
+
+---
+
+## 16. The four failures were never the project's — they were this branch's base
+
+Raised by the manager on 2026-09-21, reproduced exactly, and correct in substance. This section
+is the correction; every "pre-existing" in §7, §13 and §14 now points here.
+
+### 16.1 What was wrong with the characterisation
+
+Rounds 55–60 all reported the repository suite as *"N passed, 4 failed — the same four pre-existing
+failures"*. Measured, that is true **against `04846619b`, the commit this branch was cut from**, and
+false about the project. At plasma head `96f2afa4a` those four tests pass. The branch was carrying
+the absence of a repair that had already landed, and the suite was faithfully reporting it.
+
+**"Pre-existing" is a claim about a base, not about a project.** A reader who does not know which
+base was meant will read it as the project's, which is the strongest available reading and the
+wrong one. The phrase is removed in favour of naming the base every time.
+
+### 16.2 One correction to the mechanism, in the manager's own spirit
+
+The brief attributes the change to the I-223 merge. Measured, it is **I-234**:
+
+```
+git log --oneline 04846619b..96f2afa4a -- input/kinetics/libraries/PlasmaRadiativeRecombination/
+    de27dd5c7  Make the uniqueness guarantee true, and correct four claims (I-234)
+    9eeebedfa  Label the effect by observable, and refresh what the change made stale (I-234)
+    2212f68ef  Withdraw the claims round 59 showed the evidence does not support (I-234)
+    850c81cf0  Enter argon radiative recombination, and measure that it is not negligible (I-234)
+
+git show --name-only 96f2afa4a -- input/kinetics/libraries/PlasmaRadiativeRecombination/   ->  empty
+```
+
+The I-223 merge (`96f2afa4a`) touches held-back `Plasma_Charge_Transfer` groups, training reactions
+and test fixtures, and nothing under `input/kinetics/libraries/`. Everything else in the brief
+holds: merge-base `04846619b`, head not an ancestor, and the net `input/` delta between the two is
+exactly those two `PlasmaRadiativeRecombination` files, which are what the four failures exercise.
+
+### 16.3 The rebase, and the prediction it was asked to refute
+
+Rebased onto `96f2afa4a`; 15 commits replayed, no conflicts. The prediction held:
+
+| | before | after |
+|---|---|---|
+| `test/` (whole repository) | 283 passed, **4 failed** | **318 passed, 0 failed** |
+| `test/database/databaseTest.py` (engine, pinned) | 6 passed, 481.3 s | **6 passed**, 589.0 s |
+
+`databaseTest.py` was re-run rather than assumed: the rebase brings I-223's held-back
+`Plasma_Charge_Transfer` groups and I-234's library entries into the tree the containment is
+loaded with, which is exactly the kind of change that suite exists to catch.
+
+Nothing of this ticket's went red. The four named failures
+(`test_the_dication_builds_and_raises_the_loud_databaseerror`,
+`test_the_dimer_cation_builds_and_raises_the_loud_databaseerror`,
+`test_argon_atom_type_now_declares_a_charge_envelope_but_still_parses_any_charge`,
+`test_three_body_recombination_still_cannot_be_stored_at_all`) all pass. The count rises by 35
+rather than 4 because I-223 and I-234 bring their own tests with them.
+
+This ticket's files survived the rebase byte-identical — verified, not assumed:
+`git diff <pre-rebase tip> HEAD` over the library, the five `groups.py`, the EII quarantine and the
+test file is empty.
+
+### 16.4 The collision the manager asked to have named rather than fixed
+
+There is one, and it is **not** a code collision — the containment and the I-234 repair never touch
+the same file. It is a **claims** collision, and I-234's text is the false side of it.
+`input/kinetics/libraries/PlasmaRadiativeRecombination/reactions.py:347` ships:
+
+> Argon's 4s `3P2`/`3P0` levels are metastable and make the point concrete: population reaching
+> them is held, not delivered. **This database carries `Ar(3P2)` (`PlasmaExcitedNeutralThermo`,
+> I-221) but no reaction reaches or leaves it**, so the branching cannot be represented here
+> whatever its value.
+
+Both halves are false, in opposite directions, and which half fails depends on where you stand:
+
+* **At plasma head, where that sentence shipped:** `input/thermo/libraries/PlasmaExcitedNeutralThermo.py`
+  **does not exist** (`git cat-file -e 96f2afa4a:...` fails). The database does not carry `Ar(3P2)`.
+  The sentence forward-references an unmerged branch as though it were already in.
+* **On this branch, where the library does exist:** *"no reaction reaches or leaves it"* is the
+  exact claim I-221 round 59 retracted after measuring it. `Plasma_Electron_Impact_Ionization`
+  generates the stepwise ionisation channel **out of** this species, and before the containment
+  five ordinary families reached **into** it. `test_exactly_one_PLASMA_family_reaches_it_which_is_not_the_same_as_one_family`
+  pins it and passes on the rebased tree.
+
+**Not fixed here.** It is I-234's file, its claim, and its ticket; editing it would be exactly the
+quiet fix the manager asked not to receive. Named for the owner. Note also the shape: I-234 states
+something about a library that only exists on another branch, so it is *unfalsifiable in its own
+repository* — the same absence-justification class as §11, arriving from the other side.
+
+### 16.5 What this is an instance of
+
+A merge in one place silently changed what a suite measures in another. Yesterday it was a merge in
+the engine repository changing a database suite's result; here it is a merge in this repository
+changing what this branch's own baseline means. **A baseline is a claim with an expiry date, and
+the expiry is somebody else's merge.** The durable form: never report a failure count without
+naming the commit it is relative to, and re-derive the baseline against *head* rather than against
+the branch point before calling anything pre-existing.
+
+### 16.6 One thing left uncorrected, deliberately
+
+Four commit messages already on this branch — `b66346d3a`, `25bdb96e8`, `3ae1ade8a`, `5e905e506`
+(post-rebase SHAs) — carry the superseded phrasing. Nothing is pushed, so they could be rewritten;
+that is a second history rewrite across the branch for a phrase this section now corrects
+authoritatively, so it is left as the owner's call rather than taken unilaterally. The tip's
+message carries the correction.

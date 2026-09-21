@@ -2,7 +2,7 @@
 # encoding: utf-8
 
 name = "PlasmaRadiativeRecombination"
-shortDesc = u"Radiative recombination of atomic cations, from the Badnell (2006) fits"
+shortDesc = u"Radiative recombination of atomic cations: Badnell (2006) fits, plus one transcribed literature row"
 longDesc = u"""
 Radiative recombination of a monatomic cation with a free electron, one recombination
 stage:
@@ -57,8 +57,19 @@ fabricated number rather than an uncertain one. RMG could not build such a tree 
 ``[Arrhenius, SurfaceChargeTransfer, ArrheniusChargeTransfer, Marcus]`` and
 ``BadnellRRArrhenius`` is not on it, exactly as ``VoronovEIArrhenius`` is not.
 
-COVERAGE, AND WHY IT IS ONE ENTRY
----------------------------------
+COVERAGE: TWO ENTRIES, FROM TWO DIFFERENT SOURCES, FOR TWO DIFFERENT REASONS
+-----------------------------------------------------------------------------
+This library held exactly one entry (Li+, from ``badnell.yaml``) until I-234 added argon
+(Ar+, transcribed from Shull & Van Steenberg 1982). The count is not the point; the
+**provenance split** is, and it is why the walk below still matters. The first entry comes
+from a shipped machine-readable table that RMG reads by ``(Z, N)``. The second cannot,
+because that table does not reach argon, so its four coefficients are hand-transcribed from
+a named row of a published table. Anything said below about what ``badnell.yaml`` can cover
+constrains the FIRST route only. The second route is limited by what a human can source and
+transcribe, which is a different bound entirely and is argued at the argon entry itself.
+
+THE BADNELL ROUTE, AND WHY IT YIELDS ONLY ONE ENTRY
+----------------------------------------------------
 ``input/kinetics/badnell.yaml`` holds 33 nuclear charges spanning Z = 1-54 and 318 ``(Z, N)``
 stages. Only ``N = Z - 1`` - a singly charged cation capturing an electron to give the
 neutral - is a stage this database can represent at all; the other 306 are multiply charged
@@ -74,15 +85,20 @@ H+ exists as ``proton`` in ``electrocatThermo`` / ``electrocatLiThermo``, but th
 electrocatalysis reference species carrying the computational-hydrogen-electrode convention,
 not a gas-phase proton.
 
-So coverage narrows 318 -> 12 -> 6 -> 1, and the one is Li+. Two consequences worth naming:
+So the Badnell route narrows 318 -> 12 -> 6 -> 1, and the one is Li+. Two consequences
+worth naming:
 
 * The bound is thermochemistry, not this table and not this owner. Adding He+, N+, O+ or Ne+
   needs monatomic-cation thermochemistry that does not exist here; that is a thermo ticket,
   and until it lands those reactions could not enter a model whichever owner was chosen.
-* **Argon has no radiative-recombination fit here at all.** Ar is this campaign's benchmark
-  bath gas and its electron-impact ionization *is* in ``voronov.yaml``, but ``badnell.yaml``
-  carries no ``Z = 18, N = 17`` stage - the table's cation-to-neutral stages stop at Z = 12.
-  An Ar-bath model can ionize argon and cannot radiatively recombine it.
+* **Argon is not reachable by this route, and that is why the argon entry is transcribed
+  by hand.** Ar is this campaign's benchmark bath gas and its electron-impact ionization *is*
+  in ``voronov.yaml``, but ``badnell.yaml`` carries no ``Z = 18, N = 17`` stage - the table's
+  cation-to-neutral stages stop at Z = 12. This paragraph used to end "an Ar-bath model can
+  ionize argon and cannot radiatively recombine it", which was true of the database and was
+  read as though it were true of the chemistry. I-234 closed it from the other direction: the
+  rate exists in the literature, it is simply not in a table RMG parses, so it enters as four
+  transcribed numbers with the row named. The limit was the ingest path, not the physics.
 
 WHAT HAPPENS TO A SPECIES THIS LIBRARY DOES NOT COVER
 -----------------------------------------------------
@@ -94,7 +110,8 @@ wrong number, which they cannot.
 USING IT
 --------
 Add ``'PlasmaRadiativeRecombination'`` to ``kineticsLibraries`` in the input file, supply the
-electron species, and supply ``[Lip]``. The reactor-facing form ``Li+ + e- => Li`` is produced
+electron species, and supply ``[Lip]`` and/or ``[Arp]`` - each entry is offered only if its
+own cation is present. The reactor-facing form ``Li+ + e- => Li`` is produced
 by ``rmgpy.electron_placement.resolve_electron_placement`` from the ``(1, 0)`` declaration;
 the entry below is the canonical database form and must not be written with an explicit
 electron participant, which the resolver refuses as double representation.
@@ -346,9 +363,12 @@ root REFUSES the argon cation; measured directly, not inferred. The family's
 u1 -> u0. Tracked as I-236, together with the more dangerous half of that defect (the root
 DOES match neutral Ar and would drive it toward an anion RMG cannot construct).
 
-WHAT THIS ENTRY DOES TO THE 5 TORR ARGON MODEL - IT IS NOT NEGLIGIBLE
----------------------------------------------------------------------
-Measured, not argued, and it inverts the expectation this entry was added under.
+WHAT THIS ENTRY DOES TO THE 5 TORR ARGON MODEL - IT DEPENDS WHICH OBSERVABLE
+-----------------------------------------------------------------------------
+Measured, not argued, and it inverts the expectation this entry was added under - but
+"not negligible" is only true of one observable, and the campaign cares about the other
+one. Both numbers are below. Significant for heavy-species composition; negligible for
+electron density.
 
 Radiative recombination is a slow channel, and at the deck's INITIAL state it is utterly
 negligible: with n_e = 1e16 m^-3 against n_Ar = 1.62e23 m^-3, the RR sink is 7.5e-11 of the
@@ -371,6 +391,32 @@ from the shipped ``PlasmaArgon`` cross-section table at this Te:
 
     predicted  alpha / k_iz             = 1.214459e-3
     measured   Ar/Ar+ ratio at 1e-3 s   = 1.214449e-3
+
+AND WHAT IT DOES NOT DO: THE ELECTRON DENSITY BARELY MOVES
+-----------------------------------------------------------
+The same two committed profiles, end state, as deltas of (with - without)/without:
+
+    electron amount   (moles)      -1213 ppm
+    mixture volume    (m^3)        -1203 ppm
+    ELECTRON DENSITY  (mol/m^3)      -10.3 ppm     <- what the campaign is chasing
+    heavy neutral fraction Ar/(Ar+Ar+)   0 -> 1.213e-3
+
+Removing electrons from a CONSTANT-PRESSURE two-temperature mixture shrinks the mixture
+almost exactly as fast as it removes them, so the density hardly changes. The volume is
+set by V = R((n_total - n_e)*Tgas + n_e*Te)/P, and with this deck ionised to completion at
+Te/Tgas = 116.8 the electron gas carries 99.15% of that sum. Take away 1213 ppm of the
+electrons and 1203 ppm of the volume goes with them; the quotient moves by the ~1/117
+residue, 10.3 ppm. The effect is not an artefact of the two arms stopping at different
+times: comparing both at the earlier arm's final time gives the same -10.3 ppm.
+
+The volume cancels out of any RATIO of two heavy species, which is exactly why the neutral
+fraction is free to move by three orders while the density does not. Same run, same
+physics, two observables, two honest answers.
+
+Consequence for the campaign, stated plainly: **this channel is not a candidate explanation
+for the electron-density discrepancy**, and no volumetric sink of any order can be, for the
+same reason (I-235's three-body channel included). Only a non-volumetric loss - wall/
+ambipolar diffusion, which is absent from this mechanism - escapes the cancellation.
 
 **What that agreement establishes, and what it does not.** It is an integration consistency
 check: the solver was handed these two coefficients and reproduces the ratio the algebra

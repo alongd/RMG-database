@@ -856,4 +856,4 @@ test/test_argon_cation_thermo.py::test_without_this_library_the_species_is_refus
   <string>:51756: DeprecationWarning: invalid escape sequence \D
 
 -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
-248 passed, 568 warnings in 30.34s
+248 passed, 568 warnings in 30.82s

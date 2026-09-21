@@ -1,4 +1,4 @@
-# I-234 — Argon radiative recombination: sourced, entered, and it is not negligible
+# I-234 — Argon radiative recombination: sourced, entered, and significant in one observable of two
 
 **The most important finding is not about argon.** Adding this entry silently disabled twenty
 existing checks on the lithium entry that was already there — not by breaking an assertion, but by
@@ -7,12 +7,23 @@ the checks stopped running while the suite still printed green for the rest. Tha
 a cleaner instance of this campaign's own subject than anything else here. Fixed; 47 → 69 passing,
 zero errors.
 
-**On argon, the result inverts the brief.** The brief anticipated that a correctly sourced rate
-would turn out to be negligible at 5 torr / 3 eV, and asked for the comparison that would establish
-it. The comparison says the opposite: **this entry is the only loss channel in the mechanism, so it
-alone sets the end state.** Without it argon ionises until the neutral is gone; with it the model
-settles at a heavy-species neutral fraction of `1.213e-3`, which is `alpha/k_iz`. The channel is
-determinative here for a reason that is itself a finding and not a flattering one (§6.4).
+**On argon, the result inverts the brief — for one observable, and not for the one the campaign is
+chasing.** The brief anticipated that a correctly sourced rate would turn out to be negligible at
+5 torr / 3 eV, and asked for the comparison that would establish it. The answer is not one word:
+
+| observable | effect of this entry | verdict |
+|---|---|---|
+| heavy-species neutral fraction `Ar/(Ar+Ar⁺)` | `0 → 1.213e-3` | **significant** — the only thing producing neutral argon at all |
+| electron **density** | `−10.3 ppm` | **negligible** |
+
+Both are the same two committed runs. **This entry is the only loss channel in the mechanism, so it
+alone sets the heavy-species balance** — without it argon ionises until the neutral is gone, with it
+the model settles at `alpha/k_iz`. But it moves the electron density by ten parts per million,
+because at constant pressure the electron gas sets the volume and the mixture shrinks nearly as
+fast as the electrons are removed (§6.5). So it is **not** a candidate explanation for the
+campaign's electron-density discrepancy, and neither is any other volumetric sink. The channel is
+determinative for heavy species for a reason that is itself a finding and not a flattering one
+(§6.4).
 
 Three further contradictions of the framing, all measured:
 
@@ -445,7 +456,16 @@ this comparison rather than fixed here.
 
 ---
 
-## 6. Does it matter? Yes — and this is where the brief's expectation fails
+## 6. Does it matter? In one observable yes, in the other no
+
+> **Reproducibility, stated before the numbers rather than after them:** the two arms below are
+> **not** reproducible from the committed files as they stand. `run-with/input.py` and
+> `run-without/input.py` are byte-identical, because the two arms differ by the *database*, not by
+> the deck: the without-arm was produced by temporarily reverting tracked library files to their
+> pre-entry state. Re-running both decks at this commit reproduces the with-entry arm twice. The
+> exact procedure to reproduce the without-arm is in §5.1. The committed evidence for the
+> without-arm is its `solver/simulation_1_3.csv` and its captured streams, not its deck.
+
 
 ### 6.1 The seed-state estimate, which is correct and answers the wrong question
 
@@ -560,6 +580,51 @@ supports. (I-120 measured Ar₂⁺ dissociative recombination at ~2.9e5× the ra
 I-212 established it cannot be represented here at all; a rate ratio is not a steady state, so that
 number bounds nothing on its own.)
 
+### 6.5 The observable the branch never stated: electron density moves by 10 ppm
+
+Round 66 caught this and it is a labelling error of mine, not a measurement error. Everything in
+§6.2–§6.4 is about the *heavy-species* composition, where this channel is decisive. The campaign's
+actual target is the **electron density**, and until now no number for it appeared anywhere on this
+branch. Recomputed here from the same two committed profiles (end state, `(with − without)/without`):
+
+| quantity | with | without | Δ |
+|---|---|---|---|
+| electron amount (mol) | `0.9987869624` | `0.9999999382` | `−1213 ppm` |
+| mixture volume (m³) | `437.411536` | `437.9382338` | `−1203 ppm` |
+| **electron density (mol/m³)** | `2.2834033e-03` | `2.2834269e-03` | **`−10.3 ppm`** |
+| heavy neutral fraction `Ar/(Ar+Ar⁺)` | `1.213e-3` | `−2.5e-26` | `0 → 1.2e-3` |
+
+**Why the amount moves 118× more than the density.** At constant pressure the two-temperature
+equation of state is
+
+    V = R·((n_total − n_e)·T_gas + n_e·T_e) / P
+
+With this deck ionised essentially to completion and `T_e/T_gas = 116.8`, the electron gas carries
+**99.15 %** of that bracket. Removing 1213 ppm of the electrons therefore removes 1203 ppm of the
+volume along with them, and the density — their quotient — moves only by the residue, 10.3 ppm.
+The volume cancels out of any *ratio* of two heavy species, which is precisely why the neutral
+fraction is free to move three orders while the density is pinned.
+
+Two checks on that, because the arithmetic is convenient and convenient arithmetic deserves one:
+
+- the two arms stop at different simulation times (`1.394e-3` vs `1.303e-3` s), so the comparison
+  could have been an artefact of that. Interpolating both to the earlier arm's final time gives
+  the same `−10.3 ppm`; the end state is steady in this observable.
+- `1 − 99.15 % = 0.85 %`, and `1213 × 0.0085 = 10.3`. The residue and the measured delta are the
+  same number, which is what makes the EOS the explanation rather than a story told afterwards.
+
+**What this means for the campaign, and it generalises past this entry.** No volumetric electron
+sink, of any order, can close an electron-density discrepancy in this deck: every one of them
+removes electrons and shrinks the volume in near-lockstep, and only the ~1/117 residue survives
+into the density. That covers radiative recombination here, I-235's three-body channel, and any
+future dissociative-recombination entry. The channels that could move the density are the
+**non-volumetric** ones — ambipolar diffusion and wall loss, which act as a surface operator and
+are absent from this mechanism entirely.
+
+This does **not** weaken the entry. The rate is unchanged, the source is unchanged, and the
+heavy-species finding in §6.2–§6.4 stands exactly as measured. What changes is the label on it:
+significant for heavy-species composition, negligible for electron density.
+
 ---
 
 ## 7. I-120's ruling has been overtaken on all three supports
@@ -631,16 +696,39 @@ Reported because the absence is the finding.
   > with **Maxwellian rate coefficients and analytic fitting parameters**. A reader who checks finds
   > that in one click, which makes a false dismissal worse than no dismissal.
 
-  > **Retrieval re-attempted 2026-09-15, and the answer is now a measured negative rather than a
-  > failed attempt.** The remaining question was whether 403 from ScienceDirect meant "no copy
-  > exists" or merely "not by that route". OpenAlex — which aggregates the open repositories a
-  > preprint or author copy would sit in — returns for this DOI `open_access.is_oa: false`,
-  > `open_access.oa_url: null`, `best_oa_location: null`, and exactly one location, the paywalled
-  > publisher landing page. So there is no open copy indexed anywhere, and no alternative route to
-  > try: this is a **paywall**, and the unblock condition is institutional access or an author
-  > request, not a better search. Recorded so the next session does not spend the same hour.
+  > **Retrieval re-attempted 2026-09-15, re-queried and scoped 2026-09-21.** The question was
+  > whether 403 from ScienceDirect meant "no copy exists" or merely "not by that route". OpenAlex
+  > returns for this DOI, as work `W2079986418`:
+  >
+  > ```
+  > open_access.is_oa                          false
+  > open_access.oa_status                      "closed"
+  > open_access.oa_url                         null
+  > open_access.any_repository_has_fulltext    false
+  > best_oa_location                           null
+  > locations_count                            1
+  > locations[0]                               is_oa false, pdf_url null,
+  >                                            landing_page_url = the publisher DOI
+  > ```
+  >
+  > **What that licenses, precisely — round 66 was right that the first version overstated it.**
+  > It says *OpenAlex indexes no open copy*, which is not the same as *no open copy exists*.
+  > OpenAlex is broad over repositories but not exhaustive, and a copy on a personal or
+  > institutional page it has not harvested would not appear. The earlier wording said "no open
+  > copy indexed anywhere" and "no alternative route to try", and then in the same breath named
+  > two routes — institutional access and an author request — which is self-contradicting.
+  >
+  > The defensible statement: **every open route that OpenAlex can see is closed**, the obstacle
+  > is a paywall rather than a search failure, and the routes that remain are ones this session
+  > cannot take — institutional access, an author request, or a direct approach to a copy OpenAlex
+  > has not harvested. Recorded so the next session repeats the conclusion, not the hour.
+  >
+  > *Provenance of the block above:* retrieved through the `WebFetch` tool, which reads the API
+  > through a summarising model, because direct `curl` to `api.openalex.org` is blocked by this
+  > environment's sandbox. The field values are therefore transcribed, not a captured raw
+  > response, and nothing in this report rests on them beyond the negative itself.
 
-  The honest position: **the paper could not be retrieved** (ScienceDirect returns HTTP 403), so
+  The honest position: **the paper could not be retrieved here** (ScienceDirect returns HTTP 403), so
   none of its numbers have been seen and nothing here rests on it — it is named as the obvious next
   source, not used as evidence, and not dismissed. If obtained, two things would need checking:
   whether its rate coefficients are usable directly, and its reported finding that Ar⁺ sits near a

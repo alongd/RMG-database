@@ -11,4 +11,3 @@ multiplicity 2
 
 [Ar]
 1 Ar u0 p4 c0
-

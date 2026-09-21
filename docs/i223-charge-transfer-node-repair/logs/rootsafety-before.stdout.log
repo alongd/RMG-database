@@ -1,0 +1,297 @@
+cwd                 = /home/alon/Code/RMG-Py-plasma
+engine              = /home/alon/Code/RMG-Py-plasma
+database.directory  = /home/alon/Code/RMG-database-plasma/input
+family loaded from  = /home/alon/Code/RMG-database-i223-charge-transfer-node-repair/docs/i154-carry-chemistry/held-back/Plasma_Charge_Transfer
+thermo pool from    = /home/alon/Code/RMG-database-i223-charge-transfer-node-repair/input/thermo/libraries
+
+NOTE: database.directory above is the engine rmgrc's setting and points at a DIFFERENT
+worktree. This probe never uses it -- both paths above are explicit.
+
+recipe              = [['GAIN_RADICAL', '*1', 1], ['GAIN_RADICAL', '*2', 1], ['LOSE_PAIR', '*2', 1]]
+root A (*1)         = 1 *1 R ux p[0,2] c[+1,+2,+3,+4]
+root B (*2)         = 1 *2 R u[0,1] p[1,2,3,4] c[0,-1,-2,-3,-4]
+reversible          = False
+pool                = 22344 distinct species  (22325 from thermo libraries, +48 from the unrepresentable set, rest from training) in 12.6s
+
+====================================================================================================
+PART 1 -- which pool species match which root
+====================================================================================================
+net charge census   : {-1: 4, 0: 22324, 1: 16}
+match root A (*1)   :    645 of 22344
+match root B (*2)   :  21175 of 22344
+
+root-A matchers that are actually CATIONS (12) -- the intended exposure:
+   N#[N+]|+1                          training-product
+   O.[H+]|+1                          thermo/electrocatLiThermo
+   [Ca+]|+1                           training-reactant
+   [H+].[H]|+1                        unrepresentable
+   [H+]|+1                            thermo/electrocatLiThermo
+   [K+]|+1                            training-reactant
+   [Li+]|+1                           thermo/LithiumPrimaryThermo
+   [Mg+]|+1                           training-reactant
+   [Na+]|+1                           training-reactant
+   [O+]|+1                            training-reactant
+   [OH+]|+1                           training-reactant
+   [O][O+]|+1                         training-reactant
+
+root-A matchers that are NOT cations (633). A group constrains ATOMS, not molecular
+charge, so any neutral carrying a formally positive atom -- a nitro N, a diazo, an
+N-oxide -- is admitted by a root written to mean "a cation". First 25:
+   CC(=[N+][O-])C|+0                  thermo/CHON_G4
+   CC(=[NH+][O-])C|+0                 thermo/CHON_G4
+   CC(C(C)(C)C)[N+](=O)[O-]|+0        thermo/CHON
+   CC(C(C)C)C[N+](=O)[O-]|+0          thermo/CHON
+   CC(C([N+](=O)[O-])(C)C)C|+0        thermo/CHON
+   CC(CCC[N+](=O)[O-])C|+0            thermo/CHON
+   CC(CC[N+](=O)[O-])C|+0             thermo/CHON
+   CC(C[N+](=O)[O-])(C)C|+0           thermo/CHON
+   CC(C[N+](=O)[O-])C|+0              thermo/CHON
+   CC(O[N+](=O)[O-])C|+0              thermo/CHON
+   CC([N+](=O)[O-])(C)C|+0            thermo/CHON
+   CC([N+](=O)[O-])([N+](=O)[O-])C|+0 thermo/BurcatNS
+   CC([N+](=O)[O-])([N+](=O)[O-])[N+](=O)[O-]|+0 thermo/thermo_DFT_CCSDTF12_BAC
+   CC([N+](=O)[O-])C(C)C|+0           thermo/CHON
+   CC([N+](=O)[O-])CC(C)C|+0          thermo/CHON
+   CC([N+](=O)[O-])C|+0               thermo/CHON
+   CC([NH2+][O-])C|+0                 thermo/CHON_G4
+   CCC(C([N+](=O)[O-])C)C|+0          thermo/CHON
+   CCC(C[N+](=O)[O-])(C)C|+0          thermo/CHON
+   CCC(C[N+](=O)[O-])CC|+0            thermo/CHON
+   CCC([N+](=O)[O-])(C)C|+0           thermo/CHON
+   CCC([N+](=O)[O-])(CC)C|+0          thermo/CHON
+   CCC([N+](=O)[O-])C(C)C|+0          thermo/CHON
+   CCC([N+](=O)[O-])CC|+0             thermo/CHON
+   CCC([N+](=O)[O-])[N+](=O)[O-]|+0   thermo/BurcatNS
+   ... and 608 more
+
+1160 species match NEITHER root and can never reach this family.
+
+fixed safe cation  (root A partner for stage 2) = [Li+]|+1  [thermo/LithiumPrimaryThermo]  1 Li u0 p0 c+1
+fixed safe neutral (root B partner for stage 3) = N#N|+0  [thermo/BurkeH2O2]  1 N u0 p1 c0 {2,T} | 2 N u0 p1 c0 {1,T}
+
+====================================================================================================
+PART 1b -- self-check on the fixed partners
+====================================================================================================
+Stages 2 and 3 attribute every crash to the varying species. That is only sound if the
+fixed partner never crashes. The control is the training REACTANT pool, which
+probe_generate.py already measured crash-free over all of its own pairs.
+  training reactants checked per partner : 13
+  crashes involving a fixed partner      : 0
+
+====================================================================================================
+PART 1c -- feedback safety: the family's own PRODUCTS, driven back in as reactants
+====================================================================================================
+probe_generate.py drove the training REACTANTS and measured zero crashes. But RMG puts
+a generated product into the core and hands it back to react() on the next iteration,
+so every product is a future reactant. This stage drives each of the 10 distinct
+training products against the 13 training reactants -- 130 pairs.
+
+  product species         *1  *2  result
+  --------------------------------------------------------------------------------
+  N#[N+]|+1                1   1  CRASHES on 5 of 13 partners (AtomTypeError)
+  [Ca]|+0                  0   0  0 reactions, no crash
+  [H]|+0                   0   0  0 reactions, no crash
+  [K]|+0                   0   0  0 reactions, no crash
+  [Li]|+0                  0   0  0 reactions, no crash
+  [Mg]|+0                  0   0  0 reactions, no crash
+  [Na]|+0                  0   0  0 reactions, no crash
+  [OH]|+0                  0   1  0 reactions, no crash
+  [O][O]|+0                0   2  0 reactions, no crash
+  [O]|+0                   0   0  0 reactions, no crash
+
+  1 of the family's own products ABORT the family when fed back in.
+     N#[N+]|+1: Unable to determine atom type for atom N.., which has 0 single bonds, 0 double bonds (0 
+
+  This is not a hypothetical: a product of a training entry is a core species by
+  construction, so an RMG job reaches it on the iteration after it is made.
+
+====================================================================================================
+PART 2 -- root B safety: every pool species, paired with the fixed safe cation
+====================================================================================================
+22344 species x 1 partner. A crash here is attributable to the species, because the
+partner is known safe and no recipe action joins the two reactants.
+
+   ... 2500/22344 in 1s, 2119 crashes so far
+   ... 5000/22344 in 1s, 4006 crashes so far
+   ... 7500/22344 in 2s, 5157 crashes so far
+   ... 10000/22344 in 3s, 7530 crashes so far
+   ... 12500/22344 in 3s, 10029 crashes so far
+   ... 15000/22344 in 4s, 11873 crashes so far
+   ... 17500/22344 in 5s, 14077 crashes so far
+   ... 20000/22344 in 5s, 15840 crashes so far
+
+  species that reacted with the fixed cation : 4109
+  reactions generated                        : 9194
+  crashes: 17009   by exception type: {'AtomTypeError': 17009}
+
+  species                             *1  *2  exception            message (first line)
+  ----------------------------------------------------------------------------------------------------------------------
+  BrBr|+0                              0   2  AtomTypeError        Unable to determine atom type for atom Br.+, which h
+  BrC#CBr|+0                           0   2  AtomTypeError        Unable to determine atom type for atom Br.+, which h
+  BrC#CC#CBr|+0                        0   2  AtomTypeError        Unable to determine atom type for atom Br.+, which h
+  BrC#CC(Br)(Br)Br|+0                  0   4  AtomTypeError        Unable to determine atom type for atom Br.+, which h
+  BrC#CC(Br)(Br)CBr|+0                 0   4  AtomTypeError        Unable to determine atom type for atom Br.+, which h
+  BrC#CC(Br)(Br)OBr|+0                 0   5  AtomTypeError        Unable to determine atom type for atom Br.+, which h
+  BrC#CC(Br)=C(Br)Br|+0                0   4  AtomTypeError        Unable to determine atom type for atom Br.+, which h
+  BrC#CC(Br)=CBr|+0                    0   3  AtomTypeError        Unable to determine atom type for atom Br.+, which h
+  BrC#CC(Br)Br|+0                      0   3  AtomTypeError        Unable to determine atom type for atom Br.+, which h
+  BrC#CC(Br)C(Br)Br|+0                 0   4  AtomTypeError        Unable to determine atom type for atom Br.+, which h
+  BrC#CC(Br)CBr|+0                     0   3  AtomTypeError        Unable to determine atom type for atom Br.+, which h
+  BrC#CC(Br)OBr|+0                     0   4  AtomTypeError        Unable to determine atom type for atom Br.+, which h
+  BrC#CC=C(Br)Br|+0                    0   3  AtomTypeError        Unable to determine atom type for atom Br.+, which h
+  BrC#CC=CBr|+0                        0   2  AtomTypeError        Unable to determine atom type for atom Br.+, which h
+  BrC#CCBr|+0                          0   2  AtomTypeError        Unable to determine atom type for atom Br.+, which h
+  BrC#CCC(Br)(Br)Br|+0                 0   4  AtomTypeError        Unable to determine atom type for atom Br.+, which h
+  BrC#CCC(Br)Br|+0                     0   3  AtomTypeError        Unable to determine atom type for atom Br.+, which h
+  BrC#CCCBr|+0                         0   2  AtomTypeError        Unable to determine atom type for atom Br.+, which h
+  BrC#CCOBr|+0                         0   3  AtomTypeError        Unable to determine atom type for atom Br.+, which h
+  BrC#CC[CH]Br|+0                      0   2  AtomTypeError        Unable to determine atom type for atom Br.+, which h
+  BrC#CC[C](Br)Br|+0                   0   3  AtomTypeError        Unable to determine atom type for atom Br.+, which h
+  BrC#COBr|+0                          0   3  AtomTypeError        Unable to determine atom type for atom Br.+, which h
+  BrC#COC(Br)(Br)Br|+0                 0   5  AtomTypeError        Unable to determine atom type for atom Br.+, which h
+  BrC#COC(Br)Br|+0                     0   4  AtomTypeError        Unable to determine atom type for atom Br.+, which h
+  BrC#COCBr|+0                         0   3  AtomTypeError        Unable to determine atom type for atom Br.+, which h
+  BrC#COOBr|+0                         0   4  AtomTypeError        Unable to determine atom type for atom Br.+, which h
+  BrC#CO[CH]Br|+0                      0   3  AtomTypeError        Unable to determine atom type for atom Br.+, which h
+  BrC#CO[C](Br)Br|+0                   0   4  AtomTypeError        Unable to determine atom type for atom Br.+, which h
+  BrC#C[CH]Br|+0                       0   2  AtomTypeError        Unable to determine atom type for atom Br.+, which h
+  BrC#C[CH]C(Br)Br|+0                  0   3  AtomTypeError        Unable to determine atom type for atom Br.+, which h
+  BrC#C[C](Br)Br|+0                    0   3  AtomTypeError        Unable to determine atom type for atom Br.+, which h
+  BrC#C[C](Br)CBr|+0                   0   3  AtomTypeError        Unable to determine atom type for atom Br.+, which h
+  BrC(Br)(Br)Br|+0                     0   4  AtomTypeError        Unable to determine atom type for atom Br.+, which h
+  BrC(Br)(Br)C1(Br)CC1|+0              0   4  AtomTypeError        Unable to determine atom type for atom Br.+, which h
+  BrC(Br)(Br)C1(Br)CO1|+0              0   5  AtomTypeError        Unable to determine atom type for atom Br.+, which h
+  BrC(Br)(Br)C1(Br)OO1|+0              0   6  AtomTypeError        Unable to determine atom type for atom Br.+, which h
+  BrC(Br)(Br)C1(Br)[CH]C1|+0           0   4  AtomTypeError        Unable to determine atom type for atom Br.+, which h
+  BrC(Br)(Br)C1(Br)[CH]O1|+0           0   5  AtomTypeError        Unable to determine atom type for atom Br.+, which h
+  BrC(Br)(Br)C1(Br)[C]=C1|+0           0   4  AtomTypeError        Unable to determine atom type for atom Br.+, which h
+  BrC(Br)(Br)C1=CC1(Br)Br|+0           0   5  AtomTypeError        Unable to determine atom type for atom Br.+, which h
+  ... and 16969 more
+
+  The *1 / *2 columns are the number of labelled-atom mappings the species has onto
+  root A and root B. A non-zero column names the root that admitted it, and therefore
+  the root that would have to change.
+
+  elapsed: 6s
+
+====================================================================================================
+PART 3 -- root A safety: every root-A matcher, paired with the fixed safe neutral
+====================================================================================================
+645 species match root A. Pairing each with the fixed neutral is what puts the *1
+label on it, so this is the stage that exercises root A -- including the 633 that are
+not cations at all and that stage 2 only ever saw as the *2 partner.
+
+  species that reacted with the fixed neutral : 9
+  reactions generated                         : 18
+  crashes: 630   by exception type: {'AtomTypeError': 630}
+
+  species                             *1  *2  exception            message (first line)
+  ----------------------------------------------------------------------------------------------------------------------
+  CC(=[N+][O-])C|+0                    1   1  AtomTypeError        Unable to determine atom type for atom N.., which ha
+  CC(=[NH+][O-])C|+0                   1   1  AtomTypeError        Unable to determine atom type for atom N., which has
+  CC(C(C)(C)C)[N+](=O)[O-]|+0          1   2  AtomTypeError        Unable to determine atom type for atom N., which has
+  CC(C(C)C)C[N+](=O)[O-]|+0            1   2  AtomTypeError        Unable to determine atom type for atom N., which has
+  CC(C([N+](=O)[O-])(C)C)C|+0          1   2  AtomTypeError        Unable to determine atom type for atom N., which has
+  CC(CCC[N+](=O)[O-])C|+0              1   2  AtomTypeError        Unable to determine atom type for atom N., which has
+  CC(CC[N+](=O)[O-])C|+0               1   2  AtomTypeError        Unable to determine atom type for atom N., which has
+  CC(C[N+](=O)[O-])(C)C|+0             1   2  AtomTypeError        Unable to determine atom type for atom N., which has
+  CC(C[N+](=O)[O-])C|+0                1   2  AtomTypeError        Unable to determine atom type for atom N., which has
+  CC(O[N+](=O)[O-])C|+0                1   3  AtomTypeError        Unable to determine atom type for atom N., which has
+  CC([N+](=O)[O-])(C)C|+0              1   2  AtomTypeError        Unable to determine atom type for atom N., which has
+  CC([N+](=O)[O-])([N+](=O)[O-])C|+0   2   4  AtomTypeError        Unable to determine atom type for atom N., which has
+  CC([N+](=O)[O-])([N+](=O)[O-])[N+]   3   6  AtomTypeError        Unable to determine atom type for atom N., which has
+  CC([N+](=O)[O-])C(C)C|+0             1   2  AtomTypeError        Unable to determine atom type for atom N., which has
+  CC([N+](=O)[O-])CC(C)C|+0            1   2  AtomTypeError        Unable to determine atom type for atom N., which has
+  CC([N+](=O)[O-])C|+0                 1   2  AtomTypeError        Unable to determine atom type for atom N., which has
+  CC([NH2+][O-])C|+0                   1   1  AtomTypeError        Unable to determine atom type for atom N., which has
+  CCC(C([N+](=O)[O-])C)C|+0            1   2  AtomTypeError        Unable to determine atom type for atom N., which has
+  CCC(C[N+](=O)[O-])(C)C|+0            1   2  AtomTypeError        Unable to determine atom type for atom N., which has
+  CCC(C[N+](=O)[O-])CC|+0              1   2  AtomTypeError        Unable to determine atom type for atom N., which has
+  CCC([N+](=O)[O-])(C)C|+0             1   2  AtomTypeError        Unable to determine atom type for atom N., which has
+  CCC([N+](=O)[O-])(CC)C|+0            1   2  AtomTypeError        Unable to determine atom type for atom N., which has
+  CCC([N+](=O)[O-])C(C)C|+0            1   2  AtomTypeError        Unable to determine atom type for atom N., which has
+  CCC([N+](=O)[O-])CC|+0               1   2  AtomTypeError        Unable to determine atom type for atom N., which has
+  CCC([N+](=O)[O-])[N+](=O)[O-]|+0     2   4  AtomTypeError        Unable to determine atom type for atom N., which has
+  CCCC(C[N+](=O)[O-])C|+0              1   2  AtomTypeError        Unable to determine atom type for atom N., which has
+  CCCC([N+](=O)[O-])(C)C|+0            1   2  AtomTypeError        Unable to determine atom type for atom N., which has
+  CCCC([N+](=O)[O-])CC|+0              1   2  AtomTypeError        Unable to determine atom type for atom N., which has
+  CCCCCC[N+](=O)[O-]|+0                1   2  AtomTypeError        Unable to determine atom type for atom N., which has
+  CCCCC[N+](=O)[O-]|+0                 1   2  AtomTypeError        Unable to determine atom type for atom N., which has
+  CCCC[N+](=O)[O-]|+0                  1   2  AtomTypeError        Unable to determine atom type for atom N., which has
+  CN([N+](=O)[O-])C|+0                 1   3  AtomTypeError        Unable to determine atom type for atom N., which has
+  CN([N+](=O)[O-])[N+](=O)[O-]|+0      2   5  AtomTypeError        Unable to determine atom type for atom N., which has
+  CN([NH2+][O-])C|+0                   1   2  AtomTypeError        Unable to determine atom type for atom N., which has
+  C[C]([NH2+][O-])C|+0                 1   1  AtomTypeError        Unable to determine atom type for atom N., which has
+  N#[N+]|+1                            1   1  AtomTypeError        Unable to determine atom type for atom N.., which ha
+  NC(=N[N+](=O)[O-])N|+0               1   5  AtomTypeError        Unable to determine atom type for atom N., which has
+  NC(=[NH+][O-])N|+0                   1   3  AtomTypeError        Unable to determine atom type for atom N., which has
+  NC([NH2+][O-])N|+0                   1   3  AtomTypeError        Unable to determine atom type for atom N., which has
+  NN([NH2+][O-])N|+0                   1   4  AtomTypeError        Unable to determine atom type for atom N., which has
+  ... and 590 more
+
+  The *1 / *2 columns are the number of labelled-atom mappings the species has onto
+  root A and root B. A non-zero column names the root that admitted it, and therefore
+  the root that would have to change.
+
+  of the crashes above, 629 are on molecules with net charge 0 or less
+  elapsed: 0s
+
+====================================================================================================
+PART 4 -- independence control: full cross product, sampled A-matchers x sampled partners
+====================================================================================================
+The per-molecule stages above rest on the claim that a crash localises to one reactant:
+every recipe action carries one label and none joins the reactants. This stage does not
+assume it: 40 sampled root-A matchers x 400 sampled root-B matchers = 16000 pairs, each
+a real two-reactant call. A crash appearing ONLY here refutes the localisation argument
+and would invalidate stages 2 and 3.
+
+  reactions generated        : 0
+  like-charge reactant pairs : 0   (the labelled forbidden groups should hold these at 0)
+  crashes                    : 15600
+     CCC(C([N+](=O)[O-])C)C|+0 + BrC#CCC(Br)Br|+0                 AtomTypeError: Unable to determine atom type for atom N
+     CCC(C([N+](=O)[O-])C)C|+0 + BrC(Br)(Br)C1=CC1(Br)Br|+0       AtomTypeError: Unable to determine atom type for atom N
+     CCC(C([N+](=O)[O-])C)C|+0 + BrC(Br)CC(Br)(Br)Br|+0           AtomTypeError: Unable to determine atom type for atom N
+     CCC(C([N+](=O)[O-])C)C|+0 + BrC1=CC(Br)C1|+0                 AtomTypeError: Unable to determine atom type for atom N
+     CCC(C([N+](=O)[O-])C)C|+0 + BrC1=[C]C(Br)(Br)C1|+0           AtomTypeError: Unable to determine atom type for atom N
+     CCC(C([N+](=O)[O-])C)C|+0 + BrC1CCC1Br|+0                    AtomTypeError: Unable to determine atom type for atom N
+     CCC(C([N+](=O)[O-])C)C|+0 + BrC1OC1Br|+0                     AtomTypeError: Unable to determine atom type for atom N
+     CCC(C([N+](=O)[O-])C)C|+0 + BrC1OCC1(Br)Br|+0                AtomTypeError: Unable to determine atom type for atom N
+     CCC(C([N+](=O)[O-])C)C|+0 + BrC1[CH]C=C1|+0                  AtomTypeError: Unable to determine atom type for atom N
+     CCC(C([N+](=O)[O-])C)C|+0 + BrC=C(Br)CBr|+0                  AtomTypeError: Unable to determine atom type for atom N
+     CCC(C([N+](=O)[O-])C)C|+0 + BrCC1=CC1|+0                     AtomTypeError: Unable to determine atom type for atom N
+     CCC(C([N+](=O)[O-])C)C|+0 + BrCC1C(Br)C1(Br)Br|+0            AtomTypeError: Unable to determine atom type for atom N
+     CCC(C([N+](=O)[O-])C)C|+0 + BrCC1[CH]C1(Br)Br|+0             AtomTypeError: Unable to determine atom type for atom N
+     CCC(C([N+](=O)[O-])C)C|+0 + BrCCC(Br)Br|+0                   AtomTypeError: Unable to determine atom type for atom N
+     CCC(C([N+](=O)[O-])C)C|+0 + BrC[C]1OC1Br|+0                  AtomTypeError: Unable to determine atom type for atom N
+     CCC(C([N+](=O)[O-])C)C|+0 + Br[CH]C(Br)=CBr|+0               AtomTypeError: Unable to determine atom type for atom N
+     CCC(C([N+](=O)[O-])C)C|+0 + Br[C](Br)C1(Br)C=C1|+0           AtomTypeError: Unable to determine atom type for atom N
+     CCC(C([N+](=O)[O-])C)C|+0 + Br[C]1C(Br)C(Br)C1Br|+0          AtomTypeError: Unable to determine atom type for atom N
+     CCC(C([N+](=O)[O-])C)C|+0 + Br[C]1C=C1C(Br)(Br)Br|+0         AtomTypeError: Unable to determine atom type for atom N
+     CCC(C([N+](=O)[O-])C)C|+0 + Br[C]=COCBr|+0                   AtomTypeError: Unable to determine atom type for atom N
+  crashes NOT explained by a stage 2/3 crash of either reactant : 0
+  elapsed: 5s
+
+====================================================================================================
+SUMMARY
+====================================================================================================
+  pool                                 : 22344 species
+  own products that crash on feedback  : 1  ['N#[N+]|+1']
+  match root A / root B                : 645 / 21175
+  of the root-A matchers, NOT cations  : 633
+  stage 2 crashes (root B, per species): 17009
+  stage 3 crashes (root A, per matcher): 630
+  stage 4 crashes (cross product)      : 15600  (0 unexplained by stages 2/3)
+  like-charge reactions surviving      : 0
+
+What this probe could NOT reach:
+  - Species RMG GENERATES rather than reads from a library. The pool is every species
+    the installed thermo libraries name; a running job invents more.
+  - Root A over real CATIONS at scale. The installed database holds 4 cations in 78
+    libraries, so the genuine cation exposure is the 12 listed in PART 1 plus the
+    family's own training set, and nothing else.
+  - Reactor admissibility, rates, and anything downstream of generation.
+  - Trimolecular or surface paths. This family is bimolecular and gas phase.
+
+VERDICT: 33240 crashes. The roots are NOT safe outside the training pool; see the
+per-species tables above for which root admitted each offender.
+exit status: 1

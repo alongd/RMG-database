@@ -1,0 +1,116 @@
+cwd                = /home/alon/Code/RMG-Py-i223-ct-node-repair
+database.directory = /home/alon/Code/RMG-database-i223-charge-transfer-node-repair/input
+family loaded from  = /home/alon/Code/RMG-database-i223-charge-transfer-node-repair/docs/i154-carry-chemistry/held-back/Plasma_Charge_Transfer
+
+====================================================================================================
+PART 1 -- [Aiken2023] Table 3.16, READ from the primary. Three entries, audited in full.
+====================================================================================================
+Table form: k = A T^eta exp(-theta/T_tr), a BARE T -> T0 = 1 K, read not inferred.
+A is printed in m^3/s (per particle); conversion to cm^3/(mol*s) is x6.02214e+29.
+
+idx  reaction (as printed in Table 3.16)    A m^3/s A->cm3/mol/s   A entered    ratio verdict
+---------------------------------------------------------------------------------------------
+18   N+ + N2(X) -> N2+(X) + N(4S)         1.16e-23   6.9857e+06    6.99e+06   1.0006 OK
+19   Ar+(1) + N2(X) -> N2+(X) + Ar(1)     2.57e-17   1.5477e+13    1.55e+13   1.0015 OK
+20   Ar+(1) + O(3P) -> O+ + Ar(1)         6.39e-18   3.8481e+12    3.85e+12   1.0005 OK
+
+Row of Table 3.16 not carried by this family, recorded so the transcription is whole:
+  Ar+(1) + O2(X) -> O2+ + Ar(1): A = 4.2e-15 m^3/s, eta = -0.78, theta = 0 K, ref [5]
+
+====================================================================================================
+PART 2 -- [Ozawa2008] Table III, NOT REACHED. Six entries, audited by surrogate.
+====================================================================================================
+pubs.aip.org -> HTTP 403. OpenAlex: oa_status "closed", any_repository_has_fulltext
+false, locations_count 1. Semantic Scholar: CLOSED, openAccessPdf empty.
+No open copy exists to find. Nothing below verifies a digit of Table III.
+
+Surrogate 1 -- Ea against spectroscopic ionization energies. For A+ + B -> A + B+ the
+endothermicity is exactly IE(B) - IE(A). Independent of every rate compilation.
+
+idx  reaction                       Ea kJ/mol    dIE kJ/mol    ratio  verdict
+-----------------------------------------------------------------------------
+14   NO+ + O                            424.0         420.1   1.0094  OK
+15   O+ + N2                            189.6         189.4   1.0012  OK
+16   NO+ + N                            507.7         508.5   0.9985  OK
+18   N+ + N2                            109.2         101.0   1.0809  OK
+19   Ar+ + N2                             0.0         -17.3       --  OK -- exothermic by 17.3 kJ/mol, Ea = 0 is right
+20   Ar+ + O                              0.0        -206.6       --  OK -- exothermic by 206.6 kJ/mol, Ea = 0 is right
+21   NO+ + O2                           271.1         270.7   1.0016  OK
+22   O2+ + N                            237.8         237.8   1.0001  OK
+23   O2+ + N2                           338.4         338.8   0.9989  OK
+
+Surrogate 2 -- theta against [Gupta1990] RP-1232 Table II, which independently lists
+four of the six. Both trace to Park, so this corroborates rather than confirms; a
+units or convention fault would still show.
+
+idx  RP-1232 Table II row    theta ours    theta RP    ratio        A ours       Cf RP
+--------------------------------------------------------------------------------------
+14   R16  O + NO+                 50995       50800   1.0038      2.76e+13    3.63e+15
+15   R17  N2 + O+                 22804       23000   0.9915       9.1e+13     3.4e+19
+16   R18  N + NO+                 61062       61000   1.0010      1.11e+15       1e+19
+21   R19  O2 + NO+                32606       33000   0.9881       2.4e+13     1.8e+15
+22   -- no counterpart --         28601          --       --      8.67e+13          --
+23   -- no counterpart --         40700          --       --      9.88e+12          --
+
+A and n differ between the two compilations, as they must -- they are rival fits, and
+this branch already chose Ozawa over Gupta for entry 21 on Langevin grounds (entry 17
+deleted). The point of the column pair above is only that the two A columns occupy the
+same decades, so the entered A is not out by a mole-vs-particle factor.
+
+Surrogate 3 -- A against the Langevin capture rate 2*pi*e*sqrt(alpha/mu)*N_A. An
+ion-molecule rate cannot greatly exceed capture; a per-particle/per-mole slip is 6e23.
+
+idx  reaction      k_Langevin  A*T^n / k_L at 300/5k/10k K  verdict
+-------------------------------------------------------------------
+14   NO+ + O         3.91e+14      0.075    0.077    0.077  OK -- within an order of magnitude of capture
+15   O+ + N2         5.83e+14      1.216    3.349    4.299  OK -- within an order of magnitude of capture
+16   NO+ + N         4.79e+14      2.069    1.956    1.929  OK -- within an order of magnitude of capture
+18   N+ + N2         6.09e+14      0.000    0.003    0.009  OK -- within an order of magnitude of capture
+19   Ar+ + N2        4.59e+14      0.586    2.390    3.381  OK -- within an order of magnitude of capture
+20   Ar+ + O         3.74e+14      0.010    0.010    0.010  OK -- within an order of magnitude of capture
+21   NO+ + O2        4.51e+14      0.552    1.749    2.325  OK -- within an order of magnitude of capture
+22   O2+ + N         4.74e+14      0.407    0.603    0.664  OK -- within an order of magnitude of capture
+23   O2+ + N2        4.81e+14      0.021    0.021    0.021  OK -- within an order of magnitude of capture
+
+====================================================================================================
+PART 3 -- what the unread Table III could actually cost.
+====================================================================================================
+If T0 were really 300 K rather than the 1 K these entries carry, A would be wrong by
+300^n. Per entry that factor is:
+
+  entry 14  n =   0.01   300^n =    1.059x
+  entry 15  n =   0.36   300^n =    7.794x
+  entry 16  n =  -0.02   300^n =    0.892x
+  entry 21  n =   0.41   300^n =   10.366x
+  entry 22  n =   0.14   300^n =    2.222x
+  entry 23  n =    0.0   300^n =    1.000x
+
+But every comparison this branch DECIDED on is Ozawa-against-Ozawa, so a convention
+error hits both sides and the ratio moves only by 300^(n1-n2):
+
+split                                as decided  worst other        vs 4x  verdict
+----------------------------------------------------------------------------------
+N2_neutral (O2p + N vs O2p + N2)         106.8x        48.1x 12.0x margin  SURVIVES
+O2_neutral (NOp + O vs NOp + O2)         217.7x        22.2x  5.6x margin  SURVIVES
+
+So the T0 convention, even if it is wrong, cannot overturn either split: the worst
+case still clears the criterion. The unread Table III is a gap in the RECORD, not a
+risk to a decision this branch already made.
+
+====================================================================================================
+SUMMARY
+====================================================================================================
+  [Aiken2023] Table 3.16 : READ. 3 of 3 entries verified, T0 = 1 K read from the
+                           printed rate form, A converted from m^3/s at x6.02214e29.
+  [Ozawa2008] Table III  : NOT REACHED (closed, confirmed by two OA indexes).
+                           6 entries: Ea verified against ionization energies,
+                           theta corroborated against RP-1232 where it overlaps,
+                           A bounded by the capture rate. n and T0 NOT verified.
+  splits overturned by the T0 question : 0
+  entries to STOP and report           : 0
+  transcription slips to fix in place  : 0
+
+VERDICT: no entry contradicts its source or any surrogate. Three of nine are now
+verified against the primary; six remain surrogate-checked only, and the header of
+training/reactions.py must keep saying so.
+exit status: 0

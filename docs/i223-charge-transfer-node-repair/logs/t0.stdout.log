@@ -1,0 +1,60 @@
+cwd                = /home/alon/Code/RMG-Py-i223-ct-node-repair
+database.directory = /home/alon/Code/RMG-database-i223-charge-transfer-node-repair/input
+family loaded from  = /tmp/claude-1000/i223-before/Plasma_Charge_Transfer
+
+==============================================================================
+entry 13  O2p_r1 + O_r2 <=> O2 + Op   [Gupta1990] Table II R11
+  source form     : k = 2.92e+18 * T^-1.11 * exp(-28000/T)   cm^3/(mol*s)
+  as entered      : A = 2.92e+18 cm^3/(mol*s), n = -1.11, Ea = 55650 cal/mol, T0 = 300 K
+  Ea/R as entered : 28004.2 K   (source theta_d = 28000 K)
+  A == Cf?        : True
+  => the entry copies Cf verbatim but declares T0 = 300 K, so every k it returns
+     is off by 300^-1.11 = 0.00178x  (too HIGH)
+
+    T / K     as entered    source form      ratio
+      300     8.4187e-23     1.5194e-25   0.001805
+     1000     5.2838e+05     9.4439e+02   0.001787
+     2000     2.9500e+11     5.2617e+08   0.001784
+     4000     1.5003e+14     2.6732e+11   0.001782
+     6000     9.8681e+14     1.7576e+12   0.001781
+    10000     3.6206e+15     6.4470e+12   0.001781
+
+==============================================================================
+entry 17  NOp_r1 + O2_r2 <=> O2p + NO   [Gupta1990] Table II R19
+  source form     : k = 1.8e+15 * T^0.17 * exp(-33000/T)   cm^3/(mol*s)
+  as entered      : A = 1.8e+15 cm^3/(mol*s), n = 0.17, Ea = 65600 cal/mol, T0 = 300 K
+  Ea/R as entered : 33011.2 K   (source theta_d = 33000 K)
+  A == Cf?        : True
+  => the entry copies Cf verbatim but declares T0 = 300 K, so every k it returns
+     is off by 300^0.17 = 2.637x  (too LOW)
+
+    T / K     as entered    source form      ratio
+      300     2.9290e-33     8.0176e-33      2.737
+     1000     1.0176e+01     2.7138e+01      2.667
+     2000     1.6868e+08     4.4730e+08      2.652
+     4000     7.2840e+11     1.9262e+12      2.644
+     6000     1.2219e+13     3.2281e+13      2.642
+    10000     1.2037e+14     3.1776e+14       2.64
+
+==============================================================================
+the duplicate, both evaluated in their OWN source convention
+==============================================================================
+Langevin capture rate for NO+ + O2 : 4.505e+14 cm^3/(mol*s)
+(the reaction is endothermic by IE(O2) - IE(NO) = 12.0697 - 9.2642 eV
+ = 2.8055 eV = 270.7 kJ/mol; Ozawa Ea = 271.1, Gupta theta_d*R = 274.4)
+
+  T / K   Gupta (T0=1)    Ozawa idx21       G/O     G prefac/kL     O prefac/kL
+----------------------------------------------------------------------------------
+    300     8.0176e-33     1.5635e-33     5.128           10.54            0.55
+   1000     2.7138e+01     2.8164e+00     9.636           12.93            0.90
+   2000     4.4730e+08     4.5017e+07     9.936           14.55            1.20
+   4000     1.9262e+12     2.0746e+11     9.285           16.36            1.60
+   6000     3.2281e+13     3.7082e+12     8.705           17.53            1.89
+  10000     3.1776e+14     4.0194e+13     7.906           19.12            2.33
+   8000     1.3407e+14     1.6234e+13     8.259           18.41            2.12
+
+"prefac/kL" is A*T^n divided by the Langevin capture rate: how many times the
+ion-molecule collision limit the fit would demand if every super-threshold
+collision reacted. A value far above ~1 is unphysical for a capture-limited
+charge transfer.
+exit status: 0

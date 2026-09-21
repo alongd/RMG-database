@@ -1,0 +1,36 @@
+pool = 22344 species (22325 thermo, +48 unrepresentable) in 13s
+training reactants = 13   training products = 10
+
+====================================================================================================
+CANDIDATE ROOT PAIRS, scored on the crash surface and on the training set
+====================================================================================================
+pool = 22344 species. "crash-pool" and "crash-A" are counts of SPECIES, not pairs.
+A repair has crash-back = 0 first; then crash-pool and crash-A as low as possible;
+then right = 15 of 15 and wrong = 0. A candidate that trades reproduction for
+crash-safety is not a repair.
+
+root A                   root B                   crash-pool  crash-A  c-back  matchA  right  wrong  rxns
+---------------------------------------------------------------------------------------------------------
+A0 committed  R ux p[0,2 B0 committed  R u[0,1] p      17009      630       1     645  15/15      0    45
+A0 committed  R ux p[0,2 B1 elements   [H,O,N]             0      630       1     645  15/15      0    45
+A0 committed  R ux p[0,2 B2 OR{children}                   0      630       1     645  15/15      0    45
+A1 elements   [H,O,metal B0 committed  R u[0,1] p      17009        0       0      11  15/15      0    45
+A1 elements   [H,O,metal B1 elements   [H,O,N]             0        0       0      11  15/15      0    45
+A1 elements   [H,O,metal B2 OR{children}                   0        0       0      11  15/15      0    45
+A2 OR{children}          B0 committed  R u[0,1] p      17009        0       0      11  15/15      0    45
+A2 OR{children}          B1 elements   [H,O,N]             0        0       0      11  15/15      0    45
+A2 OR{children}          B2 OR{children}                   0        0       0      11  15/15      0    45
+
+====================================================================================================
+WHICH CANDIDATES ARE CRASH-FREE AND STILL REPRODUCE EVERYTHING
+====================================================================================================
+  A1 elements   [H,O,metal] + B1 elements   [H,O,N]      45 reactions, 0 like-charge
+  A1 elements   [H,O,metal] + B2 OR{children}            45 reactions, 0 like-charge
+  A2 OR{children}          + B1 elements   [H,O,N]      45 reactions, 0 like-charge
+  A2 OR{children}          + B2 OR{children}            45 reactions, 0 like-charge
+
+What this probe could NOT reach: the same holes probe_rootsafety.py lists -- species
+RMG generates rather than reads, real cations at scale, and everything downstream of
+generation. It also does not run the twelve database checks; a root that scores well
+here still has to sample, descend and pass them.
+exit status: 0

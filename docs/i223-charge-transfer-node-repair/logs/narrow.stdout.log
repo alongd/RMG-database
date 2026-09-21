@@ -1,0 +1,91 @@
+cwd                 = /home/alon/Code/RMG-Py-plasma
+engine              = /home/alon/Code/RMG-Py-plasma
+database.directory  = /home/alon/Code/RMG-database-plasma/input
+family loaded from  = docs/i154-carry-chemistry/held-back/Plasma_Charge_Transfer
+
+shipped root A      = 1 *1 R ux c[+1,+2,+3,+4]
+shipped root B      = 1 *2 R ux c[0,-1,-2,-3,-4]
+recipe under test   = [['GAIN_RADICAL', '*1', 1], ['GAIN_RADICAL', '*2', 1], ['LOSE_PAIR', '*2', 1]]
+
+====================================================================================================
+PART 1 -- the pool the family is driven over.
+====================================================================================================
+21 distinct reactants from the 27 training entries -> 231 unordered pairs.
+Every pair is offered to generate_reactions, which is what a real job does when it
+meets these species in a mechanism.
+
+  N#N|+0, N#[O+]|+1, [Ar+]|+1, [Ca+]|+1, [H+].[H]|+1, [H+]|+1, [H-]|-1, [K+]|+1, [Li+]|+1, [Mg+]|+1, [N+]|+1, [N]|+0, [Na+]|+1, [O+]|+1, [O-]|-1, [OH+]|+1, [OH-]|-1, [OH2+]|+1, [O][O+]|+1, [O][O]|+0, [O]|+0
+
+====================================================================================================
+PART 2 -- candidate root pairs, measured.
+====================================================================================================
+crashes  : reactant pairs where generate_reactions raised. Each one aborts an RMG job.
+reactions: total generated over all pairs (the shipped family generates 0).
+right    : training entries reproduced with their declared products.
+WRONG    : training entries reproduced with DIFFERENT products -- silent bad chemistry.
+
+root A (*1 cation)           root B (*2 partner)       crashes  reactions   right   WRONG
+-----------------------------------------------------------------------------------------
+A0 ux px      (as shipped)   B0 ux px      (as shipped)       67        108      14       4
+A0 ux px      (as shipped)   B1 ux p[1,2,3,4]               18        121      16       4
+A0 ux px      (as shipped)   B2 u[0,1] p[1,2,3,4]           14         99      16       3
+A1 ux p[0,1,2]               B0 ux px      (as shipped)       63         98      14       2
+A1 ux p[0,1,2]               B1 ux p[1,2,3,4]               18        110      16       2
+A1 ux p[0,1,2]               B2 u[0,1] p[1,2,3,4]           14         90      16       2
+A2 ux p[0,2]                 B0 ux px      (as shipped)       39         90      13       2
+A2 ux p[0,2]                 B1 ux p[1,2,3,4]                0        100      15       2
+A2 ux p[0,2]                 B2 u[0,1] p[1,2,3,4]            0         82      15       1
+A3 u[0,1] p[0,2]             B0 ux px      (as shipped)       39         90      13       2
+A3 u[0,1] p[0,2]             B1 ux p[1,2,3,4]                0        100      15       2
+A3 u[0,1] p[0,2]             B2 u[0,1] p[1,2,3,4]            0         82      15       1
+
+====================================================================================================
+PART 3 -- the narrowest SAFE pair.
+====================================================================================================
+4 of 12 candidate pairs are crash-free.
+
+  A2 ux p[0,2]                 B1 ux p[1,2,3,4]         reactions  100  right 15  WRONG  2  [1, 3, 4, 6, 7, 8, 10, 11, 15, 23, 24, 25, 26, 27, 28]
+  A2 ux p[0,2]                 B2 u[0,1] p[1,2,3,4]     reactions   82  right 15  WRONG  1  [1, 3, 4, 6, 7, 8, 10, 11, 15, 23, 24, 25, 26, 27, 28]
+  A3 u[0,1] p[0,2]             B1 ux p[1,2,3,4]         reactions  100  right 15  WRONG  2  [1, 3, 4, 6, 7, 8, 10, 11, 15, 23, 24, 25, 26, 27, 28]
+  A3 u[0,1] p[0,2]             B2 u[0,1] p[1,2,3,4]     reactions   82  right 15  WRONG  1  [1, 3, 4, 6, 7, 8, 10, 11, 15, 23, 24, 25, 26, 27, 28]
+
+Best crash-free pair: A2 ux p[0,2]  +  B2 u[0,1] p[1,2,3,4]
+  reactions generated              : 82
+  training entries right           : 15  [1, 3, 4, 6, 7, 8, 10, 11, 15, 23, 24, 25, 26, 27, 28]
+  training entries WRONG           : 1  [13]
+  training entries no longer covered: 11  [2, 5, 9, 12, 14, 16, 18, 19, 20, 21, 22]
+
+  Those uncovered entries are the chemistry that leaves the family. Each still has a
+  correct, source-audited rate; what it no longer has is a family that can generate
+  its reaction.
+      2  H2p_r1 + H-_r2 <=> H2 + H          [Tanarro2015]
+      5  H2Op_r1 + H-_r2 <=> H2O + H        [Tanarro2015]
+      9  H2Op_r1 + O-_r2 <=> H2O + O        [Tanarro2015]
+     12  H2Op_r1 + OH-_r2 <=> H2O + OH      [Tanarro2015]
+     14  NOp_r1 + O_r2 <=> NO + Op          [Ozawa2008]
+     16  NOp_r1 + N_r2 <=> NO + Np          [Ozawa2008]
+     18  Np_r1 + N2_r2 <=> N2p + N          [Aiken2023]
+     19  Arp_r1 + N2_r2 <=> Ar + N2p        [Aiken2023]
+     20  Arp_r1 + O_r2 <=> Ar + Op          [Aiken2023]
+     21  NOp_r1 + O2_r2 <=> O2p + NO        [Ozawa2008]
+     22  O2p_r1 + N_r2 <=> Np + O2          [Ozawa2008]
+
+====================================================================================================
+SUMMARY
+====================================================================================================
+  candidate root pairs measured     : 12
+  crash-free pairs                  : 4
+  chosen                            : A2 ux p[0,2] + B2 u[0,1] p[1,2,3,4]
+  reactions generated (was 0)       : 82
+  training entries served           : 15 of 27
+  training entries served WRONGLY   : 1
+
+What this probe could NOT reach:
+  - Reactants outside the training set. The pool is the 21 species the training entries
+    name; a real mechanism contains more, and a root that is safe over this pool is not
+    proven safe over every molecule RMG might hand it.
+  - Whether the narrowed roots keep the twelve family checks green. Measured separately.
+  - Any root that is not a single flat group. A LogicOr top might express the exact set,
+    but tops are consumed as Groups by _match_reactant_to_template, so that is a
+    separate experiment and is not attempted here.
+exit status: 0

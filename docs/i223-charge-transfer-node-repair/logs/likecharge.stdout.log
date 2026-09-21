@@ -1,0 +1,98 @@
+corpus = 22344 species in 14s
+
+====================================================================================================
+PART 1 -- the synthetic cation set, because the corpus has almost none
+====================================================================================================
+installed thermo libraries hold 16 cations in 78 files. This probe adds protonated
+corpus species to reach 150, giving 11325 unordered cation pairs.
+
+   Br[OH+]C(Br)C=C(Br)Br|+1                 protonated BrOC(Br)C=C(Br)Br|+0
+   C#CC=N[OH2+]|+1                          protonated ON=CC#C|+0
+   C#C[C]=[OH+]|+1                          protonated C#C[C]=O|+0
+   C=C(CC)C(=O)[OH2+]|+1                    protonated C=C(CC)C(=O)O|+0
+   C=C(Cl)C([OH2+])Cl|+1                    protonated C=C(Cl)C(O)Cl|+0
+   C=CCC(=O)[OH2+]|+1                       protonated C=CCC(=O)O|+0
+   CC(=[OH+])F|+1                           protonated CC(=O)F|+0
+   CC(C)(C)[OH+]C=O|+1                      protonated CC(C)(C)OC=O|+0
+   CC(C)C(C)[OH+]|+1                        protonated CC(C)C(C)[O]|+0
+   CC(Cl)(Cl)[OH+]OBr|+1                    protonated CC(Cl)(Cl)OOBr|+0
+   CC(Cl)C([OH2+])Br|+1                     protonated CC(Cl)C(O)Br|+0
+   CC(F)(F)[OH+]F|+1                        protonated CC(F)(F)OF|+0
+   ... 138 more
+
+====================================================================================================
+PART 2 -- the defect, on the committed guards
+====================================================================================================
+forbidden groups loaded : ['excited_O2_cation', 'like_charge_transfer_star1', 'like_charge_transfer_star2']
+root A held at          : OR{H_cation, O_cation, Metal_cation, N_atom_ion}
+
+root B                               like   right   wrong crash-pool  crash-A  c-back  rxns
+-------------------------------------------------------------------------------------------
+B0 committed [H,O,N] p[1,2,3,4]       470      16       0          0        0       0    50
+B1 no neutral-O donor p[1,3,4]        200      16       0          0        0       0    50
+B2 OR{Anion, N_neutral}               200      16       0          0        0       0    50
+B3 OR{Anion, N2_only}                  40      16       0          0        0       0    50
+
+====================================================================================================
+PART 3 -- what the like-charge reactions actually look like
+====================================================================================================
+  B0 committed [H,O,N] p[1,2,3,4]  (470 like-charge reactions)
+     C=C(CC)C(=O)[OH2+] + [Ca+] -> [Ca] + C=C(CC)C(=[O+])[OH2+]   charges [1, 1] -> [0, 2]
+     C=C(CC)C(=O)[OH2+] + [H+] -> [H] + C=C(CC)C(=[O+])[OH2+]   charges [1, 1] -> [0, 2]
+     C=C(CC)C(=O)[OH2+] + [K+] -> [K] + C=C(CC)C(=[O+])[OH2+]   charges [1, 1] -> [0, 2]
+     C=C(CC)C(=O)[OH2+] + [Li+] -> [Li] + C=C(CC)C(=[O+])[OH2+]   charges [1, 1] -> [0, 2]
+     C=C(CC)C(=O)[OH2+] + [Mg+] -> [Mg] + C=C(CC)C(=[O+])[OH2+]   charges [1, 1] -> [0, 2]
+     C=C(CC)C(=O)[OH2+] + [N+] -> [N] + C=C(CC)C(=[O+])[OH2+]   charges [1, 1] -> [0, 2]
+
+  B1 no neutral-O donor p[1,3,4]  (200 like-charge reactions)
+     CCCC[N+](=[OH+])[O-] + [Ca+] -> [Ca] + CCCC[N+](=[OH+])[O]   charges [1, 1] -> [0, 2]
+     CCCC[N+](=[OH+])[O-] + [H+] -> [H] + CCCC[N+](=[OH+])[O]   charges [1, 1] -> [0, 2]
+     CCCC[N+](=[OH+])[O-] + [K+] -> [K] + CCCC[N+](=[OH+])[O]   charges [1, 1] -> [0, 2]
+     CCCC[N+](=[OH+])[O-] + [Li+] -> [Li] + CCCC[N+](=[OH+])[O]   charges [1, 1] -> [0, 2]
+     CCCC[N+](=[OH+])[O-] + [Mg+] -> [Mg] + CCCC[N+](=[OH+])[O]   charges [1, 1] -> [0, 2]
+     CCCC[N+](=[OH+])[O-] + [N+] -> [N] + CCCC[N+](=[OH+])[O]   charges [1, 1] -> [0, 2]
+
+  B2 OR{Anion, N_neutral}  (200 like-charge reactions)
+     CCCC[N+](=[OH+])[O-] + [Ca+] -> [Ca] + CCCC[N+](=[OH+])[O]   charges [1, 1] -> [0, 2]
+     CCCC[N+](=[OH+])[O-] + [H+] -> [H] + CCCC[N+](=[OH+])[O]   charges [1, 1] -> [0, 2]
+     CCCC[N+](=[OH+])[O-] + [K+] -> [K] + CCCC[N+](=[OH+])[O]   charges [1, 1] -> [0, 2]
+     CCCC[N+](=[OH+])[O-] + [Li+] -> [Li] + CCCC[N+](=[OH+])[O]   charges [1, 1] -> [0, 2]
+     CCCC[N+](=[OH+])[O-] + [Mg+] -> [Mg] + CCCC[N+](=[OH+])[O]   charges [1, 1] -> [0, 2]
+     CCCC[N+](=[OH+])[O-] + [N+] -> [N] + CCCC[N+](=[OH+])[O]   charges [1, 1] -> [0, 2]
+
+  B3 OR{Anion, N2_only}  (40 like-charge reactions)
+     CCCC[N+](=[OH+])[O-] + [Ca+] -> [Ca] + CCCC[N+](=[OH+])[O]   charges [1, 1] -> [0, 2]
+     CCCC[N+](=[OH+])[O-] + [H+] -> [H] + CCCC[N+](=[OH+])[O]   charges [1, 1] -> [0, 2]
+     CCCC[N+](=[OH+])[O-] + [K+] -> [K] + CCCC[N+](=[OH+])[O]   charges [1, 1] -> [0, 2]
+     CCCC[N+](=[OH+])[O-] + [Li+] -> [Li] + CCCC[N+](=[OH+])[O]   charges [1, 1] -> [0, 2]
+     CCCC[N+](=[OH+])[O-] + [Mg+] -> [Mg] + CCCC[N+](=[OH+])[O]   charges [1, 1] -> [0, 2]
+     CCCC[N+](=[OH+])[O-] + [N+] -> [N] + CCCC[N+](=[OH+])[O]   charges [1, 1] -> [0, 2]
+
+
+====================================================================================================
+PART 4 -- which entries survive each candidate
+====================================================================================================
+  B0 committed [H,O,N] p[1,2,3,4]    active 15 [1, 3, 4, 6, 7, 8, 10, 11, 15, 23, 24, 25, 26, 27, 28]
+                                     aside   1 [18]
+  B1 no neutral-O donor p[1,3,4]     active 15 [1, 3, 4, 6, 7, 8, 10, 11, 15, 23, 24, 25, 26, 27, 28]
+                                     aside   1 [18]
+  B2 OR{Anion, N_neutral}            active 15 [1, 3, 4, 6, 7, 8, 10, 11, 15, 23, 24, 25, 26, 27, 28]
+                                     aside   1 [18]
+  B3 OR{Anion, N2_only}              active 15 [1, 3, 4, 6, 7, 8, 10, 11, 15, 23, 24, 25, 26, 27, 28]
+                                     aside   1 [18]
+
+====================================================================================================
+VERDICT
+====================================================================================================
+NO candidate root B reaches zero like-charge reactions without other damage.
+Ranked by like-charge count, then by entries reproduced:
+   B3 OR{Anion, N2_only}              like    40  right 16  wrong 0  crash 0/0/0
+   B1 no neutral-O donor p[1,3,4]     like   200  right 16  wrong 0  crash 0/0/0
+   B2 OR{Anion, N_neutral}            like   200  right 16  wrong 0  crash 0/0/0
+   B0 committed [H,O,N] p[1,2,3,4]    like   470  right 16  wrong 0  crash 0/0/0
+
+If nothing reaches zero, the finding is that a FORBIDDEN GROUP CANNOT EXPRESS THIS.
+is_charged_reactant_forbidden in family.py says so in its own docstring: a group
+constrains the atom it is written on, never the molecule. The engine lever that exists,
+allowChargedReactants, is all-or-nothing and would bar this family's own ion reactants.
+exit status: 1

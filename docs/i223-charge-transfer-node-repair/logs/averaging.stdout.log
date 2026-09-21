@@ -1,0 +1,71 @@
+cwd                = /home/alon/Code/RMG-Py-i223-ct-node-repair
+database.directory = /home/alon/Code/RMG-database-i223-charge-transfer-node-repair/input
+family loaded from  = /home/alon/Code/RMG-database-i223-charge-transfer-node-repair/docs/i154-carry-chemistry/held-back/Plasma_Charge_Transfer
+
+--- which template each N2-carrying training reaction resolves to ---
+   15  Op_r1 + N2_r2 <=> N2p + O          -> O_atom_ion;N2_neutral
+   16  NOp_r1 + N_r2 <=> NO + Np          -> NO_ion;N_neutral
+   18  Np_r1 + N2_r2 <=> N2p + N          -> N_atom_ion;N2_neutral
+   19  Arp_r1 + N2_r2 <=> Ar + N2p        -> Ar_ion;N2_neutral
+   22  O2p_r1 + N_r2 <=> Np + O2          -> O2_ion;N_neutral
+   23  O2p_r1 + N2_r2 <=> N2p + O2        -> O2_ion;N2_neutral
+
+--- stage 1: add_rules_from_training (exact rules only) ---
+  rule labels holding at least one exact rule: 24
+    O2_ion;N_neutral             1 exact rule(s)
+    O2_ion;N2_neutral            1 exact rule(s)
+    O_atom_ion;N_neutral         EMPTY -- nothing exact here
+    O_atom_ion;N2_neutral        1 exact rule(s)
+    N_atom_ion;N_neutral         EMPTY -- nothing exact here
+    N_atom_ion;N2_neutral        1 exact rule(s)
+    Ar_ion;N_neutral             EMPTY -- nothing exact here
+    Ar_ion;N2_neutral            1 exact rule(s)
+    NO_ion;O_neutral             1 exact rule(s)
+    NO_ion;O2_neutral            1 exact rule(s)
+    Ar_ion;O_neutral             1 exact rule(s)
+    Ar_ion;O2_neutral            EMPTY -- nothing exact here
+
+--- stage 2: fill_rules_by_averaging_up (what a real job also runs) ---
+  rule labels after filling: 89  (+65)
+
+template                     stage 1    kind      source of the value now sitting there
+---------------------------------------------------------------------------------------
+O2_ion;N_neutral             1 exact    exact     Rate rule generated from training reaction 22. Table III
+O2_ion;N2_neutral            1 exact    exact     Rate rule generated from training reaction 23. Table III
+O_atom_ion;N_neutral         empty      AVERAGED  Average of [From training reaction 15 used for O_atom_ion;N2_neutral]
+O_atom_ion;N2_neutral        1 exact    exact     Rate rule generated from training reaction 15. Table III
+N_atom_ion;N_neutral         empty      AVERAGED  Average of [From training reaction 18 used for N_atom_ion;N2_neutral]
+N_atom_ion;N2_neutral        1 exact    exact     Rate rule generated from training reaction 18. Table 3.16
+Ar_ion;N_neutral             empty      AVERAGED  Average of [From training reaction 19 used for Ar_ion;N2_neutral]
+Ar_ion;N2_neutral            1 exact    exact     Rate rule generated from training reaction 19. Table 3.16
+NO_ion;O_neutral             1 exact    exact     Rate rule generated from training reaction 14. Table III
+NO_ion;O2_neutral            1 exact    exact     Rate rule generated from training reaction 21. Table III.
+Ar_ion;O_neutral             1 exact    exact     Rate rule generated from training reaction 20. Table 3.16
+Ar_ion;O2_neutral            empty      -         still nothing -- nothing descends here
+
+--- does the averaged parent return the same k as its one child? ---
+  template                        T / K    averaged k       child k     ratio
+  O_atom_ion;N_neutral             1000    1.3663e+05    1.3663e+05         1
+  O_atom_ion;N_neutral             5000    2.0416e+13    2.0416e+13         1
+  O_atom_ion;N_neutral            10000    2.5627e+14    2.5627e+14         1
+  N_atom_ion;N_neutral             1000    3.5697e+05    3.5697e+05         1
+  N_atom_ion;N_neutral             5000    1.3855e+11    1.3855e+11         1
+  N_atom_ion;N_neutral            10000    1.4266e+12    1.4266e+12         1
+  Ar_ion;N_neutral                 1000    4.9015e+14    4.9015e+14         1
+  Ar_ion;N_neutral                 5000    1.0960e+15    1.0960e+15         1
+  Ar_ion;N_neutral                10000    1.5500e+15    1.5500e+15         1
+
+  worst deviation of averaged parent from its single child: 1x
+  (an average over one entry is that entry; if this is 1, the reparenting changed
+   the PROVENANCE LABEL of these three templates and not the number they return)
+
+templates that hold NO exact rule and are served by averaging: 3
+    O_atom_ion;N_neutral
+    N_atom_ion;N_neutral
+    Ar_ion;N_neutral
+
+Reading: a template in that list is not broken. It means a reaction descending there
+gets a value averaged over the node's children rather than a rate somebody sourced
+for it, and the comment on the resulting kinetics says so. Worth stating in the report
+because it is a behaviour change that no check reports and no collision count shows.
+exit status: 0

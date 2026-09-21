@@ -1,0 +1,27 @@
+cwd                = /home/alon/Code/RMG-Py-i223-ct-node-repair
+database.directory = /home/alon/Code/RMG-database-i223-charge-transfer-node-repair/input
+
+--- species build/typing ---
+  He+       [He+]    charge=+1 atomtypes=['He']
+  Ne+       [Ne+]    charge=+1 atomtypes=['Ne']
+  Ar+       [Ar+]    charge=+1 atomtypes=['Ar+']
+  Ar2+  (Ar0s-Ar+)   charge=+1 atomtypes=['Ar0s', 'Ar+']
+  ArH+  (argonium)   charge=+1 atomtypes=['Ar+', 'H0']
+
+--- sampling ---
+  current            [He,Ne,Ar] ux px c+1        sample=[He]         charge=+0
+  cand-A  charge-specific  [Ar+,He,Ne] ux px c+1 sample=[ArH+]       charge=+1
+  cand-B  narrowed         [Ar,Ne,He] u1 p3 c+1  sample=[Ar+]        charge=+1
+  cand-C  He_ion child     He u1 p0 c+1          sample=[He+]        charge=+1
+  cand-C  Ne_ion child     Ne u1 p3 c+1          sample=[Ne+]        charge=+1
+  cand-C  Ar_ion child     Ar u1 p3 c+1 (existing) sample=[Ar+]        charge=+1
+
+--- matching (does the node still catch the species it means?) ---
+  node                                             He+       [He+]     Ne+       [Ne+]     Ar+       [Ar+]     Ar2+  (Ar0s-Ar+)    ArH+  (argonium)  
+  current            [He,Ne,Ar] ux px c+1          True                True                True                True                True              
+  cand-A  charge-specific  [Ar+,He,Ne] ux px c+1   True                True                True                True                True              
+  cand-B  narrowed         [Ar,Ne,He] u1 p3 c+1    False               True                True                False               False             
+  cand-C  He_ion child     He u1 p0 c+1            True                False               False               False               False             
+  cand-C  Ne_ion child     Ne u1 p3 c+1            False               True                False               False               False             
+  cand-C  Ar_ion child     Ar u1 p3 c+1 (existing) False               False               True                False               False             
+exit status: 0

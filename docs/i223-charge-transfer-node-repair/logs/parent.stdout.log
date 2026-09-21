@@ -1,0 +1,23 @@
+cwd                = /home/alon/Code/RMG-Py-i223-ct-node-repair
+database.directory = /home/alon/Code/RMG-database-i223-charge-transfer-node-repair/input
+
+--- parent samples, and parent/child validity ---
+  current      [He,Ne,Ar] ux px c+1          sample = [He] (+0)
+      proper parent of C1  Ar_ion as authored   Ar u1 p3 c+1    True
+      proper parent of C2  Ar_ion charge-typed  Ar+ u1 p3 c+1   True
+  P1           [Ar+,He,Ne] ux px c+1         sample = [ArH+] (+1)
+      proper parent of C1  Ar_ion as authored   Ar u1 p3 c+1    False
+      proper parent of C2  Ar_ion charge-typed  Ar+ u1 p3 c+1   True
+  P2           [Ar+,Ar,He,Ne] ux px c+1      sample = [ArH+] (+1)
+      proper parent of C1  Ar_ion as authored   Ar u1 p3 c+1    True
+      proper parent of C2  Ar_ion charge-typed  Ar+ u1 p3 c+1   True
+
+--- child sampling and matching ---
+  C1  Ar_ion as authored   Ar u1 p3 c+1      sample = [Ar+] (+1)   matches ['Ar+']
+  C2  Ar_ion charge-typed  Ar+ u1 p3 c+1     sample = [Ar+] (+1)   matches ['Ar+']
+
+--- parent matching (the set must not shrink) ---
+  current      [He,Ne,Ar] ux px c+1          matches ['He+', 'Ne+', 'Ar+', 'Ar2+', 'ArH+']
+  P1           [Ar+,He,Ne] ux px c+1         matches ['He+', 'Ne+', 'Ar+', 'Ar2+', 'ArH+']
+  P2           [Ar+,Ar,He,Ne] ux px c+1      matches ['He+', 'Ne+', 'Ar+', 'Ar2+', 'ArH+']
+exit status: 0

@@ -1,0 +1,42 @@
+cwd                 = /home/alon/Code/RMG-Py-i223-ct-node-repair
+database.directory  = /home/alon/Code/RMG-database-i223-charge-transfer-node-repair/input
+family loaded from  = /home/alon/Code/RMG-database-i223-charge-transfer-node-repair/docs/i154-carry-chemistry/held-back/Plasma_Charge_Transfer
+
+training entries    = 27
+group entries       = 30
+
+ignored (products)  = ['A-', 'B+']
+
+node             root           sample molecule          charge descends to      verdict
+----------------------------------------------------------------------------------------
+A                A              [H+]                          1 H_ion            PASS
+B                B              [H][H]                        0 Neutral          PASS
+H_cation         A              [H+]                          1 H_ion            PASS
+O_cation         A              [OH+]                         1 OH_ion           PASS
+N_cation         A              [NH2+]                        1 N_cation         PASS
+Noble_cation     A              [ArH+]                        1 Noble_cation     PASS
+Metal_cation     A              [Li+]                         1 Li_ion           PASS
+H_ion            A              [H+]                          1 H_ion            PASS
+O_atom_ion       A              [O+]                          1 O_atom_ion       PASS
+OH_ion           A              [OH+]                         1 OH_ion           PASS
+H2O_ion          A              [OH2+]                        1 H2O_ion          PASS
+O2_ion           A              [O][O+]                       1 O2_ion           PASS
+N_atom_ion       A              [N+]                          1 N_atom_ion       PASS
+NO_ion           A              N#[O+]                        1 NO_ion           PASS
+Ar_ion           A              [Ar+]                         1 Ar_ion           PASS
+Li_ion           A              [Li+]                         1 Li_ion           PASS
+Na_ion           A              [Na+]                         1 Na_ion           PASS
+K_ion            A              [K+]                          1 K_ion            PASS
+Mg_ion           A              [Mg+]                         1 Mg_ion           PASS
+Ca_ion           A              [Ca+]                         1 Ca_ion           PASS
+Anion            -              (LogicNode)                   - -                SKIP (not a Group)
+Neutral          B              [H][H]                        0 Neutral          PASS
+H_anion          B              [H-]                         -1 H_anion          PASS
+O_anion          B              [OH-]                        -1 O_anion          PASS
+O_neutral        B              O                             0 O_neutral        PASS
+N_neutral        B              N                             0 N_neutral        PASS
+O2_neutral       B              [O][O]                        0 O2_neutral       PASS
+N2_neutral       B              N#N                           0 N2_neutral       PASS
+
+PASS 27   FAIL 0   SKIP 1
+exit status: 0

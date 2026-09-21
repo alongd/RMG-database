@@ -1,0 +1,104 @@
+cwd                 = /home/alon/Code/RMG-Py-i223-ct-node-repair
+family loaded from  = /home/alon/Code/RMG-database-i223-charge-transfer-node-repair/docs/i154-carry-chemistry/held-back/Plasma_Charge_Transfer
+thermo read from    = /home/alon/Code/RMG-database-i223-charge-transfer-node-repair/input/thermo
+  (database.directory, and this probe DOES use it -- the thermo libraries are the
+   thing under test here, unlike the family, which is loaded from its explicit path)
+
+training entries    = 16
+thermo libraries    = 78
+
+species  adjacency (one line)       charge thermo library                     entries
+-------------------------------------------------------------------------------------
+Ca       1 Ca u2 p0 c0                   0 MISSING -- no library entry        28
+Cap_r1   1 *1 Ca u1 p0 c+1               1 MISSING -- no library entry        28
+H        1 H u1 p0 c0                    0 BurkeH2O2                          1,3,4,6,24,25,26,27,28
+H-_r2    1 *2 H u0 p1 c-1               -1 MISSING -- no library entry        1,3,4,24,25,26,27,28
+Hp_r1    1 *1 H u0 p0 c+1                1 electrocatLiThermo                 1,6
+K        1 K u1 p0 c0                    0 MISSING -- no library entry        26
+Kp_r1    1 *1 K u0 p0 c+1                1 MISSING -- no library entry        26
+Li       1 Li u1 p0 c0                   0 LithiumPrimaryThermo               24
+Lip_r1   1 *1 Li u0 p0 c+1               1 LithiumPrimaryThermo               24
+Mg       1 Mg u2 p0 c0                   0 MISSING -- no library entry        27
+Mgp_r1   1 *1 Mg u1 p0 c+1               1 MISSING -- no library entry        27
+N        1 N u3 p1 c0                    0 primaryNS                          18
+N2_r2    1 *2 N u0 p1 c0 {2,T} /...      0 BurkeH2O2                          15,18,23
+N2p      1 N u1 p0 c+1 {2,T} / 2...      1 MISSING -- no library entry        15,18,23
+Na       1 Na u1 p0 c0                   0 MISSING -- no library entry        25
+Nap_r1   1 *1 Na u0 p0 c+1               1 MISSING -- no library entry        25
+Np_r1    1 *1 N u2 p1 c+1                1 MISSING -- no library entry        18
+O        1 O u2 p2 c0                    0 BurkeH2O2                          3,6,7,8,15
+O-_r2    1 *2 O u1 p3 c-1               -1 MISSING -- no library entry        6,7,8
+O2       1 O u1 p2 c0 {2,S} / 2 ...      0 BurkeH2O2                          4,8,10,23
+O2p_r1   1    O u1 p2 c0 {2,S} /...      1 MISSING -- no library entry        4,8,10,23
+OH       1 O u1 p2 c0 {2,S} / 2 ...      0 BurkeH2O2                          10,11
+OH-_r2   1 *2 O u0 p3 c-1 {2,S} ...     -1 MISSING -- no library entry        10,11
+OHp_r1   1 *1 O u0 p2 c+1 {2,S} ...      1 MISSING -- no library entry        11
+Op_r1    1 *1 O u1 p2 c+1                1 MISSING -- no library entry        3,7,15
+
+covered = 9   missing = 16   of 25 distinct species
+
+MISSING, and the training entries they make unsimulatable:
+  Ca       entries 28
+  Cap_r1   entries 28
+  H-_r2    entries 1,3,4,24,25,26,27,28
+  K        entries 26
+  Kp_r1    entries 26
+  Mg       entries 27
+  Mgp_r1   entries 27
+  N2p      entries 15,18,23
+  Na       entries 25
+  Nap_r1   entries 25
+  Np_r1    entries 18
+  O-_r2    entries 6,7,8
+  O2p_r1   entries 4,8,10,23
+  OH-_r2   entries 10,11
+  OHp_r1   entries 11
+  Op_r1    entries 3,7,15
+
+training entries with EVERY species covered: 0 of 16  []
+
+======================================================================================
+PART 2 -- does the untranslated source library on branch 99 cover the gap?
+
+source library read = /tmp/claude-1000/plasma99/libraries
+entries that build a Molecule today = 126   that do NOT = 13
+
+THE SOURCE LIBRARY DOES NOT LOAD WHOLESALE. RMG's own loader stops at the first of
+these, so this probe parses the file entry by entry instead:
+  O+2          AtomTypeError: Unable to determine atom type for atom O++, which has 0 single bonds, 0 double bonds (0 
+  O+3          AtomTypeError: Unable to determine atom type for atom O.+++, which has 0 single bonds, 0 double bonds (
+  O+4          AtomTypeError: Unable to determine atom type for atom O++++, which has 0 single bonds, 0 double bonds (
+  O+5          AtomTypeError: Unable to determine atom type for atom O.+++++, which has 0 single bonds, 0 double bonds
+  NO+          AtomTypeError: Unable to determine atom type for atom N+, which has 0 single bonds, 1 double bonds (1 t
+  N2-          AtomTypeError: Unable to determine atom type for atom N.-, which has 0 single bonds, 0 double bonds (0 
+  N2H+         AtomTypeError: Unable to determine atom type for atom N+, which has 0 single bonds, 1 double bonds (0 t
+  C+           AtomTypeError: Unable to determine atom type for atom C.+, which has 0 single bonds, 0 double bonds (0 
+  CH+          AtomTypeError: Unable to determine atom type for atom C+, which has 1 single bonds, 0 double bonds (0 t
+  CH-(S)       AtomTypeError: Unable to determine atom type for atom C-, which has 1 single bonds, 0 double bonds (0 t
+  K-           AtomTypeError: Unable to determine atom type for atom K-, which has 0 single bonds, 0 double bonds (0 t
+  Li-          AtomTypeError: Unable to determine atom type for atom Li-, which has 0 single bonds, 0 double bonds (0 
+  Na-          AtomTypeError: Unable to determine atom type for atom Na-, which has 0 single bonds, 0 double bonds (0 
+
+species  found in branch-99 source library        entries it unblocks
+--------------------------------------------------------------------------------------
+Ca       not there either                         28
+Cap_r1   plasma: Ca+                              28
+H-_r2    plasma: H-                               1,3,4,24,25,26,27,28
+K        plasma: K                                26
+Kp_r1    plasma: K+                               26
+Mg       not there either                         27
+Mgp_r1   plasma: Mg+                              27
+N2p      plasma: N2+                              15,18,23
+Na       plasma: Na                               25
+Nap_r1   plasma: Na+                              25
+Np_r1    plasma: N+                               18
+O-_r2    plasma: O-                               6,7,8
+O2p_r1   plasma: O2+                              4,8,10,23
+OH-_r2   plasma: OH-                              10,11
+OHp_r1   plasma: OH+                              11
+Op_r1    plasma: O+                               3,7,15
+
+of the 16 missing species, branch 99 holds 14 and lacks 2
+training entries that a FULL carry of branch 99 would make simulatable: 14 of 16  [1, 3, 4, 6, 7, 8, 10, 11, 15, 18, 23, 24, 25, 26]
+still nowhere: Ca, Mg
+exit status: 1

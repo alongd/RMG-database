@@ -1,0 +1,183 @@
+cwd                = /home/alon/Code/RMG-Py-i223-ct-node-repair
+database.directory = /home/alon/Code/RMG-database-i223-charge-transfer-node-repair/input
+family loaded from  = /home/alon/Code/RMG-database-i223-charge-transfer-node-repair/docs/i154-carry-chemistry/held-back/Plasma_Charge_Transfer
+
+threshold for "the rates disagree enough to be worth a node" = 4.0x
+(= the measured Gupta-vs-Ozawa scatter for ONE reaction, 1.9-3.8x)
+
+============================================================================================
+Hp_r1 + H-_r2 <=> H + H   [H_ion;H_anion]
+H2p_r1 + H-_r2 <=> H2 + H   [H_ion;H_anion]
+  differ in        : H+ vs H2+ as the cation
+  tree can express : expressible as a disconnected 2-atom group, but the recipe returns None on the resulting sample (probe_h2_recipe.py) -- so no
+  rate provenance  : DIFFERENT sources: Table 1 IN1 cites [21] Konstantinovskii, IN2 cites [71] Scott. The near-agreement is two sources, not one estimate.
+  declared T range : 300 - 10000 K
+  DECIDED on       : 300 - 10000 K
+  because          : Ea = 0 and n is -0.5 on both sides, so the ratio is exactly A1/A2 at every T. No window to argue about.
+  status now       : MERGED onto one node
+
+     T / K             k1             k2       k1/k2
+       300     1.0840e+17     1.2044e+17         0.9   <- deciding window
+      1512     4.8277e+16     5.3641e+16         0.9   <- deciding window
+      2725     3.5967e+16     3.9963e+16         0.9   <- deciding window
+      3938     2.9921e+16     3.3245e+16         0.9   <- deciding window
+      5150     2.6163e+16     2.9070e+16         0.9   <- deciding window
+      6362     2.3538e+16     2.6153e+16         0.9   <- deciding window
+      7575     2.1572e+16     2.3969e+16         0.9   <- deciding window
+      8788     2.0029e+16     2.2254e+16         0.9   <- deciding window
+     10000     1.8775e+16     2.0861e+16         0.9   <- deciding window
+
+  worst over the DECLARED range : 1.111x at 300 K
+  in the deciding window, they differ by between 1.111x (at 300 K) and 1.111x (at 10000 K)
+  DECIDED on the weakest of those : 1.111x   -> > 4.0x? no
+  VERDICT: LEAVE MERGED
+
+============================================================================================
+H2Op_r1 + O-_r2 <=> H2O + O   [H2O_ion;O_anion]
+H2Op_r1 + OH-_r2 <=> H2O + OH   [H2O_ion;O_anion]
+  differ in        : O- vs OH- as the anion
+  tree can express : yes -- an OH_anion group, sibling or child of O_anion
+  rate provenance  : SAME class estimate: Table 1 IN15 and IN22 both cite [56] Kossyi 1992 and both carry the generic 2e-7 (Tg/300)^-0.5. Identical because the source did not distinguish them.
+  declared T range : 300 - 10000 K
+  DECIDED on       : 300 - 10000 K
+  because          : Identical parameters, so the ratio is 1 at every T.
+  status now       : MERGED onto one node
+
+     T / K             k1             k2       k1/k2
+       300     1.2044e+17     1.2044e+17           1   <- deciding window
+      1512     5.3641e+16     5.3641e+16           1   <- deciding window
+      2725     3.9963e+16     3.9963e+16           1   <- deciding window
+      3938     3.3245e+16     3.3245e+16           1   <- deciding window
+      5150     2.9070e+16     2.9070e+16           1   <- deciding window
+      6362     2.6153e+16     2.6153e+16           1   <- deciding window
+      7575     2.3969e+16     2.3969e+16           1   <- deciding window
+      8788     2.2254e+16     2.2254e+16           1   <- deciding window
+     10000     2.0861e+16     2.0861e+16           1   <- deciding window
+
+  worst over the DECLARED range : 1x at 300 K
+  in the deciding window, they differ by between 1x (at 300 K) and 1x (at 10000 K)
+  DECIDED on the weakest of those : 1x   -> > 4.0x? no
+  VERDICT: LEAVE MERGED
+    EXPIRES: lossless because the SOURCE is coarse, not because the tree is
+    right. Both sides quote one class estimate. The first real measurement for
+    either pair makes this merge start discarding data, as the N/N2 merge does.
+
+============================================================================================
+O2p_r1 + O-_r2 <=> O2 + O   [O2_ion;O_anion]
+O2p_r1 + OH-_r2 <=> O2 + OH   [O2_ion;O_anion]
+  differ in        : O- vs OH- as the anion
+  tree can express : yes -- the same OH_anion group
+  rate provenance  : SAME class estimate, via two citations: Table 1 IN13 cites [73] Gudmundsson, IN20 cites [56] Kossyi, but both quote the identical generic 2e-7 (Tg/300)^-0.5.
+  declared T range : 300 - 10000 K
+  DECIDED on       : 300 - 10000 K
+  because          : Identical parameters, so the ratio is 1 at every T.
+  status now       : MERGED onto one node
+
+     T / K             k1             k2       k1/k2
+       300     1.2044e+17     1.2044e+17           1   <- deciding window
+      1512     5.3641e+16     5.3641e+16           1   <- deciding window
+      2725     3.9963e+16     3.9963e+16           1   <- deciding window
+      3938     3.3245e+16     3.3245e+16           1   <- deciding window
+      5150     2.9070e+16     2.9070e+16           1   <- deciding window
+      6362     2.6153e+16     2.6153e+16           1   <- deciding window
+      7575     2.3969e+16     2.3969e+16           1   <- deciding window
+      8788     2.2254e+16     2.2254e+16           1   <- deciding window
+     10000     2.0861e+16     2.0861e+16           1   <- deciding window
+
+  worst over the DECLARED range : 1x at 300 K
+  in the deciding window, they differ by between 1x (at 300 K) and 1x (at 10000 K)
+  DECIDED on the weakest of those : 1x   -> > 4.0x? no
+  VERDICT: LEAVE MERGED
+    EXPIRES: lossless because the SOURCE is coarse, not because the tree is
+    right. Both sides quote one class estimate. The first real measurement for
+    either pair makes this merge start discarding data, as the N/N2 merge does.
+
+============================================================================================
+O2p_r1 + N_r2 <=> Np + O2   [O2_ion;N_neutral]
+O2p_r1 + N2_r2 <=> N2p + O2   [O2_ion;N2_neutral]
+  differ in        : N vs N2 as the neutral
+  tree can express : yes -- an N2_neutral group under N_neutral
+  rate provenance  : Both [Ozawa2008] Table III, and pair-specific: different A, n and Ea for each.
+  declared T range : 300 - 10000 K
+  DECIDED on       : 5000 - 10000 K
+  because          : Ozawa fits hypersonic shock layers; both carry large Ea (238 and 338 kJ/mol), so at 300 K both k are ~1e-28 and their ratio is an exponential artefact of extrapolating far below where either fit is used. Decided on the high-T end, where both are live.
+  status now       : SPLIT across two nodes
+
+     T / K             k1             k2       k1/k2
+       300     7.6035e-28     1.1893e-46   6.393e+18
+      1512     1.4820e+06     2.0335e+01   7.288e+04
+      2725     7.2569e+09     3.2226e+06        2252
+      3938     1.9354e+11     3.2037e+08       604.1
+      5150     1.1112e+12     3.6522e+09       304.3   <- deciding window
+      6362     3.2983e+12     1.6468e+10       200.3   <- deciding window
+      7575     6.9403e+12     4.5847e+10       151.4   <- deciding window
+      8788     1.1931e+13     9.6224e+10         124   <- deciding window
+     10000     1.8026e+13     1.6872e+11       106.8   <- deciding window
+
+  worst over the DECLARED range : 6.393e+18x at 300 K
+  in the deciding window, they differ by between 106.8x (at 10000 K) and 304.3x (at 5150 K)
+  DECIDED on the weakest of those : 106.8x   -> > 4.0x? yes
+  (the declared-range figure is 5.98e+16x larger. It is an extrapolation
+   artefact and is NOT the number this verdict rests on.)
+  VERDICT: SPLIT
+
+============================================================================================
+NOp_r1 + O_r2 <=> NO + Op   [NO_ion;O_neutral]
+NOp_r1 + O2_r2 <=> O2p + NO   [NO_ion;O2_neutral]
+  differ in        : O vs O2 as the neutral
+  tree can express : yes -- O2_neutral, which this ticket added
+  rate provenance  : Both [Ozawa2008] Table III, and pair-specific: different A, n and Ea for each.
+  declared T range : 300 - 10000 K
+  DECIDED on       : 5000 - 10000 K
+  because          : Same reasoning: Ea of 424 and 271 kJ/mol, so the 300 K ratio is extrapolation. Decided on the high-T end.
+  status now       : SPLIT across two nodes
+
+     T / K             k1             k2       k1/k2
+       300     4.3878e-61     1.5635e-33   2.806e-28
+      1512     6.7615e-02     2.0968e+05   3.225e-07
+      2725     2.2280e+05     3.9101e+09   5.698e-05
+      3938     7.1157e+07     1.8110e+11   0.0003929
+      5150     1.5053e+09     1.4205e+12     0.00106   <- deciding window
+      6362     9.9558e+09     5.1770e+12    0.001923   <- deciding window
+      7575     3.5975e+10     1.2629e+13    0.002849   <- deciding window
+      8788     9.1214e+10     2.4308e+13    0.003752   <- deciding window
+     10000     1.8459e+11     4.0194e+13    0.004592   <- deciding window
+
+  worst over the DECLARED range : 3.563e+27x at 300 K
+  in the deciding window, they differ by between 217.7x (at 10000 K) and 943.6x (at 5150 K)
+  DECIDED on the weakest of those : 217.7x   -> > 4.0x? yes
+  (the declared-range figure is 1.64e+25x larger. It is an extrapolation
+   artefact and is NOT the number this verdict rests on.)
+  VERDICT: SPLIT
+
+============================================================================================
+summary
+============================================================================================
+template pair                            status     in-range    declared expr.  verdict       holds because
+-----------------------------------------------------------------------------------------------------------
+Hp_r1 + H-_r2 / H2p_r1 + H-_r2           merged       1.111x      1.111x no     LEAVE MERGED  recipe cannot process the node
+H2Op_r1 + O-_r2 / H2Op_r1 + OH-_r2       merged           1x          1x yes    LEAVE MERGED  coarse source -- EXPIRES
+O2p_r1 + O-_r2 / O2p_r1 + OH-_r2         merged           1x          1x yes    LEAVE MERGED  coarse source -- EXPIRES
+O2p_r1 + N_r2 / O2p_r1 + N2_r2           split        106.8x  6.393e+18x yes    SPLIT         rates differ
+NOp_r1 + O_r2 / NOp_r1 + O2_r2           split        217.7x  3.563e+27x yes    SPLIT         rates differ
+
+
+"in-range" is the figure the verdict rests on; "declared" is the worst over the full
+300-10000 K window each entry declares, and for the Ozawa pairs that is extrapolation.
+
+sensitivity of the verdicts to the threshold
+  largest in-window ratio among LEAVE MERGED (all of them) : 1.111x
+  smallest in-window ratio among SPLIT                     : 106.8x
+  => ANY threshold strictly between 1.111x and 106.8x gives these same five
+     verdicts -- a factor-of-96 window. The chosen 4.0x sits inside it, and
+     the conclusions do not depend on where in that window it sits.
+
+still merged but the criterion says SPLIT: 0
+
+merged on a coarse source, and therefore provisional: 2
+    H2Op_r1 + O-_r2 <=> H2O + O  /  H2Op_r1 + OH-_r2 <=> H2O + OH
+    O2p_r1 + O-_r2 <=> O2 + O  /  O2p_r1 + OH-_r2 <=> O2 + OH
+  These are the O-/OH- merges. They cost nothing TODAY because Tanarro Table 1 gives
+  both sides the same class estimate (probe_tanarro.py), not because O_anion is the
+  right granularity. Keep the OH_anion sibling-vs-child question open.
+exit status: 0

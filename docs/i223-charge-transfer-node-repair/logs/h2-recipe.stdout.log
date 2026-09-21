@@ -1,0 +1,40 @@
+cwd                = /home/alon/Code/RMG-Py-i223-ct-node-repair
+database.directory = /home/alon/Code/RMG-database-i223-charge-transfer-node-repair/input
+
+==============================================================================
+0. the training reaction the H2_ion node exists to host
+==============================================================================
+  index 2: H2p_r1 + H-_r2 <=> H2 + H
+    reactant H2p_r1: multiplicity 2 | 1    H u1 p0 c0 | 2 *1 H u0 p0 c+1
+    reactant H-_r2: 1 *2 H u0 p1 c-1
+    product  H2: 1 H u0 p0 c0 {2,S} | 2 H u0 p0 c0 {1,S}
+    product  H: multiplicity 2 | 1 H u1 p0 c0
+
+==============================================================================
+1. can each H2+ molecular representation be built and typed?
+==============================================================================
+  H2+ unbonded         OK  charge=+1 atomtypes=['H0', 'H+'] n_fragments=2
+  H2+ vdW-bonded       OK  charge=+1 atomtypes=['H0', 'H+'] n_fragments=1
+  H2+ single-bonded    FAIL InvalidAdjacencyListError: Invalid valency for atom H (H0) with 1 unpaired electrons, 0 pairs of electrons, 0 charge, and bonds [1.0].
+
+==============================================================================
+2. apply the recipe to each group variant + the B-root sample
+==============================================================================
+  *2 partner sample: [H][H]  (1 *2 H u0 p0 c0 {2,S} | 2    H u0 p0 c0 {1,S})
+  recipe: [['LOSE_CHARGE', '*1', 1], ['GAIN_CHARGE', '*2', 1]]
+
+  unbonded  (matches the dictionary)       sample=[H+].[H]     charge=+1
+  unbonded  (matches the dictionary)         apply_recipe -> None (wrong product count, or a charged product)
+  vdW bond  {2,vdW}                        sample=[H]~[H+]     charge=+1
+  vdW bond  {2,vdW}                          products -> ['[H+].[H]', '[H][H]']
+  single bond (as authored, pre-repair)    sample=[H][H-]      charge=-1
+  single bond (as authored, pre-repair)      products -> ['[H][H-]', '[H][H]']
+
+==============================================================================
+3. what the recipe would have to do, spelled out
+==============================================================================
+  training reaction 2 is  H2+ + H-  ->  H2 + H.
+  The electron that arrives on H2+ becomes the SECOND electron of the H-H bond.
+  The recipe has only LOSE_CHARGE/GAIN_CHARGE -- no bond-forming action -- so from an
+  unbonded [H+].[H] it can only ever produce [H].[H], i.e. two separate H atoms.
+exit status: 0

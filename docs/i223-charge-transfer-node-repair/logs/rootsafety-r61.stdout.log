@@ -1,0 +1,152 @@
+cwd                 = /home/alon/Code/RMG-Py-plasma
+engine              = /home/alon/Code/RMG-Py-plasma
+database.directory  = /home/alon/Code/RMG-database-plasma/input
+family loaded from  = /home/alon/Code/RMG-database-i223-charge-transfer-node-repair/docs/i154-carry-chemistry/held-back/Plasma_Charge_Transfer
+thermo pool from    = /home/alon/Code/RMG-database-i223-charge-transfer-node-repair/input/thermo/libraries
+
+NOTE: database.directory above is the engine rmgrc's setting and points at a DIFFERENT
+worktree. This probe never uses it -- both paths above are explicit.
+
+recipe              = [['GAIN_RADICAL', '*1', 1], ['GAIN_RADICAL', '*2', 1], ['LOSE_PAIR', '*2', 1]]
+root A (*1)         = LogicNode OR{H_cation, O_cation, Metal_cation, N_atom_ion}
+root B (*2)         = 1 *2 [H,O,N] u[0,1] p[1,2,3,4] c[0,-1,-2,-3,-4]
+reversible          = False
+pool                = 22344 distinct species  (22325 from thermo libraries, +44 from the unrepresentable set, rest from training) in 13.0s
+
+====================================================================================================
+PART 1 -- which pool species match which root
+====================================================================================================
+net charge census   : {-1: 4, 0: 22324, 1: 16}
+match root A (*1)   :     12 of 22344
+match root B (*2)   :  12791 of 22344
+
+root-A matchers that are actually CATIONS (12) -- the intended exposure:
+   O.[H+]|+1                          thermo/electrocatLiThermo
+   [Ca+]|+1                           training-reactant
+   [H+].[H]|+1                        unrepresentable
+   [H+]|+1                            thermo/electrocatLiThermo
+   [K+]|+1                            training-reactant
+   [Li+]|+1                           thermo/LithiumPrimaryThermo
+   [Mg+]|+1                           training-reactant
+   [N+]|+1                            training-reactant
+   [Na+]|+1                           training-reactant
+   [O+]|+1                            training-reactant
+   [OH+]|+1                           training-reactant
+   [O][O+]|+1                         training-reactant
+
+root-A matchers that are NOT cations (0). A group constrains ATOMS, not molecular
+charge, so any neutral carrying a formally positive atom -- a nitro N, a diazo, an
+N-oxide -- is admitted by a root written to mean "a cation". First 25:
+
+9543 species match NEITHER root and can never reach this family.
+
+fixed safe cation  (root A partner for stage 2) = [Li+]|+1  [thermo/LithiumPrimaryThermo]  1 Li u0 p0 c+1
+fixed safe neutral (root B partner for stage 3) = N#N|+0  [thermo/BurkeH2O2]  1 N u0 p1 c0 {2,T} | 2 N u0 p1 c0 {1,T}
+
+====================================================================================================
+PART 1b -- self-check on the fixed partners
+====================================================================================================
+Stages 2 and 3 attribute every crash to the varying species. That is only sound if the
+fixed partner never crashes. The control is the training REACTANT pool, which
+probe_generate.py already measured crash-free over all of its own pairs.
+  training reactants checked per partner : 14
+  crashes involving a fixed partner      : 0
+
+====================================================================================================
+PART 1c -- feedback safety: the family's own PRODUCTS, driven back in as reactants
+====================================================================================================
+probe_generate.py drove the training REACTANTS and measured zero crashes. But RMG puts
+a generated product into the core and hands it back to react() on the next iteration,
+so every product is a future reactant. This stage drives each of the 11 distinct
+training products against the 14 training reactants -- 154 pairs.
+
+  product species         *1  *2  result
+  --------------------------------------------------------------------------------
+  N#[N+]|+1                0   1  0 reactions, no crash
+  [Ca]|+0                  0   0  0 reactions, no crash
+  [H]|+0                   0   0  0 reactions, no crash
+  [K]|+0                   0   0  0 reactions, no crash
+  [Li]|+0                  0   0  0 reactions, no crash
+  [Mg]|+0                  0   0  0 reactions, no crash
+  [N]|+0                   0   0  0 reactions, no crash
+  [Na]|+0                  0   0  0 reactions, no crash
+  [OH]|+0                  0   1  0 reactions, no crash
+  [O][O]|+0                0   2  0 reactions, no crash
+  [O]|+0                   0   0  0 reactions, no crash
+
+  No product crashes the family when fed back in.
+
+====================================================================================================
+PART 2 -- root B safety: every pool species, paired with the fixed safe cation
+====================================================================================================
+22344 species x 1 partner. A crash here is attributable to the species, because the
+partner is known safe and no recipe action joins the two reactants.
+
+   ... 2500/22344 in 0s, 0 crashes so far
+   ... 5000/22344 in 1s, 0 crashes so far
+   ... 7500/22344 in 1s, 0 crashes so far
+   ... 10000/22344 in 2s, 0 crashes so far
+   ... 12500/22344 in 2s, 0 crashes so far
+   ... 15000/22344 in 3s, 0 crashes so far
+   ... 17500/22344 in 3s, 0 crashes so far
+   ... 20000/22344 in 4s, 0 crashes so far
+
+  species that reacted with the fixed cation : 12283
+  reactions generated                        : 19100
+  crashes: 0
+
+  elapsed: 4s
+
+====================================================================================================
+PART 3 -- root A safety: every root-A matcher, paired with the fixed safe neutral
+====================================================================================================
+12 species match root A. Pairing each with the fixed neutral is what puts the *1
+label on it, so this is the stage that exercises root A -- including the 0 that are
+not cations at all and that stage 2 only ever saw as the *2 partner.
+
+  species that reacted with the fixed neutral : 10
+  reactions generated                         : 20
+  crashes: 0
+
+  of the crashes above, 0 are on molecules with net charge 0 or less
+  elapsed: 0s
+
+====================================================================================================
+PART 4 -- independence control: full cross product, sampled A-matchers x sampled partners
+====================================================================================================
+The per-molecule stages above rest on the claim that a crash localises to one reactant:
+every recipe action carries one label and none joins the reactants. This stage does not
+assume it: 12 sampled root-A matchers x 400 sampled root-B matchers = 4800 pairs, each
+a real two-reactant call. A crash appearing ONLY here refutes the localisation argument
+and would invalidate stages 2 and 3.
+
+  reactions generated        : 6100
+  like-charge reactant pairs : 0   (the labelled forbidden groups should hold these at 0)
+  crashes                    : 0
+  crashes NOT explained by a stage 2/3 crash of either reactant : 0
+  elapsed: 1s
+
+====================================================================================================
+SUMMARY
+====================================================================================================
+  pool                                 : 22344 species
+  own products that crash on feedback  : 0  []
+  match root A / root B                : 12 / 12791
+  of the root-A matchers, NOT cations  : 0
+  stage 2 crashes (root B, per species): 0
+  stage 3 crashes (root A, per matcher): 0
+  stage 4 crashes (cross product)      : 0  (0 unexplained by stages 2/3)
+  like-charge reactions surviving      : 0
+
+What this probe could NOT reach:
+  - Species RMG GENERATES rather than reads from a library. The pool is every species
+    the installed thermo libraries name; a running job invents more.
+  - Root A over real CATIONS at scale. The installed database holds 4 cations in 78
+    libraries, so the genuine cation exposure is the 12 listed in PART 1 plus the
+    family's own training set, and nothing else.
+  - Reactor admissibility, rates, and anything downstream of generation.
+  - Trimolecular or surface paths. This family is bimolecular and gas phase.
+
+VERDICT: no crash, over 22344 species. The roots are safe on everything the
+installed thermo libraries can name, not merely on the 13 training species.
+exit status: 0

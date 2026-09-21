@@ -1,0 +1,36 @@
+cwd                = /home/alon/Code/RMG-Py-i223-ct-node-repair
+database.directory = /home/alon/Code/RMG-database-i223-charge-transfer-node-repair/input
+family loaded from  = /tmp/claude-1000/i223-before/Plasma_Charge_Transfer
+
+entries labelled 'NOp_r1 + O2_r2 <=> O2p + NO': [17, 21]
+
+  index  17  rank 6  [Gupta1990]    A=1.8e+15 cm^3/(mol*s)  n=0.17  Ea=274.5 kJ/mol  T0=300.0 K
+           longDesc: Table II, R19
+  index  21  rank 6  [Ozawa2008]    A=2.4e+13 cm^3/(mol*s)  n=0.41  Ea=271.1 kJ/mol  T0=1.0 K
+           longDesc: Table III
+
+Ea as stated: 274.47 kJ/mol (index 17) vs 271.1 kJ/mol (index 21)
+Ea/R        : 33011.2 K        vs 32605.8 K
+
+k(T) in cm^3/(mol*s)   [rmgpy returns SI m^3/(mol*s); x1e6 to cm^3]
+
+  T / K        index 17        index 21       17/21
+----------------------------------------------------
+    300      2.9290e-33      1.5635e-33       1.873
+    500      4.1673e-14      1.4647e-14       2.845
+   1000      1.0176e+01      2.8164e+00       3.613
+   1500      6.5522e+05      1.7461e+05       3.753
+   2000      1.6868e+08      4.5017e+07       3.747
+   3000      4.4301e+10      1.2180e+10       3.637
+   4000      7.2840e+11      2.0746e+11       3.511
+   5000      3.9416e+12      1.1606e+12       3.396
+   6000      1.2219e+13      3.7082e+12       3.295
+   8000      5.0771e+13      1.6234e+13       3.128
+  10000      1.2037e+14      4.0194e+13       2.995
+
+ratio index17/index21 over 300-10000 K: min 1.873 (at 300 K), max 3.759 (at 1690 K)
+index 17 exceeds 1e6 cm^3/(mol*s) above 1530 K
+over that window the ratio runs 2.995 to 3.759
+
+plot written to /home/alon/Code/RMG-database-i223-charge-transfer-node-repair/docs/i223-charge-transfer-node-repair/kT-comparison.png
+exit status: 0

@@ -1,0 +1,189 @@
+cwd                 = /home/alon/Code/RMG-Py-i223-ct-node-repair
+database.directory  = /home/alon/Code/RMG-database-i223-charge-transfer-node-repair/input
+family loaded from  = Plasma_Charge_Transfer under docs/i154-carry-chemistry/held-back
+recipe              = [['LOSE_CHARGE', '*1', 1], ['GAIN_CHARGE', '*2', 1]]
+template            = ['A', 'B'] -> ['A-', 'B+']
+
+====================================================================================================
+PART 0 -- is the recipe capable of moving a charge at all? Three independent measurements.
+====================================================================================================
+Mechanism, read from source: LOSE_CHARGE/GAIN_CHARGE set atom.charge and nothing else
+(molecule.py:538-548); apply_recipe then calls update_charge() on every product
+(family.py:1547); update_charge re-derives charge = valence - bonds - radicals - 2*lp
+(molecule.py:596-598). Nothing on the right-hand side was touched, so the charge returns
+to its starting value. Below: whether that is what actually happens.
+
+(0a) apply the recipe by hand to three representative reactant pairs
+
+  Li+ + H-   (entry 24)          in  [Li+] (+1) + [H-] (-1)
+                                 out [Li+] (+1) + [H-] (-1)   IDENTICAL -- no charge moved
+  O+ + O     (entry 13 partner)  in  [O+] (+1) + [O] (+0)
+                                 out [O+] (+1) + [O] (+0)   IDENTICAL -- no charge moved
+  Ar+ + N2   (entry 19)          in  [Ar+] (+1) + N#N (+0)
+                                 out [Ar+] (+1) + N#N (+0)   IDENTICAL -- no charge moved
+
+  3 of 3 demonstration pairs came back unchanged.
+
+(0b) ask the family to generate reactions for those same reactants
+     _create_reaction rejects a reaction whose products are its reactants
+     (family.py:1757-1759), so an inert recipe shows up here as zero.
+
+  Li+ + H-   (entry 24)          generate_reactions -> 0 reaction(s)
+  O+ + O     (entry 13 partner)  generate_reactions -> 0 reaction(s)
+  Ar+ + N2   (entry 19)          generate_reactions -> 0 reaction(s)
+
+(0c) census of every recipe under input/kinetics/families/ that uses a charge action.
+     Parsed on each run rather than quoted, so it cannot drift from the repo.
+
+  families whose recipe uses LOSE_CHARGE or GAIN_CHARGE   : 20
+  ... paired with a structural action (radical/pair/bond) : 20
+  ... charge actions ONLY, nothing structural             : 0
+
+  this family: ['LOSE_CHARGE', 'GAIN_CHARGE']
+  -> charge actions only; no mainline family does this
+
+====================================================================================================
+PART 1 -- every training entry. 27 of them, none exempt.
+====================================================================================================
+"template" is what add_rules_from_training keys the rule on -- reactant side only, so
+the rule is created regardless of anything in this table.
+
+ idx  reaction                           rule keyed on              verdict    what the recipe returns
+------------------------------------------------------------------------------------------------------
+   1  Hp_r1 + H-_r2 <=> H + H            [H_ion;H_anion]            INERT      [H+] (+1) + [H-] (-1)
+   2  H2p_r1 + H-_r2 <=> H2 + H          [H_ion;H_anion]            NO OUTPUT  None (product count != 2)
+   3  Op_r1 + H-_r2 <=> O + H            [O_atom_ion;H_anion]       INERT      [O+] (+1) + [H-] (-1)
+   4  O2p_r1 + H-_r2 <=> O2 + H          [O2_ion;H_anion]           INERT      [O][O+] (+1) + [H-] (-1)
+   5  H2Op_r1 + H-_r2 <=> H2O + H        [H2O_ion;H_anion]          INERT      [OH2+] (+1) + [H-] (-1)
+   6  Hp_r1 + O-_r2 <=> H + O            [H_ion;O_anion]            INERT      [H+] (+1) + [O-] (-1)
+   7  Op_r1 + O-_r2 <=> O + O            [O_atom_ion;O_anion]       INERT      [O+] (+1) + [O-] (-1)
+   8  O2p_r1 + O-_r2 <=> O2 + O          [O2_ion;O_anion]           INERT      [O][O+] (+1) + [O-] (-1)
+   9  H2Op_r1 + O-_r2 <=> H2O + O        [H2O_ion;O_anion]          INERT      [OH2+] (+1) + [O-] (-1)
+  10  O2p_r1 + OH-_r2 <=> O2 + OH        [O2_ion;O_anion]           INERT      [O][O+] (+1) + [OH-] (-1)
+  11  OHp_r1 + OH-_r2 <=> OH + OH        [OH_ion;O_anion]           INERT      [OH+] (+1) + [OH-] (-1)
+  12  H2Op_r1 + OH-_r2 <=> H2O + OH      [H2O_ion;O_anion]          INERT      [OH2+] (+1) + [OH-] (-1)
+  13  O2p_r1 + O_r2 <=> O2 + Op          [O2_ion;O_neutral]         INERT      [O][O+] (+1) + [O] (+0)
+  14  NOp_r1 + O_r2 <=> NO + Op          [NO_ion;O_neutral]         INERT      N#[O+] (+1) + [O] (+0)
+  15  Op_r1 + N2_r2 <=> N2p + O          [O_atom_ion;N2_neutral]    INERT      [O+] (+1) + N#N (+0)
+  16  NOp_r1 + N_r2 <=> NO + Np          [NO_ion;N_neutral]         INERT      N#[O+] (+1) + [N] (+0)
+  18  Np_r1 + N2_r2 <=> N2p + N          [N_atom_ion;N2_neutral]    INERT      [N+] (+1) + N#N (+0)
+  19  Arp_r1 + N2_r2 <=> Ar + N2p        [Ar_ion;N2_neutral]        INERT      [Ar+] (+1) + N#N (+0)
+  20  Arp_r1 + O_r2 <=> Ar + Op          [Ar_ion;O_neutral]         INERT      [Ar+] (+1) + [O] (+0)
+  21  NOp_r1 + O2_r2 <=> O2p + NO        [NO_ion;O2_neutral]        INERT      N#[O+] (+1) + [O][O] (+0)
+  22  O2p_r1 + N_r2 <=> Np + O2          [O2_ion;N_neutral]         INERT      [O][O+] (+1) + [N] (+0)
+  23  O2p_r1 + N2_r2 <=> N2p + O2        [O2_ion;N2_neutral]        INERT      [O][O+] (+1) + N#N (+0)
+  24  Lip_r1 + H-_r2 <=> Li + H          [Li_ion;H_anion]           INERT      [Li+] (+1) + [H-] (-1)
+  25  Nap_r1 + H-_r2 <=> Na + H          [Na_ion;H_anion]           INERT      [Na+] (+1) + [H-] (-1)
+  26  Kp_r1 + H-_r2 <=> K + H            [K_ion;H_anion]            INERT      [K+] (+1) + [H-] (-1)
+  27  Mgp_r1 + H-_r2 <=> Mg + H          [Mg_ion;H_anion]           INERT      [Mg+] (+1) + [H-] (-1)
+  28  Cap_r1 + H-_r2 <=> Ca + H          [Ca_ion;H_anion]           INERT      [Ca+] (+1) + [H-] (-1)
+
+====================================================================================================
+PART 2 -- what the recipe would have to do instead, per entry.
+====================================================================================================
+For each side, the change between the reactant species and the product species of the
+same formula, in the four quantities update_charge balances. The rightmost column is the
+action set that change implies. If those action sets are not all the same, one recipe
+cannot serve this training set.
+
+ idx  side         required actions                    d(rad,lp,bond) species
+-----------------------------------------------------------------------------
+   1  cation *1    GAIN_RADICAL 1 + LOSE_CHARGE 1      (+1,+0,+0)   [H+] -> [H]
+   1  anion *2     GAIN_RADICAL 1 + LOSE_PAIR 1 + GAIN_CHARGE 1  (+1,-1,+0)   [H-] -> [H]
+   2  cation *1    CHANGE_BOND(+1) + LOSE_RADICAL 1 + LOSE_CHARGE 1  (-1,+0,+1)   [H+].[H] -> [H][H]
+   2  anion *2     GAIN_RADICAL 1 + LOSE_PAIR 1 + GAIN_CHARGE 1  (+1,-1,+0)   [H-] -> [H]
+   3  cation *1    GAIN_RADICAL 1 + LOSE_CHARGE 1      (+1,+0,+0)   [O+] -> [O]
+   3  anion *2     GAIN_RADICAL 1 + LOSE_PAIR 1 + GAIN_CHARGE 1  (+1,-1,+0)   [H-] -> [H]
+   4  cation *1    GAIN_RADICAL 1 + LOSE_CHARGE 1      (+1,+0,+0)   [O][O+] -> [O][O]
+   4  anion *2     GAIN_RADICAL 1 + LOSE_PAIR 1 + GAIN_CHARGE 1  (+1,-1,+0)   [H-] -> [H]
+   5  cation *1    LOSE_RADICAL 1 + GAIN_PAIR 1 + LOSE_CHARGE 1  (-1,+1,+0)   [OH2+] -> O
+   5  anion *2     GAIN_RADICAL 1 + LOSE_PAIR 1 + GAIN_CHARGE 1  (+1,-1,+0)   [H-] -> [H]
+   6  cation *1    GAIN_RADICAL 1 + LOSE_CHARGE 1      (+1,+0,+0)   [H+] -> [H]
+   6  anion *2     GAIN_RADICAL 1 + LOSE_PAIR 1 + GAIN_CHARGE 1  (+1,-1,+0)   [O-] -> [O]
+   7  cation *1    GAIN_RADICAL 1 + LOSE_CHARGE 1      (+1,+0,+0)   [O+] -> [O]
+   7  anion *2     GAIN_RADICAL 1 + LOSE_PAIR 1 + GAIN_CHARGE 1  (+1,-1,+0)   [O-] -> [O]
+   8  cation *1    GAIN_RADICAL 1 + LOSE_CHARGE 1      (+1,+0,+0)   [O][O+] -> [O][O]
+   8  anion *2     GAIN_RADICAL 1 + LOSE_PAIR 1 + GAIN_CHARGE 1  (+1,-1,+0)   [O-] -> [O]
+   9  cation *1    LOSE_RADICAL 1 + GAIN_PAIR 1 + LOSE_CHARGE 1  (-1,+1,+0)   [OH2+] -> O
+   9  anion *2     GAIN_RADICAL 1 + LOSE_PAIR 1 + GAIN_CHARGE 1  (+1,-1,+0)   [O-] -> [O]
+  10  cation *1    GAIN_RADICAL 1 + LOSE_CHARGE 1      (+1,+0,+0)   [O][O+] -> [O][O]
+  10  anion *2     GAIN_RADICAL 1 + LOSE_PAIR 1 + GAIN_CHARGE 1  (+1,-1,+0)   [OH-] -> [OH]
+  11  cation *1    GAIN_RADICAL 1 + LOSE_CHARGE 1      (+1,+0,+0)   [OH+] -> [OH]
+  11  anion *2     GAIN_RADICAL 1 + LOSE_PAIR 1 + GAIN_CHARGE 1  (+1,-1,+0)   [OH-] -> [OH]
+  12  cation *1    LOSE_RADICAL 1 + GAIN_PAIR 1 + LOSE_CHARGE 1  (-1,+1,+0)   [OH2+] -> O
+  12  anion *2     GAIN_RADICAL 1 + LOSE_PAIR 1 + GAIN_CHARGE 1  (+1,-1,+0)   [OH-] -> [OH]
+  13  cation *1    GAIN_RADICAL 1 + LOSE_CHARGE 1      (+1,+0,+0)   [O][O+] -> [O][O]
+  13  neutral *2   LOSE_RADICAL 1 + GAIN_CHARGE 1      (-1,+0,+0)   [O] -> [O+]
+  14  cation *1    CHANGE_BOND(-1) + GAIN_RADICAL 1 + GAIN_PAIR 1 + LOSE_CHARGE 1  (+1,+1,-1)   N#[O+] -> [N]=O
+  14  neutral *2   LOSE_RADICAL 1 + GAIN_CHARGE 1      (-1,+0,+0)   [O] -> [O+]
+  15  cation *1    GAIN_RADICAL 1 + LOSE_CHARGE 1      (+1,+0,+0)   [O+] -> [O]
+  15  neutral *2   GAIN_RADICAL 1 + LOSE_PAIR 1 + GAIN_CHARGE 1  (+1,-1,+0)   N#N -> N#[N+]
+  16  cation *1    CHANGE_BOND(-1) + GAIN_RADICAL 1 + GAIN_PAIR 1 + LOSE_CHARGE 1  (+1,+1,-1)   N#[O+] -> [N]=O
+  16  neutral *2   LOSE_RADICAL 1 + GAIN_CHARGE 1      (-1,+0,+0)   [N] -> [N+]
+  18  cation *1    GAIN_RADICAL 1 + LOSE_CHARGE 1      (+1,+0,+0)   [N+] -> [N]
+  18  neutral *2   GAIN_RADICAL 1 + LOSE_PAIR 1 + GAIN_CHARGE 1  (+1,-1,+0)   N#N -> N#[N+]
+  19  cation *1    LOSE_RADICAL 1 + GAIN_PAIR 1 + LOSE_CHARGE 1  (-1,+1,+0)   [Ar+] -> [Ar]
+  19  neutral *2   GAIN_RADICAL 1 + LOSE_PAIR 1 + GAIN_CHARGE 1  (+1,-1,+0)   N#N -> N#[N+]
+  20  cation *1    LOSE_RADICAL 1 + GAIN_PAIR 1 + LOSE_CHARGE 1  (-1,+1,+0)   [Ar+] -> [Ar]
+  20  neutral *2   LOSE_RADICAL 1 + GAIN_CHARGE 1      (-1,+0,+0)   [O] -> [O+]
+  21  cation *1    CHANGE_BOND(-1) + GAIN_RADICAL 1 + GAIN_PAIR 1 + LOSE_CHARGE 1  (+1,+1,-1)   N#[O+] -> [N]=O
+  21  neutral *2   LOSE_RADICAL 1 + GAIN_CHARGE 1      (-1,+0,+0)   [O][O] -> [O][O+]
+  22  cation *1    GAIN_RADICAL 1 + LOSE_CHARGE 1      (+1,+0,+0)   [O][O+] -> [O][O]
+  22  neutral *2   LOSE_RADICAL 1 + GAIN_CHARGE 1      (-1,+0,+0)   [N] -> [N+]
+  23  cation *1    GAIN_RADICAL 1 + LOSE_CHARGE 1      (+1,+0,+0)   [O][O+] -> [O][O]
+  23  neutral *2   GAIN_RADICAL 1 + LOSE_PAIR 1 + GAIN_CHARGE 1  (+1,-1,+0)   N#N -> N#[N+]
+  24  cation *1    GAIN_RADICAL 1 + LOSE_CHARGE 1      (+1,+0,+0)   [Li+] -> [Li]
+  24  anion *2     GAIN_RADICAL 1 + LOSE_PAIR 1 + GAIN_CHARGE 1  (+1,-1,+0)   [H-] -> [H]
+  25  cation *1    GAIN_RADICAL 1 + LOSE_CHARGE 1      (+1,+0,+0)   [Na+] -> [Na]
+  25  anion *2     GAIN_RADICAL 1 + LOSE_PAIR 1 + GAIN_CHARGE 1  (+1,-1,+0)   [H-] -> [H]
+  26  cation *1    GAIN_RADICAL 1 + LOSE_CHARGE 1      (+1,+0,+0)   [K+] -> [K]
+  26  anion *2     GAIN_RADICAL 1 + LOSE_PAIR 1 + GAIN_CHARGE 1  (+1,-1,+0)   [H-] -> [H]
+  27  cation *1    GAIN_RADICAL 1 + LOSE_CHARGE 1      (+1,+0,+0)   [Mg+] -> [Mg]
+  27  anion *2     GAIN_RADICAL 1 + LOSE_PAIR 1 + GAIN_CHARGE 1  (+1,-1,+0)   [H-] -> [H]
+  28  cation *1    GAIN_RADICAL 1 + LOSE_CHARGE 1      (+1,+0,+0)   [Ca+] -> [Ca]
+  28  anion *2     GAIN_RADICAL 1 + LOSE_PAIR 1 + GAIN_CHARGE 1  (+1,-1,+0)   [H-] -> [H]
+
+====================================================================================================
+PART 3 -- how many distinct recipes would the 27 entries need?
+====================================================================================================
+cation side (*1), distinct action sets: 4
+  GAIN_RADICAL 1 + LOSE_CHARGE 1           entries [1, 3, 4, 6, 7, 8, 10, 11, 13, 15, 18, 22, 23, 24, 25, 26, 27, 28]
+  LOSE_RADICAL 1 + GAIN_PAIR 1 + LOSE_CHARGE 1 entries [5, 9, 12, 19, 20]
+  CHANGE_BOND(-1) + GAIN_RADICAL 1 + GAIN_PAIR 1 + LOSE_CHARGE 1 entries [14, 16, 21]
+  CHANGE_BOND(+1) + LOSE_RADICAL 1 + LOSE_CHARGE 1 entries [2]
+
+partner side (*2), distinct action sets: 2
+  GAIN_RADICAL 1 + LOSE_PAIR 1 + GAIN_CHARGE 1 entries [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 15, 18, 19, 23, 24, 25, 26, 27, 28]
+  LOSE_RADICAL 1 + GAIN_CHARGE 1           entries [13, 14, 16, 20, 21, 22]
+
+Entries needing a BOND-ORDER change: [2, 14, 16, 21]
+  No single-atom action can express one. CHANGE_BOND takes two labelled atoms, so
+  these entries would need a second label on the partner atom, which the present
+  two-label template does not have.
+
+====================================================================================================
+SUMMARY
+====================================================================================================
+  training entries audited                 : 27
+  INERT                                    : 26
+  NO OUTPUT                                : 1
+  distinct recipes the training set needs  : cation side 4, partner side 2
+  mainline families with a bare charge recipe: 0
+
+What this probe could NOT reach:
+  - The REVERSE family. groups.py declares reverse = "Plasma_Charge_Transfer_Reverse"
+    and own_reverse is False, so the reverse object is a separate family that does not
+    exist in this repository. Whether it has the same defect is unmeasured here.
+  - Whether any RMG job has ever RUN this family. The finding is that it generates no
+    reactions; that it was never noticed is consistent with it never having been run,
+    but this probe cannot establish that.
+  - The rates themselves. Those are the source audits (probe_tanarro.py,
+    probe_ozawa_aiken.py), and they are unaffected: a rate can be correctly transcribed
+    for a reaction the family cannot generate.
+  - The right repair. PART 3 measures what would be needed; it does not choose.
+
+VERDICT: 27 of 27 training entries are not producible by this recipe, and the reason is
+not per-entry: the recipe is inert. It returns its reactants, so the family generates no
+reactions at all. No check in the twelve-check suite reports this. STOPPING here rather
+than repairing it -- PART 3 shows the repair is a family redesign, not a correction.
+exit status: 1

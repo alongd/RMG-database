@@ -1,0 +1,44 @@
+RESOLVED database.directory = /home/alon/Code/RMG-database-i236-radiative-root/input
+thermo libraries loaded: 78
+distinct species (by adjacency list): 22936
+
+=== net-charge histogram over the whole inventory ===
+  q = -1 : 1
+  q = +0 : 22929
+  q = +1 : 6
+  total 22936 | charged 7 | cations 6
+
+=== match sets ===
+  OLD root `1 *1 R u0 px c[0,+1,+2,+3,+4,+5,+6,+7,+8]` matches 22915 of 22936
+     of which q=0  : 22912
+     of which q>0  : 3
+     of which q<0  : 0
+  NEW root `1 *1 R u0 px c[+1,+2,+3,+4,+5,+6,+7,+8]` matches 617 of 22936
+     of which q=0  : 614
+     of which q>0  : 3
+     of which q<0  : 0
+
+=== cations the root excludes because it demands u0 ===
+  cations in inventory              : 6
+  cations NOT matched by either root: 3
+    q=+1  PlasmaCationThermo/[Arp]
+    q=+1  PlasmaCationThermo/[Hep]
+    q=+1  PlasmaCationThermo/[Nep]
+
+=== what the recipe builds at every centre the OLD root matches ===
+  AtomTypeError q=0                        133946
+      e.g. 2-BTP/HF
+      e.g. 2-BTP/F2
+      e.g. 2-BTP/F2
+  AtomTypeError q=1                        670
+      e.g. 2-BTP/CO
+      e.g. BurcatNS/TrinitroMethane
+      e.g. BurcatNS/TrinitroMethane
+  TYPED q=0                                96216
+  TYPED q=1                                5
+
+=== the cations the NEW root keeps ===
+    q=+1  LithiumPrimaryThermo/[Lip]
+    q=+1  electrocatLiThermo/H3O
+    q=+1  electrocatLiThermo/proton
+  (3 total)

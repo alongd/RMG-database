@@ -1,0 +1,38 @@
+RESOLVED database.directory = /home/alon/Code/RMG-database-i236-radiative-root/input
+family loaded: Plasma_Radiative_Recombination | electrons = -1 | tree entries = ['A', 'A_reduced']
+root group:
+1 *1 [H,Li,Na,K] u0 p0 c+1
+
+--- Li+
+    1 reaction(s)
+      <Molecule "[Li+]"> => <Molecule "[Li]">   electrons=-1
+        product: multiplicity 2 / 1 Li u1 p0 c0
+        isomorphic to expected '1 Li u1 p0 c0': True
+
+--- H+
+    1 reaction(s)
+      <Molecule "[H+]"> => <Molecule "[H]">   electrons=-1
+        product: multiplicity 2 / 1 H u1 p0 c0
+        isomorphic to expected '1 H  u1 p0 c0': True
+
+--- Na+
+    1 reaction(s)
+      <Molecule "[Na+]"> => <Molecule "[Na]">   electrons=-1
+        product: multiplicity 2 / 1 Na u1 p0 c0
+        isomorphic to expected '1 Na u1 p0 c0': True
+
+--- Ar+
+    0 reaction(s)
+
+--- Ar
+    0 reaction(s)
+
+--- He+
+    0 reaction(s)
+
+--- CO
+    0 reaction(s)
+
+--- CH4
+    0 reaction(s)
+

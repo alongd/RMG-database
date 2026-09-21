@@ -1,0 +1,28 @@
+ .../Plasma_Radiative_Recombination/groups.py       | 87 ++++++++++++++++++----
+ 1 file changed, 74 insertions(+), 13 deletions(-)
+============================= test session starts ==============================
+platform linux -- Python 3.9.23, pytest-8.4.1, pluggy-1.6.0 -- /home/alon/anaconda3/envs/rmg_env/bin/python
+cachedir: .pytest_cache
+rootdir: /home/alon/Code/RMG-database-i236-radiative-root
+plugins: check-2.5.3, cov-6.2.1, anyio-4.10.0
+collecting ... collected 17 items
+
+test/test_plasma_radiative_recombination_family.py::test_family_declares_a_net_electron_consumption_of_one PASSED [  5%]
+test/test_plasma_radiative_recombination_family.py::test_root_is_the_single_top_and_reads_as_written PASSED [ 11%]
+test/test_plasma_radiative_recombination_family.py::test_recipe_is_gain_radical_plus_lose_charge PASSED [ 17%]
+test/test_plasma_radiative_recombination_family.py::test_root_elements_are_bare_atomic_cations_the_recipe_can_reduce PASSED [ 23%]
+test/test_plasma_radiative_recombination_family.py::test_cation_recombination_is_generated_with_the_right_product[H+] PASSED [ 29%]
+test/test_plasma_radiative_recombination_family.py::test_cation_recombination_is_generated_with_the_right_product[K+] PASSED [ 35%]
+test/test_plasma_radiative_recombination_family.py::test_cation_recombination_is_generated_with_the_right_product[Li+] PASSED [ 41%]
+test/test_plasma_radiative_recombination_family.py::test_cation_recombination_is_generated_with_the_right_product[Na+] PASSED [ 47%]
+test/test_plasma_radiative_recombination_family.py::test_species_out_of_scope_are_not_matched[Ar] PASSED [ 52%]
+test/test_plasma_radiative_recombination_family.py::test_species_out_of_scope_are_not_matched[Ar+] PASSED [ 58%]
+test/test_plasma_radiative_recombination_family.py::test_species_out_of_scope_are_not_matched[CH3NO2] PASSED [ 64%]
+test/test_plasma_radiative_recombination_family.py::test_species_out_of_scope_are_not_matched[CH4] PASSED [ 70%]
+test/test_plasma_radiative_recombination_family.py::test_species_out_of_scope_are_not_matched[CO] PASSED [ 76%]
+test/test_plasma_radiative_recombination_family.py::test_species_out_of_scope_are_not_matched[HF] PASSED [ 82%]
+test/test_plasma_radiative_recombination_family.py::test_species_out_of_scope_are_not_matched[He+] PASSED [ 88%]
+test/test_plasma_radiative_recombination_family.py::test_species_out_of_scope_are_not_matched[Ne+] PASSED [ 94%]
+test/test_plasma_radiative_recombination_family.py::test_known_limitation_open_shell_cations_need_a_recipe_this_family_has_not_got PASSED [100%]
+
+============================== 17 passed in 1.21s ==============================

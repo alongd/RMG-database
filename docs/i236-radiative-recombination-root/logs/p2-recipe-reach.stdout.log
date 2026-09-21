@@ -1,0 +1,22 @@
+RESOLVED database.directory = /home/alon/Code/RMG-database-i236-radiative-root/input
+
+=== recipe RR  (GAIN_RADICAL + LOSE_CHARGE) ===
+  Li+          -> multiplicity 2 / 1 *1 Li u1 p0 c0
+  Na+          -> multiplicity 2 / 1 *1 Na u1 p0 c0
+  H+           -> multiplicity 2 / 1 *1 H u1 p0 c0
+  Ar+          -> multiplicity 3 / 1 *1 Ar u2 p3 c0
+  He+          -> multiplicity 3 / 1 *1 He u2 p0 c0
+  Ar  (neut)   -> AtomTypeError: Unable to determine atom type for atom Ar.-, which has 0 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 benzene bonds, 4 lone pairs, and -1 charge.
+  O   (neut)   -> AtomTypeError: Unable to determine atom type for atom O...-, which has 0 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 benzene bonds, 2 lone pairs, and -1 charge.
+
+=== recipe ATT (LOSE_RADICAL  + GAIN_PAIR) ===
+  Li+          -> ActionError: Unable to update Atom due to LOSE_RADICAL action: Invalid radical electron set "-1".
+  Na+          -> ActionError: Unable to update Atom due to LOSE_RADICAL action: Invalid radical electron set "-1".
+  H+           -> ActionError: Unable to update Atom due to LOSE_RADICAL action: Invalid radical electron set "-1".
+  Ar+          -> 1 *1 Ar u0 p4 c0
+  He+          -> 1 *1 He u0 p1 c0
+  Ar  (neut)   -> ActionError: Unable to update Atom due to LOSE_RADICAL action: Invalid radical electron set "-1".
+  O   (neut)   -> multiplicity 2 / 1 *1 O u1 p3 c-1
+
+=== is `Ar u2 p3 c0` ground-state argon? ===
+  '1 Ar u2 p3 c0' constructible; atomtype=Ar0e; isomorphic to ground Ar? False

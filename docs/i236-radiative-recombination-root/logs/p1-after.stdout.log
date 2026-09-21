@@ -1,0 +1,15 @@
+RESOLVED database.directory = /home/alon/Code/RMG-database-i236-radiative-root/input
+family loaded: Plasma_Radiative_Recombination | electrons = -1
+groups tree entries: 2 -> ['A', 'A_reduced']
+root group adjlist: '<rmgpy.molecule.group.Group object at 0x7c5b5b9dd5f0>'
+recipe: [['GAIN_RADICAL', '*1', 1], ['LOSE_CHARGE', '*1', 1]]
+template: reactants=['A'] products=['A_reduced']
+
+--- Ar+  (what RR consumes) : 1 Ar u1 p3 c+1
+    0 reaction(s)
+
+--- Ar   (neutral) : 1 Ar u0 p4 c0
+    0 reaction(s)
+
+root group matches Ar+  (what RR consumes)   : False
+root group matches Ar   (neutral)            : False

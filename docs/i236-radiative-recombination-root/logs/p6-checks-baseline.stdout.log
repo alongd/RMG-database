@@ -1,0 +1,22 @@
+RESOLVED database.directory = /home/alon/Code/RMG-database-i236-radiative-root/docs/superpowers/base_input
+family loaded: Plasma_Radiative_Recombination | electrons = -1 | auto_generated = False
+groups.top = ['A'] | forward_template.reactants = ['A']
+root group: 1 *1 R u0 c[0,+1,+2,+3,+4,+5,+6,+7,+8]
+
+kinetics_check_correct_number_of_nodes_in_rules              PASS
+kinetics_check_nodes_in_rules_found_in_groups                PASS
+kinetics_check_groups_found_in_tree                          PASS
+kinetics_check_groups_nonidentical                           PASS
+kinetics_check_child_parent_relationships                    PASS
+kinetics_check_siblings_for_parents                          PASS
+kinetics_check_cd_atom_type                                  PASS
+kinetics_check_reactant_and_product_template                 PASS
+kinetics_check_num_reactant_and_product                      PASS
+kinetics_check_family_electrons_reach_training_reactions     PASS
+kinetics_check_sample_descends_to_group                      PASS
+kinetics_check_sample_can_react                              PASS
+
+FAMILY CHECKS PASSING: 12 of 12
+kinetics_check_adjlists_nonidentical                         PASS  [Plasma_Radiative_Recombination/training]
+kinetics_check_rate_units_are_correct                        PASS  [Plasma_Radiative_Recombination/training]
+DEPOSITORY CHECKS PASSING: 2

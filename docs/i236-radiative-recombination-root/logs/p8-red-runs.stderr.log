@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/home/alon/Code/RMG-database-i236-radiative-root/docs/i236-radiative-recombination-root/probes/p8_red_runs.py", line 43, in <module>
+    assert text.count(old) == 1, '{0}: anchor not unique ({1} hits)'.format(name, text.count(old))
+AssertionError: M4-electrons-zeroed: anchor not unique (4 hits)

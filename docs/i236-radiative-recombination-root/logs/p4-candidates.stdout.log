@@ -1,0 +1,78 @@
+RESOLVED database.directory = /home/alon/Code/RMG-database-i236-radiative-root/input
+distinct species (by adjacency list): 22936
+
+--- C0 today   `1 *1 R u0 px c[0,+1,+2,+3,+4,+5,+6,+7,+8]`
+    species matched : 22915 of 22936   (q=0: 22912, q>0: 3, q<0: 0)
+    centres labelled: 95917 typed, 134616 raised {'AtomTypeError': 134616}
+        q=+0  2-BTP/AR
+        q=+0  2-BTP/BR2
+        q=+0  2-BTP/BRO
+        q=+0  2-BTP/BROH
+        q=+0  2-BTP/BTP
+        q=+0  2-BTP/C
+        q=+0  2-BTP/C2F2
+        q=+0  2-BTP/C2H
+        q=+0  2-BTP/C2H2
+        q=+0  2-BTP/C2H3
+        q=+0  2-BTP/C2H3BR
+        q=+0  2-BTP/C2H3CHO
+        ... 22903 more
+
+--- C1 drop c0   `1 *1 R u0 px c[+1,+2,+3,+4,+5,+6,+7,+8]`
+    species matched : 617 of 22936   (q=0: 614, q>0: 3, q<0: 0)
+    centres labelled: 5 typed, 670 raised {'AtomTypeError': 670}
+        q=+0  2-BTP/CO
+        q=+0  BurcatNS/C(CH3)2(NO2)2
+        q=+0  BurcatNS/C2(NO2)6
+        q=+0  BurcatNS/C2H2(NO2)2
+        q=+0  BurcatNS/C2H4(NO2)2
+        q=+0  BurcatNS/C2H5N3
+        q=+0  BurcatNS/C2H5N3O5
+        q=+0  BurcatNS/C2HN7O2
+        q=+0  BurcatNS/C3H6(NO2)2
+        q=+0  BurcatNS/C6H3N2O4
+        q=+0  BurcatNS/C6H3N3O7
+        q=+0  BurcatNS/CH2N2O2
+        ... 605 more
+
+--- C2 drop c0 and px   `1 *1 R u0 p0 c+1`
+    species matched : 607 of 22936   (q=0: 604, q>0: 3, q<0: 0)
+    centres labelled: 3 typed, 662 raised {'AtomTypeError': 662}
+        q=+0  BurcatNS/C(CH3)2(NO2)2
+        q=+0  BurcatNS/C2(NO2)6
+        q=+0  BurcatNS/C2H2(NO2)2
+        q=+0  BurcatNS/C2H4(NO2)2
+        q=+0  BurcatNS/C2H5N3
+        q=+0  BurcatNS/C2H5N3O5
+        q=+0  BurcatNS/C2HN7O2
+        q=+0  BurcatNS/C3H6(NO2)2
+        q=+0  BurcatNS/C6H3N2O4
+        q=+0  BurcatNS/C6H3N3O7
+        q=+0  BurcatNS/CH2N2O2
+        q=+0  BurcatNS/CH2ONO2
+        ... 595 more
+
+--- C3 alkali + H   `1 *1 [H,Li,Na,K] u0 p0 c+1`
+    species matched : 3 of 22936   (q=0: 0, q>0: 3, q<0: 0)
+    centres labelled: 3 typed, 0 raised {}
+        q=+1  LithiumPrimaryThermo/[Lip]
+        q=+1  electrocatLiThermo/H3O
+        q=+1  electrocatLiThermo/proton
+
+--- C4 widen u (brief)   `1 *1 R ux px c[+1,+2,+3,+4,+5,+6,+7,+8]`
+    species matched : 697 of 22936   (q=0: 691, q>0: 6, q<0: 0)
+    centres labelled: 8 typed, 747 raised {'AtomTypeError': 747}
+        q=+0  2-BTP/CO
+        q=+0  BurcatNS/C(CH3)2(NO2)2
+        q=+0  BurcatNS/C2(NO2)6
+        q=+0  BurcatNS/C2H2(NO2)2
+        q=+0  BurcatNS/C2H4(NO2)2
+        q=+0  BurcatNS/C2H5N3
+        q=+0  BurcatNS/C2H5N3O5
+        q=+0  BurcatNS/C2HN7O2
+        q=+0  BurcatNS/C3H6(NO2)2
+        q=+0  BurcatNS/C6H3N2O4
+        q=+0  BurcatNS/C6H3N3O7
+        q=+0  BurcatNS/CH2N2O2
+        ... 685 more
+

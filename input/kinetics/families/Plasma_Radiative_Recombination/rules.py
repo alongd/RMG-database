@@ -66,22 +66,27 @@ WHAT THIS IS
 ------------
 A ONE-POINT GENERALIZATION: one sourced reaction's rate coefficient, taken at a
 single electron temperature, promoted to the top node of a family whose template
-`A` matches any closed-shell centre (u0, any of c[0,+1,...]). It exists so the
-family returns a defensible order-of-magnitude number instead of nothing. It is a
-PLACEHOLDER, not a prediction.
+`A` is `[H,Li,Na,K] u0 p0 c+1` — a bare closed-shell atomic cation. It exists so
+the family returns a defensible order-of-magnitude number instead of nothing. It
+is a PLACEHOLDER, not a prediction.
+
+I-236 narrowed that template. It previously read `R u0 px c[0,+1,...]` and
+matched 22915 of the 22936 species in this database's thermo libraries, neutrals
+included; this rule was the number all of them would have been handed. The
+paragraph below is what it now says about the three species the template reaches.
 
 WHAT THIS IS NOT
 ----------------
-* It is not a rate for the species it is handed to, and it crosses a charge stage.
-  The number is the Li+(+1) -> Li(0) CATION-to-neutral radiative-recombination
-  rate; this family's template stage is A(0) -> A-(-1), neutral-to-anion (it also
-  admits cation reactants, so Li+ -> Li itself is in range). Radiative-
-  recombination/attachment rate coefficients vary by orders of magnitude with the
-  ion's charge, nuclear charge and electron affinity — none of which the local
+* It is not a rate for the species it is handed to. The number is the
+  Li+(+1) -> Li(0) cation-to-neutral radiative-recombination rate, and since
+  I-236 the template stage is that same stage — A(+1) -> A(0) — so the rule no
+  longer crosses a charge stage on its way to the species it estimates.
+  Radiative-recombination rate coefficients still vary by orders of magnitude
+  with the ion's charge and nuclear charge — neither of which the local
   connectivity RMG matches on can see — so this single value is an order-of-
   magnitude anchor, not a per-species rate. It is most defensible for singly
-  charged light cations near 1 eV (where it was sourced) and least defensible for
-  neutral-to-anion attachment, where the physics (and the true rate) differ.
+  charged light cations near 1 eV, where it was sourced, which is now exactly the
+  class the template admits.
 * It is not electron-temperature-aware. Plain Arrhenius has no
   `uses_electron_temperature` flag, so the family evaluates it at the GAS
   temperature — the wrong independent variable for an electron-driven process,

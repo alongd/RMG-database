@@ -1,0 +1,32 @@
+RESOLVED database.directory = /home/alon/Code/RMG-database-i236-radiative-root/input
+family loaded: Plasma_Radiative_Recombination | electrons = -1
+groups tree entries: 2 -> ['A', 'A-']
+root group adjlist: '<rmgpy.molecule.group.Group object at 0x79ae9890e740>'
+recipe: [['GAIN_RADICAL', '*1', 1], ['LOSE_CHARGE', '*1', 1]]
+template: reactants=['A'] products=['A-']
+
+--- Ar+  (what RR consumes) : 1 Ar u1 p3 c+1
+    0 reaction(s)
+
+--- Ar   (neutral) : 1 Ar u0 p4 c0
+    RAISES:
+Traceback (most recent call last):
+  File "/home/alon/Code/RMG-database-i236-radiative-root/docs/i236-radiative-recombination-root/probes/p1_reproduce.py", line 51, in <module>
+    rxns = fam.generate_reactions([spc.molecule[0]])
+  File "/home/alon/Code/RMG-Py-plasma/rmgpy/data/kinetics/family.py", line 1874, in generate_reactions
+    self._generate_reactions(reactants=reactants,
+  File "/home/alon/Code/RMG-Py-plasma/rmgpy/data/kinetics/family.py", line 2105, in _generate_reactions
+    product_structures = self._generate_product_structures(reactant_structures,
+  File "/home/alon/Code/RMG-Py-plasma/rmgpy/data/kinetics/family.py", line 1674, in _generate_product_structures
+    product_structures = self.apply_recipe(reactant_structures, forward=forward, relabel_atoms=relabel_atoms)
+  File "/home/alon/Code/RMG-Py-plasma/rmgpy/data/kinetics/family.py", line 1561, in apply_recipe
+    struct.update(sort_atoms=not self.save_order)
+  File "rmgpy/molecule/molecule.py", line 1353, in rmgpy.molecule.molecule.Molecule.update
+  File "rmgpy/molecule/molecule.py", line 1592, in rmgpy.molecule.molecule.Molecule.update_atomtypes
+  File "rmgpy/molecule/molecule.py", line 1587, in rmgpy.molecule.molecule.Molecule.update_atomtypes
+  File "rmgpy/molecule/atomtype.py", line 1153, in rmgpy.molecule.atomtype.get_atomtype
+  File "rmgpy/molecule/atomtype.py", line 1181, in rmgpy.molecule.atomtype.get_atomtype
+rmgpy.exceptions.AtomTypeError: Unable to determine atom type for atom Ar.-, which has 0 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 benzene bonds, 4 lone pairs, and -1 charge.
+
+root group matches Ar+  (what RR consumes)   : False
+root group matches Ar   (neutral)            : True

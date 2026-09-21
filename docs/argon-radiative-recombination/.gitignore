@@ -1,0 +1,41 @@
+# RMG byproducts of this ticket's four reactor runs (I-234).
+#
+# Each of the four decks below was run to produce the numbers in report.md. What those
+# numbers actually rest on IS tracked and must stay tracked: each run's ``input.py``, the
+# two profiling runs' ``solver/simulation_1_3.csv``, and both captured streams for every
+# run under ``logs/``. Everything named here is RMG regenerating itself -- mechanism
+# exports, the seed mechanism, the restart driver, the run log, the timing spreadsheet --
+# reproducible from the deck and the database at this commit, and large.
+#
+# Every path is written out per run directory on purpose. A bare ``chemkin/`` would work
+# and would be shorter, and it would also silence that name for any run directory a LATER
+# ticket adds here -- including one that meant to commit it. This file is a statement about
+# these four runs and nothing else, so it names these four runs and nothing else.
+
+prof-with/cantera2/
+prof-with/chemkin/
+prof-with/seed/
+prof-with/RMG.log
+prof-with/restart_from_seed.py
+prof-with/statistics.xls
+
+prof-without/cantera2/
+prof-without/chemkin/
+prof-without/seed/
+prof-without/RMG.log
+prof-without/restart_from_seed.py
+prof-without/statistics.xls
+
+run-with/cantera2/
+run-with/chemkin/
+run-with/seed/
+run-with/RMG.log
+run-with/restart_from_seed.py
+run-with/statistics.xls
+
+run-without/cantera2/
+run-without/chemkin/
+run-without/seed/
+run-without/RMG.log
+run-without/restart_from_seed.py
+run-without/statistics.xls

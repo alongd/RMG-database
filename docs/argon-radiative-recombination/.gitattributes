@@ -1,0 +1,14 @@
+# The two committed solver profiles are RMG output, written by Python's csv writer, which
+# terminates every line CRLF on every platform. `git diff --check` therefore flags all 1587
+# lines of them as whitespace errors -- a false positive that buries any real one.
+#
+# `whitespace=cr-at-eol` says the CR is intended here, which is the true statement. The
+# alternative fixes are both worse: stripping the CRs edits a byte-preserved measurement
+# artifact to satisfy a linter, and marking the files binary would silence the check by
+# making the numbers undiffable to a reviewer, which is the opposite of why they are tracked.
+#
+# Deliberately scoped to these two paths. Whitespace complaints elsewhere in the repo are
+# other tickets' and are not silenced from here.
+
+prof-with/solver/simulation_1_3.csv     whitespace=cr-at-eol
+prof-without/solver/simulation_1_3.csv  whitespace=cr-at-eol

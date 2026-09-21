@@ -42,6 +42,8 @@ THIS_DATABASE = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardi
 # Pin before anything imports a database-reading module (see test/conftest.py for why).
 settings['database.directory'] = THIS_DATABASE
 
+from plasma_library_selection import (  # noqa: E402
+    assert_reactions_uniquely_keyed, reaction_for_isolated)
 from rmgpy.data.kinetics.database import KineticsDatabase  # noqa: E402
 from rmgpy.kinetics.arrhenius import ElectronCollisionPlasma  # noqa: E402
 
@@ -60,16 +62,43 @@ def library():
 
 @pytest.fixture
 def reaction(library):
-    """A fresh ``LibraryReaction`` per test, so mutation cannot leak between them."""
-    reactions = library.get_library_reactions()
-    assert len(reactions) == 1
-    return reactions[0]
+    """A fresh ``LibraryReaction`` per test, so mutation cannot leak between them.
+
+    Selected by the channel it is *about* -- reactants and products -- never by position
+    and never by reactants alone; ``plasma_library_selection`` carries the full argument
+    for that key and the two rounds of defect behind it. The library's smallness is still
+    pinned, once, in ``test_library_loads_with_exactly_one_entry`` below, where it is a
+    claim rather than a precondition, and the key's uniqueness in
+    ``test_every_reaction_is_distinguishable_from_every_other``.
+    """
+    return reaction_for_isolated(library, ['Ar', 'e-'], ['Arp', 'e-', 'e-'])
 
 
 def test_library_loads_with_exactly_one_entry(library):
-    """Small library, and it stays small: any second entry fails here."""
+    """Small library, and it stays small: any second entry fails here.
+
+    The count is the deliberate claim of this file's opening docstring -- an incomplete
+    library we can name is the deliverable -- so it is asserted here, where growth produces
+    a *failure* someone has to answer, rather than inside a fixture where it would produce
+    a setup error nobody sees. The coverage set is pinned alongside it, because a bare count
+    is satisfied by any second entry, including a wrong one that replaced this one.
+    """
     assert library.label == LIBRARY
     assert len(library.entries) == 1
+    assert {tuple(s.label for s in r.reactants)
+            for r in library.get_library_reactions()} == {('Ar', 'e-')}
+
+
+def test_every_reaction_is_distinguishable_from_every_other(library):
+    """No two reactions here share both reactants and products.
+
+    This is what makes the ``reaction`` fixture safe. If it ever stops holding, it stops
+    holding HERE -- as a failure, in a test whose name says what broke -- instead of
+    turning every other test in this file into a setup error that asserts nothing and is
+    reported in a section people skim past. The property is cheap and the alternative has
+    now cost this campaign two rounds.
+    """
+    assert_reactions_uniquely_keyed(library)
 
 
 def test_the_one_entry_is_argon_electron_impact_ionisation(reaction):

@@ -1,0 +1,73 @@
+Three plasma test files, run twice.
+
+AS SHIPPED        passed=99 failed=0 errors=0
+LIBRARIES GROWN   passed=32 failed=2 errors=65
+                  (one twin per reaction: same reactants, products renamed)
+
+  errors=65  -> FAIL. A fixture raised during setup, so every test it feeds
+              stopped asserting. These are the checks that silently vanish:
+                ___ ERROR at setup of test_the_one_entry_is_argon_electron_impact_ionisation ___
+                _ ERROR at setup of test_the_kinetics_are_a_cross_section_table_not_a_fitted_rate _
+                _ ERROR at setup of test_it_is_the_golyatina_grid_not_the_superseded_lxcat_grid _
+                _________________ ERROR at setup of test_the_entry_is_one_way __________________
+                ____________ ERROR at setup of test_the_reaction_balances_in_charge ____________
+                _ ERROR at setup of test_entry_is_lithium_first_ionization_written_without_an_explicit_electron _
+                _ ERROR at setup of test_kinetics_come_from_the_shipped_voronov_table_not_from_transcribed_numbers _
+                _ ERROR at setup of test_the_electron_count_is_propagated_off_the_rate_law_onto_the_reaction _
+                _________________ ERROR at setup of test_the_entry_is_one_way __________________
+                ____________ ERROR at setup of test_the_canonical_reaction_balances ____________
+                _______ ERROR at setup of test_a_library_label_is_a_valid_placement_key ________
+                _ ERROR at setup of test_an_undeclared_library_is_refused_by_name_never_guessed_from_the_net_count _
+                _ ERROR at setup of test_the_declaration_validates_against_the_reactions_own_electron_count _
+                _ ERROR at setup of test_placement_resolves_to_lithium_plus_electron_gives_cation_plus_two_electrons _
+                __ ERROR at setup of test_the_resolved_view_balances_in_the_E_pseudo_element ___
+                ____ ERROR at setup of test_the_rate_order_cross_check_agrees_at_order_two _____
+                __ ERROR at setup of test_the_canonical_reaction_is_not_mutated_by_resolution __
+                _ ERROR at setup of test_a_declaration_that_does_not_match_this_reaction_is_refused[wrong0-right net, wrong order: one reactant against an order-2 coefficient] _
+                _ ERROR at setup of test_a_declaration_that_does_not_match_this_reaction_is_refused[wrong1-right net, wrong order: three reactants against an order-2 coefficient] _
+                _ ERROR at setup of test_a_declaration_that_does_not_match_this_reaction_is_refused[wrong2-wrong net: declares +2 against a reaction carrying +1] _
+                _ ERROR at setup of test_a_declaration_that_does_not_match_this_reaction_is_refused[wrong3-the attachment declaration: net -1 against a reaction carrying +1] _
+                _ ERROR at setup of test_the_plasma_reactor_accepts_the_reaction_and_evaluates_it_at_the_voronov_rate _
+                _ ERROR at setup of test_the_reactor_would_refuse_the_reaction_without_a_declaration _
+                _ ERROR at setup of test_entry_is_lithium_cation_recombination_written_without_an_explicit_electron _
+                _ ERROR at setup of test_kinetics_come_from_the_shipped_badnell_table_not_from_transcribed_numbers _
+                _ ERROR at setup of test_the_electron_count_is_propagated_off_the_rate_law_onto_the_reaction _
+                _________________ ERROR at setup of test_the_entry_is_one_way __________________
+                ____________ ERROR at setup of test_the_canonical_reaction_balances ____________
+                _______ ERROR at setup of test_a_library_label_is_a_valid_placement_key ________
+                _ ERROR at setup of test_an_undeclared_library_is_refused_by_name_never_guessed_from_the_net_count _
+                _ ERROR at setup of test_the_declaration_validates_against_the_reactions_own_electron_count _
+                _ ERROR at setup of test_placement_resolves_to_cation_plus_electron_gives_the_neutral _
+                __ ERROR at setup of test_the_resolved_view_balances_in_the_E_pseudo_element ___
+                ____ ERROR at setup of test_the_rate_order_cross_check_agrees_at_order_two _____
+                __ ERROR at setup of test_the_canonical_reaction_is_not_mutated_by_resolution __
+                _ ERROR at setup of test_a_declaration_that_does_not_match_this_reaction_is_refused[wrong0-right net, wrong order: three reactants against an order-2 coefficient] _
+                _ ERROR at setup of test_a_declaration_that_does_not_match_this_reaction_is_refused[wrong1-wrong net: declares +1 against a reaction carrying -1] _
+                _ ERROR at setup of test_a_declaration_that_does_not_match_this_reaction_is_refused[wrong2-the ionisation declaration: net +1 against a reaction carrying -1] _
+                _ ERROR at setup of test_a_declaration_that_does_not_match_this_reaction_is_refused[wrong3-wrong net: declares -2 against a reaction carrying -1] _
+                _ ERROR at setup of test_a_declaration_that_does_not_match_this_reaction_is_refused[wrong4-wrong net: declares 0 against a reaction carrying -1] _
+                _ ERROR at setup of test_the_plasma_reactor_accepts_the_reaction_and_evaluates_it_at_the_badnell_rate _
+                _ ERROR at setup of test_the_reactor_would_refuse_the_reaction_without_a_declaration _
+                _ ERROR at setup of test_the_implementable_sink_is_three_orders_weaker_than_the_source _
+                _ ERROR at setup of test_argon_entry_is_cation_recombination_written_without_an_explicit_electron _
+                __ ERROR at setup of test_argon_reactant_is_the_gas_phase_ground_state_cation __
+                _ ERROR at setup of test_argon_kinetics_are_the_transcribed_shull_van_steenberg_row _
+                _ ERROR at setup of test_argon_rate_law_is_an_exact_representation_of_the_published_power_law _
+                _ ERROR at setup of test_argon_rate_reads_the_electron_temperature_and_not_the_gas_temperature _
+                _ ERROR at setup of test_argon_declares_the_electron_temperature_dependence_the_solver_dispatches_on _
+                _ ERROR at setup of test_argon_electron_count_is_propagated_off_the_rate_law_onto_the_reaction _
+                ________________ ERROR at setup of test_argon_entry_is_one_way _________________
+                ___________ ERROR at setup of test_argon_canonical_reaction_balances ___________
+                _ ERROR at setup of test_argon_reaction_carries_the_library_label_as_its_placement_key _
+                _ ERROR at setup of test_argon_placement_resolves_to_cation_plus_electron_gives_the_neutral _
+                _ ERROR at setup of test_argon_resolved_view_balances_in_the_E_pseudo_element __
+                ___ ERROR at setup of test_argon_rate_order_cross_check_agrees_at_order_two ____
+                _ ERROR at setup of test_argon_canonical_reaction_is_not_mutated_by_resolution _
+                ______ ERROR at setup of test_argon_undeclared_library_is_refused_by_name ______
+                _ ERROR at setup of test_argon_a_declaration_that_does_not_match_this_reaction_is_refused[wrong0-right net, wrong order: three reactants against an order-2 coefficient] _
+                _ ERROR at setup of test_argon_a_declaration_that_does_not_match_this_reaction_is_refused[wrong1-wrong net: declares +1 against a reaction carrying -1] _
+                _ ERROR at setup of test_argon_a_declaration_that_does_not_match_this_reaction_is_refused[wrong2-the ionisation declaration: net +1 against a reaction carrying -1] _
+                _ ERROR at setup of test_argon_a_declaration_that_does_not_match_this_reaction_is_refused[wrong3-wrong net: declares -2 against a reaction carrying -1] _
+                _ ERROR at setup of test_argon_a_declaration_that_does_not_match_this_reaction_is_refused[wrong4-wrong net: declares 0 against a reaction carrying -1] _
+                _ ERROR at setup of test_the_plasma_reactor_accepts_argon_and_evaluates_it_at_the_two_temperature_rate _
+                _ ERROR at setup of test_the_declared_temperature_range_is_grid_membership_that_nothing_enforces _

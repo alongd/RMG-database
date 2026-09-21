@@ -31,7 +31,7 @@ from over-reading a green run:
 * ``test_the_implementable_sink_is_three_orders_weaker_than_the_source`` pins
   k_ion/k_RR ~ 1e3 at Te = 1 eV. The channel that ships cannot hold the electron
   density down; it only fixes where the ionisation balance lands.
-* ``test_three_body_recombination_can_now_be_stored_and_the_remaining_blocker_is_data``
+* ``test_three_body_recombination_can_now_be_stored_and_is_blocked_by_data_and_placement``
   pins the *reason* the dominant volume sink is absent. **That reason changed under
   I-226, and the test caught it.** It used to read ``..._still_cannot_be_stored_at_all``
   and pinned that ``TwoTemperaturePlasma`` carried no ``electrons`` field, so a
@@ -93,6 +93,8 @@ THIS_DATABASE = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardi
 # not contain this library.
 settings['database.directory'] = THIS_DATABASE
 
+from plasma_library_selection import (  # noqa: E402
+    assert_reactions_uniquely_keyed, reaction_for_isolated)
 from rmgpy.data.kinetics.database import KineticsDatabase  # noqa: E402
 from rmgpy.data.kinetics.family import TemplateReaction  # noqa: E402
 from rmgpy.electron_balance import (  # noqa: E402
@@ -127,12 +129,37 @@ def library():
     return db.libraries[LIBRARY]
 
 
+def _reaction_for(library, reactant_label, product_label):
+    """Select one library reaction by the channel it is: this reactant to this product.
+
+    **Not** ``get_library_reactions()[0]``, which is what this file did until I-234: that
+    form carried ``assert len(reactions) == 1`` inside the fixture, encoding "this library
+    has exactly one entry" as a *precondition* of twenty tests rather than as a claim made
+    by one. When the library grew a second entry those twenty became setup ERRORS, which
+    pytest reports separately from failures -- so the suite lost twenty lithium assertions
+    while still printing green for the rest.
+
+    **And not the reactant alone**, which is what replaced it and is the same trap one door
+    along. ``[Arp] => [Ar]`` and an excited-state ``[Arp] => Ar*`` share a reactant, so a
+    reactant-keyed selector matches two, raises in the fixture, and every dependent test is
+    an error again -- on work already queued for this library. The full argument, the
+    measured reason the entry label is not usable as a key, and the one residual case are in
+    ``plasma_library_selection``; the uniqueness of the key is itself asserted, once, in
+    ``test_every_reaction_is_distinguishable_from_every_other``.
+    """
+    return reaction_for_isolated(library, [reactant_label], [product_label])
+
+
 @pytest.fixture
 def reaction(library):
-    """A fresh ``LibraryReaction`` per test, so mutation cannot leak between them."""
-    reactions = library.get_library_reactions()
-    assert len(reactions) == 1
-    return reactions[0]
+    """The lithium reaction, fresh per test so mutation cannot leak between them."""
+    return _reaction_for(library, '[Lip]', '[Li]')
+
+
+@pytest.fixture
+def argon_reaction(library):
+    """The argon reaction (I-234), fresh per test. Mirrors ``reaction`` exactly."""
+    return _reaction_for(library, '[Arp]', '[Ar]')
 
 
 @pytest.fixture
@@ -178,9 +205,60 @@ def _flat_thermo():
 # Step 1 - load
 # ---------------------------------------------------------------------------
 
-def test_library_loads_with_exactly_one_entry(library):
+def test_library_loads_with_the_expected_coverage(library):
+    """The one place the library's size is asserted, and it asserts *what* not just *how many*.
+
+    Was ``test_library_loads_with_exactly_one_entry`` until I-234 added argon. A bare count
+    is a weak claim -- it passes for any second entry, including a wrong one -- so this now
+    pins the coverage set by reactant identity, and the count follows from it. Growing the
+    library is meant to fail here, in one place, with a message naming what arrived.
+    """
     assert library.label == LIBRARY
-    assert len(library.entries) == 1
+    covered = {tuple(s.label for s in r.reactants)
+               for r in library.get_library_reactions()}
+    assert covered == {('[Lip]',), ('[Arp]',)}, (
+        'library coverage changed; update this test and add per-entry checks for the '
+        'new entry rather than letting it ride on the existing ones')
+    assert len(library.entries) == 2
+
+
+def test_the_fixture_really_is_isolated_from_the_shared_library(library, reaction):
+    """Writing through the fixture must not reach the module-scoped library's species.
+
+    The fixtures have always *claimed* "a fresh reaction per test, so mutation cannot leak
+    between them". That was false until round 67: ``get_library_reactions`` rebuilds the
+    participant lists but **shares the Species objects**, and the reactor tests below assign
+    ``species.thermo`` to drive ``initialize_model`` -- a write that landed on the library
+    every later test in this module then read. Nothing depended on it, which is exactly why
+    it was worth removing: an order-dependent coupling that nothing reads yet is a bug with
+    a delay on it, and this file is about checks that stop working quietly.
+
+    This test is the claim's receipt. Without ``reaction_for_isolated``'s deep copy it fails.
+    """
+    canonical = next(r for r in library.get_library_reactions()
+                     if [s.label for s in r.reactants] == ['[Lip]'])
+    library_species = canonical.reactants[0]
+    fixture_species = reaction.reactants[0]
+
+    assert fixture_species is not library_species, (
+        'the fixture handed back the library\'s own Species; a write here is a write there')
+
+    sentinel = object()
+    fixture_species.thermo = sentinel
+    assert getattr(library_species, 'thermo', None) is not sentinel
+
+
+def test_every_reaction_is_distinguishable_from_every_other(library):
+    """No two reactions here share both reactants and products.
+
+    This is the claim that makes every fixture in this file safe. Both entries are
+    recombinations of a cation, so they already collide under the reactant-only key this
+    file used before round 66; they are separated by their products, and this test is what
+    keeps that true. A future ``[Arp] => Ar*`` alongside ``[Arp] => [Ar]`` passes here and
+    fails in ``test_library_loads_with_the_expected_coverage``, which is the correct pair
+    of outcomes: the selector still works, and the coverage claim argues with you.
+    """
+    assert_reactions_uniquely_keyed(library)
 
 
 def test_entry_is_lithium_cation_recombination_written_without_an_explicit_electron(reaction):
@@ -528,7 +606,7 @@ def _write_three_body_trial(tmp_path, electrons_literal=None, name='ThreeBodyTri
     return trial
 
 
-def test_three_body_recombination_can_now_be_stored_and_the_remaining_blocker_is_data(tmp_path):
+def test_three_body_recombination_can_now_be_stored_and_is_blocked_by_data_and_placement(tmp_path):
     """THE TRIPWIRE FIRED, AND IT WAS RIGHT TO. This test has been re-pinned under I-226.
 
     **What this test was written for, and why it was right.** It pinned the *reason* the
@@ -727,9 +805,17 @@ def test_this_repository_still_ships_no_three_body_coefficient(library):
     and per molecule alike (measured, ``logs/probe_threebody_stdout.log`` section D), so no
     spelling of a third-order coefficient slips through. An **unrecognised** unit returns
     ``None``, which this test also refuses: a coefficient whose order the engine cannot
-    determine is exactly the case that must not pass silently."""
+    determine is exactly the case that must not pass silently.
+
+    **The entry count is deliberately not asserted here** (I-234). It was, and that made this
+    test fail merely because the library grew a second *second-order* entry -- which is not
+    what it is about. The claim is "no coefficient in this library is third order", and it is
+    strictly stronger when it loops over every entry the library happens to hold than when it
+    first insists there is only one. Coverage changes are caught by
+    ``test_library_loads_with_the_expected_coverage``, which is the right place for them.
+    """
     entries = list(library.entries.values())
-    assert len(entries) == 1, 'entries changed; see docs/i119-recombination-loss.md'
+    assert entries, 'library loaded no entries at all'
 
     for entry in entries:
         kinetics = entry.data
@@ -800,12 +886,17 @@ def test_a_species_outside_the_fits_gets_no_reaction_at_all_and_no_rate(library)
     This is the property the family-vs-library decision was made on. The check is
     deliberately structural rather than a generation run: there is no matcher to run,
     which is exactly the claim.
+
+    Coverage is {Li+, Ar+} since I-234. The claim is unchanged by argon's arrival: what is
+    entered gets a rate, what is not entered gets nothing at all -- no template, no tree
+    descent, no averaged estimate. Argon widens the set by one and makes the point no
+    weaker, because the 300-odd other cations in the shipped tables still get nothing.
     """
     entered = set()
     for reaction in library.get_library_reactions():
         for species in reaction.reactants:
             entered.add(species.molecule[0].to_smiles())
-    assert entered == {'[Li+]'}
+    assert entered == {'[Li+]', '[Ar+]'}
 
 
 @pytest.mark.parametrize('symbol,error', [
@@ -985,3 +1076,312 @@ def test_the_ionisation_channel_resolves_unchanged_with_this_library_declared(el
     assert without[1] == ['[Lip]', 'e', 'e']
     assert without[2] == 0
     assert without[3] == +1
+
+
+# ===========================================================================
+# I-234 - the argon entry, Ar+ + e- => Ar + hv
+#
+# Deliberately mirrors the lithium checks above rather than sampling a few of
+# them. The argon entry differs from lithium in three ways that each defeat a
+# check written only for lithium -- a different kinetics class, a transcribed
+# rather than table-loaded coefficient, and a two-temperature evaluator instead
+# of an electron-temperature one -- so "the lithium tests cover it" would have
+# been false in exactly the places that matter.
+# ===========================================================================
+
+# Shull & Van Steenberg 1982, ApJS 48, 95, Table 2 row AR1. Repeated here on
+# purpose: the entry is a TRANSCRIPTION, not a table lookup like lithium's
+# BadnellRRArrhenius(Z=3, N=2), so there is no shipped file to pin it against
+# and the published row is the only external referent available.
+SVS82_A_RAD = 3.77e-13      # cm^3/(molecule*s)
+SVS82_X_RAD = 0.651         # dimensionless; the entry carries n = -X_rad
+SVS82_T0 = 1.0e4            # K, the paper's own normalisation
+
+
+def test_argon_entry_is_cation_recombination_written_without_an_explicit_electron(
+        argon_reaction):
+    """Canonical database form ``Ar+ => Ar``: no electron among the participants."""
+    assert [s.label for s in argon_reaction.reactants] == ['[Arp]']
+    assert [s.label for s in argon_reaction.products] == ['[Ar]']
+    assert argon_reaction.reactants[0].molecule[0].get_net_charge() == +1
+    assert argon_reaction.products[0].molecule[0].get_net_charge() == 0
+    assert not any(s.is_electron()
+                   for s in list(argon_reaction.reactants) + list(argon_reaction.products))
+
+
+def test_argon_reactant_is_the_gas_phase_ground_state_cation(argon_reaction):
+    """``1 Ar u1 p3 c+1`` -- 3s2 3p5, one unpaired electron.
+
+    Pinned as an adjacency list rather than via SMILES because this database's monatomic
+    ion SMILES round trip is lossy (``[Ar+]`` parses back as a dication). The *write*
+    direction is sound, which is why the coverage test above can still use ``to_smiles``;
+    the read direction is what must never be relied on, and pinning the adjacency list
+    here is what keeps a future SMILES-based rewrite of this entry honest.
+
+    This ``u1`` is also the whole reason the entry lives in a library: the family root
+    demands ``u0`` and therefore cannot match this species at all (I-236).
+    """
+    cation = argon_reaction.reactants[0].molecule[0]
+    neutral = argon_reaction.products[0].molecule[0]
+    assert cation.to_adjacency_list().strip().endswith('Ar u1 p3 c+1')
+    assert neutral.to_adjacency_list().strip().endswith('Ar u0 p4 c0')
+    assert cation.atoms[0].radical_electrons == 1
+    assert neutral.atoms[0].radical_electrons == 0
+
+
+def test_argon_kinetics_are_the_transcribed_shull_van_steenberg_row(argon_reaction):
+    """Every parameter pinned against the published row, in the paper's own units.
+
+    ``A`` is written into the entry as ``cm^3/(molecule*s)`` so RMG performs the unit
+    conversion and no arithmetic is done by hand; this asserts both that the SI value is
+    the correct conversion of the published figure and that ``n`` is ``-X_rad``. If
+    somebody re-derives, re-fits or rounds any of these, this fails.
+    """
+    kinetics = argon_reaction.kinetics
+    assert isinstance(kinetics, TwoTemperaturePlasma)
+    assert kinetics.A.value_si == pytest.approx(SVS82_A_RAD * 1e-6 * 6.02214076e23)
+    assert kinetics.n.value_si == pytest.approx(-SVS82_X_RAD)
+    assert kinetics.T0.value_si == pytest.approx(SVS82_T0)
+    # both activation energies are zero, which is what collapses the Kossyi form to the
+    # paper's bare power law -- see the exactness test below
+    assert kinetics.Ea_g.value_si == pytest.approx(0.0)
+    assert kinetics.Ea_e.value_si == pytest.approx(0.0)
+
+
+def test_argon_rate_law_is_an_exact_representation_of_the_published_power_law(
+        argon_reaction):
+    """``k(T,Te)`` reproduces ``alpha = A_rad (Te/1e4)^-X_rad`` to numerical precision.
+
+    Not an approximation of the published form but an algebraic identity: with
+    ``Ea_g = Ea_e = 0`` both exponentials in the Kossyi expression become 1 and what is
+    left is the power law. Checked across four decades of Te so that a stray dependence
+    on the gas temperature, or a lost normalisation, cannot hide at a single point.
+    """
+    kinetics = argon_reaction.kinetics
+    for te_ev in (0.3, 0.5, 1.0, 2.0, 3.0, 5.0, 20.0):
+        Te = te_ev * EV
+        published = SVS82_A_RAD * (Te / SVS82_T0) ** (-SVS82_X_RAD)   # cm^3/s
+        delivered = kinetics.get_rate_coefficient_two_temp(298.15, Te)  # m^3/(mol*s)
+        assert delivered / 6.02214076e23 * 1e6 == pytest.approx(published, rel=1e-12)
+
+
+def test_argon_rate_reads_the_electron_temperature_and_not_the_gas_temperature(
+        argon_reaction):
+    """The load-bearing check for a two-temperature system.
+
+    Holding Te fixed and sweeping the gas temperature over three decades must change
+    nothing; holding Tgas fixed and changing Te must change everything. At the 5 torr
+    deck's own conditions the two readings differ by a factor of 22.2, so an entry that
+    silently read Tgas would be wrong in the dangerous direction -- high.
+    """
+    kinetics = argon_reaction.kinetics
+    Te = 3.0 * EV
+
+    at_te = [kinetics.get_rate_coefficient_two_temp(Tgas, Te)
+             for Tgas in (100.0, 298.15, 1000.0, 10000.0)]
+    assert at_te == pytest.approx([at_te[0]] * len(at_te), rel=1e-12)
+
+    assert (kinetics.get_rate_coefficient_two_temp(298.15, 2.0 * EV)
+            != pytest.approx(kinetics.get_rate_coefficient_two_temp(298.15, 3.0 * EV)))
+
+    two_temperature = kinetics.get_rate_coefficient_two_temp(298.15, Te)
+    gas_collapse = kinetics.get_rate_coefficient(298.15)   # k(T, Te=T); never used by the reactor
+    assert gas_collapse / two_temperature == pytest.approx(22.17, rel=1e-3)
+
+
+def test_argon_declares_the_electron_temperature_dependence_the_solver_dispatches_on(
+        argon_reaction):
+    """``PlasmaReactor`` routes on ``uses_electron_temperature``, so the flag must be set.
+
+    Its evaluator is ``get_rate_coefficient_two_temp`` rather than lithium's
+    ``get_rate_coefficient_electron_temp``; the reactor accepts either, and pinning which
+    one this class offers is what would catch the flag being set on a class with neither.
+    """
+    kinetics = argon_reaction.kinetics
+    assert kinetics.uses_electron_temperature
+    assert hasattr(kinetics, 'get_rate_coefficient_two_temp')
+
+
+def test_argon_electron_count_is_propagated_off_the_rate_law_onto_the_reaction(
+        argon_reaction):
+    """``TwoTemperaturePlasma`` defaults ``electrons`` to 0, so the entry must set it.
+
+    Strictly stronger than the lithium equivalent: ``BadnellRRArrhenius`` supplies -1 by
+    itself, so lithium would balance even if the entry said nothing. Argon would not --
+    the generic two-temperature form asserts no intrinsic electron chemistry -- which
+    makes this the test that catches a dropped ``electrons = -1``.
+    """
+    assert argon_reaction.kinetics.electrons.value == pytest.approx(-1)
+    assert argon_reaction.electrons == -1
+
+
+def test_argon_entry_is_one_way(argon_reaction):
+    assert argon_reaction.reversible is False
+
+
+def test_argon_canonical_reaction_balances(argon_reaction):
+    """Atoms balance trivially; charge closes only via the metadata electron."""
+    assert argon_reaction.is_balanced()
+    assert sum(s.molecule[0].get_net_charge() for s in argon_reaction.reactants) == +1
+    assert sum(s.molecule[0].get_net_charge() for s in argon_reaction.products) == 0
+
+
+def test_argon_reaction_carries_the_library_label_as_its_placement_key(argon_reaction):
+    assert argon_reaction.family == LIBRARY
+    assert argon_reaction.library == LIBRARY
+
+
+def test_argon_placement_resolves_to_cation_plus_electron_gives_the_neutral(
+        argon_reaction, electron, declaration):
+    view = electron_placement.resolve_electron_placement(
+        argon_reaction,
+        list(argon_reaction.reactants) + list(argon_reaction.products) + [electron])
+    assert [s.label for s in view.reactants] == ['[Arp]', 'e']
+    assert [s.label for s in view.products] == ['[Ar]']
+    assert sum(1 for s in view.reactants if s.is_electron()) == 1
+    assert sum(1 for s in view.products if s.is_electron()) == 0
+    assert view.electrons == 0
+    assert view.reversible is False
+
+
+def test_argon_resolved_view_balances_in_the_E_pseudo_element(
+        argon_reaction, electron, declaration):
+    """Zero bound-electron imbalance on both sides: the captured electron fills the
+    cation's deficit exactly, counted by the rule the Chemkin and Cantera writers use."""
+    view = electron_placement.resolve_electron_placement(
+        argon_reaction,
+        list(argon_reaction.reactants) + list(argon_reaction.products) + [electron])
+    assert (sum(get_species_electron_count(s) for s in view.reactants)
+            == sum(get_species_electron_count(s) for s in view.products) == 0)
+
+
+def test_argon_rate_order_cross_check_agrees_at_order_two(
+        argon_reaction, electron, declaration):
+    """Two reactants against a ``cm^3/(molecule*s)`` coefficient.
+
+    This is the guard that catches a declaration with the right net count and the wrong
+    incident order -- an error otherwise visible only as a rate wrong by a factor of the
+    electron density.
+    """
+    assert get_plasma_rate_order(argon_reaction.kinetics) == 2
+    view = electron_placement.resolve_electron_placement(
+        argon_reaction,
+        list(argon_reaction.reactants) + list(argon_reaction.products) + [electron])
+    assert electron_placement.RATE_ORDER_AGREES in view.comment
+    assert 'order 2' in view.comment
+
+
+def test_argon_canonical_reaction_is_not_mutated_by_resolution(
+        argon_reaction, electron, declaration):
+    before = (argon_reaction.electrons,
+              [s.label for s in argon_reaction.reactants],
+              [s.label for s in argon_reaction.products])
+    electron_placement.resolve_electron_placement(
+        argon_reaction,
+        list(argon_reaction.reactants) + list(argon_reaction.products) + [electron])
+    assert (argon_reaction.electrons,
+            [s.label for s in argon_reaction.reactants],
+            [s.label for s in argon_reaction.products]) == before
+
+
+def test_argon_undeclared_library_is_refused_by_name(argon_reaction, electron):
+    registry = electron_placement.FAMILY_ELECTRON_PLACEMENT
+    saved = registry.pop(LIBRARY, None)
+    try:
+        with pytest.raises(ElectronPlacementError) as exc:
+            electron_placement.resolve_electron_placement(
+                argon_reaction,
+                list(argon_reaction.reactants) + list(argon_reaction.products) + [electron])
+        assert 'no electron-placement declaration' in str(exc.value)
+    finally:
+        if saved is not None:
+            registry[LIBRARY] = saved
+
+
+@pytest.mark.parametrize('wrong,why', [
+    ((2, 1), 'right net, wrong order: three reactants against an order-2 coefficient'),
+    ((0, 1), 'wrong net: declares +1 against a reaction carrying -1'),
+    ((1, 2), 'the ionisation declaration: net +1 against a reaction carrying -1'),
+    ((2, 0), 'wrong net: declares -2 against a reaction carrying -1'),
+    ((1, 1), 'wrong net: declares 0 against a reaction carrying -1'),
+])
+def test_argon_a_declaration_that_does_not_match_this_reaction_is_refused(
+        argon_reaction, electron, wrong, why):
+    registry = electron_placement.FAMILY_ELECTRON_PLACEMENT
+    saved = registry.get(LIBRARY)
+    registry[LIBRARY] = wrong
+    try:
+        with pytest.raises(ElectronPlacementError):
+            electron_placement.resolve_electron_placement(
+                argon_reaction,
+                list(argon_reaction.reactants) + list(argon_reaction.products) + [electron])
+    finally:
+        if saved is None:
+            del registry[LIBRARY]
+        else:
+            registry[LIBRARY] = saved
+
+
+def test_the_plasma_reactor_accepts_argon_and_evaluates_it_at_the_two_temperature_rate(
+        argon_reaction, electron, declaration):
+    """Acceptance *and* the right number, at the 5 torr deck's own (Tgas, Te).
+
+    The reactor is given a gas temperature far from Te on purpose: if it evaluated the
+    rate at Tgas the comparison below fails by the factor of 22 pinned above, so this is
+    the end-to-end form of the electron-temperature check.
+    """
+    from rmgpy.solver.plasma import PlasmaReactor
+
+    Tgas, Te = 298.15, 3.0 * EV
+    cation, neutral = argon_reaction.reactants[0], argon_reaction.products[0]
+    for species in (cation, neutral, electron):
+        species.thermo = _flat_thermo()
+
+    reactor = PlasmaReactor(T=(Tgas, 'K'), P=(5 * 133.322368, 'Pa'), Te=(Te, 'K'),
+                            initial_mole_fractions={cation: 1e-6, neutral: 1.0,
+                                                    electron: 1e-6},
+                            termination=[])
+    reactor.initialize_model(core_species=[cation, neutral, electron],
+                             core_reactions=[argon_reaction],
+                             edge_species=[], edge_reactions=[])
+
+    assert len(reactor.kf) == 1
+    assert reactor.kf[0] == pytest.approx(
+        argon_reaction.kinetics.get_rate_coefficient_two_temp(Tgas, Te), rel=1e-12)
+    # and it is the published number, not merely self-consistent
+    assert reactor.kf[0] / 6.02214076e23 * 1e6 == pytest.approx(
+        SVS82_A_RAD * (Te / SVS82_T0) ** (-SVS82_X_RAD), rel=1e-12)
+
+
+def test_the_declared_temperature_range_is_grid_membership_that_nothing_enforces(
+        argon_reaction):
+    """A referral pin, not a passing grade. Two separate facts, both measured.
+
+    **One.** ``Tmin``/``Tmax`` on this entry are 1e4-1e8 K, which is the grid over which
+    Shull & Van Steenberg exercise these rates (their Table 3 runs log T = 4.00 to 8.00).
+    They are NOT a demonstrated accuracy bound -- the paper states no numerical validity
+    range for the fits at all -- and the entry's longDesc says so. Pinned so that nobody
+    later reads them as an accuracy claim the source did not make.
+
+    **Two, and this is the referral.** Nothing checks either temperature against them
+    during evaluation. ``is_temperature_valid`` knows the answer and no evaluation path
+    consults it, so the rate is delivered silently from outside the declared range. Fixing
+    that is an engine change and is out of scope here; this test exists so the day it is
+    fixed, this assertion fails and sends someone to update the report rather than letting
+    the behaviour change unnoticed.
+    """
+    kinetics = argon_reaction.kinetics
+    assert kinetics.Tmin.value_si == pytest.approx(1.0e4)
+    assert kinetics.Tmax.value_si == pytest.approx(1.0e8)
+
+    # the gas temperature the deck runs at is outside the declared range ...
+    assert kinetics.is_temperature_valid(298.15) is False
+    # ... as is an electron temperature of 0.5 eV ...
+    below = 0.5 * EV
+    assert below < kinetics.Tmin.value_si
+    assert kinetics.is_temperature_valid(below) is False
+    # ... and the evaluator returns a number for it regardless, with no warning and no raise
+    delivered = kinetics.get_rate_coefficient_two_temp(298.15, below)
+    assert delivered > 0
+    assert delivered / 6.02214076e23 * 1e6 == pytest.approx(
+        SVS82_A_RAD * (below / SVS82_T0) ** (-SVS82_X_RAD), rel=1e-12)

@@ -1,0 +1,11 @@
+library entry: TwoTemperaturePlasma(A=(3.77e-13,'cm^3/(molecule*s)'), n=-0.651, Ea_g=(0,'kJ/mol'), Ea_e=(0,'kJ/mol'), T0=(10000,'K'), electrons=-1, Tmin=(10000,'K'), Tmax=(1e+08,'K'))
+A in SI          : 2.270347e+05 m^3/(mol*s)
+Tgas fixed at 300 K throughout (Ea_g = Ea_e = 0, so k does not depend on it)
+
+Te = 1.0 eV =  11604.52 K   k(T=300, Te) = 2.060725e+05 m^3/(mol*s)
+Te = 2.0 eV =  23209.04 K   k(T=300, Te) = 1.312350e+05 m^3/(mol*s)
+Te = 3.0 eV =  34813.55 K   k(T=300, Te) = 1.007892e+05 m^3/(mol*s)
+
+note Tmin = 1e4 K: 1 eV = 11604.5 K is inside it, 3 eV is well inside;
+rmgpy has no production caller for is_temperature_valid, so the bound is
+documentation, not enforcement.

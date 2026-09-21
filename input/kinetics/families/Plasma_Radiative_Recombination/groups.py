@@ -101,9 +101,27 @@ incident order. The reactor-facing electron placement is resolved by
 — incident order 1 (one electron captured), product count 0 (no free electron out),
 net -1 — which is IDENTICAL to the pair the sibling library `PlasmaRadiativeRecombination`
 already declares: the electron is captured and does not come out again, whatever
-the charge stage. That declaration lives in the CODE repository; it has since
-landed there, so this family resolves its electron placement and generates
-reactions without raising `ElectronPlacementError`.
+the charge stage. That declaration lives in the CODE repository and has since
+landed there, so this family resolves its electron placement.
+
+An earlier version of this paragraph said that until the declaration landed the
+family would raise `ElectronPlacementError` "the moment it is asked to produce a
+reaction". That is not where the gate is, measured on the sibling family
+`Plasma_Radiative_Recombination_Pairing` while it was still undeclared
+(`docs/i236-radiative-recombination-root/logs/p12-placement-gate.stdout.log`):
+`generate_reactions` never consults `FAMILY_ELECTRON_PLACEMENT` and works fine
+without an entry. The gate is `resolve_electron_placement`, which the plasma
+REACTOR calls at `rmgpy/solver/plasma.pyx:276` during `initialize_model`. An
+undeclared family generates reactions and then cannot be simulated.
+
+THE OPEN-SHELL HALF OF THIS PROCESS IS A SEPARATE FAMILY. `Ar+ + e- => Ar` is not
+here and cannot be: it needs the pairing recipe, and a family carries one recipe.
+It lives in `Plasma_Radiative_Recombination_Pairing`, added by I-236 alongside
+this narrowing. The two partition cleanly and neither generates the other's
+reaction — measured, `logs/p11-pairing-family.stdout.log`:
+
+    Plasma_Radiative_Recombination          Ar+ -> 0 reactions    Li+ -> 1
+    Plasma_Radiative_Recombination_Pairing  Ar+ -> 1 reaction     Li+ -> 0
 """
 
 template(reactants=["A"], products=["A_reduced"], ownReverse=False)

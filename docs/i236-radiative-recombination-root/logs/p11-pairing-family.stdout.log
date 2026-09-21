@@ -1,0 +1,61 @@
+RESOLVED database.directory = /home/alon/Code/RMG-database-i236-radiative-root/input
+
+FAMILY_ELECTRON_PLACEMENT contains 'Plasma_Radiative_Recombination_Pairing': False
+family loaded: Plasma_Radiative_Recombination_Pairing | electrons = -1 | reversible = False
+recipe            : [['LOSE_RADICAL', '*1', 1], ['GAIN_PAIR', '*1', 1], ['LOSE_CHARGE', '*1', 1]]
+tree entries      : ['Ar_cation', 'Ar_neutral']
+reactant template : ['Ar_cation']  1 *1 Ar u1 p3 c+1
+PRODUCT template  : ['Ar_neutral']  1 *1 Ar u0 p4 c0
+rate rules        : {'Ar_cation': "ArrheniusEP(A=(100789,'m^3/(mol*s)'), n=0, alpha=0, E0=(0,'J/mol'), Tmin=(300,'K'), Tmax=(20000,'K'))"}
+
+======================================================================
+ARM 1 -- registry as RMG-Py ships it (this family NOT declared)
+======================================================================
+--- Ar+
+    1 reaction(s)
+      <Molecule "[Ar+]"> => <Molecule "[Ar]">   electrons=-1
+        product: 1 Ar u0 p4 c0
+        isomorphic to GROUND-STATE Ar : True
+        isomorphic to METASTABLE Ar   : False
+        net charge: +0
+--- Ar  (neutral)
+    0 reaction(s)
+--- Ar(3P2)
+    0 reaction(s)
+--- Li+
+    0 reaction(s)
+--- He+
+    0 reaction(s)
+--- CH4
+    0 reaction(s)
+
+
+injected FAMILY_ELECTRON_PLACEMENT['Plasma_Radiative_Recombination_Pairing'] = (1, 0)
+
+======================================================================
+ARM 2 -- with the one-line RMG-Py registry entry this family needs
+======================================================================
+--- Ar+
+    1 reaction(s)
+      <Molecule "[Ar+]"> => <Molecule "[Ar]">   electrons=-1
+        product: 1 Ar u0 p4 c0
+        isomorphic to GROUND-STATE Ar : True
+        isomorphic to METASTABLE Ar   : False
+        net charge: +0
+--- Ar  (neutral)
+    0 reaction(s)
+--- Ar(3P2)
+    0 reaction(s)
+--- Li+
+    0 reaction(s)
+--- He+
+    0 reaction(s)
+--- CH4
+    0 reaction(s)
+
+
+=== does the sibling family still refuse Ar+, and this one refuse Li+? ===
+  Plasma_Radiative_Recombination             Ar+  -> 0
+  Plasma_Radiative_Recombination             Li+  -> 1
+  Plasma_Radiative_Recombination_Pairing     Ar+  -> 1
+  Plasma_Radiative_Recombination_Pairing     Li+  -> 0

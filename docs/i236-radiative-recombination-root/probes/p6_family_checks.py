@@ -18,7 +18,7 @@ print('RESOLVED database.directory = {0}'.format(settings['database.directory'])
 sys.path.insert(0, '/home/alon/Code/RMG-Py-plasma/test/database')
 from databaseTest import TestDatabase
 
-FAMILY = 'Plasma_Radiative_Recombination'
+FAMILY = os.environ.get('I236_FAMILY', 'Plasma_Radiative_Recombination')
 
 TestDatabase.setup_class()
 t = TestDatabase()
@@ -29,7 +29,7 @@ print('groups.top = {0} | forward_template.reactants = {1}'.format(
     [e.label for e in fam.groups.top],
     [e.label for e in fam.forward_template.reactants]))
 print('root group: {0}'.format(
-    fam.groups.entries['A'].item.to_adjacency_list().strip().replace('\n', ' / ')))
+    fam.groups.top[0].item.to_adjacency_list().strip().replace('\n', ' / ')))
 print()
 
 CHECKS = [

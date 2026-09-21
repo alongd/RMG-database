@@ -362,13 +362,30 @@ so rather than bounding it.
 
 WHY A LIBRARY ENTRY AND NOT A FAMILY RATE
 ------------------------------------------
-Not a preference - the family cannot take this reaction. ``Plasma_Radiative_Recombination``
-roots its template on ``1 *1 R u0 px c[0,+1,...]``, and Ar+ in its gas-phase ground state is
+Not a preference - ``Plasma_Radiative_Recombination`` cannot take this reaction, and since
+I-236 that is permanent rather than a defect awaiting repair. That family roots its template
+on ``1 *1 [H,Li,Na,K] u0 p0 c+1``, and Ar+ in its gas-phase ground state is
 ``1 Ar u1 p3 c+1`` (3s2 3p5, one unpaired electron). ``u1`` does not match ``u0``, so the
 root REFUSES the argon cation; measured directly, not inferred. The family's
 ``GAIN_RADICAL`` recipe is also the wrong direction for argon, whose recombination takes
-u1 -> u0. Tracked as I-236, together with the more dangerous half of that defect (the root
-DOES match neutral Ar and would drive it toward an anion RMG cannot construct).
+u1 -> u0 - widening the root instead would build ``Ar u2 p3 c0``, atom type ``Ar0e``, the
+METASTABLE, and hand it this ground-state rate.
+
+(The root quoted above used to read ``1 *1 R u0 px c[0,+1,...]``, which matched 22915 of the
+22936 species in this database and drove most of them into an atom RMG cannot type, neutral
+Ar among them. I-236 narrowed it to the bare closed-shell atomic cations its recipe can
+actually reduce, which did not and could not admit Ar+.)
+
+THE FAMILY THAT CAN GENERATE THIS REACTION NOW EXISTS, and it does not displace this entry.
+I-236 added ``Plasma_Radiative_Recombination_Pairing``, whose recipe is the pairing form
+(``LOSE_RADICAL + GAIN_PAIR + LOSE_CHARGE``) and whose root is ``1 *1 Ar u1 p3 c+1``; it
+generates ``Ar+ + e- => Ar`` with ground-state argon. Two things keep this library entry the
+authority anyway. First, RMG's library-over-family precedence: where a library covers a
+species the library wins. Second, and the substantive one, that family's only rate-rule entry is
+THIS entry's number frozen at a single electron temperature into a plain ``Arrhenius``, which
+discards the Te^-0.651 dependence transcribed below - so the family is a fallback for a wider
+tree, and this entry is what the argon deck actually uses. See
+``docs/i236-radiative-recombination-root/report.md``.
 
 WHAT THIS ENTRY DOES TO THE 5 TORR ARGON MODEL - IT DEPENDS WHICH OBSERVABLE
 -----------------------------------------------------------------------------

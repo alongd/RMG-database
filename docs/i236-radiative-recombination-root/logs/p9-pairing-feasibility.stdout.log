@@ -1,0 +1,58 @@
+=== applying the recipe to the ROOT GROUP, which is what family.py:1077 does ===
+
+--- M3 as mutated: u0 root + pairing recipe
+    group  1 *1 [H,Li,Na,K] u0 p0 c+1
+    recipe ['LOSE_RADICAL', 'GAIN_PAIR']
+    RAISES ActionError: Unable to update GroupAtom due to LOSE_RADICAL action: Invalid radical electron set "[0]".
+    innermost frame: File "rmgpy/molecule/group.py", line 484, in rmgpy.molecule.group.GroupAtom.apply_action
+
+--- u1 root + pairing recipe (2 actions)
+    group  1 *1 Ar u1 p3 c+1
+    recipe ['LOSE_RADICAL', 'GAIN_PAIR']
+    product template -> 1 *1 Ar u0 p4 c+1
+
+--- u1 root + pairing recipe (3 actions)
+    group  1 *1 Ar u1 p3 c+1
+    recipe ['LOSE_RADICAL', 'GAIN_PAIR', 'LOSE_CHARGE']
+    product template -> 1 *1 Ar u0 p4 c0
+
+--- u1 root, px lone pairs
+    group  1 *1 Ar u1 px c+1
+    recipe ['LOSE_RADICAL', 'GAIN_PAIR']
+    product template -> 1 *1 Ar u0 p[1,2,3,4] c+1
+
+--- u1 root, element union with He/Ne
+    group  1 *1 [Ar,He,Ne] u1 px c+1
+    recipe ['LOSE_RADICAL', 'GAIN_PAIR']
+    RAISES ActionError: Unable to update GroupAtom due to GAIN_PAIR action: Unknown atom type produced from set "[<AtomType "Ar">, <AtomType "He">, <AtomType "Ne">]".
+    innermost frame: File "rmgpy/molecule/group.py", line 488, in rmgpy.molecule.group.GroupAtom.apply_action
+
+--- u1 root + empty-orbital recipe
+    group  1 *1 Ar u1 p3 c+1
+    recipe ['GAIN_RADICAL', 'LOSE_CHARGE']
+    product template -> 1 *1 Ar u2 p3 c0
+
+
+=== and to the SPECIES, which is what apply_recipe does at generation ===
+
+--- recipe PAIRING (2 actions): ['LOSE_RADICAL', 'GAIN_PAIR']
+    Ar+            -> 1 *1 Ar u0 p4 c0   isomorphic to ground-state Ar? True
+    He+            -> 1 *1 He u0 p1 c0
+    Ne+            -> 1 *1 Ne u0 p4 c0
+    Ar  (neutral)  -> ActionError: Unable to update Atom due to LOSE_RADICAL action: Invalid radical electron set "-1".
+    Li+            -> ActionError: Unable to update Atom due to LOSE_RADICAL action: Invalid radical electron set "-1".
+
+--- recipe PAIRING (3 actions): ['LOSE_RADICAL', 'GAIN_PAIR', 'LOSE_CHARGE']
+    Ar+            -> 1 *1 Ar u0 p4 c0   isomorphic to ground-state Ar? True
+    He+            -> 1 *1 He u0 p1 c0
+    Ne+            -> 1 *1 Ne u0 p4 c0
+    Ar  (neutral)  -> ActionError: Unable to update Atom due to LOSE_RADICAL action: Invalid radical electron set "-1".
+    Li+            -> ActionError: Unable to update Atom due to LOSE_RADICAL action: Invalid radical electron set "-1".
+
+
+=== atom-type table rows each action needs ===
+  Ar  decrement_radical=['Ar']       increment_lone_pair=['Ar']       decrement_charge=['Ar']
+  He  decrement_radical=['He']       increment_lone_pair=[]           decrement_charge=[]
+  Ne  decrement_radical=['Ne']       increment_lone_pair=[]           decrement_charge=[]
+  H   decrement_radical=['H']        increment_lone_pair=['H']        decrement_charge=['H']
+  Li  decrement_radical=['Li']       increment_lone_pair=[]           decrement_charge=['Li']

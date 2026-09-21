@@ -1,0 +1,432 @@
+
+==============================================================================
+N1-drop-LOSE_CHARGE-from-recipe   [groups.py]
+   "    ['LOSE_RADICAL', '*1', 1],\n    ['GAIN_PAIR', '*1', 1],\n    ['LOSE_CHARGE', '*1', 1],"
+-> "    ['LOSE_RADICAL', '*1', 1],\n    ['GAIN_PAIR', '*1', 1],"
+==============================================================================
+FF..............                                                         [100%]
+=================================== FAILURES ===================================
+_____________ test_recipe_is_the_pairing_recipe_with_three_actions _____________
+
+family = <ReactionFamily "Plasma_Radiative_Recombination_Pairing">
+
+    def test_recipe_is_the_pairing_recipe_with_three_actions(family):
+        """Why three actions and not two.
+    
+        `LOSE_RADICAL + GAIN_PAIR` suffices on a molecule -- `Atom.apply_action`
+        carries the charge -- but a GroupAtom's declared charge is untouched by those
+        two, so without `LOSE_CHARGE` the *product template* comes out `c+1`, claiming
+        this family makes a cation. The product-template assertion below is what
+        fails if the third action is removed.
+        """
+        actions = [list(action) for action in family.forward_recipe.actions]
+>       assert actions == [['LOSE_RADICAL', '*1', 1],
+                           ['GAIN_PAIR', '*1', 1],
+                           ['LOSE_CHARGE', '*1', 1]]
+E       AssertionError: assert [['LOSE_RADIC...IR', '*1', 1]] == [['LOSE_RADIC...GE', '*1', 1]]
+E         
+E         Right contains one more item: ['LOSE_CHARGE', '*1', 1]
+E         Use -v to get more diff
+
+test/test_plasma_radiative_recombination_pairing.py:139: AssertionError
+________________ test_root_and_product_template_read_as_written ________________
+
+family = <ReactionFamily "Plasma_Radiative_Recombination_Pairing">
+
+    def test_root_and_product_template_read_as_written(family):
+        assert [entry.label for entry in family.groups.top] == ['Ar_cation']
+        assert [e.label for e in family.forward_template.reactants] == ['Ar_cation']
+        root = family.groups.entries['Ar_cation'].item
+        assert root.to_adjacency_list().strip() == ROOT_ADJLIST
+    
+        product = family.forward_template.products[0].item
+>       assert product.to_adjacency_list().strip() == PRODUCT_TEMPLATE_ADJLIST, (
+            'the product template must describe NEUTRAL argon; a `c+1` here means the '
+            'LOSE_CHARGE action was dropped from the recipe')
+E       AssertionError: the product template must describe NEUTRAL argon; a `c+1` here means the LOSE_CHARGE action was dropped from the recipe
+E       assert '1 *1 Ar u0 p4 c+1' == '1 *1 Ar u0 p4 c0'
+E         
+E         - 1 *1 Ar u0 p4 c0
+E         ?                ^
+E         + 1 *1 Ar u0 p4 c+1
+E         ?                ^^
+
+test/test_plasma_radiative_recombination_pairing.py:153: AssertionError
+=========================== short test summary info ============================
+FAILED test/test_plasma_radiative_recombination_pairing.py::test_recipe_is_the_pairing_recipe_with_three_actions
+FAILED test/test_plasma_radiative_recombination_pairing.py::test_root_and_product_template_read_as_written
+2 failed, 14 passed in 0.99s
+
+EXIT 1
+restored, byte-identical
+
+==============================================================================
+N2-root-widened-to-He-and-Ne   [groups.py]
+   '\n1 *1 Ar u1 p3 c+1\n'
+-> '\n1 *1 [Ar,He,Ne] u1 px c+1\n'
+==============================================================================
+/family.py:1403: in apply_recipe
+    self.forward_recipe.apply_forward(reactant_structure, unique)
+../RMG-Py-plasma/rmgpy/data/kinetics/family.py:532: in apply_forward
+    return self._apply(struct, True, unique)
+../RMG-Py-plasma/rmgpy/data/kinetics/family.py:520: in _apply
+    atom.apply_action(['GAIN_PAIR', label, 1])
+rmgpy/molecule/group.py:465: in rmgpy.molecule.group.GroupAtom.apply_action
+    ???
+rmgpy/molecule/group.py:488: in rmgpy.molecule.group.GroupAtom.apply_action
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+>   ???
+E   rmgpy.exceptions.ActionError: Unable to update GroupAtom due to GAIN_PAIR action: Unknown atom type produced from set "[<AtomType "Ar">, <AtomType "He">, <AtomType "Ne">]".
+
+rmgpy/molecule/group.py:421: ActionError
+_ ERROR at setup of test_the_two_families_partition_and_neither_takes_the_other_s_reaction _
+
+    @pytest.fixture(scope='module')
+    def kinetics_db():
+        assert settings['database.directory'] == THIS_DATABASE, (
+            'RMG resolved database.directory to {0!r}, not this worktree ({1!r}). '
+            'Without the pin these tests measure a different checkout.'.format(
+                settings['database.directory'], THIS_DATABASE)
+        )
+        db = KineticsDatabase()
+>       db.load_families(os.path.join(settings['database.directory'], 'kinetics', 'families'),
+                         families=[FAMILY, SIBLING], depositories=['training'])
+
+test/test_plasma_radiative_recombination_pairing.py:102: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+../RMG-Py-plasma/rmgpy/data/kinetics/database.py:241: in load_families
+    family.load(family_path, self.local_context, self.global_context, depository_labels=depositories)
+../RMG-Py-plasma/rmgpy/data/kinetics/family.py:717: in load
+    self.forward_template.products = self.generate_product_template(self.forward_template.reactants)
+../RMG-Py-plasma/rmgpy/data/kinetics/family.py:1077: in generate_product_template
+    product_structure = self.apply_recipe(reactant_structure, forward=True, unique=False)
+../RMG-Py-plasma/rmgpy/data/kinetics/family.py:1403: in apply_recipe
+    self.forward_recipe.apply_forward(reactant_structure, unique)
+../RMG-Py-plasma/rmgpy/data/kinetics/family.py:532: in apply_forward
+    return self._apply(struct, True, unique)
+../RMG-Py-plasma/rmgpy/data/kinetics/family.py:520: in _apply
+    atom.apply_action(['GAIN_PAIR', label, 1])
+rmgpy/molecule/group.py:465: in rmgpy.molecule.group.GroupAtom.apply_action
+    ???
+rmgpy/molecule/group.py:488: in rmgpy.molecule.group.GroupAtom.apply_action
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+>   ???
+E   rmgpy.exceptions.ActionError: Unable to update GroupAtom due to GAIN_PAIR action: Unknown atom type produced from set "[<AtomType "Ar">, <AtomType "He">, <AtomType "Ne">]".
+
+rmgpy/molecule/group.py:421: ActionError
+_ ERROR at setup of test_known_limitation_the_family_generates_but_cannot_yet_be_simulated _
+
+    @pytest.fixture(scope='module')
+    def kinetics_db():
+        assert settings['database.directory'] == THIS_DATABASE, (
+            'RMG resolved database.directory to {0!r}, not this worktree ({1!r}). '
+            'Without the pin these tests measure a different checkout.'.format(
+                settings['database.directory'], THIS_DATABASE)
+        )
+        db = KineticsDatabase()
+>       db.load_families(os.path.join(settings['database.directory'], 'kinetics', 'families'),
+                         families=[FAMILY, SIBLING], depositories=['training'])
+
+test/test_plasma_radiative_recombination_pairing.py:102: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+../RMG-Py-plasma/rmgpy/data/kinetics/database.py:241: in load_families
+    family.load(family_path, self.local_context, self.global_context, depository_labels=depositories)
+../RMG-Py-plasma/rmgpy/data/kinetics/family.py:717: in load
+    self.forward_template.products = self.generate_product_template(self.forward_template.reactants)
+../RMG-Py-plasma/rmgpy/data/kinetics/family.py:1077: in generate_product_template
+    product_structure = self.apply_recipe(reactant_structure, forward=True, unique=False)
+../RMG-Py-plasma/rmgpy/data/kinetics/family.py:1403: in apply_recipe
+    self.forward_recipe.apply_forward(reactant_structure, unique)
+../RMG-Py-plasma/rmgpy/data/kinetics/family.py:532: in apply_forward
+    return self._apply(struct, True, unique)
+../RMG-Py-plasma/rmgpy/data/kinetics/family.py:520: in _apply
+    atom.apply_action(['GAIN_PAIR', label, 1])
+rmgpy/molecule/group.py:465: in rmgpy.molecule.group.GroupAtom.apply_action
+    ???
+rmgpy/molecule/group.py:488: in rmgpy.molecule.group.GroupAtom.apply_action
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+>   ???
+E   rmgpy.exceptions.ActionError: Unable to update GroupAtom due to GAIN_PAIR action: Unknown atom type produced from set "[<AtomType "Ar">, <AtomType "He">, <AtomType "Ne">]".
+
+rmgpy/molecule/group.py:421: ActionError
+=========================== short test summary info ============================
+ERROR test/test_plasma_radiative_recombination_pairing.py::test_recipe_is_the_pairing_recipe_with_three_actions
+ERROR test/test_plasma_radiative_recombination_pairing.py::test_root_and_product_template_read_as_written
+ERROR test/test_plasma_radiative_recombination_pairing.py::test_root_is_forced_to_be_a_bare_argon_cation
+ERROR test/test_plasma_radiative_recombination_pairing.py::test_helium_and_neon_are_absent_for_a_reason_that_is_checked
+ERROR test/test_plasma_radiative_recombination_pairing.py::test_the_root_rule_is_the_sourced_argon_rate_and_is_marked_an_estimate
+ERROR test/test_plasma_radiative_recombination_pairing.py::test_argon_radiative_recombination_is_generated_with_ground_state_argon
+ERROR test/test_plasma_radiative_recombination_pairing.py::test_species_out_of_scope_are_not_matched[Ar]
+ERROR test/test_plasma_radiative_recombination_pairing.py::test_species_out_of_scope_are_not_matched[Ar(3P2)]
+ERROR test/test_plasma_radiative_recombination_pairing.py::test_species_out_of_scope_are_not_matched[CH4]
+ERROR test/test_plasma_radiative_recombination_pairing.py::test_species_out_of_scope_are_not_matched[CO]
+ERROR test/test_plasma_radiative_recombination_pairing.py::test_species_out_of_scope_are_not_matched[H+]
+ERROR test/test_plasma_radiative_recombination_pairing.py::test_species_out_of_scope_are_not_matched[He+]
+ERROR test/test_plasma_radiative_recombination_pairing.py::test_species_out_of_scope_are_not_matched[Li+]
+ERROR test/test_plasma_radiative_recombination_pairing.py::test_species_out_of_scope_are_not_matched[Ne+]
+ERROR test/test_plasma_radiative_recombination_pairing.py::test_the_two_families_partition_and_neither_takes_the_other_s_reaction
+ERROR test/test_plasma_radiative_recombination_pairing.py::test_known_limitation_the_family_generates_but_cannot_yet_be_simulated
+16 errors in 2.59s
+
+EXIT 1
+restored, byte-identical
+
+==============================================================================
+N3-recipe-swapped-to-the-siblings   [groups.py]
+   "    ['LOSE_RADICAL', '*1', 1],\n    ['GAIN_PAIR', '*1', 1],\n    ['LOSE_CHARGE', '*1', 1],"
+-> "    ['GAIN_RADICAL', '*1', 1],\n    ['LOSE_CHARGE', '*1', 1],"
+==============================================================================
+FF...F..........                                                         [100%]
+=================================== FAILURES ===================================
+_____________ test_recipe_is_the_pairing_recipe_with_three_actions _____________
+
+family = <ReactionFamily "Plasma_Radiative_Recombination_Pairing">
+
+    def test_recipe_is_the_pairing_recipe_with_three_actions(family):
+        """Why three actions and not two.
+    
+        `LOSE_RADICAL + GAIN_PAIR` suffices on a molecule -- `Atom.apply_action`
+        carries the charge -- but a GroupAtom's declared charge is untouched by those
+        two, so without `LOSE_CHARGE` the *product template* comes out `c+1`, claiming
+        this family makes a cation. The product-template assertion below is what
+        fails if the third action is removed.
+        """
+        actions = [list(action) for action in family.forward_recipe.actions]
+>       assert actions == [['LOSE_RADICAL', '*1', 1],
+                           ['GAIN_PAIR', '*1', 1],
+                           ['LOSE_CHARGE', '*1', 1]]
+E       AssertionError: assert [['GAIN_RADIC...GE', '*1', 1]] == [['LOSE_RADIC...GE', '*1', 1]]
+E         
+E         At index 0 diff: ['GAIN_RADICAL', '*1', 1] != ['LOSE_RADICAL', '*1', 1]
+E         Right contains one more item: ['LOSE_CHARGE', '*1', 1]
+E         Use -v to get more diff
+
+test/test_plasma_radiative_recombination_pairing.py:139: AssertionError
+________________ test_root_and_product_template_read_as_written ________________
+
+family = <ReactionFamily "Plasma_Radiative_Recombination_Pairing">
+
+    def test_root_and_product_template_read_as_written(family):
+        assert [entry.label for entry in family.groups.top] == ['Ar_cation']
+        assert [e.label for e in family.forward_template.reactants] == ['Ar_cation']
+        root = family.groups.entries['Ar_cation'].item
+        assert root.to_adjacency_list().strip() == ROOT_ADJLIST
+    
+        product = family.forward_template.products[0].item
+>       assert product.to_adjacency_list().strip() == PRODUCT_TEMPLATE_ADJLIST, (
+            'the product template must describe NEUTRAL argon; a `c+1` here means the '
+            'LOSE_CHARGE action was dropped from the recipe')
+E       AssertionError: the product template must describe NEUTRAL argon; a `c+1` here means the LOSE_CHARGE action was dropped from the recipe
+E       assert '1 *1 Ar u2 p3 c0' == '1 *1 Ar u0 p4 c0'
+E         
+E         - 1 *1 Ar u0 p4 c0
+E         ?          ^  ^
+E         + 1 *1 Ar u2 p3 c0
+E         ?          ^  ^
+
+test/test_plasma_radiative_recombination_pairing.py:153: AssertionError
+___ test_argon_radiative_recombination_is_generated_with_ground_state_argon ____
+
+kinetics_db = <rmgpy.data.kinetics.database.KineticsDatabase object at 0x7004d9d00100>
+family = <ReactionFamily "Plasma_Radiative_Recombination_Pairing">
+
+    def test_argon_radiative_recombination_is_generated_with_ground_state_argon(kinetics_db, family):
+        """The reaction this whole ticket is named for, asserted by product structure.
+    
+        Ground state and metastable are both checked, in both directions, because a
+        test that only asserted "a product came out" would pass on `Ar0e`.
+        """
+        assert _family_is_really_loaded(family)
+    
+        reactions = family.generate_reactions([_molecule('Ar+')])
+        assert len(reactions) == 1, 'expected exactly one reaction, got {0}'.format(len(reactions))
+        reaction = reactions[0]
+        assert reaction.electrons == -1
+    
+        assert len(reaction.products) == 1
+        product = reaction.products[0]
+        product = product if isinstance(product, Molecule) else product.molecule[0]
+    
+>       assert product.is_isomorphic(_updated('Ar')), (
+            'product is {0!r}, expected ground-state argon'.format(
+                product.to_adjacency_list().strip()))
+E       AssertionError: product is 'multiplicity 3\n1 Ar u2 p3 c0', expected ground-state argon
+E       assert False
+E        +  where False = is_isomorphic(Molecule(smiles="[Ar]"))
+E        +    where is_isomorphic = Molecule(smiles="[Ar]").is_isomorphic
+E        +    and   Molecule(smiles="[Ar]") = _updated('Ar')
+
+test/test_plasma_radiative_recombination_pairing.py:225: AssertionError
+=========================== short test summary info ============================
+FAILED test/test_plasma_radiative_recombination_pairing.py::test_recipe_is_the_pairing_recipe_with_three_actions
+FAILED test/test_plasma_radiative_recombination_pairing.py::test_root_and_product_template_read_as_written
+FAILED test/test_plasma_radiative_recombination_pairing.py::test_argon_radiative_recombination_is_generated_with_ground_state_argon
+3 failed, 13 passed in 0.99s
+
+EXIT 1
+restored, byte-identical
+
+==============================================================================
+N4-root-radical-count-wrong   [groups.py]
+   '\n1 *1 Ar u1 p3 c+1\n'
+-> '\n1 *1 Ar u2 p3 c+1\n'
+==============================================================================
+_are_not_matched[He+] ________________
+
+kinetics_db = <rmgpy.data.kinetics.database.KineticsDatabase object at 0x79e323500100>
+family = <ReactionFamily "Plasma_Radiative_Recombination_Pairing">, name = 'He+'
+
+    @pytest.mark.parametrize('name', sorted(EXPECTED_OUT))
+    def test_species_out_of_scope_are_not_matched(kinetics_db, family, name):
+        """Nothing but a bare open-shell argon cation reaches this family."""
+        assert _family_is_really_loaded(family)
+>       assert _root_matches(family, 'Ar+'), 'positive control lost: Ar+ no longer matches'
+E       AssertionError: positive control lost: Ar+ no longer matches
+E       assert False
+E        +  where False = _root_matches(<ReactionFamily "Plasma_Radiative_Recombination_Pairing">, 'Ar+')
+
+test/test_plasma_radiative_recombination_pairing.py:239: AssertionError
+________________ test_species_out_of_scope_are_not_matched[Li+] ________________
+
+kinetics_db = <rmgpy.data.kinetics.database.KineticsDatabase object at 0x79e323500100>
+family = <ReactionFamily "Plasma_Radiative_Recombination_Pairing">, name = 'Li+'
+
+    @pytest.mark.parametrize('name', sorted(EXPECTED_OUT))
+    def test_species_out_of_scope_are_not_matched(kinetics_db, family, name):
+        """Nothing but a bare open-shell argon cation reaches this family."""
+        assert _family_is_really_loaded(family)
+>       assert _root_matches(family, 'Ar+'), 'positive control lost: Ar+ no longer matches'
+E       AssertionError: positive control lost: Ar+ no longer matches
+E       assert False
+E        +  where False = _root_matches(<ReactionFamily "Plasma_Radiative_Recombination_Pairing">, 'Ar+')
+
+test/test_plasma_radiative_recombination_pairing.py:239: AssertionError
+________________ test_species_out_of_scope_are_not_matched[Ne+] ________________
+
+kinetics_db = <rmgpy.data.kinetics.database.KineticsDatabase object at 0x79e323500100>
+family = <ReactionFamily "Plasma_Radiative_Recombination_Pairing">, name = 'Ne+'
+
+    @pytest.mark.parametrize('name', sorted(EXPECTED_OUT))
+    def test_species_out_of_scope_are_not_matched(kinetics_db, family, name):
+        """Nothing but a bare open-shell argon cation reaches this family."""
+        assert _family_is_really_loaded(family)
+>       assert _root_matches(family, 'Ar+'), 'positive control lost: Ar+ no longer matches'
+E       AssertionError: positive control lost: Ar+ no longer matches
+E       assert False
+E        +  where False = _root_matches(<ReactionFamily "Plasma_Radiative_Recombination_Pairing">, 'Ar+')
+
+test/test_plasma_radiative_recombination_pairing.py:239: AssertionError
+____ test_the_two_families_partition_and_neither_takes_the_other_s_reaction ____
+
+kinetics_db = <rmgpy.data.kinetics.database.KineticsDatabase object at 0x79e323500100>
+
+    def test_the_two_families_partition_and_neither_takes_the_other_s_reaction(kinetics_db):
+        """The split is only correct if it is a partition.
+    
+        Both families are loaded in the same database here, which is how a real run
+        sees them; if either widened to cover the other's reactant, RMG would generate
+        the same reaction twice under two family names.
+        """
+        pairing = kinetics_db.families[FAMILY]
+        empty_orbital = kinetics_db.families[SIBLING]
+        assert pairing.electrons == -1 and empty_orbital.electrons == -1
+    
+>       assert len(pairing.generate_reactions([_molecule('Ar+')])) == 1
+E       assert 0 == 1
+E        +  where 0 = len([])
+E        +    where [] = generate_reactions([Molecule(smiles="[Ar+]")])
+E        +      where generate_reactions = <ReactionFamily "Plasma_Radiative_Recombination_Pairing">.generate_reactions
+
+test/test_plasma_radiative_recombination_pairing.py:260: AssertionError
+____ test_known_limitation_the_family_generates_but_cannot_yet_be_simulated ____
+
+kinetics_db = <rmgpy.data.kinetics.database.KineticsDatabase object at 0x79e323500100>
+family = <ReactionFamily "Plasma_Radiative_Recombination_Pairing">
+
+    def test_known_limitation_the_family_generates_but_cannot_yet_be_simulated(kinetics_db, family):
+        """Where the missing RMG-Py registry entry actually bites -- and where it does not.
+    
+        `generate_reactions` never consults `FAMILY_ELECTRON_PLACEMENT`, so the
+        reaction above is produced with the registry exactly as RMG-Py ships it. The
+        gate is `resolve_electron_placement`, which the plasma reactor calls at
+        `rmgpy/solver/plasma.pyx:276`. Until
+    
+            'Plasma_Radiative_Recombination_Pairing': (1, 0)
+    
+        lands in `rmgpy/electron_placement.py`, this family cannot be simulated. When
+        it lands, this test fails and should be deleted.
+        """
+        from rmgpy import electron_placement
+        from rmgpy.exceptions import ElectronPlacementError
+        from rmgpy.kinetics import Arrhenius
+        from rmgpy.species import Species
+    
+        assert _family_is_really_loaded(family)
+        assert FAMILY not in electron_placement.FAMILY_ELECTRON_PLACEMENT, (
+            'the registry entry has landed in RMG-Py; delete this test and the '
+            'corresponding paragraph in groups.py')
+        assert electron_placement.FAMILY_ELECTRON_PLACEMENT[SIBLING] == (1, 0), (
+            'positive control: the sibling family IS declared, so the registry is '
+            'present and this is not an import problem')
+    
+>       reaction = family.generate_reactions([_molecule('Ar+')])[0]
+E       IndexError: list index out of range
+
+test/test_plasma_radiative_recombination_pairing.py:293: IndexError
+=========================== short test summary info ============================
+FAILED test/test_plasma_radiative_recombination_pairing.py::test_root_and_product_template_read_as_written
+FAILED test/test_plasma_radiative_recombination_pairing.py::test_argon_radiative_recombination_is_generated_with_ground_state_argon
+FAILED test/test_plasma_radiative_recombination_pairing.py::test_species_out_of_scope_are_not_matched[Ar]
+FAILED test/test_plasma_radiative_recombination_pairing.py::test_species_out_of_scope_are_not_matched[Ar(3P2)]
+FAILED test/test_plasma_radiative_recombination_pairing.py::test_species_out_of_scope_are_not_matched[CH4]
+FAILED test/test_plasma_radiative_recombination_pairing.py::test_species_out_of_scope_are_not_matched[CO]
+FAILED test/test_plasma_radiative_recombination_pairing.py::test_species_out_of_scope_are_not_matched[H+]
+FAILED test/test_plasma_radiative_recombination_pairing.py::test_species_out_of_scope_are_not_matched[He+]
+FAILED test/test_plasma_radiative_recombination_pairing.py::test_species_out_of_scope_are_not_matched[Li+]
+FAILED test/test_plasma_radiative_recombination_pairing.py::test_species_out_of_scope_are_not_matched[Ne+]
+FAILED test/test_plasma_radiative_recombination_pairing.py::test_the_two_families_partition_and_neither_takes_the_other_s_reaction
+FAILED test/test_plasma_radiative_recombination_pairing.py::test_known_limitation_the_family_generates_but_cannot_yet_be_simulated
+12 failed, 4 passed in 0.79s
+
+EXIT 1
+restored, byte-identical
+
+==============================================================================
+N5-rate-anchor-changed   [rules.py]
+   "A = (1.007892e+05, 'm^3/(mol*s)')"
+-> "A = (1.000000e+05, 'm^3/(mol*s)')"
+==============================================================================
+....F...........                                                         [100%]
+=================================== FAILURES ===================================
+____ test_the_root_rule_is_the_sourced_argon_rate_and_is_marked_an_estimate ____
+
+family = <ReactionFamily "Plasma_Radiative_Recombination_Pairing">
+
+    def test_the_root_rule_is_the_sourced_argon_rate_and_is_marked_an_estimate(family):
+        entries = family.rules.entries['Ar_cation']
+        assert len(entries) == 1
+        entry = entries[0]
+        assert entry.rank == 10, 'the placeholder rank is load-bearing documentation'
+>       assert abs(entry.data.A.value_si - 1.007892e+05) / 1.007892e+05 < 1e-6
+E       assert (789.1999999999971 / 100789.2) < 1e-06
+E        +  where 789.1999999999971 = abs((100000.0 - 100789.2))
+E        +    where 100000.0 = (100000,'m^3/(mol*s)').value_si
+E        +      where (100000,'m^3/(mol*s)') = ArrheniusEP(A=(100000,'m^3/(mol*s)'), n=0, alpha=0, E0=(0,'J/mol'), Tmin=(300,'K'), Tmax=(20000,'K')).A
+E        +        where ArrheniusEP(A=(100000,'m^3/(mol*s)'), n=0, alpha=0, E0=(0,'J/mol'), Tmin=(300,'K'), Tmax=(20000,'K')) = <Entry index=1 label="Ar_cation">.data
+
+test/test_plasma_radiative_recombination_pairing.py:196: AssertionError
+=========================== short test summary info ============================
+FAILED test/test_plasma_radiative_recombination_pairing.py::test_the_root_rule_is_the_sourced_argon_rate_and_is_marked_an_estimate
+1 failed, 15 passed in 0.94s
+
+EXIT 1
+restored, byte-identical
+
+==============================================================================
+every mutation turned the suite red

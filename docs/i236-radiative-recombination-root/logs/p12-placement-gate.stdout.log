@@ -1,0 +1,19 @@
+RESOLVED database.directory = /home/alon/Code/RMG-database-i236-radiative-root/input
+generated (registry does NOT contain this family): <Molecule "[Ar+]"> => <Molecule "[Ar]">
+  reaction.electrons = -1
+  family attribute   = 'Plasma_Radiative_Recombination_Pairing'
+
+--- resolve_electron_placement, WITHOUT the registry entry
+        view = electron_placement.resolve_electron_placement(rxn, species)
+      File "/home/alon/Code/RMG-Py-plasma/rmgpy/electron_placement.py", line 462, in resolve_electron_placement
+        raise ElectronPlacementError(
+    rmgpy.exceptions.ElectronPlacementError: Family 'Plasma_Radiative_Recombination_Pairing' has no electron-placement declaration (reaction [Ar+] => [Ar], electrons=-1); refusing to infer electron placement from the net electron count. Only owners declared in FAMILY_ELECTRON_PLACEMENT can resolve.
+
+--- resolve_electron_placement, WITH the registry entry, no kinetics on the reaction
+        view = electron_placement.resolve_electron_placement(rxn, species)
+      File "/home/alon/Code/RMG-Py-plasma/rmgpy/electron_placement.py", line 567, in resolve_electron_placement
+        raise ElectronPlacementError(
+    rmgpy.exceptions.ElectronPlacementError: Reaction [Ar+] => [Ar] (family 'Plasma_Radiative_Recombination_Pairing') has no kinetics; a placement view cannot be certified for an unknown rate form.
+
+--- resolve_electron_placement, WITH the registry entry and the family rule attached
+    OK: Reaction(reactants=[Species(label="[Ar+]", molecule=[Molecule(smiles="[Ar+]")], molecular_weight=(39.8775,'amu')), Species(label="e", molecule=[Molecule(smiles="e")], molecular_weight=(0.0005486,'amu'))], products=[Species(label="[Ar]", molecule=[Molecule(smiles="[Ar]")], molecular_weight=(39.8775,'amu'))], kinetics=Arrhenius(A=(100789,'m^3/(mol*s)'), n=0, Ea=(0,'kJ/mol'), T0=(1,'K')), reversible=False, comment="Electron-placement view (family 'Plasma_Radiative_Recombination_Pairing', rate-order cross-check: order not resolvable) of: [Ar+] => [Ar]",)

@@ -205,10 +205,15 @@ def test_recipe_is_gain_radical_plus_lose_charge(family):
 def test_root_elements_are_bare_atomic_cations_the_recipe_can_reduce(family):
     """Two conditions every element in the root union must meet.
 
-    1. `u0 p0 c+1` must force zero bonds, so the group can only ever match a
-       bare atomic cation. For H and the alkali metals the formal charge is
+    1. `u0 p0 c+1` must force zero bonds, so the group can only ever match an
+       unbonded cation ATOM. For H and the alkali metals the formal charge is
        `1 - 2p - u - bonds`, so it does. For C, N, O and the halogens it does
        not, and the group would reach inside neutral molecules.
+
+       This constrains the atom, not the species: a matched bare cation may
+       still be one fragment of a multi-fragment entry, as `electrocatLiThermo/
+       H3O` is. That case generates nothing and is measured, not guarded --
+       see `docs/i236-radiative-recombination-root/report.md`.
     2. `ATOMTYPES[element].decrement_charge` must be non-empty, or `LOSE_CHARGE`
        raises `ActionError` -- the product template is built by applying the
        recipe to this very group.

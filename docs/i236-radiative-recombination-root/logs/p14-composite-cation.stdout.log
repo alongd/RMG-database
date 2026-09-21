@@ -1,0 +1,101 @@
+RESOLVED database.directory = /home/alon/Code/RMG-database-i236-radiative-root/input
+
+========================================================================
+1. WHAT THE SHIPPED ENTRIES ARE, ATOM BY ATOM
+========================================================================
+--- LithiumPrimaryThermo/[Lip]
+    adjacency list as shipped:
+        1 Li u0 p0 c+1
+    net charge          : +1
+    atoms               : 1
+    connected fragments : 1
+    atom 1: Li u0 p0 c+1  bonds=0
+    WHOLE SPECIES IS ONE UNBONDED ATOM: True
+
+--- electrocatLiThermo/H3O
+    adjacency list as shipped:
+        1 H u0 p0 c0 {3,S}
+        2 H u0 p0 c0 {3,S}
+        3 O u0 p2 c0 {1,S} {2,S}
+        4 H u0 p0 c+1
+    net charge          : +1
+    atoms               : 4
+    connected fragments : 2
+    atom 1: H  u0 p0 c+0  bonds=1
+    atom 2: H  u0 p0 c+0  bonds=1
+    atom 3: O  u0 p2 c+0  bonds=2
+    atom 4: H  u0 p0 c+1  bonds=0
+    WHOLE SPECIES IS ONE UNBONDED ATOM: False
+
+--- electrocatLiThermo/proton
+    adjacency list as shipped:
+        1 H u0 p0 c+1
+    net charge          : +1
+    atoms               : 1
+    connected fragments : 1
+    atom 1: H  u0 p0 c+1  bonds=0
+    WHOLE SPECIES IS ONE UNBONDED ATOM: True
+
+========================================================================
+2. WHICH ATOM EACH ROOT MATCHES
+========================================================================
+--- Plasma_Radiative_Recombination
+    root 'A': 1 *1 [H,Li,Na,K] u0 p0 c+1
+    LithiumPrimaryThermo/[Lip]           match=True   atom 1 (Li u0 p0 c+1 bonds=0)
+    electrocatLiThermo/H3O               match=True   atom 4 (H u0 p0 c+1 bonds=0)
+    electrocatLiThermo/proton            match=True   atom 1 (H u0 p0 c+1 bonds=0)
+
+--- Plasma_Radiative_Recombination_Pairing
+    root 'Ar_cation': 1 *1 Ar u1 p3 c+1
+    LithiumPrimaryThermo/[Lip]           match=False  -
+    electrocatLiThermo/H3O               match=False  -
+    electrocatLiThermo/proton            match=False  -
+
+========================================================================
+3. WHAT EACH FAMILY GENERATES  (controls in the same loop)
+========================================================================
+--- Plasma_Radiative_Recombination
+    electrocatLiThermo/H3O         0 reaction(s)   [THE QUESTION]
+    electrocatLiThermo/proton      1 reaction(s)   [control]
+        <Molecule "[H+]"> => <Molecule "[H]">   electrons=-1
+        product: multiplicity 2 / 1 H u1 p0 c0
+    LithiumPrimaryThermo/[Lip]     1 reaction(s)   [POSITIVE CONTROL for Plasma_Radiative_Recombination]
+        <Molecule "[Li+]"> => <Molecule "[Li]">   electrons=-1
+        product: multiplicity 2 / 1 Li u1 p0 c0
+    Ar+ (built here)               0 reaction(s)   [POSITIVE CONTROL for the pairing family]
+
+--- Plasma_Radiative_Recombination_Pairing
+    electrocatLiThermo/H3O         0 reaction(s)   [THE QUESTION]
+    electrocatLiThermo/proton      0 reaction(s)   [control]
+    LithiumPrimaryThermo/[Lip]     0 reaction(s)   [POSITIVE CONTROL for Plasma_Radiative_Recombination]
+    Ar+ (built here)               1 reaction(s)   [POSITIVE CONTROL for the pairing family]
+        <Molecule "[Ar+]"> => <Molecule "[Ar]">   electrons=-1
+        product: 1 Ar u0 p4 c0
+
+========================================================================
+4. DOES THE RECIPE ITSELF BUILD ANYTHING AT THE MATCHED H3O CENTRE?
+   (separates "root never matched" from "matched, generation declined")
+========================================================================
+--- Plasma_Radiative_Recombination: 1 mapping(s) of the root onto the species
+    apply_recipe returned None -- the recipe declined this centre
+
+--- Plasma_Radiative_Recombination_Pairing: 0 mapping(s) of the root onto the species
+    nothing to apply the recipe to
+
+========================================================================
+5. THE EXACT REASON apply_recipe DECLINES, NOT INFERRED
+   family.py:1516 splits the product structure; family.py:1521-1532 returns
+   None when the fragment count differs from the template product count.
+========================================================================
+--- Plasma_Radiative_Recombination
+    template products      : ['A_reduced']  (family.product_num = None, effective = 1)
+    electrocatLiThermo/H3O       recipe builds 2 fragment(s): [H], O
+                                 template wants 1  ->  DECLINED at family.py:1532 (product count != template count)
+    electrocatLiThermo/proton    recipe builds 1 fragment(s): [H]
+                                 template wants 1  ->  ACCEPTED
+
+--- Plasma_Radiative_Recombination_Pairing
+    template products      : ['Ar_neutral']  (family.product_num = None, effective = 1)
+    electrocatLiThermo/H3O       root does not match -- not reached
+    electrocatLiThermo/proton    root does not match -- not reached
+

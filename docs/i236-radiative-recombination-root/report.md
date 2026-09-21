@@ -37,6 +37,16 @@ conclusion I drew from it.** I had also inferred a grammar limit from one failed
 reporting the exception; the post-mortem is in "M3 was an authoring error", and it inverted the
 conclusion. Both corrections came from measurements that are in this document.
 
+**A third claim of mine was overturned in review, and it was one I had stated without measuring.**
+On the review round, the manager pointed out that `electrocatLiThermo/H3O` is not a bare atomic
+cation, which made "the root can only ever match a bare atomic cation" an over-reach; probing that
+also showed the sentence beside it — "the generated product is the same complex with the proton
+reduced" — is simply false. The family generates **nothing** from that entry, because the recipe's
+two product fragments meet a one-product template. Both statements are corrected where they stood,
+here and in `groups.py`, with the measurement in `logs/p14-composite-cation.stdout.log`. The pattern
+is the same one as the other two: an assertion about what the code would do, written from reading
+rather than running, in a document whose every neighbouring number was measured.
+
 ## Which database every measurement used
 
 There is **no `rmgrc` in this worktree root**, and none in `~/.rmg`. The only `rmgrc` on this
@@ -193,9 +203,16 @@ the argon reaction it would generate produces `Ar0e`, not argon.
 
 **What makes C3 work is valence arithmetic, not charge.** For hydrogen and the alkali metals the
 formal charge is `1 − 2p − u − bonds`, so `u0 p0 c+1` forces `bonds = 0`: the group can only ever
-match a **bare atomic cation**, which is exactly what radiative recombination consumes. The same
-`(u, p, c)` triple on C, N, O or a halogen is satisfied by a *bonded* atom inside a neutral
+match a **bare, unbonded cation atom**, which is exactly what radiative recombination consumes. The
+same `(u, p, c)` triple on C, N, O or a halogen is satisfied by a *bonded* atom inside a neutral
 molecule — which is the whole of the 614.
+
+**The arithmetic constrains one atom, and that is all it constrains.** An earlier draft of this
+section concluded that the root "can only ever match a bare atomic cation", meaning a species that
+is a lone atom. That over-reaches, and one of the three matches shows how: `electrocatLiThermo/H3O`
+is a two-fragment species, and the root matches its unbonded proton, not the species. The correct
+statement is that the root matches a bare cation **fragment**, which may sit inside a multi-fragment
+species. What that costs is measured in the section below: nothing.
 
 ---
 
@@ -318,21 +335,49 @@ CO   ->  0 reactions      CH4 -> 0 reactions
 ## One residual over-match, recorded because no group can exclude it
 
 `electrocatLiThermo/H3O` is **not** the hydronium ion. It is a van der Waals pair — water beside a
-bare `[H+]`:
+detached bare `[H+]`. As shipped, printed back from the loaded entry rather than retyped
+(`logs/p14-composite-cation.stdout.log`):
 
 ```
-1 O u0 p2 c0 {2,S} {3,S}
-2 H u0 p0 c0 {1,S}
-3 H u0 p0 c0 {1,S}
-4 H u0 p0 c+1
+1 H u0 p0 c0 {3,S}
+2 H u0 p0 c0 {3,S}
+3 O u0 p2 c0 {1,S} {2,S}
+4 H u0 p0 c+1          <- 2 connected fragments; atom 4 has bonds=0
 ```
 
-The root matches its proton fragment, and nothing at the group level can stop it: group matching is
-subgraph matching, so a disconnected spectator is invisible from `*1`. The generated product is the
-same complex with the proton reduced. This is an artefact of how that species is declared in an
-electrochemistry library, not of this template, and it is the same disconnected-species hazard the
-campaign has already hit on the thermo side. It is recorded in `groups.py` rather than worked
-around.
+The root matches atom 4, and nothing at the group level can stop it: group matching is subgraph
+matching, so a disconnected spectator is invisible from `*1`. This is the species that makes the
+"bare atomic cation" phrasing above wrong — the match is a bare cation *fragment* inside a
+composite, and the family's three matches are therefore **two lone-atom species and one composite**,
+not three lone atoms.
+
+**What it costs, measured:** nothing. Both families return **0 reactions** from this entry.
+
+```
+                                          Plasma_Radiative_Recombination   ..._Pairing
+electrocatLiThermo/H3O   [the question]          0 reaction(s)              0 reaction(s)
+electrocatLiThermo/proton      [control]         1 reaction(s)              0 reaction(s)
+LithiumPrimaryThermo/[Lip]    [pos. ctrl]        1 reaction(s)              0 reaction(s)
+Ar+                           [pos. ctrl]        0 reaction(s)              1 reaction(s)
+```
+
+The positive controls run in the same loop on purpose: a harness that returned 0 for everything —
+a mis-built family, a swallowed exception — would show 0 on those rows too, and the H3O row would
+prove nothing.
+
+**Why it is 0, named rather than inferred.** It is not that the root fails to match; it matches, and
+the recipe builds at the centre. `find_subgraph_isomorphisms` returns exactly 1 mapping, and the
+recipe applied there yields `H2O` plus an `H` atom — **two fragments against a one-product
+template**. `apply_recipe` splits the product structure at `family.py:1516`, compares the count
+against the template's, and returns `None` at `family.py:1532`; no reaction is emitted. The same
+code path accepts `proton`, whose product is one fragment. This is the distinction a reaction count
+alone cannot make, which is why the probe asks the recipe directly as well.
+
+**No guard was added**, deliberately: a guard for a case that does not fire is a check that cannot
+fail, which is the failure class this campaign keeps finding. This is an artefact of how that
+species is declared in an electrochemistry library, not of this template — the same
+disconnected-species hazard the campaign has already hit on the thermo side. It is recorded in
+`groups.py` and here, rather than worked around.
 
 ---
 

@@ -75,10 +75,20 @@ recipe, which is a different family, not a wider root here.
 
 ONE RESIDUAL OVER-MATCH, recorded because no group can exclude it: the entry
 `electrocatLiThermo/H3O` is a van der Waals pair, `H2O` beside a bare `[H+]`, and
-this root matches its proton fragment. Group matching is subgraph matching, so a
-disconnected spectator cannot be seen from *1. The product is the same complex
-with the proton reduced; it is an artefact of how that species is declared, not of
-this template.
+this root matches its proton fragment — atom 4 of the shipped entry, `H u0 p0 c+1`
+with no bonds. Group matching is subgraph matching, so a disconnected spectator
+cannot be seen from *1. The valence arithmetic above constrains ONE ATOM, so what
+this root matches is a bare cation FRAGMENT, which may sit inside a multi-fragment
+species — not necessarily a species that is a lone atom.
+
+Nothing comes of it, and that is measured rather than assumed
+(`docs/i236-radiative-recombination-root/logs/p14-composite-cation.stdout.log`):
+this family returns **0 reactions** from that entry, in a loop where
+`electrocatLiThermo/proton` returns 1. The recipe does build at the matched
+centre — `H2O` plus an `H` atom — but that is two product fragments against a
+one-product template, so `apply_recipe` returns None at `family.py:1532` and no
+reaction is emitted. No guard is written for it: a guard for a case that does not
+fire is a check that cannot fail. This paragraph is the record instead.
 
 Carried from branch `99` and translated to this branch's electron-bookkeeping
 convention (see `docs/plasma_family_carry_translation_rule.md`): the free electron

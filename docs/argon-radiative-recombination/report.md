@@ -70,10 +70,15 @@ the 24 that remained. **A failure argues with you; a setup error just removes th
 a smaller green number behind.** A reader skimming for red sees three failures about entry counts,
 fixes those, and ships a suite twenty assertions weaker than the one they started with.
 
-**The fix, and the rule it encodes.** Selection is now by identity, not position:
+**The fix, and the rule it encodes.** Selection is by identity, not position. The form below is
+the *first* version of that fix and is **no longer what ships** — round 66 showed that keying on
+the reactant alone collides with a same-reactant second channel, and round 67 showed that even the
+right key still has to degrade rather than raise. What ships now is in
+`test/plasma_library_selection.py`; the history is kept here because the two wrong versions are
+the finding, not an embarrassment to tidy away. Superseded:
 
 ```python
-def _reaction_for(library, reactant_label): ...   # asserts exactly one match for THAT label
+def _reaction_for(library, reactant_label): ...   # SUPERSEDED: reactant-only key
 @pytest.fixture
 def reaction(library):        return _reaction_for(library, '[Lip]')
 @pytest.fixture
@@ -134,9 +139,11 @@ without knowing the first had made it, which is the cost of deferral made concre
 
 What changed, in both files:
 
-- the `reaction` fixture selects by the reactants it is about (`['Ar', 'e-']`, `['[Li]']`) and
-  asserts exactly one match *for that species*, so growth can never silently disable the checks
-  about the entry that is still there;
+- the `reaction` fixture selects by the channel it is about — reactants **and** products — and
+  hands back an `AmbiguousSelection` rather than raising when that is not unique, so growth can
+  never silently disable the checks about the entry that is still there. (As first written this
+  bullet said "selects by the reactants it is about" and claimed growth "can never" disable the
+  checks. Both were wrong, in rounds 66 and 67 respectively, and the corrected form is above.)
 - the count assertion stays in `test_library_loads_with_exactly_one_entry`, where it is a claim
   that fails rather than a precondition that errors. It stays in both files *because* it is
   deliberate in both — each module's own opening docstring argues the smallness is the deliverable
@@ -145,34 +152,73 @@ What changed, in both files:
 - each of those tests additionally pins the coverage *set*, since a bare count is satisfied by any
   second entry, including a wrong one that replaced the entry the file is about.
 
-The collected test-id set is unchanged at 245 — the new assertions were folded into existing tests
-rather than added as new ones, so nothing here can be a green count bought by adding tests.
+The collected test-id set was unchanged at 245 **at that commit** — the new assertions were folded
+into existing tests rather than added as new ones, so nothing there was a green count bought by
+adding tests. It has since moved deliberately and in named steps: **245 → 248** (rounds 66/67 added
+one `test_every_reaction_is_distinguishable_from_every_other` per file) **→ 249** (the isolation
+receipt, §0.3), with one test renamed. The current number is what the committed
+`logs/pytest-round67.stdout.log` shows; where this report quotes 245 it is quoting a past state and
+says so.
 
 **The deferral's premise was also simply false, and I only found that out by trying.** I had said
 the fix was unverifiable while each library holds one entry. The entry count is a property of the
-*loaded* object, and a loaded object can be grown in memory — so it is verifiable, in about thirty
-lines. `docs/argon-radiative-recombination/logs/probe_fixture_survives_growth.py` loads each library
-for real, injects a synthetic second entry, and runs both selection strategies against the grown
-object:
+*loaded* object, and a loaded object can be grown in memory — so it is verifiable. That is worth
+naming as a general shape, since it is the same error as §6's: **"I cannot test this" is itself a
+claim, and it deserves the same thirty seconds of refutation as any other.** I let it stand
+unprobed for a whole session.
+
+The probe written to settle it then became the more instructive failure, twice over, and §0.2
+records that instead of the output it originally printed — which described a probe that no longer
+exists and a selector that was twice superseded.
+
+### 0.2 The probe was wrong in the same way, twice, and that is the transferable finding
+
+Three versions, each of which could not fail in the direction of the defect it was cited against:
+
+| version | what it injected | what it could not catch |
+|---|---|---|
+| 1 (round 59) | twin with **reactants renamed** | a same-**reactant** second channel — the actual next growth |
+| 2 (round 66) | twin with **products renamed** | a same-reactants-**same-products** duplicate |
+| 3 (round 67) | both shapes, plus exit-code and non-empty-baseline guards | — |
+
+Version 2 also reproduced version 1's bug on one library before anyone read its output: in
+`Ar + e- => Arp + e- + e-` a single `e-` `Species` sits on **both** sides, `deepcopy` preserves
+that sharing, so renaming the products renamed the reactant to `e-**` and the twin could not
+collide. It was caught only because version 2 refused to return a twin whose reactants differed
+from the original's — a guard on its own premise, which is the thing worth copying.
+
+Version 3 runs `pytest` over the real test files rather than reimplementing the selector, and asks
+**errors versus failures** rather than pass counts, because that is the distinction the whole
+section is about. Current output, `logs/probe-growth-after.stdout.log`:
 
 ```
-PlasmaArgon                      shipped=1 grown=2
-    old (by position): AssertionError -> pytest SETUP ERROR, every test on this fixture silently skipped
-    new (by identity): returned Ar + e-
-PlasmaElectronImpactIonization   shipped=1 grown=2
-    old (by position): AssertionError -> pytest SETUP ERROR, every test on this fixture silently skipped
-    new (by identity): returned [Li]
-PlasmaRadiativeRecombination     shipped=2 grown=3        <- control, already two-entry
-    old (by position): AssertionError -> pytest SETUP ERROR, every test on this fixture silently skipped
-    new (by identity): returned [Arp]
+AS SHIPPED                         passed=102 failed=0 errors=0
+GROWN: same reactants, new products passed=100 failed=2 errors=0
+GROWN: exact duplicate channel      passed=32  failed=70 errors=0
 ```
 
-So the change is not "proven elsewhere and transferred mechanically", which is the weaker claim I
-made when deferring — it is measured on the two libraries themselves. The third row is a control:
-it is the file already fixed, grown a third time, confirming the probe detects the failure it
-claims to detect rather than reporting PASS unconditionally. Worth naming the general shape, since
-it is the same error as §6's: **"I cannot test this" is itself a claim, and it deserves the same
-thirty seconds of refutation as any other.** I let it stand unprobed for a whole session.
+Zero errors in both growth shapes is the whole claim. The negative control for the second row: with
+the selector restored to *raising* rather than degrading, the same duplicate injection gives
+**5 failed, 32 passed, 65 errors** — so the 70-versus-65 difference is the fix working, not the
+probe being lenient.
+
+### 0.3 What round 67 changed, and the claim it retired
+
+Round 67's finding was that §0.1's guarantee was overstated rather than wrong. `assert_reactions_
+uniquely_keyed` adds *one* named failure; it does not stop `reaction_for` raising in every other
+fixture, so a genuine duplicate would have produced that named failure **plus** the whole crop of
+setup errors the work was meant to eliminate. Two changes make the claim true instead of narrowing
+it:
+
+- **`reaction_for` no longer raises.** It returns an `AmbiguousSelection` that raises on first use
+  *inside the test body*, so an ambiguous selection is a failure of the test that needed it. The
+  measurement above is the receipt.
+- **the fixtures are genuinely isolated.** They had always claimed "a fresh reaction per test, so
+  mutation cannot leak between them", and that was false: `get_library_reactions` rebuilds the
+  participant lists but shares the `Species`, and the reactor tests assign `species.thermo`, which
+  landed on the module-scoped library for every later test to read. Nothing depended on it, which
+  is what made it worth removing rather than worth ignoring. `test_the_fixture_really_is_isolated_
+  from_the_shared_library` is the receipt, and it fails if the deep copy is removed.
 
 ---
 
@@ -182,6 +228,8 @@ Re-counted before trusting the brief. All three agree with it.
 
 ```
 input/kinetics/libraries/PlasmaRadiativeRecombination/reactions.py    -> 1 entry:  [Lip] => [Li]
+                                          (as of the START of this ticket; it ships TWO now,
+                                           [Lip] => [Li] and the [Arp] => [Ar] added below)
 input/kinetics/libraries/PlasmaElectronImpactIonization/reactions.py  -> 1 entry:  [Li]  => [Lip]
 input/kinetics/libraries/PlasmaArgon/reactions.py                     -> 1 entry:  Ar + e- => Arp + e- + e-
 ```
@@ -605,21 +653,43 @@ volume along with them, and the density — their quotient — moves only by the
 The volume cancels out of any *ratio* of two heavy species, which is precisely why the neutral
 fraction is free to move three orders while the density is pinned.
 
-Two checks on that, because the arithmetic is convenient and convenient arithmetic deserves one:
+**Two things I previously offered as checks, corrected — neither is independent evidence.**
 
-- the two arms stop at different simulation times (`1.394e-3` vs `1.303e-3` s), so the comparison
-  could have been an artefact of that. Interpolating both to the earlier arm's final time gives
-  the same `−10.3 ppm`; the end state is steady in this observable.
-- `1 − 99.15 % = 0.85 %`, and `1213 × 0.0085 = 10.3`. The residue and the measured delta are the
-  same number, which is what makes the EOS the explanation rather than a story told afterwards.
+- `1 − 99.15 % = 0.85 %`, and `1213 × 0.0085 = 10.3`, against a measured `10.31`. I presented this
+  as the EOS being confirmed rather than asserted. **It is not.** The `0.85 %` is computed from the
+  same final composition, through the same equation of state, that produced the volume the
+  measurement divides by — so the multiplication is a first-order restatement of an identity, and
+  it would come out right whether or not the EOS were the *cause* of anything. It is an **internal
+  consistency check**: it says the numbers in the table are mutually coherent and that I have not
+  dropped a factor. That is worth having and worth keeping. It is not a second derivation, and the
+  campaign ledger's "two derivations, two data sets, one number" was withdrawn on the same grounds.
+  What actually supports the causal claim is that the mechanism is standard and that the same
+  suppression appears on an unrelated channel (I-235's three-body, `−4.35 ppm` at the same ~1/117).
+- the two arms stop at different simulation times (`1.394e-3` vs `1.303e-3` s), so I interpolated
+  both to the earlier arm's final time and got the same `−10.3 ppm`. **That check is vacuous**, and
+  saying so is more useful than the check: the with-arm rows bracketing that time are bit-identical,
+  so the interpolation returns the same numbers it was given. It answers the termination-time
+  objection — the end state is not still moving — and it adds no validation beyond that. It is
+  reported here as an objection disposed of, not as a second measurement.
 
-**What this means for the campaign, and it generalises past this entry.** No volumetric electron
-sink, of any order, can close an electron-density discrepancy in this deck: every one of them
-removes electrons and shrinks the volume in near-lockstep, and only the ~1/117 residue survives
-into the density. That covers radiative recombination here, I-235's three-body channel, and any
-future dissociative-recombination entry. The channels that could move the density are the
-**non-volumetric** ones — ambipolar diffusion and wall loss, which act as a surface operator and
-are absent from this mechanism entirely.
+**What this means for the campaign, with its boundary stated.** No volumetric electron sink, of
+any order, can close an electron-density discrepancy in this deck: every one of them removes
+electrons and shrinks the volume in near-lockstep, and only the ~1/117 residue survives into the
+density. That covers radiative recombination here, I-235's three-body channel, and any future
+dissociative-recombination entry.
+
+**The boundary, which the earlier phrasing left out.** The suppression factor is
+`1 − f`, where `f` is the electron gas's share of the EOS bracket `(n_heavy·T_gas + n_e·T_e)`, and
+`1 − f → T_gas/T_e` only in the **fully ionised** limit at fixed `P`, `T_gas` and `T_e`. A sink
+strong enough to de-ionise the mixture walks out of that limit as it acts: as `n_e` falls, `f`
+falls, and the suppression weakens toward nothing — a weakly ionised deck, where the heavy gas sets
+the volume, has no suppression at all. So the correct statement is **not** "no volumetric sink can
+ever matter", it is "no volumetric sink can matter *while the electron gas still dominates the
+bracket*", which is a self-limiting condition rather than a permanent one. The wall-operator work
+reached the same boundary independently, which is mild corroboration that it is the right place to
+draw it. The channels that could move the density *without* that caveat are the **non-volumetric**
+ones — ambipolar diffusion and wall loss, which act as a surface operator and are absent from this
+mechanism entirely.
 
 This does **not** weaken the entry. The rate is unchanged, the source is unchanged, and the
 heavy-species finding in §6.2–§6.4 stands exactly as measured. What changes is the label on it:
@@ -711,22 +781,26 @@ Reported because the absence is the finding.
   >                                            landing_page_url = the publisher DOI
   > ```
   >
-  > **What that licenses, precisely — round 66 was right that the first version overstated it.**
-  > It says *OpenAlex indexes no open copy*, which is not the same as *no open copy exists*.
-  > OpenAlex is broad over repositories but not exhaustive, and a copy on a personal or
-  > institutional page it has not harvested would not appear. The earlier wording said "no open
-  > copy indexed anywhere" and "no alternative route to try", and then in the same breath named
-  > two routes — institutional access and an author request — which is self-contradicting.
+  > **Status: UNESTABLISHED. Read the block above as an observation, not a finding.** This has now
+  > been narrowed twice and the honest move is to stop narrowing and label it. What the record
+  > supports is exactly one sentence: *a query to OpenAlex for this DOI reported no open-access
+  > location*. Everything I built on that has been more than it carries —
   >
-  > The defensible statement: **every open route that OpenAlex can see is closed**, the obstacle
-  > is a paywall rather than a search failure, and the routes that remain are ones this session
-  > cannot take — institutional access, an author request, or a direct approach to a copy OpenAlex
-  > has not harvested. Recorded so the next session repeats the conclusion, not the hour.
+  > - "no open copy indexed anywhere" → OpenAlex is not exhaustive, and it is one index;
+  > - "a paywall rather than a search failure" → **still too strong.** A negative index record
+  >   does not distinguish a paywalled work from one whose open copy is simply unharvested. I do
+  >   not know which this is;
+  > - the field values themselves → transcribed through `WebFetch`'s summarising model, because
+  >   direct `curl` to `api.openalex.org` is blocked by this environment's sandbox. **No raw
+  >   response was preserved, in either attempt.** An unverified reading of an index is thin
+  >   evidence even for the one sentence above.
   >
-  > *Provenance of the block above:* retrieved through the `WebFetch` tool, which reads the API
-  > through a summarising model, because direct `curl` to `api.openalex.org` is blocked by this
-  > environment's sandbox. The field values are therefore transcribed, not a captured raw
-  > response, and nothing in this report rests on them beyond the negative itself.
+  > What this means practically is unchanged and does not depend on the above: **nothing in this
+  > report uses any number from this paper**, and obtaining it needs a route this session does not
+  > have. The next session should treat the retrieval as *open and unattempted by any means that
+  > would settle it*, not as closed — and should capture a raw response if it re-queries.
+  >
+
 
   The honest position: **the paper could not be retrieved here** (ScienceDirect returns HTTP 403), so
   none of its numbers have been seen and nothing here rests on it — it is named as the obvious next

@@ -1,14 +1,26 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
-"""A pytest plugin that grows every plasma kinetics library by one same-reactant channel.
+"""A pytest plugin that grows every plasma kinetics library by one synthetic channel.
 
-Load with ``-p grow_library_plugin``. Every library then reports, in addition to what it
-ships, a synthetic twin of each of its reactions: **identical reactants, products renamed**.
-That is the shape of the collision this campaign is heading for -- ``Ar+ => Ar`` beside
-``Ar+ => Ar*``, two channels of one reactant -- and it is deliberately the shape the previous
-probe could not produce, because that one renamed the *reactants* and so could never collide
-with a reactant-keyed selector.
+Load with ``-p grow_library_plugin``. ``GROW_MODE`` selects the shape of the growth:
+
+``distinct`` (default)
+    a twin with **identical reactants, products renamed** -- the ``Ar+ => Ar`` beside
+    ``Ar+ => Ar*`` shape, which defeats a reactant-only selector and is what round 66 was
+    about.
+
+``duplicate``
+    a twin **identical in both reactants and products** -- the ``duplicate=True`` shape,
+    which defeats *any* key drawn from the reaction. Round 67 pointed out that the probe
+    never injected this, so the one case the module admits it cannot key its way out of was
+    argued about rather than exercised. Under this mode the run must still contain zero
+    errors: the selector is required to degrade to a failure, not raise.
+
+The ``distinct`` shape is deliberately the one the *original* probe could not produce: that
+one renamed the twin's **reactants**, so it could never collide with a reactant-keyed
+selector. The ``duplicate`` shape is the one the *rebuilt* probe could not produce, for the
+same reason one level along. Both are here now so that neither claim rests on argument.
 
 Nothing is written to the database. The growth is a wrapper around
 ``KineticsLibrary.get_library_reactions``, which rebuilds its list on every call, so the
@@ -21,8 +33,13 @@ existing. See ``probe_fixture_survives_growth.py``, which runs pytest twice and 
 """
 
 import copy
+import os
 
 from rmgpy.data.kinetics.library import KineticsLibrary
+
+MODE = os.environ.get('GROW_MODE', 'distinct')
+if MODE not in ('distinct', 'duplicate'):
+    raise ValueError('GROW_MODE must be "distinct" or "duplicate", got %r' % MODE)
 
 _shipped_get_library_reactions = KineticsLibrary.get_library_reactions
 
@@ -36,6 +53,16 @@ def _grown_get_library_reactions(self):
     grown = list(reactions)
     for reaction in reactions:
         twin = copy.deepcopy(reaction)
+
+        if MODE == 'duplicate':
+            # Change nothing: same reactants, same products. No key derived from the
+            # reaction can tell the two apart, which is the point.
+            if _labels(twin.reactants) != _labels(reaction.reactants) \
+                    or _labels(twin.products) != _labels(reaction.products):
+                raise AssertionError(
+                    'duplicate twin is not actually a duplicate for %r' % self.label)
+            grown.append(twin)
+            continue
 
         # Rename only products that are NOT the same object as one of the reactants.
         # ``Ar + e- => Arp + e- + e-`` holds ONE electron Species appearing on both sides,

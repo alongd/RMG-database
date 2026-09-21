@@ -82,7 +82,7 @@ THIS_DATABASE = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardi
 settings['database.directory'] = THIS_DATABASE
 
 from plasma_library_selection import (  # noqa: E402
-    assert_reactions_uniquely_keyed, reaction_for)
+    assert_reactions_uniquely_keyed, reaction_for_isolated)
 from rmgpy.data.kinetics.database import KineticsDatabase  # noqa: E402
 from rmgpy.electron_balance import get_species_electron_count  # noqa: E402
 from rmgpy.exceptions import ElectronPlacementError  # noqa: E402
@@ -124,7 +124,7 @@ def reaction(library):
     than a precondition, and the key's uniqueness in
     ``test_every_reaction_is_distinguishable_from_every_other``.
     """
-    return reaction_for(library, ['[Li]'], ['[Lip]'])
+    return reaction_for_isolated(library, ['[Li]'], ['[Lip]'])
 
 
 @pytest.fixture

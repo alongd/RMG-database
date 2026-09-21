@@ -31,7 +31,7 @@ from over-reading a green run:
 * ``test_the_implementable_sink_is_three_orders_weaker_than_the_source`` pins
   k_ion/k_RR ~ 1e3 at Te = 1 eV. The channel that ships cannot hold the electron
   density down; it only fixes where the ionisation balance lands.
-* ``test_three_body_recombination_can_now_be_stored_and_the_remaining_blocker_is_data``
+* ``test_three_body_recombination_can_now_be_stored_and_is_blocked_by_data_and_placement``
   pins the *reason* the dominant volume sink is absent. **That reason changed under
   I-226, and the test caught it.** It used to read ``..._still_cannot_be_stored_at_all``
   and pinned that ``TwoTemperaturePlasma`` carried no ``electrons`` field, so a
@@ -94,7 +94,7 @@ THIS_DATABASE = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardi
 settings['database.directory'] = THIS_DATABASE
 
 from plasma_library_selection import (  # noqa: E402
-    assert_reactions_uniquely_keyed, reaction_for)
+    assert_reactions_uniquely_keyed, reaction_for_isolated)
 from rmgpy.data.kinetics.database import KineticsDatabase  # noqa: E402
 from rmgpy.data.kinetics.family import TemplateReaction  # noqa: E402
 from rmgpy.electron_balance import (  # noqa: E402
@@ -147,7 +147,7 @@ def _reaction_for(library, reactant_label, product_label):
     ``plasma_library_selection``; the uniqueness of the key is itself asserted, once, in
     ``test_every_reaction_is_distinguishable_from_every_other``.
     """
-    return reaction_for(library, [reactant_label], [product_label])
+    return reaction_for_isolated(library, [reactant_label], [product_label])
 
 
 @pytest.fixture
@@ -220,6 +220,32 @@ def test_library_loads_with_the_expected_coverage(library):
         'library coverage changed; update this test and add per-entry checks for the '
         'new entry rather than letting it ride on the existing ones')
     assert len(library.entries) == 2
+
+
+def test_the_fixture_really_is_isolated_from_the_shared_library(library, reaction):
+    """Writing through the fixture must not reach the module-scoped library's species.
+
+    The fixtures have always *claimed* "a fresh reaction per test, so mutation cannot leak
+    between them". That was false until round 67: ``get_library_reactions`` rebuilds the
+    participant lists but **shares the Species objects**, and the reactor tests below assign
+    ``species.thermo`` to drive ``initialize_model`` -- a write that landed on the library
+    every later test in this module then read. Nothing depended on it, which is exactly why
+    it was worth removing: an order-dependent coupling that nothing reads yet is a bug with
+    a delay on it, and this file is about checks that stop working quietly.
+
+    This test is the claim's receipt. Without ``reaction_for_isolated``'s deep copy it fails.
+    """
+    canonical = next(r for r in library.get_library_reactions()
+                     if [s.label for s in r.reactants] == ['[Lip]'])
+    library_species = canonical.reactants[0]
+    fixture_species = reaction.reactants[0]
+
+    assert fixture_species is not library_species, (
+        'the fixture handed back the library\'s own Species; a write here is a write there')
+
+    sentinel = object()
+    fixture_species.thermo = sentinel
+    assert getattr(library_species, 'thermo', None) is not sentinel
 
 
 def test_every_reaction_is_distinguishable_from_every_other(library):
@@ -580,7 +606,7 @@ def _write_three_body_trial(tmp_path, electrons_literal=None, name='ThreeBodyTri
     return trial
 
 
-def test_three_body_recombination_can_now_be_stored_and_the_remaining_blocker_is_data(tmp_path):
+def test_three_body_recombination_can_now_be_stored_and_is_blocked_by_data_and_placement(tmp_path):
     """THE TRIPWIRE FIRED, AND IT WAS RIGHT TO. This test has been re-pinned under I-226.
 
     **What this test was written for, and why it was right.** It pinned the *reason* the

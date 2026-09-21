@@ -19,8 +19,10 @@ the same structural reason and different chemistry.
 
 The photon is not represented. RMG has no photon species, and ``hv`` carries neither
 charge nor mass, so no balance check misses it. What IS lost by omitting it is the energy
-sink: this reaction removes 5.392 eV per event from the electron population and the model
-has nowhere to put it. `PlasmaReactor` prescribes ``Te`` rather than solving an electron
+sink: the reaction removes the ionisation energy of the recombining ion per event from the
+electron population, and the model has nowhere to put it. That is **5.392 eV for lithium and
+15.760 eV for argon** - a per-entry quantity, not a property of this library, and it was
+written here as a bare "5.392 eV" until round 67 pointed out that it reads as library-wide. `PlasmaReactor` prescribes ``Te`` rather than solving an electron
 energy equation, so that omission costs nothing here - but it would matter to any reactor
 that closed the electron energy balance, and it is recorded rather than assumed away.
 
@@ -38,7 +40,12 @@ not have. All three are distinct processes with distinct rates.
 
 **It is therefore not the dominant electron sink.** At every electron density this campaign
 has named, three-body recombination outruns radiative recombination - by ~2x at
-n_e = 1e10 cm^-3 and by ~9x at 1e14 cm^-3, at Te = 1 eV. Three-body recombination has no
+n_e = 1e10 cm^-3 and by ~9x at 1e14 cm^-3, at Te = 1 eV. Those two ratios are **lithium's**,
+computed from this library's Badnell entry, and are quoted here as the order of magnitude of
+a gap rather than as a number for any other element; argon's ratio has not been computed and
+is not claimed to be these. (I-235 also found that the "2-9x" figures are the LUMPED
+Stevefelt coefficient, whose elementary channel is ~6500x smaller - a second reason to read
+them as a scale and not a result.) Three-body recombination has no
 shipped fit anywhere in this database (``input/kinetics/`` holds ``voronov.yaml`` and
 ``badnell.yaml`` and nothing else), so it is not entered here and no rate for it is
 authored. The measurements, and what would be needed to close that gap, are in
@@ -406,17 +413,26 @@ almost exactly as fast as it removes them, so the density hardly changes. The vo
 set by V = R((n_total - n_e)*Tgas + n_e*Te)/P, and with this deck ionised to completion at
 Te/Tgas = 116.8 the electron gas carries 99.15% of that sum. Take away 1213 ppm of the
 electrons and 1203 ppm of the volume goes with them; the quotient moves by the ~1/117
-residue, 10.3 ppm. The effect is not an artefact of the two arms stopping at different
-times: comparing both at the earlier arm's final time gives the same -10.3 ppm.
+residue, 10.3 ppm. That last multiplication is an INTERNAL CONSISTENCY check, not a second
+derivation: the 0.85% comes from the same composition through the same EOS that set the
+volume, so it confirms the table is coherent, not that the EOS is the cause. (The cause is
+standard physics, and the same ~1/117 suppression shows up on I-235's unrelated three-body
+channel.) The two arms stop at different times, and interpolating both to the earlier one's
+final time gives the same -10.3 ppm - which disposes of the termination-time objection and
+adds nothing else, since the bracketing rows there are bit-identical.
 
 The volume cancels out of any RATIO of two heavy species, which is exactly why the neutral
 fraction is free to move by three orders while the density does not. Same run, same
 physics, two observables, two honest answers.
 
 Consequence for the campaign, stated plainly: **this channel is not a candidate explanation
-for the electron-density discrepancy**, and no volumetric sink of any order can be, for the
-same reason (I-235's three-body channel included). Only a non-volumetric loss - wall/
-ambipolar diffusion, which is absent from this mechanism - escapes the cancellation.
+for the electron-density discrepancy**, and no volumetric sink of any order can be *while the
+electron gas dominates the EOS bracket* (I-235's three-body channel included). That proviso
+is load-bearing: the suppression is 1 - f with f the electron share of the bracket, and
+f -> 1 only in the fully ionised limit. A sink strong enough to de-ionise the mixture leaves
+that limit as it acts, and the suppression weakens toward nothing; a weakly ionised deck has
+none at all. Only a non-volumetric loss - wall/ambipolar diffusion, absent from this
+mechanism - escapes the cancellation unconditionally.
 
 **What that agreement establishes, and what it does not.** It is an integration consistency
 check: the solver was handed these two coefficients and reproduces the ratio the algebra

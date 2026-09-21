@@ -1,11 +1,16 @@
-Three plasma test files, run twice.
+Three plasma test files. One baseline run, two growth shapes.
 
-AS SHIPPED        passed=102 failed=0 errors=0
-LIBRARIES GROWN   passed=100 failed=2 errors=0
-                  (one twin per reaction: same reactants, products renamed)
+AS SHIPPED                         passed=103 failed=0 errors=0
+                                   (the control: this must be green and non-empty)
 
-  errors=0    -> PASS. Every check still ran against the grown library.
-  failed=2   -> PASS. The coverage tests noticed the growth and said so,
-              which is a test arguing with you rather than disappearing.
+GROWN: same reactants, new products passed=101 failed=2 errors=0
+                                   (the round-66 shape: Ar+ => Ar beside Ar+ => Ar*)
+    errors=0   -> PASS. Every check still ran.
+    failed=2   -> PASS. The coverage claims noticed and objected.
+
+GROWN: exact duplicate channel     passed=32 failed=71 errors=0
+                                   (the round-67 shape: no key can separate these; the selector must degrade)
+    errors=0   -> PASS. Every check still ran.
+    failed=71   -> PASS. The coverage claims noticed and objected.
 
 PASS

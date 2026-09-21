@@ -31,19 +31,51 @@ unique:
 * a label is free text that can be reworded without touching the chemistry. The channel is
   what a test is about.
 
-**The residual, stated rather than hidden.** A genuine ``duplicate=True`` pair -- same
+**The residual, and how it is actually handled.** A genuine ``duplicate=True`` pair -- same
 reactants, same products, two rates -- collides under this key too, and no key drawn from the
 reaction can separate it, because in that case the test genuinely cannot know which entry it
-means. That case is why ``assert_reactions_uniquely_keyed`` exists: each test file calls it in
-one dedicated test, so a collision of any kind arrives as a **failure in a named test** rather
-than as a setup error scattered across every test that happens to use a fixture. The selector
-makes collisions rare; the uniqueness test makes them loud. Only the second is a guarantee.
+means. Two things cover it, and round 3 of this defect was the discovery that only having the
+first is not enough:
+
+* ``assert_reactions_uniquely_keyed``, called from one dedicated test per file, so a collision
+  of any kind is announced once, by name, in a test whose failure says exactly what happened;
+* ``reaction_for`` **does not raise** on an ambiguous selection. It returns an
+  ``AmbiguousSelection``, which raises on first use *inside the test body*. An earlier version
+  of this module claimed the uniqueness test meant "the setup-error failure mode is
+  unreachable"; that was false. The uniqueness test adds one failure, it does not stop the
+  selector raising in every other fixture, so a duplicate pair would have produced the named
+  failure **plus** the whole crop of setup errors the module exists to prevent. The guarantee
+  is now carried by the selector's own failure path rather than asserted about it.
+
+So: the key makes collisions rare, the uniqueness test makes them loud, and the stand-in makes
+them survivable. All three, and the third is the one that makes the claim true.
 
 Exercised end-to-end, against the collision case specifically, by
 ``docs/argon-radiative-recombination/logs/probe_fixture_survives_growth.py``, which imports
 these functions rather than reimplementing them -- the previous probe kept its own copy of the
 selector, and a copy is free to stay correct while the shipped one is not.
 """
+
+import copy
+
+
+def reaction_for_isolated(library, reactants, products):
+    """``reaction_for``, deep-copied, so a test cannot mutate the shared library.
+
+    ``get_library_reactions`` rebuilds the reaction objects on every call but **shares the
+    ``Species``**: the participant lists are new, the molecules in them are not. Several
+    reactor tests assign ``species.thermo`` to drive ``initialize_model``, and that write
+    lands on the module-scoped library's own species, visible to every test that runs after
+    it. Nothing depends on it today, which is precisely what makes it worth removing -- it
+    is an order-dependent coupling waiting for a test that reads what an earlier one wrote.
+
+    The fixtures' promise of a fresh reaction per test was false until this existed; it said
+    so in three docstrings.
+    """
+    selected = reaction_for(library, reactants, products)
+    if isinstance(selected, AmbiguousSelection):
+        return selected
+    return copy.deepcopy(selected)
 
 
 def reaction_key(reaction):
@@ -61,31 +93,71 @@ def format_key(key):
     return '{0} => {1}'.format(' + '.join(reactants), ' + '.join(products))
 
 
+class AmbiguousSelection(object):
+    """Stands in for a reaction that could not be selected, and fails on first use.
+
+    This exists because of where the two previous fixes stopped. A fixture that *raises*
+    produces a pytest setup ERROR, and an error asserts nothing and is reported in its own
+    section -- which is the entire defect this module is about. Returning this object
+    instead moves the moment of failure from setup into the test body, where pytest
+    records a FAILURE against the test's own name.
+
+    Every attribute access, comparison, iteration and truth test raises ``AssertionError``
+    carrying the selection message, so a test cannot quietly proceed on a stand-in. ``repr``
+    is deliberately the one safe operation: pytest calls it while formatting reports, and a
+    raise there would turn the failure back into the internal error this class exists to
+    avoid.
+    """
+
+    def __init__(self, message):
+        self.__dict__['_message'] = message
+
+    def _fail(self, *args, **kwargs):
+        raise AssertionError(self.__dict__['_message'])
+
+    def __getattr__(self, name):
+        self._fail()
+
+    def __setattr__(self, name, value):
+        self._fail()
+
+    __eq__ = __ne__ = __iter__ = __len__ = __bool__ = __call__ = __getitem__ = _fail
+    __hash__ = None
+
+    def __repr__(self):
+        return '<AmbiguousSelection: {0}>'.format(self.__dict__['_message'])
+
+
 def reaction_for(library, reactants, products):
     """Return the one library reaction with these reactants and these products.
 
-    Raises ``AssertionError`` when there is not exactly one. Inside a fixture that is a
-    setup error, which is exactly the failure mode this module exists to make rare -- hence
-    ``assert_reactions_uniquely_keyed``, which turns the remaining cases into a loud failure
-    in one place.
+    When there is not exactly one, this does **not** raise. It returns an
+    ``AmbiguousSelection``, which raises on first use inside the test body -- so an
+    ambiguous or missing selection is reported as a FAILURE of the test that needed it,
+    never as a setup error that removes the test from the run. That is the difference this
+    module exists to defend, applied to its own failure path.
     """
     wanted = (tuple(sorted(reactants)), tuple(sorted(products)))
     matches = [r for r in library.get_library_reactions() if reaction_key(r) == wanted]
-    assert len(matches) == 1, (
+    if len(matches) == 1:
+        return matches[0]
+    return AmbiguousSelection(
         'expected exactly one reaction {0!r} in {1}, found {2}. Present: {3}'.format(
             format_key(wanted), library.label, len(matches),
             sorted(format_key(reaction_key(r)) for r in library.get_library_reactions())))
-    return matches[0]
 
 
 def assert_reactions_uniquely_keyed(library):
     """Every reaction in the library is distinguishable from every other one.
 
-    Call this from exactly one test per library. It is the claim that makes selection by
-    identity safe: if it holds, no fixture in the file can match two reactions, and the
-    setup-error failure mode is unreachable. When it stops holding, it stops holding HERE,
-    as a failure someone has to answer, instead of silently converting the file's other
-    tests into errors nobody reads.
+    Call this from exactly one test per library. When it holds, no fixture in the file can
+    match two reactions. When it stops holding, it stops holding HERE first -- as a failure
+    someone has to answer, with a message naming the colliding channels.
+
+    What it does **not** do, because an earlier version of this docstring claimed otherwise:
+    it does not prevent ``reaction_for`` from failing elsewhere in the same run. It is one
+    named failure, not a gate on the other tests. What keeps those other tests reporting as
+    failures rather than setup errors is ``AmbiguousSelection``, not this assertion.
     """
     seen = {}
     for reaction in library.get_library_reactions():

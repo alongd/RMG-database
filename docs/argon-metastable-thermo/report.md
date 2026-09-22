@@ -2379,3 +2379,55 @@ demonstrated rather than argued — the export exists, and its numbers are right
 Not settled: the run still ends non-zero, so "a clean end-to-end plasma run" remains unreached, on
 a defect that is not this branch's. The deck also substitutes `terminationTime = 1e-3 s` for
 "quasi-steady state" (the deck's own note 2), so nothing here is a statement about the steady state.
+
+---
+
+## 23. For the next review round: what round 90 claims, and where to push
+
+The owner's ruling after §22 was to hold the branches for another adversarial round rather than
+push. This section exists to make that round cheap: every load-bearing claim of round 90, how it
+was measured, and the places I would attack first.
+
+### 23.1 The claims and their measurements
+
+| claim | how it was measured | named against |
+|---|---|---|
+| The rebase changed no behaviour | both probes re-run green; `git diff 39336c8ab e0f075780 -- test/rmgpy/data rmgpy/data` empty | engine `e0f075780` |
+| The second reader of `Reaction.family` is intact | `electronPlacementTest.py` in the 107-passed run | engine `e0f075780` |
+| A pristine engine fails exactly the two negative controls | database `test/` with `PYTHONPATH` at `/home/alon/Code/RMG-Py-plasma` | plasma head `98d465d3b` |
+| The deck's Chemkin export carries the right excitation energy | a6 difference in the emitted file | `logs/round90-deck-chem_annotated.inp` |
+| The remaining failure is not this branch's | traceback at `yaml_cantera2.py:525` in both runs | engine `e0f075780` |
+
+### 23.2 Where I would push, if I were reviewing this
+
+**The excitation-energy check is narrower than it looks.** The a6 difference equals ΔH only because
+both species are monatomic with identical `a1 = 2.5`, so the gap is temperature-independent; I
+checked that condition holds in the emitted file, but the identity would not survive a species with
+real heat capacity. And it verifies the *export path* — that the library number reaches Chemkin
+undistorted — not the entry itself, which rounds ≤58 settled separately. It is a strong check of
+exactly one link.
+
+**The deck's own header is stale, and I did not repair it.** Note 3 of `input.py` says 3 eV typed as
+34813.5 K, while the reactor block passes `electronTemperature=(10442.0, 'K')` = 0.8998 eV, with its
+own comment calling that the measured ionisation/wall-loss balance point. The runs used 0.900 eV.
+The prose and the code disagree by a factor of 3.3 in Te, and the prose is the wrong one. The deck
+is not a repository file and is not this ticket's, so it was left alone and is named here instead.
+
+**`Ars` participates in no reaction.** Nothing in the loaded set has a metastable channel, so the
+run exercises thermo, transport and the writer for that species and no kinetics at all. "The
+pipeline works" should be read with that scope.
+
+**The model is tiny and the termination is a substitute.** Four core species, two to three
+reactions, 5 s of execution, and `terminationTime = 1e-3 s` standing in for "quasi-steady state"
+(the deck's own note 2). Nothing here is a statement about a steady state.
+
+**The pristine-engine control depends on somebody else's build.** It ran against
+`/home/alon/Code/RMG-Py-plasma`, which I did not rebuild. Checked rather than assumed: that
+worktree's `chemkin` `.so` is dated 13:11 against a `.pyx` of 13:10 and a HEAD commit of 13:10:36,
+so it is a current build of `98d465d3b`.
+
+**What I could not reach.** A clean end-to-end plasma run — blocked on §22.4, which is not fixable
+from inside this ticket. `test_make_profile_graph` remains unreached for the separate reason named
+in round 89 (no graphviz `dot` installed). And the `Seed/` and `Seed_edge/` directories left
+untracked in the shared `/home/alon/Code/RMG-database-plasma` checkout are still there, still not
+mine to delete, and still part of what the engine suite collects against.

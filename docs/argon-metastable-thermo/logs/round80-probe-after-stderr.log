@@ -1,0 +1,33 @@
+INFO:root:Loading transport library from NIST_Fluorine.py in /home/alon/Code/RMG-database-i221-argon-metastable-thermo/input/transport/libraries...
+INFO:root:Loading transport library from PrimaryTransportLibrary.py in /home/alon/Code/RMG-database-i221-argon-metastable-thermo/input/transport/libraries...
+INFO:root:Loading transport library from GRI-Mech.py in /home/alon/Code/RMG-database-i221-argon-metastable-thermo/input/transport/libraries...
+INFO:root:Loading transport library from OneDMinN2.py in /home/alon/Code/RMG-database-i221-argon-metastable-thermo/input/transport/libraries...
+INFO:root:Loading transport library from NOx2018.py in /home/alon/Code/RMG-database-i221-argon-metastable-thermo/input/transport/libraries...
+INFO:root:Loading transport group database from /home/alon/Code/RMG-database-i221-argon-metastable-thermo/input/transport/groups...
+INFO:root:Loading solvation thermodynamics group database from /home/alon/Code/RMG-database-i221-argon-metastable-thermo/input/solvation/groups...
+ERROR:root:Could not update atomtypes for this molecule:
+multiplicity 3
+1 Ar u0 p3 c0 {2,S} {3,S}
+2 H  u0 p0 c0 {1,S}
+3 H  u0 p0 c0 {1,S}
+
+WARNING:root:Estimating transport properties of multiplicity 3
+1 Ar u2 p3 c0
+ from the fallback Lennard-Jones parameters, because group additivity is not available for it: Cannot estimate transport data by group additivity: replacing the species' 2 radical electron(s) with bonds to hydrogen gives a structure that no RMG atom type describes, so the saturated form the estimate is built on does not exist. This is expected for electronically excited species, such as a metastable noble gas, whose unpaired electrons are not unfilled valences. Supply transport data for this species directly in a library entry, or keep it out of the model.
+The species was:
+multiplicity 3
+1 Ar u2 p3 c0
+
+its saturated form was:
+multiplicity 3
+1 Ar u0 p3 c0 {2,S} {3,S}
+2 H  u0 p0 c0 {1,S}
+3 H  u0 p0 c0 {1,S}
+
+and the underlying atom type failure was: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 benzene bonds, 3 lone pairs, and +0 charge.
+ERROR:root:Could not update atomtypes for this molecule:
+multiplicity 3
+1 Ar u0 p3 c0 {2,S} {3,S}
+2 H  u0 p0 c0 {1,S}
+3 H  u0 p0 c0 {1,S}
+

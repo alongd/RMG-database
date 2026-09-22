@@ -1721,17 +1721,29 @@ carries no information**, and counting it as passing is the very pattern this ro
 so the probe now labels those VACUOUS by name and each of the three families gets a hand-written
 control with a real partner in `CONTAINMENT_CONTROLS` instead.
 
-### 17.4 A second failure mode, found by the two reverse-matching families
+### 17.4 A second failure mode, found by the two reverse-matching families — WITHDRAWN in round 80
 
 The entry has argued since round 58 that this can never be a silent wrong number, structurally:
 RMG refuses a neutral bonded argon at u0, so every covalent neutral argon is a radical, so its
 thermo routes through HBI, which saturates it to a two-bond argon with no atom type.
 
-That argument is about **neutral** covalent argon. The reverse-matching families build a bonded
-argon **cation**, `[Ar]NH2+`, which never reaches HBI at all — it fails in the group-additivity
-lookup with `DatabaseError: no data for node R or any of its ancestors`. **The conclusion survives
-and the stated mechanism was incomplete:** two loud failure routes, not one, and neither yields a
-number. Written into the entry beside the original argument.
+Round 77 claimed the reverse-matching families escape that argument by building a bonded argon
+**cation**, `[Ar]NH2+`, failing in the group-additivity lookup with `DatabaseError: no data for
+node R or any of its ancestors` instead. **That claim is withdrawn: neither half of it matches
+the executed path.** The cation was hand-built, not generated. What `Cation_NO_Substitution` and
+`Li_NO_Substitution` actually generate is `N[Ar]` — a **neutral** bonded argon radical,
+`Ar u1 p3 c0` bonded to N, net charge 0 — and it raises `AtomTypeError` from HBI saturation like
+the other nine (`AtomTypeError` on a stock engine; `SaturatedStructureError`, the same failure
+named, on the round-80 engine). See §18.3.
+
+Why the wrong answer stood for a round: the witness probe's `thermo_verdict()` inspected
+`reaction.products` only, and in a reverse match the bonded argon is a **reactant**. The probe
+printed zero failures for both families while direct checking reproduced the raise, so the
+mechanism was reconstructed by hand instead of read off the measurement. Fixed in round 80 —
+`thermo_verdict()` now walks both sides and reports which side each failure sat on.
+
+**The conclusion is unchanged and the argument is wider than it looked:** the three structural
+steps cover all eleven families, and there is one loud failure route, not two.
 
 ### 17.5 The four standing items
 
@@ -1797,3 +1809,131 @@ reason the lock exists. Worth writing down because the recovery is not obvious: 
 inside a case leaves a lock naming a PID that no longer exists, and the only safe clearance is to
 confirm the PID is dead before removing it. This is the
 second time this campaign's own tooling has caught this campaign's own mistake.
+
+---
+
+## 18. Round 80 — the HIGH was an engine defect, and four standing items
+
+Round 80's finding is not in the database. Transport estimation and solute-data estimation both
+die on metastable argon, at a layer a kinetics family cannot reach: they fire **after** the
+species is admitted, and neither transport nor solvation is a family. Both were fixed in RMG-Py,
+on a dedicated worktree and branch.
+
+### 18.1 The premise, reproduced before anything was built on it
+
+The brief's claim was reproduced first, with the controls that make it falsifiable — `scratchpad/
+saturation_probe.py`, run in both directions:
+
+| species | transport | solute data |
+|---|---|---|
+| `Ar u2 p3 c0` | `AtomTypeError` | `AtomTypeError` |
+| `Ar u0 p4 c0` (control) | survives, library `NIST_Fluorine` | survives, solute library `Ar` |
+| `[CH3]` (control) | survives | survives |
+
+**Two line numbers in the brief are one hop off, and the defect is the brief's.** The raising
+lines at engine `273f38bfa` are `transport.py:465` and `solvation.py:1566`, not `:459` and
+`:1424`; those are in the enclosing functions. Recorded because round 77's lesson was to
+reproduce a brief's numbers and say the delta out loud.
+
+### 18.2 The cause, and why it is fixed as a cause
+
+**Radical saturation of a species whose saturated form no atom type owns.** Every
+hydrogen-bond-increment estimator — thermo, transport, solute data — builds a saturated copy as an
+intermediate, which assumes each radical electron is an unfilled chemical valence. For an
+electronically excited atom it is not. `Ar u2 p3 c0` saturates to ArH2: electron-count-consistent
+and owned by nothing. Ground-state argon survives because `u0` saturates to itself.
+
+`rmgpy/data/base.py` gains `saturate_for_estimation`, which does what all five call sites did
+inline and raises `SaturatedStructureError` — naming the species, its saturated form, the estimate
+that could not be made, and what to supply instead — when the saturated form has no atom type.
+Four call sites adopt it (transport, solvation, thermo, uncertainty); `rmgpy/qm/main.py` is the
+fifth and is left alone, guarded by `onlyCyclics` and unreachable for a monatomic.
+
+**The two candidate approaches, and the judgement.** Shipping transport and solute data for this
+species is smaller and was proved to work. It was **not** taken as the fix, for two reasons. It
+covers only species somebody anticipated, while the defect is in the estimator and reachable by
+any future species of this shape. And there are no sourced Lennard-Jones or Abraham parameters
+for Ar(4s ³P₂) in hand — copying ground-state argon's would put an unsourced number into a
+campaign that has refused exactly that repeatedly. What the estimators do instead:
+
+- **transport falls back**, to the Lennard-Jones estimate the group estimator already falls back
+  on for every other failure — and says so, in a warning and in a comment that reaches `tran.dat`:
+  *"these parameters are a heavy-atom-count guess and nothing more."* The deck completes.
+- **solute data reports rather than invents.** There is no defensible Abraham estimate for a
+  metastable noble gas, so it raises — but with the species and the remedy named, instead of an
+  `AtomTypeError` from many frames below the call the modeller made.
+
+### 18.3 What the consumers do, measured end to end
+
+`scratchpad/consumer_endtoend.py` drives the three consumers the brief names, on both engines.
+Before: the first one crashes. After, all three complete and the reason survives into the output.
+
+| consumer | before (`273f38bfa`) | after |
+|---|---|---|
+| `Species.get_transport_data()` | `AtomTypeError` | σ = 3.758 Å, ε/k = 148.6 K, comment carries the reason |
+| `save_transport_file` (tran.dat) | never reached | renders, with the reason as the entry's comment |
+| `Configuration.calculate_collision_frequency` (pdep) | never reached | 2.601e9 Hz at 1000 K, 1 atm |
+
+Ground-state argon is the control throughout and keeps its library values (σ = 3.33 Å,
+`NIST_Fluorine`).
+
+### 18.4 Which other shipped species have this shape: **one, and it is ours**
+
+`scratchpad/unsaturable_species_survey.py` enumerates every species the shipped databases name —
+79 thermo libraries, 5 transport, 2 solute, 188 kinetics libraries — and tests each for the shape.
+
+**26,210 distinct structures scanned; 1 hit: `Ar(3P2)`, in `PlasmaExcitedNeutralThermo`.** The
+answer today is "none but the one this ticket adds", and that is worth stating because it tells
+the next reader what changes the day a second one appears.
+
+Two things bound it. The survey covers the species databases *name*, not species RMG can
+*generate* — generated ones are the family-layer containment's job. And the shape is narrower
+than "excited species": tested directly, **metastable neon `Ne u2 p3 c0` saturates cleanly**,
+because RMG's `Ne` atom type carries no bond or lone-pair constraint, while argon's `Ar0e` does.
+Ne\* would therefore reach the same Lennard-Jones fallback by the ordinary `KeyError` route and
+get the same numbers **with nothing said about why** — quieter than argon's failure, not safer.
+Named, not fixed: atom types are the owner's closed item (round 60).
+
+### 18.5 The four standing items
+
+| item | what was done |
+|---|---|
+| **MEDIUM — the EII pin is not enforced** | It is now. `load_family_quarantine` imports the declared `requiresEngineModule` and looks up `requiresEngineSymbol`, refusing the load with a `DatabaseError` naming the family if either is absent. `requiresEngineCommit` is **deliberately not checked** and is relabelled provenance: an installed engine has no reliable commit to compare against, so a commit check would pass on every checkout — a check that cannot fail. The declared symbol also changed, from the loader (`load_family_quarantine`) to the **gate** (`check_quarantine`): the loader reading a manifest was a tautology, while the gate is what makes the refusal real. The database-side test asserts the *enforcement*, not the declaration, and is red on an engine that only declares. |
+| **MEDIUM — the anchor test pinned the defect** | Asserting "the runtime resolves the WRONG camp" makes a defect the expected state and turns the day somebody fixes it into a red suite. The decision is asserted instead: the entry must quote the **JANAF-anchored** excitation pair (1114.2468 kJ/mol, 13.3816 J/(mol·K)), and the load-order hazard is asserted as a disclosure that must be present while it is live and absent once it is not — correct under both states, satisfiable by silence under neither. On the resolution: `BurkeH2O2`'s 36.98 cal/(mol·K) is the published mechanism's own four-figure value, faithfully transcribed. A library that reproduces its source is doing its job; the gap belongs at the **selection** layer, and that is still upstream. |
+| **LOW — `thermo_verdict()` inspected one side** | It walked `reaction.products` only, so for the two reverse-matching families — where the bonded argon is a generated **reactant** — it printed zero failures while direct checking reproduced the raise. It now walks both sides and labels which side each failure sat on. This is the same width failure as round 77's partner list: a procedure that cannot see the thing it is looking for, reporting that the thing is not there. |
+| **LOW — the withdrawn `2.0583e10`** | Gone from `round58_probe.py`. The comparator is now this rule against itself — evaluated at Te = 3 eV versus delivered at Tgas — which is what the report already said replaced it. The constant survives only in a comment explaining the withdrawal. |
+| **LOW — the header said five families** | Corrected to eleven (twelve admitting, one of them the intended EII channel), with the method named: derived from the template space, not counted over a partner sample. The test whose *name* said "five containments" is renamed and its docstring keyed to `CONTAINED_FAMILIES` rather than to a count. |
+| **LOW — the derivation swallowed matcher exceptions** | A raising matcher meant "does not match", which quietly narrowed *every family whose template admits it is contained* to *every family whose template could be evaluated*. Raises are now collected in `MATCHER_ERRORS`, reported as UNDETERMINED, and fatal. Shown able to fail: with one family's matcher sabotaged, the derivation reports 8 unevaluable slots and exits 1. |
+
+### 18.6 A withdrawal: the "second failure route" never existed
+
+Round 77 wrote into the entry that the two reverse-matching families build a bonded argon
+**cation**, `[Ar]NH2+`, failing with `DatabaseError: no data for node R or any of its ancestors`
+rather than `AtomTypeError` — a second loud route the structural argument did not cover. **Both
+halves are wrong.** Measured through the families' own generation, the species they build is
+`N[Ar]`: a **neutral** bonded argon radical, `Ar u1 p3 c0` bonded to N, net charge 0, which raises
+`AtomTypeError` from HBI saturation exactly like the other nine.
+
+The cation was hand-built, not generated. It stood for a round because the probe that should have
+caught it inspected products only (§18.5) — so the mechanism was reconstructed by hand instead of
+read off the measurement. **The conclusion is unchanged and the argument is wider than it looked:**
+three structural steps, eleven families, one loud failure route.
+
+### 18.7 Checks run, and what each is relative to
+
+The plasma engine moved twice during this round: `311818121` → `273f38bfa` (§5a of the round-77
+handoff) → **`40e21b495`** (I-244, which changed `chemkin.pyx`, so the built extensions were
+refreshed). The engine branch was rebased onto `40e21b495` and everything re-measured there.
+
+| check | result | relative to |
+|---|---|---|
+| database `test/` | **323 passed** | database `0c75e1c79` + this round, engine branch `8ff42bd1a` |
+| database `test/` on the **pristine** engine | 322 passed, **1 failed** — the pin-enforcement test, by design | engine `40e21b495` |
+| `template_space_derivation.py` | **EXIT 0**, 12 admit / 11 forbidden / 1 intended, no unevaluable slot | as above |
+| engine `saturatedStructureTest.py` (new) | **12 passed**; shown **4 failed** with the two call sites reverted | engine `8ff42bd1a` |
+| engine `quarantineTest.py` | **33 passed, 7 skipped**, against 29/7 pristine — the 4 new ones | engine `40e21b495` → `8ff42bd1a` |
+| engine transport/solvation/thermo/base/uncertainty | identical on both engines, including the **2 thermoTest failures that are the base's** | engine `40e21b495` |
+
+**The database branch now requires the engine branch.** `test_this_runtime_ENFORCES_the_declared_
+engine_requirement` fails on any engine that reads a manifest without honouring what it declares —
+which is the point of it, and is the loud failure the manifest has always said it wants.

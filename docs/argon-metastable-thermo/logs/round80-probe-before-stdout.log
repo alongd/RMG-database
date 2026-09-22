@@ -1,0 +1,22 @@
+mode: before
+database: /home/alon/Code/RMG-database-i221-argon-metastable-thermo/input
+
+=== Ar*(3P2) ===
+  transport: crash  (predicted crash ) OK
+      Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 benzene bonds, 3 lone pairs, and +0 charge. via /home/alon/Code/RMG-Py-plasma/rmgpy/data/transport.py:465
+  solute   : crash  (predicted crash ) OK
+      Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 benzene bonds, 3 lone pairs, and +0 charge. via /home/alon/Code/RMG-Py-plasma/rmgpy/data/solvation.py:1566
+
+=== Ar ground ===
+  transport: data   (predicted data  ) OK
+      TransportData(shapeIndex=0, epsilon=(1134.93,'J/mol'), sigma=(3.33,'angstroms'), dipoleMoment=(0,'De'), polarizability=(0,'angstroms^3'), rotrelaxcoll
+  solute   : data   (predicted data  ) OK
+      SoluteData(S=0.0,B=0.0,E=0.0,L=-0.688,A=0.0,comment='Solute library: Ar')
+
+=== CH3 ===
+  transport: data   (predicted data  ) OK
+      TransportData(shapeIndex=1, epsilon=(1197.28,'J/mol'), sigma=(3.8,'angstroms'), dipoleMoment=(0,'De'), polarizability=(0,'angstroms^3'), rotrelaxcolln
+  solute   : data   (predicted data  ) OK
+      SoluteData(S=0.017707270532096222,B=-0.051626958653394645,E=0.015961604756635304,L=-0.41966184971462545,A=0.09900549201220424,comment='Solute library:
+
+ALL OUTCOMES MATCHED THE BEFORE PREDICTION

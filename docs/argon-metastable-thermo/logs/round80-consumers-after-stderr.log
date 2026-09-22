@@ -1,0 +1,22 @@
+WARNING:matplotlib:/home/alon/.config/matplotlib is not a writable directory
+WARNING:matplotlib:Matplotlib created a temporary cache directory at /tmp/claude-1000/matplotlib-5nqaj4ro because there was an issue with the default path (/home/alon/.config/matplotlib); it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+INFO:matplotlib.font_manager:Failed to extract font properties from /usr/share/fonts/truetype/noto/NotoColorEmoji.ttf: In FT2Font: Could not set the fontsize (invalid pixel size; error code 0x17)
+INFO:matplotlib.font_manager:generated new fontManager
+ERROR:root:Could not update atomtypes for this molecule:
+multiplicity 3
+1 Ar u0 p3 c0 {2,S} {3,S}
+2 H  u0 p0 c0 {1,S}
+3 H  u0 p0 c0 {1,S}
+
+WARNING:root:Estimating transport properties of Ar(3P2) from the fallback Lennard-Jones parameters, because group additivity is not available for it: Cannot estimate transport data by group additivity: replacing the species' 2 radical electron(s) with bonds to hydrogen gives a structure that no RMG atom type describes, so the saturated form the estimate is built on does not exist. This is expected for electronically excited species, such as a metastable noble gas, whose unpaired electrons are not unfilled valences. Supply transport data for this species directly in a library entry, or keep it out of the model.
+The species was:
+multiplicity 3
+1 Ar u2 p3 c0
+
+its saturated form was:
+multiplicity 3
+1 Ar u0 p3 c0 {2,S} {3,S}
+2 H  u0 p0 c0 {1,S}
+3 H  u0 p0 c0 {1,S}
+
+and the underlying atom type failure was: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 benzene bonds, 3 lone pairs, and +0 charge.

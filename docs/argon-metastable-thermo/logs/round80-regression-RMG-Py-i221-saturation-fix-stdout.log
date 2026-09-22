@@ -1,0 +1,698 @@
+============================= test session starts ==============================
+platform linux -- Python 3.9.23, pytest-8.4.1, pluggy-1.6.0 -- /home/alon/anaconda3/envs/rmg_env/bin/python3.9
+rootdir: /home/alon/Code/RMG-Py-i221-saturation-fix
+configfile: pytest.ini
+plugins: check-2.5.3, cov-6.2.1, anyio-4.10.0
+collecting ... collected 153 items
+
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/transportTest.py::TestCriticalPointGroupContribution::test__tc PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/transportTest.py::TestCriticalPointGroupContribution::test__pc PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/transportTest.py::TestCriticalPointGroupContribution::test__vc PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/transportTest.py::TestCriticalPointGroupContribution::test__tb PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/transportTest.py::TestCriticalPointGroupContribution::test_structure_index PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/transportTest.py::TestCriticalPointGroupContribution::test_pickle PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/transportTest.py::TestCriticalPointGroupContribution::test_repr PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/transportTest.py::TestTransportDatabase::test_joback PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/transportTest.py::TestTransportDatabase::test_joback_on_benzene_bonds SKIPPED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/transportTest.py::TestTransportDatabase::test_Tb_correction_for_halogens PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/transportTest.py::TestTransportDatabase::test_get_transport_properties PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/transportTest.py::TestTransportDatabase::test_get_all_transport_properties PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/solvationTest.py::TestSoluteDatabase::test_solute_library PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/solvationTest.py::TestSoluteDatabase::test_mcgowan PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/solvationTest.py::TestSoluteDatabase::test_diffusivity PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/solvationTest.py::TestSoluteDatabase::test_solvent_library PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/solvationTest.py::TestSoluteDatabase::test_viscosity PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/solvationTest.py::TestSoluteDatabase::test_critical_temperature PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/solvationTest.py::TestSoluteDatabase::test_saturation_density PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/solvationTest.py::TestSoluteDatabase::test_find_solvent PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/solvationTest.py::TestSoluteDatabase::test_solute_groups PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/solvationTest.py::TestSoluteDatabase::test_solute_generation PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/solvationTest.py::TestSoluteDatabase::test_solute_with_resonance_structures PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/solvationTest.py::TestSoluteDatabase::test_lone_pair_solute_generation PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/solvationTest.py::TestSoluteDatabase::test_solute_data_generation_ammonia PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/solvationTest.py::TestSoluteDatabase::test_solute_data_generation_amide PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/solvationTest.py::TestSoluteDatabase::test_solute_data_generation_co PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/solvationTest.py::TestSoluteDatabase::test_radical_and_lone_pair_generation PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/solvationTest.py::TestSoluteDatabase::test_radical_solute_group PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/solvationTest.py::TestSoluteDatabase::test_halogen_solute_group PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/solvationTest.py::TestSoluteDatabase::test_radical_halogen_solute_group PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/solvationTest.py::TestSoluteDatabase::test_correction_generation PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/solvationTest.py::TestSoluteDatabase::test_Kfactor_parameters PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/solvationTest.py::TestSoluteDatabase::test_Tdep_solvation_calculation PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/solvationTest.py::TestSoluteDatabase::test_initial_species SKIPPED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/solvationTest.py::TestSoluteDatabase::test_solvent_molecule PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/thermoTest.py::TestThermoDatabaseLoading::test_failing_loads_thermo_libraries PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/thermoTest.py::TestThermoDatabaseLoading::test_loading_external_thermo_library PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/thermoTest.py::TestThermoDatabaseLoading::test_load_unload_libraries PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/thermoTest.py::TestThermoDatabase::test_pickle PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/thermoTest.py::TestThermoDatabase::test_symmetry_added_by_get_thermo_data PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/thermoTest.py::TestThermoDatabase::test_symmetry_contribution_radicals PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/thermoTest.py::TestThermoDatabase::test_parse_thermo_comments FAILED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/thermoTest.py::TestThermoDatabase::test_species_thermo_generation_hbi_library PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/thermoTest.py::TestThermoDatabase::test_species_thermo_generation_hbi_gav PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/thermoTest.py::TestThermoDatabase::test_species_thermo_generation_library PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/thermoTest.py::TestThermoDatabase::test_species_thermo_generation_ml SKIPPED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/thermoTest.py::TestThermoDatabase::test_thermo_generation_ml_settings SKIPPED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/thermoTest.py::TestThermoDatabase::test_thermo_estimation_not_affect_database PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/thermoTest.py::TestThermoDatabase::test_get_all_thermo_data_fails_quietly PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/thermoTest.py::TestThermoDatabase::test_lowest_h298_for_resonance_structures PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/thermoTest.py::TestThermoDatabase::test_thermo_for_mixed_reactive_and_nonreactive_molecules PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/thermoTest.py::TestThermoDatabase::test_thermo_for_aromatic_radicals PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/thermoTest.py::TestThermoDatabase::test_identifying_missing_group PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/thermoTest.py::TestThermoDatabase::test_adsorbate_thermo_generation_gav PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/thermoTest.py::TestThermoDatabase::test_adsorbate_thermo_generation_library PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/thermoTest.py::TestThermoDatabase::test_adsorbate_thermo_generation_bidentate PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/thermoTest.py::TestThermoDatabase::test_adsorbate_thermo_generation_bidentate_double PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/thermoTest.py::TestThermoDatabase::test_adsorbate_thermo_generation_bidentate_C2 PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/thermoTest.py::TestThermoDatabase::test_adsorbate_thermo_generation_bidentate_asymmetric PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/thermoTest.py::TestThermoDatabase::test_adsorbate_thermo_generation_bidentate_asymmetric_NNOH PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/thermoTest.py::TestThermoDatabase::test_adsorbate_thermo_generation_bidentate_OO PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/thermoTest.py::TestThermoDatabase::test_adsorbate_thermo_generation_bidentate_CO PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/thermoTest.py::TestThermoDatabase::test_adsorbate_thermo_raises_error FAILED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/thermoTest.py::TestThermoDatabase::test_binding_energy_correction_with_van_der_waals_bond PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/thermoTest.py::TestThermoDatabase::test_adsorbate_thermo_generation_bidentate_weird_CO PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/thermoTest.py::TestThermoDatabase::test_adsorbate_thermo_generation_bidentate_nonadjacent PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/thermoTest.py::TestThermoDatabase::test_remove_group PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/thermoTest.py::TestThermoAccuracy::test_new_thermo_generation SKIPPED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/thermoTest.py::TestThermoAccuracy::test_symmetry_number_generation PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/thermoTest.py::TestThermoAccuracyAromatics::test_long_distance_interaction_in_aromatic_molecule PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/thermoTest.py::TestThermoAccuracyAromatics::test_long_distance_interaction_in_aromatic_radical PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/thermoTest.py::TestThermoAccuracyAromatics::test_long_distance_interaction_in_aromatic_biradical PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/thermoTest.py::TestCyclicThermo::test_compute_group_additivity_thermo_for_two_ring_molecule PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/thermoTest.py::TestCyclicThermo::test_thermo_for_monocyclic_and_polycyclic_same_molecule PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/thermoTest.py::TestCyclicThermo::test_get_ring_groups_from_comments PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/thermoTest.py::TestCyclicThermo::test_is_ring_partial_matched PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/thermoTest.py::TestCyclicThermo::test_add_ring_correction_thermo_data_from_tree_for_existing_tricyclic PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/thermoTest.py::TestCyclicThermo::test_add_poly_ring_correction_thermo_data_from_heuristic_using_pyrene PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/thermoTest.py::TestCyclicThermo::test_add_poly_ring_correction_thermo_data_from_heuristic_using_aromatic_tricyclic PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/thermoTest.py::TestCyclicThermo::test_add_poly_ring_correction_thermo_data_from_heuristic_using_alkane_tricyclic PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/thermoTest.py::TestCyclicThermo::test_add_poly_ring_correction_thermo_data_from_heuristic_using_highly_unsaturated_polycyclics1 PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/thermoTest.py::TestCyclicThermo::test_add_poly_ring_correction_thermo_data_from_heuristic_using_highly_unsaturated_polycyclics2 PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/thermoTest.py::TestCyclicThermo::test_get_bicyclic_correction_thermo_data_from_heuristic1 PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/thermoTest.py::TestCyclicThermo::test_get_bicyclic_correction_thermo_data_from_heuristic2 PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/thermoTest.py::TestMolecularManipulationInvolvedInThermoEstimation::test_convert_ring_to_sub_molecule PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/thermoTest.py::TestMolecularManipulationInvolvedInThermoEstimation::test_get_copy_for_one_ring PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/thermoTest.py::TestMolecularManipulationInvolvedInThermoEstimation::test_to_fail_combine_two_rings_into_sub_molecule PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/thermoTest.py::TestMolecularManipulationInvolvedInThermoEstimation::test_combine_two_rings_into_sub_molecule PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/thermoTest.py::TestMolecularManipulationInvolvedInThermoEstimation::test_is_aromatic_ring PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/thermoTest.py::TestMolecularManipulationInvolvedInThermoEstimation::test_is_bicyclic1 PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/thermoTest.py::TestMolecularManipulationInvolvedInThermoEstimation::test_is_bicyclic2 PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/thermoTest.py::TestMolecularManipulationInvolvedInThermoEstimation::test_find_aromatic_bonds_from_sub_molecule PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/thermoTest.py::TestMolecularManipulationInvolvedInThermoEstimation::test_bicyclic_decomposition_for_polyring_using_pyrene PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/thermoTest.py::TestMolecularManipulationInvolvedInThermoEstimation::test_bicyclic_decomposition_for_polyring_using_aromatic_tricyclic PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/thermoTest.py::TestMolecularManipulationInvolvedInThermoEstimation::test_bicyclic_decomposition_for_polyring_using_alkane_tricyclic PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/thermoTest.py::TestMolecularManipulationInvolvedInThermoEstimation::test_deterministic_bicyclic_decomposition SKIPPED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/thermoTest.py::TestMolecularManipulationInvolvedInThermoEstimation::test_combine_cycles PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/thermoTest.py::TestMolecularManipulationInvolvedInThermoEstimation::test_split_bicyclic_into_single_rings1 PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/thermoTest.py::TestMolecularManipulationInvolvedInThermoEstimation::test_split_bicyclic_into_single_rings2 PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/thermoTest.py::TestMolecularManipulationInvolvedInThermoEstimation::test_saturate_ring_bonds1 PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/thermoTest.py::TestMolecularManipulationInvolvedInThermoEstimation::test_saturate_ring_bonds2 PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/thermoTest.py::TestMolecularManipulationInvolvedInThermoEstimation::test_saturate_ring_bonds3 PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/baseTest.py::TestBaseDatabase::test_match_node_to_structure PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/baseTest.py::TestBaseDatabase::test_match_node_to_node PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/baseTest.py::TestForbiddenStructures::test_forbidden_group PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/baseTest.py::TestForbiddenStructures::test_forbidden_molecule PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/baseTest.py::TestForbiddenStructures::test_forbidden_species PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/tools/uncertaintyTest.py::TestUncertainty::test_uncertainty_assignment PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/tools/uncertaintyTest.py::TestUncertainty::test_source_correlations PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/tools/uncertaintyTest.py::TestUncertainty::test_local_analysis PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/tools/uncertaintyTest.py::TestUncertainty::test_covariance_matrices PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/tools/uncertaintyTest.py::TestUncertainty::test_specific_species_uncertainties PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/kinetics/quarantineTest.py::TestTheManifest::test_a_manifest_loads_its_fields PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/kinetics/quarantineTest.py::TestTheManifest::test_a_family_without_a_manifest_is_not_quarantined PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/kinetics/quarantineTest.py::TestTheManifest::test_an_unknown_kinetics_class_raises_rather_than_quarantining_nothing PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/kinetics/quarantineTest.py::TestTheManifest::test_a_declared_engine_requirement_is_honoured PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/kinetics/quarantineTest.py::TestTheManifest::test_a_declared_engine_symbol_is_honoured PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/kinetics/quarantineTest.py::TestTheManifest::test_a_satisfied_engine_requirement_loads PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/kinetics/quarantineTest.py::TestTheManifest::test_the_commit_field_is_provenance_and_is_deliberately_not_checked PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/kinetics/quarantineTest.py::TestTheManifest::test_a_manifest_missing_a_required_field_raises[state] PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/kinetics/quarantineTest.py::TestTheManifest::test_a_manifest_missing_a_required_field_raises[appliesToKineticsClass] PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/kinetics/quarantineTest.py::TestTheManifest::test_a_manifest_missing_a_required_field_raises[reason] PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/kinetics/quarantineTest.py::TestTheManifest::test_the_criterion_is_selective PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/kinetics/quarantineTest.py::TestTheManifest::test_the_criterion_is_evaluated_against_the_data_not_a_stored_list PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/kinetics/quarantineTest.py::TestTheManifest::test_no_hard_coded_entry_list_exists_in_the_code PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/kinetics/quarantineTest.py::TestTheRefusalNamesFiveThings::test_it_names_the_family PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/kinetics/quarantineTest.py::TestTheRefusalNamesFiveThings::test_it_names_the_provenance PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/kinetics/quarantineTest.py::TestTheRefusalNamesFiveThings::test_it_names_the_generated_reaction PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/kinetics/quarantineTest.py::TestTheRefusalNamesFiveThings::test_it_names_the_kinetics_class PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/kinetics/quarantineTest.py::TestTheRefusalNamesFiveThings::test_it_names_the_reason PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/kinetics/quarantineTest.py::TestTheRefusalNamesFiveThings::test_it_names_the_campaign_state_and_the_manifest PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/kinetics/quarantineTest.py::TestTheRefusalNamesFiveThings::test_provenance_is_never_blank PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/kinetics/quarantineTest.py::TestTheGateFires::test_at_kinetics_estimation_the_primary_site PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/kinetics/quarantineTest.py::TestTheGateFires::test_at_core_admission_the_backstop PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/kinetics/quarantineTest.py::TestTheGateFires::test_at_edge_admission_the_backstop PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/kinetics/quarantineTest.py::TestTheGateFires::test_ordinary_chemistry_is_untouched PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/kinetics/quarantineTest.py::TestTheGateFires::test_a_quarantined_family_still_admits_its_unquarantined_kinetics PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/kinetics/quarantineTest.py::TestTheGateFires::test_an_unloaded_database_does_not_crash_the_gate PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/kinetics/quarantineTest.py::TestTheSevenForbiddenSilentBehaviours::test_1_the_reaction_is_not_removed_after_generation PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/kinetics/quarantineTest.py::TestTheSevenForbiddenSilentBehaviours::test_2_no_average_rule_is_substituted PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/kinetics/quarantineTest.py::TestTheSevenForbiddenSilentBehaviours::test_3_it_is_never_evaluated_at_potential_zero PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/kinetics/quarantineTest.py::TestTheSevenForbiddenSilentBehaviours::test_4_it_is_not_marked_irreversible PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/kinetics/quarantineTest.py::TestTheSevenForbiddenSilentBehaviours::test_5_no_reverse_rate_is_derived PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/kinetics/quarantineTest.py::TestTheSevenForbiddenSilentBehaviours::test_6_seeding_a_product_or_cation_does_not_bypass_it PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/kinetics/quarantineTest.py::TestTheSevenForbiddenSilentBehaviours::test_7_no_generic_collision_rate_replaces_it PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/kinetics/quarantineTest.py::TestTheRealQuarantinedFamily::test_the_family_is_quarantined_with_the_ruling_s_words SKIPPED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/kinetics/quarantineTest.py::TestTheRealQuarantinedFamily::test_the_affected_set_is_enumerated_from_the_database SKIPPED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/kinetics/quarantineTest.py::TestTheRealQuarantinedFamily::test_nothing_was_deleted SKIPPED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/kinetics/quarantineTest.py::TestTheRealQuarantinedFamily::test_the_rates_themselves_were_not_touched SKIPPED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/kinetics/quarantineTest.py::TestTheDoorLeftOpen::test_the_database_still_loads SKIPPED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/kinetics/quarantineTest.py::TestTheDoorLeftOpen::test_the_family_is_still_registered_and_still_generates_reactions SKIPPED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/kinetics/quarantineTest.py::TestTheDoorLeftOpen::test_the_rate_law_still_evaluates SKIPPED
+
+=================================== FAILURES ===================================
+________________ TestThermoDatabase.test_parse_thermo_comments _________________
+
+self = <thermoTest.TestThermoDatabase object at 0x7ea3c41adca0>
+
+        def test_parse_thermo_comments(self):
+            """
+            Test that the ThermoDatabase.extract_source_from_comments function works properly
+            on various thermo comments.
+            """
+            from rmgpy.thermo import NASA, NASAPolynomial
+    
+            # Pure group additivity thermo.
+            gav_species = Species(
+                index=3,
+                label="c1c(O)c(O)c(CC(C)CC)cc1",
+                thermo=NASA(
+                    polynomials=[
+                        NASAPolynomial(
+                            coeffs=[
+                                -1.18833,
+                                0.11272,
+                                -4.26393e-05,
+                                -2.12017e-08,
+                                1.441e-11,
+                                -51642.9,
+                                38.8904,
+                            ],
+                            Tmin=(100, "K"),
+                            Tmax=(1078.35, "K"),
+                        ),
+                        NASAPolynomial(
+                            coeffs=[
+                                26.6057,
+                                0.0538434,
+                                -2.22538e-05,
+                                4.22393e-09,
+                                -3.00808e-13,
+                                -60208.4,
+                                -109.218,
+                            ],
+                            Tmin=(1078.35, "K"),
+                            Tmax=(5000, "K"),
+                        ),
+                    ],
+                    Tmin=(100, "K"),
+                    Tmax=(5000, "K"),
+                    comment="""
+    Thermo group additivity estimation: group(Cs-CsCsCsH) + group(Cs-CsCsHH) + longDistanceInteraction_noncyclic(CsCs-ST) +
+    group(Cs-CbCsHH) + group(Cs-CsHHH) + group(Cs-CsHHH) + group(Cb-Cs) + group(Cb-O2s) + group(Cb-O2s) + group(Cb-H) +
+    group(Cb-H) + group(Cb-H) + group(O2s-CbH) + group(O2s-CbH) + longDistanceInteraction_cyclic(o_OH_OH) +
+    longDistanceInteraction_cyclic(o_OH_OH) + ring(Benzene)
+    """,
+                ),
+                molecule=[Molecule(smiles="c1c(O)c(O)c(CC(C)CC)cc1")],
+            )
+    
+            source = self.database.extract_source_from_comments(gav_species)
+            assert "GAV" in source, "Should have found that the thermo source is GAV."
+            assert len(source["GAV"]["group"]) == 8
+            assert len(source["GAV"]["longDistanceInteraction_noncyclic"]) == 1
+            assert len(source["GAV"]["longDistanceInteraction_cyclic"]) == 1
+            assert len(source["GAV"]["ring"]) == 1
+    
+            # Pure library thermo
+            dipk = Species(
+                index=1,
+                label="DIPK",
+                thermo=NASA(
+                    polynomials=[
+                        NASAPolynomial(
+                            coeffs=[
+                                3.35002,
+                                0.017618,
+                                -2.46235e-05,
+                                1.7684e-08,
+                                -4.87962e-12,
+                                35555.7,
+                                5.75335,
+                            ],
+                            Tmin=(100, "K"),
+                            Tmax=(888.28, "K"),
+                        ),
+                        NASAPolynomial(
+                            coeffs=[
+                                6.36001,
+                                0.00406378,
+                                -1.73509e-06,
+                                5.05949e-10,
+                                -4.49975e-14,
+                                35021,
+                                -8.41155,
+                            ],
+                            Tmin=(888.28, "K"),
+                            Tmax=(5000, "K"),
+                        ),
+                    ],
+                    Tmin=(100, "K"),
+                    Tmax=(5000, "K"),
+                    comment="""Thermo library: DIPK""",
+                ),
+                molecule=[Molecule(smiles="CC(C)C(=O)C(C)C")],
+            )
+    
+            source = self.database.extract_source_from_comments(dipk)
+            assert "Library" in source
+    
+            # Mixed library and HBI thermo
+            dipk_rad = Species(
+                index=4,
+                label="R_tert",
+                thermo=NASA(
+                    polynomials=[
+                        NASAPolynomial(
+                            coeffs=[
+                                2.90061,
+                                0.0298018,
+                                -7.06268e-05,
+                                6.9636e-08,
+                                -2.42414e-11,
+                                54431,
+                                5.44492,
+                            ],
+                            Tmin=(100, "K"),
+                            Tmax=(882.19, "K"),
+                        ),
+                        NASAPolynomial(
+                            coeffs=[
+                                6.70999,
+                                0.000201027,
+                                6.65617e-07,
+                                -7.99543e-11,
+                                4.08721e-15,
+                                54238.6,
+                                -9.73662,
+                            ],
+                            Tmin=(882.19, "K"),
+                            Tmax=(5000, "K"),
+                        ),
+                    ],
+                    Tmin=(100, "K"),
+                    Tmax=(5000, "K"),
+                    comment="""Thermo library: DIPK + radical(C2CJCHO)""",
+                ),
+                molecule=[
+                    Molecule(smiles="C[C](C)C(=O)C(C)C"),
+                    Molecule(smiles="CC(C)=C([O])C(C)C"),
+                ],
+            )
+    
+            source = self.database.extract_source_from_comments(dipk_rad)
+            assert "Library" in source
+            assert "GAV" in source
+            assert len(source["GAV"]["radical"]) == 1
+    
+            # Pure QM thermo
+            cineole = Species(
+                index=6,
+                label="Cineole",
+                thermo=NASA(
+                    polynomials=[
+                        NASAPolynomial(
+                            coeffs=[
+                                -0.324129,
+                                0.0619667,
+                                9.71008e-05,
+                                -1.60598e-07,
+                                6.28285e-11,
+                                -38699.9,
+                                29.3686,
+                            ],
+                            Tmin=(100, "K"),
+                            Tmax=(985.52, "K"),
+                        ),
+                        NASAPolynomial(
+                            coeffs=[
+                                20.6043,
+                                0.0586913,
+                                -2.22152e-05,
+                                4.19949e-09,
+                                -3.06046e-13,
+                                -46791,
+                                -91.4152,
+                            ],
+                            Tmin=(985.52, "K"),
+                            Tmax=(5000, "K"),
+                        ),
+                    ],
+                    Tmin=(100, "K"),
+                    Tmax=(5000, "K"),
+                    comment="""QM MopacMolPM3 calculation attempt 1""",
+                ),
+                molecule=[Molecule(smiles="CC12CCC(CC1)C(C)(C)O2")],
+            )
+    
+            source = self.database.extract_source_from_comments(cineole)
+            assert "QM" in source
+    
+            # Mixed QM and HBI thermo
+            cineole_rad = Species(
+                index=7,
+                label="CineoleRad",
+                thermo=NASA(
+                    polynomials=[
+                        NASAPolynomial(
+                            coeffs=[
+                                -0.2897,
+                                0.0627717,
+                                8.63299e-05,
+                                -1.47868e-07,
+                                5.81665e-11,
+                                -14017.6,
+                                31.0266,
+                            ],
+                            Tmin=(100, "K"),
+                            Tmax=(988.76, "K"),
+                        ),
+                        NASAPolynomial(
+                            coeffs=[
+                                20.4836,
+                                0.0562555,
+                                -2.13903e-05,
+                                4.05725e-09,
+                                -2.96023e-13,
+                                -21915,
+                                -88.1205,
+                            ],
+                            Tmin=(988.76, "K"),
+                            Tmax=(5000, "K"),
+                        ),
+                    ],
+                    Tmin=(100, "K"),
+                    Tmax=(5000, "K"),
+                    comment="""QM MopacMolPM3 calculation attempt 1 + radical(Cs_P)""",
+                ),
+                molecule=[Molecule(smiles="[CH2]C12CCC(CC1)C(C)(C)O2")],
+            )
+    
+            source = self.database.extract_source_from_comments(cineole_rad)
+            assert "QM" in source
+            assert "GAV" in source
+            assert len(source["GAV"]["radical"]) == 1
+    
+            # No thermo comments
+            other = Species(
+                index=7,
+                label="CineoleRad",
+                thermo=NASA(
+                    polynomials=[
+                        NASAPolynomial(
+                            coeffs=[
+                                -0.2897,
+                                0.0627717,
+                                8.63299e-05,
+                                -1.47868e-07,
+                                5.81665e-11,
+                                -14017.6,
+                                31.0266,
+                            ],
+                            Tmin=(100, "K"),
+                            Tmax=(988.76, "K"),
+                        ),
+                        NASAPolynomial(
+                            coeffs=[
+                                20.4836,
+                                0.0562555,
+                                -2.13903e-05,
+                                4.05725e-09,
+                                -2.96023e-13,
+                                -21915,
+                                -88.1205,
+                            ],
+                            Tmin=(988.76, "K"),
+                            Tmax=(5000, "K"),
+                        ),
+                    ],
+                    Tmin=(100, "K"),
+                    Tmax=(5000, "K"),
+                ),
+                molecule=[Molecule(smiles="[CH2]C12CCC(CC1)C(C)(C)O2")],
+            )
+    
+            # Function should complain if there's no thermo comments
+            with pytest.raises(ValueError):
+                self.database.extract_source_from_comments(other)
+    
+            # Check a dummy species that has plus and minus thermo group contributions
+            polycyclic = Species(
+                index=7,
+                label="dummy",
+                thermo=NASA(
+                    polynomials=[
+                        NASAPolynomial(
+                            coeffs=[
+                                -0.2897,
+                                0.0627717,
+                                8.63299e-05,
+                                -1.47868e-07,
+                                5.81665e-11,
+                                -14017.6,
+                                31.0266,
+                            ],
+                            Tmin=(100, "K"),
+                            Tmax=(988.76, "K"),
+                        ),
+                        NASAPolynomial(
+                            coeffs=[
+                                20.4836,
+                                0.0562555,
+                                -2.13903e-05,
+                                4.05725e-09,
+                                -2.96023e-13,
+                                -21915,
+                                -88.1205,
+                            ],
+                            Tmin=(988.76, "K"),
+                            Tmax=(5000, "K"),
+                        ),
+                    ],
+                    Tmin=(100, "K"),
+                    Tmax=(5000, "K"),
+                    comment="""Thermo group additivity estimation: group(Cs-CsCsHH) + group(Cs-CsCsHH) - ring(Benzene)""",
+                ),
+                molecule=[Molecule(smiles="[CH2]C12CCC(CC1)C(C)(C)O2")],
+            )
+    
+            source = self.database.extract_source_from_comments(polycyclic)
+            assert "GAV" in source
+            assert source["GAV"]["ring"][0][1] == -1  # the weight of benzene contribution should be -1
+            assert source["GAV"]["group"][0][1] == 2  # weight of the group(Cs-CsCsHH) conbtribution should be 2
+    
+            # Check extract source from comment with tricky group(labelA)\n+ group(labelB) case (newline instead of space to split)
+            tricky_newline_plus_sp = Species(smiles="[O]C(O)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F")
+            tricky_newline_plus_sp.thermo = NASA()
+            tricky_newline_plus_sp.thermo.comment = 'Thermo group additivity estimation: group(O2s-CsH) + group(O2s-CsH) + group(CsCsCsFF) + longDistanceInteraction_noncyclic(Cs(F)2-Cs(F)2) +\nlongDistanceInteraction_noncyclic(Cs(F)2-Cs(F)2) + longDistanceInteraction_noncyclic(CsF2-CsF2-CsF2) +\nlongDistanceInteraction_noncyclic(CsF2-CsF2-CsF2) + group(CsCsCsFF) + longDistanceInteraction_noncyclic(Cs(F)2-Cs(F)2) +\nlongDistanceInteraction_noncyclic(Cs(F)2-Cs(F)2) + longDistanceInteraction_noncyclic(CsF2-CsF2-CsF2) +\nlongDistanceInteraction_noncyclic(CsF2-CsF2-CsF2) + group(CsCsCsFF) + longDistanceInteraction_noncyclic(Cs(F)2-Cs(F)2) +\nlongDistanceInteraction_noncyclic(Cs(F)2-Cs(F)2) + longDistanceInteraction_noncyclic(CsF2-CsF2-CsF2) +\nlongDistanceInteraction_noncyclic(CsF2-CsF2-CsF2) + group(CsCsCsFF) + longDistanceInteraction_noncyclic(Cs(F)2-Cs(F)2) +\nlongDistanceInteraction_noncyclic(Cs(F)2-Cs(F)2) + longDistanceInteraction_noncyclic(CsF2-CsF2-CsF2) + group(CsCsCsFF) +\nlongDistanceInteraction_noncyclic(Cs(F)2-Cs(F)) + longDistanceInteraction_noncyclic(Cs(F)2-Cs(F)2) + longDistanceInteraction_noncyclic(CsF2-CsF2-CsF2)\n+ group(CsCsCsFF) + longDistanceInteraction_noncyclic(Cs(F)2-Cs(F)2) + longDistanceInteraction_noncyclic(CsF2-CsF2-CsF2) + group(CsCFOO) +\ngroup(CsCsFFF) + longDistanceInteraction_noncyclic(Cs(F)3-Cs(F)2) + longDistanceInteraction_noncyclic(Cs(F)3-R-Cs(F)2) + radical(O2sj(Cs-F1sO2sCs))'
+            source = self.database.extract_source_from_comments(tricky_newline_plus_sp)
+            assert source['GAV']['group'][0][0].label == "O2s-CsH"
+            assert source['GAV']['group'][0][1] == 2
+            assert source['GAV']['group'][1][0].label == "CsCsCsFF"
+            assert source['GAV']['group'][1][1] == 6
+            assert source['GAV']['group'][2][0].label == "CsCFOO"
+            assert source['GAV']['group'][2][1] == 1
+            assert source['GAV']['group'][3][0].label == "CsCsFFF"
+            assert source['GAV']['group'][3][1] == 1
+            assert source['GAV']['longDistanceInteraction_noncyclic'][0][0].label == "Cs(F)2-Cs(F)2"
+            assert source['GAV']['longDistanceInteraction_noncyclic'][0][1] == 10
+            assert source['GAV']['longDistanceInteraction_noncyclic'][1][0].label == "CsF2-CsF2-CsF2"
+            assert source['GAV']['longDistanceInteraction_noncyclic'][1][1] == 9
+            assert source['GAV']['longDistanceInteraction_noncyclic'][2][0].label == "Cs(F)2-Cs(F)"
+            assert source['GAV']['longDistanceInteraction_noncyclic'][2][1] == 1
+            assert source['GAV']['longDistanceInteraction_noncyclic'][3][0].label == "Cs(F)3-Cs(F)2"
+            assert source['GAV']['longDistanceInteraction_noncyclic'][3][1] == 1
+            assert source['GAV']['longDistanceInteraction_noncyclic'][4][0].label == "Cs(F)3-R-Cs(F)2"
+            assert source['GAV']['longDistanceInteraction_noncyclic'][4][1] == 1
+            assert source['GAV']['radical'][0][0].label == "O2sj(Cs-F1sO2sCs)"
+            assert source['GAV']['radical'][0][1] == 1
+    
+            # check extract source from comment with newline through group name
+            newline_sp = Species(smiles="[O]OC(C#N)(C)C")
+            newline_sp.thermo = NASA()
+            newline_sp.thermo.comment = 'Thermo group additivity estimation: group(O2s-OsCs) + group(O2s-OsH) + group(N3t-(Cs)Ct) + group(Cs-(Cds-Cds)CsCsOs) + group(Cs-CsHHH) + group(Cs-\nCsHHH) + group(Ct-N3tCs) + radical(C3COOJ)'
+            source = self.database.extract_source_from_comments(newline_sp)
+            assert "GAV" in source
+            assert source['GAV']['group'][0][0].label == "O2s-OsCs"
+            assert source['GAV']['group'][1][0].label == "O2s-OsH"
+            assert source['GAV']['group'][2][0].label == "N3t-(Cs)Ct"
+            assert source['GAV']['group'][3][0].label == "Cs-(Cds-Cds)CsCsOs"
+            assert source['GAV']['group'][4][0].label == "Cs-CsHHH"
+            assert source['GAV']['group'][5][0].label == "Ct-N3tCs"
+            assert source["GAV"]["radical"][0][0].label == "C3COOJ"
+            assert source["GAV"]["radical"][0][1] == 1
+            assert all(source['GAV']['group'][x][1] == 1 for x in [0, 1, 2, 3, 5])
+            assert source['GAV']['group'][4][1] == 2
+    
+            # ------------------------------- Surface Examples ---------------------------
+            # Surface library only
+            OX = rmgpy.species.Species(smiles="O=*")
+            OX.thermo = rmgpy.thermo.NASA()
+            OX.thermo.comment = 'Thermo library: surfaceThermoPt111'
+            source = self.database.extract_source_from_comments(OX)
+            assert "Library" in source
+            assert source["Library"] == "surfaceThermoPt111"
+    
+            # Gas library + adsorption correction
+            CH2X = rmgpy.species.Species(smiles="[CH2]=*")
+            CH2X.thermo = rmgpy.thermo.NASA()
+            CH2X.thermo.comment = 'Gas phase thermo for CH2(T) from Thermo library: primaryThermoLibrary. Adsorption correction: + Thermo group additivity estimation:\nadsorptionPt111(C=XR2)'
+>           source = self.database.extract_source_from_comments(CH2X)
+
+/home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/thermoTest.py:615: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/home/alon/Code/RMG-Py-i221-saturation-fix/rmgpy/data/thermo.py:2951: in extract_source_from_comments
+    source['ADS'] = self.extract_source_from_comments(dummy_adsorption_correction_species)['GAV']
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <rmgpy.data.thermo.ThermoDatabase object at 0x7ea3b87f9a30>
+species = Species(label="", thermo=NASA(polynomials=None, comment="""Thermo group additivity estimation: adsorptionPt111(C=XR2)"""))
+
+    def extract_source_from_comments(self, species):
+        """
+        `species`: A species object containing thermo data and thermo data comments
+    
+        Parses the verbose string of comments from the thermo data of the species object,
+        and extracts the thermo sources.
+    
+        Returns a dictionary with keys of 'Library', 'QM', 'ADS', and/or 'GAV'.
+        Commonly, species thermo are estimated using only one of these sources.
+        However, a radical can be estimated with more than one type of source, for
+        instance a saturated library value and a GAV HBI correction, or a QM saturated value
+        and a GAV HBI correction. Adsorbates can be estimated using a single library
+        for the adsorbate or a combination of a gas phase library for the
+        gas phase portion and an adsorption correction.
+    
+        source = {'Library': String_Name_of_Library_Used,
+                  'QM': String_of_Method_Used,
+                  'GAV': Dictionary_of_Groups_Used,
+                  'ADS': Dictionary_of_Adsorption_Group_Used,
+                  }
+    
+        The Dictionary_of_Groups_Used looks like
+        {'groupType':[List of tuples containing (Entry, Weight)]
+        """
+        comment = species.thermo.comment
+        tokens = comment.split()
+    
+        source = {}
+    
+        if comment.startswith('Thermo library'):
+            # Store name of the library source, which is the 3rd token in the comments
+            source['Library'] = tokens[2]
+    
+        elif comment.startswith('QM'):
+            # Store the level of the calculation, which is the 2nd token in the comments
+            source['QM'] = tokens[1]
+    
+        elif comment.startswith('Gas phase thermo'):
+            # Handle adsorption correction thermo data of the following format:
+            # Library example
+            # Gas phase thermo for C(T) from Thermo library: primaryThermoLibrary.
+            # Adsorption correction: + Thermo group additivity estimation: adsorptionPt111(Cq*)
+    
+            # GAV example
+            # Gas phase thermo for [CH]CC from Thermo group additivity estimation: group(Cs-CsCsHH) + group(Cs-CsHHH) + group(Cs-CsHHH) + radical(CCJ2_triplet).
+            # Adsorption correction: + Thermo group additivity estimation: adsorptionPt111(C=*RCR3)"
+    
+            comment = comment.replace(r'\n', ' ')
+            comment = comment.replace('\n', ' ')
+            if 'Adsorption correction:' not in comment:
+                raise ValueError(f'adsorption correction in unrecognized format {comment}')
+    
+            # Handle the gas-phase portion first
+            gas_comment = comment.split('Adsorption correction: + ')[0].strip()
+            if gas_comment.endswith('.'):
+                gas_comment = gas_comment[:-1]  # delete the . at the end if it exists
+            gas_comment = gas_comment[gas_comment.find('from ', len('Gas phase thermo for ')) + len('from '):]
+            dummy_gas_phase_species = Species()
+            dummy_gas_phase_species.thermo = NASA()
+            dummy_gas_phase_species.thermo.comment = gas_comment
+            source = self.extract_source_from_comments(dummy_gas_phase_species)
+    
+            # This is an adsorption correction
+            # comment is split into two parts: the gas phase, and the surface adsorption correction
+            ads_correction_comment = comment.split('Adsorption correction: +')[-1].strip()
+            dummy_adsorption_correction_species = Species()
+            dummy_adsorption_correction_species.thermo = NASA()
+            dummy_adsorption_correction_species.thermo.comment = ads_correction_comment
+            source['ADS'] = self.extract_source_from_comments(dummy_adsorption_correction_species)['GAV']
+    
+            return source
+    
+        # Check for group additivity contributions to the thermo in this species
+    
+        # The contribution of the groups can be either additive or subtracting
+        # after changes to the polycyclic algorithm
+    
+        comment = comment.replace(' + ', ' +')
+        comment = comment.replace(' - ', ' -')
+    
+        # Sometimes chemkin splits the comment with newlines
+        # this allows us to get rid of newlines while ensuring separate
+        # groups are still split by spaces
+        comment = comment.replace(')\n+', ') +')
+        comment = comment.replace(')\n-', ') -')
+        comment = comment.replace('\n', '')
+        tokens = comment.split(' ')
+    
+        groups = {}
+        group_types = list(self.groups.keys())
+    
+        regex = r"\((.*)\)"  # only hit outermost parentheses
+        for token in tokens:
+            weight = 1  # default contribution is additive
+            if token.startswith('+'):
+                token = token[1:]
+            elif token.startswith('-'):
+                weight = -1
+                token = token[1:]
+            for groupType in group_types:
+                if token.startswith(groupType + '(') and token.endswith(')'):
+                    split_tokens = re.split(regex, token)
+                    group_label = split_tokens[1]
+>                   group_entry = self.groups[groupType].entries[group_label]
+E                   KeyError: 'C=XR2'
+
+/home/alon/Code/RMG-Py-i221-saturation-fix/rmgpy/data/thermo.py:2986: KeyError
+____________ TestThermoDatabase.test_adsorbate_thermo_raises_error _____________
+
+self = <thermoTest.TestThermoDatabase object at 0x7ea3c41db670>
+
+        def test_adsorbate_thermo_raises_error(self):
+            """Test thermo generation group tree error handling."""
+            spec = Species(
+                molecule=[
+                    Molecule().from_adjacency_list(
+                        """
+    1 N u0 p1 c0 {2,D} {4,S}
+    2 N u0 p0 c+1 {1,D} {3,D}
+    3 N u0 p2 c-1 {2,D}
+    4 X u0 p0 c0 {1,S}
+    """
+                    )
+                ]
+            )
+            groups = self.database.groups["adsorptionPt111"].entries
+            # save a few things we're about to change
+>           _nstarparent = groups["NX"].parent
+E           KeyError: 'NX'
+
+/home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/thermoTest.py:1279: KeyError
+================================ tests coverage ================================
+_______________ coverage: platform linux, python 3.9.23-final-0 ________________
+
+Coverage HTML written to dir htmlcov
+=========================== short test summary info ============================
+FAILED ../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/thermoTest.py::TestThermoDatabase::test_parse_thermo_comments
+FAILED ../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/thermoTest.py::TestThermoDatabase::test_adsorbate_thermo_raises_error
+================== 2 failed, 138 passed, 13 skipped in 21.23s ==================

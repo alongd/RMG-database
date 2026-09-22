@@ -1,0 +1,9 @@
+database: /home/alon/Code/RMG-database-i221-argon-metastable-thermo/input
+thermo libraries: 79
+transport libraries: 5
+solute libraries: 2
+kinetics libraries: 188
+
+distinct structures scanned: 26210
+species whose saturated form no atom type owns: 1
+  thermo/PlasmaExcitedNeutralThermo                       Ar(3P2)                      multiplicity 3 | 1 Ar u2 p3 c0

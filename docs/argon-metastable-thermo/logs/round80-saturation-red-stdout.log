@@ -1,0 +1,198 @@
+============================= test session starts ==============================
+platform linux -- Python 3.9.23, pytest-8.4.1, pluggy-1.6.0 -- /home/alon/anaconda3/envs/rmg_env/bin/python3.9
+rootdir: /home/alon/Code/RMG-Py-i221-saturation-fix
+configfile: pytest.ini
+plugins: check-2.5.3, cov-6.2.1, anyio-4.10.0
+collecting ... collected 12 items
+
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/saturatedStructureTest.py::TestSaturateForEstimation::test_ordinary_radical_saturates PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/saturatedStructureTest.py::TestSaturateForEstimation::test_input_is_not_mutated PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/saturatedStructureTest.py::TestSaturateForEstimation::test_unownable_saturated_form_raises_named_error PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/saturatedStructureTest.py::TestSaturateForEstimation::test_named_error_is_not_an_atom_type_error PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/saturatedStructureTest.py::TestTransportOfUnsaturableSpecies::test_estimation_falls_back_instead_of_crashing FAILED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/saturatedStructureTest.py::TestTransportOfUnsaturableSpecies::test_the_fallback_says_it_is_a_fallback FAILED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/saturatedStructureTest.py::TestTransportOfUnsaturableSpecies::test_group_estimate_still_raises_for_whoever_asks_directly FAILED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/saturatedStructureTest.py::TestTransportOfUnsaturableSpecies::test_ground_state_argon_is_unaffected PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/saturatedStructureTest.py::TestTransportOfUnsaturableSpecies::test_ordinary_radical_is_unaffected PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/saturatedStructureTest.py::TestSoluteDataOfUnsaturableSpecies::test_estimation_names_the_cause FAILED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/saturatedStructureTest.py::TestSoluteDataOfUnsaturableSpecies::test_ground_state_argon_is_unaffected PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/saturatedStructureTest.py::TestSoluteDataOfUnsaturableSpecies::test_ordinary_radical_is_unaffected PASSED
+
+=================================== FAILURES ===================================
+_ TestTransportOfUnsaturableSpecies.test_estimation_falls_back_instead_of_crashing _
+
+self = <saturatedStructureTest.TestTransportOfUnsaturableSpecies object at 0x7e1494a2edc0>
+
+    def test_estimation_falls_back_instead_of_crashing(self):
+        """
+        This is the defect: standard tran.dat rendering and pdep collision calculations both
+        reach this call, and a family-level forbidden group cannot intercept either.
+        """
+>       transport = self.database.get_transport_properties(species(AR_METASTABLE))[0]
+
+/home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/saturatedStructureTest.py:131: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/home/alon/Code/RMG-Py-i221-saturation-fix/rmgpy/data/transport.py:348: in get_transport_properties
+    transport = self.get_transport_properties_via_group_estimates(species)
+/home/alon/Code/RMG-Py-i221-saturation-fix/rmgpy/data/transport.py:408: in get_transport_properties_via_group_estimates
+    critical_point = self.estimate_critical_properties_via_group_additivity(molecule)
+/home/alon/Code/RMG-Py-i221-saturation-fix/rmgpy/data/transport.py:465: in estimate_critical_properties_via_group_additivity
+    saturated_struct.saturate_radicals()
+rmgpy/molecule/molecule.py:2512: in rmgpy.molecule.molecule.Molecule.saturate_radicals
+    ???
+rmgpy/molecule/molecule.py:2534: in rmgpy.molecule.molecule.Molecule.saturate_radicals
+    ???
+rmgpy/molecule/molecule.py:1571: in rmgpy.molecule.molecule.Molecule.update_atomtypes
+    ???
+rmgpy/molecule/molecule.py:1592: in rmgpy.molecule.molecule.Molecule.update_atomtypes
+    ???
+rmgpy/molecule/molecule.py:1587: in rmgpy.molecule.molecule.Molecule.update_atomtypes
+    ???
+rmgpy/molecule/atomtype.py:1153: in rmgpy.molecule.atomtype.get_atomtype
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+>   ???
+E   rmgpy.exceptions.AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 benzene bonds, 3 lone pairs, and +0 charge.
+
+rmgpy/molecule/atomtype.py:1181: AtomTypeError
+------------------------------ Captured log call -------------------------------
+ERROR    root:transport.py:465 Could not update atomtypes for this molecule:
+multiplicity 3
+1 Ar u0 p3 c0 {2,S} {3,S}
+2 H  u0 p0 c0 {1,S}
+3 H  u0 p0 c0 {1,S}
+__ TestTransportOfUnsaturableSpecies.test_the_fallback_says_it_is_a_fallback ___
+
+self = <saturatedStructureTest.TestTransportOfUnsaturableSpecies object at 0x7e1494a3d2e0>
+
+    def test_the_fallback_says_it_is_a_fallback(self):
+        """An unexplained number is the failure mode this replaces, not an improvement on it."""
+>       transport = self.database.get_transport_properties(species(AR_METASTABLE))[0]
+
+/home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/saturatedStructureTest.py:139: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/home/alon/Code/RMG-Py-i221-saturation-fix/rmgpy/data/transport.py:348: in get_transport_properties
+    transport = self.get_transport_properties_via_group_estimates(species)
+/home/alon/Code/RMG-Py-i221-saturation-fix/rmgpy/data/transport.py:408: in get_transport_properties_via_group_estimates
+    critical_point = self.estimate_critical_properties_via_group_additivity(molecule)
+/home/alon/Code/RMG-Py-i221-saturation-fix/rmgpy/data/transport.py:465: in estimate_critical_properties_via_group_additivity
+    saturated_struct.saturate_radicals()
+rmgpy/molecule/molecule.py:2512: in rmgpy.molecule.molecule.Molecule.saturate_radicals
+    ???
+rmgpy/molecule/molecule.py:2534: in rmgpy.molecule.molecule.Molecule.saturate_radicals
+    ???
+rmgpy/molecule/molecule.py:1571: in rmgpy.molecule.molecule.Molecule.update_atomtypes
+    ???
+rmgpy/molecule/molecule.py:1592: in rmgpy.molecule.molecule.Molecule.update_atomtypes
+    ???
+rmgpy/molecule/molecule.py:1587: in rmgpy.molecule.molecule.Molecule.update_atomtypes
+    ???
+rmgpy/molecule/atomtype.py:1153: in rmgpy.molecule.atomtype.get_atomtype
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+>   ???
+E   rmgpy.exceptions.AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 benzene bonds, 3 lone pairs, and +0 charge.
+
+rmgpy/molecule/atomtype.py:1181: AtomTypeError
+------------------------------ Captured log call -------------------------------
+ERROR    root:transport.py:465 Could not update atomtypes for this molecule:
+multiplicity 3
+1 Ar u0 p3 c0 {2,S} {3,S}
+2 H  u0 p0 c0 {1,S}
+3 H  u0 p0 c0 {1,S}
+_ TestTransportOfUnsaturableSpecies.test_group_estimate_still_raises_for_whoever_asks_directly _
+
+self = <saturatedStructureTest.TestTransportOfUnsaturableSpecies object at 0x7e1494a3d4c0>
+
+    def test_group_estimate_still_raises_for_whoever_asks_directly(self):
+        """
+        The fallback lives in get_transport_properties. The group estimator itself must keep
+        reporting that it could not do the job, or a caller of the inner method gets silence.
+        """
+        with pytest.raises(SaturatedStructureError):
+>           self.database.get_transport_properties_via_group_estimates(species(AR_METASTABLE))
+
+/home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/saturatedStructureTest.py:149: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/home/alon/Code/RMG-Py-i221-saturation-fix/rmgpy/data/transport.py:408: in get_transport_properties_via_group_estimates
+    critical_point = self.estimate_critical_properties_via_group_additivity(molecule)
+/home/alon/Code/RMG-Py-i221-saturation-fix/rmgpy/data/transport.py:465: in estimate_critical_properties_via_group_additivity
+    saturated_struct.saturate_radicals()
+rmgpy/molecule/molecule.py:2512: in rmgpy.molecule.molecule.Molecule.saturate_radicals
+    ???
+rmgpy/molecule/molecule.py:2534: in rmgpy.molecule.molecule.Molecule.saturate_radicals
+    ???
+rmgpy/molecule/molecule.py:1571: in rmgpy.molecule.molecule.Molecule.update_atomtypes
+    ???
+rmgpy/molecule/molecule.py:1592: in rmgpy.molecule.molecule.Molecule.update_atomtypes
+    ???
+rmgpy/molecule/molecule.py:1587: in rmgpy.molecule.molecule.Molecule.update_atomtypes
+    ???
+rmgpy/molecule/atomtype.py:1153: in rmgpy.molecule.atomtype.get_atomtype
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+>   ???
+E   rmgpy.exceptions.AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 benzene bonds, 3 lone pairs, and +0 charge.
+
+rmgpy/molecule/atomtype.py:1181: AtomTypeError
+------------------------------ Captured log call -------------------------------
+ERROR    root:transport.py:465 Could not update atomtypes for this molecule:
+multiplicity 3
+1 Ar u0 p3 c0 {2,S} {3,S}
+2 H  u0 p0 c0 {1,S}
+3 H  u0 p0 c0 {1,S}
+______ TestSoluteDataOfUnsaturableSpecies.test_estimation_names_the_cause ______
+
+self = <saturatedStructureTest.TestSoluteDataOfUnsaturableSpecies object at 0x7e1494a3dbe0>
+
+    def test_estimation_names_the_cause(self):
+        """
+        There is no defensible solute estimate for such a species, so this one reports rather
+        than invents -- but it reports the species and the remedy, which AtomTypeError did not.
+        """
+        with pytest.raises(SaturatedStructureError) as exc_info:
+>           self.database.get_solute_data(species(AR_METASTABLE))
+
+/home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/saturatedStructureTest.py:184: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/home/alon/Code/RMG-Py-i221-saturation-fix/rmgpy/data/solvation.py:1433: in get_solute_data
+    solute_data = self.estimate_radical_solute_data_via_hbi(molecule, self.get_solute_data_from_library)
+/home/alon/Code/RMG-Py-i221-saturation-fix/rmgpy/data/solvation.py:1566: in estimate_radical_solute_data_via_hbi
+    added = saturated_struct.saturate_radicals()
+rmgpy/molecule/molecule.py:2512: in rmgpy.molecule.molecule.Molecule.saturate_radicals
+    ???
+rmgpy/molecule/molecule.py:2534: in rmgpy.molecule.molecule.Molecule.saturate_radicals
+    ???
+rmgpy/molecule/molecule.py:1571: in rmgpy.molecule.molecule.Molecule.update_atomtypes
+    ???
+rmgpy/molecule/molecule.py:1592: in rmgpy.molecule.molecule.Molecule.update_atomtypes
+    ???
+rmgpy/molecule/molecule.py:1587: in rmgpy.molecule.molecule.Molecule.update_atomtypes
+    ???
+rmgpy/molecule/atomtype.py:1153: in rmgpy.molecule.atomtype.get_atomtype
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+>   ???
+E   rmgpy.exceptions.AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 benzene bonds, 3 lone pairs, and +0 charge.
+
+rmgpy/molecule/atomtype.py:1181: AtomTypeError
+------------------------------ Captured log call -------------------------------
+ERROR    root:solvation.py:1566 Could not update atomtypes for this molecule:
+multiplicity 3
+1 Ar u0 p3 c0 {2,S} {3,S}
+2 H  u0 p0 c0 {1,S}
+3 H  u0 p0 c0 {1,S}
+================================ tests coverage ================================
+_______________ coverage: platform linux, python 3.9.23-final-0 ________________
+
+Coverage HTML written to dir htmlcov
+=========================== short test summary info ============================
+FAILED ../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/saturatedStructureTest.py::TestTransportOfUnsaturableSpecies::test_estimation_falls_back_instead_of_crashing - rmgpy.exceptions.AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 benzene bonds, 3 lone pairs, and +0 charge.
+FAILED ../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/saturatedStructureTest.py::TestTransportOfUnsaturableSpecies::test_the_fallback_says_it_is_a_fallback - rmgpy.exceptions.AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 benzene bonds, 3 lone pairs, and +0 charge.
+FAILED ../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/saturatedStructureTest.py::TestTransportOfUnsaturableSpecies::test_group_estimate_still_raises_for_whoever_asks_directly - rmgpy.exceptions.AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 benzene bonds, 3 lone pairs, and +0 charge.
+FAILED ../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/saturatedStructureTest.py::TestSoluteDataOfUnsaturableSpecies::test_estimation_names_the_cause - rmgpy.exceptions.AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 benzene bonds, 3 lone pairs, and +0 charge.
+========================= 4 failed, 8 passed in 6.80s ==========================

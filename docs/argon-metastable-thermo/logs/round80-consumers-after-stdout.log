@@ -1,0 +1,17 @@
+=== 1. Species.get_transport_data ===
+  Ar(3P2)    sigma=3.758e-10 m epsilon=1235.53 J/mol
+             comment: Epsilon & sigma estimated with fixed Lennard Jones Parameters. This is the fallback method! Try improving transport databases! Group additivity was impossible for this species because its saturated form is not a structure any atom type describes, so these parameters are a heavy-atom-count guess and nothing more.
+  Ar         sigma=3.33 angstroms epsilon=1134.93 J/mol
+             comment: NIST_Fluorine
+
+=== 2. save_transport_file (tran.dat) ===
+! Species         Shape    LJ-depth  LJ-diam   DiplMom   Polzblty  RotRelaxNum Data     
+! Name            Index    epsilon/k_B sigma     mu        alpha     Zrot      Source   
+Ar(3P2)             0     148.600     3.758     0.000     0.000     0.000    ! Epsilon & sigma estimated with fixed Lennard Jones Parameters. This is the fallback method! Try improving transport databases! Group additivity was impossible for this species because its saturated form is not a structure any atom type describes, so these parameters are a heavy-atom-count guess and nothing more.
+Ar                  0     136.501     3.330     0.000     0.000     0.000    ! NIST_Fluorine
+
+=== 3. Configuration.calculate_collision_frequency (pdep) ===
+  Ar(3P2)    collision frequency at 1000 K, 1 atm: 2.601e+09 Hz
+  Ar         collision frequency at 1000 K, 1 atm: 2.28e+09 Hz
+
+control (ground-state argon kept its library values): True

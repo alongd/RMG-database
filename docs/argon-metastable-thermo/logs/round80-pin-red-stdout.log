@@ -1,0 +1,92 @@
+============================= test session starts ==============================
+platform linux -- Python 3.9.23, pytest-8.4.1, pluggy-1.6.0 -- /home/alon/anaconda3/envs/rmg_env/bin/python
+rootdir: /home/alon/Code/RMG-Py-plasma
+configfile: pytest.ini
+plugins: check-2.5.3, cov-6.2.1, anyio-4.10.0
+collecting ... collected 38 items
+
+../RMG-Py-plasma::test_this_runtime_ENFORCES_the_declared_engine_requirement FAILED
+../RMG-Py-plasma::test_the_manifest_declares_the_engine_it_needs_and_this_runtime_satisfies_it PASSED
+../RMG-Py-plasma/test/rmgpy/data/kinetics/quarantineTest.py::TestTheManifest::test_a_manifest_loads_its_fields PASSED
+../RMG-Py-plasma/test/rmgpy/data/kinetics/quarantineTest.py::TestTheManifest::test_a_family_without_a_manifest_is_not_quarantined PASSED
+../RMG-Py-plasma/test/rmgpy/data/kinetics/quarantineTest.py::TestTheManifest::test_an_unknown_kinetics_class_raises_rather_than_quarantining_nothing PASSED
+../RMG-Py-plasma/test/rmgpy/data/kinetics/quarantineTest.py::TestTheManifest::test_a_manifest_missing_a_required_field_raises[state] PASSED
+../RMG-Py-plasma/test/rmgpy/data/kinetics/quarantineTest.py::TestTheManifest::test_a_manifest_missing_a_required_field_raises[appliesToKineticsClass] PASSED
+../RMG-Py-plasma/test/rmgpy/data/kinetics/quarantineTest.py::TestTheManifest::test_a_manifest_missing_a_required_field_raises[reason] PASSED
+../RMG-Py-plasma/test/rmgpy/data/kinetics/quarantineTest.py::TestTheManifest::test_the_criterion_is_selective PASSED
+../RMG-Py-plasma/test/rmgpy/data/kinetics/quarantineTest.py::TestTheManifest::test_the_criterion_is_evaluated_against_the_data_not_a_stored_list PASSED
+../RMG-Py-plasma/test/rmgpy/data/kinetics/quarantineTest.py::TestTheManifest::test_no_hard_coded_entry_list_exists_in_the_code PASSED
+../RMG-Py-plasma/test/rmgpy/data/kinetics/quarantineTest.py::TestTheRefusalNamesFiveThings::test_it_names_the_family PASSED
+../RMG-Py-plasma/test/rmgpy/data/kinetics/quarantineTest.py::TestTheRefusalNamesFiveThings::test_it_names_the_provenance PASSED
+../RMG-Py-plasma/test/rmgpy/data/kinetics/quarantineTest.py::TestTheRefusalNamesFiveThings::test_it_names_the_generated_reaction PASSED
+../RMG-Py-plasma/test/rmgpy/data/kinetics/quarantineTest.py::TestTheRefusalNamesFiveThings::test_it_names_the_kinetics_class PASSED
+../RMG-Py-plasma/test/rmgpy/data/kinetics/quarantineTest.py::TestTheRefusalNamesFiveThings::test_it_names_the_reason PASSED
+../RMG-Py-plasma/test/rmgpy/data/kinetics/quarantineTest.py::TestTheRefusalNamesFiveThings::test_it_names_the_campaign_state_and_the_manifest PASSED
+../RMG-Py-plasma/test/rmgpy/data/kinetics/quarantineTest.py::TestTheRefusalNamesFiveThings::test_provenance_is_never_blank PASSED
+../RMG-Py-plasma/test/rmgpy/data/kinetics/quarantineTest.py::TestTheGateFires::test_at_kinetics_estimation_the_primary_site PASSED
+../RMG-Py-plasma/test/rmgpy/data/kinetics/quarantineTest.py::TestTheGateFires::test_at_core_admission_the_backstop PASSED
+../RMG-Py-plasma/test/rmgpy/data/kinetics/quarantineTest.py::TestTheGateFires::test_at_edge_admission_the_backstop PASSED
+../RMG-Py-plasma/test/rmgpy/data/kinetics/quarantineTest.py::TestTheGateFires::test_ordinary_chemistry_is_untouched PASSED
+../RMG-Py-plasma/test/rmgpy/data/kinetics/quarantineTest.py::TestTheGateFires::test_a_quarantined_family_still_admits_its_unquarantined_kinetics PASSED
+../RMG-Py-plasma/test/rmgpy/data/kinetics/quarantineTest.py::TestTheGateFires::test_an_unloaded_database_does_not_crash_the_gate PASSED
+../RMG-Py-plasma/test/rmgpy/data/kinetics/quarantineTest.py::TestTheSevenForbiddenSilentBehaviours::test_1_the_reaction_is_not_removed_after_generation PASSED
+../RMG-Py-plasma/test/rmgpy/data/kinetics/quarantineTest.py::TestTheSevenForbiddenSilentBehaviours::test_2_no_average_rule_is_substituted PASSED
+../RMG-Py-plasma/test/rmgpy/data/kinetics/quarantineTest.py::TestTheSevenForbiddenSilentBehaviours::test_3_it_is_never_evaluated_at_potential_zero PASSED
+../RMG-Py-plasma/test/rmgpy/data/kinetics/quarantineTest.py::TestTheSevenForbiddenSilentBehaviours::test_4_it_is_not_marked_irreversible PASSED
+../RMG-Py-plasma/test/rmgpy/data/kinetics/quarantineTest.py::TestTheSevenForbiddenSilentBehaviours::test_5_no_reverse_rate_is_derived PASSED
+../RMG-Py-plasma/test/rmgpy/data/kinetics/quarantineTest.py::TestTheSevenForbiddenSilentBehaviours::test_6_seeding_a_product_or_cation_does_not_bypass_it PASSED
+../RMG-Py-plasma/test/rmgpy/data/kinetics/quarantineTest.py::TestTheSevenForbiddenSilentBehaviours::test_7_no_generic_collision_rate_replaces_it PASSED
+../RMG-Py-plasma/test/rmgpy/data/kinetics/quarantineTest.py::TestTheRealQuarantinedFamily::test_the_family_is_quarantined_with_the_ruling_s_words PASSED
+../RMG-Py-plasma/test/rmgpy/data/kinetics/quarantineTest.py::TestTheRealQuarantinedFamily::test_the_affected_set_is_enumerated_from_the_database PASSED
+../RMG-Py-plasma/test/rmgpy/data/kinetics/quarantineTest.py::TestTheRealQuarantinedFamily::test_nothing_was_deleted PASSED
+../RMG-Py-plasma/test/rmgpy/data/kinetics/quarantineTest.py::TestTheRealQuarantinedFamily::test_the_rates_themselves_were_not_touched PASSED
+../RMG-Py-plasma/test/rmgpy/data/kinetics/quarantineTest.py::TestTheDoorLeftOpen::test_the_database_still_loads PASSED
+../RMG-Py-plasma/test/rmgpy/data/kinetics/quarantineTest.py::TestTheDoorLeftOpen::test_the_family_is_still_registered_and_still_generates_reactions PASSED
+../RMG-Py-plasma/test/rmgpy/data/kinetics/quarantineTest.py::TestTheDoorLeftOpen::test_the_rate_law_still_evaluates PASSED
+
+=================================== FAILURES ===================================
+__________ test_this_runtime_ENFORCES_the_declared_engine_requirement __________
+
+tmp_path = PosixPath('/tmp/claude-1000/pytest-of-alon/pytest-450/test_this_runtime_ENFORCES_the0')
+
+    def test_this_runtime_ENFORCES_the_declared_engine_requirement(tmp_path):
+        """Round 80. Declaring a requirement is not pinning it: until the loader honoured
+        these fields, an engine could read the manifest, ignore what it asked for, and gate
+        nothing while the file still read as protection. The database's own tests confirmed
+        only the runtime that happened to be selected to run them.
+    
+        So this asserts the ENFORCEMENT rather than the declaration: a manifest whose declared
+        capability is absent must be REFUSED by this engine's loader. It is deliberately run
+        on a synthetic manifest in a temporary directory -- pointing the real one at a missing
+        module would be testing the check by breaking the thing it guards, in the tree.
+    
+        What it cannot cover, and what `bypassRoutes` therefore still enumerates: an engine
+        with no quarantine loader at all never reads any manifest, so nothing here can refuse
+        it."""
+        from rmgpy.data.kinetics.quarantine import load_family_quarantine
+        from rmgpy.exceptions import DatabaseError
+    
+        body = '\n'.join([
+            'name = "Synthetic/quarantine"',
+            'state = "QUARANTINED FOR TESTING"',
+            'appliesToKineticsClass = "Arrhenius"',
+            'reason = "a synthetic manifest used to check that requirements are enforced"',
+            'requiresEngineModule = "rmgpy.data.kinetics.a_module_no_engine_provides"',
+            '',
+        ])
+        path = os.path.join(str(tmp_path), 'quarantine.py')
+        with open(path, 'w', encoding='utf-8') as handle:
+            handle.write(body)
+    
+        with pytest.raises(DatabaseError) as exc:
+>           load_family_quarantine('Synthetic_Family', str(tmp_path))
+E           Failed: DID NOT RAISE <class 'rmgpy.exceptions.DatabaseError'>
+
+test/test_eii_quarantine.py:413: Failed
+================================ tests coverage ================================
+_______________ coverage: platform linux, python 3.9.23-final-0 ________________
+
+Coverage HTML written to dir htmlcov
+=========================== short test summary info ============================
+FAILED ../RMG-Py-plasma::test_this_runtime_ENFORCES_the_declared_engine_requirement
+========================= 1 failed, 37 passed in 9.26s =========================

@@ -68,14 +68,18 @@ WHAT THE READER MUST NOT ASSUME
 
 4. **No kinetics is added here, but kinetics is UNLOCKED here, and the two are different.** Not
    one reaction, family, training entry or rate ships in this file. But a thermo entry is what
-   makes a species real enough for a family to generate on, and measured, SIX do -- of 140
+   makes a species real enough for a family to generate on, and measured, TWELVE do -- of 140
    families loaded, not of the six plasma families an earlier version of this file counted.
-   One of the six is the intended ``Plasma_Electron_Impact_Ionization`` channel; the other five
-   are ORDINARY combustion families that build covalently bonded argon and then terminate the
-   job in ``get_thermo_data``. Two successive claims in this file have been wrong about this --
+   One of the twelve is the intended ``Plasma_Electron_Impact_Ionization`` channel; the other
+   ELEVEN are ORDINARY combustion families that build bonded argon and then terminate the job
+   in ``get_thermo_data``. THREE successive claims in this file have been wrong about this --
    first "unreachable" (established by a grep, which cannot see a template match), then "exactly
-   one family reaches it" (established over a six-family subset). Read "THIS IS NOT AN INERT
-   ISLAND" in the entry's longDesc for the reach figure with its denominator.
+   one family reaches it" (established over a six-family subset), then "five" (established over
+   a hardcoded partner list, which is a sample in partners however exhaustive it is in
+   families). The twelve are DERIVED from the shipped template space by
+   ``docs/argon-metastable-thermo/template_space_derivation.py``, which asks the family's own
+   matcher and needs no partner at all. Read "THIS IS NOT AN INERT ISLAND" in the entry's
+   longDesc for the reach figure with its denominator.
 
    THAT WARNING USED TO END "until the engine-side atom-type gap is closed". IT IS WITHDRAWN,
    twice over. There is no engine-side gap: the argon atom types are correct and `Ar0e` in a
@@ -104,17 +108,18 @@ WHAT THE READER MUST NOT ASSUME
    repair - the channel remains unrepresented, and a runtime whose RMG-Py has no quarantine loader
    gets no refusal - so this library is still for thermochemistry only.
 
-6. **FIVE ORDINARY COMBUSTION FAMILIES REACHED THIS SPECIES AND KILLED THE JOB; THEY ARE NOW
-   CONTAINED, IN A SEPARATE COMMIT.** Measured over all 140 families: five ordinary ones matched
-   this species, built a covalently bonded argon, and raised ``AtomTypeError`` during thermo
-   generation, terminating the run. Four of the five are in ``recommended.py``'s ``default`` set,
-   so this was the default combination and not an exotic one. Each now carries a
+6. **ELEVEN ORDINARY COMBUSTION FAMILIES REACH THIS SPECIES AND KILL THE JOB; THEY ARE NOW
+   CONTAINED, IN SEPARATE COMMITS.** Derived over all 140 families from the shipped template
+   space: eleven ordinary families admit this species, build a bonded argon, and fail during
+   thermo generation, terminating the run. Four of them are in ``recommended.py``'s ``default``
+   set, so this was the default combination and not an exotic one. Each now carries a
    ``forbidden(...)`` entry for ``Ar u2 p3 c0`` -- the mechanism those families already use for
    off-scope reactants -- and the reachability measures 0 with 0 controls moved. That fix edits
-   five families every RMG user loads, so it is a separable commit. It is the fix and not a
-   workaround: the argon atom types are correct (in a molecule ``8 - c = bonds + 2p + u``, so
-   ``Ar0e`` is this species uniquely), and what those five families were missing is a statement
-   of their own scope. Same longDesc section.
+   eleven families every RMG user loads, so it lands separably: the first five in one commit
+   (found by a partner sweep) and the six the template derivation added in another. It is the
+   fix and not a workaround: the argon atom types are correct (in a molecule
+   ``8 - c = bonds + 2p + u``, so ``Ar0e`` is this species uniquely), and what those eleven
+   families were missing is a statement of their own scope. Same longDesc section.
 """
 
 entry(
@@ -746,10 +751,16 @@ THIS IS NOT AN INERT ISLAND. READ THIS BEFORE LOADING THE LIBRARY
     TWO OF THE ELEVEN MATCH ONLY IN REVERSE. ``generate_reactions`` enumerates the reverse
     template for any family that is ``reversible`` and not ``own_reverse``
     (``family.py:1882``), and both of these are. There the metastable is the PRODUCT and the
-    generated REACTANT is a bonded argon CATION, ``[Ar]NH2+``, which fails differently --
-    ``DatabaseError: no data for node R or any of its ancestors`` rather than
-    ``AtomTypeError``. Still loud, still not a silent number, but by a second route that the
-    structural argument below does not cover; see the note there.
+    bonded argon is a generated REACTANT, so a check that inspects products alone sees
+    nothing. Measured through the family's own generation
+    (``docs/argon-metastable-thermo/template_witness_probe.py``), the species both of them
+    build is ``N[Ar]`` -- a NEUTRAL bonded argon radical, ``Ar u1 p3 c0`` bonded to N, net
+    charge 0 -- and it raises ``AtomTypeError`` from HBI saturation, exactly like the other
+    nine. (A round-77 draft of this passage called it a bonded argon CATION, ``[Ar]NH2+``,
+    failing with ``DatabaseError: no data for node R or any of its ancestors``. Both were
+    wrong: that cation was hand-built, not generated, and neither the species nor the
+    exception is what the executed path produces. There is ONE failure route, and the
+    structural argument below covers it.)
 
     All eleven now carry the ``forbidden`` entry, and the derivation exits non-zero if a
     twelfth ever appears.
@@ -792,7 +803,12 @@ THIS IS NOT AN INERT ISLAND. READ THIS BEFORE LOADING THE LIBRARY
     from ``estimate_radical_thermo_via_hbi`` -> ``saturate_radicals`` (``thermo.py:2247``,
     ``molecule.pyx:2534``), reached through ``make_new_species`` -> ``generate_thermo`` ->
     ``submit`` (``model.py:401``, ``:1017``). A run that puts this species and ordinary families
-    in the same model TERMINATES during mechanism generation. The same probe runs ``CH3 + H``
+    in the same model TERMINATES during mechanism generation. (On an engine carrying the
+    round-80 saturation fix the same failure arrives as ``SaturatedStructureError``, which names
+    the species, its saturated form and the remedy instead of an atom and a bond count. Same
+    failure, same call site, same conclusion -- a number never comes back. The suite accepts
+    either name and asserts the absence of a number, so it does not silently become
+    engine-specific.) The same probe runs ``CH3 + H``
     through the identical path as a control and it completes cleanly, so the raise belongs to the
     chemistry and not to the setup.
 
@@ -808,11 +824,13 @@ THIS IS NOT AN INERT ISLAND. READ THIS BEFORE LOADING THE LIBRARY
            looks anything up.
         3. Saturating a one-bond argon gives a two-bond argon, and no atom type exists for that.
 
-    (ROUND 77 ADDS A SECOND ROUTE THIS ARGUMENT DOES NOT COVER, AND THE CONCLUSION SURVIVES
-    IT. The three steps above are about NEUTRAL covalent argon. The two reverse-matching
-    families build a bonded argon CATION instead, which never reaches HBI at all: it fails in
-    the group-additivity lookup with ``DatabaseError: no data for node R or any of its
-    ancestors``. So there are two loud failure routes, not one, and neither yields a number.)
+    (A ROUND-77 DRAFT CLAIMED A SECOND ROUTE HERE. IT WAS WRONG, AND THE ARGUMENT IS
+    THEREFORE WIDER THAN IT LOOKED. The claim was that the two reverse-matching families build
+    a bonded argon CATION which never reaches HBI and fails instead in the group-additivity
+    lookup. Measured through generation rather than by hand, what those families build is
+    ``N[Ar]`` at net charge 0 -- a neutral bonded argon radical -- and it fails at step 3
+    above like every other one. The three steps cover all eleven families; there is one loud
+    failure route, not two.)
 
     So every covalent neutral argon this database can build fails, by construction. The sweep
     agrees: of 66 distinct first-generation products, 57 raise and 9 return a number, and every

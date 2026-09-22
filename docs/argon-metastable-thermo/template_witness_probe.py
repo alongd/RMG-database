@@ -18,7 +18,8 @@ For each family this reports, in order:
     template admits it    from the derivation
     partner               derived, with the group it came from
     reactions generated   with the containment DETACHED  -> the BEFORE evidence
-    product thermo        whether any product raises AtomTypeError
+    species thermo        whether any species on EITHER side of a generated reaction
+                          fails to get thermo, and with which exception
     reactions generated   with the containment ATTACHED  -> the AFTER evidence
 
 A family that generates 0 with the containment detached is reported as SILENT: its
@@ -43,7 +44,6 @@ settings['database.directory'] = DATABASE
 
 from rmgpy.data.kinetics.database import KineticsDatabase   # noqa: E402
 from rmgpy.data.thermo import ThermoDatabase               # noqa: E402
-from rmgpy.exceptions import AtomTypeError                 # noqa: E402
 from rmgpy.molecule import Molecule                        # noqa: E402
 from rmgpy.species import Species                          # noqa: E402
 
@@ -77,20 +77,35 @@ def generate(family, reactants):
 
 
 def thermo_verdict(thermo_db, reactions):
-    """Does any product of any generated reaction fail to get thermo?"""
+    """Does any species of any generated reaction fail to get thermo?
+
+    BOTH SIDES, not just the products. A family that matches the metastable in its REVERSE
+    template puts the argon-bonded species among the generated REACTANTS -- which is exactly
+    what ``Cation_NO_Substitution`` and ``Li_NO_Substitution`` do -- so a products-only sweep
+    reports zero failures for them while direct checking reproduces the raise. RMG generates
+    thermo for every species it admits, in ``make_new_species``, without caring which side of
+    the arrow it arrived on; a verdict that inspects one side and reports on both is narrower
+    than the thing it describes.
+
+    Returns ``(raised, numbered)``, each a list of ``'<side>:<name>'`` or
+    ``'<side>:<name> -> <ExceptionType>'`` so the caller can see where a failure sat.
+    """
     raised, numbered = [], []
     for reaction in reactions:
-        for product in reaction.products:
-            spc = Species(molecule=[product if isinstance(product, Molecule)
-                                    else product.molecule[0]])
-            try:
-                thermo_db.get_thermo_data(spc)
-            except AtomTypeError:
-                raised.append(spc.molecule[0].to_smiles())
-            except Exception as exc:                        # noqa: BLE001
-                raised.append('%s(%s)' % (type(exc).__name__, exc.__class__.__name__))
-            else:
-                numbered.append(spc.molecule[0].to_smiles())
+        for side, members in (('reactant', reaction.reactants), ('product', reaction.products)):
+            for member in members:
+                spc = Species(molecule=[member if isinstance(member, Molecule)
+                                        else member.molecule[0]])
+                try:
+                    name = spc.molecule[0].to_smiles()
+                except Exception:                           # noqa: BLE001 - exotic species
+                    name = spc.molecule[0].to_adjacency_list().strip().replace('\n', ' | ')
+                try:
+                    thermo_db.get_thermo_data(spc)
+                except Exception as exc:                    # noqa: BLE001
+                    raised.append('%s:%s -> %s' % (side, name, type(exc).__name__))
+                else:
+                    numbered.append('%s:%s' % (side, name))
     return raised, numbered
 
 
@@ -133,10 +148,10 @@ def main():
             saved = family.forbidden.entries.pop(CONTAINMENT)
         before = generate(family, reactants)
         raised, numbered = thermo_verdict(tdb, before)
-        print('      BEFORE (containment detached): %d reactions, %d products raise, %d get a number'
+        print('      BEFORE (containment detached): %d reactions, %d species raise, %d get a number'
               % (len(before), len(raised), len(numbered)), flush=True)
         if raised:
-            print('             raising products: %s' % ', '.join(sorted(set(raised))[:4]), flush=True)
+            print('             raising species: %s' % ', '.join(sorted(set(raised))[:4]), flush=True)
         if saved is not None:
             family.forbidden.entries[CONTAINMENT] = saved
             after = generate(family, reactants)

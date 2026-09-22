@@ -238,21 +238,25 @@ for T in (34813.5, T_e_K):
     print("      k(%.1f K) = %.6e m^3/(mol*s)" % (T, kin.get_rate_coefficient(T)))
 
 sub("scale of the shortfall")
-PUBLISHED_3EV = 2.0583e10
+# The comparator is INTERNAL on purpose: this rule against itself, evaluated at the electron
+# temperature it was written for versus at the gas temperature it is actually delivered at.
+# An earlier version of this block compared against a published state-resolved argon model at
+# 3 eV (2.0583e10). That number was WITHDRAWN -- the campaign could not stand behind it -- and
+# the finding never needed it: a rule that ignores Te is disqualified by its own arithmetic,
+# with no external reference to argue about.
 k300 = results.get((300.0, 3.0))
 k1000 = results.get((1000.0, 3.0))
 k_at_Te = kin.get_rate_coefficient(34813.5)
-print("      published state-resolved argon model, 3 eV : %.4e" % PUBLISHED_3EV)
-print("      same Arrhenius evaluated at 34813.5 K      : %.4e" % k_at_Te)
+print("      this rule evaluated AT Te = 3 eV (34813.5 K) : %.4e" % k_at_Te)
 if k300:
-    print("      DELIVERED at 300 K gas                     : %.4e  (%.1f orders low vs published)"
-          % (k300, math.log10(PUBLISHED_3EV / k300)))
+    print("      DELIVERED at 300 K gas                       : %.4e  (%.1f orders low vs its own Te value)"
+          % (k300, math.log10(k_at_Te / k300)))
 if k1000:
-    print("      DELIVERED at 1000 K gas                    : %.4e  (%.1f orders low vs published)"
-          % (k1000, math.log10(PUBLISHED_3EV / k1000)))
+    print("      DELIVERED at 1000 K gas                      : %.4e  (%.1f orders low vs its own Te value)"
+          % (k1000, math.log10(k_at_Te / k1000)))
 
-print("\n  VERDICT: the channel is not over-predicted. It is UNDER-delivered, and the")
-print("           electron temperature never reaches it.")
+print("\n  VERDICT: the channel is UNDER-delivered against its own rule, and the electron")
+print("           temperature never reaches it.")
 
 
 # =====================================================================================

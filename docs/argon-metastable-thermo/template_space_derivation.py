@@ -112,6 +112,12 @@ def template_sites(family, direction):
     return [entry.item for entry in template.reactants]
 
 
+#: (family, direction, slot, exception type, message) for every template slot whose matcher
+#: raised. A non-empty list means the derivation could not see part of the template space, so
+#: it must not report completeness -- main() fails on it.
+MATCHER_ERRORS = []
+
+
 def matching_slots(family, mol, direction):
     """Slot indices of `direction`'s per-reactant templates that admit `mol`.
 
@@ -121,7 +127,13 @@ def matching_slots(family, mol, direction):
     for index, site in enumerate(template_sites(family, direction)):
         try:
             mappings = family._match_reactant_to_template(mol, site)
-        except Exception as exc:                       # noqa: BLE001 - a family that cannot
+        except Exception as exc:                       # noqa: BLE001
+            # A raising matcher does NOT mean "does not match" -- it means UNDETERMINED, and
+            # the completeness claim cannot be made over a slot nobody could evaluate. This
+            # used to print and `continue`, which quietly narrowed "every family whose
+            # template admits it is contained" to "every family whose template could be
+            # evaluated". Recorded, and fatal in main().
+            MATCHER_ERRORS.append((family.label, direction, index, type(exc).__name__, str(exc)))
             print('    ! %s %s slot %d raised %s: %s'
                   % (family.label, direction, index, type(exc).__name__, exc), flush=True)
             continue
@@ -190,7 +202,17 @@ def main():
         print('  every family whose template admits the metastable is forbidden, '
               'except %s, which is the intended channel' % EII, flush=True)
 
-    ok = controls_ok and not uncontained
+    if MATCHER_ERRORS:
+        print('  UNDETERMINED: %d template slots could not be evaluated, so the sweep did not '
+              'see the whole template space and no completeness claim is made:' % len(MATCHER_ERRORS),
+              flush=True)
+        for label, direction, index, kind, message in MATCHER_ERRORS:
+            print('      %s %s slot %d: %s: %s' % (label, direction, index, kind, message),
+                  flush=True)
+    else:
+        print('  every template slot was evaluated; no matcher raised', flush=True)
+
+    ok = controls_ok and not uncontained and not MATCHER_ERRORS
     print('\nEXIT %d' % (0 if ok else 1), flush=True)
     return 0 if ok else 1
 

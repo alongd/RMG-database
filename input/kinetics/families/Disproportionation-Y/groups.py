@@ -953,3 +953,58 @@ forbidden(
 """,
 )
 
+
+forbidden(
+    label = "Ar_metastable_biradical",
+    group =
+"""
+1 *1 Ar u2 p3 c0
+""",
+    shortDesc = """Metastable argon is out of scope for this family.""",
+    longDesc = """
+METASTABLE ARGON, Ar(4s 3P2), IS OUT OF SCOPE HERE AND ITS PRODUCTS ARE NOT
+REPRESENTABLE.
+`Ar u2 p3 c0` is metastable argon, entered in
+input/thermo/libraries/PlasmaExcitedNeutralThermo.py. It is a BIRADICAL, and the atom
+type that perceives it, Ar0e, is declared generic under R/R!H in RMG-Py
+(rmgpy/molecule/atomtype.py) -- correctly, which is the point of this entry. Argon
+brings 8 valence electrons, so in a MOLECULE 8 - c = bonds + 2p + u (the 8 is argon's
+valence count, not a universal constant), and a bond-free neutral argon at p3 c0 has u2 and no
+choice about it: Ar0e perceives exactly one molecule, this one. A generic site at
+u2 is RIGHT to match it. What is missing is this family's own statement of scope,
+which is what this entry supplies. This family is for disproportionation at a beta-heteroatom (Y) site, which is not chemistry a
+noble gas participates in.
+
+HOW THIS FAMILY WAS FOUND, AND WHY IT IS NOT A SIXTH GUESS. Not by trying partners. The
+shipped template space was decomposed and every family whose per-reactant site admits
+`Ar u2 p3 c0` was selected -- see docs/argon-metastable-thermo/template_space_derivation.py,
+which re-runs and exits non-zero if any matching family lacks this entry. This family
+matches on the forward template, slot 0. The earlier five entries were found by
+running 140 families against a hardcoded partner list; that is exhaustive in families and
+a SAMPLE in partners, and it missed this one because no suitable partner was in the list.
+
+WHAT IT PREVENTS, MEASURED WITH A PARTNER DERIVED FROM THIS FAMILY'S OWN TEMPLATE
+(docs/argon-metastable-thermo/template_witness_probe.py, so the witness does not depend on
+anybody's choice of second reactant): a fluorinated radical + Ar* -> [ArF] + alkene, whose [ArF] has no atom type.
+
+WHY THE LABEL IS LOAD-BEARING. ForbiddenStructures.is_molecule_forbidden honours atom
+labels (rmgpy/data/base.py), so an UNLABELLED `1 Ar u2 p3 c0` group silently matches
+nothing during generation -- the molecule's argon is labelled *1 by then and cannot
+map to an unlabelled group atom. This label is not chosen, it is read out of the
+matcher's own mapping for this family's template.
+
+THIS IS THE FIX, AT THE LAYER THE ERROR IS ON. Not a workaround held open pending an
+engine change: the argon atom types are correct as they stand (owner's ruling,
+2026-09-21; measured in docs/argon-metastable-thermo/atomtype_u_determined_probe.py).
+atomtype.py's note that Ar0e "answers for five (u, p, c) triples" describes GROUP
+patterns, where ux can be hand-written and no valency check applies -- families generate
+molecules.
+
+NOT COMPLETE, THOUGH -- but complete against the template space as it ships today. A
+family added later whose site admits this structure would reopen the crash, and would be
+declaring a u2 site broader than the chemistry it intends: the same defect as this one, in
+that family, and fixed the same way. It would not be an engine defect returning. The
+derivation above is the check that catches it, and it is re-runnable by whoever adds the
+family.
+""",
+)

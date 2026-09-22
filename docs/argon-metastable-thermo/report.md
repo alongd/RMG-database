@@ -5,6 +5,11 @@ Branch `i221-argon-metastable-thermo`, worktree
 Engine `/home/alon/Code/RMG-Py-plasma` at `311818121`, conda env `rmg_env`. Every run below is
 captured in `logs/` with both streams.
 
+> **Merging this branch? Read [§19](#19-merge-requirement--this-branch-does-not-stand-alone)
+> first.** This branch requires the RMG-Py branch `i221-saturation-no-atomtype`; on a pristine
+> engine its suite is 322 passed and **1 failed by design**, and landing the two separately leaves
+> the quarantine pin unenforced in the gap.
+
 ---
 
 ## 1. What was added
@@ -1936,4 +1941,81 @@ refreshed). The engine branch was rebased onto `40e21b495` and everything re-mea
 
 **The database branch now requires the engine branch.** `test_this_runtime_ENFORCES_the_declared_
 engine_requirement` fails on any engine that reads a manifest without honouring what it declares —
-which is the point of it, and is the loud failure the manifest has always said it wants.
+which is the point of it, and is the loud failure the manifest has always said it wants. §19 states
+that requirement in full, for whoever merges.
+
+---
+
+## 19. MERGE REQUIREMENT — this branch does not stand alone
+
+*Written for whoever performs the merge, and deliberately placed last so it is the final thing read.
+Ruled on 2026-09-22; the alternatives were considered and are recorded in §19.3 so the decision is
+not silently reversed by someone who did not see the history.*
+
+### 19.1 The requirement, in three sentences
+
+**(a) This branch requires the RMG-Py branch `i221-saturation-no-atomtype`** — two commits,
+`e1b28b064` and `8ff42bd1a`, on plasma head `40e21b495`. Not "works better with": *requires*. On a
+pristine engine this branch's own suite is **322 passed and 1 failed**.
+
+**(b) The failing test is the negative control, and it is failing on purpose.**
+`test_this_runtime_ENFORCES_the_declared_engine_requirement`, in `test/test_eii_quarantine.py`,
+fails on exactly those engines that read `input/kinetics/families/Plasma_Electron_Impact_Ionization/
+quarantine.py` and then ignore the `requiresEngineModule` / `requiresEngineSymbol` it declares. It
+is the only thing in either repository that distinguishes a pin which is **enforced** from a pin
+which is merely **declared**. A green suite here would mean the test cannot fail, which is the
+defect this ticket's round-80 MEDIUM was filed to repair.
+
+**(c) Landing the two separately, in either order, reopens the window.** Database first: the
+manifest declares a requirement no engine honours, and it is a comment again until the engine lands
+— with the one test that would say so failing, and therefore likely to be "fixed" by skipping it.
+Engine first: the enforcement exists but nothing in the shipped database exercises it. **Co-land, or
+the pin is decorative for the duration of the gap.**
+
+### 19.2 What to do at merge time
+
+Merge the six database commits (`17f3c4d57`, `833f6fe8a`, `0c75e1c79`, `31a20f076`, `662cc393e`,
+`a2cf9cd84`) and the two engine commits together, and re-run the suite against the merged engine —
+the expected result is **323 passed**, and a 322/1 says the engine half did not land. Nothing here
+has been pushed, and no merge on this campaign is the agent's act.
+
+### 19.3 Why the two alternatives were refused
+
+- **Skip the test on an unenforcing engine.** Refused. A `pytest.skip` that fires on precisely the
+  engines where the pin matters *is* a check that cannot fail, and it is invisible in a pass count —
+  the same defect class this campaign has now filed eleven separate times. It repairs round 80's
+  MEDIUM by recreating it one layer down.
+- **Move the enforcement test into the engine repository,** beside the code it guards. This one has
+  real merit and was weighed seriously. It loses because the database would then declare a
+  requirement with nothing in *its own* suite checking end to end, so the two can drift apart the
+  moment the repositories move independently — which is the original disease, not a cure for it.
+
+Option 1's cost is coordination, not correctness. The unpinned cross-repository pairing has been
+raised as a MEDIUM on four adversarial rounds across two tickets, and every remedy proposed before
+this one was a document or a proposal rather than a mechanism. A failing test is the first version
+of it that cannot be ignored and cannot drift, stated in the only language CI reads.
+
+### 19.4 The engine-side exception, since the report was asked for it by name
+
+The engine transport work **was done**, on the branch above. It is not outstanding.
+
+| | |
+|---|---|
+| **Class** | `SaturatedStructureError`, `rmgpy/exceptions.py:292` — a direct `Exception` subclass, deliberately **not** an `AtomTypeError` subclass, so no existing `except AtomTypeError` silently swallows it (asserted at `test/rmgpy/data/saturatedStructureTest.py:117`) |
+| **Sole raise site** | `rmgpy/data/base.py:1348`, inside the new shared helper `saturate_for_estimation(molecule, data_type)` — the one place the saturation is performed, rather than five inline copies |
+| **Adopted by** | `transport.py`, `solvation.py`, `thermo.py`, `tools/uncertainty.py`. `qm/main.py` is left alone: guarded by `onlyCyclics` and unreachable for a monatomic |
+| **Caught by** | `rmgpy/data/transport.py:352` and `:376`, which fall back to the shipped last-resort Lennard-Jones estimate and stamp the `tran.dat` comment with *"a heavy-atom-count guess and nothing more"*. Solvation deliberately does **not** catch — there is no defensible Abraham estimate for a metastable noble gas, so it reports instead of inventing |
+
+**Does the message name the species and the call path?** Yes, both, and that was the point of the
+change. The message interpolates: the species' **adjacency list** (not its SMILES — a `to_smiles()`
+failure inside the handler would recreate the very undiagnosable crash being removed), its radical
+count, the **saturated form's** adjacency list, the `data_type` the caller was actually estimating
+(`'transport data'`, `'solute data'`, `'thermodynamic data'`, `'thermodynamic uncertainty'`), the
+remedy — supply the data in a library entry or keep the species out of the model — and the
+underlying `AtomTypeError` text, so nothing is hidden. It is raised at the saturation site, so the
+traceback still carries the full call path; what changes is that the top frame now names the
+species and the estimate instead of an anonymous atom and a bond count many frames below whatever
+the modeller asked for.
+
+Before this, a modeller whose deck contained `Ar(3P2)` got an `AtomTypeError` from inside transport
+estimation naming neither the species nor the reason — the failure mode described in §18.1.

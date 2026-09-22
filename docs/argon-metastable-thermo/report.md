@@ -1987,12 +1987,21 @@ the pin is decorative for the duration of the gap.**
 
 ### 19.2 What to do at merge time
 
-Merge the database commits (`17f3c4d57`, `833f6fe8a`, `0c75e1c79`, `31a20f076`, `662cc393e`,
-`a2cf9cd84`, `5afb62d8b`, `9c88ea2b7`) together with the engine commits — **the post-rebase SHAs,
+Merge the branch, not a SHA list — the branch is the authority, and the list below is here only so
+that a merge arriving short is visible. The database commits are `3ae1ade8a`, `833f6fe8a`,
+`0c75e1c79`, `31a20f076`, `662cc393e`, `a2cf9cd84`, `5afb62d8b`, `9c88ea2b7`, and round 90's
+`d51154ab1`, `1ac70d663`, `1c2d60dde`, `f5b0e83d4`. **The first of those was written here as
+`17f3c4d57` until round 92 and that SHA is dead** — it is the pre-rebase twin of `3ae1ade8a`, same
+message and same author date, and `git branch --contains` names nothing. A SHA list copied forward
+across a rebase is exactly how a merge instruction rots; this one did.
+
+They go together with the engine commits — **the post-rebase SHAs,
 which are the only ones on the branch today**: `73c8214f7`, `4f5dff3db`, `88f080f80`, `d64029618`,
-`2c445dfdd`, `2482ee8f0`, `25a8d9393`, `e0f075780`, plus round 90's logs-only `5d7d86738`, sitting
-on plasma head `98d465d3b`. Re-run the
-suite against the merged engine — the expected result is **324 passed**. A failure in
+`2c445dfdd`, `2482ee8f0`, `25a8d9393`, `e0f075780`, plus round 90's logs-only `5d7d86738` and round
+92's `14a4099bb` (probe) and `9b89a937c` (the repairs), sitting on plasma head `98d465d3b`. Re-run
+the suite against the merged engine — the expected result is **324 passed**, measured at database
+`f5b0e83d4` against engine `9b89a937c` (`logs/round92-db-suite.log`), not inherited from an earlier
+pairing. A failure in
 `test_this_runtime_ENFORCES_the_pin_as_more_than_an_attribute_lookup` or
 `test_this_runtime_ENFORCES_the_declared_engine_requirement` says the engine half did not land, or
 landed short. Nothing here has been pushed, and no merge on this campaign is the agent's act.

@@ -2270,3 +2270,112 @@ end-to-end evidence this branch has not yet produced.
 
 Logs for everything above: `logs/round90-*` here, and `docs/i221-saturation/logs/round90-*` in the
 engine worktree.
+
+---
+
+## 22. Round 90 — the deck ran, and the export is honest
+
+The staged deck had been sitting unrun since round 80. It ran twice on the rebased engine
+`e0f075780`. Run directories: `/home/alon/runs/ar5torr-i221-round90-20260922-222548` and
+`…-nocantera-222701`; copies of both `RMG.log`/`stderr.log`, and the exported mechanism, are in
+`logs/round90-deck-*`.
+
+### 22.1 Before and after, on the same deck
+
+The same deck was run at 12:51 today on the **pre-rebase** engine
+(`/home/alon/runs/ar5torr-i261-20260922-125141`). It died here:
+
+```
+  File "rmgpy/chemkin.pyx", line 1715, in rmgpy.chemkin.write_thermo_entry
+AssertionError
+```
+
+— the bare `assert len(thermo.polynomials) == 2` that I-260 replaced. Every species in this deck is
+monatomic, so every one of them has a single NASA range, and the Chemkin writer refused all of
+them without naming one. On the rebased engine that wall is gone: **model generation completes in
+5 s** and the Chemkin files are written.
+
+### 22.2 The metastable species survives the whole pipeline
+
+`Ars` (`Ar u2 p3 c0`) reaches thermo, transport and the writer. Transport is the interesting one,
+because it is the estimator this branch's engine half was built for. It does not crash; it falls
+back, by name, with the reason:
+
+> Estimating transport properties of Ars from the fallback Lennard-Jones parameters, because group
+> additivity is not available for it: … replacing the species' 2 radical electron(s) with bonds to
+> hydrogen gives a structure that no RMG atom type describes … This is expected for electronically
+> excited species, such as a metastable noble gas, whose unpaired electrons are not unfilled
+> valences. Supply transport data for this species directly in a library entry, or keep it out of
+> the model.
+
+That is the round-80 repair doing exactly what it was written to do, in a real run rather than a
+test: an `AtomTypeError` many frames below the caller has become a sentence that names the species,
+the cause, and the two ways out. (The `Error: Could not update atomtypes` line above it in `RMG.log`
+is `update_atomtypes`' own logging on the way past and is not fatal.)
+
+### 22.3 The export is right, not merely present
+
+From `logs/round90-deck-chem_annotated.inp`, the two argon thermo blocks:
+
+| species | library | a6 (H/R, K) |
+|---|---|---|
+| `Ar(2)` | `primaryThermoLibrary` | −745.375 |
+| `Ars(4)` | `PlasmaExcitedNeutralThermo` | 133267.585 |
+
+The gap the exported file therefore asserts between metastable and ground-state argon is
+
+    (133267.585 + 745.375) K x R = 1114.246 kJ/mol = 11.5484 eV
+
+against the NIST value for Ar(3P2), **11.5484 eV**. The number this branch put into the database
+arrives at the other end of the pipeline intact, through a writer that had never emitted it before.
+Both blocks are one-range NASAs split into two identical Chemkin ranges, which is exact for a
+monatomic species — I-260's construction, exercised here on the species it was needed for.
+
+The mechanism carries the two argon reactions with their electron-temperature declarations and
+their honest annotations about what Chemkin cannot represent:
+
+```
+Ar(2)+e-(1)=>Arp(3)+e-(1)+e-(1)      2.981e+13 0.597  361.244
+    TDEP/e-(1)/   ! ElectronCollisionPlasma exported as a modified-Arrhenius fit of k(Te) …
+Arp(3)+e-(1)=>Ar(2)                  9.122e+13 -0.651   0.000
+    TDEP/e-(1)/   ! TwoTemperaturePlasma reduced along T=Te; Ea_electron=0 J/mol is not representable …
+```
+
+`Ars` participates in no reaction: nothing in the loaded set has a metastable channel. It is in the
+file as a species with correct thermo, which is what this branch claimed and all it claimed.
+
+### 22.4 The next blocker, named and not fixed: the sibling writer
+
+Both runs still exit **1**, and for one reason only. `rmgpy/yaml_cantera2.py:524-526` carries the
+identical assumption I-260 removed from `chemkin.pyx`:
+
+```python
+'temperature-ranges': [sorted_polys[0].Tmin.value_si, sorted_polys[0].Tmax.value_si,
+                       sorted_polys[1].Tmax.value_si],
+'data': [polys[0]['data'], polys[1]['data']]
+```
+
+A one-range NASA gives `IndexError: list index out of range` — and, exactly as before the I-260
+repair, the failure names no species. Cantera's own NASA7 model accepts a single range, so this
+writer is stricter than the format it targets.
+
+**It cannot be worked around from the deck.** Setting `generateCanteraYAML2=False` was tried in the
+second run and is refused by design:
+
+> No Cantera artifact was produced for this plasma mechanism. The Chemkin-to-Cantera translation
+> cannot represent its electron-temperature rate laws (TDEP/ lines, which ck2yaml rejects), and the
+> only writer that can represent them — the direct cantera2 writer — is disabled.
+
+That guard is correct and should stay. The consequence is that **every plasma deck containing a
+monatomic species cannot produce a Cantera artifact today**, which is a larger blast radius than
+this ticket and belongs to whoever owns I-260's family of writers. Named here per the standing
+rule; not fixed, because `rmgpy/yaml_cantera2.py` is not this ticket's file.
+
+### 22.5 What this settles and what it does not
+
+Settled: the claim that this branch is the last blocker on an honest Chemkin export is now
+demonstrated rather than argued — the export exists, and its numbers are right.
+
+Not settled: the run still ends non-zero, so "a clean end-to-end plasma run" remains unreached, on
+a defect that is not this branch's. The deck also substitutes `terminationTime = 1e-3 s` for
+"quasi-steady state" (the deck's own note 2), so nothing here is a statement about the steady state.

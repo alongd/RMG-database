@@ -1,0 +1,61 @@
+ELEMENTS
+	Ar
+	E
+END
+
+SPECIES
+    e-(1)               ! e-(1)
+    Ar(2)               ! Ar(2)
+    Arp(3)              ! Arp(3)
+    Ars(4)              ! Ars(4)
+END
+
+
+
+THERM ALL
+   300.000  1000.000  5000.000
+
+! Thermo library: electrocatThermo
+e-(1)                   E   1               G   298.000  3000.000 1000.00      1
+ 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00    2
+ 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00    3
+ 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00                   4
+
+! Thermo library: primaryThermoLibrary
+Ar(2)                   Ar  1               G   200.000  6000.000 1000.00      1
+ 2.50000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00    2
+-7.45375000E+02 4.37967000E+00 2.50000000E+00 0.00000000E+00 0.00000000E+00    3
+ 0.00000000E+00 0.00000000E+00-7.45375000E+02 4.37967000E+00                   4
+
+! Thermo library: PlasmaCationThermo
+Arp(3)                  Ar  1E  -1          G   100.000  5000.000 1970.48      1
+ 2.50000241E+00-2.86966665E-14 1.51088780E-17-3.34839323E-21 2.65220781E-25    2
+ 1.82138651E+05 5.77103097E+00 2.50000241E+00-1.47796363E-15 3.19065367E-18    3
+-2.29397207E-21 5.09250534E-25 1.82138651E+05 5.77103097E+00                   4
+
+! Thermo library: PlasmaExcitedNeutralThermo
+Ars(4)                  Ar  1               G   200.000  6000.000 1000.00      1
+ 2.50000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00    2
+ 1.33267585E+05 5.98904285E+00 2.50000000E+00 0.00000000E+00 0.00000000E+00    3
+ 0.00000000E+00 0.00000000E+00 1.33267585E+05 5.98904285E+00                   4
+
+END
+
+
+
+REACTIONS    KCAL/MOLE   MOLES
+
+! Reaction index: Chemkin #1; RMG #1
+! Library reaction: PlasmaArgon
+! Flux pairs: e-(1), e-(1); Ar(2), Arp(3); Ar(2), e-(1); 
+Ar(2)+e-(1)=>Arp(3)+e-(1)+e-(1)                     2.981e+13 0.597     361.244  
+    TDEP/e-(1)/   ! ElectronCollisionPlasma exported as a modified-Arrhenius fit of k(Te) over 1.16e+04-1.16e+05 K; the original functional form is not representable in Chemkin
+
+! Reaction index: Chemkin #2; RMG #3
+! Library reaction: PlasmaRadiativeRecombination
+! Flux pairs: Arp(3), Ar(2); 
+Arp(3)+e-(1)=>Ar(2)                                 9.122e+13 -0.651    0.000    
+    TDEP/e-(1)/   ! TwoTemperaturePlasma reduced along T=Te; Ea_electron=0 J/mol is not representable in Chemkin and is dropped
+
+END
+

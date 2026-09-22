@@ -337,10 +337,20 @@ def test_the_manifest_declares_the_engine_it_needs_and_this_runtime_satisfies_it
 
     module_name = manifest.get('requiresEngineModule')
     symbol_name = manifest.get('requiresEngineSymbol')
-    commit = manifest.get('requiresEngineCommit')
-    assert module_name and symbol_name and commit, (
-        'the manifest must name the engine module, the symbol and the commit that first '
-        'provided the gate, or a reader cannot tell which runtimes it is real on')
+    call_sites = manifest.get('requiresEngineCallSites')
+    commit = manifest.get('recordedEngineCommit')
+    assert module_name and symbol_name and call_sites and commit, (
+        'the manifest must name the engine module, the symbol, the call site the symbol '
+        'must be reached from, and the commit that first provided the gate, or a reader '
+        'cannot tell which runtimes it is real on')
+
+    # Round 87: the field that records the commit is `recordedEngineCommit`, and the name
+    # is the point. Round 80 called it `requiresEngineCommit` and explained in a comment
+    # that it was provenance -- but a reader greps the field name, and "requires" claims a
+    # pin that cannot exist, because an installed engine has no commit to compare against.
+    assert manifest.get('requiresEngineCommit') is None, (
+        'requiresEngineCommit is unenforceable and no longer declarable; the engine '
+        'refuses a manifest carrying it. Record the commit as recordedEngineCommit.')
 
     spec = importlib.util.find_spec(module_name)
     assert spec is not None, (
@@ -349,6 +359,10 @@ def test_the_manifest_declares_the_engine_it_needs_and_this_runtime_satisfies_it
     module = importlib.import_module(module_name)
     assert hasattr(module, symbol_name), (
         '%s exists but does not provide %s' % (module_name, symbol_name))
+    assert callable(getattr(module, symbol_name)), (
+        '%s.%s exists but is not callable, so it cannot be the gate this manifest '
+        'depends on -- mere existence of an attribute proves nothing' % (
+            module_name, symbol_name))
 
     # and the gate is wired in, not merely importable. Checked on SOURCE rather than on
     # instances, because constructing either takes a signature that has changed before and
@@ -378,6 +392,15 @@ def test_the_manifest_declares_the_engine_it_needs_and_this_runtime_satisfies_it
     assert symbol_name in model_source, (
         '%s is importable but the reaction model never calls it, so a loaded manifest '
         'would gate nothing at admission' % symbol_name)
+
+    # Round 87 adds the binding check the source scan above cannot make: each declared
+    # call site must hold the SAME object the manifest's module provides. A source scan
+    # sees the name; this sees that the name resolves to the gate.
+    for call_site in call_sites:
+        site = importlib.import_module(call_site)
+        assert getattr(site, symbol_name, None) is getattr(module, symbol_name), (
+            '%s is declared as a call site for %s but does not bind it, so the gate is '
+            'not reached from the path this manifest depends on' % (call_site, symbol_name))
 
 
 def test_this_runtime_ENFORCES_the_declared_engine_requirement(tmp_path):
@@ -425,6 +448,67 @@ def test_this_runtime_ENFORCES_the_declared_engine_requirement(tmp_path):
     assert load_family_quarantine('Synthetic_Family', str(tmp_path)) is not None
 
 
+def test_this_runtime_ENFORCES_the_pin_as_more_than_an_attribute_lookup(tmp_path):
+    """Round 87. Round 80's enforcement was real but weak, and this database's record said
+    it was strong - twice. Review reproduced three holes: a symbol declared with no module
+    was skipped without a word, ANY non-None attribute satisfied the symbol check (a
+    manifest naming `math.pi` as its gate loaded clean), and nothing showed the gate was
+    REACHED rather than merely present.
+
+    Each hole gets a case below, and each case is a manifest this engine must refuse. The
+    positive control in the test above is what keeps these from passing on an engine that
+    simply refuses everything."""
+    from rmgpy.data.kinetics.quarantine import load_family_quarantine
+    from rmgpy.exceptions import DatabaseError
+
+    base = '\n'.join([
+        'name = "Synthetic/quarantine"',
+        'state = "QUARANTINED FOR TESTING"',
+        'appliesToKineticsClass = "Arrhenius"',
+        'reason = "a synthetic manifest used to check that requirements are enforced"',
+        '',
+    ])
+    path = os.path.join(str(tmp_path), 'quarantine.py')
+
+    cases = [
+        ('a gate that is not callable',
+         'requiresEngineModule = "math"\nrequiresEngineSymbol = "pi"\n',
+         'not callable'),
+        ('a symbol with no module to look it up in',
+         'requiresEngineSymbol = "check_quarantine"\n',
+         'requiresEngineModule'),
+        ('a gate that exists but is wired nowhere near admission',
+         'requiresEngineModule = "rmgpy.data.kinetics.quarantine"\n'
+         'requiresEngineSymbol = "check_quarantine"\n'
+         'requiresEngineCallSites = ("os",)\n',
+         'wired into'),
+        ('a commit pin that could never fail',
+         'requiresEngineModule = "rmgpy.data.kinetics.quarantine"\n'
+         'requiresEngineSymbol = "check_quarantine"\n'
+         'requiresEngineCommit = "0000000000000000000000000000000000000000"\n',
+         'recordedEngineCommit'),
+    ]
+
+    for description, extra, expected in cases:
+        with open(path, 'w', encoding='utf-8') as handle:
+            handle.write(base + extra)
+        with pytest.raises(DatabaseError) as exc:
+            load_family_quarantine('Synthetic_Family', str(tmp_path))
+        assert expected in str(exc.value), (
+            'this engine accepts %s, so the pin is weaker than this database claims '
+            'it is' % description)
+
+    # positive control: the arrangement the real manifest declares must still load, or
+    # every refusal above would be an engine that refuses everything.
+    with open(path, 'w', encoding='utf-8') as handle:
+        handle.write(base
+                     + 'requiresEngineModule = "rmgpy.data.kinetics.quarantine"\n'
+                       'requiresEngineSymbol = "check_quarantine"\n'
+                       'requiresEngineCallSites = ("rmgpy.rmg.model",)\n'
+                       'recordedEngineCommit = "541e6498f"\n')
+    assert load_family_quarantine('Synthetic_Family', str(tmp_path)) is not None
+
+
 def test_the_manifest_enumerates_the_routes_that_bypass_it():
     """The scope claim, asserted rather than left to a reader's optimism.
 
@@ -436,13 +520,32 @@ def test_the_manifest_enumerates_the_routes_that_bypass_it():
 
     A manifest that does not say so invites a green run to be read as a hard boundary. The
     routes are now enumerated in the file; this pins that they stay enumerated, because
-    the bypasses are the part a future reader most needs and least expects."""
+    the bypasses are the part a future reader most needs and least expects.
+
+    ROUND 87 MOVED ONE OF THESE EXPECTATIONS, DELIBERATELY. The list used to name 'seed
+    mechanism' outright, on the reasoning that a rate copied into a library 'is not this
+    family'. That wrote off a hole that turned out to be closable: the engine gate was
+    keying on `reaction.family`, which LibraryReaction overwrites with the LIBRARY's
+    label, so authorship was being discarded rather than absent. The gate now reads the
+    `family:` provenance RMG itself writes, and a copy made by RMG is caught. What is left
+    of the route is strictly smaller and is asserted as such below -- the assertion had to
+    move because the SCOPE moved, which is the one reason it is allowed to."""
     manifest = _exec_data_file(
         os.path.join(THIS_DATABASE, 'kinetics', 'families', FAMILY, 'quarantine.py'))
     routes = manifest.get('bypassRoutes')
     assert routes, 'the manifest must enumerate what it does NOT cover'
     joined = ' '.join(routes).lower()
-    for required in ('engine lacking', 'direct database consumer', 'seed mechanism'):
+    for required in ('engine lacking', 'direct database consumer'):
         assert required in joined, (
             'the bypass list no longer names %r; the scope of this manifest was '
             'narrowed in prose without the list being updated' % required)
+
+    seed_routes = [route for route in routes
+                   if 'seed' in route.lower() or 'library' in route.lower()]
+    assert seed_routes, (
+        'the library/seed route must still be named: a hand-written entry carrying no '
+        'authorship remains outside what the gate can check')
+    assert any('hand-written' in route.lower() for route in seed_routes), (
+        'the library/seed bypass is no longer unconditional -- a rate copied by RMG '
+        'carries the authorship the gate now reads. Stating it unconditionally overstates '
+        'the hole, which is the mirror image of the error round 87 was filed for.')

@@ -178,9 +178,28 @@ test/test_eii_quarantine.py.
 #   * an engine old enough to lack the quarantine loader entirely never reads this file,
 #     so it cannot be refused from here. That is bypass route 1 below, and it is why the
 #     routes are enumerated rather than claimed closed.
+#
+# ROUND 87 -- THE PIN WAS WEAKER THAN ROUND 80 CLAIMED, AND IS NOW WHAT IT SAYS.
+# Review reproduced three holes in the enforcement: a `requiresEngineSymbol` declared
+# without a module was silently skipped; ANY non-None attribute satisfied the symbol
+# check, so a manifest naming `math.pi` as its gate loaded clean; and symbol existence
+# never showed the gate was REACHED from model admission. Round 80's "the pin is now
+# real" was an overstatement -- it was realer. Three changes, all in the engine's loader,
+# declared from here:
+#   * the symbol must be CALLABLE, not merely present;
+#   * `requiresEngineCallSites` names the module(s) that must bind that exact object, so
+#     an engine that defines the gate and never wires it into the reaction model is
+#     refused. Existence proves the capability was written; this proves it is reached;
+#   * `requiresEngineCommit` is no longer DECLARABLE. Round 80 relabelled it as
+#     provenance in prose while leaving the field name saying "requires", which is the
+#     same defect one layer up -- a reader greps the name, not the comment. The engine
+#     now refuses a manifest that declares it. The commit moves to
+#     `recordedEngineCommit`, which the loader reads and logs as provenance, so the field
+#     is not merely tolerated in silence.
 requiresEngineModule = "rmgpy.data.kinetics.quarantine"
 requiresEngineSymbol = "check_quarantine"
-requiresEngineCommit = "541e6498f"
+requiresEngineCallSites = ("rmgpy.rmg.model",)
+recordedEngineCommit = "541e6498f"
 
 # WHAT THIS MANIFEST DOES NOT COVER. Enumerated because a reader who believes the
 # quarantine is a hard boundary will draw the wrong conclusion from a green run.
@@ -189,16 +208,30 @@ requiresEngineCommit = "541e6498f"
 #   1. an engine WITHOUT the module above -- the family loads and is unguarded;
 #   2. a direct database consumer (a script that calls generate_reactions and reads
 #      .kinetics itself) -- the gate lives at model admission, not at the data;
-#   3. an equivalent rate supplied through a reaction library or a seed mechanism --
-#      that data is not this family and this manifest says nothing about it;
+#   3. a rate copied into a reaction library or seed mechanism by hand, with the
+#      authorship comment stripped -- NARROWED in round 87, see below;
 #   4. any consumer that reads rules.py as a file rather than through RMG.
 # The quarantine is therefore a guard on ONE path -- the standard model-admission
 # path -- and the defect it guards against is a property of the RATE, which travels
 # wherever the number travels. The durable fix is the engine-side one in condition 1
 # above, not this file.
+#
+# ROUND 87 NARROWED ROUTE 3, WHICH THIS FILE HAD WRITTEN OFF TOO EARLY. It read "that
+# data is not this family and this manifest says nothing about it" -- treating a closable
+# hole as a fact of life because the previous sentence had correctly identified the
+# defect as a property of the rate. If the defect travels with the number, so must the
+# refusal; what was missing was not the principle but the KEY. The engine gate used to
+# resolve the family through `reaction.family`, and LibraryReaction overwrites that slot
+# with the LIBRARY's label, so a quarantined rate copied into a seed was admitted (and,
+# in the other direction, an innocent library named like a quarantined family was
+# refused). The gate now resolves AUTHORSHIP -- the `family: <label>` line RMG writes
+# into an estimated rate's comment and saves into the entry's longDesc -- so a copy made
+# by RMG itself is now caught. What remains of route 3 is strictly smaller: a
+# hand-written entry carrying no authorship at all, where there is genuinely nothing to
+# read. The engine warns on exactly that case rather than guessing.
 bypassRoutes = (
     "engine lacking rmgpy.data.kinetics.quarantine",
     "direct database consumer reading .kinetics without model admission",
-    "equivalent rate supplied via reaction library or seed mechanism",
+    "hand-written library/seed entry with the authoring-family comment stripped",
     "consumer reading rules.py as a file",
 )

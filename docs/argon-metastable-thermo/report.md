@@ -1852,7 +1852,9 @@ and owned by nothing. Ground-state argon survives because `u0` saturates to itse
 inline and raises `SaturatedStructureError` — naming the species, its saturated form, the estimate
 that could not be made, and what to supply instead — when the saturated form has no atom type.
 Four call sites adopt it (transport, solvation, thermo, uncertainty); `rmgpy/qm/main.py` is the
-fifth and is left alone, guarded by `onlyCyclics` and unreachable for a monatomic.
+fifth and is left alone, guarded by `onlyCyclics` and unreachable for a monatomic. **Round 87
+reversed that last decision** — it is now routed through the helper too, so all five adopt it.
+See §20.5.
 
 **The two candidate approaches, and the judgement.** Shipping transport and solute data for this
 species is smaller and was proved to work. It was **not** taken as the fix, for two reasons. It
@@ -1958,6 +1960,11 @@ not silently reversed by someone who did not see the history.*
 `e1b28b064` and `8ff42bd1a`, on plasma head `40e21b495`. Not "works better with": *requires*. On a
 pristine engine this branch's own suite is **322 passed and 1 failed**.
 
+*Amended by round 87: the pin this section describes was real but weaker than it claimed — a
+manifest naming `math.pi` as its gate loaded clean. §20.4 records what was wrong and what the
+enforcement checks now. The co-landing requirement below is unchanged and, if anything, firmer:
+there are now four engine commits the database depends on, not two.*
+
 **(b) The failing test is the negative control, and it is failing on purpose.**
 `test_this_runtime_ENFORCES_the_declared_engine_requirement`, in `test/test_eii_quarantine.py`,
 fails on exactly those engines that read `input/kinetics/families/Plasma_Electron_Impact_Ionization/
@@ -1974,10 +1981,13 @@ the pin is decorative for the duration of the gap.**
 
 ### 19.2 What to do at merge time
 
-Merge the six database commits (`17f3c4d57`, `833f6fe8a`, `0c75e1c79`, `31a20f076`, `662cc393e`,
-`a2cf9cd84`) and the two engine commits together, and re-run the suite against the merged engine —
-the expected result is **323 passed**, and a 322/1 says the engine half did not land. Nothing here
-has been pushed, and no merge on this campaign is the agent's act.
+Merge the database commits (`17f3c4d57`, `833f6fe8a`, `0c75e1c79`, `31a20f076`, `662cc393e`,
+`a2cf9cd84`, `5afb62d8b`, and round 87's) together with the engine commits (`e1b28b064`,
+`8ff42bd1a`, `14cca78b7`, `dee2954ef`, `18b94de25`), and re-run the suite against the merged
+engine — the expected result is **324 passed**. A failure in
+`test_this_runtime_ENFORCES_the_pin_as_more_than_an_attribute_lookup` or
+`test_this_runtime_ENFORCES_the_declared_engine_requirement` says the engine half did not land, or
+landed short. Nothing here has been pushed, and no merge on this campaign is the agent's act.
 
 ### 19.3 Why the two alternatives were refused
 
@@ -2003,7 +2013,7 @@ The engine transport work **was done**, on the branch above. It is not outstandi
 |---|---|
 | **Class** | `SaturatedStructureError`, `rmgpy/exceptions.py:292` — a direct `Exception` subclass, deliberately **not** an `AtomTypeError` subclass, so no existing `except AtomTypeError` silently swallows it (asserted at `test/rmgpy/data/saturatedStructureTest.py:117`) |
 | **Sole raise site** | `rmgpy/data/base.py:1348`, inside the new shared helper `saturate_for_estimation(molecule, data_type)` — the one place the saturation is performed, rather than five inline copies |
-| **Adopted by** | `transport.py`, `solvation.py`, `thermo.py`, `tools/uncertainty.py`. `qm/main.py` is left alone: guarded by `onlyCyclics` and unreachable for a monatomic |
+| **Adopted by** | all five saturation sites: `transport.py`, `solvation.py`, `thermo.py`, `tools/uncertainty.py` and — since round 87 — `qm/main.py`, which had been excused as unreachable for a monatomic and was still reachable for a cyclic non-valence radical (§20.5) |
 | **Caught by** | `rmgpy/data/transport.py:352` and `:376`, which fall back to the shipped last-resort Lennard-Jones estimate and stamp the `tran.dat` comment with *"a heavy-atom-count guess and nothing more"*. Solvation deliberately does **not** catch — there is no defensible Abraham estimate for a metastable noble gas, so it reports instead of inventing |
 
 **Does the message name the species and the call path?** Yes, both, and that was the point of the
@@ -2019,3 +2029,140 @@ the modeller asked for.
 
 Before this, a modeller whose deck contained `Ar(3P2)` got an `AtomTypeError` from inside transport
 estimation naming neither the species nor the reason — the failure mode described in §18.1.
+
+---
+
+## 20. Round 87 — the gate was keyed on a slot a wrapper repurposes
+
+Review of the engine branch at `8ff42bd1a`: no CRITICAL, one HIGH, two MEDIUMs, one LOW. What held
+is not re-litigated here — the class hierarchy of `SaturatedStructureError`, transport's conversion
+to the fallback, the caveat surviving into `tran.dat` at 3.758 Å / 148.6 K, and the reachability of
+the solvation refusal. This section is the four that did not.
+
+All eight findings below were reproduced before anything was built on them, by
+`docs/i221-saturation/probes/round87_provenance_probe.py` in the engine repo: **8 of 8 reproduced,
+4 of 4 controls holding** at `8ff42bd1a`, and **0 of 8, same controls** at the fix.
+
+### 20.1 What a quarantine is actually about — asked before it was re-keyed
+
+The review required this answered first, and it decides the shape of the fix.
+
+**The quarantined thing is the RATE.** A `Marcus` rate with no electrochemical reference returns a
+meaningless number wherever it is stored; an estimated EII rate is evaluated at `Tgas` wherever it
+is stored. Copying either into a seed mechanism does not repair it. The family is in the key for
+two reasons, and neither is that the family is what is wrong: it is **where the manifest lives**,
+next to the data it describes, and it is **what scopes the criterion**, because
+`appliesToKineticsClass = "Marcus"` on its own would ban a kinetics class across all of RMG,
+including the legitimate electrochemistry the quarantine must not touch. The module's own design
+already said this — `applies_to()` takes kinetics and nothing else, and `affected_entries()`
+computes the set from the data — but the *gate* did not.
+
+So the key is **(authoring family, kinetics criterion)**, and *authoring* is the load-bearing word:
+it has to survive the rate being copied.
+
+### 20.2 The HIGH, and the premise that inverted under it
+
+`LibraryReaction.__init__` ends with `self.family = library` (`library.py:100`). One attribute,
+two kinds of name: a family label on a `TemplateReaction`, a library label on a `LibraryReaction`.
+The gate read it directly, so it failed in **both** directions — the review named the first, the
+probe found the second:
+
+| | before | after |
+|---|---|---|
+| quarantined `Marcus` rate copied into a seed (`library="copied_seed"`) | **admitted** | refused |
+| innocent library that happens to share the family's name | **refused** | admitted |
+
+The review anticipated that authorship might be unrecoverable once a rate is copied, and said that
+if so the fix belongs where provenance is *lost*. **That premise was checked and it is false**,
+which is what kept the fix at the read site. `KineticsLibrary.get_library_reactions`
+(`library.py:355-372`) already parses a `family: <label>` line out of an entry's `longDesc` and
+rebuilds the reaction as a `TemplateReaction` of that family — but only when the library is
+`auto_generated`. Authorship is therefore usually **present and unread**, not absent: RMG writes it
+into every estimated rate's comment, the library writer saves it, and `.family = library` then
+overwrites the one slot a reader would consult.
+
+`authoring_family(reaction)` now resolves it: `reaction.family` for a template reaction, and for a
+library reaction the `family:` line from the kinetics comment or the entry's `long_desc`, never the
+repurposed slot.
+
+**What remains, named rather than papered over.** A hand-written library entry with no comment
+carries no authorship at all, and nothing can recover it. There the gate cannot distinguish a
+copied quarantined rate from an independent rate of the same class, and it **warns once per
+(library, kinetics class) rather than refusing** — refusing on the criterion alone would ban
+legitimate `Marcus` electrochemistry, trading a silent admission for a silent obstruction. The EII
+manifest's `bypassRoutes` entry 3 is narrowed accordingly, from "an equivalent rate supplied
+through a reaction library or a seed mechanism" to "hand-written library/seed entry with the
+authoring-family comment stripped". That entry had written the hole off as a fact of life; it was
+closable, and most of it is now closed.
+
+### 20.3 Where this sits in a pattern the campaign keeps re-deriving
+
+The review called it the seventh instance this week of keying on an attribute a wrapper repurposes,
+and the first in a *gate* rather than a selector. The rule already on file is *key at the finest
+identity the physics distinguishes*; the sibling it adds is **key on something a wrapper cannot
+repurpose**. The tell here was available without running anything: `get_quarantine`'s own docstring
+said a kinetics library "cannot carry a family manifest" and would "yield `None`" — which is the
+bypass, written down as if it were a reassurance.
+
+### 20.4 The pin was weaker than this report twice said it was
+
+Round 80's enforcement was real; "the pin is now real" was an overstatement, and the manager has
+recorded the same overstatement in the project record. Four holes, each reproduced:
+
+| declared | before | now |
+|---|---|---|
+| `requiresEngineSymbol` with no `requiresEngineModule` | skipped in silence (`if not module_name: return`) | `DatabaseError` — a check that cannot be performed must not look like one that passed |
+| a symbol that exists but is not callable | accepted; a manifest naming **`math.pi`** as its gate loaded clean | `DatabaseError` — a gate that cannot be called is not a gate |
+| the symbol is reached from model admission | never checked; existence proves only that the capability was written | `requiresEngineCallSites` names modules that must bind **that exact object** |
+| `requiresEngineCommit` | read and deliberately ignored | **not declarable** — `DatabaseError` naming the replacement |
+
+The last one is the round-80 repair repeating one layer up, and worth stating plainly. Round 80
+correctly concluded a commit check could never fail, and answered by documenting the field as
+provenance in a comment while leaving it named `requiresEngineCommit`. **A reader greps the field
+name, not the comment beside it.** The field is now refused outright; the commit moves to
+`recordedEngineCommit`, which the loader reads and logs — because a field nothing consults is
+exactly where this thread started.
+
+### 20.5 The two smaller ones
+
+**The message printed an adjacency list that could not be read back.** `saturate_radicals` assigns
+`multiplicity` only *after* `update_atomtypes` returns, so on the failing path the saturated copy
+still carried the unsaturated species' multiplicity beside zero radicals: `multiplicity 3` with no
+radical electrons, which `from_adjacency_list` rejects. The message chose adjacency lists over
+SMILES precisely so that rendering it could not fail the way the crash it replaces did — and then
+printed a block that fails on re-read. Same instinct, one layer short. The handler now completes
+the bookkeeping the raise interrupted, and the message says how to read the block: it parses with
+`raise_atomtype_exception=False`, and the **only** obstacle otherwise is the `AtomTypeError` the
+message already quotes. That last part is the honest end state rather than a workaround — the
+saturated form of a metastable can never satisfy atom typing, because that is the whole content of
+the failure, and the test asserts exactly that (`AtomTypeError`, never
+`InvalidAdjacencyListError`).
+
+**`qm/main.py` was the fifth call site and had been excused.** §18.2 said four adopt the helper and
+the fifth is unreachable for a monatomic. True for argon, and beside the point: a cyclic
+non-valence radical reaches it and receives the raw `AtomTypeError` the helper exists to replace.
+Routed through the helper rather than defended in prose, which also makes "five call sites" true.
+
+### 20.6 Checks run, and what each is relative to
+
+Engine `i221-saturation-no-atomtype` at `18b94de25` (commits `14cca78b7`, `dee2954ef`,
+`18b94de25` on `8ff42bd1a`), plasma head `40e21b495`; database at this commit.
+
+| check | result |
+|---|---|
+| round-87 probe at `8ff42bd1a` | 8/8 findings reproduced, 4/4 controls hold |
+| round-87 probe at `18b94de25` | 0/8 reproduced, 4/4 controls hold |
+| new engine tests at `8ff42bd1a` | **7 failed**, 37 passed |
+| `test/rmgpy/data` at `18b94de25` | **418 passed**, 8 skipped |
+| `test/rmgpy/qm` at both | 8 failed either way — the same pre-existing failures (no MOPAC or Gaussian installed); the routed call site adds none |
+| database `test/` on the pre-round-87 engine | **1 failed**, 323 passed — the new pin test, by design |
+| database `test/` on `18b94de25` | **324 passed** |
+
+Two qualifications on the red run, because a reader comparing counts will hit both.
+`TestProvenanceNotTheFamilySlot` cannot be shown red that way at all: it imports
+`authoring_family`, which the base does not define, so the module fails to import and the file
+errors at collection rather than failing an assertion. The class was removed from the throwaway
+copy so the rest could run, and the probe covers that half behaviourally instead. The eight
+`ERROR`s in the same log are `setup_class` failures of the transport and solute classes in the
+throwaway worktree, which has no configured database directory; the same classes pass in the real
+one.

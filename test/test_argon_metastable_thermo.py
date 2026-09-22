@@ -44,6 +44,7 @@ Run with the runtime pinned::
 fixtures below assert that pin rather than trusting it.
 """
 
+import importlib.util
 import math
 import os
 
@@ -633,6 +634,66 @@ AR_CARRIERS = {
 }
 
 
+def test_which_ground_state_argon_anchor_is_correct_and_which_one_wins(entry, thermo_db):
+    """Round 77. The suite pinned the RULE and the IDENTITY and the DISCLOSURE, and never
+    formed an opinion about which anchor is physically right. Three tests that are all
+    satisfied by whichever library happens to win are three tests that would bless a wrong
+    winner. So: decide, and assert the decision.
+
+    The decision is not a judgement call. Ground-state argon is a monatomic ideal gas and
+    its standard entropy is a Sackur-Tetrode number that NIST-JANAF Ar-001 tabulates as
+    154.845 J/(mol*K). Every carrier in this database sits in one of two camps, 0.113
+    J/(mol*K) apart, and only one of them is JANAF's:
+
+        154.8459  primaryThermoLibrary, NOx2018, Narayanaswamy, FFCM1(-), ...   CORRECT
+        154.7323  BurkeH2O2 (154.7348), JetSurF, GRI-Mech3.0, Fluorine, ...     WRONG by 0.11
+
+    So this asserts three separate things, and the third is a known defect pinned AS a
+    defect rather than blessed:
+
+      1. the correct camp is the one that matches JANAF, and it is not empty;
+      2. ``primaryThermoLibrary`` -- RMG's own default first-choice thermo library -- is
+         in it;
+      3. the anchor the runtime actually resolves is in the WRONG camp. That is the
+         hazard, it is live, and if it ever stops being true this test goes red and the
+         entry's disclosure needs rewriting to say the anchor got fixed.
+
+    Closing it still means re-anchoring ``BurkeH2O2`` upstream or giving RMG a way to
+    require a ground-state anchor. This does not close it. It stops the suite from being
+    neutral about a question that has a right answer."""
+    correct = sorted(label for label, s298 in AR_CARRIERS.items()
+                     if abs(s298 - JANAF_AR_S298) < 0.01)
+    wrong = sorted(label for label, s298 in AR_CARRIERS.items()
+                   if abs(s298 - JANAF_AR_S298) >= 0.01)
+    assert correct, 'no carrier matches JANAF; the reference value or the table has moved'
+    assert wrong, (
+        'every carrier now matches JANAF -- the load-order hazard is GONE, which is good '
+        'news that invalidates this test and the entry paragraph that discloses it')
+    assert 'primaryThermoLibrary' in correct, (
+        "RMG's default thermo library no longer carries the JANAF value; the recommendation "
+        'that follows from this test has to change with it')
+
+    # what the runtime actually picks, with everything loaded
+    ar = thermo_db.get_thermo_data(_species(AR, 'Ar'))
+    winner = ar.comment.split('Thermo library: ')[1].split('\n')[0].strip()
+    assert winner in AR_CARRIERS, winner
+
+    assert winner in wrong, (
+        'the resolved anchor %r is now in the CORRECT camp. The hazard this entry '
+        'discloses has been fixed upstream -- update the entry and delete this assertion '
+        'rather than inverting it.' % winner)
+    delivered_error = AR_CARRIERS[winner] - JANAF_AR_S298
+    assert delivered_error == pytest.approx(-0.1102, abs=2e-3), delivered_error
+
+    # And the entry must name the correct anchor, not merely disclose the delivered one.
+    # Keyed on the SENTENCE that makes the claim rather than on the bare library name:
+    # `primaryThermoLibrary` appears four times in this file for four different reasons,
+    # so a bare-name assertion would stay green while the claim itself was deleted.
+    assert 'input/thermo/libraries/primaryThermoLibrary.py' in entry.long_desc, (
+        'the entry must name the anchor that is CORRECT -- the database\'s own '
+        'ground-state argon -- not only the one that happens to win library_order')
+
+
 def test_the_ground_state_argon_an_entry_is_anchored_on_is_decided_by_library_order(pinned):
     """Round 55 MEDIUM: this used to hardcode whichever library won locally, so it tested
     the filesystem rather than precedence. It now SETS the order and asserts the rule.
@@ -739,7 +800,12 @@ def test_the_anchor_error_the_engine_delivers_is_the_one_the_library_discloses(e
 
     This does NOT close the hazard. Closing it means either re-anchoring ``BurkeH2O2`` or
     giving RMG a way to require a ground-state anchor, and both are other tickets. It
-    makes the hazard loud."""
+    makes the hazard loud.
+
+    Round 77 adds the thing this test deliberately withheld: WHICH ANCHOR IS CORRECT. See
+    ``test_which_ground_state_argon_anchor_is_correct_and_which_one_wins`` below. Pinning
+    "the file agrees with the runtime" is necessary and is not an opinion about the
+    physics, and a reviewer was right that the suite never formed one."""
     import re
 
     text = entry.long_desc
@@ -912,11 +978,28 @@ def all_families_db(pinned):
     return db
 
 
+#: Round 77. This dict is now a RECORD of a derivation, not a hand-curated list. Every
+#: label is the label of the group atom the shipped matcher maps metastable argon onto,
+#: read out of ``_match_reactant_to_template``'s own mappings; every family is one whose
+#: per-reactant template site admits ``Ar u2 p3 c0``. The five that were here before round
+#: 77 were found by running 140 families against a hardcoded partner list -- exhaustive in
+#: families, a SAMPLE in partners -- which is why it missed six.
+#:
+#: ``test_every_family_whose_template_admits_the_metastable_is_forbidden`` re-derives the
+#: set from the shipped templates and fails if this dict disagrees, so the dict cannot
+#: silently rot the way the witness list did.
 CONTAINED_FAMILIES = {'Birad_R_Recombination': '*2',
                       'R_Addition_MultipleBond': '*3',
                       'Disproportionation': '*1',
                       'CO_Disproportionation': '*1',
-                      'Cl_Abstraction': '*3'}
+                      'Cl_Abstraction': '*3',
+                      # added round 77, derived from the template space
+                      'Br_Abstraction': '*3',
+                      'F_Abstraction': '*3',
+                      'Disproportionation-Y': '*1',
+                      'Surface_Adsorption_Double': '*1',
+                      'Cation_NO_Substitution': '*2',
+                      'Li_NO_Substitution': '*2'}
 CONTAINMENT = 'Ar_metastable_biradical'
 
 #: What each contained family exists FOR. If the containment moves one of these it is not a
@@ -945,6 +1028,33 @@ CONTAINMENT_CONTROLS = [
     ('Cl_Abstraction', 'multiplicity 2\n1 C u1 p0 c0 {2,S} {3,S} {4,S}\n'
      '2 H u0 p0 c0 {1,S}\n3 H u0 p0 c0 {1,S}\n4 H u0 p0 c0 {1,S}\n',
      '1 Cl u0 p3 c0 {2,S}\n2 H u0 p0 c0 {1,S}\n'),
+
+    # Round 77's six. These are HAND-WRITTEN on purpose. The template-derived controls in
+    # template_witness_probe.py read 0 reactions with the block and 0 without for the three
+    # halogen abstractions, because make_sample_molecule() hands back [H] + HX and
+    # H. + HX -> HX + H. is the degenerate identity RMG never generates. A control that
+    # reads 0 = 0 carries NO information and counting it as passing is the same unfailable
+    # -check pattern this round was sent to fix, so each of those gets a real partner here.
+    ('Br_Abstraction', 'multiplicity 2\n1 C u1 p0 c0 {2,S} {3,S} {4,S}\n'
+     '2 H u0 p0 c0 {1,S}\n3 H u0 p0 c0 {1,S}\n4 H u0 p0 c0 {1,S}\n',
+     '1 Br u0 p3 c0 {2,S}\n2 H u0 p0 c0 {1,S}\n'),
+    ('F_Abstraction', 'multiplicity 2\n1 C u1 p0 c0 {2,S} {3,S} {4,S}\n'
+     '2 H u0 p0 c0 {1,S}\n3 H u0 p0 c0 {1,S}\n4 H u0 p0 c0 {1,S}\n',
+     '1 F u0 p3 c0 {2,S}\n2 H u0 p0 c0 {1,S}\n'),
+    # the fluorinated radical this family exists for, disproportionating with a methyl
+    ('Disproportionation-Y', 'multiplicity 2\n1 C u1 p0 c0 {2,S} {3,S} {4,S}\n'
+     '2 H u0 p0 c0 {1,S}\n3 H u0 p0 c0 {1,S}\n4 H u0 p0 c0 {1,S}\n',
+     'multiplicity 2\n1 C u1 p0 c0 {2,S} {4,S} {5,S}\n2 C u0 p0 c0 {1,S} {3,S} {6,S} {7,S}\n'
+     '3 F u0 p3 c0 {2,S}\n4 H u0 p0 c0 {1,S}\n5 H u0 p0 c0 {1,S}\n'
+     '6 H u0 p0 c0 {2,S}\n7 H u0 p0 c0 {2,S}\n'),
+    # a real gas-phase biradical adsorbing on a real vacant site
+    ('Surface_Adsorption_Double', 'multiplicity 3\n1 C u2 p0 c0 {2,S} {3,S}\n'
+     '2 H u0 p0 c0 {1,S}\n3 H u0 p0 c0 {1,S}\n',
+     '1 X u0 p0 c0\n'),
+    ('Cation_NO_Substitution', '1 Li u0 p0 c0 {2,S}\n2 N u0 p1 c0 {1,S} {3,S} {4,S}\n'
+     '3 H u0 p0 c0 {2,S}\n4 H u0 p0 c0 {2,S}\n', 'multiplicity 2\n1 H u1 p0 c0\n'),
+    ('Li_NO_Substitution', '1 Li u0 p0 c0 {2,S}\n2 N u0 p1 c0 {1,S} {3,S} {4,S}\n'
+     '3 H u0 p0 c0 {2,S}\n4 H u0 p0 c0 {2,S}\n', 'multiplicity 2\n1 H u1 p0 c0\n'),
 ]
 
 
@@ -1033,9 +1143,18 @@ def test_no_ordinary_family_reaches_the_metastable_any_more(all_families_db):
         uncontained = reached()
     finally:
         _reattach_containment(all_families_db, saved)
-    assert sorted(set(uncontained) - {EII}) == sorted(CONTAINED_FAMILIES), (
-        'detaching the forbidden entries must bring all five families back; got %s'
-        % sorted(uncontained))
+    # Round 77. This used to assert the whole contained set comes back, which silently
+    # tied a WITNESS-driven check to a set that is now DERIVED and larger than its
+    # witnesses. The witnesses can only bring back the families they exercise; whether the
+    # contained set is right is
+    # test_every_family_whose_template_admits_the_metastable_is_forbidden's job, and
+    # conflating the two is how a sweep gets mistaken for a derivation.
+    witnessed = sorted({family for _label, _adj, family in ORDINARY_WITNESSES})
+    assert sorted(set(uncontained) - {EII}) == witnessed, (
+        'detaching the forbidden entries must bring back every family these witnesses '
+        'exercise; got %s' % sorted(uncontained))
+    assert set(witnessed) <= set(CONTAINED_FAMILIES), (
+        'a witness exercises a family that is not in the contained set')
     for label, _adj, family in ORDINARY_WITNESSES:
         assert label in uncontained[family], (label, family)
 
@@ -1044,6 +1163,80 @@ def test_no_ordinary_family_reaches_the_metastable_any_more(all_families_db):
     uni = all_families_db.generate_reactions_from_families(
         [meta], products=None, resonance=True)
     assert [r.family for r in uni] == [EII]
+
+
+def _derivation_module():
+    """Load the committed template-space derivation by PATH.
+
+    Deliberately imported rather than reimplemented: two copies of "which families'
+    templates admit this structure" would drift, and the copy in the test would be the one
+    nobody re-runs. ``docs/`` is not a package, hence importlib. If the probe is deleted or
+    renamed, this errors loudly instead of quietly testing nothing."""
+    path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                        'docs', 'argon-metastable-thermo', 'template_space_derivation.py')
+    assert os.path.exists(path), path
+    spec = importlib.util.spec_from_file_location('i221_template_derivation', path)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def test_every_family_whose_template_admits_the_metastable_is_forbidden(all_families_db):
+    """Round 77's HIGH, and the check that replaces a check which could not fail.
+
+    The old all-families test enumerated the five families already KNOWN to reach this
+    species and asserted that those five were contained. That is a tautology dressed as a
+    sweep: it could not fail when a sixth family matched, and six did. It was the eleventh
+    unfailable check this campaign has filed, and the tell was free -- ``Cl_Abstraction``
+    was forbidden while its structurally symmetric siblings ``Br_Abstraction`` and
+    ``F_Abstraction`` were not.
+
+    This enumerates the TEMPLATE SPACE instead. For every loaded family, the shipped
+    matcher is asked whether any per-reactant site admits ``Ar u2 p3 c0`` -- in either
+    direction, because ``generate_reactions`` enumerates the reverse template too for any
+    family that is ``reversible`` and not ``own_reverse`` (``family.py:1882``), and two of
+    the eleven match ONLY in reverse. A family added tomorrow whose site admits this
+    structure turns this red on the next run, which a witness list never would."""
+    derivation = _derivation_module()
+    meta = derivation.molecule(derivation.AR_META)
+
+    admits = {}
+    for label, family in all_families_db.families.items():
+        slots = {d: derivation.matching_slots(family, meta, d)
+                 for d in ('forward', 'reverse')}
+        if slots['forward'] or slots['reverse']:
+            admits[label] = slots
+
+    # the intended channel is the one family allowed to match without a forbidden entry
+    assert EII in admits, (
+        'the intended ionisation channel no longer matches; the derivation is broken '
+        'or the family moved')
+    derived = sorted(set(admits) - {EII})
+
+    assert derived == sorted(CONTAINED_FAMILIES), (
+        'the template space and the contained set disagree.\n'
+        '  templates admit : %s\n  contained       : %s\n'
+        '  admits but NOT contained: %s\n  contained but no longer admits: %s'
+        % (derived, sorted(CONTAINED_FAMILIES),
+           sorted(set(derived) - set(CONTAINED_FAMILIES)),
+           sorted(set(CONTAINED_FAMILIES) - set(derived))))
+
+    # and every one of them actually carries the entry in the loaded database
+    for label in derived:
+        forbidden = all_families_db.families[label].forbidden
+        assert forbidden is not None and CONTAINMENT in forbidden.entries, label
+
+    # negative control: the derivation must not simply match everything. Ground-state
+    # argon is the same element with the same generics, and must match strictly fewer.
+    ground = derivation.molecule(derivation.AR_GROUND)
+    ground_admits = [label for label, family in all_families_db.families.items()
+                     if derivation.matching_slots(family, ground, 'forward')
+                     or derivation.matching_slots(family, ground, 'reverse')]
+    assert len(ground_admits) < len(admits), (
+        'ground-state argon matches %d families and the metastable %d; if these were '
+        'equal the derivation would be about argon, not about the metastable'
+        % (len(ground_admits), len(admits)))
+    assert 'Birad_R_Recombination' not in ground_admits
 
 
 def test_the_containment_does_not_move_the_chemistry_those_families_exist_for(all_families_db):
@@ -1571,7 +1764,6 @@ def test_plasma_air_advertises_metastable_quenching_but_carries_no_metastable(pi
 
 ELECTRON = '1 e u0 p0 c-1\n'
 EV_K = 11604.518          # K per eV
-PUBLISHED_EII_3EV = 2.0583e10   # m^3/(mol*s), published state-resolved argon model
 
 
 @pytest.fixture(scope='module')
@@ -1765,15 +1957,24 @@ def test_the_delivered_rate_is_evaluated_at_the_GAS_temperature(admitted):
     assert k300_3ev == pytest.approx(1.933634e-64, rel=2e-3)
     assert k1000_3ev == pytest.approx(3.664598e-14, rel=2e-3)
 
-    # 3. The direction and scale of the error, against a published value at the same Te.
-    assert k1000_3ev < PUBLISHED_EII_3EV
-    orders_low = math.log10(PUBLISHED_EII_3EV / k1000_3ev)
-    assert orders_low > 20.0, (
-        'under-delivered by %.1f orders of magnitude at 1000 K gas' % orders_low)
-
-    # 4. What the same Arrhenius would give if it ever saw the electron temperature.
+    # 3. The direction and scale of the error, measured ENTIRELY INSIDE THIS REPOSITORY.
+    #
+    # Round 77. This assertion used to divide by PUBLISHED_EII_3EV = 2.0583e10, described
+    # as "a published state-resolved argon model". Round 59 searched for that constant's
+    # provenance and found none anywhere in this repository; the report has called it
+    # withdrawn since. It was still here, still driving the assertion -- so the report said
+    # withdrawn while the tests said load-bearing, and the tests were the ones being run.
+    # Withdrawn for real now: the comparator is this family's OWN rule evaluated at the
+    # electron temperature it should have been given, against what it actually delivers at
+    # the gas temperature. That is the whole defect, stated without an external number,
+    # and it is the comparison the report already says replaced it.
     at_te = rxn.kinetics.get_rate_coefficient(3.0 * EV_K)
-    assert at_te > k1000_3ev * 1e19
+    orders_low = math.log10(at_te / k1000_3ev)
+    assert orders_low > 20.0, (
+        'the same Arrhenius at Te=3 eV versus what is delivered at Tgas=1000 K differs by '
+        '%.1f orders; if this ever drops below 20 the Te-independence defect has changed '
+        'shape and the quarantine argument needs re-reading' % orders_low)
+    assert k1000_3ev < at_te
 
 
 def test_nothing_at_the_point_of_use_says_the_rate_is_a_placeholder(admitted):

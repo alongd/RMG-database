@@ -57,6 +57,9 @@ SUITE = 'test/test_argon_metastable_thermo.py'
 LIB = 'input/thermo/libraries/PlasmaExcitedNeutralThermo.py'
 BIRAD = 'input/kinetics/families/Birad_R_Recombination/groups.py'
 RECOMMENDED = 'input/kinetics/families/recommended.py'
+BR_ABS = 'input/kinetics/families/Br_Abstraction/groups.py'
+CATION_NO = 'input/kinetics/families/Cation_NO_Substitution/groups.py'
+EII_QUARANTINE = 'input/kinetics/families/Plasma_Electron_Impact_Ionization/quarantine.py'
 
 #: (name, file, old, new, [tests]) -- `old` must appear exactly once.
 CASES = [
@@ -151,6 +154,32 @@ CASES = [
 
     ('the one plasma family that reaches it, contained too', BIRAD, None, None,
      ['test_exactly_one_PLASMA_family_reaches_it_which_is_not_the_same_as_one_family']),
+
+    # ---- round 77: the containment derived from the template space --------------------
+    ('a family whose template admits it, left unforbidden', BR_ABS,
+     'label = "Ar_metastable_biradical"', 'label = "Ar_metastable_RED_GREEN"',
+     ['test_every_family_whose_template_admits_the_metastable_is_forbidden']),
+
+    ('a reverse-matching family given the wrong atom label', CATION_NO,
+     '1 *2 Ar u2 p3 c0', '1 *1 Ar u2 p3 c0',
+     ['test_the_containment_is_written_where_each_family_already_says_it_belongs']),
+
+    # `primaryThermoLibrary` appears four times in the entry, so the bare string is not a
+    # legal anchor here -- the driver's uniqueness guard refused it, correctly, on the
+    # first run. This perturbs the one occurrence that names it AS the database's own
+    # ground-state argon, which is the claim the test is about.
+    ('the entry stops naming the anchor that is CORRECT', LIB,
+     "argon is ``input/thermo/libraries/primaryThermoLibrary.py``",
+     "argon is ``input/thermo/libraries/someOtherLibrary.py``",
+     ['test_which_ground_state_argon_anchor_is_correct_and_which_one_wins']),
+
+    ('the quarantine manifest drops its engine compatibility pin', EII_QUARANTINE,
+     'requiresEngineCommit = "541e6498f"', 'requiresEngineCommitXX = "541e6498f"',
+     ['test_the_manifest_declares_the_engine_it_needs_and_this_runtime_satisfies_it']),
+
+    ('the quarantine manifest stops naming a bypass route', EII_QUARANTINE,
+     '"equivalent rate supplied via reaction library or seed mechanism",', '',
+     ['test_the_manifest_enumerates_the_routes_that_bypass_it']),
 ]
 
 #: The last case perturbs a file that does not yet exist, so it is written whole.
@@ -174,9 +203,39 @@ def sha(path):
         return hashlib.sha256(handle.read()).hexdigest()
 
 
+def locate(test_name):
+    """Which test FILE defines this test.
+
+    Round 77. This used to be hardcoded to one suite, and two round-77 cases named tests
+    that live in test_eii_quarantine.py. pytest was handed
+    `test_argon_metastable_thermo.py::test_the_manifest_declares...`, could not collect
+    it, and exited non-zero -- which this driver read as RED. The perturbation was never
+    the reason. It only surfaced because the GREEN re-run failed for the same reason; had
+    the restored run passed for any reason, the case would have reported a clean
+    red-then-green for a test that never executed. A driver whose job is to prove tests
+    can fail must not be able to fake a failure.
+
+    So the file is resolved from the test name, by scanning what is actually on disk."""
+    if not hasattr(locate, '_index'):
+        index = {}
+        test_dir = os.path.join(REPO, 'test')
+        for name in sorted(os.listdir(test_dir)):
+            if not (name.startswith('test_') and name.endswith('.py')):
+                continue
+            with open(os.path.join(test_dir, name), encoding='utf-8') as handle:
+                for line in handle:
+                    if line.startswith('def test_'):
+                        index[line[4:].split('(')[0].strip()] = os.path.join('test', name)
+        locate._index = index
+    path = locate._index.get(test_name)
+    assert path, ('no test file defines %r; a red/green case names a test that does not '
+                  'exist, and a non-existent test cannot be shown red' % test_name)
+    return path
+
+
 def run_tests(tests):
     args = [PYTEST, '-q', '--no-header', '-p', 'no:cacheprovider']
-    args += ['%s::%s' % (SUITE, t) for t in tests]
+    args += ['%s::%s' % (locate(t), t) for t in tests]
     env = dict(os.environ)
     env['PYTHONPATH'] = '/home/alon/Code/RMG-Py-plasma'
     env.setdefault('MPLCONFIGDIR', tempfile.gettempdir())
@@ -222,9 +281,15 @@ CASE_MARKERS = {
     'the containment widened until it eats the chemistry the family is for': None,
     'a contained family quietly dropped from the default set': None,
     'the one plasma family that reaches it, contained too': 'RED_GREEN_PERTURBATION',
+    'a family whose template admits it, left unforbidden': 'Ar_metastable_RED_GREEN',
+    'a reverse-matching family given the wrong atom label': None,
+    'the entry stops naming the anchor that is CORRECT': 'someOtherLibrary.py',
+    'the quarantine manifest drops its engine compatibility pin': 'requiresEngineCommitXX',
+    'the quarantine manifest stops naming a bypass route': None,
 }
 MARKERS = sorted({m for m in CASE_MARKERS.values() if m} | {'RED-GREEN PERTURBATION'})
-TOUCHABLE = sorted({LIB, BIRAD, RECOMMENDED, EII_GROUPS})
+TOUCHABLE = sorted({LIB, BIRAD, RECOMMENDED, EII_GROUPS, BR_ABS, CATION_NO,
+                    EII_QUARANTINE})
 
 #: Cases 10 and 11 do not ADD a marker, they REPLACE one - unlabelling the containment
 #: group, and widening it to R!H. There is nothing distinctive to grep for afterwards, so
@@ -239,6 +304,10 @@ MUST_CONTAIN = {
     'input/kinetics/families/CO_Disproportionation/groups.py': '1 *1 Ar u2 p3 c0',
     'input/kinetics/families/Cl_Abstraction/groups.py': '1 *3 Ar u2 p3 c0',
     'input/thermo/libraries/PlasmaExcitedNeutralThermo.py': 'label = "Ar(3P2)"',
+    # round 77: the two cases that REPLACE rather than add have positive checks here
+    'input/kinetics/families/Cation_NO_Substitution/groups.py': '1 *2 Ar u2 p3 c0',
+    'input/kinetics/families/Plasma_Electron_Impact_Ionization/quarantine.py':
+        '"equivalent rate supplied via reaction library or seed mechanism",',
 }
 
 #: The guard that stops CASE_MARKERS going stale again: refuse to start if any case has

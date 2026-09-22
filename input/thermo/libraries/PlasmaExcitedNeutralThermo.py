@@ -75,9 +75,17 @@ WHAT THE READER MUST NOT ASSUME
    job in ``get_thermo_data``. Two successive claims in this file have been wrong about this --
    first "unreachable" (established by a grep, which cannot see a template match), then "exactly
    one family reaches it" (established over a six-family subset). Read "THIS IS NOT AN INERT
-   ISLAND" in the entry's longDesc for the reach figure with its denominator, and do not load
-   this library beside ordinary combustion families until the engine-side atom-type gap is
-   closed.
+   ISLAND" in the entry's longDesc for the reach figure with its denominator.
+
+   THAT WARNING USED TO END "until the engine-side atom-type gap is closed". IT IS WITHDRAWN,
+   twice over. There is no engine-side gap: the argon atom types are correct and `Ar0e` in a
+   molecule is this species uniquely (owner's ruling 2026-09-21, measured in
+   docs/argon-metastable-thermo/atomtype_u_determined_probe.py). And the database-side fix is
+   now complete against the shipped template space rather than against a partner sample:
+   ELEVEN non-EII families carry a `forbidden` entry for this structure, derived in
+   docs/argon-metastable-thermo/template_space_derivation.py, which exits non-zero if a
+   twelfth family ever matches without one. Loading this library beside ordinary combustion
+   families is what the containment is FOR.
 
 5. **THIS LIBRARY IS NOT FIT FOR QUANTITATIVE PLASMA USE TODAY, AND THE REASON IS NOT THESE
    NUMBERS.** The thermochemistry below is sourced and correct. The channel it unlocks is not:
@@ -716,7 +724,37 @@ THIS IS NOT AN INERT ISLAND. READ THIS BEFORE LOADING THE LIBRARY
     Plasma_Electron_Attachment, Plasma_Radiative_Recombination and the three
     Plasma_Associative_Ionization_* families all return 0.
 
-    FOUR OF THE FIVE ORDINARY FAMILIES ARE IN ``recommended.py``'s ``default`` SET -- the set a
+    ROUND 77: THAT SWEEP WAS EXHAUSTIVE IN FAMILIES AND A SAMPLE IN PARTNERS, AND SIX MORE
+    FAMILIES MATCH. The 50 partners above were a hand-picked list with no hydrogen halide,
+    no fluorinated radical and no surface site in it, so it could not see the families that
+    need one. Decomposing the shipped TEMPLATE SPACE instead -- asking the matcher which
+    per-reactant sites admit ``Ar u2 p3 c0``, with no partner involved
+    (``docs/argon-metastable-thermo/template_space_derivation.py``) -- gives **eleven**
+    non-EII families, not five::
+
+        Birad_R_Recombination      forward slot 1      Br_Abstraction          forward slot 0
+        R_Addition_MultipleBond    forward slot 1      F_Abstraction           forward slot 0
+        Disproportionation         forward slot 0      Disproportionation-Y    forward slot 0
+        CO_Disproportionation      forward slot 0      Surface_Adsorption_Double forward slot 0
+        Cl_Abstraction             forward slot 0      Cation_NO_Substitution  REVERSE slot 1
+                                                       Li_NO_Substitution      REVERSE slot 1
+
+    The tell was free and nobody took it for two rounds: ``Cl_Abstraction`` was forbidden
+    while its structurally symmetric siblings ``Br_Abstraction`` and ``F_Abstraction`` were
+    not. A set that covers one sibling and not the other two was sampled, not derived.
+
+    TWO OF THE ELEVEN MATCH ONLY IN REVERSE. ``generate_reactions`` enumerates the reverse
+    template for any family that is ``reversible`` and not ``own_reverse``
+    (``family.py:1882``), and both of these are. There the metastable is the PRODUCT and the
+    generated REACTANT is a bonded argon CATION, ``[Ar]NH2+``, which fails differently --
+    ``DatabaseError: no data for node R or any of its ancestors`` rather than
+    ``AtomTypeError``. Still loud, still not a silent number, but by a second route that the
+    structural argument below does not cover; see the note there.
+
+    All eleven now carry the ``forbidden`` entry, and the derivation exits non-zero if a
+    twelfth ever appears.
+
+    FOUR OF THE FIVE FAMILIES THE 50-PARTNER SWEEP FOUND ARE IN ``recommended.py``'s ``default`` SET -- the set a
     deck gets when it does not name families at all. Measured against that file:
     Birad_R_Recombination, R_Addition_MultipleBond, Disproportionation and CO_Disproportionation
     are all in ``default``; only Cl_Abstraction is not. So this is not an exotic combination that
@@ -740,8 +778,8 @@ THIS IS NOT AN INERT ISLAND. READ THIS BEFORE LOADING THE LIBRARY
     valency check applies. Families generate molecules. An earlier draft of this entry read that
     comment at the molecule layer and blamed the engine for what follows; it was wrong to.)
 
-    So what these five families are missing is not an engine constraint. It is a statement of
-    their own scope that they never wrote down -- see below, where each one now writes it.
+    So what these eleven families are missing is not an engine constraint. It is a statement
+    of their own scope that they never wrote down -- see below, where each one now writes it.
 
     WHAT HAPPENS NEXT, MEASURED THROUGH THE ENLARGEMENT PATH A REAL RUN USES
     (``docs/argon-metastable-thermo/job_level_crash_probe.py``). ``CoreEdgeReactionModel``'s
@@ -769,6 +807,12 @@ THIS IS NOT AN INERT ISLAND. READ THIS BEFORE LOADING THE LIBRARY
         2. A radical's thermo is estimated by HBI, which saturates the radical site before it
            looks anything up.
         3. Saturating a one-bond argon gives a two-bond argon, and no atom type exists for that.
+
+    (ROUND 77 ADDS A SECOND ROUTE THIS ARGUMENT DOES NOT COVER, AND THE CONCLUSION SURVIVES
+    IT. The three steps above are about NEUTRAL covalent argon. The two reverse-matching
+    families build a bonded argon CATION instead, which never reaches HBI at all: it fails in
+    the group-additivity lookup with ``DatabaseError: no data for node R or any of its
+    ancestors``. So there are two loud failure routes, not one, and neither yields a number.)
 
     So every covalent neutral argon this database can build fails, by construction. The sweep
     agrees: of 66 distinct first-generation products, 57 raise and 9 return a number, and every
@@ -815,9 +859,12 @@ THIS IS NOT AN INERT ISLAND. READ THIS BEFORE LOADING THE LIBRARY
     without the containment: it is the degenerate identity reaction and RMG never generated it.
     That was measured on the reverted file rather than assumed, and is recorded in the probe.
 
-    **WHAT THIS CONTAINMENT IS NOT: COMPLETE.** It closes the five families measured to reach this
-    species against 50 partners, and it cannot close a family nobody has generated against yet. A
-    sixth would reopen the crash exactly as before. But note what such a sixth family would MEAN,
+    **WHAT THIS CONTAINMENT IS NOT: COMPLETE FOR ALL TIME.** It is now complete against the
+    template space AS IT SHIPS TODAY -- which is a stronger and checkable claim than the one
+    that stood here until round 77, "the five families measured to reach this species against
+    50 partners". That earlier claim was sample-complete and read as though it were
+    template-complete. A family added later whose site admits this structure would reopen the
+    crash exactly as before. But note what such a sixth family would MEAN,
     because it changes what to do about it: it would be a family declaring a ``u2`` biradical site
     broader than the chemistry it intends, and shipping without saying so -- a defect in THAT
     family, of the same kind as these five, to be fixed the same way. It would not be an engine

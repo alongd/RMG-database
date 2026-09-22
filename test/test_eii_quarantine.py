@@ -321,3 +321,69 @@ def test_the_quarantine_loader_is_present_in_this_runtime():
         'this RMG-Py has no rmgpy/data/kinetics/quarantine.py, so the quarantine does not '
         'fire and Plasma_Electron_Impact_Ionization has no other containment'
     )
+
+
+def test_the_manifest_declares_the_engine_it_needs_and_this_runtime_satisfies_it():
+    """Round 77. The quarantine is runtime-dependent and the database declared nothing
+    about which runtime. A manifest that is silently inert on the wrong engine is worse
+    than no manifest, because the file reads like protection.
+
+    The manifest now carries a machine-readable pin. This asserts both halves: that the
+    pin is there and complete, and that the engine actually running this test satisfies
+    it. The second half is why this is an assertion and not a skip - a run against an
+    engine without the gate must fail loudly, not quietly proceed unguarded."""
+    manifest = _exec_data_file(
+        os.path.join(THIS_DATABASE, 'kinetics', 'families', FAMILY, 'quarantine.py'))
+
+    module_name = manifest.get('requiresEngineModule')
+    symbol_name = manifest.get('requiresEngineSymbol')
+    commit = manifest.get('requiresEngineCommit')
+    assert module_name and symbol_name and commit, (
+        'the manifest must name the engine module, the symbol and the commit that first '
+        'provided the gate, or a reader cannot tell which runtimes it is real on')
+
+    spec = importlib.util.find_spec(module_name)
+    assert spec is not None, (
+        'this runtime has no %s, which the manifest declares as required; the quarantine '
+        'is inert here and this family has no other containment' % module_name)
+    module = importlib.import_module(module_name)
+    assert hasattr(module, symbol_name), (
+        '%s exists but does not provide %s' % (module_name, symbol_name))
+
+    # and the gate is wired into family loading, not merely importable. Checked on the
+    # SOURCE of KineticsFamily rather than on an instance, because constructing one takes
+    # a signature that has changed before and would make this test fail for the wrong
+    # reason -- which it did, once, while being written.
+    import inspect
+
+    from rmgpy.data.kinetics.family import KineticsFamily
+    source = inspect.getsource(KineticsFamily)
+    assert 'self.quarantine' in source, (
+        'KineticsFamily never sets a quarantine attribute, so a loaded manifest would '
+        'never be consulted')
+    assert symbol_name in source, (
+        '%s is importable but KineticsFamily does not call it, so the manifest is loaded '
+        'by nothing' % symbol_name)
+
+
+def test_the_manifest_enumerates_the_routes_that_bypass_it():
+    """The scope claim, asserted rather than left to a reader's optimism.
+
+    Review's point: standard model admission refuses the family on the pinned engine, but
+    a runtime lacking the loader, a direct database consumer, and an equivalent rate
+    supplied through a reaction or seed library all bypass it. Those are properties of
+    where the gate sits - at model admission, on one path - and the defect it guards is a
+    property of the RATE, which travels wherever the number travels.
+
+    A manifest that does not say so invites a green run to be read as a hard boundary. The
+    routes are now enumerated in the file; this pins that they stay enumerated, because
+    the bypasses are the part a future reader most needs and least expects."""
+    manifest = _exec_data_file(
+        os.path.join(THIS_DATABASE, 'kinetics', 'families', FAMILY, 'quarantine.py'))
+    routes = manifest.get('bypassRoutes')
+    assert routes, 'the manifest must enumerate what it does NOT cover'
+    joined = ' '.join(routes).lower()
+    for required in ('engine lacking', 'direct database consumer', 'seed mechanism'):
+        assert required in joined, (
+            'the bypass list no longer names %r; the scope of this manifest was '
+            'narrowed in prose without the list being updated' % required)

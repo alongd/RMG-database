@@ -1641,3 +1641,159 @@ Four commit messages already on this branch — `b66346d3a`, `25bdb96e8`, `3ae1a
 that is a second history rewrite across the branch for a phrase this section now corrects
 authoritatively, so it is left as the owner's call rather than taken unilaterally. The tip's
 message carries the correction.
+
+---
+
+## 17. Round 77 — the containment was sample-complete, and is now derived
+
+Round 77's HIGH, reproduced and upheld. The verdict of round 60 stands untouched — the atom types
+are correct, the family layer is where the fix belongs — but the *set of families* that fix was
+applied to was found by sampling, and sampling missed six.
+
+### 17.1 What was wrong with how the set was found
+
+`all_family_reachability_probe.py` iterates all 140 families against a **hardcoded partner list**:
+H, OH, CH₃, O₂, N₂ and the like. It is **exhaustive in families and a curated sample in partners**,
+and it reported the sample's properties in the exhaustive axis's voice — "families matching
+Ar(3P₂): 1". It could not have found `Br_Abstraction` (needs HBr), `F_Abstraction` (needs HF),
+`Disproportionation-Y` (needs a fluorinated radical) or `Surface_Adsorption_Double` (needs a vacant
+site), because no such partner was in the list. The all-families test had the same shape, hardcoding
+the five already-known witnesses: a check that could not fail when a sixth family matched, and six
+did. **The eleventh unfailable check this campaign has filed.**
+
+**The tell was free and went untaken for two rounds:** `Cl_Abstraction` was forbidden while its
+structurally symmetric siblings `Br_Abstraction` and `F_Abstraction` were not. A set that covers one
+sibling and not the other two was sampled, not derived, and noticing that costs one `ls` of the
+families changed.
+
+### 17.2 The derived set is eleven, not nine
+
+`template_space_derivation.py` asks the **shipped matcher** — `_match_reactant_to_template`, the
+same call `__generate_reactions` makes — whether each per-reactant template site admits
+`Ar u2 p3 c0`. No partner, no product, no imagination.
+
+| family | direction | slot | before round 77 |
+|---|---|---|---|
+| Birad_R_Recombination | forward | 1 | forbidden |
+| R_Addition_MultipleBond | forward | 1 | forbidden |
+| Disproportionation | forward | 0 | forbidden |
+| CO_Disproportionation | forward | 0 | forbidden |
+| Cl_Abstraction | forward | 0 | forbidden |
+| Br_Abstraction | forward | 0 | **open** |
+| F_Abstraction | forward | 0 | **open** |
+| Disproportionation-Y | forward | 0 | **open** |
+| Surface_Adsorption_Double | forward | 0 | **open** |
+| Cation_NO_Substitution | **reverse** | 1 | **open** |
+| Li_NO_Substitution | **reverse** | 1 | **open** |
+| Plasma_Electron_Impact_Ionization | forward | 0 | intended channel |
+
+**Eleven non-EII, against the brief's nine, and the delta is explainable rather than a
+disagreement.** The brief decomposed *forward* templates. `generate_reactions` also enumerates the
+**reverse** template for any family that is `reversible` and not `own_reverse` (`family.py:1882`),
+and both extra families are. The number was an output, it came out larger, and this says so.
+
+All six are now forbidden, each with the atom label **read out of the matcher's own mapping**
+rather than chosen — `*3`, `*3`, `*1`, `*1`, `*2`, `*2`. An unlabelled or wrongly-labelled group
+matches nothing during generation, so that field is load-bearing and is no longer a judgement.
+
+### 17.3 Reachability before, refusal after — with the partner derived too
+
+The bar was: every family added needs reachability shown BEFORE and refusal AFTER. Showing it with
+hand-picked partners would repeat the defect, so `template_witness_probe.py` derives the partner
+from the *other* slot of the same template via `make_sample_molecule()`.
+
+| family | derived partner | before | after |
+|---|---|---|---|
+| Br_Abstraction | `Br` (HBr) | 1 reaction, product `Br[Ar]` raises | 0 |
+| F_Abstraction | `F` (HF) | 1 reaction, product `F[Ar]` raises | 0 |
+| Disproportionation-Y | `[CH2]CF` | 1 reaction, product raises | 0 |
+| Surface_Adsorption_Double | `[Pt]` | **generation itself raises** building `Ar=X` | 0 |
+| Cation_NO_Substitution | `[Li]N` | 2 reactions, reactant `[Ar]NH2+` has no thermo | 0 |
+| Li_NO_Substitution | `[Li]N` | 2 reactions, same | 0 |
+
+`Surface_Adsorption_Double` is the worst of the six: it does not produce a bad product, it raises
+`AtomTypeError` *while constructing* `Ar=X`, before any product exists.
+
+**Controls: 0 regressions across all eleven.** Three of the template-derived controls read 0
+reactions with the block and 0 without — `make_sample_molecule()` hands back `[H] + HX`, and
+`H· + HX → HX + H·` is the degenerate identity RMG never generates. **A control that reads 0 = 0
+carries no information**, and counting it as passing is the very pattern this round was sent to fix,
+so the probe now labels those VACUOUS by name and each of the three families gets a hand-written
+control with a real partner in `CONTAINMENT_CONTROLS` instead.
+
+### 17.4 A second failure mode, found by the two reverse-matching families
+
+The entry has argued since round 58 that this can never be a silent wrong number, structurally:
+RMG refuses a neutral bonded argon at u0, so every covalent neutral argon is a radical, so its
+thermo routes through HBI, which saturates it to a two-bond argon with no atom type.
+
+That argument is about **neutral** covalent argon. The reverse-matching families build a bonded
+argon **cation**, `[Ar]NH2+`, which never reaches HBI at all — it fails in the group-additivity
+lookup with `DatabaseError: no data for node R or any of its ancestors`. **The conclusion survives
+and the stated mechanism was incomplete:** two loud failure routes, not one, and neither yields a
+number. Written into the entry beside the original argument.
+
+### 17.5 The four standing items
+
+| item | what was done |
+|---|---|
+| **Load-order anchor** — tests pinned whichever first-match anchor wins | `test_which_ground_state_argon_anchor_is_correct_and_which_one_wins` now decides. Ground-state argon is a monatomic ideal gas whose S298 is a Sackur–Tetrode number; JANAF Ar-001 gives 154.845. The carriers split into a correct camp (154.8459 — `primaryThermoLibrary`, `NOx2018`, …) and a wrong one (154.7323/154.7348 — `BurkeH2O2`, `JetSurF`, `GRI-Mech3.0`, …). The test asserts the correct camp is non-empty, that RMG's own default library is in it, and that **the runtime resolves into the wrong camp** — the defect pinned *as* a defect, red the day it is fixed upstream. It still does not close the hazard; it stops the suite being neutral about a question with a right answer. |
+| **EII quarantine is runtime-dependent, no compatibility pin** | The manifest now carries a machine-readable pin — `requiresEngineModule`, `requiresEngineSymbol`, `requiresEngineCommit = 541e6498f` (RMG-Py, 2026-08-25, "hard-fail when quarantined database data reaches a reaction model") — and a `bypassRoutes` tuple enumerating the four routes that go around it: an engine without the module, a direct database consumer reading `.kinetics`, an equivalent rate via reaction library or seed mechanism, and anything reading `rules.py` as a file. Two tests assert the pin is complete, that **this** runtime satisfies it (an assertion, not a skip — a run on an unguarded engine must fail loudly), and that the bypass list stays enumerated. |
+| **`2.0583e10` withdrawn in the report, still driving assertions** | Withdrawn for real. The constant is deleted; the comparator is now this family's **own rule evaluated at Te = 3 eV against what it delivers at Tgas = 1000 K**, > 20 orders, measured entirely inside this repository — which is what the report already said replaced it. It survives only in a comment explaining its withdrawal. |
+| **Header still warned "until the engine atom-type gap is fixed"** | Withdrawn, twice over: there is no engine-side gap (round 60), and the database-side fix is now complete against the shipped template space. The header now says loading this library beside ordinary combustion families is what the containment is *for*. |
+
+### 17.6 Checks run
+
+| check | result |
+|---|---|
+| `test/test_argon_metastable_thermo.py` + `test/test_eii_quarantine.py` | **73 passed** (was 69; four added) |
+| `template_space_derivation.py` | **exit 0** — 12 families admit, 11 forbidden, 1 intended; controls pass |
+| `template_witness_probe.py` | 11 witnesses, 11 refused after, **0 control regressions**, 3 vacuous controls named |
+| `red_green.py` | **22 cases, 22 shown red then green**, 0 leftovers, exit 0, stderr empty (five cases are new) |
+| `test/` (whole repository) | **322 passed, 0 failed** against round 61's 318 — the four added here, no regression |
+| `test/database/databaseTest.py` (engine, pinned) | **6 passed**, 466.1 s. Re-run because this round edits a SURFACE family (`Surface_Adsorption_Double`) for the first time |
+
+### 17.7 What this round got wrong first, twice
+
+**The first derivation returned six families and was confidently wrong.** It treated each template
+*entry* as one reactant's site. Every modern abstraction family — `Cl_Abstraction`,
+`Br_Abstraction`, `F_Abstraction`, `Disproportionation`, `CO_Disproportionation` — ships **one**
+entry called `Root` spanning the whole bimolecular complex (`reactantNum = 2`, 3–4 atoms), so
+matching a single molecule against it can never succeed. The probe reported "no match" for exactly
+the families that do match, and would have *removed* three containments that were already right.
+
+What caught it was **disagreement with an older measurement**: the six-family answer excluded three
+families this ticket had already forbidden on measured evidence. RMG splits the Root at
+`family.py:2085`; the probe now mirrors that rather than assuming a shape.
+
+**The second was the vacuous control**, above. Both have the same shape as the defect the round was
+sent to fix: *a procedure that cannot see the thing it is looking for, reporting that the thing is
+not there.* Three instances in one campaign — a partner list that could not reach four families, a
+template decomposition that could not see Root families, a control that could not distinguish
+"unchanged" from "never happened". The lesson is not "be careful"; it is that **every enumeration
+needs a stated axis and a control that fails when the axis is wrong**.
+
+### 17.8 An operational note on the red/green driver's own guards, both of which fired
+
+The driver refused the round-77 case *"the entry stops naming the anchor that is CORRECT"*,
+because its anchor string `primaryThermoLibrary` occurs four times in the entry and the driver
+requires exactly one. That refusal was correct and it exposed a weaker test: the assertion it was
+meant to break keyed on the bare library name, which appears four times for four different reasons,
+so the claim could have been deleted with the test staying green. The assertion now keys on the
+sentence that makes the claim. **The guard did not merely block a bad perturbation; it found a bad
+assertion.**
+
+**A third guard failure, found by the second guard.** Two round-77 cases named tests that live in
+`test_eii_quarantine.py`, while the driver hardcoded one suite. pytest was handed
+`test_argon_metastable_thermo.py::test_the_manifest_declares...`, could not collect it, and exited
+non-zero — which the driver read as RED. The perturbation was never the reason. It surfaced only
+because the restored GREEN run failed identically; **had the restored run passed for any reason at
+all, the case would have reported a clean red-then-green for a test that never executed.** A driver
+whose whole job is to prove that tests can fail must not be able to fake a failure. It now resolves
+each test name to the file that defines it by scanning what is on disk, and asserts the name exists.
+
+The crash then left the lock file behind, and the next run refused to start — also correct, and the
+reason the lock exists. Worth writing down because the recovery is not obvious: a driver that dies
+inside a case leaves a lock naming a PID that no longer exists, and the only safe clearance is to
+confirm the PID is dead before removing it. This is the
+second time this campaign's own tooling has caught this campaign's own mistake.

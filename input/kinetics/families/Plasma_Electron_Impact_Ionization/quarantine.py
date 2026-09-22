@@ -131,6 +131,7 @@ before:
 
 Neither condition is "a run was inconvenient".
 
+
 See rmgpy/data/kinetics/quarantine.py in RMG-Py for the loader and the gate, and
 input/kinetics/families/Cation_R_Recombination/quarantine.py for the precedent. That
 file's note that the loader is absent from RMG-Py-plasma is STALE: the loader is present
@@ -141,3 +142,47 @@ Evidence, tests and the measurement behind every number above:
 docs/argon-metastable-thermo/report.md (sections 13.1-13.3) and
 test/test_eii_quarantine.py.
 """
+
+# ---------------------------------------------------------------------------
+# ROUND 77 -- THE COMPATIBILITY PIN, AND THE HONEST SCOPE OF THIS MANIFEST.
+#
+# Raised in review: this quarantine is RUNTIME-DEPENDENT and the database said
+# nothing about which runtime it needs. A manifest that is silently inert on the
+# wrong engine is worse than no manifest, because the file reads like protection.
+# So the requirement is now declared here, machine-readably, and
+# test/test_eii_quarantine.py asserts the RUNNING engine satisfies it -- a run
+# against an engine without the gate now fails loudly instead of proceeding
+# unguarded.
+#
+# What is required of the engine:
+#   * rmgpy.data.kinetics.quarantine, providing load_family_quarantine; and
+#   * KineticsFamily.quarantine populated at load (family.py:621-623, :699); and
+#   * the refusal firing in apply_kinetics_to_reaction, i.e. at model admission.
+# First provided by RMG-Py commit 541e6498f, 2026-08-25, "kinetics: hard-fail when
+# quarantined database data reaches a reaction model". Present on RMG-Py-plasma and
+# RMG-Py-i222-metastable-argon-atomtype; ABSENT from the shared RMG-Py primary
+# checkout, which is on an unrelated branch.
+requiresEngineModule = "rmgpy.data.kinetics.quarantine"
+requiresEngineSymbol = "load_family_quarantine"
+requiresEngineCommit = "541e6498f"
+
+# WHAT THIS MANIFEST DOES NOT COVER. Enumerated because a reader who believes the
+# quarantine is a hard boundary will draw the wrong conclusion from a green run.
+# Each of these reaches a solver with the same Te-independent rate and never passes
+# the gate:
+#   1. an engine WITHOUT the module above -- the family loads and is unguarded;
+#   2. a direct database consumer (a script that calls generate_reactions and reads
+#      .kinetics itself) -- the gate lives at model admission, not at the data;
+#   3. an equivalent rate supplied through a reaction library or a seed mechanism --
+#      that data is not this family and this manifest says nothing about it;
+#   4. any consumer that reads rules.py as a file rather than through RMG.
+# The quarantine is therefore a guard on ONE path -- the standard model-admission
+# path -- and the defect it guards against is a property of the RATE, which travels
+# wherever the number travels. The durable fix is the engine-side one in condition 1
+# above, not this file.
+bypassRoutes = (
+    "engine lacking rmgpy.data.kinetics.quarantine",
+    "direct database consumer reading .kinetics without model admission",
+    "equivalent rate supplied via reaction library or seed mechanism",
+    "consumer reading rules.py as a file",
+)

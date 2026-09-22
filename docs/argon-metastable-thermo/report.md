@@ -1990,7 +1990,8 @@ the pin is decorative for the duration of the gap.**
 Merge the database commits (`17f3c4d57`, `833f6fe8a`, `0c75e1c79`, `31a20f076`, `662cc393e`,
 `a2cf9cd84`, `5afb62d8b`, `9c88ea2b7`) together with the engine commits — **the post-rebase SHAs,
 which are the only ones on the branch today**: `73c8214f7`, `4f5dff3db`, `88f080f80`, `d64029618`,
-`2c445dfdd`, `2482ee8f0`, `25a8d9393`, `e0f075780`, sitting on plasma head `98d465d3b`. Re-run the
+`2c445dfdd`, `2482ee8f0`, `25a8d9393`, `e0f075780`, plus round 90's logs-only `5d7d86738`, sitting
+on plasma head `98d465d3b`. Re-run the
 suite against the merged engine — the expected result is **324 passed**. A failure in
 `test_this_runtime_ENFORCES_the_pin_as_more_than_an_attribute_lookup` or
 `test_this_runtime_ENFORCES_the_declared_engine_requirement` says the engine half did not land, or

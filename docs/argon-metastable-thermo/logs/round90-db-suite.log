@@ -1,0 +1,1406 @@
+........................................................................ [ 22%]
+........................................................................ [ 44%]
+........................................................................ [ 66%]
+........................................................................ [ 88%]
+....................................                                     [100%]
+=============================== warnings summary ===============================
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:5427: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:5539: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:5628: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:5672: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:5698: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:5860: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:5904: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:5930: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:6097: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:6141: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:6167: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:6295: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:7200: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:7470: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:7726: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:7840: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:8025: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:8128: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:9315: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:10169: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:10258: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:11178: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:20791: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:20884: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:21052: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:21078: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:21531: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:21711: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:21739: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:21927: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:22858: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:22951: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:23114: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:23297: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:23392: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:24051: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:24336: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:27050: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:27143: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:27280: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:27308: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:27491: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:28152: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:30542: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:38231: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:38277: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:38304: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:38507: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:39316: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:41060: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:41126: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:41383: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:42688: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:42759: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:43026: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:43634: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:43680: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:43707: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:51842: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:51867: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:51916: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:52269: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:52295: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:52359: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:52384: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:52461: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:22378: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:22405: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:22458: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:22486: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:22515: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:22545: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:22574: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:22602: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:22631: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:23066: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:23095: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:23125: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:23156: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:23186: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:23214: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:23242: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:23479: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:23508: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:23537: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:24531: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:24668: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:24742: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:24769: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:24798: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:26751: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:26779: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:33222: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:33684: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:33736: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:33780: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:34311: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:34339: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:34368: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:34817: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:34845: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:34938: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:35231: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:35330: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:35376: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:36210: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:36236: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:36783: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:37597: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:40266: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:40293: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:40321: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:40350: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:40378: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:40405: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:40433: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:40458: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:40484: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:40511: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:40537: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:41052: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:41160: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:41225: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:41874: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:44422: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:44449: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:44476: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:49272: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:50344: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:50369: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:50397: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:50424: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:50450: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:50610: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:50636: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:50663: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:50689: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:50716: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:50984: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:51613: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:51732: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_cation_buildtime.py: 2 warnings
+test/test_argon_cation_thermo.py: 2 warnings
+test/test_argon_metastable_thermo.py: 5 warnings
+test/test_eii_quarantine.py: 1 warning
+  <string>:51756: DeprecationWarning: invalid escape sequence \D
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:1371: DeprecationWarning: invalid escape sequence \C
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:1613: DeprecationWarning: invalid escape sequence \H
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:1630: DeprecationWarning: invalid escape sequence \O
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:1647: DeprecationWarning: invalid escape sequence \H
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:1664: DeprecationWarning: invalid escape sequence \H
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:1682: DeprecationWarning: invalid escape sequence \H
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:1699: DeprecationWarning: invalid escape sequence \T
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:1716: DeprecationWarning: invalid escape sequence \H
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:1733: DeprecationWarning: invalid escape sequence \H
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:1751: DeprecationWarning: invalid escape sequence \T
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:1936: DeprecationWarning: invalid escape sequence \H
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:1954: DeprecationWarning: invalid escape sequence \H
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:1972: DeprecationWarning: invalid escape sequence \C
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:2046: DeprecationWarning: invalid escape sequence \O
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:2061: DeprecationWarning: invalid escape sequence \C
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:2169: DeprecationWarning: invalid escape sequence \H
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:2217: DeprecationWarning: invalid escape sequence \C
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:2367: DeprecationWarning: invalid escape sequence \H
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:2401: DeprecationWarning: invalid escape sequence \H
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:2801: DeprecationWarning: invalid escape sequence \O
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:2825: DeprecationWarning: invalid escape sequence \C
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:4120: DeprecationWarning: invalid escape sequence \H
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:4211: DeprecationWarning: invalid escape sequence \H
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:4226: DeprecationWarning: invalid escape sequence \H
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:4241: DeprecationWarning: invalid escape sequence \H
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:4256: DeprecationWarning: invalid escape sequence \C
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:4271: DeprecationWarning: invalid escape sequence \C
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:4286: DeprecationWarning: invalid escape sequence \C
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:4738: DeprecationWarning: invalid escape sequence \H
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:4752: DeprecationWarning: invalid escape sequence \H
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:4766: DeprecationWarning: invalid escape sequence \H
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:4783: DeprecationWarning: invalid escape sequence \C
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:4823: DeprecationWarning: invalid escape sequence \H
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:4837: DeprecationWarning: invalid escape sequence \H
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:5291: DeprecationWarning: invalid escape sequence \H
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:5307: DeprecationWarning: invalid escape sequence \C
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:5323: DeprecationWarning: invalid escape sequence \H
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:5340: DeprecationWarning: invalid escape sequence \H
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:5357: DeprecationWarning: invalid escape sequence \H
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:5375: DeprecationWarning: invalid escape sequence \H
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:5485: DeprecationWarning: invalid escape sequence \H
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:5500: DeprecationWarning: invalid escape sequence \C
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:5593: DeprecationWarning: invalid escape sequence \H
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:5650: DeprecationWarning: invalid escape sequence \H
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:5666: DeprecationWarning: invalid escape sequence \H
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:5689: DeprecationWarning: invalid escape sequence \H
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:5712: DeprecationWarning: invalid escape sequence \H
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:5761: DeprecationWarning: invalid escape sequence \H
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:5777: DeprecationWarning: invalid escape sequence \H
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:5800: DeprecationWarning: invalid escape sequence \H
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:5973: DeprecationWarning: invalid escape sequence \H
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:6369: DeprecationWarning: invalid escape sequence \O
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:6456: DeprecationWarning: invalid escape sequence \C
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:7196: DeprecationWarning: invalid escape sequence \C
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:2302: DeprecationWarning: invalid escape sequence \S
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:2320: DeprecationWarning: invalid escape sequence \S
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:7217: DeprecationWarning: invalid escape sequence \H
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:7248: DeprecationWarning: invalid escape sequence \H
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:7279: DeprecationWarning: invalid escape sequence \H
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:7310: DeprecationWarning: invalid escape sequence \H
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:7341: DeprecationWarning: invalid escape sequence \H
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:7364: DeprecationWarning: invalid escape sequence \H
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:7387: DeprecationWarning: invalid escape sequence \C
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:7410: DeprecationWarning: invalid escape sequence \H
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:7433: DeprecationWarning: invalid escape sequence \C
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:7469: DeprecationWarning: invalid escape sequence \C
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:7501: DeprecationWarning: invalid escape sequence \H
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:7524: DeprecationWarning: invalid escape sequence \C
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:7547: DeprecationWarning: invalid escape sequence \C
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:7570: DeprecationWarning: invalid escape sequence \C
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:7593: DeprecationWarning: invalid escape sequence \C
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:7616: DeprecationWarning: invalid escape sequence \C
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:7639: DeprecationWarning: invalid escape sequence \H
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:7666: DeprecationWarning: invalid escape sequence \H
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:7693: DeprecationWarning: invalid escape sequence \H
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:7716: DeprecationWarning: invalid escape sequence \H
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:7739: DeprecationWarning: invalid escape sequence \H
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:7766: DeprecationWarning: invalid escape sequence \O
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:7793: DeprecationWarning: invalid escape sequence \C
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:7816: DeprecationWarning: invalid escape sequence \H
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:7839: DeprecationWarning: invalid escape sequence \O
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:7866: DeprecationWarning: invalid escape sequence \H
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:7889: DeprecationWarning: invalid escape sequence \C
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:7912: DeprecationWarning: invalid escape sequence \H
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:7935: DeprecationWarning: invalid escape sequence \O
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:7958: DeprecationWarning: invalid escape sequence \C
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:8004: DeprecationWarning: invalid escape sequence \C
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:8046: DeprecationWarning: invalid escape sequence \H
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:8088: DeprecationWarning: invalid escape sequence \H
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:8135: DeprecationWarning: invalid escape sequence \H
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:8179: DeprecationWarning: invalid escape sequence \H
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:8204: DeprecationWarning: invalid escape sequence \S
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:8238: DeprecationWarning: invalid escape sequence \H
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:8316: DeprecationWarning: invalid escape sequence \H
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:8356: DeprecationWarning: invalid escape sequence \H
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:8386: DeprecationWarning: invalid escape sequence \C
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:8742: DeprecationWarning: invalid escape sequence \O
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:12610: DeprecationWarning: invalid escape sequence \H
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:12636: DeprecationWarning: invalid escape sequence \H
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:12688: DeprecationWarning: invalid escape sequence \H
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:12701: DeprecationWarning: invalid escape sequence \H
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:12714: DeprecationWarning: invalid escape sequence \H
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:12727: DeprecationWarning: invalid escape sequence \H
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:12740: DeprecationWarning: invalid escape sequence \C
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:12753: DeprecationWarning: invalid escape sequence \C
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:12818: DeprecationWarning: invalid escape sequence \O
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:12857: DeprecationWarning: invalid escape sequence \O
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:12896: DeprecationWarning: invalid escape sequence \O
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:12909: DeprecationWarning: invalid escape sequence \C
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:12937: DeprecationWarning: invalid escape sequence \H
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:12950: DeprecationWarning: invalid escape sequence \H
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:12963: DeprecationWarning: invalid escape sequence \O
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:12976: DeprecationWarning: invalid escape sequence \C
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:13002: DeprecationWarning: invalid escape sequence \O
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:13027: DeprecationWarning: invalid escape sequence \O
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:13040: DeprecationWarning: invalid escape sequence \O
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:13056: DeprecationWarning: invalid escape sequence \C
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:13071: DeprecationWarning: invalid escape sequence \C
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:42011: DeprecationWarning: invalid escape sequence \H
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:42076: DeprecationWarning: invalid escape sequence \H
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:42091: DeprecationWarning: invalid escape sequence \H
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:42127: DeprecationWarning: invalid escape sequence \H
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:42143: DeprecationWarning: invalid escape sequence \C
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:2799: DeprecationWarning: invalid escape sequence \O
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:2815: DeprecationWarning: invalid escape sequence \H
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:3663: DeprecationWarning: invalid escape sequence \O
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:17630: DeprecationWarning: invalid escape sequence \O
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:55492: DeprecationWarning: invalid escape sequence \O
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:56189: DeprecationWarning: invalid escape sequence \H
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:56209: DeprecationWarning: invalid escape sequence \H
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:56289: DeprecationWarning: invalid escape sequence \H
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:56373: DeprecationWarning: invalid escape sequence \O
+
+test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+  <string>:56563: DeprecationWarning: invalid escape sequence \O
+
+test/test_argon_metastable_thermo.py::test_the_crash_would_fire_before_any_kinetics_quarantine_could_intercept_it
+test/test_argon_metastable_thermo.py::test_the_advertised_6000_K_now_survives_normal_processing
+test/test_argon_metastable_thermo.py::test_the_estimate_arrives_as_an_ordinary_arrhenius_with_no_electron_temperature
+test/test_eii_quarantine.py::test_arrhenius_would_have_been_the_wrong_criterion
+  <string>:5425: DeprecationWarning: invalid escape sequence \C
+
+test/test_argon_metastable_thermo.py::test_the_crash_would_fire_before_any_kinetics_quarantine_could_intercept_it
+test/test_argon_metastable_thermo.py::test_the_advertised_6000_K_now_survives_normal_processing
+test/test_argon_metastable_thermo.py::test_the_estimate_arrives_as_an_ordinary_arrhenius_with_no_electron_temperature
+test/test_eii_quarantine.py::test_arrhenius_would_have_been_the_wrong_criterion
+  <string>:6531: DeprecationWarning: invalid escape sequence \C
+
+test/test_argon_metastable_thermo.py::test_the_crash_would_fire_before_any_kinetics_quarantine_could_intercept_it
+test/test_argon_metastable_thermo.py::test_being_a_nasa_is_not_enough_the_library_comment_is_the_gate
+  /home/alon/anaconda3/envs/rmg_env/lib/python3.9/site-packages/scipy/optimize/_optimize.py:2322: LinAlgWarning: Ill-conditioned matrix (rcond=9.78829e-18): result may not be accurate.
+    fu = func(x, *args)
+
+test/test_argon_metastable_thermo.py::test_the_crash_would_fire_before_any_kinetics_quarantine_could_intercept_it
+test/test_argon_metastable_thermo.py::test_being_a_nasa_is_not_enough_the_library_comment_is_the_gate
+  /home/alon/anaconda3/envs/rmg_env/lib/python3.9/site-packages/scipy/optimize/_optimize.py:2322: LinAlgWarning: Ill-conditioned matrix (rcond=8.30526e-20): result may not be accurate.
+    fu = func(x, *args)
+
+test/test_argon_metastable_thermo.py::test_the_crash_would_fire_before_any_kinetics_quarantine_could_intercept_it
+test/test_argon_metastable_thermo.py::test_being_a_nasa_is_not_enough_the_library_comment_is_the_gate
+  /home/alon/anaconda3/envs/rmg_env/lib/python3.9/site-packages/scipy/optimize/_optimize.py:2322: LinAlgWarning: Ill-conditioned matrix (rcond=1.38146e-20): result may not be accurate.
+    fu = func(x, *args)
+
+test/test_argon_metastable_thermo.py::test_the_crash_would_fire_before_any_kinetics_quarantine_could_intercept_it
+test/test_argon_metastable_thermo.py::test_being_a_nasa_is_not_enough_the_library_comment_is_the_gate
+  /home/alon/anaconda3/envs/rmg_env/lib/python3.9/site-packages/scipy/optimize/_optimize.py:2322: LinAlgWarning: Ill-conditioned matrix (rcond=8.43874e-21): result may not be accurate.
+    fu = func(x, *args)
+
+test/test_argon_metastable_thermo.py::test_the_crash_would_fire_before_any_kinetics_quarantine_could_intercept_it
+test/test_argon_metastable_thermo.py::test_being_a_nasa_is_not_enough_the_library_comment_is_the_gate
+  /home/alon/anaconda3/envs/rmg_env/lib/python3.9/site-packages/scipy/optimize/_optimize.py:2322: LinAlgWarning: Ill-conditioned matrix (rcond=2.11249e-21): result may not be accurate.
+    fu = func(x, *args)
+
+test/test_argon_metastable_thermo.py::test_the_crash_would_fire_before_any_kinetics_quarantine_could_intercept_it
+test/test_argon_metastable_thermo.py::test_being_a_nasa_is_not_enough_the_library_comment_is_the_gate
+  /home/alon/anaconda3/envs/rmg_env/lib/python3.9/site-packages/scipy/optimize/_optimize.py:2322: LinAlgWarning: Ill-conditioned matrix (rcond=5.2787e-21): result may not be accurate.
+    fu = func(x, *args)
+
+test/test_argon_metastable_thermo.py::test_the_crash_would_fire_before_any_kinetics_quarantine_could_intercept_it
+test/test_argon_metastable_thermo.py::test_being_a_nasa_is_not_enough_the_library_comment_is_the_gate
+  /home/alon/anaconda3/envs/rmg_env/lib/python3.9/site-packages/scipy/optimize/_optimize.py:2322: LinAlgWarning: Ill-conditioned matrix (rcond=2.26538e-21): result may not be accurate.
+    fu = func(x, *args)
+
+test/test_argon_metastable_thermo.py::test_the_crash_would_fire_before_any_kinetics_quarantine_could_intercept_it
+test/test_argon_metastable_thermo.py::test_being_a_nasa_is_not_enough_the_library_comment_is_the_gate
+  /home/alon/anaconda3/envs/rmg_env/lib/python3.9/site-packages/scipy/optimize/_optimize.py:2322: LinAlgWarning: Ill-conditioned matrix (rcond=1.9079e-21): result may not be accurate.
+    fu = func(x, *args)
+
+test/test_argon_metastable_thermo.py::test_the_crash_would_fire_before_any_kinetics_quarantine_could_intercept_it
+test/test_argon_metastable_thermo.py::test_being_a_nasa_is_not_enough_the_library_comment_is_the_gate
+  /home/alon/anaconda3/envs/rmg_env/lib/python3.9/site-packages/scipy/optimize/_optimize.py:2322: LinAlgWarning: Ill-conditioned matrix (rcond=7.53573e-21): result may not be accurate.
+    fu = func(x, *args)
+
+test/test_argon_metastable_thermo.py::test_the_crash_would_fire_before_any_kinetics_quarantine_could_intercept_it
+test/test_argon_metastable_thermo.py::test_being_a_nasa_is_not_enough_the_library_comment_is_the_gate
+  /home/alon/anaconda3/envs/rmg_env/lib/python3.9/site-packages/scipy/optimize/_optimize.py:2322: LinAlgWarning: Ill-conditioned matrix (rcond=7.43345e-21): result may not be accurate.
+    fu = func(x, *args)
+
+test/test_argon_metastable_thermo.py::test_the_crash_would_fire_before_any_kinetics_quarantine_could_intercept_it
+test/test_argon_metastable_thermo.py::test_being_a_nasa_is_not_enough_the_library_comment_is_the_gate
+  /home/alon/anaconda3/envs/rmg_env/lib/python3.9/site-packages/scipy/optimize/_optimize.py:2322: LinAlgWarning: Ill-conditioned matrix (rcond=1.47964e-21): result may not be accurate.
+    fu = func(x, *args)
+
+test/test_argon_metastable_thermo.py::test_the_crash_would_fire_before_any_kinetics_quarantine_could_intercept_it
+test/test_argon_metastable_thermo.py::test_being_a_nasa_is_not_enough_the_library_comment_is_the_gate
+  /home/alon/anaconda3/envs/rmg_env/lib/python3.9/site-packages/scipy/optimize/_optimize.py:2322: LinAlgWarning: Ill-conditioned matrix (rcond=1.34061e-20): result may not be accurate.
+    fu = func(x, *args)
+
+test/test_argon_metastable_thermo.py::test_the_crash_would_fire_before_any_kinetics_quarantine_could_intercept_it
+test/test_argon_metastable_thermo.py::test_being_a_nasa_is_not_enough_the_library_comment_is_the_gate
+  /home/alon/anaconda3/envs/rmg_env/lib/python3.9/site-packages/scipy/optimize/_optimize.py:2322: LinAlgWarning: Ill-conditioned matrix (rcond=8.87325e-21): result may not be accurate.
+    fu = func(x, *args)
+
+test/test_argon_metastable_thermo.py::test_the_crash_would_fire_before_any_kinetics_quarantine_could_intercept_it
+test/test_argon_metastable_thermo.py::test_being_a_nasa_is_not_enough_the_library_comment_is_the_gate
+  /home/alon/anaconda3/envs/rmg_env/lib/python3.9/site-packages/scipy/optimize/_optimize.py:2322: LinAlgWarning: Ill-conditioned matrix (rcond=3.20362e-21): result may not be accurate.
+    fu = func(x, *args)
+
+test/test_argon_metastable_thermo.py::test_the_crash_would_fire_before_any_kinetics_quarantine_could_intercept_it
+test/test_argon_metastable_thermo.py::test_being_a_nasa_is_not_enough_the_library_comment_is_the_gate
+  /home/alon/anaconda3/envs/rmg_env/lib/python3.9/site-packages/scipy/optimize/_optimize.py:2322: LinAlgWarning: Ill-conditioned matrix (rcond=2.39961e-21): result may not be accurate.
+    fu = func(x, *args)
+
+test/test_argon_metastable_thermo.py::test_the_crash_would_fire_before_any_kinetics_quarantine_could_intercept_it
+test/test_argon_metastable_thermo.py::test_being_a_nasa_is_not_enough_the_library_comment_is_the_gate
+  /home/alon/anaconda3/envs/rmg_env/lib/python3.9/site-packages/scipy/optimize/_optimize.py:2322: LinAlgWarning: Ill-conditioned matrix (rcond=3.56405e-21): result may not be accurate.
+    fu = func(x, *args)
+
+test/test_argon_metastable_thermo.py::test_the_crash_would_fire_before_any_kinetics_quarantine_could_intercept_it
+test/test_argon_metastable_thermo.py::test_being_a_nasa_is_not_enough_the_library_comment_is_the_gate
+  /home/alon/anaconda3/envs/rmg_env/lib/python3.9/site-packages/scipy/optimize/_optimize.py:2322: LinAlgWarning: Ill-conditioned matrix (rcond=4.40143e-21): result may not be accurate.
+    fu = func(x, *args)
+
+test/test_argon_metastable_thermo.py::test_the_crash_would_fire_before_any_kinetics_quarantine_could_intercept_it
+test/test_argon_metastable_thermo.py::test_being_a_nasa_is_not_enough_the_library_comment_is_the_gate
+  /home/alon/anaconda3/envs/rmg_env/lib/python3.9/site-packages/scipy/optimize/_optimize.py:2322: LinAlgWarning: Ill-conditioned matrix (rcond=4.71804e-22): result may not be accurate.
+    fu = func(x, *args)
+
+test/test_argon_metastable_thermo.py::test_the_crash_would_fire_before_any_kinetics_quarantine_could_intercept_it
+test/test_argon_metastable_thermo.py::test_being_a_nasa_is_not_enough_the_library_comment_is_the_gate
+  /home/alon/anaconda3/envs/rmg_env/lib/python3.9/site-packages/scipy/optimize/_optimize.py:2322: LinAlgWarning: Ill-conditioned matrix (rcond=4.97734e-21): result may not be accurate.
+    fu = func(x, *args)
+
+test/test_argon_metastable_thermo.py::test_the_crash_would_fire_before_any_kinetics_quarantine_could_intercept_it
+test/test_argon_metastable_thermo.py::test_being_a_nasa_is_not_enough_the_library_comment_is_the_gate
+  /home/alon/anaconda3/envs/rmg_env/lib/python3.9/site-packages/scipy/optimize/_optimize.py:2322: LinAlgWarning: Ill-conditioned matrix (rcond=7.47076e-21): result may not be accurate.
+    fu = func(x, *args)
+
+test/test_argon_metastable_thermo.py::test_the_crash_would_fire_before_any_kinetics_quarantine_could_intercept_it
+test/test_argon_metastable_thermo.py::test_being_a_nasa_is_not_enough_the_library_comment_is_the_gate
+  /home/alon/anaconda3/envs/rmg_env/lib/python3.9/site-packages/scipy/optimize/_optimize.py:2322: LinAlgWarning: Ill-conditioned matrix (rcond=6.10745e-21): result may not be accurate.
+    fu = func(x, *args)
+
+test/test_argon_metastable_thermo.py::test_the_crash_would_fire_before_any_kinetics_quarantine_could_intercept_it
+test/test_argon_metastable_thermo.py::test_being_a_nasa_is_not_enough_the_library_comment_is_the_gate
+  /home/alon/anaconda3/envs/rmg_env/lib/python3.9/site-packages/scipy/optimize/_optimize.py:2322: LinAlgWarning: Ill-conditioned matrix (rcond=3.69387e-21): result may not be accurate.
+    fu = func(x, *args)
+
+test/test_argon_metastable_thermo.py::test_the_crash_would_fire_before_any_kinetics_quarantine_could_intercept_it
+test/test_argon_metastable_thermo.py::test_being_a_nasa_is_not_enough_the_library_comment_is_the_gate
+  /home/alon/anaconda3/envs/rmg_env/lib/python3.9/site-packages/scipy/optimize/_optimize.py:2322: LinAlgWarning: Ill-conditioned matrix (rcond=1.30536e-20): result may not be accurate.
+    fu = func(x, *args)
+
+test/test_argon_metastable_thermo.py::test_the_crash_would_fire_before_any_kinetics_quarantine_could_intercept_it
+test/test_argon_metastable_thermo.py::test_being_a_nasa_is_not_enough_the_library_comment_is_the_gate
+  /home/alon/anaconda3/envs/rmg_env/lib/python3.9/site-packages/scipy/optimize/_optimize.py:2322: LinAlgWarning: Ill-conditioned matrix (rcond=1.51603e-20): result may not be accurate.
+    fu = func(x, *args)
+
+test/test_argon_metastable_thermo.py::test_the_crash_would_fire_before_any_kinetics_quarantine_could_intercept_it
+test/test_argon_metastable_thermo.py::test_being_a_nasa_is_not_enough_the_library_comment_is_the_gate
+  /home/alon/anaconda3/envs/rmg_env/lib/python3.9/site-packages/scipy/optimize/_optimize.py:2322: LinAlgWarning: Ill-conditioned matrix (rcond=3.18757e-21): result may not be accurate.
+    fu = func(x, *args)
+
+test/test_argon_metastable_thermo.py::test_the_crash_would_fire_before_any_kinetics_quarantine_could_intercept_it
+test/test_argon_metastable_thermo.py::test_being_a_nasa_is_not_enough_the_library_comment_is_the_gate
+  /home/alon/Code/RMG-Py-i221-saturation-fix/rmgpy/thermo/thermoengine.py:100: LinAlgWarning: Ill-conditioned matrix (rcond=3.18757e-21): result may not be accurate.
+    thermo = wilhoit.to_nasa(Tmin=100.0, Tmax=5000.0, Tint=1000.0)
+
+test/test_argon_metastable_thermo.py::test_the_crash_would_fire_before_any_kinetics_quarantine_could_intercept_it
+test/test_argon_metastable_thermo.py::test_being_a_nasa_is_not_enough_the_library_comment_is_the_gate
+  /home/alon/Code/RMG-Py-i221-saturation-fix/rmgpy/thermo/thermoengine.py:100: LinAlgWarning: Ill-conditioned matrix (rcond=1.08953e-21): result may not be accurate.
+    thermo = wilhoit.to_nasa(Tmin=100.0, Tmax=5000.0, Tint=1000.0)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+324 passed, 1615 warnings in 162.35s (0:02:42)

@@ -7,8 +7,9 @@ captured in `logs/` with both streams.
 
 > **Merging this branch? Read [§19](#19-merge-requirement--this-branch-does-not-stand-alone)
 > first.** This branch requires the RMG-Py branch `i221-saturation-no-atomtype`; on a pristine
-> engine its suite is 322 passed and **1 failed by design**, and landing the two separately leaves
-> the quarantine pin unenforced in the gap.
+> engine its suite is 322 passed and **2 failed by design** (measured on plasma head `98d465d3b`,
+> round 90 — it was 1 until round 87 added the second negative control), and landing the two
+> separately leaves the quarantine pin unenforced in the gap.
 
 ---
 
@@ -1960,6 +1961,11 @@ not silently reversed by someone who did not see the history.*
 `e1b28b064` and `8ff42bd1a`, on plasma head `40e21b495`. Not "works better with": *requires*. On a
 pristine engine this branch's own suite is **322 passed and 1 failed**.
 
+*Amended by round 90 (§21): the branch is now **eight** commits on plasma head `98d465d3b`, tip
+`e0f075780`; the SHAs quoted throughout §19 are the pre-rebase ones and survive only under the tag
+`i221-pre-rebase-39336c8ab`. The pristine-engine figure is **322 passed and 2 failed** — both
+failures are negative controls, measured on `98d465d3b`.*
+
 *Amended by round 87: the pin this section describes was real but weaker than it claimed — a
 manifest naming `math.pi` as its gate loaded clean. §20.4 records what was wrong and what the
 enforcement checks now. The co-landing requirement below is unchanged and, if anything, firmer:
@@ -1982,9 +1988,10 @@ the pin is decorative for the duration of the gap.**
 ### 19.2 What to do at merge time
 
 Merge the database commits (`17f3c4d57`, `833f6fe8a`, `0c75e1c79`, `31a20f076`, `662cc393e`,
-`a2cf9cd84`, `5afb62d8b`, and round 87's) together with the engine commits (`e1b28b064`,
-`8ff42bd1a`, `14cca78b7`, `dee2954ef`, `18b94de25`), and re-run the suite against the merged
-engine — the expected result is **324 passed**. A failure in
+`a2cf9cd84`, `5afb62d8b`, `9c88ea2b7`) together with the engine commits — **the post-rebase SHAs,
+which are the only ones on the branch today**: `73c8214f7`, `4f5dff3db`, `88f080f80`, `d64029618`,
+`2c445dfdd`, `2482ee8f0`, `25a8d9393`, `e0f075780`, sitting on plasma head `98d465d3b`. Re-run the
+suite against the merged engine — the expected result is **324 passed**. A failure in
 `test_this_runtime_ENFORCES_the_pin_as_more_than_an_attribute_lookup` or
 `test_this_runtime_ENFORCES_the_declared_engine_requirement` says the engine half did not land, or
 landed short. Nothing here has been pushed, and no merge on this campaign is the agent's act.
@@ -2166,3 +2173,100 @@ copy so the rest could run, and the probe covers that half behaviourally instead
 `ERROR`s in the same log are `setup_class` failures of the transport and solute classes in the
 throwaway worktree, which has no configured database directory; the same classes pass in the real
 one.
+
+---
+
+## 21. Round 90 — rebased onto the engine that ships the Chemkin writer
+
+*The owner ruled on the rebase before it was done; the question and the four options are in the
+session record. Nothing was pushed.*
+
+### 21.1 Why it had to happen before the deck run
+
+The plasma head moved from `40e21b495` to **`98d465d3b`** (Merge I-260, the one-range NASA writer)
+while this branch sat on the old base. The file overlap is **zero** — upstream touched
+`docs/contracts/i260-nasa-one-range.md`, `rmgpy/chemkin.pyx` and `test/rmgpy/chemkinTest.py`, and
+this branch touches none of them and no `.pyx` at all — so a reader could reasonably have left the
+branch where it was.
+
+The reason not to: the staged deck exists to produce **an honest Chemkin export**, and I-260 *is*
+the Chemkin writer. Running the deck on the pre-I-260 engine would have exported through the
+routine that was just replaced, so a clean result would have been evidence about nothing anyone
+will merge, and a dirty one could as easily have been I-260's.
+
+### 21.2 The cost was much smaller than the round-89 handoff predicted
+
+That handoff said the rebase "converts a five-minute verification into a full Cython build",
+because the campaign's habit of copying the 52 `.so` files into a throwaway worktree breaks the
+moment a `.pyx` changes upstream. That is true of the *throwaway-worktree shortcut* and false of
+the worktree itself: the build tree here was intact (`build/temp`, `build/lib`, all 52 generated
+`.c` present), so `make build` cythonized **exactly one file** and relinked it —
+
+```
+Compiling rmgpy/chemkin.pyx because it changed.
+[1/1] Cythonizing rmgpy/chemkin.pyx
+```
+
+— in well under a minute, 104 `.so` before and after. Recorded because the same wrong estimate will
+otherwise be repeated at the next upstream move: *ask whether the build tree survives* before
+pricing a rebase as a rebuild.
+
+Rebase safety, checked first: `git branch --contains 39336c8ab` named only the branch itself, the
+worktree was clean with zero untracked files, and the pre-rebase tip is preserved as the tag
+**`i221-pre-rebase-39336c8ab`**. All eight commits replayed with no conflict.
+
+### 21.3 What was re-measured, and against what
+
+Engine tip **`e0f075780`** on plasma head `98d465d3b`; database tip `9c88ea2b7`.
+
+| check | result | relative to |
+|---|---|---|
+| round-89 delivery probe | **0 of 7 findings, 5 of 5 controls hold** | engine `e0f075780` |
+| round-87 provenance probe | **0 of 8 findings, 4 of 4 controls hold** | engine `e0f075780` |
+| engine `test/rmgpy/data` | **434 passed, 8 skipped, 0 failed** | engine `e0f075780` |
+| engine `chemkinTest.py` + `electronPlacementTest.py` | **107 passed** — including all seven of I-260's one-range tests and the three plasma round-trip tests | engine `e0f075780` |
+| database `test/` | **324 passed** | database `9c88ea2b7`, engine `e0f075780` |
+| database `test/` on the **pristine** engine | **322 passed, 2 failed** — both by design | plasma head `98d465d3b` |
+
+The `electronPlacementTest` figure is the one that matters for the round-89 addendum: the argon
+ionisation channel still resolves through `FAMILY_ELECTRON_PLACEMENT` on the rebased engine, so
+neither the rebase nor I-260 disturbed the second reader of `Reaction.family`.
+
+### 21.4 Three count movements, each named rather than smoothed over
+
+**(a) "1 failed by design" was stale; it is 2.** §19.1 and the pointer at the top of this report
+both said a pristine engine gives 322 passed and 1 failed. Round 87 added a second negative control,
+`test_this_runtime_ENFORCES_the_pin_as_more_than_an_attribute_lookup`, which fails on a pristine
+engine for the same reason the first one does — so the figure has been 322/2 since round 87 and was
+written down wrong at the moment it changed. Both are corrected above. The claim §19 rests on is
+unaffected and slightly stronger: there are now two tests in the database's own suite that a
+non-enforcing engine cannot pass.
+
+**(b) The engine data suite reads 434, not round 89's 430.** Not drift: the round-89 run of that
+suite predates commit `39336c8ab` (`e0f075780` after the rebase), which added exactly four tests —
+the `TestTheFamilySlotIsLeftAloneForItsOtherReader` guard. The test code under `test/rmgpy/data` is
+byte-identical across the rebase (`git diff 39336c8ab e0f075780 -- test/rmgpy/data rmgpy/data` is
+empty), so nothing upstream could have moved it.
+
+**(c) The first run of that suite reported 435 passed / 7 skipped and exited non-zero.** Two
+separate artefacts of the *shared* checkout at `/home/alon/Code/RMG-database-plasma`, neither
+belonging to this branch:
+
+- `testSeed/` and `testSeed_edge/` had been left under `input/kinetics/libraries/` by an earlier
+  `test/rmgpy/rmg/mainTest.py` run (not by this round — that file was never invoked here). The
+  engine's pollution guard removed them and failed the run, which is the guard working. A clean
+  re-run of the identical selection is **434 passed, 8 skipped, no pollution block, exit 0**.
+- `Seed/` and `Seed_edge/` are **still there**, untracked, and the guard does not remove them
+  because it only knows the `testSeed*` names. They are left in place: they are not this branch's
+  to delete, and the standing rule is to preserve untracked files in checkouts that other sessions
+  drive. Named here so the next reader of a collected-test count knows a shared checkout is part of
+  the input.
+
+### 21.5 What this round did not reach
+
+The staged metastable deck at `/home/alon/runs/ar5torr-i261-20260922-125141/input.py` has still not
+been run. The rebase was the precondition, and it is now met; the deck is the next step and the only
+end-to-end evidence this branch has not yet produced.
+
+Logs for everything above: `logs/round90-*` here, and `docs/i221-saturation/logs/round90-*` in the
+engine worktree.

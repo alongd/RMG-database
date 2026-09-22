@@ -155,15 +155,31 @@ test/test_eii_quarantine.py.
 # unguarded.
 #
 # What is required of the engine:
-#   * rmgpy.data.kinetics.quarantine, providing load_family_quarantine; and
+#   * rmgpy.data.kinetics.quarantine, providing check_quarantine -- the function the
+#     reaction model calls, not the one that reads this file; and
 #   * KineticsFamily.quarantine populated at load (family.py:621-623, :699); and
 #   * the refusal firing in apply_kinetics_to_reaction, i.e. at model admission.
 # First provided by RMG-Py commit 541e6498f, 2026-08-25, "kinetics: hard-fail when
 # quarantined database data reaches a reaction model". Present on RMG-Py-plasma and
 # RMG-Py-i222-metastable-argon-atomtype; ABSENT from the shared RMG-Py primary
 # checkout, which is on an unrelated branch.
+#
+# ROUND 80 -- WHAT IS ENFORCED, AND WHAT IS ONLY RECORDED. Review was right that until
+# round 80 nothing read these three fields: the engine ignored them and only the
+# database's own tests checked them, which confirms the runtime you happened to select
+# and protects no actual run. The loader now HONOURS the two capability fields --
+# `load_family_quarantine` imports the module, looks up the symbol, and refuses the load
+# with a DatabaseError naming this family if either is absent. Two limits, stated so the
+# word "pin" stays honest:
+#   * `requiresEngineCommit` is NOT checked and is NOT a pin. An installed engine has no
+#     reliable commit to compare against, and a check that passes on every checkout is a
+#     check that cannot fail. It is PROVENANCE: the commit that first provided the
+#     capability. The capability is the thing enforced.
+#   * an engine old enough to lack the quarantine loader entirely never reads this file,
+#     so it cannot be refused from here. That is bypass route 1 below, and it is why the
+#     routes are enumerated rather than claimed closed.
 requiresEngineModule = "rmgpy.data.kinetics.quarantine"
-requiresEngineSymbol = "load_family_quarantine"
+requiresEngineSymbol = "check_quarantine"
 requiresEngineCommit = "541e6498f"
 
 # WHAT THIS MANIFEST DOES NOT COVER. Enumerated because a reader who believes the

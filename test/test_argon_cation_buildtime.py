@@ -62,6 +62,17 @@ import pytest
 from rmgpy import settings
 from rmgpy.data.thermo import ThermoDatabase
 from rmgpy.exceptions import AtomTypeError, DatabaseError
+
+try:
+    from rmgpy.exceptions import SaturatedStructureError
+except ImportError:                     # an engine older than the round-80 saturation fix
+    SaturatedStructureError = None
+
+#: See the same constant in test_argon_metastable_thermo.py. HBI saturation reports the
+#: identical failure under two names depending on the engine; the claim here is that a
+#: number never comes back, not that a particular class carries the refusal.
+NO_NUMBER = ((AtomTypeError, SaturatedStructureError) if SaturatedStructureError is not None
+             else (AtomTypeError,))
 from rmgpy.molecule import Molecule
 from rmgpy.species import Species
 
@@ -239,9 +250,11 @@ def test_the_dimer_cation_still_builds_but_is_now_refused_one_layer_earlier(argo
     assert [a.atomtype.label for a in species.molecule[0].atoms] == ['Ar0s', 'Ar+']
 
     # It is still refused loudly, but now by perception during HBI saturation rather than
-    # by the thermo database. Pinned as AtomTypeError precisely because it is NOT the same
-    # guarantee: DatabaseError would mean the database was reached and said no.
-    with pytest.raises(AtomTypeError) as exc:
+    # by the thermo database. Pinned as a SATURATION failure precisely because it is NOT
+    # the same guarantee: DatabaseError would mean the database was reached and said no.
+    # Either name for that saturation failure is accepted (see NO_NUMBER); what must not
+    # happen is a number, and what must not be claimed is that the database refused it.
+    with pytest.raises(NO_NUMBER) as exc:
         argon_capable_db.get_thermo_data(species)
     assert '2 single bonds' in str(exc.value)
     assert '+0 charge' in str(exc.value)

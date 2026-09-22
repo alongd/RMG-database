@@ -350,20 +350,79 @@ def test_the_manifest_declares_the_engine_it_needs_and_this_runtime_satisfies_it
     assert hasattr(module, symbol_name), (
         '%s exists but does not provide %s' % (module_name, symbol_name))
 
-    # and the gate is wired into family loading, not merely importable. Checked on the
-    # SOURCE of KineticsFamily rather than on an instance, because constructing one takes
-    # a signature that has changed before and would make this test fail for the wrong
-    # reason -- which it did, once, while being written.
+    # and the gate is wired in, not merely importable. Checked on SOURCE rather than on
+    # instances, because constructing either takes a signature that has changed before and
+    # would make this test fail for the wrong reason -- which it did, once, while being
+    # written.
+    #
+    # Round 80 splits what round 77 ran together. TWO symbols matter and they sit in
+    # different places, so one assertion could not cover both:
+    #   * the LOADER, which reads this manifest at family load;
+    #   * the GATE -- the symbol the manifest now declares -- which the reaction model
+    #     calls at admission. It is the gate that makes the refusal real, so it is the one
+    #     worth declaring; asserting it against KineticsFamily's source (as round 77 did)
+    #     looks for it in the wrong file.
     import inspect
 
     from rmgpy.data.kinetics.family import KineticsFamily
-    source = inspect.getsource(KineticsFamily)
-    assert 'self.quarantine' in source, (
+    from rmgpy.rmg.model import CoreEdgeReactionModel
+
+    family_source = inspect.getsource(KineticsFamily)
+    assert 'self.quarantine' in family_source, (
         'KineticsFamily never sets a quarantine attribute, so a loaded manifest would '
         'never be consulted')
-    assert symbol_name in source, (
-        '%s is importable but KineticsFamily does not call it, so the manifest is loaded '
-        'by nothing' % symbol_name)
+    assert 'load_family_quarantine' in family_source, (
+        'KineticsFamily never loads a quarantine manifest, so this file is read by nothing')
+
+    model_source = inspect.getsource(CoreEdgeReactionModel)
+    assert symbol_name in model_source, (
+        '%s is importable but the reaction model never calls it, so a loaded manifest '
+        'would gate nothing at admission' % symbol_name)
+
+
+def test_this_runtime_ENFORCES_the_declared_engine_requirement(tmp_path):
+    """Round 80. Declaring a requirement is not pinning it: until the loader honoured
+    these fields, an engine could read the manifest, ignore what it asked for, and gate
+    nothing while the file still read as protection. The database's own tests confirmed
+    only the runtime that happened to be selected to run them.
+
+    So this asserts the ENFORCEMENT rather than the declaration: a manifest whose declared
+    capability is absent must be REFUSED by this engine's loader. It is deliberately run
+    on a synthetic manifest in a temporary directory -- pointing the real one at a missing
+    module would be testing the check by breaking the thing it guards, in the tree.
+
+    What it cannot cover, and what `bypassRoutes` therefore still enumerates: an engine
+    with no quarantine loader at all never reads any manifest, so nothing here can refuse
+    it."""
+    from rmgpy.data.kinetics.quarantine import load_family_quarantine
+    from rmgpy.exceptions import DatabaseError
+
+    body = '\n'.join([
+        'name = "Synthetic/quarantine"',
+        'state = "QUARANTINED FOR TESTING"',
+        'appliesToKineticsClass = "Arrhenius"',
+        'reason = "a synthetic manifest used to check that requirements are enforced"',
+        'requiresEngineModule = "rmgpy.data.kinetics.a_module_no_engine_provides"',
+        '',
+    ])
+    path = os.path.join(str(tmp_path), 'quarantine.py')
+    with open(path, 'w', encoding='utf-8') as handle:
+        handle.write(body)
+
+    with pytest.raises(DatabaseError) as exc:
+        load_family_quarantine('Synthetic_Family', str(tmp_path))
+    assert 'a_module_no_engine_provides' in str(exc.value), (
+        'this engine loads a manifest without honouring the engine requirement it '
+        'declares, so requiresEngineModule is a comment here and not a pin'
+    )
+
+    # positive control: the check must not refuse a requirement that IS satisfied, or the
+    # assertion above would pass for the wrong reason on any engine at all.
+    satisfied = body.replace('rmgpy.data.kinetics.a_module_no_engine_provides',
+                             'rmgpy.data.kinetics.quarantine')
+    with open(path, 'w', encoding='utf-8') as handle:
+        handle.write(satisfied + 'requiresEngineSymbol = "check_quarantine"\n')
+    assert load_family_quarantine('Synthetic_Family', str(tmp_path)) is not None
 
 
 def test_the_manifest_enumerates_the_routes_that_bypass_it():

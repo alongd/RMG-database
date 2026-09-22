@@ -53,6 +53,20 @@ import pytest
 from rmgpy import settings
 from rmgpy.data.thermo import ThermoDatabase
 from rmgpy.exceptions import AtomTypeError
+
+try:
+    from rmgpy.exceptions import SaturatedStructureError
+except ImportError:                     # an engine older than the round-80 saturation fix
+    SaturatedStructureError = None
+
+#: The two diagnoses of ONE failure. An engine before the round-80 fix raises
+#: ``AtomTypeError`` from inside ``update_atomtypes`` while saturating the radical; one
+#: after raises ``SaturatedStructureError``, which is the same failure with the species,
+#: the saturated form and the remedy named. What this database claims is that NO NUMBER
+#: comes back -- it is not a claim about which exception class carries that news, and
+#: pinning one class would quietly make the suite engine-specific.
+NO_NUMBER = ((AtomTypeError, SaturatedStructureError) if SaturatedStructureError is not None
+             else (AtomTypeError,))
 from rmgpy.molecule import Molecule
 from rmgpy.species import Species
 
@@ -443,7 +457,7 @@ def test_without_this_library_the_species_cannot_exist_at_all(estimator_only):
 
     Pinned as it is, not fixed: making group additivity answer for metastable argon would
     be inventing a number, which this database's plasma libraries forbid."""
-    with pytest.raises(AtomTypeError) as excinfo:
+    with pytest.raises(NO_NUMBER) as excinfo:
         estimator_only.get_thermo_data(_species(AR_META, 'Ar(3P2)'))
     assert 'Ar' in str(excinfo.value) and '3 lone pairs' in str(excinfo.value)
 
@@ -654,13 +668,22 @@ def test_which_ground_state_argon_anchor_is_correct_and_which_one_wins(entry, th
       1. the correct camp is the one that matches JANAF, and it is not empty;
       2. ``primaryThermoLibrary`` -- RMG's own default first-choice thermo library -- is
          in it;
-      3. the anchor the runtime actually resolves is in the WRONG camp. That is the
-         hazard, it is live, and if it ever stops being true this test goes red and the
-         entry's disclosure needs rewriting to say the anchor got fixed.
+      3. THE ENTRY IS ANCHORED ON THE CORRECT ONE -- it quotes the JANAF-referenced
+         excitation pair, not the pair that happens to fall out of ``library_order``.
 
-    Closing it still means re-anchoring ``BurkeH2O2`` upstream or giving RMG a way to
-    require a ground-state anchor. This does not close it. It stops the suite from being
-    neutral about a question that has a right answer."""
+    Round 80 changed the third assertion. It used to assert that the runtime resolves the
+    WRONG camp, which pins a defect as the expected state and turns the day somebody fixes
+    it into a red suite. What the entry is answerable for is which anchor IT uses, and the
+    load-order hazard is asserted as a DISCLOSURE that must be present while the hazard is
+    live and absent once it is not -- correct under both states, satisfiable by silence
+    under neither.
+
+    On the resolution itself: ``BurkeH2O2`` is not wrong to re-anchor here. Its 36.98
+    cal/(mol*K) is the published Burke mechanism's own four-figure value, faithfully
+    transcribed, and a library that reproduces its source is doing its job. The gap is
+    real and belongs at the SELECTION layer -- which library a deck names first, or an RMG
+    that can require a ground-state anchor -- not in the data. That is still upstream and
+    this does not close it."""
     correct = sorted(label for label, s298 in AR_CARRIERS.items()
                      if abs(s298 - JANAF_AR_S298) < 0.01)
     wrong = sorted(label for label, s298 in AR_CARRIERS.items()
@@ -678,12 +701,33 @@ def test_which_ground_state_argon_anchor_is_correct_and_which_one_wins(entry, th
     winner = ar.comment.split('Thermo library: ')[1].split('\n')[0].strip()
     assert winner in AR_CARRIERS, winner
 
-    assert winner in wrong, (
-        'the resolved anchor %r is now in the CORRECT camp. The hazard this entry '
-        'discloses has been fixed upstream -- update the entry and delete this assertion '
-        'rather than inverting it.' % winner)
-    delivered_error = AR_CARRIERS[winner] - JANAF_AR_S298
-    assert delivered_error == pytest.approx(-0.1102, abs=2e-3), delivered_error
+    # THE DECISION, ASSERTED. Round 80: a suite that asserts "the runtime resolves the
+    # WRONG camp" pins a defect as the expected state and goes red the day somebody fixes
+    # it, which is backwards. What this entry is answerable for is which anchor IT uses,
+    # and that is decided: the JANAF value, independent of whatever load order resolves.
+    assert '1114.2468' in entry.long_desc and '13.3816' in entry.long_desc, (
+        'the entry must quote the excitation dH298/dS298 against the CORRECT (JANAF) '
+        'anchor. Those are the numbers this species is answerable for; the delivered pair '
+        'is an artefact of library_order and is disclosed separately.')
+
+    # The load-order hazard is then disclosed under EITHER state, so this test is right
+    # whether or not the anchor is ever fixed upstream -- and cannot be satisfied by
+    # silence in either.
+    # keyed on a fragment that survives the file's line wrapping, not on the whole sentence
+    hazard_sentence = 'running mechanism actually resolves to is NOT'
+    if winner in wrong:
+        assert hazard_sentence in entry.long_desc, (
+            'the resolved anchor %r is in the wrong camp and the entry no longer says so; '
+            'a reader differencing this entry against their own ground-state argon would '
+            'carry %.4f J/(mol*K) without being told'
+            % (winner, AR_CARRIERS[winner] - JANAF_AR_S298))
+        delivered_error = AR_CARRIERS[winner] - JANAF_AR_S298
+        assert delivered_error == pytest.approx(-0.1102, abs=2e-3), delivered_error
+    else:
+        assert hazard_sentence not in entry.long_desc, (
+            'the resolved anchor %r is now in the CORRECT camp -- the hazard is closed and '
+            'the entry still discloses it as live. Rewrite that paragraph; the entry is '
+            'now simply consistent with what the runtime delivers.' % winner)
 
     # And the entry must name the correct anchor, not merely disclose the delivered one.
     # Keyed on the SENTENCE that makes the claim rather than on the bare library name:
@@ -843,7 +887,7 @@ def test_the_anchor_error_the_engine_delivers_is_the_one_the_library_discloses(e
                                                       residual))
 
 
-def test_the_only_kinetics_files_that_MENTION_the_metastable_are_the_five_containments(pinned):
+def test_the_only_kinetics_files_that_MENTION_the_metastable_are_the_containments(pinned):
     """A weak but still meaningful check: nothing in the kinetics tree ships this structure
     as a named species or a reacting group.
 
@@ -852,11 +896,12 @@ def test_the_only_kinetics_files_that_MENTION_the_metastable_are_the_five_contai
     question is answered by generation, below.
 
     The expected set is no longer empty, and that is the point of the change it records:
-    five ordinary families now carry a ``forbidden`` group for this structure. Those five
-    lines are the ONLY places it may appear - a sixth would mean something started
-    declaring metastable argon as reacting chemistry, which is exactly what this check is
-    for. The assertion is against the set, not against emptiness, so it fails either way:
-    if one of the five disappears, or if a sixth arrives."""
+    ELEVEN ordinary families now carry a ``forbidden`` group for this structure, one line
+    each, and those lines are the ONLY places it may appear - a twelfth would mean
+    something started declaring metastable argon as reacting chemistry, which is exactly
+    what this check is for. The assertion is against the set (``CONTAINED_FAMILIES``), not
+    against emptiness or a count, so it fails either way: if one of them disappears, or if
+    another arrives."""
     declared = []
     for root, _dirs, files in os.walk(KINETICS_DIR):
         for name in files:
@@ -1277,7 +1322,7 @@ def test_the_products_those_families_used_to_build_still_have_no_thermo(all_fami
                 assert argon, '%s + %s produced no argon at all' % (family, label)
                 for prod in argon:
                     fresh = Species(molecule=[prod.molecule[0].copy(deep=True)])
-                    with pytest.raises(AtomTypeError):
+                    with pytest.raises(NO_NUMBER):
                         thermo_db.get_thermo_data(fresh)
                     crashed += 1
     finally:
@@ -1323,7 +1368,7 @@ def test_a_covalent_neutral_argon_cannot_be_given_a_number_by_construction(therm
         mol = Molecule().from_adjacency_list(adj)
         assert [a.atomtype.label for a in mol.atoms][0] == 'Ar0s', (
             'the molecule itself types fine; the failure is downstream, in HBI')
-        with pytest.raises(AtomTypeError):
+        with pytest.raises(NO_NUMBER):
             thermo_db.get_thermo_data(Species(molecule=[mol]))
 
     # ... and the thing HBI builds is itself unconstructible, which is the mechanism
@@ -1400,7 +1445,7 @@ def test_the_crash_would_fire_before_any_kinetics_quarantine_could_intercept_it(
             'product thermo must run BEFORE the kinetics gate, or a quarantine could help')
 
         # the real case: the same path raises, and raises in thermo
-        with pytest.raises(AtomTypeError):
+        with pytest.raises(NO_NUMBER):
             run([_species(AR_META, 'Ar(3P2)'), h])
         assert 'apply_kinetics_to_reaction' not in order, (
             'the job died before the kinetics gate was ever reached')

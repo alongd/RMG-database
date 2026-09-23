@@ -2,14 +2,18 @@
 # encoding: utf-8
 
 name = "PlasmaArgon"
-shortDesc = u"Argon plasma kinetics — electron-impact ionisation only"
+shortDesc = u"Argon plasma kinetics — electron-impact ionisation and 4s metastable excitation"
 longDesc = u"""
 Argon plasma chemistry that is citable without fabrication. As of this writing that is
-exactly ONE reaction: electron-impact ionisation of neutral argon,
+exactly TWO reactions, both electron impact on ground-state argon:
 
-    Ar + e- => Arp + e- + e-
+    Ar + e- => Arp + e- + e-     (index 86, ionisation, cross-section table)
+    Ar + e- => Ars + e-          (index 87, excitation to the 4s metastable group, I-231)
 
-and nothing else. This library exists so that a pure-argon deck need not load the whole
+and nothing else. ``Ars`` is metastable argon Ar(3p5 4s 3P2), whose thermochemistry is in
+``PlasmaExcitedNeutralThermo`` (I-221). The provenance, level assignment and Te carrier of
+the excitation entry are in its own longDesc; everything from here to the end of this
+library description is about index 86 unless it says otherwise. This library exists so that a pure-argon deck need not load the whole
 ``PlasmaAir`` air library (33 species, 88 reactions) to reach the single argon reaction
 the database holds. The air ballast contributed every wall the I-186 first-light run hit
 (He2+ thermo, CH / maximumCarbeneRadicals, singlet O2s / allowSingletO2, an anion arriving
@@ -51,8 +55,8 @@ The rate law ``ElectronCollisionPlasma`` writes the free electron explicitly on 
 of the label, so this library declares NO electron placement in
 ``rmgpy.electron_placement`` — exactly as ``PlasmaAir`` does not, and for the same reason.
 
-WHY THIS LIBRARY IS DELIBERATELY ONE ENTRY
-------------------------------------------
+WHY THIS LIBRARY IS DELIBERATELY SMALL
+--------------------------------------
 Argon here can be ionised and cannot be un-ionised, and that is the honest state of the
 sourced data, not an omission to be filled:
 
@@ -74,8 +78,13 @@ sourced data, not an omission to be filled:
 
 * **No three-body (``ThirdBody``) kinetics.** The reactor refuses them.
 
-* **No estimated, fitted or analogy-derived rate.** An incomplete library that can be named
-  is the deliverable; a complete-looking one built on fabricated numbers is a failure.
+* **No stepwise ionisation from the metastable, no quenching, no de-excitation.** Index 87
+  produces Ars and nothing in this library consumes it; those channels are separate
+  contracts, and the consequence (Ars can only accumulate) is stated in index 87's longDesc.
+
+* **No estimated or analogy-derived rate.** Index 87 is a PUBLISHED rate-coefficient fit, not
+  an estimate; an incomplete library that can be named is the deliverable, and a
+  complete-looking one built on fabricated numbers is a failure.
 """
 
 entry(
@@ -94,4 +103,62 @@ entry(
     longDesc = u"""
 Ar Ionization. Threshold 15.759 eV.
 """
+)
+
+entry(
+    index = 87,
+    label = "Ar + e- => Ars + e-",
+    reversible = False,
+    kinetics = TwoTemperaturePlasma(
+        A = (5.0e-15, 'm^3/(molecule*s)'),
+        n = 0.74,
+        Ea_g = (11.56, 'eV/molecule'),
+        Ea_e = (11.56, 'eV/molecule'),
+        T0 = (11604.51812, 'K'),
+    ),
+    shortDesc = u"[Ashida1995 via Rehman2016] Ar(4s) metastable group (3P2 + 3P0) -> Ars",
+    longDesc = u"""
+Electron-impact excitation of ground-state argon to the 4s METASTABLE group (I-231).
+
+SOURCE. [Ashida1995] S. Ashida, C. Lee, M.A. Lieberman, J. Vac. Sci. Technol. A 13(5),
+2498-2507 (1995), as tabulated in [Rehman2016] T. Rehman et al., J. Phys.: Conf. Ser. 682,
+012035 (2016), DOI: 10.1088/1742-6596/682/1/012035 (CC-BY), Table 1 ("rate coefficient for
+argon system as taken from [11]", [11] = Ashida1995). The row, verbatim:
+
+    Ar + e -> Ar(4s)m + e        5.00 . 10-15 Te0.74 exp(-11.56/Te)
+
+with Te in eV (the table's footnote). The table states no units; m^3/s is inferred from the
+magnitudes of its other rows. Ashida1995 itself was not read for this entry.
+
+LEVELS. The channel is the 4s METASTABLE group: 1s5 = 3P2 (11.548 eV) and 1s3 = 3P0
+(11.723 eV), lumped by the source and mapped here, entire, to ``Ars`` = Ar(3P2); 3P0 is folded
+into it. The resonance levels 1s4 = 3P1 and 1s2 = 1P1 are NOT included: Table 1 carries them
+as a separate row of identical form, ``Ar + e -> Ar(4s)r + e``, which is not entered.
+
+RANGE. Rehman2016 states no validity range for the fit. The only working point that source
+uses is Te = 3 eV (heavy particles 600 K, 5 mTorr). The campaign evaluates it at Te = 0.85 to
+0.90 eV, which is an EXTRAPOLATION below that point. The fit's stated range in Ashida1995 is
+an open item.
+
+ELECTRON TEMPERATURE, AND HOW THE ENGINE READS IT. ``TwoTemperaturePlasma`` evaluates
+
+    k(T, Te) = A (Te/T0)^n exp(-Ea_g/(R T)) exp(Ea_e (Te - T)/(R T Te))
+
+With Ea_g = Ea_e = E the two gas-temperature terms cancel identically,
+exp(-E/RT + E/RT - E/(R Te)) = exp(-E/(R Te)), so the rate depends on Te ONLY; T0 = 1 eV =
+11604.51812 K turns (Te/T0)^n into Te[eV]^0.74. The class sets
+``uses_electron_temperature``, so ``PlasmaReactor`` evaluates it through
+``get_rate_coefficient_two_temp(T, Te)``. Its plain ``get_rate_coefficient(T)`` is
+k(T, Te=T), which at a gas temperature of ~300 K is ~1e-190 of the Te value: a consumer that
+bypasses the plasma reactor gets the wrong-temperature answer, which is why this must not be
+an ``Arrhenius``. Irreversible because ``PlasmaReactor`` refuses reversible Te-dependent
+kinetics; there is therefore NO superelastic de-excitation Ars + e- => Ar + e-.
+
+Hand check at Te = 0.900 eV: 0.9^0.74 = 0.92500, exp(-11.56/0.9) = 2.6407e-6,
+k = 5.0e-15 * 0.92500 * 2.6407e-6 = 1.2213e-20 m^3/s = 7.355e3 m^3/(mol*s).
+
+NOT IN THIS LIBRARY. Nothing consumes Ars here: no stepwise ionisation (separate contract),
+no quenching, no diffusion to the wall. In a model built from this library alone Ars can
+only accumulate.
+""",
 )

@@ -4,16 +4,19 @@
 """
 Unit tests for the metastable-argon channels of ``PlasmaArgon`` (I-232).
 
-Four loss channels of ``Ars`` (the 4s metastable group) were appended at indices 88-91:
+Six loss channels of ``Ars`` (the 4s metastable group) were appended at indices 88-93:
 
 * 88 stepwise ionisation ``Ars + e- => Arp + e- + e-``, 6.8e-15 Te^0.67 exp(-4.20/Te) m3/s;
 * 89 electron quenching ``Ars + e- => Ar + e-``, 4.3e-16 Te^0.74 m3/s, one-way;
 * 90 pooling ``Ars + Ars => Arp + Ar + e-``, 6.2e-16 m3/s, gas-temperature (constant);
 * 91 metastable-to-resonance mixing, entered as ``Ars + e- => Ar + e-`` (the resonance level
-  assumed to decay promptly), 2.0e-13 m3/s, Te-independent.
+  assumed to decay promptly), 2.0e-13 m3/s, Te-independent -- the maximum-loss limit;
+* 92 two-body quenching ``Ars + Ar => Ar + Ar``, 3e-15 cm3/s, gas-temperature (constant);
+* 93 three-body quenching ``Ars + Ar + Ar => Ar + Ar + Ar``, 1.1e-31 cm6/s, gas-temperature
+  (constant), the Ar2 excimer collapsed to its prompt radiative products.
 
 88, 89 and 91 are Ashida, Lee & Lieberman 1995 as tabulated in Rehman et al. 2016, Table 1;
-90 is Lieberman & Lichtenberg 2005.
+90, 92 and 93 are Lymberopoulos & Economou 1993, Table I.
 
 The rates are the reason for this file. Every expected number below is hand arithmetic from
 those coefficients at Te = 0.900 eV (10442.07 K), times Avogadro, not the code's own output:
@@ -22,6 +25,8 @@ those coefficients at Te = 0.900 eV (10442.07 K), times Avogadro, not the code's
 * 89: 4.3e-16 * 0.9^0.74                  = 3.97748e-16 m3/s = 2.39529e8 m3/(mol*s)
 * 90: 6.2e-16                              = 6.2e-16 m3/s     = 3.73373e8 m3/(mol*s)
 * 91: 2.0e-13                              = 2.0e-13 m3/s     = 1.204428e11 m3/(mol*s)
+* 92: 3e-15 cm3/s                          = 3e-21 m3/s       = 1.806642e3 m3/(mol*s)
+* 93: 1.1e-31 cm6/s                        = 1.1e-43 m6/s     = 3.98928e4 m6/(mol2*s)
 
 89 and 91 share reactants and products, so no reactant/product key can pick one of them; the
 tests select them by their pre-exponential factor instead, and require that both survive the
@@ -57,6 +62,8 @@ QUENCHING_A = 4.3e-16
 MIXING_A = 2.0e-13
 AVOGADRO = 6.02214076e23
 POOLING = (['Ars', 'Ars'], ['Ar', 'Arp', 'e-'])
+TWO_BODY = (['Ar', 'Ars'], ['Ar', 'Ar'])
+THREE_BODY = (['Ar', 'Ar', 'Ars'], ['Ar', 'Ar', 'Ar'])
 
 
 @pytest.fixture(scope='module')
@@ -115,6 +122,27 @@ def test_pooling_is_a_gas_temperature_constant(library):
     assert reaction.kinetics.get_rate_coefficient(1000.0) == pytest.approx(3.73373e8, rel=1e-5)
 
 
+@pytest.mark.parametrize('channel, expected', [
+    (TWO_BODY, 1.806642e3),
+    (THREE_BODY, 3.98928e4),  # RMG's older Avogadro puts it 3.4e-7 high; rel 1e-6 absorbs it
+])
+def test_neutral_quenching_is_a_gas_temperature_constant(library, channel, expected):
+    """Heavy-particle quenching by ground-state argon: plain Arrhenius, no Te, no T dependence."""
+    reaction = reaction_for_isolated(library, *channel)
+    assert type(reaction.kinetics) is Arrhenius
+    assert not getattr(reaction.kinetics, 'uses_electron_temperature', False)
+    for t in (298.15, 1000.0):
+        assert reaction.kinetics.get_rate_coefficient(t) == pytest.approx(expected, rel=1e-6)
+
+
+def test_three_body_quenching_is_explicitly_termolecular(library):
+    """The third partner is in the label, not a ThirdBody collider the reactor would refuse."""
+    reaction = reaction_for_isolated(library, *THREE_BODY)
+    assert len(reaction.reactants) == 3 and len(reaction.products) == 3
+    assert reaction.kinetics.A.units == 'm^6/(mol^2*s)' or \
+        reaction.kinetics.A.value_si == pytest.approx(3.98928e4, rel=1e-6)
+
+
 def test_mixing_does_not_depend_on_te(library):
     """91 is Te-independent in the source: the same value at Te = 0.3, 0.9 and 3 eV."""
     kinetics = select(library, 'mixing').kinetics
@@ -130,7 +158,7 @@ def test_quenching_and_mixing_stay_separate_entries(library):
     assert pair[0] is not pair[1]
 
 
-@pytest.mark.parametrize('channel', [STEPWISE, 'quenching', 'mixing', POOLING])
+@pytest.mark.parametrize('channel', [STEPWISE, 'quenching', 'mixing', POOLING, TWO_BODY, THREE_BODY])
 def test_channels_are_irreversible_and_balanced(library, channel):
     """The plasma reactor refuses reversible Te-dependent reactions, and quenching is one-way
     by the brief; pooling is irreversible because its reverse is not a channel anyone holds."""

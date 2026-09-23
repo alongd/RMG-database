@@ -16,9 +16,9 @@ four loss channels of that metastable (I-232, pinned in
 These tests pin the invariants the ticket turns on:
 
 1. **exactly the named entries** - the library is small and stays small. With I-231's
-   excitation and I-232's stepwise ionisation, quenching, pooling and
-   metastable-to-resonance mixing the count is six. If a later hand adds
-   a radiative-recombination row, an Ar2+ row, a three-body row, or any estimated rate, the
+   excitation and I-232's stepwise ionisation, electron quenching, pooling,
+   metastable-to-resonance mixing and two- and three-body quenching by argon the count is
+   eight. If a later hand adds a radiative-recombination row, an Ar2+ row, or any estimated rate, the
    count changes and this fails. That is the point: an incomplete library we can name is
    the deliverable; a complete-looking one is a failure.
 2. **it is the Golyatina2021 cross-section entry, not the superseded LXCat one** -
@@ -92,12 +92,14 @@ def test_library_loads_with_exactly_the_named_entries(library):
     is satisfied by any second entry, including a wrong one that replaced this one.
     """
     assert library.label == LIBRARY
-    assert len(library.entries) == 6
+    assert len(library.entries) == 8
     assert {reaction_key(r) for r in library.get_library_reactions()} == {
         (('Ar', 'e-'), ('Arp', 'e-', 'e-')),
         (('Ar', 'e-'), ('Ars', 'e-')),
         (('Ars', 'e-'), ('Arp', 'e-', 'e-')),
         (('Ars', 'e-'), ('Ar', 'e-')),
+        (('Ar', 'Ars'), ('Ar', 'Ar')),
+        (('Ar', 'Ar', 'Ars'), ('Ar', 'Ar', 'Ar')),
         (('Ars', 'Ars'), ('Ar', 'Arp', 'e-')),
     }
 
@@ -123,7 +125,7 @@ def test_every_reaction_is_distinguishable_from_every_other(library):
     assert sorted(r.kinetics.A.value_si / 6.02214076e23 for r in pair) == \
         pytest.approx([4.3e-16, 2.0e-13])
     others = [r for r in library.get_library_reactions() if reaction_key(r) != quenching]
-    assert len(others) == 4
+    assert len(others) == 6
     assert_reactions_uniquely_keyed(types.SimpleNamespace(
         label=library.label, get_library_reactions=lambda: others))
 

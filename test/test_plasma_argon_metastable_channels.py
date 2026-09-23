@@ -10,7 +10,7 @@ Six loss channels of ``Ars`` (the 4s metastable group) were appended at indices 
 * 89 electron quenching ``Ars + e- => Ar + e-``, 4.3e-16 Te^0.74 m3/s, one-way;
 * 90 pooling ``Ars + Ars => Arp + Ar + e-``, 6.2e-16 m3/s, gas-temperature (constant);
 * 91 metastable-to-resonance mixing, entered as ``Ars + e- => Ar + e-`` (the resonance level
-  assumed to decay promptly), 2.0e-13 m3/s, Te-independent -- the maximum-loss limit;
+  assumed to decay promptly), 2.0e-13 m3/s, Te-independent -- a sensitivity case, not a bound;
 * 92 two-body quenching ``Ars + Ar => Ar + Ar``, 3e-15 cm3/s, gas-temperature (constant);
 * 93 three-body quenching ``Ars + Ar + Ar => Ar + Ar + Ar``, 1.1e-31 cm6/s, gas-temperature
   (constant), the Ar2 excimer collapsed to its prompt radiative products.

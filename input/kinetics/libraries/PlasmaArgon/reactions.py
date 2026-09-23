@@ -15,8 +15,8 @@ of this description). ``Ars`` is metastable argon Ar(3p5 4s 3P2), whose thermoch
 ``PlasmaExcitedNeutralThermo`` (I-221). The provenance, level assignment and Te carrier of
 the excitation entry are in its own longDesc; everything from here to the end of this
 library description is about index 86 unless it says otherwise. This library exists so that a pure-argon deck need not load the whole
-``PlasmaAir`` air library (33 species, 88 reactions) to reach the single argon reaction
-the database holds. The air ballast contributed every wall the I-186 first-light run hit
+``PlasmaAir`` air library (33 species, 88 reactions) to reach its argon chemistry; this
+library now holds all eight argon reactions in the database (indices 86-93). The air ballast contributed every wall the I-186 first-light run hit
 (He2+ thermo, CH / maximumCarbeneRadicals, singlet O2s / allowSingletO2, an anion arriving
 as a cation) and none of the argon chemistry; carrying argon in its own file removes that
 exposure. See ``/home/alon/Code/RMG-Py-argonrun/docs/i186-ar5torr-firstlight/report.md``.
@@ -94,8 +94,8 @@ constant fit (not an estimate):
 * 89  ``Ars + e- => Ar + e-``         superelastic quenching, Te-dependent, one-way;
 * 90  ``Ars + Ars => Arp + Ar + e-``  pooling, gas-temperature constant;
 * 91  ``Ars + e- => Ar + e-``         metastable-to-resonance mixing, taken as an effective
-                                      loss to the ground state, constant; the MAXIMUM-loss
-                                      limit of that channel (see its longDesc);
+                                      loss to the ground state, constant; run it on and off
+                                      as SENSITIVITY CASES, not bounds (see its longDesc);
 * 92  ``Ars + Ar => Ar + Ar``         two-body quenching by ground-state argon, constant;
 * 93  ``Ars + Ar + Ar => Ar + Ar + Ar``  three-body quenching (via the Ar2 excimer), constant.
 
@@ -319,29 +319,33 @@ entry(
         Ea_e = (0, 'eV/molecule'),
         T0 = (11604.51812, 'K'),
     ),
-    shortDesc = u"[Ashida1995 via Rehman2016 Table 1] metastable-to-resonance mixing, effective loss to ground; MAXIMUM-loss limit",
+    shortDesc = u"[Ashida1995 via Rehman2016 Table 1] metastable-to-resonance mixing, effective loss to ground; a sensitivity case, not a bound",
     longDesc = u"""
 Electron-induced mixing of the 4s metastable group into the 4s resonance group, entered as
 an EFFECTIVE loss of ``Ars`` to the ground state: k = 2.0e-13 m^3/s, independent of Te.
 
-THIS IS THE MAXIMUM-LOSS LIMIT OF THE CHANNEL, NOT ITS PHYSICAL VALUE. The physical loss lies
-between a deck with this entry and a deck without it.
+THIS IS NOT THE PHYSICAL VALUE OF THE CHANNEL, AND 91-ON / 91-OFF ARE NOT BOUNDS ON IT. They
+are two SENSITIVITY CASES. The physical answer need not lie between them (see below).
 
 SOURCE as for index 88. Rows: "Ar(4s)m + e -> Ar(4s)r + e, 2.00 . 10^-13" and
 "Ar(4s)r -> Ar + hv, 3.00 . 10^7" (s^-1). The same coefficient is row 5 of Lymberopoulos &
 Economou (1993) Table I: "5  Quenching to resonant  Ar*+e->Ar^r+e  ...  k_r=2x10^-7  48-50"
 (cm^3/s), where the resonant states "decay by emission of radiation".
 
-WHY THE PRODUCT IS Ar, AND WHY THAT IS AN UPPER BOUND. The database has no resonance-level
+WHY THE PRODUCT IS Ar, AND WHY NEITHER CASE IS A BOUND. The database has no resonance-level
 species, so the two-step path Ar(4s)m + e -> Ar(4s)r + e, Ar(4s)r -> Ar + hv is collapsed
 into one step. The collapse assumes two things: the resonance level decays at the
 UNTRAPPED 3.0e7 s^-1 of the same table, and none of it mixes back into the metastable group
-before it decays. Every resonance atom made is then lost, which is the most this channel can
-remove. At 5 torr the resonance line is heavily radiation-trapped: the effective decay is
-orders of magnitude slower than 3.0e7 s^-1, so a large part of the resonance population is
-mixed back to ``Ars`` by electrons first, and the real net loss is smaller. Trapping is not
-modelled here. Report a deck's result with 91 on and with 91 off; the physical answer lies
-between the two.
+before it decays. Every resonance atom made from ``Ars`` is then lost. At 5 torr the
+resonance line is heavily radiation-trapped: the effective decay is orders of magnitude slower
+than 3.0e7 s^-1, so part of the resonance population is mixed back to ``Ars`` by electrons
+first. The omitted resonance group is also excited DIRECTLY from the ground state, and that
+population can back-mix into ``Ars`` as well, which is a metastable SOURCE neither case
+contains. 91-off therefore does not bound ``Ars`` from above, nor 91-on from below. Trapping
+and the resonance group are not modelled here. Report a deck's result with 91 on and with 91
+off as sensitivity cases. For scale (I-232 balance, 5 torr, n_e = 1e16 m^-3, with 92/93):
+x_Ars is 2.231e-8 with 91 on and 3.482e-8 with 91 off, about 36 percent apart, while the
+self-sustaining Te moves only from 0.8989 to 0.8976 eV (0.0013 eV).
 
 A SEPARATE ENTRY FROM 89 ON PURPOSE, so that a deck can remove it without touching the
 quenching fit. It is the larger channel by far: at Te = 0.900 eV, 2.0e-13 / 3.97748e-16 = 503.
@@ -420,8 +424,10 @@ were not read. LEVEL as for index 90.
 THE PRODUCT. The real product is the Ar2* excimer (the table writes Ar2), not two ground-state
 atoms. The excimer is bound only in its excited state and radiates promptly in the vacuum-
 ultraviolet continuum, dissociating to 2 Ar + hv. The database has no Ar2 excimer species, so
-the step is collapsed to ``Ar + Ar + Ar``. The collapse loses the emitted photon and nothing
-the reactor tracks.
+the step is collapsed to ``Ar + Ar + Ar``. The collapse keeps the species (atom) balance but
+drops the energy of the VUV photon. The photon carries most of the metastable's ~11.5 eV of
+excitation out of the gas, but this reaction's enthalpy books all of it as released locally. The reaction enthalpy must
+therefore NOT be read as heat released to the gas.
 
 THE THIRD PARTNER IS EXPLICIT. This is a termolecular ``Arrhenius`` with both argon atoms in
 the label, NOT a ``ThirdBody`` rate. ``PlasmaReactor`` refuses ``ThirdBody`` kinetics but

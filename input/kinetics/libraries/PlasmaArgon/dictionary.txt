@@ -6,3 +6,7 @@ Arp
 
 e-
 1 e u1 p0 c-1
+
+Ars
+multiplicity 3
+1 Ar u2 p3 c0

@@ -6,13 +6,17 @@ Unit tests for the ``PlasmaArgon`` kinetics library (I-193).
 
 ``PlasmaArgon`` exists so a pure-argon deck need not load the whole ``PlasmaAir`` air
 library (33 species, 88 reactions) to reach the one argon reaction the database holds.
-The library is DELIBERATELY one entry: electron-impact ionisation of neutral argon,
+The library was DELIBERATELY one entry: electron-impact ionisation of neutral argon,
 ``Ar + e- => Arp + e- + e-``, the entry carried verbatim from ``PlasmaAir`` index 86.
+I-232 appended three metastable-argon channels; this file still pins the first.
 
 These tests pin the invariants the ticket turns on:
 
-1. **exactly one entry** - the library is small and stays small. If a later hand adds a
-   radiative-recombination row, an Ar2+ row, a three-body row, or any estimated rate, the
+1. **exactly the named entries** - the library is small and stays small. I-232 added the
+   four metastable-argon channels (stepwise ionisation, quenching, pooling, and
+   metastable-to-resonance mixing; pinned in ``test_plasma_argon_metastable_channels.py``), so
+   the count is five. If a later hand adds
+   a radiative-recombination row, an Ar2+ row, a three-body row, or any estimated rate, the
    count changes and this fails. That is the point: an incomplete library we can name is
    the deliverable; a complete-looking one is a failure.
 2. **it is the Golyatina2021 cross-section entry, not the superseded LXCat one** -
@@ -25,11 +29,12 @@ These tests pin the invariants the ticket turns on:
 
 The suite is silent on radiative recombination on purpose: that channel does NOT belong
 here (see ``docs/i120-argon-recombination.md`` on branch ``i120-argon-recombination`` and
-``PlasmaRadiativeRecombination``'s own longDesc), and "exactly one entry" is the assertion
+``PlasmaRadiativeRecombination``'s own longDesc), and the exact entry set is the assertion
 that keeps it out.
 """
 
 import os
+import types
 
 import pytest
 
@@ -43,7 +48,7 @@ THIS_DATABASE = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardi
 settings['database.directory'] = THIS_DATABASE
 
 from plasma_library_selection import (  # noqa: E402
-    assert_reactions_uniquely_keyed, reaction_for_isolated)
+    assert_reactions_uniquely_keyed, reaction_for_isolated, reaction_key)
 from rmgpy.data.kinetics.database import KineticsDatabase  # noqa: E402
 from rmgpy.kinetics.arrhenius import ElectronCollisionPlasma  # noqa: E402
 
@@ -67,15 +72,15 @@ def reaction(library):
     Selected by the channel it is *about* -- reactants and products -- never by position
     and never by reactants alone; ``plasma_library_selection`` carries the full argument
     for that key and the two rounds of defect behind it. The library's smallness is still
-    pinned, once, in ``test_library_loads_with_exactly_one_entry`` below, where it is a
+    pinned, once, in ``test_library_loads_with_exactly_the_named_entries`` below, where it is a
     claim rather than a precondition, and the key's uniqueness in
     ``test_every_reaction_is_distinguishable_from_every_other``.
     """
     return reaction_for_isolated(library, ['Ar', 'e-'], ['Arp', 'e-', 'e-'])
 
 
-def test_library_loads_with_exactly_one_entry(library):
-    """Small library, and it stays small: any second entry fails here.
+def test_library_loads_with_exactly_the_named_entries(library):
+    """Small library, and it stays small: any unnamed entry fails here.
 
     The count is the deliberate claim of this file's opening docstring -- an incomplete
     library we can name is the deliverable -- so it is asserted here, where growth produces
@@ -84,13 +89,23 @@ def test_library_loads_with_exactly_one_entry(library):
     is satisfied by any second entry, including a wrong one that replaced this one.
     """
     assert library.label == LIBRARY
-    assert len(library.entries) == 1
-    assert {tuple(s.label for s in r.reactants)
-            for r in library.get_library_reactions()} == {('Ar', 'e-')}
+    assert len(library.entries) == 5
+    assert {reaction_key(r) for r in library.get_library_reactions()} == {
+        (('Ar', 'e-'), ('Arp', 'e-', 'e-')),
+        (('Ars', 'e-'), ('Arp', 'e-', 'e-')),
+        (('Ars', 'e-'), ('Ar', 'e-')),
+        (('Ars', 'Ars'), ('Ar', 'Arp', 'e-')),
+    }
 
 
 def test_every_reaction_is_distinguishable_from_every_other(library):
-    """No two reactions here share both reactants and products.
+    """No two reactions here share both reactants and products, bar one named pair.
+
+    The exception is ``Ars + e- => Ar + e-``: quenching (89) and metastable-to-resonance
+    mixing (91) are kept as two entries by instruction, so a deck can drop 91 on its own. No
+    key drawn from the reaction can separate them (``plasma_library_selection`` says why), so
+    the exception is pinned exactly: that key, two reactions, both flagged ``duplicate``, and
+    no other collision. The rest of the library is checked by the shared assertion.
 
     This is what makes the ``reaction`` fixture safe. If it ever stops holding, it stops
     holding HERE -- as a failure, in a test whose name says what broke -- instead of
@@ -98,7 +113,15 @@ def test_every_reaction_is_distinguishable_from_every_other(library):
     reported in a section people skim past. The property is cheap and the alternative has
     now cost this campaign two rounds.
     """
-    assert_reactions_uniquely_keyed(library)
+    quenching = (('Ars', 'e-'), ('Ar', 'e-'))
+    pair = [r for r in library.get_library_reactions() if reaction_key(r) == quenching]
+    assert len(pair) == 2 and all(r.duplicate for r in pair)
+    assert sorted(r.kinetics.A.value_si / 6.02214076e23 for r in pair) == \
+        pytest.approx([4.3e-16, 2.0e-13])
+    others = [r for r in library.get_library_reactions() if reaction_key(r) != quenching]
+    assert len(others) == 3
+    assert_reactions_uniquely_keyed(types.SimpleNamespace(
+        label=library.label, get_library_reactions=lambda: others))
 
 
 def test_the_one_entry_is_argon_electron_impact_ionisation(reaction):

@@ -2,7 +2,7 @@
 # encoding: utf-8
 
 name = "PlasmaArgon"
-shortDesc = u"Argon plasma kinetics — electron-impact ionisation only"
+shortDesc = u"Argon plasma kinetics — electron-impact ionisation and metastable-argon loss channels"
 longDesc = u"""
 Argon plasma chemistry that is citable without fabrication. As of this writing that is
 exactly ONE reaction: electron-impact ionisation of neutral argon,
@@ -76,6 +76,24 @@ sourced data, not an omission to be filled:
 
 * **No estimated, fitted or analogy-derived rate.** An incomplete library that can be named
   is the deliverable; a complete-looking one built on fabricated numbers is a failure.
+
+METASTABLE-ARGON CHANNELS (I-232) -- WHAT THE TEXT ABOVE NO LONGER SAYS
+------------------------------------------------------------------------
+The library is no longer one entry. Four channels of metastable argon ``Ars`` are
+appended, each a published Maxwellian or constant fit (not an estimate):
+
+* 88  ``Ars + e- => Arp + e- + e-``   stepwise ionisation, Te-dependent;
+* 89  ``Ars + e- => Ar + e-``         superelastic quenching, Te-dependent, one-way;
+* 90  ``Ars + Ars => Arp + Ar + e-``  pooling, gas-temperature constant;
+* 91  ``Ars + e- => Ar + e-``         metastable-to-resonance mixing, taken as an effective
+                                      loss to the ground state, constant.
+
+88, 89 and 91 are Ashida, Lee & Lieberman (1995), read from the tabulation in Rehman et al.
+(2016), Table 1; 90 is Lieberman & Lichtenberg (2005), which that table does not carry.
+Index 87 is left for the I-231 excitation entry ``Ar + e- => Ars + e-``. Until it lands
+nothing in this library PRODUCES ``Ars``, so a deck using 88-91 alone must seed it.
+91 is a separate entry from 89 on purpose, so that a deck can drop it on its own; it is
+also the largest electron loss of ``Ars`` by a factor of about 500 at 1 eV.
 """
 
 entry(
@@ -94,4 +112,161 @@ entry(
     longDesc = u"""
 Ar Ionization. Threshold 15.759 eV.
 """
+)
+
+entry(
+    index = 88,
+    label = "Ars + e- => Arp + e- + e-",
+    reversible = False,
+    kinetics = TwoTemperaturePlasma(
+        A = (6.8e-15, 'm^3/(molecule*s)'),
+        n = 0.67,
+        Ea_g = (4.20, 'eV/molecule'),
+        Ea_e = (4.20, 'eV/molecule'),
+        T0 = (11604.51812, 'K'),
+    ),
+    shortDesc = u"[Ashida1995 via Rehman2016 Table 1] Maxwellian fit, stepwise ionisation from the 4s metastable",
+    longDesc = u"""
+Stepwise ionisation of metastable argon, k = 6.8e-15 Te^0.67 exp(-4.20/Te) m^3/s, Te in eV.
+
+SOURCE. S. Ashida, C. Lee & M.A. Lieberman, J. Vac. Sci. Technol. A 13(5), 2498-2507
+(1995), read from its tabulation in F. Rehman et al., J. Phys.: Conf. Ser. 682, 012035
+(2016), Table 1 ("Table showing the rate coefficient for argon system as taken from [11]",
+[11] = Ashida 1995). Row: "Ar(4s)m + e -> Ar+ + 2e, 6.80 . 10^-15 Te^0.67 exp(-4.20/Te)",
+Te in eV. The 1995 paper itself was not re-read.
+
+LEVEL. Rehman's model "contains 5 levels: the ground level (Ar), 4s metastable
+(Ar(4s)m), 4s resonance (Ar(4s)r), 4p (Ar(4p)) and ion level (Ar+)". The number therefore
+covers the metastable GROUP, Ar(4s 3P2) + Ar(4s 3P0), which ``Ars`` represents here; the
+thermochemistry of ``Ars`` is that of 3P2 alone (``PlasmaExcitedNeutralThermo``). The 4.20 eV
+threshold agrees with IE - E(3P2) = 15.7596117 - 11.54835442 = 4.21126 eV to 0.3%. Cost: the
+3P0 member (0.17 eV higher, g = 1 against 5) is folded into the 3P2 species.
+
+ELECTRON TEMPERATURE. ``TwoTemperaturePlasma`` with Ea_g = Ea_e = E reduces exactly to
+A (Te/T0)^n exp(-E/(R Te)), independent of the gas temperature; T0 = 11604.51812 K = 1 eV
+makes (Te/T0) the temperature in eV. ``PlasmaReactor`` evaluates it through
+``get_rate_coefficient_two_temp(T, Te)``. Plain ``get_rate_coefficient(T)`` evaluates it at
+Te = T and is wrong for this entry.
+
+HAND CHECK at Te = 0.900 eV (10442.07 K): 0.9^0.67 = 0.931842, exp(-4.20/0.9) =
+9.40356e-3, k = 6.8e-15 x 0.931842 x 9.40356e-3 = 5.95859e-17 m^3/s = 3.58835e7 m^3/(mol s).
+
+Irreversible: its reverse is three-body recombination, and the reactor refuses reversible
+Te-dependent reactions.
+""",
+)
+
+entry(
+    index = 89,
+    label = "Ars + e- => Ar + e-",
+    duplicate = True,
+    reversible = False,
+    kinetics = TwoTemperaturePlasma(
+        A = (4.3e-16, 'm^3/(molecule*s)'),
+        n = 0.74,
+        Ea_g = (0, 'eV/molecule'),
+        Ea_e = (0, 'eV/molecule'),
+        T0 = (11604.51812, 'K'),
+    ),
+    shortDesc = u"[Ashida1995 via Rehman2016 Table 1] Maxwellian fit, superelastic quenching of the 4s metastable",
+    longDesc = u"""
+Superelastic electron quenching of metastable argon to the ground state,
+k = 4.3e-16 Te^0.74 m^3/s, Te in eV.
+
+SOURCE and LEVEL as for index 88. Row: "Ar(4s)m + e -> Ar + e, 4.30 . 10^-16 Te^0.74".
+
+ONE-WAY BY CONSTRUCTION. This is the reverse of excitation ``Ar + e- => Ars + e-``
+(index 87, reserved for the I-231 excitation entry). Both directions are entered as
+independent irreversible fits because the reactor refuses reversible Te-dependent reactions,
+so detailed balance between them is NOT enforced by the engine. Checked by hand against
+the I-231 fit 5.0e-15 Te^0.74 exp(-11.56/Te): k_q/k_exc = 0.086 exp(11.56/Te), while
+detailed balance at Te requires (g0/g*) exp(dE/Te). With the lumped 4s weight g* = 12 the
+prefactor 1/12 = 0.0833 agrees to 3%; with the 3P2 weight g* = 5 of the thermo entry
+(prefactor 0.2) the pair is inconsistent by a factor 2.3. The factor is the cost of the
+level assignment. (The metastable-group weight g* = 5 + 1 = 6 gives prefactor 0.167, off by
+1.9.) The source enters BOTH 4s groups with the same excitation fit, so 0.086 ~ 1/12 is the
+balance of the whole 4s manifold; the pair is not balanced for either group on its own.
+
+HAND CHECK at Te = 0.900 eV: 0.9^0.74 = 0.924995, k = 4.3e-16 x 0.924995 =
+3.97748e-16 m^3/s = 2.39529e8 m^3/(mol s).
+
+``duplicate = True`` IS REQUIRED, AND SO IS ITS PARTNER'S. ``KineticsLibrary.check_for_duplicates``
+compares with ``is_isomorphic`` in EITHER direction, so this entry and the excitation entry 87
+are reported as duplicates of each other ("Unexpected duplicate reaction Ar + e- => Ars + e-
+... Reaction index 89 matches index 87", measured on RMG-Py-plasma@74b683639 with I-231's
+entry inserted) and the library refuses to load unless BOTH carry the flag. The flag does not
+merge them: ``convert_duplicates_to_multi`` compares same-direction only, and the exporters
+recompute Chemkin DUPLICATE marks from the whole deck. It is a false positive of the load
+check for two one-way reactions, recorded here rather than worked around.
+""",
+)
+
+entry(
+    index = 90,
+    label = "Ars + Ars => Arp + Ar + e-",
+    reversible = False,
+    kinetics = Arrhenius(
+        A = (6.2e-16, 'm^3/(molecule*s)'),
+        n = 0,
+        Ea = (0, 'kJ/mol'),
+        T0 = (1, 'K'),
+    ),
+    shortDesc = u"[Lieberman2005] metastable pooling, gas-temperature constant",
+    longDesc = u"""
+Metastable pooling (Penning ionisation between two metastables), k = 6.2e-16 m^3/s,
+temperature independent. A heavy-particle collision: it belongs to the gas temperature, so
+it is a plain ``Arrhenius`` and does not carry ``uses_electron_temperature``.
+
+SOURCE. M.A. Lieberman & A.J. Lichtenberg, "Principles of Plasma Discharges and Materials
+Processing", 2nd ed. (Wiley, 2005), argon reaction set: 6.2e-10 cm^3/s. Rehman et al. (2016)
+Table 1, the source of 88/89/91, carries no pooling row. The book text was not re-read for
+this entry; the coefficient is carried. LEVEL as for index 88. Energetics: 2 x 11.548 = 23.10 eV > 15.76 eV, exothermic.
+
+Irreversible: the reverse is three-body, which ``PlasmaReactor`` refuses.
+
+HAND CHECK: 6.2e-16 m^3/s x 6.02214076e23 = 3.73373e8 m^3/(mol s).
+""",
+)
+
+entry(
+    index = 91,
+    label = "Ars + e- => Ar + e-",
+    duplicate = True,
+    reversible = False,
+    kinetics = TwoTemperaturePlasma(
+        A = (2.0e-13, 'm^3/(molecule*s)'),
+        n = 0,
+        Ea_g = (0, 'eV/molecule'),
+        Ea_e = (0, 'eV/molecule'),
+        T0 = (11604.51812, 'K'),
+    ),
+    shortDesc = u"[Ashida1995 via Rehman2016 Table 1] metastable-to-resonance mixing, effective loss to ground",
+    longDesc = u"""
+Electron-induced mixing of the 4s metastable group into the 4s resonance group, entered as
+an EFFECTIVE loss of ``Ars`` to the ground state: k = 2.0e-13 m^3/s, independent of Te.
+
+SOURCE as for index 88. Rows: "Ar(4s)m + e -> Ar(4s)r + e, 2.00 . 10^-13" and
+"Ar(4s)r -> Ar + hv, 3.00 . 10^7" (s^-1).
+
+WHY THE PRODUCT IS Ar. The database has no resonance-level species, so the two-step path
+Ar(4s)m + e -> Ar(4s)r + e, Ar(4s)r -> Ar + hv is collapsed into one step. The collapse
+ASSUMES the radiative decay is prompt, which is the 3.0e7 s^-1 of the same table. Not checked:
+at 5 torr the resonance line is radiation-trapped and its effective decay can be orders of
+magnitude slower than 3.0e7 s^-1. If the decay is not prompt, some resonance atoms mix back
+into the metastable group, and this entry over-states the loss.
+
+A SEPARATE ENTRY FROM 89 ON PURPOSE, so that a deck can remove it without touching the
+quenching fit. It is the larger channel by far: at Te = 0.900 eV, 2.0e-13 / 3.97748e-16 = 503.
+
+CARRIER. ``TwoTemperaturePlasma`` with n = 0 and Ea_g = Ea_e = 0 is the constant A at every
+(T, Te). It is an electron-impact rate, so it carries ``uses_electron_temperature`` like 88/89.
+It is deliberately NOT a plain ``Arrhenius``. ``TwoTemperaturePlasma`` is not an ``Arrhenius``
+subclass, so ``convert_duplicates_to_multi`` leaves 89 and 91 as two entries and does not fold
+them into one ``MultiArrhenius``. That fold would evaluate 89's Te law at the gas temperature.
+
+``duplicate = True`` is required: 91 is a same-direction duplicate of 89, and the
+reverse-direction partner of the excitation entry 87.
+
+HAND CHECK: 2.0e-13 m^3/s x 6.02214076e23 = 1.204428e11 m^3/(mol s), at any Te.
+""",
 )

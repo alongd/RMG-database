@@ -1,0 +1,147 @@
+#!/usr/bin/env python
+# encoding: utf-8
+
+"""
+Unit tests for the metastable-argon channels of ``PlasmaArgon`` (I-232).
+
+Four loss channels of ``Ars`` (the 4s metastable group) were appended at indices 88-91:
+
+* 88 stepwise ionisation ``Ars + e- => Arp + e- + e-``, 6.8e-15 Te^0.67 exp(-4.20/Te) m3/s;
+* 89 electron quenching ``Ars + e- => Ar + e-``, 4.3e-16 Te^0.74 m3/s, one-way;
+* 90 pooling ``Ars + Ars => Arp + Ar + e-``, 6.2e-16 m3/s, gas-temperature (constant);
+* 91 metastable-to-resonance mixing, entered as ``Ars + e- => Ar + e-`` (the resonance level
+  assumed to decay promptly), 2.0e-13 m3/s, Te-independent.
+
+88, 89 and 91 are Ashida, Lee & Lieberman 1995 as tabulated in Rehman et al. 2016, Table 1;
+90 is Lieberman & Lichtenberg 2005.
+
+The rates are the reason for this file. Every expected number below is hand arithmetic from
+those coefficients at Te = 0.900 eV (10442.07 K), times Avogadro, not the code's own output:
+
+* 88: 6.8e-15 * 0.9^0.67 * exp(-4.20/0.9) = 5.95859e-17 m3/s = 3.58835e7 m3/(mol*s)
+* 89: 4.3e-16 * 0.9^0.74                  = 3.97748e-16 m3/s = 2.39529e8 m3/(mol*s)
+* 90: 6.2e-16                              = 6.2e-16 m3/s     = 3.73373e8 m3/(mol*s)
+* 91: 2.0e-13                              = 2.0e-13 m3/s     = 1.204428e11 m3/(mol*s)
+
+89 and 91 share reactants and products, so no reactant/product key can pick one of them; the
+tests select them by their pre-exponential factor instead, and require that both survive the
+load as separate entries (a MultiArrhenius fold would make 91 impossible to drop on its own).
+
+The two electron-impact channels must be read at Te and NOT at the gas temperature: the
+test evaluates them at two gas temperatures and requires the same answer.
+"""
+
+import os
+
+import pytest
+
+from rmgpy import settings
+
+LIBRARY = 'PlasmaArgon'
+
+THIS_DATABASE = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir, 'input'))
+
+# Pin before anything imports a database-reading module (see test/conftest.py for why).
+settings['database.directory'] = THIS_DATABASE
+
+from plasma_library_selection import reaction_for_isolated  # noqa: E402
+from rmgpy.data.kinetics.database import KineticsDatabase  # noqa: E402
+from rmgpy.kinetics.arrhenius import Arrhenius, TwoTemperaturePlasma  # noqa: E402
+
+TE_EV = 0.900
+TE_K = TE_EV * 11604.51812
+
+STEPWISE = (['Ars', 'e-'], ['Arp', 'e-', 'e-'])
+QUENCHING = (['Ars', 'e-'], ['Ar', 'e-'])
+QUENCHING_A = 4.3e-16
+MIXING_A = 2.0e-13
+AVOGADRO = 6.02214076e23
+POOLING = (['Ars', 'Ars'], ['Ar', 'Arp', 'e-'])
+
+
+@pytest.fixture(scope='module')
+def library():
+    """The loaded library. Load failures surface here, not inside a test."""
+    assert settings['database.directory'] == THIS_DATABASE, (
+        'RMG resolved database.directory to {0!r}, not this worktree ({1!r}).'.format(
+            settings['database.directory'], THIS_DATABASE))
+    db = KineticsDatabase()
+    db.load_libraries(os.path.join(settings['database.directory'], 'kinetics', 'libraries'),
+                      libraries=[LIBRARY])
+    return db.libraries[LIBRARY]
+
+
+def ars_electron_to_ar(library, a_si):
+    """The ``Ars + e- => Ar + e-`` entry whose pre-exponential factor is ``a_si`` m3/s per
+    molecule (RMG stores it per mole)."""
+    pair = [r for r in library.get_library_reactions()
+            if sorted(s.label for s in r.reactants) == sorted(QUENCHING[0])
+            and sorted(s.label for s in r.products) == sorted(QUENCHING[1])]
+    matches = [r for r in pair if r.kinetics.A.value_si == pytest.approx(a_si * AVOGADRO, rel=1e-6)]
+    assert len(matches) == 1, [r.kinetics for r in pair]
+    return matches[0]
+
+
+def select(library, channel):
+    if channel == 'quenching':
+        return ars_electron_to_ar(library, QUENCHING_A)
+    if channel == 'mixing':
+        return ars_electron_to_ar(library, MIXING_A)
+    return reaction_for_isolated(library, *channel)
+
+
+@pytest.mark.parametrize('channel, expected', [
+    (STEPWISE, 3.58835e7),
+    ('quenching', 2.39529e8),
+    ('mixing', 1.204428e11),
+])
+def test_electron_impact_channels_are_read_at_te_not_tgas(library, channel, expected):
+    """Hand value at Te = 0.900 eV, and the same value at two very different gas temperatures."""
+    reaction = select(library, channel)
+    assert isinstance(reaction.kinetics, TwoTemperaturePlasma)
+    assert reaction.kinetics.uses_electron_temperature
+    cold = reaction.kinetics.get_rate_coefficient_two_temp(298.15, TE_K)
+    hot = reaction.kinetics.get_rate_coefficient_two_temp(1000.0, TE_K)
+    assert cold == pytest.approx(expected, rel=1e-5)
+    assert hot == pytest.approx(cold, rel=1e-12)  # float rounding only; a Tgas term would be O(1)
+
+
+def test_pooling_is_a_gas_temperature_constant(library):
+    """Heavy-particle collision: no electron temperature, and no temperature dependence at all."""
+    reaction = reaction_for_isolated(library, *POOLING)
+    assert isinstance(reaction.kinetics, Arrhenius)
+    assert not getattr(reaction.kinetics, 'uses_electron_temperature', False)
+    assert reaction.kinetics.get_rate_coefficient(298.15) == pytest.approx(3.73373e8, rel=1e-5)
+    assert reaction.kinetics.get_rate_coefficient(1000.0) == pytest.approx(3.73373e8, rel=1e-5)
+
+
+def test_mixing_does_not_depend_on_te(library):
+    """91 is Te-independent in the source: the same value at Te = 0.3, 0.9 and 3 eV."""
+    kinetics = select(library, 'mixing').kinetics
+    for te_ev in (0.3, 0.9, 3.0):
+        assert kinetics.get_rate_coefficient_two_temp(298.15, te_ev * 11604.51812) == \
+            pytest.approx(1.204428e11, rel=1e-6)
+
+
+def test_quenching_and_mixing_stay_separate_entries(library):
+    """Both survive the load as their own TwoTemperaturePlasma reactions, not one Multi."""
+    pair = [ars_electron_to_ar(library, a) for a in (QUENCHING_A, MIXING_A)]
+    assert all(type(r.kinetics) is TwoTemperaturePlasma for r in pair)
+    assert pair[0] is not pair[1]
+
+
+@pytest.mark.parametrize('channel', [STEPWISE, 'quenching', 'mixing', POOLING])
+def test_channels_are_irreversible_and_balanced(library, channel):
+    """The plasma reactor refuses reversible Te-dependent reactions, and quenching is one-way
+    by the brief; pooling is irreversible because its reverse is not a channel anyone holds."""
+    reaction = select(library, channel)
+    assert not reaction.reversible
+    assert reaction.is_balanced()
+
+
+@pytest.mark.parametrize('channel', ['quenching', 'mixing'])
+def test_ars_to_ar_channels_carry_the_duplicate_flag(library, channel):
+    """89 and 91 duplicate each other. Their reverse direction is also excitation
+    ``Ar + e- => Ars + e-`` (I-231, index 87), and the library's load-time duplicate check
+    matches in either direction; without the flag the library would not load."""
+    assert select(library, channel).duplicate

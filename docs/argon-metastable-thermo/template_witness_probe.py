@@ -26,9 +26,16 @@ A family that generates 0 with the containment detached is reported as SILENT: i
 template admits the species but no reachable partner was derived, which is a weaker
 finding than a witness and is labelled as such rather than counted as one.
 
+A family whose generation RAISED is reported separately and is never called SILENT. Round
+118: `generate()` used to return ``[]`` on any exception, so a generation that FAILED and a
+generation that produced nothing were indistinguishable -- ``Surface_Adsorption_Double``
+with its containment detached raises, and this probe reported it SILENT and exited 0. One
+raise is declared in `EXPECTED_WITHOUT_CONTAINMENT` because it is the containment's own
+evidence; every other raise, and every raise in the attached or control arms, is fatal.
+
 Run::
 
-    PYTHONPATH=/home/alon/Code/RMG-Py-plasma python docs/argon-metastable-thermo/template_witness_probe.py \\
+    PYTHONPATH=/home/alon/Code/RMG-Py-mgr-i221-deck-probe-234349 python docs/argon-metastable-thermo/template_witness_probe.py \\
         > >(tee docs/argon-metastable-thermo/logs/template_witness_probe.stdout.log) \\
         2> >(tee docs/argon-metastable-thermo/logs/template_witness_probe.stderr.log >&2)
 """
@@ -49,7 +56,8 @@ from rmgpy.species import Species                          # noqa: E402
 
 sys.path.insert(0, HERE)
 from template_space_derivation import (                    # noqa: E402
-    AR_META, CONTAINMENT, EII, matching_slots, molecule, template_sites)
+    AR_META, CONTAINMENT, EII, UndeterminedSlot, matching_slots, molecule,
+    template_sites)
 
 
 def derive_partner(family, direction, occupied):
@@ -68,12 +76,67 @@ def derive_partner(family, direction, occupied):
     return None, None
 
 
-def generate(family, reactants):
+#: (arm, family, exception type, message) for every generation attempt that raised. A
+#: generation that FAILED is not a generation that produced nothing, and this probe used to
+#: report the two the same way: `generate()` returned ``[]`` on any exception, the caller
+#: counted zero reactions, the family was listed ``SILENT`` -- "the template admits the
+#: species and no partner could be derived" -- and `main()` exited 0. Exhibited, not
+#: hypothesised: with `Surface_Adsorption_Double`'s containment detached, generation raises
+#: and this probe called it a clean bill of health.
+GENERATION_FAILURES = []
+
+#: The one raise that is EVIDENCE rather than a defect, declared by family and exception
+#: type with the reason, so that it is attributed instead of swallowed.
+#:
+#: `Surface_Adsorption_Double` with its containment DETACHED asks RMG to build ``X=Ar``,
+#: and no atom type owns a double-bonded argon -- the adjacency list that reaches
+#: `update_atomtypes` carries ``multiplicity -187``. That raise is the strongest witness
+#: this probe can produce: it is not that the family generates something unwanted, it is
+#: that the species cannot be represented at all, which is precisely what the forbidden
+#: entry exists to prevent. Declaring it keeps the exit code a live tripwire. The
+#: alternative -- any raise anywhere is fatal -- makes this probe exit non-zero on every
+#: run of this branch forever, and a check that always fails detects nothing, which is the
+#: same defect as a check that always passes wearing the other mask.
+#:
+#: ATTACHED-arm and control-arm raises are never expected and are always fatal: with the
+#: containment in place nothing should be unrepresentable, and a control raising means the
+#: forbidden entry has taken real chemistry with it.
+EXPECTED_WITHOUT_CONTAINMENT = {
+    ('Surface_Adsorption_Double', 'AtomTypeError'):
+        'X=Ar cannot be typed; this raise IS the containment\'s justification',
+}
+
+
+def generate(family, reactants, arm):
+    """`family.generate_reactions`, with a failure recorded as a failure.
+
+    Still returns ``[]`` so the sweep can continue and report every family rather than
+    dying on the first -- but the emptiness is no longer the only trace of what happened,
+    and the caller can no longer mistake it for "no reactions were generated". `arm` says
+    which measurement this was: ``detached``, ``attached`` or ``control``."""
     try:
         return family.generate_reactions(reactants)
     except Exception as exc:                                # noqa: BLE001
-        print('      generation raised %s: %s' % (type(exc).__name__, exc), flush=True)
+        kind = type(exc).__name__
+        declared = EXPECTED_WITHOUT_CONTAINMENT.get((family.label, kind))
+        GENERATION_FAILURES.append((arm, family.label, kind, str(exc)))
+        if arm == 'detached' and declared:
+            print('      ! generation RAISED %s (declared, expected without the '
+                  'containment): %s' % (kind, declared), flush=True)
+        else:
+            print('      ! generation RAISED %s in the %s arm: %s  <-- NOT "zero '
+                  'reactions"' % (kind, arm, str(exc).splitlines()[0]), flush=True)
         return []
+
+
+def undeclared_failures():
+    """The generation failures that are defects rather than declared evidence."""
+    out = []
+    for arm, label, kind, message in GENERATION_FAILURES:
+        if arm == 'detached' and (label, kind) in EXPECTED_WITHOUT_CONTAINMENT:
+            continue
+        out.append((arm, label, kind, message))
+    return out
 
 
 def thermo_verdict(thermo_db, reactions):
@@ -118,16 +181,27 @@ def main():
     meta = molecule(AR_META)
 
     candidates = []
+    undetermined = []
     for label in sorted(kdb.families):
         family = kdb.families[label]
         for direction in ('forward', 'reverse'):
-            slots = matching_slots(family, meta, direction)
+            try:
+                slots = matching_slots(family, meta, direction)
+            except UndeterminedSlot as exc:
+                # Collected rather than fatal here so the sweep still reports every other
+                # family, and fatal at the end. A slot nobody could evaluate is not a slot
+                # that did not match, and a candidate list missing an undetermined family
+                # is not the template space.
+                undetermined.append((label, direction, str(exc)))
+                print('  ! %s' % exc, flush=True)
+                continue
             if slots:
                 candidates.append((label, direction, slots))
 
     print('\ncandidates from the template space: %d\n' % len(candidates), flush=True)
 
     witnesses, silent, regressions, uncontrolled, vacuous = [], [], [], [], []
+    raised_families = []
     for label, direction, slots in candidates:
         family = kdb.families[label]
         contained = family.forbidden is not None and CONTAINMENT in family.forbidden.entries
@@ -146,7 +220,7 @@ def main():
         saved = None
         if contained:
             saved = family.forbidden.entries.pop(CONTAINMENT)
-        before = generate(family, reactants)
+        before = generate(family, reactants, 'detached')
         raised, numbered = thermo_verdict(tdb, before)
         print('      BEFORE (containment detached): %d reactions, %d species raise, %d get a number'
               % (len(before), len(raised), len(numbered)), flush=True)
@@ -154,7 +228,7 @@ def main():
             print('             raising species: %s' % ', '.join(sorted(set(raised))[:4]), flush=True)
         if saved is not None:
             family.forbidden.entries[CONTAINMENT] = saved
-            after = generate(family, reactants)
+            after = generate(family, reactants, 'attached')
             print('      AFTER  (containment attached): %d reactions' % len(after), flush=True)
         else:
             print('      AFTER  : no containment on this family yet', flush=True)
@@ -175,12 +249,13 @@ def main():
                 break
         if control_reactants:
             if saved is not None or contained:
-                with_block = len(generate(family, control_reactants))
+                with_block = len(generate(family, control_reactants, 'control'))
                 lifted = family.forbidden.entries.pop(CONTAINMENT)
-                without_block = len(generate(family, control_reactants))
+                without_block = len(generate(family, control_reactants, 'control'))
                 family.forbidden.entries[CONTAINMENT] = lifted
             else:
-                with_block = without_block = len(generate(family, control_reactants))
+                with_block = without_block = len(generate(family, control_reactants,
+                                                          'control'))
             if with_block == without_block == 0:
                 # Both sides zero carries NO information: the sampled reactants simply do
                 # not react (usually a degenerate identity, e.g. [H] + HBr -> HBr + [H],
@@ -203,7 +278,14 @@ def main():
                   flush=True)
             uncontrolled.append(label)
 
-        (witnesses if before else silent).append(label)
+        # A family whose generation RAISED is not silent: silence means "the template
+        # admits the species and no partner could be derived", and something quite
+        # different happened here. Bucketed separately so the summary cannot report it as
+        # the weaker finding.
+        if any(a == 'detached' and f == label for a, f, _k, _m in GENERATION_FAILURES):
+            raised_families.append(label)
+        else:
+            (witnesses if before else silent).append(label)
 
     print('\n=== SUMMARY ===', flush=True)
     print('  families whose template admits the metastable : %d' % len(candidates), flush=True)
@@ -218,9 +300,31 @@ def main():
           % (len(vacuous), sorted(set(vacuous))), flush=True)
     print('     -> these need a hand-written control; see CONTAINMENT_CONTROLS in '
           'test/test_argon_metastable_thermo.py', flush=True)
+    print('  template slots that could not be EVALUATED               : %d  %s'
+          % (len(undetermined), sorted({label for label, _d, _m in undetermined})), flush=True)
+    print('  families whose generation RAISED (NOT silent)            : %d  %s'
+          % (len(raised_families), sorted(set(raised_families))), flush=True)
+    for arm, label, kind, message in GENERATION_FAILURES:
+        declared = (arm == 'detached'
+                    and EXPECTED_WITHOUT_CONTAINMENT.get((label, kind)))
+        print('     [%s] %s: %s: %s%s'
+              % (arm, label, kind, message.splitlines()[0],
+                 '   (DECLARED: %s)' % declared if declared else '   <-- UNDECLARED'),
+              flush=True)
+    stale = [key for key in EXPECTED_WITHOUT_CONTAINMENT
+             if key not in {(l, k) for a, l, k, _m in GENERATION_FAILURES if a == 'detached'}]
+    print('  declared raises that did NOT happen (stale declarations)  : %d  %s'
+          % (len(stale), sorted(stale)), flush=True)
+    print('  UNDECLARED generation failures (fatal)                    : %d  %s'
+          % (len(undeclared_failures()),
+             sorted({(a, l) for a, l, _k, _m in undeclared_failures()})), flush=True)
     print('\nA SILENT family is still in scope: the template admits the species, so a partner '
           'this probe could not derive may still exist. It is reported, not dismissed.', flush=True)
-    return 1 if regressions else 0
+    print('A family that RAISED is not silent and not in scope for that reading at all: '
+          'nothing was measured about it. A raise DECLARED in EXPECTED_WITHOUT_CONTAINMENT '
+          'is evidence and keeps the exit code clean; any other raise, in any arm, is '
+          'fatal here.', flush=True)
+    return 1 if (regressions or undetermined or undeclared_failures() or stale) else 0
 
 
 if __name__ == '__main__':

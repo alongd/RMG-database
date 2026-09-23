@@ -49,7 +49,7 @@ measurements behind every re-pinned assertion are in
 Run with the runtime pinned::
 
     cd /home/alon/Code/RMG-database-i179-argon-thermo
-    PYTHONPATH=/home/alon/Code/RMG-Py-i172-balance \\
+    PYTHONPATH=/home/alon/Code/RMG-Py-mgr-i221-deck-probe-234349 \\
         python -m pytest test/test_argon_cation_buildtime.py -q
 
 ``test/conftest.py`` pins ``database.directory`` to this worktree before collection.

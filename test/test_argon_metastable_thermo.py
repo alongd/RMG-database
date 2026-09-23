@@ -18,8 +18,14 @@ Five groups, in descending order of how much they would cost to be wrong about:
    match, and still look right.
 
 2. **The three numbers**, each against the identity that produced it - the level energy from
-   NIST ASD, ``R ln g`` on JANAF's ground-state entropy, and ``5/2 R`` - and ``E0 == H298``,
-   which is an identity here and is not one for the argon cation.
+   NIST ASD, ``R ln g`` on JANAF's ground-state entropy, and ``5/2 R`` - and the relationship
+   between ``E0`` and ``H298``. They are NOT equal: the entry states ``H298 = 1114.2470``
+   kJ/mol and states no ``E0`` at all, and the ``E0 = 1108.0496`` kJ/mol that ``to_wilhoit()``
+   derives sits exactly ``2.5RT = 6.1974`` kJ/mol below it - the translational enthalpy of a
+   monatomic gas between 0 K and 298.15 K. An earlier entry DID state ``E0 = H298``, which is
+   what round 55 found and removed; this line said so for eleven commits after the code stopped
+   agreeing with it. The arithmetic is pinned at
+   ``test_the_derived_e0_sits_one_translational_term_below_the_entered_h298``.
 
 3. **The whole path**: the library loads, the species perceives as ``Ar0e``, and
    ``get_thermo_data`` returns THIS entry rather than an estimator. Group 3 also pins the
@@ -37,7 +43,7 @@ Five groups, in descending order of how much they would cost to be wrong about:
 Run with the runtime pinned::
 
     cd /home/alon/Code/RMG-database-i221-argon-metastable-thermo
-    PYTHONPATH=/home/alon/Code/RMG-Py-plasma \\
+    PYTHONPATH=/home/alon/Code/RMG-Py-mgr-i221-deck-probe-234349 \\
         python -m pytest test/test_argon_metastable_thermo.py -q
 
 ``test/conftest.py`` pins ``database.directory`` to this worktree before collection; the
@@ -1252,6 +1258,19 @@ def test_every_family_whose_template_admits_the_metastable_is_forbidden(all_fami
         if slots['forward'] or slots['reverse']:
             admits[label] = slots
 
+    # Round 118's HIGH 2. `matching_slots` now RAISES on a slot its matcher cannot
+    # evaluate, so reaching this line at all means every slot of every family was
+    # evaluated -- but the property is asserted rather than left implicit, because it is
+    # the one this check silently lacked. A slot that raised used to be recorded in
+    # MATCHER_ERRORS and skipped, which removed the family from `admits` entirely; if it
+    # was also not in CONTAINED_FAMILIES -- a family added tomorrow, exactly the case this
+    # test exists for -- the comparison below stayed true and the completeness claim was
+    # made over a family nobody had evaluated.
+    assert derivation.MATCHER_ERRORS == [], (
+        'template slots could not be evaluated, so this sweep did not see the whole '
+        'template space and the comparison below would be a claim about the families it '
+        'happened to reach: %s' % derivation.MATCHER_ERRORS)
+
     # the intended channel is the one family allowed to match without a forbidden entry
     assert EII in admits, (
         'the intended ionisation channel no longer matches; the derivation is broken '
@@ -1282,6 +1301,76 @@ def test_every_family_whose_template_admits_the_metastable_is_forbidden(all_fami
         'equal the derivation would be about argon, not about the metastable'
         % (len(ground_admits), len(admits)))
     assert 'Birad_R_Recombination' not in ground_admits
+
+
+def test_a_template_slot_that_cannot_be_evaluated_refuses_the_derivation(all_families_db):
+    """Round 118's HIGH 2, exhibited rather than argued.
+
+    The completeness check above is the only thing standing behind "the contained set is
+    the whole set". It called ``matching_slots()``, which caught every matcher exception
+    into ``MATCHER_ERRORS`` and carried on, and it never looked at that list. So a family
+    whose relevant template slot raises was simply absent from ``admits`` -- and if it was
+    absent from ``CONTAINED_FAMILIES`` too, which is precisely the case of a family added
+    tomorrow, ``derived == sorted(CONTAINED_FAMILIES)`` stayed true and the test passed
+    with an unevaluated family.
+
+    The injection stands in for that family: a matcher that raises where a new group node,
+    an exotic atom type or a malformed template would. Both halves are asserted, because
+    the second is what makes the first a repair rather than a preference -- the collecting
+    mode still omits the family, silently, and that is why it is no longer the default.
+
+    **Behavioural** at `a3ed93580`: ``matching_slots`` returned ``[]`` there and
+    ``UndeterminedSlot`` did not exist, so both ``pytest.raises`` blocks below fail.
+    """
+    derivation = _derivation_module()
+    meta = derivation.molecule(derivation.AR_META)
+
+    victim_label = 'H_Abstraction'
+    assert victim_label in all_families_db.families, (
+        'the stand-in family is not loaded, so this test would prove nothing')
+    assert victim_label not in CONTAINED_FAMILIES, (
+        'the stand-in must NOT be in the contained set: the defect is that an omitted '
+        'family leaves the comparison true, and a contained one would shorten `derived` '
+        'and fail it for the wrong reason')
+    victim = all_families_db.families[victim_label]
+    original = victim._match_reactant_to_template
+
+    def raising(*_args, **_kwargs):
+        raise RuntimeError('injected: this template slot cannot be evaluated')
+
+    victim._match_reactant_to_template = raising
+    try:
+        # 1. the repair: an unevaluated slot is refused, not skipped
+        with pytest.raises(derivation.UndeterminedSlot) as caught:
+            derivation.matching_slots(victim, meta, 'forward')
+        assert victim_label in str(caught.value)
+        assert 'UNDETERMINED' in str(caught.value)
+
+        # 2. and the sweep the real check performs refuses with it
+        with pytest.raises(derivation.UndeterminedSlot):
+            for _label, family in all_families_db.families.items():
+                for direction in ('forward', 'reverse'):
+                    derivation.matching_slots(family, meta, direction)
+
+        # 3. the defect itself, preserved: in collecting mode the family is omitted from
+        #    the answer and the only trace is a list the caller has to remember to read.
+        derivation.MATCHER_ERRORS.clear()
+        slots = derivation.matching_slots(victim, meta, 'forward', on_error='record')
+        assert slots == [], (
+            'the collecting mode is supposed to return an empty slot list here; if it '
+            'does not, this test is no longer describing the defect')
+        assert len(derivation.MATCHER_ERRORS) >= 1
+        recorded = derivation.MATCHER_ERRORS[0]
+        assert recorded[0] == victim_label and recorded[3] == 'RuntimeError'
+        assert victim_label not in {label for label, family
+                                    in all_families_db.families.items()
+                                    if derivation.matching_slots(
+                                        family, meta, 'forward', on_error='record')}, (
+            'the whole finding in one line: the unevaluated family is absent from the '
+            'derived set, and nothing in the comparison notices')
+    finally:
+        victim._match_reactant_to_template = original
+        derivation.MATCHER_ERRORS.clear()
 
 
 def test_the_containment_does_not_move_the_chemistry_those_families_exist_for(all_families_db):
@@ -1826,10 +1915,14 @@ def admitted(pinned):
             kinetics_depositories=['training'], depository=False, solvation=True,
             surface=False)
     fam = db.kinetics.families[EII]
-    try:
-        fam.add_rules_from_training(thermo_database=db.thermo)
-    except Exception:                                            # noqa: BLE001
-        pass
+    # Round 118. This call used to sit inside `except Exception: pass`, so a training
+    # reaction that failed to load left the fixture quietly running on the existing root
+    # rule -- testing a state that is missing the data somebody had just added, and
+    # reporting it green. Measured under the paired engine at this tip: the call does NOT
+    # raise and this family's training depository holds ZERO entries, so the guard was
+    # protecting nothing and removing it costs nothing today. It costs something the day a
+    # training reaction is added and does not load, which is the day it should.
+    fam.add_rules_from_training(thermo_database=db.thermo)
     fam.fill_rules_by_averaging_up(verbose=True)
 
     def generated():
@@ -2045,17 +2138,35 @@ def test_an_arkane_structure_only_declaration_reports_ready_with_a_zero_partitio
     not that spin_multiplicity is physical. An ordinary Arkane structure-only species
     declaration defaults spin_multiplicity to 0 (arkane/input.py:157). Compose the two and
     the species reports itself READY while its partition function is exactly zero and its
-    conformer entropy is minus infinity. Nothing raises."""
-    from rmgpy.statmech import Conformer
+    conformer entropy is minus infinity. Nothing raises.
 
-    spc = _species(AR_META, 'Ar(3P2)')
-    spc.thermo = entry.data
-    e0 = entry.data.to_wilhoit().E0.value_si
+    **Round 118 rewrote this test, and the rewrite is the point.** It used to build the
+    conformer itself -- ``Conformer(..., spin_multiplicity=0)`` written out in the test --
+    and then assert that its partition function was zero. That is arithmetic about a
+    conformer the test manufactured, not evidence about Arkane: it would have stayed green
+    if ``arkane/input.py`` had defaulted the multiplicity to 1, to 5, or refused the
+    declaration outright, because Arkane was never called. The zero now comes from Arkane's
+    own input path, so the day that default changes this test changes with it.
+    """
+    import arkane.input
 
-    spc.conformer = Conformer(E0=(e0, 'J/mol'), modes=[], spin_multiplicity=0,
-                              optical_isomers=1)
+    # The declaration an Arkane input file makes for a structure-only species: a structure
+    # and an energy, and NO spinMultiplicity. Everything else is Arkane's defaulting.
+    label = 'Ar(3P2)_round118_structure_only'
+    arkane.input.species_dict.pop(label, None)
+    e0_kj = entry.data.to_wilhoit().E0.value_si / 1000.0
+    spc = arkane.input.species(label,
+                               structure=arkane.input.adjacencyList(AR_META),
+                               E0=(e0_kj, 'kJ/mol'))
 
     assert len(spc.molecule[0].atoms) == 1, 'the shortcut only applies to atomics'
+    assert spc.conformer.spin_multiplicity == 0, (
+        'Arkane no longer defaults a structure-only declaration to spin_multiplicity 0; '
+        'the defect this test documents has changed shape and the disclosure in '
+        'PlasmaExcitedNeutralThermo.py needs re-reading')
+    assert spc.conformer.modes == []
+    assert spc.conformer.E0 is not None
+
     assert spc.has_statmech() is True, (
         'this is the defect: a zero-multiplicity, mode-less conformer reports READY')
 
@@ -2063,9 +2174,14 @@ def test_an_arkane_structure_only_declaration_reports_ready_with_a_zero_partitio
         assert spc.conformer.get_partition_function(T) == 0.0
         assert spc.conformer.get_entropy(T) == float('-inf')
 
-    # The shortcut is what lets it through: with modes required, it would fail.
-    assert spc.conformer.E0 is not None
-    assert spc.conformer.modes == []
+    # And the contrast, so the zero is attributable to the multiplicity rather than to
+    # anything else about this species: the same declaration WITH a multiplicity is fine.
+    named = 'Ar(3P2)_round118_with_multiplicity'
+    arkane.input.species_dict.pop(named, None)
+    with_g = arkane.input.species(named,
+                                  structure=arkane.input.adjacencyList(AR_META),
+                                  E0=(e0_kj, 'kJ/mol'), spinMultiplicity=5)
+    assert with_g.conformer.get_partition_function(T0) == pytest.approx(5.0, abs=1e-9)
 
 
 def test_the_conformer_degeneracy_scales_rates_while_library_entropy_does_not_move(entry):

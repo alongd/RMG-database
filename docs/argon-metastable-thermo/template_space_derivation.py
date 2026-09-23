@@ -44,7 +44,7 @@ the database grows it may grow.
 
 Run::
 
-    PYTHONPATH=/home/alon/Code/RMG-Py-plasma python docs/argon-metastable-thermo/template_space_derivation.py \\
+    PYTHONPATH=/home/alon/Code/RMG-Py-mgr-i221-deck-probe-234349 python docs/argon-metastable-thermo/template_space_derivation.py \\
         > >(tee docs/argon-metastable-thermo/logs/template_space_derivation.stdout.log) \\
         2> >(tee docs/argon-metastable-thermo/logs/template_space_derivation.stderr.log >&2)
 """
@@ -113,26 +113,54 @@ def template_sites(family, direction):
 
 
 #: (family, direction, slot, exception type, message) for every template slot whose matcher
-#: raised. A non-empty list means the derivation could not see part of the template space, so
-#: it must not report completeness -- main() fails on it.
+#: raised, when the caller asked for them to be collected rather than raised. A non-empty
+#: list means the derivation could not see part of the template space, so it must not report
+#: completeness -- main() fails on it.
 MATCHER_ERRORS = []
 
 
-def matching_slots(family, mol, direction):
+class UndeterminedSlot(RuntimeError):
+    """A template slot whose matcher raised.
+
+    NOT "does not match": nobody knows whether it matches. The distinction is the whole
+    point of this exception's existence -- see :func:`matching_slots`."""
+
+
+def matching_slots(family, mol, direction, on_error='raise'):
     """Slot indices of `direction`'s per-reactant templates that admit `mol`.
 
     Uses the family's own matcher, so LogicNode tops and the surface-site guards behave
-    exactly as they do during generation."""
+    exactly as they do during generation.
+
+    **Raises by default, and that default is the repair.** A raising matcher does not mean
+    "does not match" -- it means UNDETERMINED, and a completeness claim cannot be made over
+    a slot nobody could evaluate. Recording the failure and continuing narrows "every
+    family whose template admits it is contained" to "every family whose template could be
+    evaluated", silently, and leaves the difference for the caller to remember to check.
+    ``main()`` below did remember. ``test_argon_metastable_thermo.py`` did not: it called
+    this function, got a short list, compared it against ``CONTAINED_FAMILIES``, and
+    passed -- with an unevaluated family missing from both sides of the comparison. A
+    check that can only fail if its caller performs a second check is a check that fails
+    open, and this campaign has now filed that shape a dozen times.
+
+    ``on_error='record'`` is the opt-in for a survey that wants to report every bad slot
+    rather than die on the first. It is what ``main()`` uses, and ``main()`` is fatal on a
+    non-empty :data:`MATCHER_ERRORS`, so the collected form is still closed. Any caller
+    that has not thought about it gets the refusal."""
+    if on_error not in ('raise', 'record'):
+        raise ValueError('on_error must be "raise" or "record", not %r' % (on_error,))
     slots = []
     for index, site in enumerate(template_sites(family, direction)):
         try:
             mappings = family._match_reactant_to_template(mol, site)
         except Exception as exc:                       # noqa: BLE001
-            # A raising matcher does NOT mean "does not match" -- it means UNDETERMINED, and
-            # the completeness claim cannot be made over a slot nobody could evaluate. This
-            # used to print and `continue`, which quietly narrowed "every family whose
-            # template admits it is contained" to "every family whose template could be
-            # evaluated". Recorded, and fatal in main().
+            if on_error == 'raise':
+                raise UndeterminedSlot(
+                    '%s %s template slot %d could not be evaluated: %s: %s. This slot is '
+                    'UNDETERMINED, not unmatched -- the derivation cannot claim to have '
+                    'seen the whole template space, so it refuses rather than omitting '
+                    'the family.'
+                    % (family.label, direction, index, type(exc).__name__, exc)) from exc
             MATCHER_ERRORS.append((family.label, direction, index, type(exc).__name__, str(exc)))
             print('    ! %s %s slot %d raised %s: %s'
                   % (family.label, direction, index, type(exc).__name__, exc), flush=True)
@@ -152,11 +180,16 @@ def main():
     ground = molecule(AR_GROUND)
     otrip = molecule(O_TRIPLET)
 
+    def survey(family, mol, direction):
+        """`matching_slots` in collecting mode: this script reports every bad slot rather
+        than dying on the first, and is fatal on the collection at the end."""
+        return matching_slots(family, mol, direction, on_error='record')
+
     rows = []
     for label in sorted(db.families):
         family = db.families[label]
-        fwd = matching_slots(family, meta, 'forward')
-        rev = matching_slots(family, meta, 'reverse')
+        fwd = survey(family, meta, 'forward')
+        rev = survey(family, meta, 'reverse')
         if not (fwd or rev):
             continue
         forbidden = family.forbidden is not None and CONTAINMENT in family.forbidden.entries
@@ -173,13 +206,13 @@ def main():
 
     # ---- controls -----------------------------------------------------------------
     print('\n=== controls ===', flush=True)
-    birad_o = matching_slots(db.families['Birad_R_Recombination'], otrip, 'forward')
+    birad_o = survey(db.families['Birad_R_Recombination'], otrip, 'forward')
     print('  [O] u2 p2 matches Birad_R_Recombination forward slots %s  (must be non-empty)'
           % (birad_o or '-'), flush=True)
 
     ground_hits = sorted(label for label in db.families
-                         if matching_slots(db.families[label], ground, 'forward')
-                         or matching_slots(db.families[label], ground, 'reverse'))
+                         if survey(db.families[label], ground, 'forward')
+                         or survey(db.families[label], ground, 'reverse'))
     meta_hits = {label for label, _f, _r, _x in rows}
     print('  ground-state Ar u0 p4 matches %d families; metastable matches %d'
           % (len(ground_hits), len(meta_hits)), flush=True)

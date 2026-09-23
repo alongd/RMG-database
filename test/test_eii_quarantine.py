@@ -4,8 +4,15 @@
 
 The defect is NOT in this database. A rate this family supplies as an estimate reaches
 the solver as an ordinary ``Arrhenius``, which cannot carry ``uses_electron_temperature``,
-so ``PlasmaReactor`` evaluates it at the GAS temperature: measured ~23.7 orders of
-magnitude low at 1000 K for ``Ar(3P2) => Ar+``, and bit-identical when Te is tripled.
+so ``PlasmaReactor`` evaluates it at the GAS temperature: measured **20.93 orders of
+magnitude** low at 1000 K for ``Ar(3P2) => Ar+``, and bit-identical when Te is tripled.
+That figure is this family's OWN rule at Te = 3 eV against what the reactor delivers at
+Tgas = 1000 K -- ``log10(3.109200e7 / 3.664598e-14) = 20.9286`` -- and it is pinned by
+``test_the_delivered_rate_ignores_te_entirely`` in
+``test_argon_metastable_thermo.py``. The ~23.7 this line used to quote came from
+dividing by ``PUBLISHED_EII_3EV = 2.0583e10``, a constant round 59 could find no
+provenance for anywhere in this repository; round 77 withdrew it from the assertion and
+this line kept quoting the number it had produced.
 That is an RMG-Py hole and is somebody else's ticket. What this database can do is refuse
 to let the resulting number into a quantitative mechanism, and the manifest at
 ``input/kinetics/families/Plasma_Electron_Impact_Ionization/quarantine.py`` is that
@@ -28,7 +35,7 @@ Three rules the assertions follow, taken from ``test_cation_r_recombination_sei.
 Run against a pinned runtime, from anywhere::
 
     conda activate rmg_env
-    PYTHONPATH=/home/alon/Code/RMG-Py-i222-metastable-argon-atomtype \\
+    PYTHONPATH=/home/alon/Code/RMG-Py-mgr-i221-deck-probe-234349 \\
       python -m pytest test/test_eii_quarantine.py -v
 
 The evidence is ``docs/argon-metastable-thermo/report.md`` (sections 13.1-13.3), the probe
@@ -87,10 +94,10 @@ def loaded():
             kinetics_families=[FAMILY, SIBLING],
             reaction_libraries=[], seed_mechanisms=[], solvation=True, surface=False)
     fam = db.kinetics.families[FAMILY]
-    try:
-        fam.add_rules_from_training(thermo_database=db.thermo)
-    except Exception:                                            # noqa: BLE001
-        pass
+    # Round 118. Not wrapped in `except Exception: pass` any more -- see the same repair in
+    # `test_argon_metastable_thermo.py`'s `admitted` fixture. A training reaction that fails
+    # to load must fail this fixture, not silently leave it testing the root rule alone.
+    fam.add_rules_from_training(thermo_database=db.thermo)
     fam.fill_rules_by_averaging_up(verbose=True)
     return db
 

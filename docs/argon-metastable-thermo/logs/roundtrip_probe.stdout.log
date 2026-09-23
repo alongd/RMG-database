@@ -1,0 +1,25 @@
+
+ENTRY FACE VALUES (what is written in the files)
+------------------------------------------------
+  PlasmaExcitedNeutralThermo   Ar(3P2)   H298 =   1114.2501 kJ/mol   S298 =   168.2375 J/(mol*K)
+  BurkeH2O2                    Ar        H298 =      0.0031 kJ/mol   S298 =   154.7348 J/(mol*K)
+  primaryThermoLibrary         Ar        H298 =      0.0000 kJ/mol   S298 =   154.8459 J/(mol*K)
+
+WHAT get_thermo_data RESOLVES TO (what a mechanism sees)
+--------------------------------------------------------
+  Ar        H298 =      0.0031 kJ/mol   S298 =   154.7348 J/(mol*K)   <- Thermo library: BurkeH2O2
+  Ar(3P2)   H298 =   1114.2501 kJ/mol   S298 =   168.2375 J/(mol*K)   <- Thermo library: PlasmaExcitedNeutralThermo
+
+THE ROUND-TRIP ARTEFACT, ENTRY -> RESOLVED
+------------------------------------------
+  Ar (BurkeH2O2 wins)   dS = +0.0000 J/(mol*K)
+  Ar(3P2)               dS = +0.0000 J/(mol*K)
+  Ar(3P2)               dH = +0.0000 kJ/mol
+
+THE EXCITATION STEP AS A MECHANISM WOULD COMPUTE IT:  Ar -> Ar(3P2)
+--------------------------------------------------------------------
+  dH298 resolved  =  1114.2470 kJ/mol      exact (level energy) = 1114.2468
+  dS298 resolved  =    13.5027 J/(mol*K)   exact (R ln 5)       =   13.3816
+  dS error        =    +0.1211 J/(mol*K)  -> -0.0361 kJ/mol in dG at 298.15 K
+  (JANAF Ar-001 S298 = 154.845; primaryThermoLibrary's NASA Ar = 154.8459;
+   BurkeH2O2's Ar, which is the one that WINS the lookup   = 154.7348)

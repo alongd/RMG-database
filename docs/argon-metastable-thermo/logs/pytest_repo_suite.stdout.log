@@ -1,0 +1,123 @@
+...FF............................................F...................... [ 26%]
+........................................................................ [ 52%]
+........................................................................ [ 78%]
+............................................................             [100%]
+=================================== FAILURES ===================================
+__________ test_the_dication_builds_and_raises_the_loud_databaseerror __________
+
+argon_capable_db = <rmgpy.data.thermo.ThermoDatabase object at 0x70b970091d60>
+
+    def test_the_dication_builds_and_raises_the_loud_databaseerror(argon_capable_db):
+        """The dication Ar(2+) (monatomic, +2) is the "Ar2+" reading that builds yet raises the
+        loud DatabaseError - group additivity has no group for a charge-+2 argon atom."""
+>       species = _species(DICATION, 'Ar2+')
+
+test/test_argon_cation_buildtime.py:143: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test/test_argon_cation_buildtime.py:82: in _species
+    s = Species(label=label, molecule=[Molecule().from_adjacency_list(adjacency_list)])
+rmgpy/molecule/molecule.py:1942: in rmgpy.molecule.molecule.Molecule.from_adjacency_list
+    ???
+rmgpy/molecule/molecule.py:1953: in rmgpy.molecule.molecule.Molecule.from_adjacency_list
+    ???
+rmgpy/molecule/molecule.py:1571: in rmgpy.molecule.molecule.Molecule.update_atomtypes
+    ???
+rmgpy/molecule/molecule.py:1592: in rmgpy.molecule.molecule.Molecule.update_atomtypes
+    ???
+rmgpy/molecule/molecule.py:1587: in rmgpy.molecule.molecule.Molecule.update_atomtypes
+    ???
+rmgpy/molecule/atomtype.py:1153: in rmgpy.molecule.atomtype.get_atomtype
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+>   ???
+E   rmgpy.exceptions.AtomTypeError: Unable to determine atom type for atom Ar..++, which has 0 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 benzene bonds, 2 lone pairs, and +2 charge.
+
+rmgpy/molecule/atomtype.py:1181: AtomTypeError
+------------------------------ Captured log call -------------------------------
+ERROR    root:test_argon_cation_buildtime.py:82 Could not update atomtypes for this molecule:
+multiplicity 3
+1 Ar u2 p2 c+2
+________ test_the_dimer_cation_builds_and_raises_the_loud_databaseerror ________
+
+argon_capable_db = <rmgpy.data.thermo.ThermoDatabase object at 0x70b970091d60>
+
+    def test_the_dimer_cation_builds_and_raises_the_loud_databaseerror(argon_capable_db):
+        """The dimer Ar2(+) (diatomic, +1) also builds and also raises a loud DatabaseError,
+        via HBI saturation rather than a bare atom type - still loud, still not fabricated."""
+        species = _species(DIMER, 'Ar2+dimer')
+        assert species.molecule[0].get_net_charge() == 1
+        with pytest.raises(DatabaseError):
+>           argon_capable_db.get_thermo_data(species)
+
+test/test_argon_cation_buildtime.py:156: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+../RMG-Py-i222-metastable-argon-atomtype/rmgpy/data/thermo.py:1497: in get_thermo_data
+    tdata = self.estimate_radical_thermo_via_hbi(molecule, self.get_thermo_data_from_libraries)
+../RMG-Py-i222-metastable-argon-atomtype/rmgpy/data/thermo.py:2247: in estimate_radical_thermo_via_hbi
+    added = saturated_struct.saturate_radicals()
+rmgpy/molecule/molecule.py:2512: in rmgpy.molecule.molecule.Molecule.saturate_radicals
+    ???
+rmgpy/molecule/molecule.py:2534: in rmgpy.molecule.molecule.Molecule.saturate_radicals
+    ???
+rmgpy/molecule/molecule.py:1571: in rmgpy.molecule.molecule.Molecule.update_atomtypes
+    ???
+rmgpy/molecule/molecule.py:1592: in rmgpy.molecule.molecule.Molecule.update_atomtypes
+    ???
+rmgpy/molecule/molecule.py:1587: in rmgpy.molecule.molecule.Molecule.update_atomtypes
+    ???
+rmgpy/molecule/atomtype.py:1153: in rmgpy.molecule.atomtype.get_atomtype
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+>   ???
+E   rmgpy.exceptions.AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 benzene bonds, 3 lone pairs, and +0 charge.
+
+rmgpy/molecule/atomtype.py:1181: AtomTypeError
+------------------------------ Captured log call -------------------------------
+ERROR    root:thermo.py:2247 Could not update atomtypes for this molecule:
+multiplicity 2
+1 Ar u0 p3 c0 {2,S} {3,S}
+2 Ar u0 p3 c+1 {1,S}
+3 H  u0 p0 c0 {1,S}
+_ test_argon_atom_type_now_declares_a_charge_envelope_but_still_parses_any_charge _
+
+    def test_argon_atom_type_now_declares_a_charge_envelope_but_still_parses_any_charge():
+        """Argon's atom type used to declare no charge constraint at all; it now declares
+        ``charge=[0, 1, 2]``, and the uncomfortable corollary that outlived the change belongs
+        on the record.
+    
+        RMG-Py commit ``b52045138`` ("Narrow the placement declarations, and let noble gases be
+        cations") gave He, Ne and Ar ``charge=[0, 1, 2]`` so that ``GroupAtom.make_sample_molecule``
+        would stop refusing the noble-gas cations (Ar+, He+, He+2, Ne+) that are real species in
+        the carried ``PlasmaAir`` library. That falsified the old assertion ``not
+        ATOMTYPES['Ar'].charge``, which is what turned this test red.
+    
+        The envelope narrows what group-sample *construction* will emit; it does not gate what
+        ``from_adjacency_list`` will *parse*, because argon is in ``nonSpecifics`` and
+        ``get_atomtype`` returns it without consulting the charge features. So a nonsense Ar(4+)
+        still parses exactly as before - Ar+ builds for the same reason Ar(4+) does - and the
+        entry added by this branch is the ground state and matches only the ground state.
+    
+        This test PINS OBSERVED CURRENT BEHAVIOUR so it cannot regress silently; it does not
+        bless that behaviour as intended. Whether an atom type declaring ``charge=[0, 1, 2]``
+        while still parsing any charge through ``nonSpecifics`` is coherent RMG-Py design is an
+        open question owned in RMG-Py (where the Ar0/Ar+/Ar++ specifics belong), not resolvable
+        from this database test."""
+        from rmgpy.molecule.atomtype import ATOMTYPES
+    
+        ground = Molecule().from_adjacency_list(ARP)
+        assert ATOMTYPES['Ar'].charge == [0, 1, 2]
+>       assert ground.atoms[0].atomtype.label == 'Ar'
+E       AssertionError: assert 'Ar+' == 'Ar'
+E         
+E         - Ar
+E         + Ar+
+E         ?   +
+
+test/test_argon_cation_thermo.py:688: AssertionError
+=========================== short test summary info ============================
+FAILED test/test_argon_cation_buildtime.py::test_the_dication_builds_and_raises_the_loud_databaseerror
+FAILED test/test_argon_cation_buildtime.py::test_the_dimer_cation_builds_and_raises_the_loud_databaseerror
+FAILED test/test_argon_cation_thermo.py::test_argon_atom_type_now_declares_a_charge_envelope_but_still_parses_any_charge
+3 failed, 273 passed in 73.80s (0:01:13)

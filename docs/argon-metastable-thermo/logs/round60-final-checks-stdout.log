@@ -1,0 +1,12 @@
+### focused suite
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+69 passed, 1047 warnings in 54.26s
+### whole repository suite
+FAILED test/test_argon_cation_thermo.py::test_argon_atom_type_now_declares_a_charge_envelope_but_still_parses_any_charge
+FAILED test/test_plasma_radiative_recombination.py::test_three_body_recombination_still_cannot_be_stored_at_all
+4 failed, 283 passed, 1615 warnings in 81.52s (0:01:21)
+### engine databaseTest, pinned, from a scratch directory
+PIN database.directory = /home/alon/Code/RMG-database-i221-argon-metastable-thermo/input
+PIN containment present in Birad_R_Recombination/groups.py = True
+PIN PlasmaExcitedNeutralThermo.py present = True
+======================== 6 passed in 481.33s (0:08:01) =========================

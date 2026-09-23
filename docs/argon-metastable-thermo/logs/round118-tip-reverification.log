@@ -1,0 +1,71 @@
+re-verifying the working tree at HEAD
+the recorded verification reaches 025536186; everything below is after it
+
+=== the eleven family groups.py barriers
+    does        : Each adds one forbidden group, `Ar_metastable_biradical`, at the template position the shipped matcher maps Ar(3P2) onto, so the family refuses to generate with it.
+    identity    : input/kinetics/families/Birad_R_Recombination/groups.py              blob 9a8ac7cffa10  (1 commit after 025536186)
+    identity    : input/kinetics/families/Br_Abstraction/groups.py                     blob 7b71263973af  (1 commit after 025536186)
+    identity    : input/kinetics/families/CO_Disproportionation/groups.py              blob f59a0246a6ef  (1 commit after 025536186)
+    identity    : input/kinetics/families/Cation_NO_Substitution/groups.py             blob 931a81ff7107  (1 commit after 025536186)
+    identity    : input/kinetics/families/Cl_Abstraction/groups.py                     blob a5580d4aa783  (1 commit after 025536186)
+    identity    : input/kinetics/families/Disproportionation/groups.py                 blob 313a41f71fa8  (1 commit after 025536186)
+    identity    : input/kinetics/families/Disproportionation-Y/groups.py               blob d87416e0b271  (1 commit after 025536186)
+    identity    : input/kinetics/families/F_Abstraction/groups.py                      blob 53e708e10d1a  (1 commit after 025536186)
+    identity    : input/kinetics/families/Li_NO_Substitution/groups.py                 blob 6b1aa184d6a5  (1 commit after 025536186)
+    identity    : input/kinetics/families/R_Addition_MultipleBond/groups.py            blob dd11b706cf3b  (1 commit after 025536186)
+    identity    : input/kinetics/families/Surface_Adsorption_Double/groups.py          blob 53148fcd7724  (1 commit after 025536186)
+    checked by  : test/test_argon_metastable_thermo.py::test_every_family_whose_template_admits_the_metastable_is_forbidden
+    checked by  : test/test_argon_metastable_thermo.py::test_the_containment_does_not_move_the_chemistry_those_families_exist_for
+    checked by  : test/test_argon_metastable_thermo.py::test_a_template_slot_that_cannot_be_evaluated_refuses_the_derivation
+    would catch : A barrier at the wrong template position, or missing from a family whose template admits the species, fails the derivation test: it compares the DERIVED set against the contained set rather than enumerating known families. A barrier that is too broad fails the chemistry controls, which generate each family's own reactions.
+
+=== the EII quarantine manifest
+    does        : Declares Plasma_Electron_Impact_Ionization quarantined for quantitative use, with the kinetics class the refusal keys on and the engine capability it requires.
+    identity    : input/kinetics/families/Plasma_Electron_Impact_Ionization/quarantine.py blob 5669cf4b962f  (4 commits after 025536186)
+    checked by  : test/test_eii_quarantine.py::test_this_runtime_ENFORCES_the_declared_engine_requirement
+    checked by  : test/test_eii_quarantine.py::test_this_runtime_ENFORCES_the_pin_as_more_than_an_attribute_lookup
+    would catch : The tests require a real exception out of the real admission path, so a manifest that parses but gates nothing fails them. A manifest naming a capability the runtime lacks fails the enforcement pair rather than passing quietly.
+
+=== the metastable thermo entry
+    does        : One library entry: argon 4s 3P2 (Paschen 1s5), H298 from the NIST ASD level energy, S298 = JANAF ground-state entropy + R ln 5, Cp = 5/2 R.
+    identity    : input/thermo/libraries/PlasmaExcitedNeutralThermo.py                 blob 5246abc7bc21  (4 commits after 025536186)
+    checked by  : test/test_argon_metastable_thermo.py::test_h298_is_the_level_energy_times_hc_na
+    checked by  : test/test_argon_metastable_thermo.py::test_s298_is_the_ground_state_plus_the_exact_degeneracy_term
+    checked by  : test/test_argon_metastable_thermo.py::test_the_e0_gap_is_the_thermal_enthalpy_and_not_the_298_convention
+    checked by  : test/test_argon_metastable_thermo.py::test_the_entry_is_the_1s5_level_and_says_so
+    checked by  : test/test_argon_metastable_thermo.py::test_the_resonant_levels_are_excluded_on_lifetime_not_on_taste
+    would catch : Every number is re-derived from the identity that produced it, so a changed digit fails arithmetic rather than a remembered constant. The state identity is pinned separately, so an entry that drifted into meaning a different argon level -- which would still load and still match -- fails too.
+
+=== the three test files themselves
+    does        : The executable half of docs/argon-metastable-thermo/report.md: every re-derivable number in the report is re-derived here.
+    identity    : test/test_argon_metastable_thermo.py                                 blob 8298b096bbf7  (4 commits after 025536186)
+    identity    : test/test_eii_quarantine.py                                          blob f60088106fab  (3 commits after 025536186)
+    identity    : test/test_argon_cation_buildtime.py                                  blob f15639e2183a  (1 commit after 025536186)
+    checked by  : test/test_argon_metastable_thermo.py::test_an_arkane_structure_only_declaration_reports_ready_with_a_zero_partition_function
+    checked by  : test/test_argon_metastable_thermo.py::test_a_template_slot_that_cannot_be_evaluated_refuses_the_derivation
+    checked by  : test/test_argon_cation_buildtime.py::test_at_build_time_with_the_reference_deck_argon_is_refused_loudly
+    would catch : What checks a test is its red state and its anti-vacuity control. Round 118 found two tests that had neither: the Q=0 test built the conformer it then asserted on (it now goes through arkane.input, so Arkane produces the zero), and the completeness test could pass over a family its matcher could not evaluate (it now refuses). Both are named here because they are the two whose coverage was a claim rather than a measurement.
+
+=== the eleven barriers, measured in the loaded database
+    families loaded: 140
+    Birad_R_Recombination          barrier present, labels ['*2']       expected *2  ok
+    Br_Abstraction                 barrier present, labels ['*3']       expected *3  ok
+    CO_Disproportionation          barrier present, labels ['*1']       expected *1  ok
+    Cation_NO_Substitution         barrier present, labels ['*2']       expected *2  ok
+    Cl_Abstraction                 barrier present, labels ['*3']       expected *3  ok
+    Disproportionation             barrier present, labels ['*1']       expected *1  ok
+    Disproportionation-Y           barrier present, labels ['*1']       expected *1  ok
+    F_Abstraction                  barrier present, labels ['*3']       expected *3  ok
+    Li_NO_Substitution             barrier present, labels ['*2']       expected *2  ok
+    R_Addition_MultipleBond        barrier present, labels ['*3']       expected *3  ok
+    Surface_Adsorption_Double      barrier present, labels ['*1']       expected *1  ok
+
+=== negative controls (the containment must not be about argon, or about radicals)
+    THE METASTABLE       forbidden in 11 of 11 families  ok
+    ground-state argon   forbidden in 0 of 11 families  ok
+    methyl radical       forbidden in 0 of 11 families  ok
+
+=== RESULT ===
+  every post-025536186 artifact is present, every named check resolves, all 11 barriers are attached at their mapped labels, and both negative controls hold
+
+EXIT 0

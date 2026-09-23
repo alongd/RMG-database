@@ -1,0 +1,46 @@
+database.directory = /home/alon/Code/RMG-database-i221-argon-metastable-thermo/input
+rmgpy from          = /home/alon/Code/RMG-Py-plasma/rmgpy
+
+1. PERCEPTION -- what atom type does each argon adjacency list take?
+--------------------------------------------------------------------
+  ground state  1 Ar u0 p4 c0            -> atomtype Ar0     u0 p4 c+0  multiplicity 1  net charge +0
+  metastable    1 Ar u2 p3 c0            -> atomtype Ar0e    u2 p3 c+0  multiplicity 3  net charge +0
+  cation        1 Ar u1 p3 c+1           -> atomtype Ar+     u1 p3 c+1  multiplicity 2  net charge +1
+  ATOMTYPES['Ar'].specific = [<AtomType "Ar0">, <AtomType "Ar0s">, <AtomType "Ar0e">, <AtomType "Ar+">, <AtomType "Ar++">]
+  ATOMTYPES['Ar0e'].generic = [<AtomType "R">, <AtomType "R!H">, <AtomType "R!H!Val7">, <AtomType "Rx">, <AtomType "Rx!H">, <AtomType "Ar">]
+
+2. THE METASTABLE IS A DISTINCT SPECIES FROM BOTH OF THE OTHER TWO
+------------------------------------------------------------------
+  isomorphic to ground state  : False
+  isomorphic to cation        : False
+
+3. LIBRARIES ON DISK
+--------------------
+  79 library files; PlasmaExcitedNeutralThermo is PRESENT
+  79 libraries loaded
+  PlasmaExcitedNeutralThermo entries: ['Ar(3P2)']
+
+4. THERMOCHEMISTRY THROUGH THE FULL DATABASE (libraries + group additivity)
+---------------------------------------------------------------------------
+  Ar (ground)     H298 =        0.003 kJ/mol   S298 =    154.735 J/(mol*K)   Cp(298) =   20.794
+                  Cp(1000) =   20.794   Cp(6000) =   20.786
+                  source: Thermo library: BurkeH2O2
+  Ar* metastable  H298 =     1114.250 kJ/mol   S298 =    168.237 J/(mol*K)   Cp(298) =   20.786
+                  Cp(1000) =   20.786   Cp(6000) =   20.786
+                  source: Thermo library: PlasmaExcitedNeutralThermo
+  Ar+ cation      H298 =     1520.584 kJ/mol   S298 =    166.415 J/(mol*K)   Cp(298) =   20.984
+                  Cp(1000) =   22.773   Cp(6000) =   20.975
+                  source: Thermo library: PlasmaCationThermo
+
+5. WITH EVERY LIBRARY UNLOADED -- what the ESTIMATOR alone would answer
+-----------------------------------------------------------------------
+  Ar* metastable  REFUSED by the estimator: AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 benzene bonds, 3 lone pairs, and +0 charge.
+
+6. REFERENCE STATES AS THIS DATABASE HOLDS THEM
+-----------------------------------------------
+  primaryThermoLibrary['Ar'] is a NASA
+    S298 straight off the entry     = 154.846 J/(mol*K)
+    H298 straight off the entry     = 0.000 kJ/mol
+    Cp298 straight off the entry    = 20.786 J/(mol*K)
+    NIST-JANAF Ar-001 S298          = 154.845 J/(mol*K)   <- what the entry cites
+    gap (JANAF - in-database entry) = -0.001 J/(mol*K)

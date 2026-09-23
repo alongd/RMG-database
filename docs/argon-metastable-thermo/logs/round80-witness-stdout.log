@@ -1,0 +1,86 @@
+loading every family
+
+candidates from the template space: 12
+
+=== Birad_R_Recombination (forward, slots [1])
+      partner derived from slot 0: [H]
+      BEFORE (containment detached): 1 reactions, 1 species raise, 2 get a number
+             raising species: product:[ArH] -> SaturatedStructureError
+      AFTER  (containment attached): 0 reactions
+      CONTROL (own chemistry, [H] + [CH2]): 1 with block, 1 without  UNMOVED
+=== Br_Abstraction (forward, slots [0])
+      partner derived from slot 1: Br
+      BEFORE (containment detached): 1 reactions, 1 species raise, 3 get a number
+             raising species: product:[Ar]Br -> SaturatedStructureError
+      AFTER  (containment attached): 0 reactions
+      CONTROL (own chemistry, [H] + Br): 0 with block, 0 without  VACUOUS (0=0, proves nothing)
+=== CO_Disproportionation (forward, slots [0])
+      partner derived from slot 1: [CH]=O
+      BEFORE (containment detached): 1 reactions, 1 species raise, 3 get a number
+             raising species: product:[ArH] -> SaturatedStructureError
+      AFTER  (containment attached): 0 reactions
+      CONTROL (own chemistry, [H] + [CH]=O): 1 with block, 1 without  UNMOVED
+=== Cation_NO_Substitution (reverse, slots [1])
+      partner derived from slot 0: [Li]N
+      BEFORE (containment detached): 2 reactions, 2 species raise, 6 get a number
+             raising species: reactant:N[Ar] -> SaturatedStructureError
+      AFTER  (containment attached): 0 reactions
+      CONTROL (own chemistry, [Li]N + [H]): 2 with block, 2 without  UNMOVED
+=== Cl_Abstraction (forward, slots [0])
+      partner derived from slot 1: Cl
+      BEFORE (containment detached): 1 reactions, 1 species raise, 3 get a number
+             raising species: product:Cl[Ar] -> SaturatedStructureError
+      AFTER  (containment attached): 0 reactions
+      CONTROL (own chemistry, [H] + Cl): 0 with block, 0 without  VACUOUS (0=0, proves nothing)
+=== Disproportionation (forward, slots [0])
+      partner derived from slot 1: C[CH2]
+      BEFORE (containment detached): 3 reactions, 3 species raise, 9 get a number
+             raising species: product:[ArH] -> SaturatedStructureError
+      AFTER  (containment attached): 0 reactions
+      CONTROL (own chemistry, [H] + C[CH2]): 3 with block, 3 without  UNMOVED
+=== Disproportionation-Y (forward, slots [0])
+      partner derived from slot 1: [CH2]CF
+      BEFORE (containment detached): 1 reactions, 1 species raise, 3 get a number
+             raising species: product:F[Ar] -> SaturatedStructureError
+      AFTER  (containment attached): 0 reactions
+      CONTROL (own chemistry, [H] + [CH2]CF): 1 with block, 1 without  UNMOVED
+=== F_Abstraction (forward, slots [0])
+      partner derived from slot 1: F
+      BEFORE (containment detached): 1 reactions, 1 species raise, 3 get a number
+             raising species: product:F[Ar] -> SaturatedStructureError
+      AFTER  (containment attached): 0 reactions
+      CONTROL (own chemistry, [H] + F): 0 with block, 0 without  VACUOUS (0=0, proves nothing)
+=== Li_NO_Substitution (reverse, slots [1])
+      partner derived from slot 0: [Li]N
+      BEFORE (containment detached): 2 reactions, 2 species raise, 6 get a number
+             raising species: reactant:N[Ar] -> SaturatedStructureError
+      AFTER  (containment attached): 0 reactions
+      CONTROL (own chemistry, [Li]N + [H]): 2 with block, 2 without  UNMOVED
+=== Plasma_Electron_Impact_Ionization (forward, slots [0])  [EII: intended channel]
+      no partner could be derived; unimolecular attempt only
+      BEFORE (containment detached): 1 reactions, 0 species raise, 2 get a number
+      AFTER  : no containment on this family yet
+      CONTROL (own chemistry, [H]): 1 with block, 1 without  UNMOVED
+=== R_Addition_MultipleBond (forward, slots [1])
+      partner derived from slot 0: C=C
+      BEFORE (containment detached): 2 reactions, 2 species raise, 4 get a number
+             raising species: product:[CH2]C[Ar] -> SaturatedStructureError
+      AFTER  (containment attached): 0 reactions
+      CONTROL: template would not sample; no control for this family
+=== Surface_Adsorption_Double (forward, slots [0])
+      partner derived from slot 1: [Pt]
+      generation raised AtomTypeError: Unable to determine atom type for atom Ar, which has 0 single bonds, 1 double bonds (0 to O, 0 to S, 1 others), 0 triple bonds, 0 quadruple bonds, 0 benzene bonds, 3 lone pairs, and +0 charge.
+      BEFORE (containment detached): 0 reactions, 0 species raise, 0 get a number
+      AFTER  (containment attached): 0 reactions
+      CONTROL (own chemistry, [CH2] + [Pt]): 1 with block, 1 without  UNMOVED
+
+=== SUMMARY ===
+  families whose template admits the metastable : 12
+  of those, with a derived witness reaction     : 11
+  of those, SILENT (template admits, no partner derived) : 1  ['Surface_Adsorption_Double']
+  controls that MOVED (regressions)               : 0  []
+  families with no derivable control               : 1  ['R_Addition_MultipleBond']
+  controls that were VACUOUS (0=0, no information) : 3  ['Br_Abstraction', 'Cl_Abstraction', 'F_Abstraction']
+     -> these need a hand-written control; see CONTAINMENT_CONTROLS in test/test_argon_metastable_thermo.py
+
+A SILENT family is still in scope: the template admits the species, so a partner this probe could not derive may still exist. It is reported, not dismissed.

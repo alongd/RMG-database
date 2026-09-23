@@ -1,0 +1,25 @@
+============================= test session starts ==============================
+platform linux -- Python 3.9.23, pytest-8.4.1, pluggy-1.6.0 -- /home/alon/anaconda3/envs/rmg_env/bin/python3.9
+rootdir: /home/alon/Code/RMG-Py-i221-saturation-fix
+configfile: pytest.ini
+plugins: check-2.5.3, cov-6.2.1, anyio-4.10.0
+collecting ... collected 12 items
+
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/saturatedStructureTest.py::TestSaturateForEstimation::test_ordinary_radical_saturates PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/saturatedStructureTest.py::TestSaturateForEstimation::test_input_is_not_mutated PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/saturatedStructureTest.py::TestSaturateForEstimation::test_unownable_saturated_form_raises_named_error PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/saturatedStructureTest.py::TestSaturateForEstimation::test_named_error_is_not_an_atom_type_error PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/saturatedStructureTest.py::TestTransportOfUnsaturableSpecies::test_estimation_falls_back_instead_of_crashing PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/saturatedStructureTest.py::TestTransportOfUnsaturableSpecies::test_the_fallback_says_it_is_a_fallback PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/saturatedStructureTest.py::TestTransportOfUnsaturableSpecies::test_group_estimate_still_raises_for_whoever_asks_directly PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/saturatedStructureTest.py::TestTransportOfUnsaturableSpecies::test_ground_state_argon_is_unaffected PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/saturatedStructureTest.py::TestTransportOfUnsaturableSpecies::test_ordinary_radical_is_unaffected PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/saturatedStructureTest.py::TestSoluteDataOfUnsaturableSpecies::test_estimation_names_the_cause PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/saturatedStructureTest.py::TestSoluteDataOfUnsaturableSpecies::test_ground_state_argon_is_unaffected PASSED
+../../../../../../home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/data/saturatedStructureTest.py::TestSoluteDataOfUnsaturableSpecies::test_ordinary_radical_is_unaffected PASSED
+
+================================ tests coverage ================================
+_______________ coverage: platform linux, python 3.9.23-final-0 ________________
+
+Coverage HTML written to dir htmlcov
+============================== 12 passed in 7.84s ==============================

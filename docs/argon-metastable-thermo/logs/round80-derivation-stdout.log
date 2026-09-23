@@ -1,0 +1,31 @@
+loading every family from /home/alon/Code/RMG-database-i221-argon-metastable-thermo/input
+families loaded: 140
+
+=== families whose TEMPLATE admits Ar u2 p3 c0 ===
+family                             fwd slots    rev slots    forbidden?
+Birad_R_Recombination              [1]          -            YES
+Br_Abstraction                     [0]          -            YES
+CO_Disproportionation              [0]          -            YES
+Cation_NO_Substitution             -            [1]          YES
+Cl_Abstraction                     [0]          -            YES
+Disproportionation                 [0]          -            YES
+Disproportionation-Y               [0]          -            YES
+F_Abstraction                      [0]          -            YES
+Li_NO_Substitution                 -            [1]          YES
+Plasma_Electron_Impact_Ionization  [0]          -            n/a (EII, intended)
+R_Addition_MultipleBond            [1]          -            YES
+Surface_Adsorption_Double          [0]          -            YES
+
+total families whose template admits it: 12
+
+=== controls ===
+  [O] u2 p2 matches Birad_R_Recombination forward slots [1]  (must be non-empty)
+  ground-state Ar u0 p4 matches 2 families; metastable matches 12
+  ground state does NOT match the biradical sites: True
+  controls pass: True
+
+=== RESULT ===
+  every family whose template admits the metastable is forbidden, except Plasma_Electron_Impact_Ionization, which is the intended channel
+  every template slot was evaluated; no matcher raised
+
+EXIT 0

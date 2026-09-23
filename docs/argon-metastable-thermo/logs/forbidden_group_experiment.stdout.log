@@ -1,0 +1,57 @@
+
+0. CLEAN TREE?
+==============
+  tracked files already modified before the experiment: 4
+      docs/argon-metastable-thermo/report.md
+      input/kinetics/families/Plasma_Electron_Impact_Ionization/quarantine.py
+      input/thermo/libraries/PlasmaExcitedNeutralThermo.py
+      test/test_argon_metastable_thermo.py
+
+1. BEFORE
+=========
+
+  [before] families loaded: 140
+      Birad_R_Recombination              via ['C2H5', 'C6H5', 'CH3', 'H', 'HCO', 'O2']
+      CO_Disproportionation              via ['HCO']
+      Cl_Abstraction                     via ['HCl']
+      Disproportionation                 via ['C2H5', 'C6H5']
+      Plasma_Electron_Impact_Ionization  via ['(unimolecular)']
+      R_Addition_MultipleBond            via ['C6H5', 'N2']
+      ordinary families still reaching Ar(3P2): 5 ['Birad_R_Recombination', 'CO_Disproportionation', 'Cl_Abstraction', 'Disproportionation', 'R_Addition_MultipleBond']
+      the intended ionisation channel survives: True
+      CONTROL CH3+H   -> 2 reactions, families ['H_Abstraction', 'R_Recombination']
+      CONTROL O+CH3   -> 2 reactions, families ['Birad_R_Recombination', 'H_Abstraction']
+
+2. WRITE ONE forbidden() ENTRY PER FAMILY
+=========================================
+  appended to input/kinetics/families/Birad_R_Recombination/groups.py
+  appended to input/kinetics/families/R_Addition_MultipleBond/groups.py
+  appended to input/kinetics/families/Disproportionation/groups.py
+  appended to input/kinetics/families/CO_Disproportionation/groups.py
+  appended to input/kinetics/families/Cl_Abstraction/groups.py
+
+3. AFTER
+========
+
+  [after] families loaded: 140
+      Birad_R_Recombination              via ['C2H5', 'C6H5', 'CH3', 'H', 'HCO', 'O2']
+      CO_Disproportionation              via ['HCO']
+      Cl_Abstraction                     via ['HCl']
+      Disproportionation                 via ['C2H5', 'C6H5']
+      Plasma_Electron_Impact_Ionization  via ['(unimolecular)']
+      R_Addition_MultipleBond            via ['C6H5', 'N2']
+      ordinary families still reaching Ar(3P2): 5 ['Birad_R_Recombination', 'CO_Disproportionation', 'Cl_Abstraction', 'Disproportionation', 'R_Addition_MultipleBond']
+      the intended ionisation channel survives: True
+      CONTROL CH3+H   -> 2 reactions, families ['H_Abstraction', 'R_Recombination']
+      CONTROL O+CH3   -> 2 reactions, families ['Birad_R_Recombination', 'H_Abstraction']
+
+4. RESTORE, AND VERIFY THE RESTORE
+==================================
+  family groups.py files still showing a diff: 0 []
+  restore verified by git diff (not by assumption)
+
+5. VERDICT
+==========
+  ordinary families reaching Ar(3P2) before : 5 ['Birad_R_Recombination', 'CO_Disproportionation', 'Cl_Abstraction', 'Disproportionation', 'R_Addition_MultipleBond']
+  ordinary families reaching Ar(3P2) after  : 5 ['Birad_R_Recombination', 'CO_Disproportionation', 'Cl_Abstraction', 'Disproportionation', 'R_Addition_MultipleBond']
+  controls unchanged                        : True

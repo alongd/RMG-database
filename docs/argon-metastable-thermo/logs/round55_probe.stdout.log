@@ -1,0 +1,89 @@
+
+A. E0 -- the entry's stated value against what RMG derives from the same entry
+==============================================================================
+
+  A1. the two paths
+  -----------------
+    entry.data.E0 as stored           : None (not stated)
+    data.to_wilhoit(B=1000).E0        : 1108.0527 kJ/mol
+    data.H298 as stored               : 1114.2470 kJ/mol
+    5/2 R T at 298.15 K               : 6.1974 kJ/mol
+    H298(stored) - derived E0         : +6.1943 kJ/mol
+
+  A2. which one the runtime consumes
+  ----------------------------------
+    thermoengine.process_thermo_data sets spc.conformer.E0 = wilhoit.E0
+    (rmgpy/thermo/thermoengine.py:75-78), and ThermoData.to_wilhoit
+    (thermodata.pyx:366-389) reads Tdata/Cpdata/H298/S298 ONLY -- self.E0 is
+    never consulted. So a stated E0 is inert on the path that matters and
+    visible on the path that does not.
+
+  A3. the same question asked of the sibling cation entry, for context
+  --------------------------------------------------------------------
+    [Arp] stated E0                   : 1520.5730 kJ/mol
+    [Arp] derived E0                  : 1514.3867 kJ/mol
+    [Arp] stated - derived            : +6.1863 kJ/mol
+    -> the same collision, in a library this ticket must not edit.
+
+B. TEMPERATURE RANGE -- does the advertised 6000 K survive?
+===========================================================
+
+  B1. what the entry declares
+  ---------------------------
+    Tmin = 298.15 K, Tmax = 6000.00 K; Tdata spans 298.15 - 6000.00 K
+    is_temperature_valid( 298.15)     : True
+    is_temperature_valid(5000.00)     : True
+    is_temperature_valid(6000.00)     : True
+    is_temperature_valid(8000.00)     : False
+
+  B2. normal processing -- thermoengine.process_thermo_data -> NASA
+  -----------------------------------------------------------------
+    library returns a ThermoData (comment: Thermo library: PlasmaExcitedNeutralThermo)
+    process_thermo_data itself raised:
+
+  B3. raw ThermoData above its tabulated range
+  --------------------------------------------
+       T (K)         Cp            S     H (kJ/mol)
+      1500.0    20.7860     201.8198      1139.2318
+      6000.0    20.7860     230.6353      1232.7688
+      8000.0    20.7860     230.6353      1274.3408
+     10000.0    20.7860     230.6353      1315.9128
+    exact 5/2 R monatomic, for comparison:
+      1500.0    20.7862     201.8201      1139.2320
+      6000.0    20.7862     230.6358      1232.7697
+      8000.0    20.7862     236.6156      1274.3420
+     10000.0    20.7862     241.2539      1315.9143
+
+C. DEGENERACY -- how many electronic states does each path think there are?
+===========================================================================
+  molecule.multiplicity                         : 3
+  radical_electrons                             : 2
+  g used to build this entry's S298 (2J+1, J=2) : 5
+  R ln 5 = 13.3816 J/(mol*K) is what S298 carries
+
+  after process_thermo_data, spc.conformer is a NoneType
+
+  C2. explicit statmech generation
+  --------------------------------
+    generate_statmech RAISED DatabaseError: Could not get database with name: statmech
+
+  C3. a bare Conformer, i.e. what a species gets before anything touches it
+  -------------------------------------------------------------------------
+    Conformer().spin_multiplicity               : 1
+    Conformer().optical_isomers                 : 1
+
+D. LUMPING AT DISCHARGE TEMPERATURES -- what a reader needs to judge reuse
+==========================================================================
+  Relative to the 1s5 (3P2) level ALONE, which is what this entry is:
+     T (K) |   dS 2-lvl   dH 2-lvl |   dS 4-lvl   dH 4-lvl n(rest)/n(1s5)
+    298.15 |     0.0144     0.0037 |     1.0345     0.2296     0.0323
+    500.00 |     0.1450     0.0582 |     2.3801     0.7598     0.1090
+   1000.00 |     0.6482     0.4323 |     4.4082     2.2251     0.3003
+   2000.00 |     1.1525     1.1406 |     6.0872     4.5819     0.5787
+   3000.00 |     1.3244     1.5571 |     6.6580     5.9647     0.7536
+   4000.00 |     1.3988     1.8131 |     6.9032     6.8078     0.8693
+   5000.00 |     1.4372     1.9838 |     7.0284     7.3649     0.9506
+   6000.00 |     1.4594     2.1053 |     7.1004     7.7578     1.0107
+
+  dS in J/(mol*K), dH in kJ/mol. The last column is the equilibrium population
+  of the other three 4s levels relative to 1s5, sum(g exp(-E/RT)) / 5.

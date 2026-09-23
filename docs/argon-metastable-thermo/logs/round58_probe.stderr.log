@@ -1,0 +1,78 @@
+WARNING:matplotlib:/home/alon/.config/matplotlib is not a writable directory
+WARNING:matplotlib:Matplotlib created a temporary cache directory at /tmp/claude-1000/matplotlib-9rro631n because there was an issue with the default path (/home/alon/.config/matplotlib); it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+INFO:matplotlib.font_manager:Failed to extract font properties from /usr/share/fonts/truetype/noto/NotoColorEmoji.ttf: In FT2Font: Could not set the fontsize (invalid pixel size; error code 0x17)
+INFO:matplotlib.font_manager:generated new fontManager
+INFO:root:Loading transport library from NIST_Fluorine.py in /home/alon/Code/RMG-database-i221-argon-metastable-thermo/input/transport/libraries...
+INFO:root:Loading transport library from PrimaryTransportLibrary.py in /home/alon/Code/RMG-database-i221-argon-metastable-thermo/input/transport/libraries...
+INFO:root:Loading transport library from GRI-Mech.py in /home/alon/Code/RMG-database-i221-argon-metastable-thermo/input/transport/libraries...
+INFO:root:Loading transport library from OneDMinN2.py in /home/alon/Code/RMG-database-i221-argon-metastable-thermo/input/transport/libraries...
+INFO:root:Loading transport library from NOx2018.py in /home/alon/Code/RMG-database-i221-argon-metastable-thermo/input/transport/libraries...
+INFO:root:Loading transport group database from /home/alon/Code/RMG-database-i221-argon-metastable-thermo/input/transport/groups...
+INFO:root:Kinetics family Plasma_Electron_Impact_Ionization is QUARANTINED FOR QUANTITATIVE PLASMA USE (KineticsModel): estimated rates reach the solver without uses_electron_temperature and are evaluated at the GAS temperature
+INFO:root:Loading frequencies library from halogens_G4.py in /home/alon/Code/RMG-database-i221-argon-metastable-thermo/input/statmech/libraries...
+INFO:root:Loading frequencies group database from /home/alon/Code/RMG-database-i221-argon-metastable-thermo/input/statmech/groups...
+INFO:root:Loading solvation thermodynamics group database from /home/alon/Code/RMG-database-i221-argon-metastable-thermo/input/solvation/groups...
+INFO:root:Loading thermodynamics library from primaryThermoLibrary.py in /home/alon/Code/RMG-database-i221-argon-metastable-thermo/input/thermo/libraries...
+INFO:root:Loading thermodynamics library from PlasmaExcitedNeutralThermo.py in /home/alon/Code/RMG-database-i221-argon-metastable-thermo/input/thermo/libraries...
+INFO:root:Loading thermodynamics library from PlasmaCationThermo.py in /home/alon/Code/RMG-database-i221-argon-metastable-thermo/input/thermo/libraries...
+INFO:root:Loading thermodynamics group database from /home/alon/Code/RMG-database-i221-argon-metastable-thermo/input/thermo/groups...
+INFO:root:Loading thermodynamics SIDTs from /home/alon/Code/RMG-database-i221-argon-metastable-thermo/input/thermo/sidt...
+INFO:root:For reaction [Ar] => [Ar+], Ea raised from 0.0 to 412.5 kJ/mol to match endothermicity of reaction.
+WARNING:root:PlasmaReactor: chargeBalanceSpecies Species(index=3, label="e-", molecule=[Molecule(smiles="e")], molecular_weight=(0.0005486,'amu')) was assigned a mole fraction to make the initial composition charge neutral, but no reaction in the loaded model produces it -- it is a product of no reaction, and a participant in no reversible one, among the 1 core and 0 edge reactions. The charge balance therefore rests on an ion the loaded chemistry (reaction libraries, seed mechanisms, kinetics families) cannot generate: the composition is neutral only by arithmetic, because a mole fraction was given to a species nothing makes, so the neutral state it produces is not one this mechanism can sustain. This is the charge-neutrality signal that balancing with Species(index=3, label="e-", molecule=[Molecule(smiles="e")], molecular_weight=(0.0005486,'amu')) silenced. Check that a library, seed mechanism or family able to produce Species(index=3, label="e-", molecule=[Molecule(smiles="e")], molecular_weight=(0.0005486,'amu')) is loaded, or remove the chargeBalanceSpecies directive. This is a warning, not an error, and it names a suspect rather than proving a fault. (PlasmaReactor(label=None, T=(300,'K'), P=(1,'bar'), Te=(11604.5,'K')))
+WARNING:root:PlasmaReactor: chargeBalanceSpecies Species(index=3, label="e-", molecule=[Molecule(smiles="e")], molecular_weight=(0.0005486,'amu')) was assigned a mole fraction to make the initial composition charge neutral, but no reaction in the loaded model produces it -- it is a product of no reaction, and a participant in no reversible one, among the 1 core and 0 edge reactions. The charge balance therefore rests on an ion the loaded chemistry (reaction libraries, seed mechanisms, kinetics families) cannot generate: the composition is neutral only by arithmetic, because a mole fraction was given to a species nothing makes, so the neutral state it produces is not one this mechanism can sustain. This is the charge-neutrality signal that balancing with Species(index=3, label="e-", molecule=[Molecule(smiles="e")], molecular_weight=(0.0005486,'amu')) silenced. Check that a library, seed mechanism or family able to produce Species(index=3, label="e-", molecule=[Molecule(smiles="e")], molecular_weight=(0.0005486,'amu')) is loaded, or remove the chargeBalanceSpecies directive. This is a warning, not an error, and it names a suspect rather than proving a fault. (PlasmaReactor(label=None, T=(300,'K'), P=(1,'bar'), Te=(34813.6,'K')))
+WARNING:root:PlasmaReactor: chargeBalanceSpecies Species(index=3, label="e-", molecule=[Molecule(smiles="e")], molecular_weight=(0.0005486,'amu')) was assigned a mole fraction to make the initial composition charge neutral, but no reaction in the loaded model produces it -- it is a product of no reaction, and a participant in no reversible one, among the 1 core and 0 edge reactions. The charge balance therefore rests on an ion the loaded chemistry (reaction libraries, seed mechanisms, kinetics families) cannot generate: the composition is neutral only by arithmetic, because a mole fraction was given to a species nothing makes, so the neutral state it produces is not one this mechanism can sustain. This is the charge-neutrality signal that balancing with Species(index=3, label="e-", molecule=[Molecule(smiles="e")], molecular_weight=(0.0005486,'amu')) silenced. Check that a library, seed mechanism or family able to produce Species(index=3, label="e-", molecule=[Molecule(smiles="e")], molecular_weight=(0.0005486,'amu')) is loaded, or remove the chargeBalanceSpecies directive. This is a warning, not an error, and it names a suspect rather than proving a fault. (PlasmaReactor(label=None, T=(1000,'K'), P=(1,'bar'), Te=(11604.5,'K')))
+WARNING:root:PlasmaReactor: chargeBalanceSpecies Species(index=3, label="e-", molecule=[Molecule(smiles="e")], molecular_weight=(0.0005486,'amu')) was assigned a mole fraction to make the initial composition charge neutral, but no reaction in the loaded model produces it -- it is a product of no reaction, and a participant in no reversible one, among the 1 core and 0 edge reactions. The charge balance therefore rests on an ion the loaded chemistry (reaction libraries, seed mechanisms, kinetics families) cannot generate: the composition is neutral only by arithmetic, because a mole fraction was given to a species nothing makes, so the neutral state it produces is not one this mechanism can sustain. This is the charge-neutrality signal that balancing with Species(index=3, label="e-", molecule=[Molecule(smiles="e")], molecular_weight=(0.0005486,'amu')) silenced. Check that a library, seed mechanism or family able to produce Species(index=3, label="e-", molecule=[Molecule(smiles="e")], molecular_weight=(0.0005486,'amu')) is loaded, or remove the chargeBalanceSpecies directive. This is a warning, not an error, and it names a suspect rather than proving a fault. (PlasmaReactor(label=None, T=(1000,'K'), P=(1,'bar'), Te=(34813.6,'K')))
+/home/alon/anaconda3/envs/rmg_env/lib/python3.9/site-packages/scipy/optimize/_optimize.py:2322: LinAlgWarning: Ill-conditioned matrix (rcond=9.78829e-18): result may not be accurate.
+  fu = func(x, *args)
+/home/alon/anaconda3/envs/rmg_env/lib/python3.9/site-packages/scipy/optimize/_optimize.py:2322: LinAlgWarning: Ill-conditioned matrix (rcond=8.30526e-20): result may not be accurate.
+  fu = func(x, *args)
+/home/alon/anaconda3/envs/rmg_env/lib/python3.9/site-packages/scipy/optimize/_optimize.py:2322: LinAlgWarning: Ill-conditioned matrix (rcond=1.38146e-20): result may not be accurate.
+  fu = func(x, *args)
+/home/alon/anaconda3/envs/rmg_env/lib/python3.9/site-packages/scipy/optimize/_optimize.py:2322: LinAlgWarning: Ill-conditioned matrix (rcond=8.43874e-21): result may not be accurate.
+  fu = func(x, *args)
+/home/alon/anaconda3/envs/rmg_env/lib/python3.9/site-packages/scipy/optimize/_optimize.py:2322: LinAlgWarning: Ill-conditioned matrix (rcond=2.11249e-21): result may not be accurate.
+  fu = func(x, *args)
+/home/alon/anaconda3/envs/rmg_env/lib/python3.9/site-packages/scipy/optimize/_optimize.py:2322: LinAlgWarning: Ill-conditioned matrix (rcond=5.2787e-21): result may not be accurate.
+  fu = func(x, *args)
+/home/alon/anaconda3/envs/rmg_env/lib/python3.9/site-packages/scipy/optimize/_optimize.py:2322: LinAlgWarning: Ill-conditioned matrix (rcond=2.26538e-21): result may not be accurate.
+  fu = func(x, *args)
+/home/alon/anaconda3/envs/rmg_env/lib/python3.9/site-packages/scipy/optimize/_optimize.py:2322: LinAlgWarning: Ill-conditioned matrix (rcond=1.9079e-21): result may not be accurate.
+  fu = func(x, *args)
+/home/alon/anaconda3/envs/rmg_env/lib/python3.9/site-packages/scipy/optimize/_optimize.py:2322: LinAlgWarning: Ill-conditioned matrix (rcond=7.53573e-21): result may not be accurate.
+  fu = func(x, *args)
+/home/alon/anaconda3/envs/rmg_env/lib/python3.9/site-packages/scipy/optimize/_optimize.py:2322: LinAlgWarning: Ill-conditioned matrix (rcond=7.43345e-21): result may not be accurate.
+  fu = func(x, *args)
+/home/alon/anaconda3/envs/rmg_env/lib/python3.9/site-packages/scipy/optimize/_optimize.py:2322: LinAlgWarning: Ill-conditioned matrix (rcond=1.47964e-21): result may not be accurate.
+  fu = func(x, *args)
+/home/alon/anaconda3/envs/rmg_env/lib/python3.9/site-packages/scipy/optimize/_optimize.py:2322: LinAlgWarning: Ill-conditioned matrix (rcond=1.34061e-20): result may not be accurate.
+  fu = func(x, *args)
+/home/alon/anaconda3/envs/rmg_env/lib/python3.9/site-packages/scipy/optimize/_optimize.py:2322: LinAlgWarning: Ill-conditioned matrix (rcond=8.87325e-21): result may not be accurate.
+  fu = func(x, *args)
+/home/alon/anaconda3/envs/rmg_env/lib/python3.9/site-packages/scipy/optimize/_optimize.py:2322: LinAlgWarning: Ill-conditioned matrix (rcond=3.20362e-21): result may not be accurate.
+  fu = func(x, *args)
+/home/alon/anaconda3/envs/rmg_env/lib/python3.9/site-packages/scipy/optimize/_optimize.py:2322: LinAlgWarning: Ill-conditioned matrix (rcond=2.39961e-21): result may not be accurate.
+  fu = func(x, *args)
+/home/alon/anaconda3/envs/rmg_env/lib/python3.9/site-packages/scipy/optimize/_optimize.py:2322: LinAlgWarning: Ill-conditioned matrix (rcond=3.56405e-21): result may not be accurate.
+  fu = func(x, *args)
+/home/alon/anaconda3/envs/rmg_env/lib/python3.9/site-packages/scipy/optimize/_optimize.py:2322: LinAlgWarning: Ill-conditioned matrix (rcond=4.40143e-21): result may not be accurate.
+  fu = func(x, *args)
+/home/alon/anaconda3/envs/rmg_env/lib/python3.9/site-packages/scipy/optimize/_optimize.py:2322: LinAlgWarning: Ill-conditioned matrix (rcond=4.71804e-22): result may not be accurate.
+  fu = func(x, *args)
+/home/alon/anaconda3/envs/rmg_env/lib/python3.9/site-packages/scipy/optimize/_optimize.py:2322: LinAlgWarning: Ill-conditioned matrix (rcond=4.97734e-21): result may not be accurate.
+  fu = func(x, *args)
+/home/alon/anaconda3/envs/rmg_env/lib/python3.9/site-packages/scipy/optimize/_optimize.py:2322: LinAlgWarning: Ill-conditioned matrix (rcond=7.47076e-21): result may not be accurate.
+  fu = func(x, *args)
+/home/alon/anaconda3/envs/rmg_env/lib/python3.9/site-packages/scipy/optimize/_optimize.py:2322: LinAlgWarning: Ill-conditioned matrix (rcond=6.10745e-21): result may not be accurate.
+  fu = func(x, *args)
+/home/alon/anaconda3/envs/rmg_env/lib/python3.9/site-packages/scipy/optimize/_optimize.py:2322: LinAlgWarning: Ill-conditioned matrix (rcond=3.69387e-21): result may not be accurate.
+  fu = func(x, *args)
+/home/alon/anaconda3/envs/rmg_env/lib/python3.9/site-packages/scipy/optimize/_optimize.py:2322: LinAlgWarning: Ill-conditioned matrix (rcond=1.30536e-20): result may not be accurate.
+  fu = func(x, *args)
+/home/alon/anaconda3/envs/rmg_env/lib/python3.9/site-packages/scipy/optimize/_optimize.py:2322: LinAlgWarning: Ill-conditioned matrix (rcond=1.51603e-20): result may not be accurate.
+  fu = func(x, *args)
+/home/alon/anaconda3/envs/rmg_env/lib/python3.9/site-packages/scipy/optimize/_optimize.py:2322: LinAlgWarning: Ill-conditioned matrix (rcond=3.18757e-21): result may not be accurate.
+  fu = func(x, *args)
+/home/alon/Code/RMG-Py-i222-metastable-argon-atomtype/rmgpy/thermo/thermoengine.py:100: LinAlgWarning: Ill-conditioned matrix (rcond=3.18757e-21): result may not be accurate.
+  thermo = wilhoit.to_nasa(Tmin=100.0, Tmax=5000.0, Tint=1000.0)
+/home/alon/Code/RMG-Py-i222-metastable-argon-atomtype/rmgpy/thermo/thermoengine.py:100: LinAlgWarning: Ill-conditioned matrix (rcond=1.08953e-21): result may not be accurate.
+  thermo = wilhoit.to_nasa(Tmin=100.0, Tmax=5000.0, Tint=1000.0)

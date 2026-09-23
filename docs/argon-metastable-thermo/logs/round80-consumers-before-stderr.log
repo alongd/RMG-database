@@ -1,0 +1,31 @@
+WARNING:matplotlib:/home/alon/.config/matplotlib is not a writable directory
+WARNING:matplotlib:Matplotlib created a temporary cache directory at /tmp/claude-1000/matplotlib-lpbjvn8t because there was an issue with the default path (/home/alon/.config/matplotlib); it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+INFO:matplotlib.font_manager:Failed to extract font properties from /usr/share/fonts/truetype/noto/NotoColorEmoji.ttf: In FT2Font: Could not set the fontsize (invalid pixel size; error code 0x17)
+INFO:matplotlib.font_manager:generated new fontManager
+ERROR:root:Could not update atomtypes for this molecule:
+multiplicity 3
+1 Ar u0 p3 c0 {2,S} {3,S}
+2 H  u0 p0 c0 {1,S}
+3 H  u0 p0 c0 {1,S}
+
+Traceback (most recent call last):
+  File "/tmp/claude-1000/-home-alon-Code-RMG-database-i221-argon-metastable-thermo/22eab741-a752-40a8-90ab-14c3271a36c9/scratchpad/e2e/../consumer_endtoend.py", line 69, in <module>
+    sys.exit(main())
+  File "/tmp/claude-1000/-home-alon-Code-RMG-database-i221-argon-metastable-thermo/22eab741-a752-40a8-90ab-14c3271a36c9/scratchpad/e2e/../consumer_endtoend.py", line 47, in main
+    data = spc.get_transport_data()
+  File "rmgpy/species.py", line 894, in rmgpy.species.Species.get_transport_data
+  File "rmgpy/species.py", line 881, in rmgpy.species.Species.generate_transport_data
+  File "/home/alon/Code/RMG-Py-plasma/rmgpy/data/transport.py", line 348, in get_transport_properties
+    transport = self.get_transport_properties_via_group_estimates(species)
+  File "/home/alon/Code/RMG-Py-plasma/rmgpy/data/transport.py", line 408, in get_transport_properties_via_group_estimates
+    critical_point = self.estimate_critical_properties_via_group_additivity(molecule)
+  File "/home/alon/Code/RMG-Py-plasma/rmgpy/data/transport.py", line 465, in estimate_critical_properties_via_group_additivity
+    saturated_struct.saturate_radicals()
+  File "rmgpy/molecule/molecule.py", line 2512, in rmgpy.molecule.molecule.Molecule.saturate_radicals
+  File "rmgpy/molecule/molecule.py", line 2534, in rmgpy.molecule.molecule.Molecule.saturate_radicals
+  File "rmgpy/molecule/molecule.py", line 1571, in rmgpy.molecule.molecule.Molecule.update_atomtypes
+  File "rmgpy/molecule/molecule.py", line 1592, in rmgpy.molecule.molecule.Molecule.update_atomtypes
+  File "rmgpy/molecule/molecule.py", line 1587, in rmgpy.molecule.molecule.Molecule.update_atomtypes
+  File "rmgpy/molecule/atomtype.py", line 1153, in rmgpy.molecule.atomtype.get_atomtype
+  File "rmgpy/molecule/atomtype.py", line 1181, in rmgpy.molecule.atomtype.get_atomtype
+rmgpy.exceptions.AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 benzene bonds, 3 lone pairs, and +0 charge.

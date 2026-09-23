@@ -1,0 +1,24 @@
+loading every family from /home/alon/Code/RMG-database-i221-argon-metastable-thermo/input
+families loaded: 140
+
+committed at a3ed93580   injected=False -> COMPLETE
+    11 families derived; 0 matcher error(s) recorded and not asserted on
+    ! H_Abstraction forward slot 0 raised RuntimeError: injected: this template slot cannot be evaluated
+    ! H_Abstraction forward slot 1 raised RuntimeError: injected: this template slot cannot be evaluated
+
+committed at a3ed93580   injected=True  -> COMPLETE
+    11 families derived; 2 matcher error(s) recorded and not asserted on
+
+working tree             injected=False -> COMPLETE
+    11 families derived; 0 matcher error(s) recorded and not asserted on
+
+working tree             injected=True  -> REFUSED
+    H_Abstraction forward template slot 0 could not be evaluated: RuntimeError: injected: this template slot cannot be evaluated
+
+=== RESULT ===
+  control  -- the committed check is correct when nothing is injected : True
+  DEFECT   -- the committed check still says "complete" with a family it could not evaluate : True
+  repair   -- the working tree REFUSES instead of omitting                : True
+  no cost  -- the working tree is unchanged when nothing is injected      : True
+
+EXIT 0

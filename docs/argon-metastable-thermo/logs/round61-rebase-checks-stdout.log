@@ -1,0 +1,7 @@
+### whole repository suite, rebased onto 96f2afa4a
+318 passed, 1615 warnings in 102.20s (0:01:42)
+### engine databaseTest, pinned, rebased tree
+PIN database.directory = /home/alon/Code/RMG-database-i221-argon-metastable-thermo/input
+PIN containment present in Birad_R_Recombination/groups.py = True
+PIN PlasmaExcitedNeutralThermo.py present = True
+======================== 6 passed in 589.03s (0:09:49) =========================

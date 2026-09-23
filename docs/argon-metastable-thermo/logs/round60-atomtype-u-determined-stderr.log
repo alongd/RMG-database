@@ -1,0 +1,16 @@
+ERROR:root:Could not update atomtypes for this molecule:
+multiplicity 5
+1 Ar u4 p2 c0
+
+ERROR:root:Could not update atomtypes for this molecule:
+multiplicity 4
+1 Ar u3 p2 c+1
+
+ERROR:root:Could not update atomtypes for this molecule:
+multiplicity 4
+1 Ar u3 p3 c-1
+
+ERROR:root:Could not update atomtypes for this molecule:
+multiplicity 2
+1 Ar u1 p4 c-1
+

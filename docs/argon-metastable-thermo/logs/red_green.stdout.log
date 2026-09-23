@@ -1,0 +1,240 @@
+
+==============================================================================
+CASE: a wrong shipped H298 (a6 coefficient moved)
+  file : input/thermo/libraries/PlasmaExcitedNeutralThermo.py
+  tests: test_the_level_energy_in_ev_matches_what_the_plasma_literature_quotes, test_h298_is_the_level_energy_times_hc_na
+==============================================================================
+  perturbed: '133267.5845721773, 5.9890428524' -> '134000.0, 5.9890428524'
+  RED   exit=1
+                module constants, and so passed unchanged whatever the file said - a check that
+        E         comparison failed
+        E         comparison failed
+        FAILED test/test_argon_metastable_thermo.py::test_the_level_energy_in_ev_matches_what_the_plasma_literature_quotes
+        FAILED test/test_argon_metastable_thermo.py::test_h298_is_the_level_energy_times_hc_na
+        2 failed, 142 warnings in 11.80s
+  restored input/thermo/libraries/PlasmaExcitedNeutralThermo.py, sha verified
+  GREEN exit=0
+        2 passed, 142 warnings in 11.61s
+  VERDICT: red=YES green=YES
+
+==============================================================================
+CASE: a wrong 1s3 level in the shipped alternatives table
+  file : input/thermo/libraries/PlasmaExcitedNeutralThermo.py
+  tests: test_the_two_metastable_levels_are_separated_by_the_asd_gap
+==============================================================================
+  perturbed: '1s3      3P0   (2P*<1/2>).4s  2[1/2]*  J=0     94553.6652' -> '1s3      3P0   (2P*<1/2>).4s  2[1/2]*  J=0     94552.0000'
+  RED   exit=1
+        E         comparison failed
+        FAILED test/test_argon_metastable_thermo.py::test_the_two_metastable_levels_are_separated_by_the_asd_gap
+        1 failed, 142 warnings in 12.08s
+  restored input/thermo/libraries/PlasmaExcitedNeutralThermo.py, sha verified
+  GREEN exit=0
+        1 passed, 142 warnings in 11.92s
+  VERDICT: red=YES green=YES
+
+==============================================================================
+CASE: a wrong R*ln term in the shipped lumping prose
+  file : input/thermo/libraries/PlasmaExcitedNeutralThermo.py
+  tests: test_r_ln_q_alone_understates_the_lumping_difference_by_almost_eightfold
+==============================================================================
+  perturbed: '(R*ln term 0.0018, <E>/RT term 0.0126)' -> '(R*ln term 0.0028, <E>/RT term 0.0126)'
+  RED   exit=1
+        E         comparison failed
+        FAILED test/test_argon_metastable_thermo.py::test_r_ln_q_alone_understates_the_lumping_difference_by_almost_eightfold
+        1 failed, 142 warnings in 13.06s
+  restored input/thermo/libraries/PlasmaExcitedNeutralThermo.py, sha verified
+  GREEN exit=0
+        1 passed, 142 warnings in 12.55s
+  VERDICT: red=YES green=YES
+
+==============================================================================
+CASE: a wrong crossing temperature in the shipped prose
+  file : input/thermo/libraries/PlasmaExcitedNeutralThermo.py
+  tests: test_where_the_lumping_difference_crosses_the_precision_we_quote
+==============================================================================
+  perturbed: 'It crosses 0.01 at 281 K' -> 'It crosses 0.01 at 291 K'
+  RED   exit=1
+        E             comparison failed
+        FAILED test/test_argon_metastable_thermo.py::test_where_the_lumping_difference_crosses_the_precision_we_quote
+        1 failed, 142 warnings in 14.70s
+  restored input/thermo/libraries/PlasmaExcitedNeutralThermo.py, sha verified
+  GREEN exit=0
+        1 passed, 142 warnings in 12.19s
+  VERDICT: red=YES green=YES
+
+==============================================================================
+CASE: a wrong shipped Cp (a1 coefficient moved)
+  file : input/thermo/libraries/PlasmaExcitedNeutralThermo.py
+  tests: test_thermodata_freezes_entropy_whenever_the_last_cp_slope_is_nonpositive, test_cp_is_exactly_five_halves_r_at_every_tabulated_temperature
+==============================================================================
+  perturbed: 'coeffs = [2.5, 0.0, 0.0, 0.0, 0.0,' -> 'coeffs = [3.0, 0.0, 0.0, 0.0, 0.0,'
+  RED   exit=1
+        E         comparison failed
+        E             comparison failed
+        FAILED test/test_argon_metastable_thermo.py::test_thermodata_freezes_entropy_whenever_the_last_cp_slope_is_nonpositive
+        FAILED test/test_argon_metastable_thermo.py::test_cp_is_exactly_five_halves_r_at_every_tabulated_temperature
+        2 failed, 142 warnings in 12.95s
+  restored input/thermo/libraries/PlasmaExcitedNeutralThermo.py, sha verified
+  GREEN exit=0
+        2 passed, 142 warnings in 12.60s
+  VERDICT: red=YES green=YES
+
+==============================================================================
+CASE: a disclosed anchor number that drifts from the measurement
+  file : input/thermo/libraries/PlasmaExcitedNeutralThermo.py
+  tests: test_the_anchor_error_the_engine_delivers_is_the_one_the_library_discloses
+==============================================================================
+  perturbed: 'dS298(Ar -> Ar(3P2)) =   13.4922 J/(mol*K)' -> 'dS298(Ar -> Ar(3P2)) =   13.4000 J/(mol*K)'
+  RED   exit=1
+        E         comparison failed
+        FAILED test/test_argon_metastable_thermo.py::test_the_anchor_error_the_engine_delivers_is_the_one_the_library_discloses
+        1 failed, 142 warnings in 13.92s
+  restored input/thermo/libraries/PlasmaExcitedNeutralThermo.py, sha verified
+  GREEN exit=0
+        1 passed, 142 warnings in 13.96s
+  VERDICT: red=YES green=YES
+
+==============================================================================
+CASE: the superseded anchor pair put back beside the live one
+  file : input/thermo/libraries/PlasmaExcitedNeutralThermo.py
+  tests: test_the_anchor_error_the_engine_delivers_is_the_one_the_library_discloses
+==============================================================================
+  perturbed: 'and goes red if the resolved anchor moves.' -> 'and goes red if the resolved anchor moves. (Previously dS = 13.5027, +'
+  RED   exit=1
+        FAILED test/test_argon_metastable_thermo.py::test_the_anchor_error_the_engine_delivers_is_the_one_the_library_discloses
+        1 failed, 142 warnings in 12.59s
+  restored input/thermo/libraries/PlasmaExcitedNeutralThermo.py, sha verified
+  GREEN exit=0
+        1 passed, 142 warnings in 13.56s
+  VERDICT: red=YES green=YES
+
+==============================================================================
+CASE: the retraction removed from the entry
+  file : input/thermo/libraries/PlasmaExcitedNeutralThermo.py
+  tests: test_the_library_retracts_the_one_family_claim_and_carries_the_reach_figure
+==============================================================================
+  perturbed: 'is RETRACTED, and what replaces it' -> 'is revised, and what replaces it'
+  RED   exit=1
+        FAILED test/test_argon_metastable_thermo.py::test_the_library_retracts_the_one_family_claim_and_carries_the_reach_figure
+        1 failed, 142 warnings in 12.45s
+  restored input/thermo/libraries/PlasmaExcitedNeutralThermo.py, sha verified
+  GREEN exit=0
+        1 passed, 142 warnings in 12.21s
+  VERDICT: red=YES green=YES
+
+==============================================================================
+CASE: a covalent argon given thermo by a library entry
+  file : input/thermo/libraries/PlasmaExcitedNeutralThermo.py
+  tests: test_a_covalent_neutral_argon_cannot_be_given_a_number_by_construction, test_the_products_those_families_used_to_build_still_have_no_thermo
+==============================================================================
+  perturbed: 'entry(\n    index = 0,\n    label = "Ar(3P2)",' -> 'entry(\n    index = 1,\n    label = "ArH",\n    molecule =\n"""\nmultiplici'
+  RED   exit=1
+        FAILED test/test_argon_metastable_thermo.py::test_a_covalent_neutral_argon_cannot_be_given_a_number_by_construction
+        FAILED test/test_argon_metastable_thermo.py::test_the_products_those_families_used_to_build_still_have_no_thermo
+        2 failed, 275 warnings in 18.68s
+  restored input/thermo/libraries/PlasmaExcitedNeutralThermo.py, sha verified
+  GREEN exit=0
+        2 passed, 275 warnings in 19.42s
+  VERDICT: red=YES green=YES
+
+==============================================================================
+CASE: the containment group left unlabelled, so it matches nothing
+  file : input/kinetics/families/Birad_R_Recombination/groups.py
+  tests: test_the_containment_is_written_where_each_family_already_says_it_belongs, test_no_ordinary_family_reaches_the_metastable_any_more, test_the_only_kinetics_files_that_MENTION_the_metastable_are_the_five_containments
+==============================================================================
+  perturbed: '1 *2 Ar u2 p3 c0' -> '1 Ar u2 p3 c0'
+  RED   exit=1
+                        with open(path, encoding='utf-8', errors='replace') as handle:
+        FAILED test/test_argon_metastable_thermo.py::test_the_containment_is_written_where_each_family_already_says_it_belongs
+        FAILED test/test_argon_metastable_thermo.py::test_no_ordinary_family_reaches_the_metastable_any_more
+        FAILED test/test_argon_metastable_thermo.py::test_the_only_kinetics_files_that_MENTION_the_metastable_are_the_five_containments
+        3 failed, 133 warnings in 6.21s
+  restored input/kinetics/families/Birad_R_Recombination/groups.py, sha verified
+  GREEN exit=0
+        3 passed, 133 warnings in 6.38s
+  VERDICT: red=YES green=YES
+
+==============================================================================
+CASE: the containment widened until it eats the chemistry the family is for
+  file : input/kinetics/families/Birad_R_Recombination/groups.py
+  tests: test_the_containment_does_not_move_the_chemistry_those_families_exist_for
+==============================================================================
+  perturbed: '1 *2 Ar u2 p3 c0' -> '1 *2 R!H u2'
+  RED   exit=1
+        FAILED test/test_argon_metastable_thermo.py::test_the_containment_does_not_move_the_chemistry_those_families_exist_for
+        1 failed, 133 warnings in 6.25s
+  restored input/kinetics/families/Birad_R_Recombination/groups.py, sha verified
+  GREEN exit=0
+        1 passed, 133 warnings in 6.04s
+  VERDICT: red=YES green=YES
+
+==============================================================================
+CASE: a contained family quietly dropped from the default set
+  file : input/kinetics/families/recommended.py
+  tests: test_four_of_the_five_ordinary_families_are_in_the_default_recommended_set
+==============================================================================
+  perturbed: "    'CO_Disproportionation',\n    'Birad_R_Recombination'," -> "    'Birad_R_Recombination',"
+  RED   exit=1
+        FAILED test/test_argon_metastable_thermo.py::test_four_of_the_five_ordinary_families_are_in_the_default_recommended_set
+        1 failed in 0.79s
+  restored input/kinetics/families/recommended.py, sha verified
+  GREEN exit=0
+        1 passed in 0.64s
+  VERDICT: red=YES green=YES
+
+==============================================================================
+CASE: the one plasma family that reaches it, contained too
+  file : input/kinetics/families/Birad_R_Recombination/groups.py
+  tests: test_exactly_one_PLASMA_family_reaches_it_which_is_not_the_same_as_one_family
+==============================================================================
+  perturbed: appended a forbidden group to input/kinetics/families/Plasma_Electron_Impact_Ionization/groups.py
+  RED   exit=1
+        FAILED test/test_argon_metastable_thermo.py::test_exactly_one_PLASMA_family_reaches_it_which_is_not_the_same_as_one_family
+        1 failed in 0.83s
+  restored input/kinetics/families/Plasma_Electron_Impact_Ionization/groups.py, sha verified
+  restored input/kinetics/families/Birad_R_Recombination/groups.py, sha verified
+  GREEN exit=0
+        1 passed in 0.93s
+  VERDICT: red=YES green=YES
+
+==============================================================================
+CONTAMINATION SWEEP
+==============================================================================
+  clean: none of 11 markers survives in any of the 4 files this script touches
+
+==============================================================================
+SUMMARY
+==============================================================================
+  ok   red=yes green=yes  a wrong shipped H298 (a6 coefficient moved)
+  ok   red=yes green=yes  a wrong 1s3 level in the shipped alternatives table
+  ok   red=yes green=yes  a wrong R*ln term in the shipped lumping prose
+  ok   red=yes green=yes  a wrong crossing temperature in the shipped prose
+  ok   red=yes green=yes  a wrong shipped Cp (a1 coefficient moved)
+  ok   red=yes green=yes  a disclosed anchor number that drifts from the measurement
+  ok   red=yes green=yes  the superseded anchor pair put back beside the live one
+  ok   red=yes green=yes  the retraction removed from the entry
+  ok   red=yes green=yes  a covalent argon given thermo by a library entry
+  ok   red=yes green=yes  the containment group left unlabelled, so it matches nothing
+  ok   red=yes green=yes  the containment widened until it eats the chemistry the family is for
+  ok   red=yes green=yes  a contained family quietly dropped from the default set
+  ok   red=yes green=yes  the one plasma family that reaches it, contained too
+
+  cases: 13, failed to demonstrate: 0, leftover perturbations: 0
+
+  git status --porcelain after the run:
+       M docs/argon-metastable-thermo/logs/red_green.stdout.log
+       M docs/argon-metastable-thermo/red_green.py
+       M input/thermo/libraries/PlasmaExcitedNeutralThermo.py
+      ?? .bash_profile
+      ?? .bashrc
+      ?? .claude/
+      ?? .gitconfig
+      ?? .gitmodules
+      ?? .idea
+      ?? .mcp.json
+      ?? .profile
+      ?? .ripgreprc
+      ?? .vscode
+      ?? .zprofile
+      ?? .zshrc
+      ?? docs/verify-2026-09-21/

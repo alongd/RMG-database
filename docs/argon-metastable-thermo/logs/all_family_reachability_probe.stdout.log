@@ -1,0 +1,108 @@
+
+0. DENOMINATOR
+==============
+  family directories on disk: 141
+  families LOADED by load_families(families='all'): 140
+  on disk but NOT loaded (1): ['__pycache__']
+
+1. UNIMOLECULAR: generate_reactions_from_families([Ar(3P2)])
+============================================================
+  reactions: 1
+    Plasma_Electron_Impact_Ionization              [Ar] => [Ar+]
+
+2. BIMOLECULAR: generate_reactions_from_families([Ar(3P2), X]) for ordinary X
+=============================================================================
+
+  partner H         -> 1 reaction(s)
+      Birad_R_Recombination                    [Ar] + [H] <=> [ArH]
+          products: ['multiplicity 2 | 1 Ar u1 p3 c0 {2,S} | 2 H  u0 p0 c0 {1,S}']
+
+  partner OH        -> 1 reaction(s)
+      Birad_R_Recombination                    [Ar] + [OH] <=> O[Ar]
+          products: ['multiplicity 2 | 1 Ar u1 p3 c0 {2,S} | 2 O  u0 p2 c0 {1,S} {3,S} | 3 H  u0 p0 c0 {2,S}']
+
+  partner CH3       -> 1 reaction(s)
+      Birad_R_Recombination                    [Ar] + [CH3] <=> C[Ar]
+          products: ['multiplicity 2 | 1 Ar u1 p3 c0 {2,S} | 2 C  u0 p0 c0 {1,S} {3,S} {4,S} {5,S} | 3 H  u0 p0 c0 {2,S} | 4 H  u0 p0 c0 {2,S} | 5 H  u0 p0 c0 {2,S}']
+
+  partner O2        -> 1 reaction(s)
+      Birad_R_Recombination                    [Ar] + [O][O] <=> [O]O[Ar]
+          products: ['multiplicity 3 | 1 Ar u1 p3 c0 {2,S} | 2 O  u0 p2 c0 {1,S} {3,S} | 3 O  u1 p2 c0 {2,S}']
+
+  partner N2        -> 1 reaction(s)
+      R_Addition_MultipleBond                  [Ar] + N#N <=> [Ar]N=[N]
+          products: ['multiplicity 3 | 1 Ar u1 p3 c0 {2,S} | 2 N  u0 p1 c0 {1,S} {3,D} | 3 N  u1 p1 c0 {2,D}']
+
+  partner H2        -> 0 reaction(s)
+
+  partner O         -> 0 reaction(s)
+
+  partner N         -> 0 reaction(s)
+
+  partner CH4       -> 0 reaction(s)
+
+  partner H2O       -> 0 reaction(s)
+
+  partner CO        -> 0 reaction(s)
+
+  partner HO2       -> 1 reaction(s)
+      Birad_R_Recombination                    [Ar] + [O]O <=> OO[Ar]
+          products: ['multiplicity 2 | 1 Ar u1 p3 c0 {3,S} | 2 O  u0 p2 c0 {3,S} {4,S} | 3 O  u0 p2 c0 {1,S} {2,S} | 4 H  u0 p0 c0 {2,S}']
+
+  partner C2H4      -> 1 reaction(s)
+      R_Addition_MultipleBond                  [Ar] + C=C <=> [CH2]C[Ar]
+          products: ['multiplicity 3 | 1 Ar u1 p3 c0 {2,S} | 2 C  u0 p0 c0 {1,S} {3,S} {4,S} {5,S} | 3 C  u1 p0 c0 {2,S} {6,S} {7,S} | 4 H  u0 p0 c0 {2,S} | 5 H  u0 p0 c0 {2,S} | 6 H  u0 p0 c0 {3,S} | 7 H  u0 p0 c0 {3,S}']
+
+  partner Ar        -> 0 reaction(s)
+
+  partner Ar(3P2)   -> 0 reaction(s)
+
+3. REACH FIGURE
+===============
+  families loaded                : 140
+  families that MATCHED Ar(3P2)  : 3  ['Birad_R_Recombination', 'Plasma_Electron_Impact_Ionization', 'R_Addition_MultipleBond']
+  reactions generated            : 8
+
+4. DOES THERMO SURVIVE THE PRODUCTS? (crash vs silent number)
+=============================================================
+  thermo libraries loaded: 79
+
+  NUMBER Plasma_Electron_Impact_Ionization        -         multiplicity 2 | 1 Ar u1 p3 c+1
+         H298 = 1520.5841 kJ/mol   S298 = 166.4146 J/(mol*K)   source = Thermo library: PlasmaCationThermo
+
+  CRASH  Birad_R_Recombination                    H         multiplicity 2 | 1 Ar u1 p3 c0 {2,S} | 2 H  u0 p0 c0 {1,S}
+         AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 benzene bonds, 3 lone pairs, and +0 charge.
+
+  CRASH  Birad_R_Recombination                    OH        multiplicity 2 | 1 Ar u1 p3 c0 {2,S} | 2 O  u0 p2 c0 {1,S} {3,S} | 3 H  u0 p0 c0 {2,S}
+         AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 benzene bonds, 3 lone pairs, and +0 charge.
+
+  CRASH  Birad_R_Recombination                    CH3       multiplicity 2 | 1 Ar u1 p3 c0 {2,S} | 2 C  u0 p0 c0 {1,S} {3,S} {4,S} {5,S} | 3 H  u0 p0 c0 {2,S} | 4 H  u0 p0 c0 {2,S} | 5 H  u0 p0 c0 {2,S}
+         AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 benzene bonds, 3 lone pairs, and +0 charge.
+
+  CRASH  Birad_R_Recombination                    O2        multiplicity 3 | 1 Ar u1 p3 c0 {2,S} | 2 O  u0 p2 c0 {1,S} {3,S} | 3 O  u1 p2 c0 {2,S}
+         AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 benzene bonds, 3 lone pairs, and +0 charge.
+
+  CRASH  Birad_R_Recombination                    HO2       multiplicity 2 | 1 Ar u1 p3 c0 {3,S} | 2 O  u0 p2 c0 {3,S} {4,S} | 3 O  u0 p2 c0 {1,S} {2,S} | 4 H  u0 p0 c0 {2,S}
+         AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 benzene bonds, 3 lone pairs, and +0 charge.
+
+  CRASH  R_Addition_MultipleBond                  N2        multiplicity 3 | 1 Ar u1 p3 c0 {2,S} | 2 N  u0 p1 c0 {1,S} {3,D} | 3 N  u1 p1 c0 {2,D}
+         AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 benzene bonds, 3 lone pairs, and +0 charge.
+
+  CRASH  R_Addition_MultipleBond                  C2H4      multiplicity 3 | 1 Ar u1 p3 c0 {2,S} | 2 C  u0 p0 c0 {1,S} {3,S} {4,S} {5,S} | 3 C  u1 p0 c0 {2,S} {6,S} {7,S} | 4 H  u0 p0 c0 {2,S} | 5 H  u0 p0 c0 {2,S} | 6 H  u0 p0 c0 {3,S} | 7 H  u0 p0 c0 {3,S}
+         AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 benzene bonds, 3 lone pairs, and +0 charge.
+
+5. SUMMARY
+==========
+  families loaded                          : 140
+  families matching Ar(3P2)                : 3
+  distinct products examined               : 8
+  products whose thermo CRASHED            : 7
+  products that got a NUMBER               : 1
+      NUMBER: multiplicity 2 | 1 Ar u1 p3 c+1 via Plasma_Electron_Impact_Ionization + -
+      CRASH : multiplicity 2 | 1 Ar u1 p3 c0 {2,S} | 2 H  u0 p0 c0 {1,S} via Birad_R_Recombination + H  (AtomTypeError)
+      CRASH : multiplicity 2 | 1 Ar u1 p3 c0 {2,S} | 2 O  u0 p2 c0 {1,S} {3,S} | 3 H  u0 p0 c0 {2,S} via Birad_R_Recombination + OH  (AtomTypeError)
+      CRASH : multiplicity 2 | 1 Ar u1 p3 c0 {2,S} | 2 C  u0 p0 c0 {1,S} {3,S} {4,S} {5,S} | 3 H  u0 p0 c0 {2,S} | 4 H  u0 p0 c0 {2,S} | 5 H  u0 p0 c0 {2,S} via Birad_R_Recombination + CH3  (AtomTypeError)
+      CRASH : multiplicity 3 | 1 Ar u1 p3 c0 {2,S} | 2 O  u0 p2 c0 {1,S} {3,S} | 3 O  u1 p2 c0 {2,S} via Birad_R_Recombination + O2  (AtomTypeError)
+      CRASH : multiplicity 2 | 1 Ar u1 p3 c0 {3,S} | 2 O  u0 p2 c0 {3,S} {4,S} | 3 O  u0 p2 c0 {1,S} {2,S} | 4 H  u0 p0 c0 {2,S} via Birad_R_Recombination + HO2  (AtomTypeError)
+      CRASH : multiplicity 3 | 1 Ar u1 p3 c0 {2,S} | 2 N  u0 p1 c0 {1,S} {3,D} | 3 N  u1 p1 c0 {2,D} via R_Addition_MultipleBond + N2  (AtomTypeError)
+      CRASH : multiplicity 3 | 1 Ar u1 p3 c0 {2,S} | 2 C  u0 p0 c0 {1,S} {3,S} {4,S} {5,S} | 3 C  u1 p0 c0 {2,S} {6,S} {7,S} | 4 H  u0 p0 c0 {2,S} | 5 H  u0 p0 c0 {2,S} | 6 H  u0 p0 c0 {3,S} | 7 H  u0 p0 c0 {3,S} via R_Addition_MultipleBond + C2H4  (AtomTypeError)

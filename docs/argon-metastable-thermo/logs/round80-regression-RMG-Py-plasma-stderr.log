@@ -1,0 +1,17 @@
+[11:22:01] SMILES Parse Error: syntax error while parsing: 
+[11:22:01] SMILES Parse Error: check for mistakes around position 1:
+[11:22:01] 
+[11:22:01] ^
+[11:22:01] SMILES Parse Error: Failed parsing SMILES '
+' for input: '
+'
+==============================
+*** Open Babel Error  in ParseSimple
+  SMILES string contains a character 'r' which is invalid
+[11:22:01] SMILES Parse Error: syntax error while parsing: ring
+[11:22:01] SMILES Parse Error: check for mistakes around position 1:
+[11:22:01] ring
+[11:22:01] ^
+[11:22:01] SMILES Parse Error: Failed parsing SMILES 'ring' for input: 'ring'
+/home/alon/anaconda3/envs/rmg_env/lib/python3.9/site-packages/coverage/inorout.py:516: CoverageWarning: Module arkane was never imported. (module-not-imported)
+  self.warn(f"Module {pkg} was never imported.", slug="module-not-imported")

@@ -1,0 +1,364 @@
+Global RMG Settings:
+   database.directory   = /home/alon/Code/RMG-database-i221-argon-metastable-thermo/input (from rmgrc)
+   test_data.directory  = /home/alon/Code/RMG-Py-i221-saturation-fix/test/rmgpy/test_data (Default, relative to RMG-Py source code)
+RMG execution initiated at Tue Sep 22 22:26:01 2026
+
+#########################################################
+# RMG-Py - Reaction Mechanism Generator in Python       #
+# Version: 4.0.0                                        #
+# Authors: RMG Developers (rmg_dev@mit.edu)             #
+# P.I.s:   William H. Green (whgreen@mit.edu)           #
+#          Richard H. West (r.west@neu.edu)             #
+# Website: http://reactionmechanismgenerator.github.io/ #
+#########################################################
+
+The current git HEAD for RMG-Py is:
+	5d7d867389ecd1bcfabf049f6c8cbc2dac051dd5
+	Tue Sep 22 22:25:17 2026 +0300
+
+The current git HEAD for RMG-database is:
+	d51154ab14bc3ef82550bac3601d9db0f42b9f75
+	Tue Sep 22 22:24:57 2026 +0300
+
+Reading input file "/home/alon/runs/ar5torr-i221-round90-20260922-222548/input.py"...
+# I-164 -- 5 TORR PURE-ARGON PLASMA, DIAGNOSTIC PROBE
+#
+# The case, as specified:
+#
+#   5 torr argon at room temperature, ARGON ONLY, with a seed electron density;
+#   neutral at t = 0, achieved by converting part of the argon to Ar+; integrated to
+#   quasi-steady state.
+#
+# This deck exists to be RUN, not to be believed: it is the instrument of a diagnostic
+# probe that measures what stops RMG from simulating this configuration today. Nothing
+# here is tuned to make the run pass.
+#
+# Run (from the directory holding this file, which must also hold an rmgrc pinning
+# database.directory at an RMG-database-plasma checkout):
+#
+#   conda activate rmg_env
+#   python /home/alon/Code/RMG-Py-plasma/rmg.py input.py \
+#     > >(tee -a stdout.log) 2> >(tee -a stderr.log >&2)
+#
+# ---------------------------------------------------------------------------------
+# HOW FAITHFULLY THIS EXPRESSES THE CASE
+# ---------------------------------------------------------------------------------
+#
+# 1. CHARGE-NEUTRAL SEEDING IS NOT A DIRECTIVE; THE ARITHMETIC IS DONE BY HAND BELOW.
+#    `electronDensity` inserts an electron mole fraction x_e and scales every heavy
+#    species down by `heavy_scale` so the composition still sums to one
+#    (rmgpy/rmg/input.py:713-732). It creates no compensating cation, so a deck that
+#    uses it alone is net-negative at t = 0. To be neutral the modeller must supply
+#    Ar+ explicitly AND pre-divide by heavy_scale, i.e. reproduce input.py's own
+#    internal derivation outside it. With
+#
+#        kB = R/Na, q = n_e kB Te / P, a = q Tgas / Te
+#        x_e = a / (1 - q + a),  heavy_scale = (1 - q) / (1 - q + a)
+#
+#    the heavy-side Ar+ fraction that lands on x_Ar+ = x_e after scaling is
+#
+#        r = a / (1 - q)
+#
+#    For P = 5 torr (666.6118421052631 Pa), Tgas = 298.15 K, Te = 34813.5 K,
+#    n_e = 1e16 m^-3:
+#
+#        q   = 7.210383435118683e-06
+#        a   = 6.175121206372917e-08
+#        x_e = 6.175165350358923e-08
+#        r   = 6.175165731685617e-08     <- the number typed below
+#
+#    This is exact, not approximate: r * heavy_scale = a/(1-q+a) = x_e identically.
+#    It is nonetheless a finding, not a workaround: the API has no charge-neutral
+#    seeding directive, and getting neutrality right requires re-deriving the
+#    driver's internals inside the deck.
+#
+# 2. "QUASI-STEADY STATE" IS NOT EXPRESSIBLE. `plasmaReactor` accepts only
+#    terminationConversion / terminationTime / terminationRateRatio
+#    (rmgpy/rmg/input.py:518-525). None of them means "integrate until d/dt -> 0".
+#    Substituted: terminationTime = 1e-3 s, orders above the electron kinetics
+#    timescale at this density, and stated here as a substitution.
+#
+# 3. ROOM TEMPERATURE = 298.15 K; ELECTRON TEMPERATURE MUST BE KELVIN. The directive
+#    rejects electronvolts outright, so 3 eV is typed as its kelvin equivalent
+#    34813.5 K (= 3 * 11604.5). 3 eV is a standard low-pressure argon discharge Te.
+#
+# 4. SEED ELECTRON DENSITY = 1e16 m^-3 (1e10 cm^-3), representative of a few-torr
+#    argon glow. Nothing in the case fixed it; it is stated, not derived.
+#
+# ---------------------------------------------------------------------------------
+
+database(
+    thermoLibraries=[
+        # neutral Ar ('1 Ar u0 p4 c0')
+        'primaryThermoLibrary',
+        # Ar+ as a free monatomic cation ('[Arp]', '1 Ar u1 p3 c+1'), NIST-JANAF Ar-002
+        'PlasmaCationThermo',
+        # the electron thermo entry ('1 e u0 p0 c-1', H298 = 0). Without it the electron
+        # misses every library and the reactor stops at the thermo wall.
+        'electrocatThermo',
+        # metastable argon Ar(3P2), from the containment branch
+        'PlasmaExcitedNeutralThermo',
+    ],
+    reactionLibraries=[
+        # what an argon plasma needs: Ar + e- => Ar+ + 2 e-, and Ar+ + e- => Ar + hv.
+        # Both libraries are requested here as a modeller would request them; whether
+        # either actually carries argon is one of the things this probe measures.
+        # ground-state argon electron-impact ionisation, the SOURCE term:
+        # 'Ar + e- => Arp + e- + e-', ElectronCollisionPlasma cross-sections.
+        'PlasmaArgon',
+        'PlasmaRadiativeRecombination',
+    ],
+    seedMechanisms=[],
+    kineticsDepositories=['training'],
+    # An EMPTY list is falsy and KineticsDatabase.load_families reads it as "load the
+    # default set" -- which would drag in Cation_R_Recombination, the quarantined
+    # battery-SEI family. So an explicit list is required. Plasma_Electron_Attachment
+    # is the only plasma-generic neutral family in the database and its root is a
+    # LogicOr over O / OH / O2, so it cannot match argon; it is named to keep the list
+    # truthy and non-default, not because it is expected to fire.
+    kineticsFamilies=[
+        'Plasma_Electron_Attachment',
+    ],
+    kineticsEstimator='rate rules',
+)
+
+# --- electron pseudo-species MUST be declared before plasmaReactor(...) ---
+species(
+    label='e-',
+    reactive=True,
+    structure=adjacencyList("1 e u1 p0 c-1"),
+)
+
+# --- neutral argon ---
+species(
+    label='Ar',
+    reactive=True,
+    structure=adjacencyList("""
+1 Ar u0 p4 c0
+"""),
+)
+
+# --- argon cation: the ionized fraction that makes the seed charge-neutral ---
+species(
+    label='Arp',
+    reactive=True,
+    structure=adjacencyList("""
+multiplicity 2
+1 Ar u1 p3 c+1
+"""),
+)
+
+# --- metastable argon: the species the wall used to refuse ---
+species(
+    label='Ars',
+    reactive=True,
+    structure=adjacencyList("""
+multiplicity 3
+1 Ar u2 p3 c0
+"""),
+)
+
+plasmaReactor(
+    temperature=(298.15, 'K'),
+    pressure=(5, 'torr'),
+    electronTemperature=(10442.0, 'K'),     # 0.900 eV -- the MEASURED
+                                            # ionisation/wall-loss balance point,
+                                            # not a prescribed value
+    electronDensity=(1e16, 'm^-3'),         # 1e10 cm^-3
+    initialMoleFractions={
+        # r = a/(1-q); see note 1 in the header. After the driver's heavy_scale this
+        # lands on x_Ar+ = x_e exactly, so the mixture is charge-neutral at t = 0.
+        'Arp': 6.175165731685617e-08,
+        'Ar': 1.0 - 6.175165731685617e-08 - 1.0e-09,
+        'Ars': 1.0e-09,        # seed metastable population
+    },
+    terminationTime=(1e-3, 's'),            # substitute for "quasi-steady state"
+)
+
+simulator(
+    atol=1e-16,
+    rtol=1e-8,
+)
+
+model(
+    toleranceKeepInEdge=0.0,
+    toleranceMoveToCore=0.5,
+    toleranceInterruptSimulation=1e8,
+    maximumEdgeSpecies=200,
+)
+
+options(
+    units='si',
+    generateOutputHTML=False,
+    generatePlots=False,
+    saveEdgeSpecies=True,
+    saveSimulationProfiles=True,
+    # The RMS writer has no branch for the plasma rate laws (VoronovEIArrhenius /
+    # BadnellRRArrhenius) and would kill the run on the first save; off, as on every
+    # other plasma deck in this repo.
+    generateRMSYAML=False,
+    generateCanteraYAML2=True,
+)
+
+Using RMG database at: /home/alon/Code/RMG-database-i221-argon-metastable-thermo/input (from rmgrc)
+Warning: Edge species saving was turned on. This will slow down model generation for large simulations.
+
+Loading transport library from NIST_Fluorine.py in /home/alon/Code/RMG-database-i221-argon-metastable-thermo/input/transport/libraries...
+Loading transport library from PrimaryTransportLibrary.py in /home/alon/Code/RMG-database-i221-argon-metastable-thermo/input/transport/libraries...
+Loading transport library from GRI-Mech.py in /home/alon/Code/RMG-database-i221-argon-metastable-thermo/input/transport/libraries...
+Loading transport library from OneDMinN2.py in /home/alon/Code/RMG-database-i221-argon-metastable-thermo/input/transport/libraries...
+Loading transport library from NOx2018.py in /home/alon/Code/RMG-database-i221-argon-metastable-thermo/input/transport/libraries...
+Loading transport group database from /home/alon/Code/RMG-database-i221-argon-metastable-thermo/input/transport/groups...
+Loading kinetics library PlasmaArgon from /home/alon/Code/RMG-database-i221-argon-metastable-thermo/input/kinetics/libraries/PlasmaArgon/reactions.py...
+Loading kinetics library PlasmaRadiativeRecombination from /home/alon/Code/RMG-database-i221-argon-metastable-thermo/input/kinetics/libraries/PlasmaRadiativeRecombination/reactions.py...
+Loading frequencies group database from /home/alon/Code/RMG-database-i221-argon-metastable-thermo/input/statmech/groups...
+Loading solvation thermodynamics group database from /home/alon/Code/RMG-database-i221-argon-metastable-thermo/input/solvation/groups...
+Loading thermodynamics library from primaryThermoLibrary.py in /home/alon/Code/RMG-database-i221-argon-metastable-thermo/input/thermo/libraries...
+Loading thermodynamics library from PlasmaCationThermo.py in /home/alon/Code/RMG-database-i221-argon-metastable-thermo/input/thermo/libraries...
+Loading thermodynamics library from electrocatThermo.py in /home/alon/Code/RMG-database-i221-argon-metastable-thermo/input/thermo/libraries...
+Loading thermodynamics library from PlasmaExcitedNeutralThermo.py in /home/alon/Code/RMG-database-i221-argon-metastable-thermo/input/thermo/libraries...
+Loading thermodynamics group database from /home/alon/Code/RMG-database-i221-argon-metastable-thermo/input/thermo/groups...
+Loading thermodynamics SIDTs from /home/alon/Code/RMG-database-i221-argon-metastable-thermo/input/thermo/sidt...
+Adding rate rules from training set in kinetics families...
+Filling in rate rules in kinetics families by averaging...
+Adding reaction library PlasmaArgon to model edge...
+
+Summary of Model Enlargement
+---------------------------------
+Added 0 new core species
+Created 0 new edge species
+Added 0 new core reactions
+Created 1 new edge reactions
+    Ar(2) + e-(1) => Arp(3) + e-(1) + e-(1)
+
+After model enlargement:
+    The model core has 0 species and 0 reactions
+    The model edge has 4 species and 1 reactions
+
+Adding reaction library PlasmaRadiativeRecombination to model edge...
+
+Summary of Model Enlargement
+---------------------------------
+Added 0 new core species
+Created 2 new edge species
+    [Lip](5)
+    [Li](6)
+Added 0 new core reactions
+Created 2 new edge reactions
+    [Lip](5) => [Li](6)
+    Arp(3) => Ar(2)
+
+After model enlargement:
+    The model core has 0 species and 0 reactions
+    The model edge has 6 species and 3 reactions
+
+Plasma job: not adding the default bath gases (Ar, He, Ne, N2). Declare them in the input file if this model needs them.
+Adding species e-(1) to model core
+
+Summary of Model Enlargement
+---------------------------------
+Added 1 new core species
+    e-(1)
+Created 0 new edge species
+Added 0 new core reactions
+Created 0 new edge reactions
+
+After model enlargement:
+    The model core has 1 species and 0 reactions
+    The model edge has 5 species and 3 reactions
+
+
+Adding species Ar(2) to model core
+
+Summary of Model Enlargement
+---------------------------------
+Added 1 new core species
+    Ar(2)
+Created 0 new edge species
+Added 0 new core reactions
+Created 0 new edge reactions
+
+After model enlargement:
+    The model core has 2 species and 0 reactions
+    The model edge has 4 species and 3 reactions
+
+
+Adding species Arp(3) to model core
+
+Summary of Model Enlargement
+---------------------------------
+Added 1 new core species
+    Arp(3)
+Created 0 new edge species
+Moved 2 reactions from edge to core
+    Ar(2) + e-(1) => Arp(3) + e-(1) + e-(1)
+    Arp(3) => Ar(2)
+Added 0 new core reactions
+Created 0 new edge reactions
+
+After model enlargement:
+    The model core has 3 species and 2 reactions
+    The model edge has 3 species and 1 reactions
+
+
+Adding species Ars(4) to model core
+
+Summary of Model Enlargement
+---------------------------------
+Added 1 new core species
+    Ars(4)
+Created 0 new edge species
+Added 0 new core reactions
+Created 0 new edge reactions
+
+After model enlargement:
+    The model core has 4 species and 2 reactions
+    The model edge has 2 species and 1 reactions
+
+
+Initialization complete. Starting model generation.
+
+Generating initial reactions...
+For reaction generation 1 process is used.
+
+Summary of Secondary Model Edge Enlargement
+---------------------------------
+Added 0 new core species
+Created 0 new edge species
+Added 0 new core reactions
+Created 0 new edge reactions
+
+After model enlargement:
+    The model core has 4 species and 2 reactions
+    The model edge has 2 species and 1 reactions
+
+
+Completed initial enlarge edge step.
+
+Saving current model core to Chemkin file...
+Chemkin file contains 2 reactions.
+Saving annotated version of Chemkin file...
+Chemkin file contains 2 reactions.
+Error: Could not update atomtypes for this molecule:
+multiplicity 3
+1 Ar u0 p3 c0 {2,S} {3,S}
+2 H  u0 p0 c0 {1,S}
+3 H  u0 p0 c0 {1,S}
+
+Warning: Estimating transport properties of Ars from the fallback Lennard-Jones parameters, because group additivity is not available for it: Cannot estimate transport data by group additivity: replacing the species' 2 radical electron(s) with bonds to hydrogen gives a structure that no RMG atom type describes, so the saturated form the estimate is built on does not exist. This is expected for electronically excited species, such as a metastable noble gas, whose unpaired electrons are not unfilled valences. Supply transport data for this species directly in a library entry, or keep it out of the model.
+The species was:
+multiplicity 3
+1 Ar u2 p3 c0
+
+its saturated form was:
+1 Ar u0 p3 c0 {2,S} {3,S}
+2 H  u0 p0 c0 {1,S}
+3 H  u0 p0 c0 {1,S}
+
+and the underlying atom type failure was: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 benzene bonds, 3 lone pairs, and +0 charge.
+Both blocks above are valid adjacency lists. The saturated one reads back only with Molecule().from_adjacency_list(text, raise_atomtype_exception=False) -- insisting on an atom type reproduces exactly the AtomTypeError quoted above, which is the whole content of this failure and not a defect in the block.
+Saving current model core and edge to Chemkin file...
+Chemkin file contains 3 reactions.
+Saving annotated version of Chemkin file...
+Chemkin file contains 3 reactions.
+Saving current model core to Cantera file: /home/alon/runs/ar5torr-i221-round90-20260922-222548/cantera2/chem_annotated0004.yaml

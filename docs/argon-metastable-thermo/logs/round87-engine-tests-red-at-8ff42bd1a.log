@@ -1,0 +1,799 @@
+============================= test session starts ==============================
+collecting ... collected 59 items
+
+test/rmgpy/data/kinetics/quarantineTest.py::TestTheManifest::test_a_manifest_loads_its_fields PASSED
+test/rmgpy/data/kinetics/quarantineTest.py::TestTheManifest::test_a_family_without_a_manifest_is_not_quarantined PASSED
+test/rmgpy/data/kinetics/quarantineTest.py::TestTheManifest::test_an_unknown_kinetics_class_raises_rather_than_quarantining_nothing PASSED
+test/rmgpy/data/kinetics/quarantineTest.py::TestTheManifest::test_a_declared_engine_requirement_is_honoured PASSED
+test/rmgpy/data/kinetics/quarantineTest.py::TestTheManifest::test_a_declared_engine_symbol_is_honoured PASSED
+test/rmgpy/data/kinetics/quarantineTest.py::TestTheManifest::test_a_satisfied_engine_requirement_loads PASSED
+test/rmgpy/data/kinetics/quarantineTest.py::TestTheManifest::test_the_commit_field_is_not_declarable FAILED
+test/rmgpy/data/kinetics/quarantineTest.py::TestTheManifest::test_the_recorded_commit_is_kept_as_provenance_and_reaches_a_reader FAILED
+test/rmgpy/data/kinetics/quarantineTest.py::TestTheManifest::test_a_symbol_that_is_not_callable_is_refused FAILED
+test/rmgpy/data/kinetics/quarantineTest.py::TestTheManifest::test_a_symbol_without_a_module_is_refused_not_ignored FAILED
+test/rmgpy/data/kinetics/quarantineTest.py::TestTheManifest::test_a_gate_that_exists_but_is_not_wired_in_is_refused FAILED
+test/rmgpy/data/kinetics/quarantineTest.py::TestTheManifest::test_the_real_call_site_satisfies_the_wiring_check PASSED
+test/rmgpy/data/kinetics/quarantineTest.py::TestTheManifest::test_a_manifest_missing_a_required_field_raises[state] PASSED
+test/rmgpy/data/kinetics/quarantineTest.py::TestTheManifest::test_a_manifest_missing_a_required_field_raises[appliesToKineticsClass] PASSED
+test/rmgpy/data/kinetics/quarantineTest.py::TestTheManifest::test_a_manifest_missing_a_required_field_raises[reason] PASSED
+test/rmgpy/data/kinetics/quarantineTest.py::TestTheManifest::test_the_criterion_is_selective PASSED
+test/rmgpy/data/kinetics/quarantineTest.py::TestTheManifest::test_the_criterion_is_evaluated_against_the_data_not_a_stored_list PASSED
+test/rmgpy/data/kinetics/quarantineTest.py::TestTheManifest::test_no_hard_coded_entry_list_exists_in_the_code PASSED
+test/rmgpy/data/kinetics/quarantineTest.py::TestTheRefusalNamesFiveThings::test_it_names_the_family PASSED
+test/rmgpy/data/kinetics/quarantineTest.py::TestTheRefusalNamesFiveThings::test_it_names_the_provenance PASSED
+test/rmgpy/data/kinetics/quarantineTest.py::TestTheRefusalNamesFiveThings::test_it_names_the_generated_reaction PASSED
+test/rmgpy/data/kinetics/quarantineTest.py::TestTheRefusalNamesFiveThings::test_it_names_the_kinetics_class PASSED
+test/rmgpy/data/kinetics/quarantineTest.py::TestTheRefusalNamesFiveThings::test_it_names_the_reason PASSED
+test/rmgpy/data/kinetics/quarantineTest.py::TestTheRefusalNamesFiveThings::test_it_names_the_campaign_state_and_the_manifest PASSED
+test/rmgpy/data/kinetics/quarantineTest.py::TestTheRefusalNamesFiveThings::test_provenance_is_never_blank PASSED
+test/rmgpy/data/kinetics/quarantineTest.py::TestTheGateFires::test_at_kinetics_estimation_the_primary_site PASSED
+test/rmgpy/data/kinetics/quarantineTest.py::TestTheGateFires::test_at_core_admission_the_backstop PASSED
+test/rmgpy/data/kinetics/quarantineTest.py::TestTheGateFires::test_at_edge_admission_the_backstop PASSED
+test/rmgpy/data/kinetics/quarantineTest.py::TestTheGateFires::test_ordinary_chemistry_is_untouched PASSED
+test/rmgpy/data/kinetics/quarantineTest.py::TestTheGateFires::test_a_quarantined_family_still_admits_its_unquarantined_kinetics PASSED
+test/rmgpy/data/kinetics/quarantineTest.py::TestTheGateFires::test_an_unloaded_database_does_not_crash_the_gate PASSED
+test/rmgpy/data/kinetics/quarantineTest.py::TestTheSevenForbiddenSilentBehaviours::test_1_the_reaction_is_not_removed_after_generation PASSED
+test/rmgpy/data/kinetics/quarantineTest.py::TestTheSevenForbiddenSilentBehaviours::test_2_no_average_rule_is_substituted PASSED
+test/rmgpy/data/kinetics/quarantineTest.py::TestTheSevenForbiddenSilentBehaviours::test_3_it_is_never_evaluated_at_potential_zero PASSED
+test/rmgpy/data/kinetics/quarantineTest.py::TestTheSevenForbiddenSilentBehaviours::test_4_it_is_not_marked_irreversible PASSED
+test/rmgpy/data/kinetics/quarantineTest.py::TestTheSevenForbiddenSilentBehaviours::test_5_no_reverse_rate_is_derived PASSED
+test/rmgpy/data/kinetics/quarantineTest.py::TestTheSevenForbiddenSilentBehaviours::test_6_seeding_a_product_or_cation_does_not_bypass_it PASSED
+test/rmgpy/data/kinetics/quarantineTest.py::TestTheSevenForbiddenSilentBehaviours::test_7_no_generic_collision_rate_replaces_it PASSED
+test/rmgpy/data/kinetics/quarantineTest.py::TestTheRealQuarantinedFamily::test_the_family_is_quarantined_with_the_ruling_s_words SKIPPED
+test/rmgpy/data/kinetics/quarantineTest.py::TestTheRealQuarantinedFamily::test_the_affected_set_is_enumerated_from_the_database SKIPPED
+test/rmgpy/data/kinetics/quarantineTest.py::TestTheRealQuarantinedFamily::test_nothing_was_deleted SKIPPED
+test/rmgpy/data/kinetics/quarantineTest.py::TestTheRealQuarantinedFamily::test_the_rates_themselves_were_not_touched SKIPPED
+test/rmgpy/data/kinetics/quarantineTest.py::TestTheDoorLeftOpen::test_the_database_still_loads SKIPPED
+test/rmgpy/data/kinetics/quarantineTest.py::TestTheDoorLeftOpen::test_the_family_is_still_registered_and_still_generates_reactions SKIPPED
+test/rmgpy/data/kinetics/quarantineTest.py::TestTheDoorLeftOpen::test_the_rate_law_still_evaluates SKIPPED
+test/rmgpy/data/saturatedStructureTest.py::TestSaturateForEstimation::test_ordinary_radical_saturates PASSED
+test/rmgpy/data/saturatedStructureTest.py::TestSaturateForEstimation::test_input_is_not_mutated PASSED
+test/rmgpy/data/saturatedStructureTest.py::TestSaturateForEstimation::test_unownable_saturated_form_raises_named_error PASSED
+test/rmgpy/data/saturatedStructureTest.py::TestSaturateForEstimation::test_named_error_is_not_an_atom_type_error PASSED
+test/rmgpy/data/saturatedStructureTest.py::TestSaturateForEstimation::test_both_adjacency_lists_in_the_message_read_back FAILED
+test/rmgpy/data/saturatedStructureTest.py::TestSaturateForEstimation::test_the_message_says_how_to_read_the_saturated_block_back FAILED
+test/rmgpy/data/saturatedStructureTest.py::TestTransportOfUnsaturableSpecies::test_estimation_falls_back_instead_of_crashing ERROR
+test/rmgpy/data/saturatedStructureTest.py::TestTransportOfUnsaturableSpecies::test_the_fallback_says_it_is_a_fallback ERROR
+test/rmgpy/data/saturatedStructureTest.py::TestTransportOfUnsaturableSpecies::test_group_estimate_still_raises_for_whoever_asks_directly ERROR
+test/rmgpy/data/saturatedStructureTest.py::TestTransportOfUnsaturableSpecies::test_ground_state_argon_is_unaffected ERROR
+test/rmgpy/data/saturatedStructureTest.py::TestTransportOfUnsaturableSpecies::test_ordinary_radical_is_unaffected ERROR
+test/rmgpy/data/saturatedStructureTest.py::TestSoluteDataOfUnsaturableSpecies::test_estimation_names_the_cause ERROR
+test/rmgpy/data/saturatedStructureTest.py::TestSoluteDataOfUnsaturableSpecies::test_ground_state_argon_is_unaffected ERROR
+test/rmgpy/data/saturatedStructureTest.py::TestSoluteDataOfUnsaturableSpecies::test_ordinary_radical_is_unaffected ERROR
+
+==================================== ERRORS ====================================
+_ ERROR at setup of TestTransportOfUnsaturableSpecies.test_estimation_falls_back_instead_of_crashing _
+
+cls = <class 'saturatedStructureTest.TestTransportOfUnsaturableSpecies'>
+
+    @classmethod
+    def setup_class(cls):
+        cls.database = TransportDatabase()
+>       cls.database.load(os.path.join(settings["database.directory"], "transport"), libraries=None)
+
+test/rmgpy/data/saturatedStructureTest.py:164: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+rmgpy/data/transport.py:268: in load
+    self.load_groups(os.path.join(path, 'groups'))
+rmgpy/data/transport.py:296: in load_groups
+    self.groups = {'ring': TransportGroups(label='ring').load(os.path.join(path, 'ring.py'),
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <rmgpy.data.transport.TransportGroups object at 0x7e55ee152880>
+path = '/tmp/claude-1000/RMG-database/input/transport/groups/ring.py'
+local_context = {'ArrheniusChargeTransfer': <class 'rmgpy.kinetics.arrhenius.ArrheniusChargeTransfer'>, 'ArrheniusChargeTransferBM': <...hargeTransferBM'>, 'Article': <class 'rmgpy.data.reference.Article'>, 'Book': <class 'rmgpy.data.reference.Book'>, ...}
+global_context = {'False': False, 'True': True, '__builtins__': None}
+
+    def load(self, path, local_context=None, global_context=None):
+        """
+        Load an RMG-style database from the file at location `path` on disk.
+        The parameters `local_context` and `global_context` are used to
+        provide specialized mapping of identifiers in the input file to
+        corresponding functions to evaluate. This method will automatically add
+        a few identifiers required by all data entries, so you don't need to
+        provide these.
+        """
+    
+        # Clear any previously-loaded data
+        self.entries = OrderedDict()
+        self.top = []
+    
+        # Set up global and local context
+        if global_context is None: global_context = {}
+        global_context['__builtins__'] = None
+        global_context['True'] = True
+        global_context['False'] = False
+        if local_context is None: local_context = {}
+        local_context['__builtins__'] = None
+        local_context['entry'] = self.load_entry
+        local_context['tree'] = self._load_tree
+        local_context['name'] = self.name
+        local_context['solvent'] = self.solvent
+        local_context['shortDesc'] = self.short_desc
+        local_context['longDesc'] = self.long_desc
+        local_context['RateUncertainty'] = RateUncertainty
+        local_context['ArrheniusChargeTransfer'] = ArrheniusChargeTransfer
+        local_context['ArrheniusChargeTransferBM'] = ArrheniusChargeTransferBM
+        local_context['metal'] = self.metal
+        local_context['site'] = self.site
+        local_context['facet'] = self.facet
+        # add in anything from the Class level dictionary.
+        for key, value in Database.local_context.items():
+            local_context[key] = value
+    
+        # Process the file
+>       with open(path, 'r') as f:
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tmp/claude-1000/RMG-database/input/transport/groups/ring.py'
+
+rmgpy/data/base.py:242: FileNotFoundError
+_ ERROR at setup of TestTransportOfUnsaturableSpecies.test_the_fallback_says_it_is_a_fallback _
+
+cls = <class 'saturatedStructureTest.TestTransportOfUnsaturableSpecies'>
+
+    @classmethod
+    def setup_class(cls):
+        cls.database = TransportDatabase()
+>       cls.database.load(os.path.join(settings["database.directory"], "transport"), libraries=None)
+
+test/rmgpy/data/saturatedStructureTest.py:164: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+rmgpy/data/transport.py:268: in load
+    self.load_groups(os.path.join(path, 'groups'))
+rmgpy/data/transport.py:296: in load_groups
+    self.groups = {'ring': TransportGroups(label='ring').load(os.path.join(path, 'ring.py'),
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <rmgpy.data.transport.TransportGroups object at 0x7e55ee152880>
+path = '/tmp/claude-1000/RMG-database/input/transport/groups/ring.py'
+local_context = {'ArrheniusChargeTransfer': <class 'rmgpy.kinetics.arrhenius.ArrheniusChargeTransfer'>, 'ArrheniusChargeTransferBM': <...hargeTransferBM'>, 'Article': <class 'rmgpy.data.reference.Article'>, 'Book': <class 'rmgpy.data.reference.Book'>, ...}
+global_context = {'False': False, 'True': True, '__builtins__': None}
+
+    def load(self, path, local_context=None, global_context=None):
+        """
+        Load an RMG-style database from the file at location `path` on disk.
+        The parameters `local_context` and `global_context` are used to
+        provide specialized mapping of identifiers in the input file to
+        corresponding functions to evaluate. This method will automatically add
+        a few identifiers required by all data entries, so you don't need to
+        provide these.
+        """
+    
+        # Clear any previously-loaded data
+        self.entries = OrderedDict()
+        self.top = []
+    
+        # Set up global and local context
+        if global_context is None: global_context = {}
+        global_context['__builtins__'] = None
+        global_context['True'] = True
+        global_context['False'] = False
+        if local_context is None: local_context = {}
+        local_context['__builtins__'] = None
+        local_context['entry'] = self.load_entry
+        local_context['tree'] = self._load_tree
+        local_context['name'] = self.name
+        local_context['solvent'] = self.solvent
+        local_context['shortDesc'] = self.short_desc
+        local_context['longDesc'] = self.long_desc
+        local_context['RateUncertainty'] = RateUncertainty
+        local_context['ArrheniusChargeTransfer'] = ArrheniusChargeTransfer
+        local_context['ArrheniusChargeTransferBM'] = ArrheniusChargeTransferBM
+        local_context['metal'] = self.metal
+        local_context['site'] = self.site
+        local_context['facet'] = self.facet
+        # add in anything from the Class level dictionary.
+        for key, value in Database.local_context.items():
+            local_context[key] = value
+    
+        # Process the file
+>       with open(path, 'r') as f:
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tmp/claude-1000/RMG-database/input/transport/groups/ring.py'
+
+rmgpy/data/base.py:242: FileNotFoundError
+_ ERROR at setup of TestTransportOfUnsaturableSpecies.test_group_estimate_still_raises_for_whoever_asks_directly _
+
+cls = <class 'saturatedStructureTest.TestTransportOfUnsaturableSpecies'>
+
+    @classmethod
+    def setup_class(cls):
+        cls.database = TransportDatabase()
+>       cls.database.load(os.path.join(settings["database.directory"], "transport"), libraries=None)
+
+test/rmgpy/data/saturatedStructureTest.py:164: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+rmgpy/data/transport.py:268: in load
+    self.load_groups(os.path.join(path, 'groups'))
+rmgpy/data/transport.py:296: in load_groups
+    self.groups = {'ring': TransportGroups(label='ring').load(os.path.join(path, 'ring.py'),
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <rmgpy.data.transport.TransportGroups object at 0x7e55ee152880>
+path = '/tmp/claude-1000/RMG-database/input/transport/groups/ring.py'
+local_context = {'ArrheniusChargeTransfer': <class 'rmgpy.kinetics.arrhenius.ArrheniusChargeTransfer'>, 'ArrheniusChargeTransferBM': <...hargeTransferBM'>, 'Article': <class 'rmgpy.data.reference.Article'>, 'Book': <class 'rmgpy.data.reference.Book'>, ...}
+global_context = {'False': False, 'True': True, '__builtins__': None}
+
+    def load(self, path, local_context=None, global_context=None):
+        """
+        Load an RMG-style database from the file at location `path` on disk.
+        The parameters `local_context` and `global_context` are used to
+        provide specialized mapping of identifiers in the input file to
+        corresponding functions to evaluate. This method will automatically add
+        a few identifiers required by all data entries, so you don't need to
+        provide these.
+        """
+    
+        # Clear any previously-loaded data
+        self.entries = OrderedDict()
+        self.top = []
+    
+        # Set up global and local context
+        if global_context is None: global_context = {}
+        global_context['__builtins__'] = None
+        global_context['True'] = True
+        global_context['False'] = False
+        if local_context is None: local_context = {}
+        local_context['__builtins__'] = None
+        local_context['entry'] = self.load_entry
+        local_context['tree'] = self._load_tree
+        local_context['name'] = self.name
+        local_context['solvent'] = self.solvent
+        local_context['shortDesc'] = self.short_desc
+        local_context['longDesc'] = self.long_desc
+        local_context['RateUncertainty'] = RateUncertainty
+        local_context['ArrheniusChargeTransfer'] = ArrheniusChargeTransfer
+        local_context['ArrheniusChargeTransferBM'] = ArrheniusChargeTransferBM
+        local_context['metal'] = self.metal
+        local_context['site'] = self.site
+        local_context['facet'] = self.facet
+        # add in anything from the Class level dictionary.
+        for key, value in Database.local_context.items():
+            local_context[key] = value
+    
+        # Process the file
+>       with open(path, 'r') as f:
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tmp/claude-1000/RMG-database/input/transport/groups/ring.py'
+
+rmgpy/data/base.py:242: FileNotFoundError
+_ ERROR at setup of TestTransportOfUnsaturableSpecies.test_ground_state_argon_is_unaffected _
+
+cls = <class 'saturatedStructureTest.TestTransportOfUnsaturableSpecies'>
+
+    @classmethod
+    def setup_class(cls):
+        cls.database = TransportDatabase()
+>       cls.database.load(os.path.join(settings["database.directory"], "transport"), libraries=None)
+
+test/rmgpy/data/saturatedStructureTest.py:164: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+rmgpy/data/transport.py:268: in load
+    self.load_groups(os.path.join(path, 'groups'))
+rmgpy/data/transport.py:296: in load_groups
+    self.groups = {'ring': TransportGroups(label='ring').load(os.path.join(path, 'ring.py'),
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <rmgpy.data.transport.TransportGroups object at 0x7e55ee152880>
+path = '/tmp/claude-1000/RMG-database/input/transport/groups/ring.py'
+local_context = {'ArrheniusChargeTransfer': <class 'rmgpy.kinetics.arrhenius.ArrheniusChargeTransfer'>, 'ArrheniusChargeTransferBM': <...hargeTransferBM'>, 'Article': <class 'rmgpy.data.reference.Article'>, 'Book': <class 'rmgpy.data.reference.Book'>, ...}
+global_context = {'False': False, 'True': True, '__builtins__': None}
+
+    def load(self, path, local_context=None, global_context=None):
+        """
+        Load an RMG-style database from the file at location `path` on disk.
+        The parameters `local_context` and `global_context` are used to
+        provide specialized mapping of identifiers in the input file to
+        corresponding functions to evaluate. This method will automatically add
+        a few identifiers required by all data entries, so you don't need to
+        provide these.
+        """
+    
+        # Clear any previously-loaded data
+        self.entries = OrderedDict()
+        self.top = []
+    
+        # Set up global and local context
+        if global_context is None: global_context = {}
+        global_context['__builtins__'] = None
+        global_context['True'] = True
+        global_context['False'] = False
+        if local_context is None: local_context = {}
+        local_context['__builtins__'] = None
+        local_context['entry'] = self.load_entry
+        local_context['tree'] = self._load_tree
+        local_context['name'] = self.name
+        local_context['solvent'] = self.solvent
+        local_context['shortDesc'] = self.short_desc
+        local_context['longDesc'] = self.long_desc
+        local_context['RateUncertainty'] = RateUncertainty
+        local_context['ArrheniusChargeTransfer'] = ArrheniusChargeTransfer
+        local_context['ArrheniusChargeTransferBM'] = ArrheniusChargeTransferBM
+        local_context['metal'] = self.metal
+        local_context['site'] = self.site
+        local_context['facet'] = self.facet
+        # add in anything from the Class level dictionary.
+        for key, value in Database.local_context.items():
+            local_context[key] = value
+    
+        # Process the file
+>       with open(path, 'r') as f:
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tmp/claude-1000/RMG-database/input/transport/groups/ring.py'
+
+rmgpy/data/base.py:242: FileNotFoundError
+_ ERROR at setup of TestTransportOfUnsaturableSpecies.test_ordinary_radical_is_unaffected _
+
+cls = <class 'saturatedStructureTest.TestTransportOfUnsaturableSpecies'>
+
+    @classmethod
+    def setup_class(cls):
+        cls.database = TransportDatabase()
+>       cls.database.load(os.path.join(settings["database.directory"], "transport"), libraries=None)
+
+test/rmgpy/data/saturatedStructureTest.py:164: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+rmgpy/data/transport.py:268: in load
+    self.load_groups(os.path.join(path, 'groups'))
+rmgpy/data/transport.py:296: in load_groups
+    self.groups = {'ring': TransportGroups(label='ring').load(os.path.join(path, 'ring.py'),
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <rmgpy.data.transport.TransportGroups object at 0x7e55ee152880>
+path = '/tmp/claude-1000/RMG-database/input/transport/groups/ring.py'
+local_context = {'ArrheniusChargeTransfer': <class 'rmgpy.kinetics.arrhenius.ArrheniusChargeTransfer'>, 'ArrheniusChargeTransferBM': <...hargeTransferBM'>, 'Article': <class 'rmgpy.data.reference.Article'>, 'Book': <class 'rmgpy.data.reference.Book'>, ...}
+global_context = {'False': False, 'True': True, '__builtins__': None}
+
+    def load(self, path, local_context=None, global_context=None):
+        """
+        Load an RMG-style database from the file at location `path` on disk.
+        The parameters `local_context` and `global_context` are used to
+        provide specialized mapping of identifiers in the input file to
+        corresponding functions to evaluate. This method will automatically add
+        a few identifiers required by all data entries, so you don't need to
+        provide these.
+        """
+    
+        # Clear any previously-loaded data
+        self.entries = OrderedDict()
+        self.top = []
+    
+        # Set up global and local context
+        if global_context is None: global_context = {}
+        global_context['__builtins__'] = None
+        global_context['True'] = True
+        global_context['False'] = False
+        if local_context is None: local_context = {}
+        local_context['__builtins__'] = None
+        local_context['entry'] = self.load_entry
+        local_context['tree'] = self._load_tree
+        local_context['name'] = self.name
+        local_context['solvent'] = self.solvent
+        local_context['shortDesc'] = self.short_desc
+        local_context['longDesc'] = self.long_desc
+        local_context['RateUncertainty'] = RateUncertainty
+        local_context['ArrheniusChargeTransfer'] = ArrheniusChargeTransfer
+        local_context['ArrheniusChargeTransferBM'] = ArrheniusChargeTransferBM
+        local_context['metal'] = self.metal
+        local_context['site'] = self.site
+        local_context['facet'] = self.facet
+        # add in anything from the Class level dictionary.
+        for key, value in Database.local_context.items():
+            local_context[key] = value
+    
+        # Process the file
+>       with open(path, 'r') as f:
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tmp/claude-1000/RMG-database/input/transport/groups/ring.py'
+
+rmgpy/data/base.py:242: FileNotFoundError
+_ ERROR at setup of TestSoluteDataOfUnsaturableSpecies.test_estimation_names_the_cause _
+
+cls = <class 'saturatedStructureTest.TestSoluteDataOfUnsaturableSpecies'>
+
+    @classmethod
+    def setup_class(cls):
+        cls.database = SolvationDatabase()
+>       cls.database.load(os.path.join(settings["database.directory"], "solvation"))
+
+test/rmgpy/data/saturatedStructureTest.py:216: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+rmgpy/data/solvation.py:1162: in load
+    self.libraries['solvent'].load(os.path.join(path, 'libraries', 'solvent.py'))
+rmgpy/data/solvation.py:954: in load
+    Database.load(self, path, local_context={'SolventData': SolventData, 'DataCountSolvent': DataCountSolvent}, global_context={})
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <rmgpy.data.solvation.SolventLibrary object at 0x7e55e26d1940>
+path = '/tmp/claude-1000/RMG-database/input/solvation/libraries/solvent.py'
+local_context = {'ArrheniusChargeTransfer': <class 'rmgpy.kinetics.arrhenius.ArrheniusChargeTransfer'>, 'ArrheniusChargeTransferBM': <...hargeTransferBM'>, 'Article': <class 'rmgpy.data.reference.Article'>, 'Book': <class 'rmgpy.data.reference.Book'>, ...}
+global_context = {'False': False, 'True': True, '__builtins__': None}
+
+    def load(self, path, local_context=None, global_context=None):
+        """
+        Load an RMG-style database from the file at location `path` on disk.
+        The parameters `local_context` and `global_context` are used to
+        provide specialized mapping of identifiers in the input file to
+        corresponding functions to evaluate. This method will automatically add
+        a few identifiers required by all data entries, so you don't need to
+        provide these.
+        """
+    
+        # Clear any previously-loaded data
+        self.entries = OrderedDict()
+        self.top = []
+    
+        # Set up global and local context
+        if global_context is None: global_context = {}
+        global_context['__builtins__'] = None
+        global_context['True'] = True
+        global_context['False'] = False
+        if local_context is None: local_context = {}
+        local_context['__builtins__'] = None
+        local_context['entry'] = self.load_entry
+        local_context['tree'] = self._load_tree
+        local_context['name'] = self.name
+        local_context['solvent'] = self.solvent
+        local_context['shortDesc'] = self.short_desc
+        local_context['longDesc'] = self.long_desc
+        local_context['RateUncertainty'] = RateUncertainty
+        local_context['ArrheniusChargeTransfer'] = ArrheniusChargeTransfer
+        local_context['ArrheniusChargeTransferBM'] = ArrheniusChargeTransferBM
+        local_context['metal'] = self.metal
+        local_context['site'] = self.site
+        local_context['facet'] = self.facet
+        # add in anything from the Class level dictionary.
+        for key, value in Database.local_context.items():
+            local_context[key] = value
+    
+        # Process the file
+>       with open(path, 'r') as f:
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tmp/claude-1000/RMG-database/input/solvation/libraries/solvent.py'
+
+rmgpy/data/base.py:242: FileNotFoundError
+_ ERROR at setup of TestSoluteDataOfUnsaturableSpecies.test_ground_state_argon_is_unaffected _
+
+cls = <class 'saturatedStructureTest.TestSoluteDataOfUnsaturableSpecies'>
+
+    @classmethod
+    def setup_class(cls):
+        cls.database = SolvationDatabase()
+>       cls.database.load(os.path.join(settings["database.directory"], "solvation"))
+
+test/rmgpy/data/saturatedStructureTest.py:216: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+rmgpy/data/solvation.py:1162: in load
+    self.libraries['solvent'].load(os.path.join(path, 'libraries', 'solvent.py'))
+rmgpy/data/solvation.py:954: in load
+    Database.load(self, path, local_context={'SolventData': SolventData, 'DataCountSolvent': DataCountSolvent}, global_context={})
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <rmgpy.data.solvation.SolventLibrary object at 0x7e55e26d1940>
+path = '/tmp/claude-1000/RMG-database/input/solvation/libraries/solvent.py'
+local_context = {'ArrheniusChargeTransfer': <class 'rmgpy.kinetics.arrhenius.ArrheniusChargeTransfer'>, 'ArrheniusChargeTransferBM': <...hargeTransferBM'>, 'Article': <class 'rmgpy.data.reference.Article'>, 'Book': <class 'rmgpy.data.reference.Book'>, ...}
+global_context = {'False': False, 'True': True, '__builtins__': None}
+
+    def load(self, path, local_context=None, global_context=None):
+        """
+        Load an RMG-style database from the file at location `path` on disk.
+        The parameters `local_context` and `global_context` are used to
+        provide specialized mapping of identifiers in the input file to
+        corresponding functions to evaluate. This method will automatically add
+        a few identifiers required by all data entries, so you don't need to
+        provide these.
+        """
+    
+        # Clear any previously-loaded data
+        self.entries = OrderedDict()
+        self.top = []
+    
+        # Set up global and local context
+        if global_context is None: global_context = {}
+        global_context['__builtins__'] = None
+        global_context['True'] = True
+        global_context['False'] = False
+        if local_context is None: local_context = {}
+        local_context['__builtins__'] = None
+        local_context['entry'] = self.load_entry
+        local_context['tree'] = self._load_tree
+        local_context['name'] = self.name
+        local_context['solvent'] = self.solvent
+        local_context['shortDesc'] = self.short_desc
+        local_context['longDesc'] = self.long_desc
+        local_context['RateUncertainty'] = RateUncertainty
+        local_context['ArrheniusChargeTransfer'] = ArrheniusChargeTransfer
+        local_context['ArrheniusChargeTransferBM'] = ArrheniusChargeTransferBM
+        local_context['metal'] = self.metal
+        local_context['site'] = self.site
+        local_context['facet'] = self.facet
+        # add in anything from the Class level dictionary.
+        for key, value in Database.local_context.items():
+            local_context[key] = value
+    
+        # Process the file
+>       with open(path, 'r') as f:
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tmp/claude-1000/RMG-database/input/solvation/libraries/solvent.py'
+
+rmgpy/data/base.py:242: FileNotFoundError
+_ ERROR at setup of TestSoluteDataOfUnsaturableSpecies.test_ordinary_radical_is_unaffected _
+
+cls = <class 'saturatedStructureTest.TestSoluteDataOfUnsaturableSpecies'>
+
+    @classmethod
+    def setup_class(cls):
+        cls.database = SolvationDatabase()
+>       cls.database.load(os.path.join(settings["database.directory"], "solvation"))
+
+test/rmgpy/data/saturatedStructureTest.py:216: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+rmgpy/data/solvation.py:1162: in load
+    self.libraries['solvent'].load(os.path.join(path, 'libraries', 'solvent.py'))
+rmgpy/data/solvation.py:954: in load
+    Database.load(self, path, local_context={'SolventData': SolventData, 'DataCountSolvent': DataCountSolvent}, global_context={})
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <rmgpy.data.solvation.SolventLibrary object at 0x7e55e26d1940>
+path = '/tmp/claude-1000/RMG-database/input/solvation/libraries/solvent.py'
+local_context = {'ArrheniusChargeTransfer': <class 'rmgpy.kinetics.arrhenius.ArrheniusChargeTransfer'>, 'ArrheniusChargeTransferBM': <...hargeTransferBM'>, 'Article': <class 'rmgpy.data.reference.Article'>, 'Book': <class 'rmgpy.data.reference.Book'>, ...}
+global_context = {'False': False, 'True': True, '__builtins__': None}
+
+    def load(self, path, local_context=None, global_context=None):
+        """
+        Load an RMG-style database from the file at location `path` on disk.
+        The parameters `local_context` and `global_context` are used to
+        provide specialized mapping of identifiers in the input file to
+        corresponding functions to evaluate. This method will automatically add
+        a few identifiers required by all data entries, so you don't need to
+        provide these.
+        """
+    
+        # Clear any previously-loaded data
+        self.entries = OrderedDict()
+        self.top = []
+    
+        # Set up global and local context
+        if global_context is None: global_context = {}
+        global_context['__builtins__'] = None
+        global_context['True'] = True
+        global_context['False'] = False
+        if local_context is None: local_context = {}
+        local_context['__builtins__'] = None
+        local_context['entry'] = self.load_entry
+        local_context['tree'] = self._load_tree
+        local_context['name'] = self.name
+        local_context['solvent'] = self.solvent
+        local_context['shortDesc'] = self.short_desc
+        local_context['longDesc'] = self.long_desc
+        local_context['RateUncertainty'] = RateUncertainty
+        local_context['ArrheniusChargeTransfer'] = ArrheniusChargeTransfer
+        local_context['ArrheniusChargeTransferBM'] = ArrheniusChargeTransferBM
+        local_context['metal'] = self.metal
+        local_context['site'] = self.site
+        local_context['facet'] = self.facet
+        # add in anything from the Class level dictionary.
+        for key, value in Database.local_context.items():
+            local_context[key] = value
+    
+        # Process the file
+>       with open(path, 'r') as f:
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tmp/claude-1000/RMG-database/input/solvation/libraries/solvent.py'
+
+rmgpy/data/base.py:242: FileNotFoundError
+=================================== FAILURES ===================================
+___________ TestTheManifest.test_the_commit_field_is_not_declarable ____________
+
+self = <quarantineTest.TestTheManifest object at 0x7e55ee6635b0>
+tmp_path = PosixPath('/tmp/claude-1000/pytest-of-alon/pytest-529/test_the_commit_field_is_not_d0')
+
+    def test_the_commit_field_is_not_declarable(self, tmp_path):
+        """
+        An installed engine has no reliable commit to compare against, so a commit check
+        would pass on every checkout: a check that cannot fail.
+    
+        Round 80 answered that by documenting the field as provenance and leaving it
+        readable. That was the same defect one layer up -- a field still *named*
+        ``requiresEngineCommit`` reads as a guarantee to anyone who greps the name rather
+        than the comment beside it. The field is now refused outright, and the error says
+        where to put the commit instead.
+        """
+        body = (MANIFEST
+                + 'requiresEngineModule = "rmgpy.data.kinetics.quarantine"\n'
+                + 'requiresEngineSymbol = "check_quarantine"\n'
+                + 'requiresEngineCommit = "not-a-commit-that-exists-anywhere"\n')
+        path = write_manifest(str(tmp_path), body)
+        with pytest.raises(DatabaseError) as exc:
+>           load_family_quarantine("Fake_Quarantined_Family", path)
+E           Failed: DID NOT RAISE <class 'rmgpy.exceptions.DatabaseError'>
+
+test/rmgpy/data/kinetics/quarantineTest.py:275: Failed
+_ TestTheManifest.test_the_recorded_commit_is_kept_as_provenance_and_reaches_a_reader _
+
+self = <quarantineTest.TestTheManifest object at 0x7e55ee663850>
+tmp_path = PosixPath('/tmp/claude-1000/pytest-of-alon/pytest-529/test_the_recorded_commit_is_ke0')
+caplog = <_pytest.logging.LogCaptureFixture object at 0x7e55ee236e50>
+
+    def test_the_recorded_commit_is_kept_as_provenance_and_reaches_a_reader(
+            self, tmp_path, caplog):
+        """
+        The commit is still worth recording -- under a name that does not claim to pin,
+        and read by something, because a field nothing consults is where this whole
+        thread started.
+        """
+        body = (MANIFEST
+                + 'requiresEngineModule = "rmgpy.data.kinetics.quarantine"\n'
+                + 'requiresEngineSymbol = "check_quarantine"\n'
+                + 'recordedEngineCommit = "541e6498f"\n')
+        path = write_manifest(str(tmp_path), body)
+        with caplog.at_level(logging.INFO):
+            assert load_family_quarantine("Fake_Quarantined_Family", path) is not None
+>       assert "541e6498f" in caplog.text
+E       AssertionError: assert '541e6498f' in 'INFO     root:quarantine.py:264 Kinetics family Fake_Quarantined_Family is QUARANTINED FOR TESTING (Marcus): a reason that must reach the error message\n'
+E        +  where 'INFO     root:quarantine.py:264 Kinetics family Fake_Quarantined_Family is QUARANTINED FOR TESTING (Marcus): a reason that must reach the error message\n' = <_pytest.logging.LogCaptureFixture object at 0x7e55ee236e50>.text
+
+test/rmgpy/data/kinetics/quarantineTest.py:292: AssertionError
+------------------------------ Captured log call -------------------------------
+INFO     root:quarantine.py:264 Kinetics family Fake_Quarantined_Family is QUARANTINED FOR TESTING (Marcus): a reason that must reach the error message
+________ TestTheManifest.test_a_symbol_that_is_not_callable_is_refused _________
+
+self = <quarantineTest.TestTheManifest object at 0x7e55ee663040>
+tmp_path = PosixPath('/tmp/claude-1000/pytest-of-alon/pytest-529/test_a_symbol_that_is_not_call0')
+
+    def test_a_symbol_that_is_not_callable_is_refused(self, tmp_path):
+        """
+        ``getattr(module, name) is not None`` accepts any attribute at all: a manifest
+        naming ``math.pi`` as the gate that refuses a family used to load clean. A gate
+        that cannot be called is not a gate.
+        """
+        body = (MANIFEST
+                + 'requiresEngineModule = "math"\n'
+                + 'requiresEngineSymbol = "pi"\n')
+        path = write_manifest(str(tmp_path), body)
+        with pytest.raises(DatabaseError) as exc:
+>           load_family_quarantine("Fake_Quarantined_Family", path)
+E           Failed: DID NOT RAISE <class 'rmgpy.exceptions.DatabaseError'>
+
+test/rmgpy/data/kinetics/quarantineTest.py:305: Failed
+____ TestTheManifest.test_a_symbol_without_a_module_is_refused_not_ignored _____
+
+self = <quarantineTest.TestTheManifest object at 0x7e55ee656f10>
+tmp_path = PosixPath('/tmp/claude-1000/pytest-of-alon/pytest-529/test_a_symbol_without_a_module0')
+
+    def test_a_symbol_without_a_module_is_refused_not_ignored(self, tmp_path):
+        """
+        A symbol with nowhere to look it up asks for a check that cannot be performed.
+        Skipping it silently leaves the manifest reading as pinned while pinning nothing,
+        which is the failure mode of the whole field group.
+        """
+        body = MANIFEST + 'requiresEngineSymbol = "check_quarantine"\n'
+        path = write_manifest(str(tmp_path), body)
+        with pytest.raises(DatabaseError) as exc:
+>           load_family_quarantine("Fake_Quarantined_Family", path)
+E           Failed: DID NOT RAISE <class 'rmgpy.exceptions.DatabaseError'>
+
+test/rmgpy/data/kinetics/quarantineTest.py:317: Failed
+____ TestTheManifest.test_a_gate_that_exists_but_is_not_wired_in_is_refused ____
+
+self = <quarantineTest.TestTheManifest object at 0x7e55ee656b50>
+tmp_path = PosixPath('/tmp/claude-1000/pytest-of-alon/pytest-529/test_a_gate_that_exists_but_is0')
+
+    def test_a_gate_that_exists_but_is_not_wired_in_is_refused(self, tmp_path):
+        """
+        Existence of the symbol shows the capability was written, not that anything calls
+        it. ``os`` is a module that certainly exists and certainly does not bind the gate,
+        so a manifest requiring the gate to be reached from there must be refused.
+        """
+        body = (MANIFEST
+                + 'requiresEngineModule = "rmgpy.data.kinetics.quarantine"\n'
+                + 'requiresEngineSymbol = "check_quarantine"\n'
+                + 'requiresEngineCallSites = ("os",)\n')
+        path = write_manifest(str(tmp_path), body)
+        with pytest.raises(DatabaseError) as exc:
+>           load_family_quarantine("Fake_Quarantined_Family", path)
+E           Failed: DID NOT RAISE <class 'rmgpy.exceptions.DatabaseError'>
+
+test/rmgpy/data/kinetics/quarantineTest.py:332: Failed
+_ TestSaturateForEstimation.test_both_adjacency_lists_in_the_message_read_back _
+
+self = <saturatedStructureTest.TestSaturateForEstimation object at 0x7e55ee62edf0>
+
+    def test_both_adjacency_lists_in_the_message_read_back(self):
+        """
+        The message prints adjacency lists rather than SMILES so that rendering it cannot
+        fail the way the crash it replaces did. That is only worth anything if the blocks
+        are *valid*: ``saturate_radicals`` assigns ``multiplicity`` only after atom typing
+        succeeds, so on the failing path the saturated copy carried the unsaturated
+        species' multiplicity beside zero radicals and would not parse at all.
+    
+        The contract is exact. The saturated form reads back with atom typing relaxed, and
+        the only thing standing in the way otherwise is the AtomTypeError the message
+        already quotes -- an InvalidAdjacencyListError here would be a defect in the block
+        rather than a fact about the species.
+        """
+        with pytest.raises(SaturatedStructureError) as exc_info:
+            saturate_for_estimation(molecule(AR_METASTABLE), "transport data")
+        message = str(exc_info.value)
+    
+        species_block = message.split("The species was:\n")[1].split("\nits saturated form")[0]
+        saturated_block = message.split("its saturated form was:\n")[1].split(
+            "\nand the underlying")[0]
+    
+        assert Molecule().from_adjacency_list(species_block).get_radical_count() == 2
+    
+>       relaxed = Molecule().from_adjacency_list(saturated_block,
+                                                 raise_atomtype_exception=False)
+
+test/rmgpy/data/saturatedStructureTest.py:142: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+rmgpy/molecule/molecule.py:1942: in rmgpy.molecule.molecule.Molecule.from_adjacency_list
+    def from_adjacency_list(self, adjlist, saturate_h=False, raise_atomtype_exception=True,
+rmgpy/molecule/molecule.py:1951: in rmgpy.molecule.molecule.Molecule.from_adjacency_list
+    self.vertices, self.multiplicity, self.metal, self.facet = from_adjacency_list(adjlist, group=False, saturate_h=saturate_h,
+rmgpy/molecule/adjlist.py:887: in from_adjacency_list
+    ConsistencyChecker.check_multiplicity(n_rad, multiplicity)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+n_rad = 0, multiplicity = 3
+
+    @staticmethod
+    def check_multiplicity(n_rad, multiplicity):
+        """
+        Check that the multiplicity complies with the formula: m = 2s + 1,
+        where s is the sum of the spin [+/- (1/2) ] of the unpaired electrons
+    
+        For a simple radical (n_rad = 1):
+        s = +1/2 , m = 2 (doublet)
+    
+        For a biradical, s can be either 0 [+0.5 + (-0.5) ] or 1 [+0.5 + (+0.5) ]
+        and m = 1 (singlet) or m = 3 (triplet).
+        """
+        if n_rad in [0, 1]:
+            if multiplicity != (n_rad + 1):
+>               raise InvalidAdjacencyListError('Multiplicity {0} not in agreement with total number of '
+E               rmgpy.exceptions.InvalidAdjacencyListError: Multiplicity 3 not in agreement with total number of radicals 0.
+
+rmgpy/molecule/adjlist.py:138: InvalidAdjacencyListError
+------------------------------ Captured log call -------------------------------
+ERROR    root:base.py:1346 Could not update atomtypes for this molecule:
+multiplicity 3
+1 Ar u0 p3 c0 {2,S} {3,S}
+2 H  u0 p0 c0 {1,S}
+3 H  u0 p0 c0 {1,S}
+_ TestSaturateForEstimation.test_the_message_says_how_to_read_the_saturated_block_back _
+
+self = <saturatedStructureTest.TestSaturateForEstimation object at 0x7e55ee62e8e0>
+
+    def test_the_message_says_how_to_read_the_saturated_block_back(self):
+        """
+        Relaxed parsing is not the default, so a reader who is not told will conclude the
+        block is broken. The instruction belongs in the message, beside the block.
+        """
+        with pytest.raises(SaturatedStructureError) as exc_info:
+            saturate_for_estimation(molecule(AR_METASTABLE), "transport data")
+>       assert "raise_atomtype_exception=False" in str(exc_info.value)
+E       assert 'raise_atomtype_exception=False' in "Cannot estimate transport data by group additivity: replacing the species' 2 radical electron(s) with bonds to hydrogen gives a structure that no RMG atom type describes, so the saturated form the estimate is built on does not exist. This is expected for electronically excited species, such as a metastable noble gas, whose unpaired electrons are not unfilled valences. Supply transport data for this species directly in a library entry, or keep it out of the model.\nThe species was:\nmultiplicity 3\n1 Ar u2 p3 c0\n\nits saturated form was:\nmultiplicity 3\n1 Ar u0 p3 c0 {2,S} {3,S}\n2 H  u0 p0 c0 {1,S}\n3 H  u0 p0 c0 {1,S}\n\nand the underlying atom type failure was: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 benzene bonds, 3 lone pairs, and +0 charge."
+E        +  where "Cannot estimate transport data by group additivity: replacing the species' 2 radical electron(s) with bonds to hydrogen gives a structure that no RMG atom type describes, so the saturated form the estimate is built on does not exist. This is expected for electronically excited species, such as a metastable noble gas, whose unpaired electrons are not unfilled valences. Supply transport data for this species directly in a library entry, or keep it out of the model.\nThe species was:\nmultiplicity 3\n1 Ar u2 p3 c0\n\nits saturated form was:\nmultiplicity 3\n1 Ar u0 p3 c0 {2,S} {3,S}\n2 H  u0 p0 c0 {1,S}\n3 H  u0 p0 c0 {1,S}\n\nand the underlying atom type failure was: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 benzene bonds, 3 lone pairs, and +0 charge." = str(SaturatedStructureError("Cannot estimate transport data by group additivity: replacing the species' 2 radical electron(s) with bonds to hydrogen gives a structure that no RMG atom type describes, so the saturated form the estimate is built on does not exist. This is expected for electronically excited species, such as a metastable noble gas, whose unpaired electrons are not unfilled valences. Supply transport data for this species directly in a library entry, or keep it out of the model.\nThe species was:\nmultiplicity 3\n1 Ar u2 p3 c0\n\nits saturated form was:\nmultiplicity 3\n1 Ar u0 p3 c0 {2,S} {3,S}\n2 H  u0 p0 c0 {1,S}\n3 H  u0 p0 c0 {1,S}\n\nand the underlying atom type failure was: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 benzene bonds, 3 lone pairs, and +0 charge."))
+E        +    where SaturatedStructureError("Cannot estimate transport data by group additivity: replacing the species' 2 radical electron(s) with bonds to hydrogen gives a structure that no RMG atom type describes, so the saturated form the estimate is built on does not exist. This is expected for electronically excited species, such as a metastable noble gas, whose unpaired electrons are not unfilled valences. Supply transport data for this species directly in a library entry, or keep it out of the model.\nThe species was:\nmultiplicity 3\n1 Ar u2 p3 c0\n\nits saturated form was:\nmultiplicity 3\n1 Ar u0 p3 c0 {2,S} {3,S}\n2 H  u0 p0 c0 {1,S}\n3 H  u0 p0 c0 {1,S}\n\nand the underlying atom type failure was: Unable to determine atom type for atom Ar, which has 2 single bonds, 0 double bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 benzene bonds, 3 lone pairs, and +0 charge.") = <ExceptionInfo SaturatedStructureError("Cannot estimate transport data by group additivity: replacing the species' 2 radical electron...le bonds (0 to O, 0 to S, 0 others), 0 triple bonds, 0 quadruple bonds, 0 benzene bonds, 3 lone pairs, and +0 charge.") tblen=2>.value
+
+test/rmgpy/data/saturatedStructureTest.py:157: AssertionError
+------------------------------ Captured log call -------------------------------
+ERROR    root:base.py:1346 Could not update atomtypes for this molecule:
+multiplicity 3
+1 Ar u0 p3 c0 {2,S} {3,S}
+2 H  u0 p0 c0 {1,S}
+3 H  u0 p0 c0 {1,S}
+================================ tests coverage ================================
+_______________ coverage: platform linux, python 3.9.23-final-0 ________________
+
+Coverage HTML written to dir htmlcov
+=========================== short test summary info ============================
+FAILED test/rmgpy/data/kinetics/quarantineTest.py::TestTheManifest::test_the_commit_field_is_not_declarable
+FAILED test/rmgpy/data/kinetics/quarantineTest.py::TestTheManifest::test_the_recorded_commit_is_kept_as_provenance_and_reaches_a_reader
+FAILED test/rmgpy/data/kinetics/quarantineTest.py::TestTheManifest::test_a_symbol_that_is_not_callable_is_refused
+FAILED test/rmgpy/data/kinetics/quarantineTest.py::TestTheManifest::test_a_symbol_without_a_module_is_refused_not_ignored
+FAILED test/rmgpy/data/kinetics/quarantineTest.py::TestTheManifest::test_a_gate_that_exists_but_is_not_wired_in_is_refused
+FAILED test/rmgpy/data/saturatedStructureTest.py::TestSaturateForEstimation::test_both_adjacency_lists_in_the_message_read_back
+FAILED test/rmgpy/data/saturatedStructureTest.py::TestSaturateForEstimation::test_the_message_says_how_to_read_the_saturated_block_back
+ERROR test/rmgpy/data/saturatedStructureTest.py::TestTransportOfUnsaturableSpecies::test_estimation_falls_back_instead_of_crashing
+ERROR test/rmgpy/data/saturatedStructureTest.py::TestTransportOfUnsaturableSpecies::test_the_fallback_says_it_is_a_fallback
+ERROR test/rmgpy/data/saturatedStructureTest.py::TestTransportOfUnsaturableSpecies::test_group_estimate_still_raises_for_whoever_asks_directly
+ERROR test/rmgpy/data/saturatedStructureTest.py::TestTransportOfUnsaturableSpecies::test_ground_state_argon_is_unaffected
+ERROR test/rmgpy/data/saturatedStructureTest.py::TestTransportOfUnsaturableSpecies::test_ordinary_radical_is_unaffected
+ERROR test/rmgpy/data/saturatedStructureTest.py::TestSoluteDataOfUnsaturableSpecies::test_estimation_names_the_cause
+ERROR test/rmgpy/data/saturatedStructureTest.py::TestSoluteDataOfUnsaturableSpecies::test_ground_state_argon_is_unaffected
+ERROR test/rmgpy/data/saturatedStructureTest.py::TestSoluteDataOfUnsaturableSpecies::test_ordinary_radical_is_unaffected
+============== 7 failed, 37 passed, 7 skipped, 8 errors in 6.87s ===============

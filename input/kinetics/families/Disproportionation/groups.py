@@ -3594,3 +3594,71 @@ forbidden(
 """,
 )
 
+
+forbidden(
+    label = "Ar_metastable_biradical",
+    group =
+"""
+1 *1 Ar u2 p3 c0
+""",
+    shortDesc = """Metastable argon is outside this family's scope, and the covalent argon it would build has no atom type""",
+    longDesc =
+"""
+OUT OF SCOPE, AND ITS PRODUCTS ARE NOT REPRESENTABLE.
+`Ar u2 p3 c0` is metastable argon, Ar(4s 3P2), entered in
+input/thermo/libraries/PlasmaExcitedNeutralThermo.py. It is a BIRADICAL, and the atom
+type that perceives it, Ar0e, is declared generic under R/R!H in RMG-Py
+(rmgpy/molecule/atomtype.py) -- correctly, which is the point of this entry. Argon
+brings 8 valence electrons, so in a MOLECULE 8 - c = bonds + 2p + u (the 8 is argon's
+valence count, not a universal constant), and a bond-free neutral argon at p3 c0 has u2 and no
+choice about it, and Ar0e perceives exactly one molecule: this one. A generic site at
+u2 is RIGHT to match it. What is missing is this family's own statement of scope,
+which is what this entry supplies. Abstracting a beta hydrogen onto a noble gas is not chemistry this family's
+tree or its rate rules describe; the abstracting radical is written as a
+generic, which is what lets argon in.
+
+The consequence without this entry is not a wrong rate, it is a dead job. Measured over
+all 140 loadable families with 50 ordinary gas-phase partners
+(docs/argon-metastable-thermo/all_family_reachability_probe.py and
+silent_number_probe.py): this family generates RH. + Ar(3P2) <=> [ArH] + R against 7 of the 50 partners, and every one of those products
+raises
+
+    AtomTypeError: Unable to determine atom type for atom Ar, which has 2 single bonds,
+                   ..., 3 lone pairs, and +0 charge.
+
+inside estimate_radical_thermo_via_hbi. The reason is structural rather than incidental:
+RMG refuses `1 Ar u0 p3 c0 {2,S}` as an invalid valency, so a NEUTRAL argon carrying a
+covalent bond is necessarily a radical; a radical's thermo goes through HBI, which
+saturates the radical site; and saturating a one-bond argon gives a two-bond argon that
+has no atom type at all. So it can never be a silently wrong number -- but it does
+terminate mechanism generation, from inside make_new_species, before any kinetics gate
+is reached. A quarantine manifest cannot help for that reason; measured in
+docs/argon-metastable-thermo/job_level_crash_probe.py.
+
+WHY THE LABEL IS LOAD-BEARING. ForbiddenStructures.is_molecule_forbidden honours atom
+labels (rmgpy/data/base.py), so an UNLABELLED `1 Ar u2 p3 c0` group silently matches
+nothing during generation -- the molecule's argon is labelled *1 by then and cannot
+map to an unlabelled group atom. Measured both ways: unlabelled leaves all reactions in
+place, *1 removes them.
+
+WHAT IT DOES NOT TOUCH. This group matches metastable argon and nothing else. Measured
+controls, unchanged with it in place: [CH3] + C[CH2] and [OH] + C[CH2] both still generate. It also leaves
+Plasma_Electron_Impact_Ionization's Ar(3P2) => Ar+ channel alone, which is the one
+reaction this species is supposed to have.
+
+THIS IS THE FIX, AT THE LAYER THE ERROR IS ON. Not a workaround held open pending an
+engine change: the argon atom types are correct as they stand (owner's ruling,
+2026-09-21; measured in docs/argon-metastable-thermo/atomtype_u_determined_probe.py).
+atomtype.py's note that Ar0e "answers for five (u, p, c) triples" describes GROUP
+patterns, where ux can be hand-written and no valency check applies -- families generate
+molecules. An earlier draft of this block read that comment at the molecule layer and
+named the engine as the root cause; that was wrong and is retracted here.
+
+NOT COMPLETE, THOUGH. This entry closes the five families measured to reach the species
+today; it cannot close a family nobody has generated against yet. A sixth would be a
+family declaring a u2 site broader than the chemistry it intends and shipping without
+saying so -- the same defect as this one, in that family, and fixed the same way. It
+would not be an engine defect returning. See "THIS IS NOT AN INERT ISLAND" in
+PlasmaExcitedNeutralThermo.py's entry for the full reach figure.
+""",
+)

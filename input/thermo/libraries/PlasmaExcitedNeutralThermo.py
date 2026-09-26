@@ -25,7 +25,7 @@ and this library is what removes it. See ``docs/argon-metastable-thermo/`` for t
 
 WHY A NEW LIBRARY AND NOT AN EXISTING ONE
 -----------------------------------------
-``PlasmaCationThermo`` is the obvious neighbour and is the wrong home: it is named for cations,
+``PlasmaThermo`` is the obvious neighbour and is the wrong home: it is named for cations,
 its charter says "free monatomic CATIONS of plasma interest", and its whole electron
 reference-state discussion exists because its species carry charge. Nothing here carries charge,
 so that discussion would be dead weight around a neutral, and the library name would lie.
@@ -37,7 +37,7 @@ campaign spends its effort avoiding. A separate, explicitly-named library is opt
 
 The scope is therefore: gas-phase thermochemistry of ELECTRONICALLY EXCITED, ELECTRICALLY NEUTRAL
 species that matter in plasmas, each pinned to one named spectroscopic level. Excited ions belong
-in ``PlasmaCationThermo``; ground-state neutrals belong in the ordinary libraries.
+in ``PlasmaThermo``; ground-state neutrals belong in the ordinary libraries.
 
 WHAT THIS FILE FORBIDS
 ----------------------
@@ -195,7 +195,7 @@ THE THREE NUMBERS, ONE LINE OF ARITHMETIC EACH -- AND THEY CHECK THE ARITHMETIC,
         electronic level has translational degrees of freedom and nothing else; there is no
         rotation, no vibration, and -- this is the part specific to a single level -- no
         internal electronic structure to contribute a Schottky term. Contrast the ``[Arp]``
-        entry of ``PlasmaCationThermo``, whose Cp peaks at 22.773 J/(mol*K) near 1000 K
+        entry of ``PlasmaThermo``, whose Cp peaks at 22.773 J/(mol*K) near 1000 K
         precisely because Ar+ is a 2P term carrying a 2P(1/2) partner 1431.6 cm^-1 up.
 
     S298 = S298(Ar, JANAF Ar-001) + R*ln(g*/g0) = 154.845 + 8.314462618*ln(5/1)
@@ -301,7 +301,7 @@ E0 IS DERIVED, NOT STATED -- AND WHY THE OBVIOUS VALUE IS THE WRONG ONE
     programmatically should treat the coefficients in the entry as the authoritative ones.
 
     THE SIBLING INCONSISTENCY IS NOT COSMETIC -- IT SETS AN ACTIVATION ENERGY.
-    The same collision exists, unfixed, in ``PlasmaCationThermo``: measured, ``[Arp]`` states
+    The same collision exists, unfixed, in ``PlasmaThermo``: measured, ``[Arp]`` states
     E0 = 1520.5730 while ``to_wilhoit`` derives 1514.3867, a gap of 6.1863 kJ/mol. That library
     is out of this ticket's scope and is reported, not edited -- but the consequence lands HERE,
     on the one reaction this library makes reachable, and it is worth stating precisely.
@@ -315,7 +315,7 @@ E0 IS DERIVED, NOT STATED -- AND WHY THE OBVIOUS VALUE IS THE WRONG ONE
     siblings are read on two different conventions in a single subtraction. Measured end to end
     (``docs/argon-metastable-thermo/logs/round58_probe.stdout.log``)::
 
-        [Ar+]  stated   E0 = 1520.5730      <- PlasmaCationThermo states it
+        [Ar+]  stated   E0 = 1520.5730      <- PlasmaThermo states it
         [Ar]   derived  E0 = 1108.0496      <- this file derives it
         barrier actually applied            412.5234 kJ/mol
         dHrxn(298), both consistent         406.3371 kJ/mol
@@ -329,7 +329,7 @@ E0 IS DERIVED, NOT STATED -- AND WHY THE OBVIOUS VALUE IS THE WRONG ONE
     That 6.1863 is exactly the cation library's stated-minus-derived gap. It is not lost in the
     noise: an Arrhenius barrier appears in an exponent, so the leak multiplies the delivered rate
     by exp(-6186.3/RT) -- a factor of 11.94 at 300 K and 2.10 at 1000 K. Fixing it means making
-    the two libraries agree on a convention, which is a ``PlasmaCationThermo`` change and needs a
+    the two libraries agree on a convention, which is a ``PlasmaThermo`` change and needs a
     ruling this file does not have. Until then, any rate on this channel carries the discrepancy.
 
 WHY NASA AND NOT ThermoData
@@ -508,7 +508,7 @@ WHERE THIS RECIPE BREAKS IF IT IS REUSED CARELESSLY
        entropy acquires the R*<E>/RT term shown above. The flat Cp here is a consequence of
        "one level", not of "monatomic".
     3. **Any charged species.** Then the electron reference-state convention matters, and the
-       number must be reconciled the way ``PlasmaCationThermo``'s entries are. It does not arise
+       number must be reconciled the way ``PlasmaThermo``'s entries are. It does not arise
        here because this species is neutral: no electron is created or destroyed relative to
        ground-state argon, so no convention enters and none of that arithmetic applies.
 
@@ -548,7 +548,7 @@ WHERE THIS RECIPE BREAKS IF IT IS REUSED CARELESSLY
     ``ThermoData.H298`` and ``ThermoData.S298`` fields are referenced to **298 K, not 298.15 K**
     (``rmgpy/thermo/thermodata.pyx``, properties ``H298``/``S298`` and the
     ``assert Tdata[0] >= 298`` corrections beneath them). Every JANAF-sourced ``ThermoData`` entry
-    in this database -- ``PlasmaCationThermo``'s, ``BurkeH2O2``'s -- writes the 298.15 K value into
+    in this database -- ``PlasmaThermo``'s, ``BurkeH2O2``'s -- writes the 298.15 K value into
     that field, so ``get_entropy(298.15)`` returns the written value plus Cp*ln(298.15/298), about
     +0.0105 J/(mol*K) for a monatomic species, and ``get_enthalpy(298.15)`` returns it plus
     Cp*0.15 = +0.0031 kJ/mol. An earlier ``ThermoData`` draft of THIS entry carried that artefact:
@@ -562,7 +562,7 @@ WHERE THIS RECIPE BREAKS IF IT IS REUSED CARELESSLY
     real, it does not cancel, and the precedence test in the suite is written around it explicitly.
 
 VALIDITY RANGE -- 6000 K IS ADVERTISED AND 6000 K IS WHAT YOU GET
-    ``Tmin``/``Tmax`` are 200 K and 6000 K. The ceiling matches ``PlasmaCationThermo`` and JANAF
+    ``Tmin``/``Tmax`` are 200 K and 6000 K. The ceiling matches ``PlasmaThermo`` and JANAF
     Ar-001's own; the floor is 200 rather than the reference temperature for the mechanical reason
     given under "WHY NASA AND NOT ThermoData" (``to_wilhoit`` evaluates at 298 K and refuses a
     polynomial that starts above it). Both are statements about the DATA: 5/2 R and R*ln 5 do not
@@ -681,7 +681,7 @@ STRUCTURE
       matches groups against molecules. A group that means this species should still write ``u2``
       explicitly, for the reader.
     * The SMILES round trip is not safe for monatomic species in this database -- documented for
-      ``[Arp]``/``[Hep]``/``[Nep]`` in ``PlasmaCationThermo``, where ``from_smiles`` returns a
+      ``[Arp]``/``[Hep]``/``[Nep]`` in ``PlasmaThermo``, where ``from_smiles`` returns a
       doubled charge. The adjacency list above is the only interchange form to use.
 
 THIS IS NOT AN INERT ISLAND. READ THIS BEFORE LOADING THE LIBRARY

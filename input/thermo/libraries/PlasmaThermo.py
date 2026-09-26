@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
-name = "PlasmaCationThermo"
+name = "PlasmaThermo"
 shortDesc = u"Sourced gas-phase thermochemistry for cations of plasma interest"
 longDesc = u"""
 WHY THIS LIBRARY EXISTS
@@ -18,8 +18,9 @@ library is that thermo ticket, opened for argon.
 
 The monatomic entries here are TRANSCRIBED from published tables. The Ar2+ entry is
 derived from primary-read spectroscopic constants and a stated partition-function
-calculation; its longDesc gives the complete derivation. No value in this file is
-estimated, interpolated, averaged between sources, or computed from a quantum-chemistry
+calculation; its longDesc gives the complete derivation. Except for the one explicitly
+identified interpolated vibrational level in that Ar2+ derivation, no value in this file
+is estimated, interpolated, averaged between sources, or computed from a quantum-chemistry
 calculation or a group-additivity scheme.
 
 DERIVATION ADMISSION RULE
@@ -60,7 +61,18 @@ entry in this library, including the derived ``[Ar2p]`` entry, uses that convent
 
 The value below is therefore the IC value. NIST-JANAF publishes the EC value; the single
 line of convention reconciliation is shown in the entry's own longDesc, and it is the only
-arithmetic applied to any number in this file.
+arithmetic applied to the transcribed JANAF entries in this file. The derived ``[Ar2p]``
+entry is calculated by the documented derivation below.
+
+REFERENCE STATE CONVENTION
+--------------------------
+Every entry is a gas-phase species at the 1 bar standard state (the 0.1 MPa standard
+state used by the JANAF tables). Formation enthalpies use the listed element reference
+states at 0 K. The three JANAF entries are TRANSCRIBED under this gas/1-bar/ION
+convention after their electron-convention enthalpies are reconciled in their own
+longDescs. ``[Ar2p]`` is DERIVED under the same gas/1-bar/ION convention from its
+primary-read spectroscopic constants. There is deliberately one electron convention
+per runtime: no entry in this library uses the electron convention.
 
 THE OTHER NOBLE-GAS CATIONS IN THIS LIBRARY
 -------------------------------------------
@@ -88,19 +100,20 @@ As with Ar(2+), RMG builds it and then fails loudly (no group-additivity data), 
 nothing to silently poison -- but there is also nothing to attach an entry to. Not entered.
 
 
-Two argon cations that are NOT this species are deliberately absent, for two different
-reasons. They are easy to confuse because plain ASCII writes both "Ar2+", so this section
-spells them apart and uses the unambiguous forms throughout: ``Ar2(+)`` is the argon DIMER
-cation (diatomic, net charge +1); ``Ar(2+)`` is the argon DICATION (monatomic, net charge
-+2).
+Two argon cation species are easy to confuse because plain ASCII writes both "Ar2+", so
+this section spells them apart and uses the unambiguous forms throughout: ``Ar2(+)`` is
+the argon DIMER cation (diatomic, net charge +1); ``Ar(2+)`` is the argon DICATION
+(monatomic, net charge +2).
 
-``Ar2(+)`` -- the argon dimer cation (diatomic, +1). Tabulated thermodynamic functions for
-it do exist - Maltsev, Morozov & Osina, "Thermodynamic Properties of Ar2+ and Ar2 Argon
-Dimers", High Temperature 57 (2019) 37-40, doi:10.1134/S0018151X19010176, covering
-298.15-10000 K and folded into IVTANTHERMO - but that paper is closed access with no
-open-access copy, and ATcT's argon-dimer-cation page returns HTTP 403 from here. Without
-the tabulated Cp(T) and S(298) there is no way to enter it that is not authoring, so it is
-not entered. See ``docs/i127-argon-cation-thermo.md``.
+``Ar2(+)`` -- the argon dimer cation (diatomic, +1) -- is entered below as the ``[Ar2p]``
+DERIVED entry. Its primary-read constants, partition-function calculation, and ruled
+database values are documented in that entry. Tabulated thermodynamic functions for the
+same species do exist - Maltsev, Morozov & Osina, "Thermodynamic Properties of Ar2+ and
+Ar2 Argon Dimers", High Temperature 57 (2019) 37-40, doi:10.1134/S0018151X19010176,
+covering 298.15-10000 K and folded into IVTANTHERMO - but that paper is closed access
+with no open-access copy, and ATcT's argon-dimer-cation page returns HTTP 403 from here.
+That not-yet-read tabulation would supersede the derived entry once it is defensibly
+read and transcribed. See ``docs/i127-argon-cation-thermo.md``.
 
 ``Ar(2+)`` and higher stages -- the argon dication (monatomic, +2), ``Ar(3+)``, ... are
 absent for a different reason, and it is NOT that RMG cannot build them. RMG constructs the
@@ -137,7 +150,7 @@ multiplicity 2
         Tmax = (6000, 'K'),
         E0 = (1520.573, 'kJ/mol'),
     ),
-    shortDesc = u"Ar+ (2P) free monatomic cation, NIST-JANAF table Ar-002, ion convention",
+    shortDesc = u"Ar+ (2P) free monatomic cation, NIST-JANAF table Ar-002, gas-phase 1 bar, ion convention",
     longDesc =
 u"""
 SOURCE
@@ -241,7 +254,7 @@ multiplicity 2
         Tmax = (6000, 'K'),
         E0 = (2372.324, 'kJ/mol'),
     ),
-    shortDesc = u"He+ (2S) free monatomic cation, NIST-JANAF table He-002, ion convention",
+    shortDesc = u"He+ (2S) free monatomic cation, NIST-JANAF table He-002, gas-phase 1 bar, ion convention",
     longDesc =
 u"""
 SOURCE
@@ -334,7 +347,7 @@ multiplicity 2
         Tmax = (6000, 'K'),
         E0 = (2080.662, 'kJ/mol'),
     ),
-    shortDesc = u"Ne+ (2P) free monatomic cation, NIST-JANAF table Ne-002, ion convention",
+    shortDesc = u"Ne+ (2P) free monatomic cation, NIST-JANAF table Ne-002, gas-phase 1 bar, ion convention",
     longDesc =
 u"""
 SOURCE
@@ -426,14 +439,18 @@ multiplicity 2
         Tmin = (298.15, 'K'),
         Tmax = (1500, 'K'),
     ),
-    shortDesc = u"Ar2+ (A 2Sigma+1/2u) dimer cation, spectroscopic-constant derivation, ion convention",
+    shortDesc = u"Ar2+ (A 2Sigma+1/2u) dimer cation, derived primary-read constants, gas-phase 1 bar, ion convention",
     longDesc =
 u"""
 PROVENANCE AND GRADE
     This is a DERIVED entry, admitted under the library header's primary-read
     spectroscopic-constant rule. It is not a transcription of Maltsev, Morozov & Osina
-    (2019). All primary constants used below were read in Signorell & Merkt (SM98),
-    J. Chem. Phys. 109 (1998) 9762-9771, doi:10.1063/1.477646.
+    (2019). The primary-read constants are split between the two papers: D0 and r_e
+    below are from Signorell & Merkt (SM98), J. Chem. Phys. 109 (1998) 9762-9771,
+    doi:10.1063/1.477646, abstract/p. 9766 and Table II; omega_e and omega_e x_e are
+    from Signorell, Wuest & Merkt (SWM97), J. Chem. Phys. 107 (1997) 10819-10822,
+    doi:10.1063/1.474199, Table I p. 10821. Maltsev, Morozov & Osina (2019) remains
+    the not-yet-read tabulation that would supersede this derived entry when checked.
 
     D0(Ar2+, A) = 10603.7 +/- 6 cm^-1: SM98 abstract and p. 9766, derived from the
     measured potential curve; grade PRIMARY-READ. The potential's De was held at the
@@ -454,22 +471,60 @@ PROVENANCE AND GRADE
 
 DERIVATION (all results in this block are DERIVED)
     The partition function contains translation for m(Ar2+) = 79.896 amu, a rigid rotor
-    with sigma = 2 and r_e = 2.32 A, the electronic degeneracy g_el = 2, and the
-    anharmonic levels
+    with sigma = 2 and r_e = 2.32 A, the electronic degeneracy g_el = 2, and exactly 53
+    vibrational levels. The level set used by ``docs/ar2p-thermo/thermo_check.py`` is:
+
+      * v = 0, 1, 2, 4: Morse substitutions derived from the low-v constants
+        omega_e = 307.0 and omega_e x_e = 2.05 cm^-1, read from Signorell, Wuest &
+        Merkt (SWM97), J. Chem. Phys. 107 (1997) 10819-10822, abstract and Table I
+        p. 10821. SM98 p. 9766 confirms that the low-v levels are the Morse-fit part.
+      * v = 3, 5-10, and 12-52: the 48 calculated line positions in Signorell & Merkt
+        (SM98), J. Chem. Phys. 109 (1998) 9762-9771, Table I p. 9765, shifted as
+        G(v)-G(0) = nu_calc - (116591.1 - 2.0) cm^-1.
+      * v = 11: one explicitly INTERPOLATED level, the arithmetic mean of the v = 10
+        and v = 12 shifted SM98 levels because Table I does not list v = 11.
+
+    No v = 53, 54, or 55 level is included. A pure 56-level Morse alternative would
+    instead give S(298.15) = 237.477626 J/(mol*K) and Cp(1500) = 38.566234 J/(mol*K),
+    versus the shipped hybrid values S(298.15) = 237.472407 J/(mol*K) and Cp(1500) =
+    38.603586 J/(mol*K).
+
+    The older SWM97 Morse cutoff 10601.2 cm^-1 is retained only as the derived
+    implementation cutoff for those Morse substitutions; it is the SWM97 D0 value
+    (abstract/Table I p. 10821). The formation-energy calculation uses the refined SM98
+    D0(Ar2+, A) = 10603.7 +/- 6 cm^-1, extracted from the potential curve (SM98 abstract
+    and p. 9766). Thus the two constants are not interchangeable source values.
+
+    In the SM98 shift, 116591.1 cm^-1 is the measured Ar2 ionization energy (SM98
+    abstract and Eq. (5), p. 9766), while the 2.0 cm^-1 subtraction is the delta defined
+    with the Table I level construction on p. 9766. Both are primary-read constants;
+    the subtraction is the source-defined level-origin arithmetic.
+
+    The anharmonic fallback levels use
 
         G(v) = omega_e(v+1/2) - omega_e x_e(v+1/2)^2 - G(0),
 
-    retaining every level with G(v) < D0. The calculation was independently reproduced
-    in ``/home/alon/runs/i285-ar2p-thermo-20260926-224723/thermo_check.py``. It gives
+    retaining levels below the SWM97 Morse cutoff only for the four stated substitutions.
+    The calculation was independently reproduced
+    by the versioned calculation in ``docs/ar2p-thermo/thermo_check.py``; its output is
+    recorded in ``docs/ar2p-thermo/thermo_check.log``. It gives
     H-H(0) = 9.781223 kJ/mol, S(298.15) = 237.472407 J/(mol*K), and the Cp values
     tabulated above at 298.15, 300, 400, 500, 600, 800, 1000 and 1500 K.
+
+    The 79.896 amu model mass is 2 x 39.948 u, using the NIST/CIAAW natural-abundance
+    standard atomic weight of argon; it is not 2 x the Ar-40 isotope mass minus an
+    electron. The CODATA 2018 values of h, kB, c, N_A and m_u are documented in
+    docs/ar2p-thermo/thermo_check.py. The conversion 0.01196265656387 kJ/mol per
+    cm^-1 is DERIVED as N_A h c / 1000 because that script uses c in cm/s and the
+    wavenumber in cm^-1. Thus:
 
     Delta-f H(0) = 1520.573 - (10603.7 cm^-1)(0.01196265656 kJ/mol per cm^-1)
                   = 1393.724579 kJ/mol (DERIVED).
     H(298.15) = Delta-f H(0) + [H(298.15)-H(0)]_Ar2+
                 - 2(5/2 R T) = 1391.111017 kJ/mol (DERIVED),
-    entered as 1391.112 kJ/mol to the ruled target precision. The factor of two is the
-    two explicit atoms in the ion-convention formation reaction. Delta-f H(0) is recorded
+    while the ruled database value is H298 = 1391.112 kJ/mol. The difference is
+    0.000983 kJ/mol, i.e. 0.983 J/mol, rounded at the ruled 1 J/mol precision. The factor
+    of two is the two explicit atoms in the ion-convention formation reaction. Delta-f H(0) is recorded
     here rather than as ``E0``: the scope's processing probe showed that a raw E0 field
     is on a different scale from this entry's H298 and is discarded by RMG processing.
 

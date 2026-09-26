@@ -2,7 +2,7 @@
 # encoding: utf-8
 
 name = "PlasmaCationThermo"
-shortDesc = u"Sourced gas-phase thermochemistry for free monatomic cations of plasma interest"
+shortDesc = u"Sourced gas-phase thermochemistry for cations of plasma interest"
 longDesc = u"""
 WHY THIS LIBRARY EXISTS
 -----------------------
@@ -16,9 +16,18 @@ were ``[Lip]`` (LithiumPrimaryThermo), ``Li_ion`` (computationalLithiumElectrode
 reference species whose enthalpy is zero by construction, not gas-phase values. This
 library is that thermo ticket, opened for argon.
 
-Everything here is TRANSCRIBED from a published table. No value in this file was fitted,
+The monatomic entries here are TRANSCRIBED from published tables. The Ar2+ entry is
+derived from primary-read spectroscopic constants and a stated partition-function
+calculation; its longDesc gives the complete derivation. No value in this file is
 estimated, interpolated, averaged between sources, or computed from a quantum-chemistry
 calculation or a group-additivity scheme.
+
+DERIVATION ADMISSION RULE
+--------------------------
+This library admits (1) directly transcribed cation thermochemistry from a published
+table and (2) an entry derived from primary-read spectroscopic constants when the entry
+states every constant's source, DOI, page/table location and provenance grade, and marks
+every calculated number as derived. The derived entry in this file is ``[Ar2p]``.
 
 THE ELECTRON REFERENCE-STATE CONVENTION, WHICH IS THE EASY THING TO GET WRONG
 -----------------------------------------------------------------------------
@@ -36,7 +45,8 @@ Two conventions are in use, and their names are routinely swapped; the authority
     S(T) = 0 as well. Used by the Gaseous Ion Energetics compilations and the GIANT
     tables. The two differ by 6.197 kJ/mol per electron at 298.15 K.
 
-THIS DATABASE AND THIS RUNTIME USE THE ION CONVENTION. Determined, not assumed:
+THIS DATABASE AND THIS RUNTIME USE THE ION CONVENTION. Determined, not assumed. Every
+entry in this library, including the derived ``[Ar2p]`` entry, uses that convention:
 
   * every ``electron`` entry in this database - electrocatThermo, electrocatLiThermo,
     computationalLithiumElectrode - is a NASA polynomial with all seven coefficients
@@ -391,5 +401,98 @@ STRUCTURE
     messages is GA's own ``saturate_radicals`` reference (an H capping the open valence to
     find an HBI base), not the species and not a SMILES bug -- a misleading diagnostic,
     someone else's runtime-repo ticket, not a property of this entry.
+""",
+)
+
+entry(
+    index = 3,
+    label = "[Ar2p]",
+    molecule =
+"""
+multiplicity 2
+1 Ar u0 p3 c+1 {2,S}
+2 Ar u1 p3 c0 {1,S}
+""",
+    thermo = ThermoData(
+        # Derived from the primary-read Signorell & Merkt constants below.  The
+        # tabulation is the database's source form; RMG processes it downstream.
+        Tdata = ([298.15, 300, 400, 500, 600, 800, 1000, 1500], 'K'),
+        Cpdata = ([36.204, 36.220, 36.833, 37.173, 37.398, 37.712, 37.969, 38.604],
+                  'J/(mol*K)'),
+        H298 = (1391.112, 'kJ/mol'),
+        S298 = (237.472, 'J/(mol*K)'),
+        Cp0 = (29.1006, 'J/(mol*K)'),
+        CpInf = (37.4151, 'J/(mol*K)'),
+        Tmin = (298.15, 'K'),
+        Tmax = (1500, 'K'),
+    ),
+    shortDesc = u"Ar2+ (A 2Sigma+1/2u) dimer cation, spectroscopic-constant derivation, ion convention",
+    longDesc =
+u"""
+PROVENANCE AND GRADE
+    This is a DERIVED entry, admitted under the library header's primary-read
+    spectroscopic-constant rule. It is not a transcription of Maltsev, Morozov & Osina
+    (2019). All primary constants used below were read in Signorell & Merkt (SM98),
+    J. Chem. Phys. 109 (1998) 9762-9771, doi:10.1063/1.477646.
+
+    D0(Ar2+, A) = 10603.7 +/- 6 cm^-1: SM98 abstract and p. 9766, derived from the
+    measured potential curve; grade PRIMARY-READ. The potential's De was held at the
+    1997 value, so this is a refinement, not an independent measurement.
+    omega_e = 307.0 +/- 0.4 cm^-1 and omega_e x_e = 2.05 +/- 0.05 cm^-1:
+    Signorell, Wuest & Merkt, J. Chem. Phys. 107 (1997) 10819-10822,
+    doi:10.1063/1.474199, Table I p. 10821; grade PRIMARY-READ. SM98 confirms these
+    low-v constants on p. 9766; grade PRIMARY-READ.
+    r_e = 2.32 +/- 0.09 A: SM98, p. 9766, Table II; grade PRIMARY-READ (measured).
+    sigma = 2: SM98 p. 9766 states that the spin statistical weights of odd N and even
+    N+ levels are zero, so half the rotational levels are absent; grade PRIMARY-READ.
+    g_el = 2: the observed A 2Sigma+1/2u ground state in SM98, abstract and p. 9766;
+    grade PRIMARY-READ.
+    Ar+ Delta-f H(0) = 1520.573 kJ/mol: Chase, NIST-JANAF Fourth Edition (1998),
+    table Ar-002, T = 0 row, pp. 1-1951, retrieved from
+    https://janaf.nist.gov/tables/Ar-002.txt; grade TRANSCRIBED. The database's ion
+    convention is the convention used here, as stated in the library header.
+
+DERIVATION (all results in this block are DERIVED)
+    The partition function contains translation for m(Ar2+) = 79.896 amu, a rigid rotor
+    with sigma = 2 and r_e = 2.32 A, the electronic degeneracy g_el = 2, and the
+    anharmonic levels
+
+        G(v) = omega_e(v+1/2) - omega_e x_e(v+1/2)^2 - G(0),
+
+    retaining every level with G(v) < D0. The calculation was independently reproduced
+    in ``/home/alon/runs/i285-ar2p-thermo-20260926-224723/thermo_check.py``. It gives
+    H-H(0) = 9.781223 kJ/mol, S(298.15) = 237.472407 J/(mol*K), and the Cp values
+    tabulated above at 298.15, 300, 400, 500, 600, 800, 1000 and 1500 K.
+
+    Delta-f H(0) = 1520.573 - (10603.7 cm^-1)(0.01196265656 kJ/mol per cm^-1)
+                  = 1393.724579 kJ/mol (DERIVED).
+    H(298.15) = Delta-f H(0) + [H(298.15)-H(0)]_Ar2+
+                - 2(5/2 R T) = 1391.111017 kJ/mol (DERIVED),
+    entered as 1391.112 kJ/mol to the ruled target precision. The factor of two is the
+    two explicit atoms in the ion-convention formation reaction. Delta-f H(0) is recorded
+    here rather than as ``E0``: the scope's processing probe showed that a raw E0 field
+    is on a different scale from this entry's H298 and is discarded by RMG processing.
+
+    The tabulated values are the database ThermoData form over 298.15-1500 K. Cp0 = 3.5R
+    and CpInf = 4.5R are derived limiting values (R = 8.314462618 J/(mol*K)); the
+    computed Cp at 1500 K is allowed to exceed CpInf because the latter is only the
+    high-temperature rigid-rotor/harmonic-oscillator limit for this finite model.
+
+REFERENCE-STATE AND VALIDITY
+    This entry uses the ion convention: the database electron has H = S = Cp = 0 at
+    every temperature. It is valid only over 298.15-1500 K. No value above 1500 K is
+    supported by the spectroscopic-level model or this tabulation.
+
+KEQ CHECK (DERIVED)
+    For Ar+ + Ar + Ar <=> Ar2+ + Ar, the calculated standard-state thermochemical
+    factor relative to the earlier scope model is 0.896582 at 298.15 K and 0.895841 at
+    1000 K. The corresponding Delta-Phi values are -0.907653 and -0.914524 J/(mol*K),
+    with Phi = S - [H-H(0)]/T. These are the factors used in the run report; the
+    reaction itself is outside this thermo-only ticket.
+
+    Maltsev et al., High Temperature 57 (2019) 37-40, doi:10.1134/S0018151X19010176,
+    Table 4 p. 39, is retained only as a secondary cross-check. Its entropy differs by
+    approximately R ln 2, consistent with the missing symmetry factor inferred from
+    SM98, and its Cp discrepancy was not reproduced. It is not used for this entry.
 """,
 )

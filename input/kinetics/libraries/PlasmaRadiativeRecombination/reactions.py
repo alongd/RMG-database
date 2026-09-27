@@ -450,7 +450,7 @@ two-reaction mechanism, not as a statement about argon.
 
 CORRECTION TO A SIBLING LIBRARY. ``PlasmaArgon``'s longDesc states that radiative
 recombination of argon "is NOT here, and does not belong", on three supports from I-120.
-All three have now moved. Argon cation thermochemistry exists (``PlasmaCationThermo``
+All three have now moved. Argon cation thermochemistry exists (``PlasmaThermo``
 ``[Arp]``), so the reactant is constructible. ``TwoTemperaturePlasma`` has been admitted to
 ``_NET_ELECTRON_KINETICS_CLASSES``, so a power-law Te form can carry a net electron count.
 And the third - that the channel does not matter at the campaign's working point - was

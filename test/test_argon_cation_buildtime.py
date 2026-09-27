@@ -17,7 +17,7 @@ separates "direct query" from "build time" is *which* libraries are loaded, in w
 At build time that set is the input file's ``thermoLibraries`` list and nothing else. The
 canonical plasma deck is ``RMG-Py/docs/i123-integration/input.py`` (named in this library's
 own ``longDesc``); its list is transcribed below. It does **not** include
-``PlasmaCationThermo`` - so as that deck stands, ``Ar+`` misses every loaded library and
+``PlasmaThermo`` - so as that deck stands, ``Ar+`` misses every loaded library and
 is refused at the thermochemistry wall. That is a critical-path finding, not a bug in the
 entry: the entry is correct, and an argon-capable deck must add the library to its
 ``thermoLibraries``. Both halves are pinned here so neither can regress silently:
@@ -26,19 +26,17 @@ entry: the entry is correct, and an argon-capable deck must add the library to i
   * with the current reference deck's set, ``Ar+`` is refused with a LOUD ``DatabaseError``
     rather than handed a silently fabricated group-additivity number.
 
-The last two tests put on the record which of the two species both written "Ar2+" raises
-the loud failure: the dication ``Ar(2+)`` (monatomic, +2) and the dimer ``Ar2(+)``
-(diatomic, +1). "Loud failure, not silent fabrication" is the distinction this campaign
-cares about, and it still holds for both - but **not by the same mechanism it once did**,
-and the two tests' names and docstrings were rewritten under I-226 to say so:
+The last two tests put on the record how the two species formerly conflated by the
+spellings "Ar2+" behave: only the dication ``Ar(2+)`` (monatomic, +2) is refused
+loudly. The dimer ``Ar2(+)`` (diatomic, +1) resolves through the entered derived
+``PlasmaThermo`` entry. "Loud failure, not silent fabrication" remains the guarantee
+for the unsupported dication, while the supported dimer is asserted to resolve:
 
   * the dication's ``3P`` spelling no longer perceives at all and dies at
     ``AtomTypeError``; the loud ``DatabaseError`` guarantee was *relocated* onto the
     closed-shell spelling the ``Ar++`` leaf admits, where it is still asserted;
-  * the dimer still builds, but is refused during HBI saturation by ``AtomTypeError``
-    before the thermo database is consulted at all - still loud, but a *narrower*
-    guarantee than the original ``DatabaseError``, which proved the database itself
-    refused it.
+  * the dimer now resolves through the entered ``[Ar2p]`` DERIVED library entry, so
+    model build time uses its ruled thermochemistry rather than group additivity.
 
 Both changes trace to RMG-Py moving argon out of ``nonSpecifics`` into the leaves
 ``Ar0``/``Ar0s``/``Ar+``/``Ar++`` and then narrowing ``Ar0s`` to ``single=[1]``. The
@@ -80,12 +78,14 @@ THIS_DATABASE = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardi
 LIBRARY_DIR = os.path.join(THIS_DATABASE, 'thermo', 'libraries')
 GROUP_DIR = os.path.join(THIS_DATABASE, 'thermo', 'groups')
 
-LIBRARY = 'PlasmaCationThermo'
+LIBRARY = 'PlasmaThermo'
 ENTERED_H298 = 1520.581  # kJ/mol, ion convention
+AR2P_H298 = 1391.112    # kJ/mol, derived ion convention
+AR2P_S298 = 237.472     # J/(mol*K)
 
 #: The plasma deck's ``thermoLibraries``, transcribed verbatim from
-#: ``RMG-Py/docs/i123-integration/input.py`` (the deck named in PlasmaCationThermo's
-#: longDesc). Note what is NOT in it: ``PlasmaCationThermo``. That omission is the finding.
+#: ``RMG-Py/docs/i123-integration/input.py`` (the deck named in PlasmaThermo's
+#: longDesc). Note what is NOT in it: ``PlasmaThermo``. That omission is the finding.
 REFERENCE_DECK_THERMO_LIBRARIES = [
     'LithiumPrimaryThermo',
     'LithiumAdditionalThermo',
@@ -142,12 +142,12 @@ def reference_deck_db(pinned):
 
 def test_the_reference_deck_does_not_load_this_library():
     """The premise of the finding, pinned so it is visible if the deck ever changes:
-    the canonical plasma deck's thermoLibraries omits PlasmaCationThermo."""
+    the canonical plasma deck's thermoLibraries omits PlasmaThermo."""
     assert LIBRARY not in REFERENCE_DECK_THERMO_LIBRARIES
 
 
 def test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity(argon_capable_db):
-    """With PlasmaCationThermo among the loaded libraries, get_thermo_data - the method
+    """With PlasmaThermo among the loaded libraries, get_thermo_data - the method
     RMG's model builder calls - returns the library entry, not a group-additivity estimate."""
     data = argon_capable_db.get_thermo_data(_species(ARP, 'Ar+'))
     assert LIBRARY in data.comment, f"resolved from {data.comment!r}, not the library"
@@ -158,7 +158,7 @@ def test_at_build_time_with_the_library_loaded_it_wins_over_group_additivity(arg
 
 
 def test_at_build_time_with_the_reference_deck_argon_is_refused_loudly(reference_deck_db):
-    """With the current reference deck's libraries (no PlasmaCationThermo), Ar+ misses
+    """With the current reference deck's libraries (no PlasmaThermo), Ar+ misses
     every library AND group additivity fails loudly for the noble-gas cation: a
     DatabaseError, never a silently fabricated number. This is why an argon-capable deck
     must add the library."""
@@ -214,47 +214,19 @@ def test_the_dication_no_longer_builds_but_the_loud_refusal_survives_on_the_spel
     assert 'Ar++' in str(exc.value)
 
 
-def test_the_dimer_cation_still_builds_but_is_now_refused_one_layer_earlier(argon_capable_db):
-    """The dimer still fails loudly, but from a different layer - and that IS a partial loss.
+def test_the_dimer_cation_resolves_to_the_derived_library_entry(argon_capable_db):
+    """The deliberately derived Ar2+ entry is used at model build time.
 
-    **What this test was written for, and why it was right.** The dimer Ar2(+) (diatomic,
-    +1) built, then raised a loud ``DatabaseError`` from ``get_thermo_data`` - reached "via
-    HBI saturation rather than a bare atom type", as the original docstring correctly said.
-    RMG saturates the radical to look up a closed-shell parent, the saturated argon has no
-    thermo group, and the database refuses it. Still loud, still not fabricated.
-
-    **What changed.** Nothing about *building* it: measurement confirms the dimer still
-    parses, as ``Ar0s`` bonded to ``Ar+`` (``[Ar][Ar+]``). What changed is one step deeper.
-    HBI saturation adds an H to the neutral argon, producing an argon with **two** single
-    bonds, 3 lone pairs and charge 0 - and the merge that narrowed ``Ar0s`` to ``single=[1]``
-    left no leaf that admits it. So ``saturate_radicals`` now raises ``AtomTypeError`` from
-    inside ``estimate_radical_thermo_via_hbi``, at the same call site where the
-    ``DatabaseError`` used to come from
-    (``docs/argon-perception-pins/logs/probe_exact_stdout.log``, steps 3 and 5).
-
-    **The guarantee question, answered.** The campaign's property - *loud failure, not
-    silent fabrication* - **holds**: the run still aborts, and no number is invented. But the
-    guarantee is **narrower than it was**, and the honest word is partially lost. The old
-    assertion demonstrated something about the **thermo database**: that it has no group for
-    this species and says so. Today the thermo database is never consulted, because the
-    molecule machinery fails first. This test can no longer witness the database's refusal of
-    the dimer; it can only witness that the dimer is unreachable. That is a smaller
-    guarantee, and it is pinned as such rather than dressed up as equivalent.
-
-    **Referral, not a fix.** Whether ``Ar0s`` narrowed to ``single=[1]`` *should* admit the
-    HBI-saturated two-bond argon is an RMG-Py question - HBI saturation can manufacture
-    valences the narrowing never considered. See ``docs/argon-perception-pins/report.md``."""
-    # Building it is unchanged - this half of the original premise still holds.
+    The species parses as ``Ar0s`` bonded to ``Ar+`` (``[Ar][Ar+]``), and the
+    ``PlasmaThermo`` entry supplies the intended derived thermochemistry."""
     species = _species(DIMER, 'Ar2+dimer')
     assert species.molecule[0].get_net_charge() == 1
     assert [a.atomtype.label for a in species.molecule[0].atoms] == ['Ar0s', 'Ar+']
-
-    # It is still refused loudly, but now by perception during HBI saturation rather than
-    # by the thermo database. Pinned as a SATURATION failure precisely because it is NOT
-    # the same guarantee: DatabaseError would mean the database was reached and said no.
-    # Either name for that saturation failure is accepted (see NO_NUMBER); what must not
-    # happen is a number, and what must not be claimed is that the database refused it.
-    with pytest.raises(NO_NUMBER) as exc:
-        argon_capable_db.get_thermo_data(species)
-    assert '2 single bonds' in str(exc.value)
-    assert '+0 charge' in str(exc.value)
+    data = argon_capable_db.get_thermo_data(species)
+    assert LIBRARY in data.comment
+    assert data.get_enthalpy(298.15) / 1000.0 == pytest.approx(AR2P_H298, abs=0.01)
+    entry = argon_capable_db.libraries[LIBRARY].entries['[Ar2p]']
+    assert entry.data.H298.value_si / 1000.0 == pytest.approx(AR2P_H298, abs=1e-9)
+    assert entry.data.S298.value_si == pytest.approx(AR2P_S298, abs=1e-9)
+    assert 'derived primary-read constants' in entry.short_desc
+    assert 'DERIVED entry' in entry.long_desc

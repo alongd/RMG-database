@@ -84,7 +84,7 @@ KINETICS_DIR = os.path.join(THIS_DATABASE, 'kinetics')
 
 LIBRARY = 'PlasmaExcitedNeutralThermo'
 LABEL = 'Ar(3P2)'
-CATION_LIBRARY = 'PlasmaCationThermo'
+CATION_LIBRARY = 'PlasmaThermo'
 
 R = 8.314462618
 T0 = 298.15
@@ -338,7 +338,7 @@ def test_the_e0_gap_is_the_thermal_enthalpy_and_not_the_298_convention(entry):
 
 
 def test_the_cation_library_carries_the_same_unfixed_e0_collision(thermo_db):
-    """Disclosure, not approval, and deliberately not fixed: PlasmaCationThermo is out of
+    """Disclosure, not approval, and deliberately not fixed: PlasmaThermo is out of
     this ticket's scope. If someone repairs it, this fails and points them here."""
     arp = thermo_db.libraries[CATION_LIBRARY].entries['[Arp]']
     stated = arp.data.E0.value_si / 1000.0
@@ -408,7 +408,7 @@ def test_the_level_energy_in_ev_matches_what_the_plasma_literature_quotes(entry)
 
 
 def test_the_entry_is_neutral_so_no_electron_convention_enters(entry):
-    """PlasmaCationThermo's whole reference-state discussion turns on the electron being
+    """PlasmaThermo's whole reference-state discussion turns on the electron being
     created or destroyed. Nothing is, here. If this species ever acquires charge, that
     discussion becomes load-bearing and this test is the tripwire."""
     assert entry.item.get_net_charge() == 0
@@ -2011,7 +2011,7 @@ def test_the_barrier_is_set_by_the_mixed_sibling_e0_convention(admitted):
 
     fix_barrier_height raises an endothermic barrier to the reaction enthalpy at ZERO K
     (rmgpy/reaction.py:1401-1403), where a species with no stated E0 falls back to
-    to_wilhoit().E0. PlasmaCationThermo STATES E0 and this library DERIVES it, so the two
+      to_wilhoit().E0. PlasmaThermo STATES E0 and this library DERIVES it, so the two
     siblings are read on two different conventions inside a single subtraction, and the
     inconsistency lands directly in an activation energy.
 

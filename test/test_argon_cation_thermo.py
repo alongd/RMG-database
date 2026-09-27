@@ -2,7 +2,7 @@
 # encoding: utf-8
 
 """
-Unit tests for ``PlasmaCationThermo``, the argon-cation thermochemistry entry, and for
+Unit tests for ``PlasmaThermo``, the argon-cation thermochemistry entry, and for
 the charged-species thermochemistry coverage this ticket measured around it.
 
 The report is ``docs/i127-argon-cation-thermo.md``. This file is the executable half of
@@ -44,6 +44,7 @@ fixtures below assert that pin rather than trusting it.
 
 import math
 import os
+import runpy
 import shutil
 import tempfile
 
@@ -63,8 +64,10 @@ LIBRARY_DIR = os.path.join(THIS_DATABASE, 'thermo', 'libraries')
 GROUP_DIR = os.path.join(THIS_DATABASE, 'thermo', 'groups')
 KINETICS_LIBRARY_DIR = os.path.join(THIS_DATABASE, 'kinetics', 'libraries')
 
-LIBRARY = 'PlasmaCationThermo'
+LIBRARY = 'PlasmaThermo'
 IONISATION = 'PlasmaElectronImpactIonization'
+DERIVATION_SCRIPT = os.path.join(os.path.dirname(THIS_DATABASE), 'docs', 'ar2p-thermo',
+                                 'thermo_check.py')
 
 R = 8.31446261815324
 T0 = 298.15
@@ -93,6 +96,8 @@ IE_LI_EV = 5.391714996
 
 #: What is actually in the file.
 ENTERED_H298 = 1520.581                            # kJ/mol, ion convention
+AR2P_H298 = 1391.112                                # kJ/mol, derived ion convention
+AR2P_S298 = 237.472                                 # J/(mol*K)
 ENTERED_E0 = 1520.573                              # kJ/mol, convention-free at 0 K
 
 AR = '1 Ar u0 p4 c0\n'
@@ -342,18 +347,48 @@ def test_the_smiles_round_trip_still_corrupts_this_species(entry):
     assert Molecule().from_smiles(smiles).get_net_charge() == 2
 
 
-def test_no_argon_dimer_cation_was_entered(thermo_db):
-    """Ar2+ was looked for and not entered: the tabulated functions exist (Maltsev,
-    Morozov & Osina, High Temperature 57 (2019) 37-40) but the paper is closed access
-    and ATcT returns HTTP 403, so entering one would mean authoring it. If a defensible
-    source is ever reached, this test is the place that says so."""
-    for library in thermo_db.libraries.values():
-        for e in library.entries.values():
-            if e.item is None:
-                continue
-            symbols = [a.element.symbol for a in e.item.atoms]
-            if symbols.count('Ar') > 1:
-                pytest.fail(f'unexpected multi-argon entry {e.label!r}')
+def test_argon_dimer_cation_entry_is_present(thermo_db):
+    """The deliberately derived Ar2+ entry is present with its ruled values."""
+    entry = thermo_db.libraries[LIBRARY].entries['[Ar2p]']
+    assert entry.data.H298.value_si / 1000.0 == pytest.approx(AR2P_H298, abs=1e-9)
+    assert entry.data.S298.value_si == pytest.approx(AR2P_S298, abs=1e-9)
+    assert 'derived primary-read constants' in entry.short_desc
+    assert 'DERIVED entry' in entry.long_desc
+
+
+def test_ar2p_entry_reproduces_the_versioned_derivation(thermo_db):
+    """The shipped rounded table stays tied to the versioned 53-level calculation.
+
+    H(T)-H(0), S, and Cp are checked at all three reported temperatures. H at 298.15 K
+    includes the ion-convention formation anchor; at higher temperatures the comparison
+    uses H(T)-H(298.15), with a 0.010 kJ/mol allowance for integrating the table's
+    three-decimal Cp values.
+    """
+    model = runpy.run_path(DERIVATION_SCRIPT)
+    levels = model['signorell_merkt_levels']()
+    entry = thermo_db.libraries[LIBRARY].entries['[Ar2p]']
+    d0 = 10603.7
+    cm_to_kj = 0.0119626565638786
+    h0 = 1520.573 - d0 * cm_to_kj
+    model_h0_increment = model['thermo'](T0, levels)[0]
+
+    for temperature in (T0, 1000.0, 1500.0):
+        h_increment, entropy, heat_capacity = model['thermo'](temperature, levels)
+        # ThermoData's evaluator adds its interpolation reference offset at exactly
+        # 298.15 K; compare the stored S298 there and evaluated S at the other points.
+        entry_entropy = (entry.data.S298.value_si if temperature == T0
+                         else entry.data.get_entropy(temperature))
+        assert entry_entropy == pytest.approx(entropy, abs=0.001)
+        assert entry.data.get_heat_capacity(temperature) == pytest.approx(
+            heat_capacity, abs=0.001)
+        if temperature == T0:
+            derived_h = h0 + h_increment - 2 * 2.5 * R * temperature / 1000.0
+            assert derived_h == pytest.approx(AR2P_H298, abs=0.001)
+        else:
+            entry_delta_h = ((entry.data.get_enthalpy(temperature)
+                              - entry.data.get_enthalpy(T0)) / 1000.0)
+            assert entry_delta_h == pytest.approx(
+                h_increment - model_h0_increment, abs=0.010)
 
 
 # =====================================================================================
@@ -364,9 +399,10 @@ def test_the_library_loads_alongside_every_other_thermo_library(thermo_db):
     on_disk = [f for f in os.listdir(LIBRARY_DIR) if f.endswith('.py')]
     assert len(thermo_db.libraries) == len(on_disk)
     assert LIBRARY in thermo_db.libraries
-    # Ar+ was the only entry when this branch was cut from i179; the i186 noble-gas
-    # ticket added He+ and Ne+ from NIST-JANAF He-002 / Ne-002.
-    assert list(thermo_db.libraries[LIBRARY].entries) == ['[Arp]', '[Hep]', '[Nep]']
+    # Ar2+ is derived from primary-read spectroscopic constants; the other three entries
+    # are transcribed/reconciled monatomic noble-gas cations.
+    assert list(thermo_db.libraries[LIBRARY].entries) == [
+        '[Arp]', '[Hep]', '[Nep]', '[Ar2p]']
 
 
 def test_the_species_resolves_to_this_library(thermo_db):
@@ -504,7 +540,8 @@ def test_the_only_gas_phase_cations_in_this_database_are_these_set(thermo_db):
     electrochemical reference species (``proton`` and ``Li_ion``, H298 = 0 by
     construction, not gas-phase thermochemistry at all) and ``[Lip]``/``H3O``, the free
     monatomic noble-gas cations with real gas-phase thermochemistry are the three this
-    library carries: Ar+ (from i179), and He+ and Ne+ added by the i186 ticket."""
+    library carries: Ar+, He+, and Ne+; it also carries the deliberately derived
+    diatomic Ar2+ entry."""
     cations = {}
     for name, library in thermo_db.libraries.items():
         for label, e in library.entries.items():
@@ -512,10 +549,11 @@ def test_the_only_gas_phase_cations_in_this_database_are_these_set(thermo_db):
                 continue
             cations.setdefault(label, set()).add(name)
     assert set(cations) == {'proton', 'H3O', 'Li_ion', '[Lip]', '[Arp]', '[Hep]',
-                            '[Nep]'}, sorted(cations)
+                            '[Nep]', '[Ar2p]'}, sorted(cations)
     assert cations['[Arp]'] == {LIBRARY}
     assert cations['[Hep]'] == {LIBRARY}
     assert cations['[Nep]'] == {LIBRARY}
+    assert cations['[Ar2p]'] == {LIBRARY}
 
     # the two electrochemical ones are zero by construction, not by measurement
     for label, expected_libraries in (('proton', {'electrocatThermo',

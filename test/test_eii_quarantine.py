@@ -90,7 +90,7 @@ def loaded():
     db = RMGDatabase()
     db.load(THIS_DATABASE,
             thermo_libraries=['primaryThermoLibrary', 'PlasmaExcitedNeutralThermo',
-                              'PlasmaCationThermo'],
+                              'PlasmaThermo'],
             kinetics_families=[FAMILY, SIBLING],
             reaction_libraries=[], seed_mechanisms=[], solvation=True, surface=False)
     fam = db.kinetics.families[FAMILY]

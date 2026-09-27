@@ -912,8 +912,11 @@ def test_the_only_kinetics_files_that_MENTION_the_metastable_are_the_containment
     ONE library line is admitted beside them, deliberately: I-231 entered the reaction that
     PRODUCES the metastable, ``Ar + e- => Ars + e-``, in ``PlasmaArgon``, so its dictionary
     declares ``Ars``. That is a library-delivered rate with a named source, not a family
-    template, so it leaves the containments untouched. Any other library that starts
-    declaring the structure still fails here."""
+    template, so it leaves the containments untouched. A second is admitted on the same
+    grounds: ``PlasmaArgonDimer`` delivers dissociative recombination ``Ar2p + e- => Ars + Ar``
+    (Shiu & Biondi 1978; the metastable product is the owner-ruled upper-bound convention), so
+    its dictionary declares ``Ars`` too. Any other library that starts declaring the structure
+    still fails here."""
     declared = []
     for root, _dirs, files in os.walk(KINETICS_DIR):
         for name in files:
@@ -933,6 +936,8 @@ def test_the_only_kinetics_files_that_MENTION_the_metastable_are_the_containment
         ('kinetics/families/%s/groups.py' % family, '1 %s Ar u2 p3 c0' % label)
         for family, label in CONTAINED_FAMILIES.items())
     expected = sorted(expected + [('kinetics/libraries/PlasmaArgon/dictionary.txt',
+                                   '1 Ar u2 p3 c0'),
+                                  ('kinetics/libraries/PlasmaArgonDimer/dictionary.txt',
                                    '1 Ar u2 p3 c0')])
     assert sorted(declared) == expected, sorted(declared)
 

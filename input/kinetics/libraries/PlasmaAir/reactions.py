@@ -28,6 +28,10 @@ Reference legend:
 [FlorescuMitchell2006]: A.I. Florescu-Mitchell, J.B.A. Mitchell, Dissociative recombination, Phys. Rep. 430 (2006) 277-374. DOI: 10.1016/j.physrep.2006.04.002
 [Itikawa2005]: Y. Itikawa, N. Mason, Cross sections for electron collisions with water molecules, J. Phys. Chem. Ref. Data 34 (2005) 1-22. DOI: 10.1063/1.1799251
 [Itikawa2006]: Y. Itikawa, Cross sections for electron collisions with nitrogen molecules, J. Phys. Chem. Ref. Data 35 (2006) 31-53. DOI: 10.1063/1.1937426
+[Alves2014]: L.L. Alves, The IST-Lisbon database on LXCat, J. Phys. Conf. Ser. 565 (2014) 012007. DOI: 10.1088/1742-6596/565/1/012007.
+    Cross sections used here are the IST-Lisbon sets shipped in the input/ folder of the open LoKI
+    code (IST-Lisbon), commit 6aa3d5298035835700e46dd96b20ac92cc241390. The file and process are
+    named in each entry.
 
 # can add these:
 # Ar+ + H2 <=> ArH+ + H
@@ -43,12 +47,15 @@ came from also carries edits to existing files that this line does not want. The
 first carry brought 42 of ``99``'s 94 entries; the remaining 52 are now here too,
 so the entry set is at full count and every one of ``99``'s labels is present.
 
-**THIS FILE DOES NOT LOAD AS IT STANDS.** 52 of the 94 entries are rejected by
-``Reaction.is_balanced`` at load time, and one rejection aborts the whole library,
-so ``PlasmaAir`` currently contributes NO reactions to a run. The reason and the
-fix are below under FREE-ELECTRON STOICHIOMETRY. The entries are held here in
-full, at their source numbers, so that landing the RMG-Py change turns the whole
-library on in one step rather than requiring the carry to be done again.
+**THE PARAGRAPH THAT STOOD HERE SAID THIS FILE DOES NOT LOAD. THAT IS NO LONGER TRUE.** As
+of I-295 (2026-09-27), on RMG-Py ``plasma`` at ebb97cd69, the whole library loads and all 87
+active entries balance. The electron census fix described below has landed in RMG-Py.
+``test/test_plasma_te_rate_encoding.py`` loads the library on every run. The two sections below
+record why the carry was once rejected. Read them as history, not as current state.
+
+Superseded text, kept for the record: "52 of the 94 entries are rejected by
+``Reaction.is_balanced`` at load time, and one rejection aborts the whole library, so
+``PlasmaAir`` currently contributes NO reactions to a run."
 
 What changed in the carry, and nothing else did:
 
@@ -71,7 +78,7 @@ What changed in the carry, and nothing else did:
   cation product) and guessing it would be authoring chemistry. It is the only one
   of the 52 rejections that the RMG-Py change below will NOT fix.
 
-FREE-ELECTRON STOICHIOMETRY -- WHY 52 ENTRIES DO NOT LOAD
+FREE-ELECTRON STOICHIOMETRY -- WHY 52 ENTRIES DID NOT LOAD (HISTORICAL; FIXED IN RMG-PY)
 ---------------------------------------------------------
 The free electron is a first-class chemical element in RMG: ``e`` is
 ``element_list[0]``. ``Reaction.is_balanced`` compares the per-element census of
@@ -135,7 +142,35 @@ READ THE RATES BEFORE TRUSTING THEM
 Many entries carried here are marked ``estimated`` by their original author rather
 than sourced. That provenance is preserved verbatim in each entry's ``shortDesc``;
 it was not upgraded, re-fitted or re-derived by the carry-over, which changed no
-number anywhere.
+number anywhere. I-295, below, does change numbers.
+
+ELECTRON-TEMPERATURE RATES (I-295, 2026-09-27)
+----------------------------------------------
+``TwoTemperaturePlasma`` evaluates k = A (Te/T0)^n exp(-Ea_g/(R T)) exp(Ea_e (Te - T)/(R T Te)).
+A Te-Arrhenius fit A Te^n exp(-E/Te) must therefore be written with Ea_g = Ea_e = E; see the
+``PlasmaArgon`` longDesc. As carried, 28 entries here had Ea_g = 0. That left a factor
+exp(E/(R Tg)) in their rates, e.g. N2 ionisation at ~1e238 cm^3/s at Tg = 298 K and Te = 1 eV.
+A further 19 Te-dependent entries were reversible, which ``PlasmaReactor`` refuses. What was done:
+
+* Every Te-Arrhenius entry is re-encoded to Ea_g = Ea_e, with the author's A, n and E kept.
+  [Tanarro2015] entries with n != 0 also get T0 = 1 eV, because that source writes Te in eV. The
+  evidence is in each such entry.
+* Every electron-impact entry whose process exists in the IST-Lisbon sets [Alves2014] was
+  compared with the Maxwellian average of that cross section over Te = 0.5-5 eV. Within x1.5,
+  the hand fit is kept and marked "Verified against". Otherwise it is refit to the average, and
+  the old values are kept in the longDesc as the "superseded hand fit". Entries with no
+  IST-Lisbon process say "not verified against cross sections" and why.
+* Every reversible Te-dependent entry is made irreversible in the direction the source
+  measured. No reverse reactions are added.
+* Two entries are commented out, not deleted: index 31 (H2 ionisation; the engine overflows on
+  its 20.07 eV threshold at room temperature) and index 41 (H2+ dissociative recombination;
+  its fit is unrecoverable). The reasons are in the comments above each one.
+
+``test/test_plasma_te_rate_encoding.py`` guards all three rules for every ``Plasma*``
+library. The analysis scripts and the integrator's unit tests are under
+/home/alon/runs/i295-xsec/analysis/ on the machine where the work was done. The Maxwellian
+average used is k(Te) = sqrt(8/(pi m_e)) (k Te)^(-3/2) Int sigma(eps) eps exp(-eps/(k Te)) deps,
+integrated exactly over the piecewise-linear cross-section table.
 """
 
 entry(

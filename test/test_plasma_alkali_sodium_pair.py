@@ -55,10 +55,11 @@ def test_sodium_recombination_loads_with_verner_ferland_rate_and_molecule_units(
     rate = entry.data
 
     assert isinstance(rate, TwoTemperaturePlasma)
-    # Rate parameters carried verbatim from branch 99, entry index 2.
+    # Rate parameters carried from branch 99, entry index 2 (A, n, Ea_e verbatim; Ea_g set to Ea_e by I-295).
     assert rate.A.value == pytest.approx(2.72e-08, rel=1e-12)
     assert rate.n.value == pytest.approx(-1.07, rel=1e-12)
-    assert rate.Ea_g.value_si == pytest.approx(0.0, abs=1e-9)
+    # I-295: Ea_g == Ea_e (branch 99's Ea_g = 0 left exp(Ea_e/(R Tg)) in a pure Te law).
+    assert rate.Ea_g.value_si == pytest.approx(250.0, rel=1e-12)
     assert rate.Ea_e.value_si == pytest.approx(250.0, rel=1e-12)  # 0.25 kJ/mol
     # Units carried verbatim: the coefficient is per-molecule, not per-mole.
     assert rate.A.units == "cm^3/(molecule*s)"

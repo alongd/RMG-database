@@ -29,7 +29,8 @@ raises.
 
 Labels use this branch's ``p``-for-``+`` cation spelling (``Arp``, not ``Ar+``);
 ``KineticsLibrary.load`` splits a reaction string on a bare ``+``, so a species whose
-own label contains ``+`` is torn in half. The rates are branch ``99``'s, unchanged.
+own label contains ``+`` is torn in half. The rates are branch ``99``'s (A, n, Ea_e);
+the recombination entries' Ea_g was set equal to Ea_e by I-295.
 
 Run::
 
@@ -198,7 +199,9 @@ def test_helium_radiative_recombination_matches_branch_99(by_label, label, A, n,
     assert entry.data.A.value == pytest.approx(A, rel=1e-9)
     assert entry.data.n.value == pytest.approx(n, rel=1e-9)
     assert entry.data.Ea_e.value_si == pytest.approx(Ea_e_kJ * 1000.0, rel=1e-6)
-    assert entry.data.Ea_g.value_si == pytest.approx(0.0, abs=1e-12)
+    # I-295: Ea_g == Ea_e, so the gas-temperature terms cancel. Branch 99 had Ea_g = 0, which
+    # leaves exp(Ea_e/(R Tg)) (x1.08 at 298 K) in a pure electron-temperature process.
+    assert entry.data.Ea_g.value_si == pytest.approx(Ea_e_kJ * 1000.0, rel=1e-6)
     assert entry.data.Tmin.value_si == pytest.approx(10.0)
     assert entry.data.Tmax.value_si == pytest.approx(1e9)
     assert 'VernerFerland1996' in entry.short_desc

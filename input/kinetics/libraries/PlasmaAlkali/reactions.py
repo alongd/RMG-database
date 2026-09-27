@@ -753,7 +753,7 @@ entry(
     index = 1,
     label = "Lip + e- => Li",
     reversible = False,
-    kinetics = TwoTemperaturePlasma(A=(1.30e-09, "cm^3/(molecule*s)"), n=-0.95, Ea_g=(0.0, "J/mol"), Ea_e=(0.19,'kJ/mol'),
+    kinetics = TwoTemperaturePlasma(A=(1.30e-09, "cm^3/(molecule*s)"), n=-0.95, Ea_g=(0.19,'kJ/mol'), Ea_e=(0.19,'kJ/mol'),
                                     Tmin = (10, "K"), Tmax = (1000000000, "K")),
     shortDesc = u"[VernerFerland1996]",
     longDesc = u"""
@@ -773,6 +773,11 @@ ThirdBody(arrheniusLow=Arrhenius(A=(2.41e+0,'cm^3/(mol*s)'), n=-1, Ea=(0,'cal/mo
                          efficiencies={}),
     shortDesc = u"[JensenJones1977]",
 p. 11
+
+RE-ENCODED (I-295, 2026-09-27). As carried: Ea_g = 0 with Ea_e = E. TwoTemperaturePlasma
+evaluates k = A (Te/T0)^n exp(-Ea_g/(R T)) exp(Ea_e (Te - T)/(R T Te)), so Ea_g = 0 leaves a
+factor exp(E/(R Tg)) in the rate: exp(0.07665) at Tg = 298.15 K. It now has Ea_g = Ea_e = E, and
+the rate is the pure Te law A (Te/T0)^n exp(-E/Te).
 """
 )
 
@@ -780,7 +785,7 @@ entry(
     index = 2,
     label = "Nap + e- => Na",
     reversible = False,
-    kinetics = TwoTemperaturePlasma(A=(2.72e-08, "cm^3/(molecule*s)"), n=-1.07, Ea_g=(0.0, "J/mol"), Ea_e=(0.25,'kJ/mol'),
+    kinetics = TwoTemperaturePlasma(A=(2.72e-08, "cm^3/(molecule*s)"), n=-1.07, Ea_g=(0.25,'kJ/mol'), Ea_e=(0.25,'kJ/mol'),
                                     Tmin = (10, "K"), Tmax = (1000000000, "K")),
     shortDesc = u"[VernerFerland1996]",
     longDesc = u"""
@@ -800,6 +805,11 @@ ThirdBody(arrheniusLow=Arrhenius(A=(2.41e+0,'cm^3/(mol*s)'), n=-1, Ea=(0,'cal/mo
                          efficiencies={}),
     shortDesc = u"[JensenJones1977]",
 p. 11
+
+RE-ENCODED (I-295, 2026-09-27). As carried: Ea_g = 0 with Ea_e = E. TwoTemperaturePlasma
+evaluates k = A (Te/T0)^n exp(-Ea_g/(R T)) exp(Ea_e (Te - T)/(R T Te)), so Ea_g = 0 leaves a
+factor exp(E/(R Tg)) in the rate: exp(0.1008) at Tg = 298.15 K. It now has Ea_g = Ea_e = E, and
+the rate is the pure Te law A (Te/T0)^n exp(-E/Te).
 """
 )
 
@@ -963,7 +973,7 @@ entry(
     index = 45,
     label = "Mgp2 + e- => Mgp",
     reversible = False,
-    kinetics = TwoTemperaturePlasma(A=(8.69e-09, "cm^3/(molecule*s)"), n=-0.99, Ea_g=(0.0, "J/mol"), Ea_e=(0.23,'kJ/mol'),
+    kinetics = TwoTemperaturePlasma(A=(8.69e-09, "cm^3/(molecule*s)"), n=-0.99, Ea_g=(0.23,'kJ/mol'), Ea_e=(0.23,'kJ/mol'),
                                     Tmin = (10, "K"), Tmax = (1000000000, "K")),
     shortDesc = u"[VernerFerland1996]",
     longDesc = u"""
@@ -977,5 +987,10 @@ temperatures = ([
 rate_coefficients = ([
     1.22e-10, 9.89e-11, 8.02e-11, 6.48e-11, 5.22e-11, 4.18e-11, 3.33e-11, 2.64e-11, 2.08e-11, 1.63e-11, 1.27e-11, 9.83e-12, 7.56e-12, 5.77e-12, 4.37e-12, 3.30e-12, 2.47e-12, 1.84e-12, 1.36e-12, 1.00e-12, 7.35e-13, 5.36e-13, 3.89e-13, 2.80e-13, 2.01e-13, 1.43e-13, 1.01e-13, 7.13e-14, 4.97e-14, 3.44e-14, 2.36e-14, 1.61e-14, 1.08e-14, 7.18e-15, 4.72e-15, 3.07e-15, 1.97e-15, 1.25e-15, 7.88e-16, 4.89e-16, 3.01e-16, 1.83e-16, 1.11e-16, 6.62e-17, 3.93e-17, 2.32e-17, 1.36e-17, 7.98e-18, 4.64e-18, 2.69e-18
 ], 'cm^3/s'),
+
+RE-ENCODED (I-295, 2026-09-27). As carried: Ea_g = 0 with Ea_e = E. TwoTemperaturePlasma
+evaluates k = A (Te/T0)^n exp(-Ea_g/(R T)) exp(Ea_e (Te - T)/(R T Te)), so Ea_g = 0 leaves a
+factor exp(E/(R Tg)) in the rate: exp(0.09278) at Tg = 298.15 K. It now has Ea_g = Ea_e = E, and
+the rate is the pure Te law A (Te/T0)^n exp(-E/Te).
 """
 )

@@ -155,11 +155,23 @@ entry(
     index = 2,
     label = "N2 + e- => N + N + e-",
     reversible = False,
-    kinetics = TwoTemperaturePlasma(A=(3.00e24, "cm^3/(mol*s)"), n=-1.60, Ea_g=(0.0, "kJ/mol"), Ea_e=(941.3, "kJ/mol"),
-        Tmin = (1000.0, "K"), Tmax = (100000.0, "K")),
+    kinetics = TwoTemperaturePlasma(A=(5.1827e-10, "cm^3/(molecule*s)"), n=2.0336, Ea_g=(9.6785, "eV/molecule"), Ea_e=(9.6785, "eV/molecule"),
+                                    T0=(11604.51812, "K"), Tmin = (1000.0, "K"), Tmax = (100000.0, "K")),
     shortDesc = u"[Ozawa2008]",
     longDesc = u"""
 Table III
+
+RE-ENCODED (I-295, 2026-09-27). As carried: Ea_g = 0 with Ea_e = E. TwoTemperaturePlasma
+evaluates k = A (Te/T0)^n exp(-Ea_g/(R T)) exp(Ea_e (Te - T)/(R T Te)), so Ea_g = 0 leaves a
+factor exp(E/(R Tg)) in the rate: exp(379.7) at Tg = 298.15 K. It now has Ea_g = Ea_e = E, and
+the rate is the pure Te law A (Te/T0)^n exp(-E/Te).
+
+REFIT (I-295, 2026-09-27) to the Maxwellian average of the IST-Lisbon cross section
+[Alves2014], IST-Lisbon N2 set, LoKI Nitrogen/N2_LXCat_extra.txt, processes "E + N2(X,v=0) -> E + 2N(4S), Excitation" + "E + N2(X,v=0) -> E + N(4S) + N(2D), Excitation" (sum of the two dissociation channels 2N(4S) and N(4S)+N(2D); the library has no N(2D), so N(2D) is lumped into N). Fitted over Te = 0.5-5 eV as
+k = a (Te/1 eV)^n exp(-E/Te): a = 5.1827e-10 cm^3/s, n = 2.0336, E = 9.6785 eV. Maximum
+fit error x1.178. The hand fit, re-encoded, DISAGREED with the same average by up to
+x2.83e+04 over 0.5-5 eV. Superseded hand fit, kept for the record:
+    kinetics = TwoTemperaturePlasma(A=(3.00e24, "cm^3/(mol*s)"), n=-1.60, Ea_g=(0.0, "kJ/mol"), Ea_e=(941.3, "kJ/mol"), Tmin = (1000.0, "K"), Tmax = (100000.0, "K"))
 """
 )
 
@@ -365,8 +377,8 @@ entry(
     index = 19,
     label = "O + e- => Op + e- + e-",
     reversible = False,
-    kinetics = TwoTemperaturePlasma(A=(6.2e15, "cm^3/(mol*s)"), n=0.5, Ea_g=(0.0, "J/mol"), Ea_e=(14.3, "eV/molecule"),
-                                    Tmin = (1000.0, "K"), Tmax = (100000.0, "K")),
+    kinetics = TwoTemperaturePlasma(A=(6.9893e-09, "cm^3/(molecule*s)"), n=0.5641, Ea_g=(13.6254, "eV/molecule"), Ea_e=(13.6254, "eV/molecule"),
+                                    T0=(11604.51812, "K"), Tmin = (1000.0, "K"), Tmax = (100000.0, "K")),
     shortDesc = u"[Tanarro2015]",
     longDesc = u"""
 Table 1, I1
@@ -378,6 +390,18 @@ Also available from:
     shortDesc = u"[Park1993]",
 Table 2
 Electron-impact ionization
+
+RE-ENCODED (I-295, 2026-09-27). As carried: Ea_g = 0 with Ea_e = E. TwoTemperaturePlasma
+evaluates k = A (Te/T0)^n exp(-Ea_g/(R T)) exp(Ea_e (Te - T)/(R T Te)), so Ea_g = 0 leaves a
+factor exp(E/(R Tg)) in the rate: exp(556.6) at Tg = 298.15 K. It now has Ea_g = Ea_e = E, and
+the rate is the pure Te law A (Te/T0)^n exp(-E/Te).
+
+REFIT (I-295, 2026-09-27) to the Maxwellian average of the IST-Lisbon cross section
+[Alves2014], IST-Lisbon O set, LoKI Oxygen/O_LXCat.txt, process "E + Oxygen -> E + E + O+, Ionization". Fitted over Te = 0.5-5 eV as
+k = a (Te/1 eV)^n exp(-E/Te): a = 6.9893e-09 cm^3/s, n = 0.5641, E = 13.6254 eV. Maximum
+fit error x1.011. The hand fit, re-encoded with Te read in eV, DISAGREED with the same average by up to
+x2.49 over 0.5-5 eV. Superseded hand fit, kept for the record:
+    kinetics = TwoTemperaturePlasma(A=(6.2e15, "cm^3/(mol*s)"), n=0.5, Ea_g=(0.0, "J/mol"), Ea_e=(14.3, "eV/molecule"), Tmin = (1000.0, "K"), Tmax = (100000.0, "K"))
 """
 )
 
@@ -385,36 +409,60 @@ entry(
     index = 20,
     label = "N + e- => Np + e- + e-",
     reversible = False,
-    kinetics = TwoTemperaturePlasma(A=(2.5e34, "cm^3/(mol*s)"), n=-3.82, Ea_g=(0.0, "J/mol"), Ea_e=(335050, "cal/mol"),
-        Tmin = (1000.0, "K"), Tmax = (100000.0, "K")),
+    kinetics = TwoTemperaturePlasma(A=(4.2547e-09, "cm^3/(molecule*s)"), n=0.8140, Ea_g=(14.3650, "eV/molecule"), Ea_e=(14.3650, "eV/molecule"),
+                                    T0=(11604.51812, "K"), Tmin = (1000.0, "K"), Tmax = (100000.0, "K")),
     shortDesc = u"[Park1993]",
     longDesc = u"""
 Table 2
 Electron-impact ionization
+
+RE-ENCODED (I-295, 2026-09-27). As carried: Ea_g = 0 with Ea_e = E. TwoTemperaturePlasma
+evaluates k = A (Te/T0)^n exp(-Ea_g/(R T)) exp(Ea_e (Te - T)/(R T Te)), so Ea_g = 0 leaves a
+factor exp(E/(R Tg)) in the rate: exp(565.5) at Tg = 298.15 K. It now has Ea_g = Ea_e = E, and
+the rate is the pure Te law A (Te/T0)^n exp(-E/Te).
+
+REFIT (I-295, 2026-09-27) to the Maxwellian average of the IST-Lisbon cross section
+[Alves2014], IST-Lisbon N set, LoKI Nitrogen/N_LXCat.txt, process "E + Nitrogen -> E + E + N+, Ionization". Fitted over Te = 0.5-5 eV as
+k = a (Te/1 eV)^n exp(-E/Te): a = 4.2547e-09 cm^3/s, n = 0.8140, E = 14.3650 eV. Maximum
+fit error x1.015. The hand fit, re-encoded, DISAGREED with the same average by up to
+x5.26e+04 over 0.5-5 eV. Superseded hand fit, kept for the record:
+    kinetics = TwoTemperaturePlasma(A=(2.5e34, "cm^3/(mol*s)"), n=-3.82, Ea_g=(0.0, "J/mol"), Ea_e=(335050, "cal/mol"), Tmin = (1000.0, "K"), Tmax = (100000.0, "K"))
 """
 )
 
 entry(
     index = 21,
-    label = "Op + e- <=> O",
+    label = "Op + e- => O",
+    reversible = False,
     kinetics = TwoTemperaturePlasma(A=(1.07e11, "cm^3/(mol*s)"), n=-0.52, Ea_g=(0.0, "J/mol"), Ea_e=(0.0, "cal/mol"),
         Tmin = (1000.0, "K"), Tmax = (100000.0, "K")),
     shortDesc = u"[Park1993]",
     longDesc = u"""
 Table 2
 Radiative recombination
+
+MADE IRREVERSIBLE (I-295, 2026-09-27). The entry was reversible (<=>). PlasmaReactor refuses
+reversible Te-dependent kinetics (NonEquilibriumReverseRateError): it will not price the
+reverse with Keq(Tgas). The direction kept is the one the source measured (radiative recombination). No reverse
+reaction is added.
 """
 )
 
 entry(
     index = 22,
-    label = "Np + e- <=> N",
+    label = "Np + e- => N",
+    reversible = False,
     kinetics = TwoTemperaturePlasma(A=(1.52e11, "cm^3/(mol*s)"), n=-0.48, Ea_g=(0.0, "J/mol"), Ea_e=(0.0, "cal/mol"),
         Tmin = (1000.0, "K"), Tmax = (100000.0, "K")),
     shortDesc = u"[Park1993]",
     longDesc = u"""
 Table 2
 Radiative recombination
+
+MADE IRREVERSIBLE (I-295, 2026-09-27). The entry was reversible (<=>). PlasmaReactor refuses
+reversible Te-dependent kinetics (NonEquilibriumReverseRateError): it will not price the
+reverse with Keq(Tgas). The direction kept is the one the source measured (radiative recombination). No reverse
+reaction is added.
 """
 )
 
@@ -489,12 +537,24 @@ entry(
     index = 28,
     label = "O2 + e- => O2p + e- + e-",
     reversible = False,
-    kinetics = TwoTemperaturePlasma(A=(4.26e15, "cm^3/(mol*s)"), n=0.5, Ea_g=(0.0, "J/mol"), Ea_e=(13.1, "eV/molecule"),
-                                    Tmin = (1000.0, "K"), Tmax = (100000.0, "K")),
+    kinetics = TwoTemperaturePlasma(A=(2.0025e-09, "cm^3/(molecule*s)"), n=1.2987, Ea_g=(11.6282, "eV/molecule"), Ea_e=(11.6282, "eV/molecule"),
+                                    T0=(11604.51812, "K"), Tmin = (1000.0, "K"), Tmax = (100000.0, "K")),
     shortDesc = u"[Tanarro2015]",
     longDesc = u"""
 Table 1, I3
 Electron Impact Ionization
+
+RE-ENCODED (I-295, 2026-09-27). As carried: Ea_g = 0 with Ea_e = E. TwoTemperaturePlasma
+evaluates k = A (Te/T0)^n exp(-Ea_g/(R T)) exp(Ea_e (Te - T)/(R T Te)), so Ea_g = 0 leaves a
+factor exp(E/(R Tg)) in the rate: exp(509.9) at Tg = 298.15 K. It now has Ea_g = Ea_e = E, and
+the rate is the pure Te law A (Te/T0)^n exp(-E/Te).
+
+REFIT (I-295, 2026-09-27) to the Maxwellian average of the IST-Lisbon cross section
+[Alves2014], IST-Lisbon O2 set, LoKI Oxygen/O2_LXCat.txt, process "E + O2 -> E + E + O2+, Ionization". Fitted over Te = 0.5-5 eV as
+k = a (Te/1 eV)^n exp(-E/Te): a = 2.0025e-09 cm^3/s, n = 1.2987, E = 11.6282 eV. Maximum
+fit error x1.033. The hand fit, re-encoded with Te read in eV, DISAGREED with the same average by up to
+x2.99 over 0.5-5 eV. Superseded hand fit, kept for the record:
+    kinetics = TwoTemperaturePlasma(A=(4.26e15, "cm^3/(mol*s)"), n=0.5, Ea_g=(0.0, "J/mol"), Ea_e=(13.1, "eV/molecule"), Tmin = (1000.0, "K"), Tmax = (100000.0, "K"))
 """
 )
 
@@ -502,12 +562,27 @@ entry(
     index = 29,
     label = "H + e- => Hp + e- + e-",
     reversible = False,
-    kinetics = TwoTemperaturePlasma(A=(3.91e15, "cm^3/(mol*s)"), n=0.49, Ea_g=(0.0, "J/mol"), Ea_e=(12.89, "eV/molecule"),
+    kinetics = TwoTemperaturePlasma(A=(3.91e15, "cm^3/(mol*s)"), n=0.49, Ea_g=(12.89, "eV/molecule"), Ea_e=(12.89, "eV/molecule"), T0=(11604.51812, "K"),
                                     Tmin = (1000.0, "K"), Tmax = (100000.0, "K")),
     shortDesc = u"[Tanarro2015]",
     longDesc = u"""
 Table 1, I4
 Electron Impact Ionization
+
+RE-ENCODED (I-295, 2026-09-27). As carried: Ea_g = 0 with Ea_e = E. TwoTemperaturePlasma
+evaluates k = A (Te/T0)^n exp(-Ea_g/(R T)) exp(Ea_e (Te - T)/(R T Te)), so Ea_g = 0 leaves a
+factor exp(E/(R Tg)) in the rate: exp(501.7) at Tg = 298.15 K. It now has Ea_g = Ea_e = E, and
+the rate is the pure Te law A (Te/T0)^n exp(-E/Te).
+
+T0 = 1 eV (11604.51812 K) because [Tanarro2015] writes Te in eV. As carried the entry had the
+default T0 = 1 K, which reads Te in kelvin and multiplies the rate by 11604.5^n. On the four
+Tanarro-sourced entries with n != 0 that could be checked against IST-Lisbon cross sections
+(indices 19, 28, 37, 55), reading Te in eV puts the hand fit within x2.5, x3.0, x19 and x1.2
+of the Maxwellian average. Reading it in kelvin puts them off by x124, x107, x1.6e8 and x5.1e5.
+A, n and E are unchanged.
+
+Not verified against cross sections: the IST-Lisbon sets downloaded for I-295 (LoKI commit 6aa3d52980:
+N2, N, O2, O, O3, CO, CO2, He, Ar) carry no process for this hydrogen-bearing species.
 """
 )
 
@@ -525,29 +600,70 @@ Electron Impact Ionization
 # """
 # )
 
-entry(
-    index = 31,
-    label = "H2 + e- => H2p + e- + e-",
-    reversible = False,
-    kinetics = TwoTemperaturePlasma(A=(1.88e16, "cm^3/(mol*s)"), n=0.17, Ea_g=(0.0, "J/mol"), Ea_e=(20.07, "eV/molecule"),
-                                    Tmin = (1000.0, "K"), Tmax = (100000.0, "K")),
-    shortDesc = u"[Tanarro2015]",
-    longDesc = u"""
-Table 1, I6
-Electron Impact Ionization
-"""
-)
+# H2 IONISATION COMMENTED OUT (I-295, 2026-09-27), NOT deleted. The entry below is correctly
+# re-encoded: Ea_g = Ea_e = 20.07 eV, T0 = 1 eV. The engine still cannot evaluate it at room
+# temperature. RMG-Py TwoTemperaturePlasma.get_rate_coefficient_two_temp (ebb97cd69) multiplies
+# exp(-Ea_g/(R T)) by exp(Ea_e (Te - T)/(R T Te)) as two separate exponentials. The second
+# overflows once Ea_e/(R Tg) > ~709.8, i.e. for E > 18.24 eV at Tg = 298.15 K (E > 18.24 eV *
+# Tg/298.15 K in general). The call then raises TypeError instead of returning a rate. This
+# entry is the only active Te law with E above that limit; it fails below Tg = 328 K. No
+# re-expression fixes it: capping E at 18.0 eV and refitting a and n to this same law over
+# Te = 0.5-5 eV misses it by up to x2.2 (x5.8 at the 15.43 eV threshold). The real fix is in the
+# engine: evaluate one combined exponent, (Ea_e - Ea_g)/(R T) - Ea_e/(R Te). Restore this entry
+# unchanged once that lands. Its superseded carried form had Ea_g = 0 and T0 = 1 K.
+# entry(
+#     index = 31,
+#     label = "H2 + e- => H2p + e- + e-",
+#     reversible = False,
+#     kinetics = TwoTemperaturePlasma(A=(1.88e16, "cm^3/(mol*s)"), n=0.17, Ea_g=(20.07, "eV/molecule"), Ea_e=(20.07, "eV/molecule"), T0=(11604.51812, "K"),
+#                                     Tmin = (1000.0, "K"), Tmax = (100000.0, "K")),
+#     shortDesc = u"[Tanarro2015]",
+#     longDesc = u"""
+# Table 1, I6
+# Electron Impact Ionization
+#
+# RE-ENCODED (I-295, 2026-09-27). As carried: Ea_g = 0 with Ea_e = E. TwoTemperaturePlasma
+# evaluates k = A (Te/T0)^n exp(-Ea_g/(R T)) exp(Ea_e (Te - T)/(R T Te)), so Ea_g = 0 leaves a
+# factor exp(E/(R Tg)) in the rate: exp(781.2) at Tg = 298.15 K. It now has Ea_g = Ea_e = E, and
+# the rate is the pure Te law A (Te/T0)^n exp(-E/Te).
+#
+# T0 = 1 eV (11604.51812 K) because [Tanarro2015] writes Te in eV. As carried the entry had the
+# default T0 = 1 K, which reads Te in kelvin and multiplies the rate by 11604.5^n. On the four
+# Tanarro-sourced entries with n != 0 that could be checked against IST-Lisbon cross sections
+# (indices 19, 28, 37, 55), reading Te in eV puts the hand fit within x2.5, x3.0, x19 and x1.2
+# of the Maxwellian average. Reading it in kelvin puts them off by x124, x107, x1.6e8 and x5.1e5.
+# A, n and E are unchanged.
+#
+# Not verified against cross sections: the IST-Lisbon sets downloaded for I-295 (LoKI commit 6aa3d52980:
+# N2, N, O2, O, O3, CO, CO2, He, Ar) carry no process for this hydrogen-bearing species.
+# """
+# )
 
 entry(
     index = 32,
     label = "OH + e- => OHp + e- + e-",
     reversible = False,
-    kinetics = TwoTemperaturePlasma(A=(8.91e15, "cm^3/(mol*s)"), n=0.5, Ea_g=(0.0, "J/mol"), Ea_e=(12.6, "eV/molecule"),
+    kinetics = TwoTemperaturePlasma(A=(8.91e15, "cm^3/(mol*s)"), n=0.5, Ea_g=(12.6, "eV/molecule"), Ea_e=(12.6, "eV/molecule"), T0=(11604.51812, "K"),
                                     Tmin = (1000.0, "K"), Tmax = (100000.0, "K")),
     shortDesc = u"[Tanarro2015]",
     longDesc = u"""
 Table 1, I7
 Electron Impact Ionization
+
+RE-ENCODED (I-295, 2026-09-27). As carried: Ea_g = 0 with Ea_e = E. TwoTemperaturePlasma
+evaluates k = A (Te/T0)^n exp(-Ea_g/(R T)) exp(Ea_e (Te - T)/(R T Te)), so Ea_g = 0 leaves a
+factor exp(E/(R Tg)) in the rate: exp(490.4) at Tg = 298.15 K. It now has Ea_g = Ea_e = E, and
+the rate is the pure Te law A (Te/T0)^n exp(-E/Te).
+
+T0 = 1 eV (11604.51812 K) because [Tanarro2015] writes Te in eV. As carried the entry had the
+default T0 = 1 K, which reads Te in kelvin and multiplies the rate by 11604.5^n. On the four
+Tanarro-sourced entries with n != 0 that could be checked against IST-Lisbon cross sections
+(indices 19, 28, 37, 55), reading Te in eV puts the hand fit within x2.5, x3.0, x19 and x1.2
+of the Maxwellian average. Reading it in kelvin puts them off by x124, x107, x1.6e8 and x5.1e5.
+A, n and E are unchanged.
+
+Not verified against cross sections: the IST-Lisbon sets downloaded for I-295 (LoKI commit 6aa3d52980:
+N2, N, O2, O, O3, CO, CO2, He, Ar) carry no process for this hydrogen-bearing species.
 """
 )
 
@@ -555,12 +671,27 @@ entry(
     index = 33,
     label = "H2O + e- => H2Op + e- + e-",
     reversible = False,
-    kinetics = TwoTemperaturePlasma(A=(5.94e15, "cm^3/(mol*s)"), n=0.5, Ea_g=(0.0, "J/mol"), Ea_e=(13.3, "eV/molecule"),
+    kinetics = TwoTemperaturePlasma(A=(5.94e15, "cm^3/(mol*s)"), n=0.5, Ea_g=(13.3, "eV/molecule"), Ea_e=(13.3, "eV/molecule"), T0=(11604.51812, "K"),
                                     Tmin = (1000.0, "K"), Tmax = (100000.0, "K")),
     shortDesc = u"[Tanarro2015]",
     longDesc = u"""
 Table 1, I8
 Electron Impact Ionization
+
+RE-ENCODED (I-295, 2026-09-27). As carried: Ea_g = 0 with Ea_e = E. TwoTemperaturePlasma
+evaluates k = A (Te/T0)^n exp(-Ea_g/(R T)) exp(Ea_e (Te - T)/(R T Te)), so Ea_g = 0 leaves a
+factor exp(E/(R Tg)) in the rate: exp(517.7) at Tg = 298.15 K. It now has Ea_g = Ea_e = E, and
+the rate is the pure Te law A (Te/T0)^n exp(-E/Te).
+
+T0 = 1 eV (11604.51812 K) because [Tanarro2015] writes Te in eV. As carried the entry had the
+default T0 = 1 K, which reads Te in kelvin and multiplies the rate by 11604.5^n. On the four
+Tanarro-sourced entries with n != 0 that could be checked against IST-Lisbon cross sections
+(indices 19, 28, 37, 55), reading Te in eV puts the hand fit within x2.5, x3.0, x19 and x1.2
+of the Maxwellian average. Reading it in kelvin puts them off by x124, x107, x1.6e8 and x5.1e5.
+A, n and E are unchanged.
+
+Not verified against cross sections: the IST-Lisbon sets downloaded for I-295 (LoKI commit 6aa3d52980:
+N2, N, O2, O, O3, CO, CO2, He, Ar) carry no process for this hydrogen-bearing species.
 """
 )
 
@@ -610,12 +741,24 @@ entry(
     index = 37,
     label = "O2s + e- => O2p + e- + e-",
     reversible = False,
-    kinetics = TwoTemperaturePlasma(A=(5.42e14, "cm^3/(mol*s)"), n=2.0, Ea_g=(0.0, "J/mol"), Ea_e=(11.6, "eV/molecule"),
-                                    Tmin = (1000.0, "K"), Tmax = (100000.0, "K")),
+    kinetics = TwoTemperaturePlasma(A=(1.8586e-09, "cm^3/(molecule*s)"), n=1.3196, Ea_g=(10.7190, "eV/molecule"), Ea_e=(10.7190, "eV/molecule"),
+                                    T0=(11604.51812, "K"), Tmin = (1000.0, "K"), Tmax = (100000.0, "K")),
     shortDesc = u"[Tanarro2015]",
     longDesc = u"""
 Table 1, I11
 Electron Impact Ionization
+
+RE-ENCODED (I-295, 2026-09-27). As carried: Ea_g = 0 with Ea_e = E. TwoTemperaturePlasma
+evaluates k = A (Te/T0)^n exp(-Ea_g/(R T)) exp(Ea_e (Te - T)/(R T Te)), so Ea_g = 0 leaves a
+factor exp(E/(R Tg)) in the rate: exp(451.5) at Tg = 298.15 K. It now has Ea_g = Ea_e = E, and
+the rate is the pure Te law A (Te/T0)^n exp(-E/Te).
+
+REFIT (I-295, 2026-09-27) to the Maxwellian average of the IST-Lisbon cross section
+[Alves2014], IST-Lisbon O2 set (excited-state extra), LoKI Oxygen/O2_LXCat_extra.txt, process "E + Oxygen -> E + E + O2+ (O2(a1Dg) -> O2+), Ionization" (O2s taken as O2(a1Dg)). Fitted over Te = 0.5-5 eV as
+k = a (Te/1 eV)^n exp(-E/Te): a = 1.8586e-09 cm^3/s, n = 1.3196, E = 10.7190 eV. Maximum
+fit error x1.034. The hand fit, re-encoded with Te read in eV, DISAGREED with the same average by up to
+x18.6 over 0.5-5 eV. Superseded hand fit, kept for the record:
+    kinetics = TwoTemperaturePlasma(A=(5.42e14, "cm^3/(mol*s)"), n=2.0, Ea_g=(0.0, "J/mol"), Ea_e=(11.6, "eV/molecule"), Tmin = (1000.0, "K"), Tmax = (100000.0, "K"))
 """
 )
 
@@ -623,11 +766,26 @@ entry(
     index = 38,
     label = "H2O + e- => Os + H2 + e-",
     reversible = False,
-    kinetics = TwoTemperaturePlasma(A=(1.2e15, "cm^3/(mol*s)"), n=0.5, Ea_g=(0.0, "kJ/mol"), Ea_e=(7.0, "eV/molecule"),
+    kinetics = TwoTemperaturePlasma(A=(1.2e15, "cm^3/(mol*s)"), n=0.5, Ea_g=(7.0, "eV/molecule"), Ea_e=(7.0, "eV/molecule"), T0=(11604.51812, "K"),
         Tmin = (1000.0, "K"), Tmax = (100000.0, "K")),
     shortDesc = u"[Tanarro2015]",
     longDesc = u"""
 Table 1, D6
+
+RE-ENCODED (I-295, 2026-09-27). As carried: Ea_g = 0 with Ea_e = E. TwoTemperaturePlasma
+evaluates k = A (Te/T0)^n exp(-Ea_g/(R T)) exp(Ea_e (Te - T)/(R T Te)), so Ea_g = 0 leaves a
+factor exp(E/(R Tg)) in the rate: exp(272.5) at Tg = 298.15 K. It now has Ea_g = Ea_e = E, and
+the rate is the pure Te law A (Te/T0)^n exp(-E/Te).
+
+T0 = 1 eV (11604.51812 K) because [Tanarro2015] writes Te in eV. As carried the entry had the
+default T0 = 1 K, which reads Te in kelvin and multiplies the rate by 11604.5^n. On the four
+Tanarro-sourced entries with n != 0 that could be checked against IST-Lisbon cross sections
+(indices 19, 28, 37, 55), reading Te in eV puts the hand fit within x2.5, x3.0, x19 and x1.2
+of the Maxwellian average. Reading it in kelvin puts them off by x124, x107, x1.6e8 and x5.1e5.
+A, n and E are unchanged.
+
+Not verified against cross sections: the IST-Lisbon sets downloaded for I-295 (LoKI commit 6aa3d52980:
+N2, N, O2, O, O3, CO, CO2, He, Ar) carry no process for this hydrogen-bearing species.
 """
 )
 
@@ -635,11 +793,23 @@ entry(
     index = 39,
     label = "O2s + e- => O + O + e-",
     reversible = False,
-    kinetics = TwoTemperaturePlasma(A=(2.5e15, "cm^3/(mol*s)"), n=0.0, Ea_g=(0.0, "kJ/mol"), Ea_e=(4.6, "eV/molecule"),
-        Tmin = (1000.0, "K"), Tmax = (100000.0, "K")),
+    kinetics = TwoTemperaturePlasma(A=(2.1356e-08, "cm^3/(molecule*s)"), n=-0.5689, Ea_g=(6.0945, "eV/molecule"), Ea_e=(6.0945, "eV/molecule"),
+                                    T0=(11604.51812, "K"), Tmin = (1000.0, "K"), Tmax = (100000.0, "K")),
     shortDesc = u"[Tanarro2015]",
     longDesc = u"""
 Table 1, D7
+
+RE-ENCODED (I-295, 2026-09-27). As carried: Ea_g = 0 with Ea_e = E. TwoTemperaturePlasma
+evaluates k = A (Te/T0)^n exp(-Ea_g/(R T)) exp(Ea_e (Te - T)/(R T Te)), so Ea_g = 0 leaves a
+factor exp(E/(R Tg)) in the rate: exp(179) at Tg = 298.15 K. It now has Ea_g = Ea_e = E, and
+the rate is the pure Te law A (Te/T0)^n exp(-E/Te).
+
+REFIT (I-295, 2026-09-27) to the Maxwellian average of the IST-Lisbon cross section
+[Alves2014], IST-Lisbon O2 set (excited-state extra), LoKI Oxygen/O2_LXCat_extra.txt, process "E + Oxygen -> E + 2O (O2(a1Dg) -> 2O(3P)), Excitation" (O2s taken as O2(a1Dg)). Fitted over Te = 0.5-5 eV as
+k = a (Te/1 eV)^n exp(-E/Te): a = 2.1356e-08 cm^3/s, n = -0.5689, E = 6.0945 eV. Maximum
+fit error x1.035. The hand fit, re-encoded, DISAGREED with the same average by up to
+x2.51 over 0.5-5 eV. Superseded hand fit, kept for the record:
+    kinetics = TwoTemperaturePlasma(A=(2.5e15, "cm^3/(mol*s)"), n=0.0, Ea_g=(0.0, "kJ/mol"), Ea_e=(4.6, "eV/molecule"), Tmin = (1000.0, "K"), Tmax = (100000.0, "K"))
 """
 )
 
@@ -647,25 +817,45 @@ entry(
     index = 40,
     label = "O2 + e- => O + Os + e-",
     reversible = False,
-    kinetics = TwoTemperaturePlasma(A=(2.53e15, "cm^3/(mol*s)"), n=0.0, Ea_g=(0.0, "kJ/mol"), Ea_e=(5.56, "eV/molecule"),
-        Tmin = (1000.0, "K"), Tmax = (100000.0, "K")),
+    kinetics = TwoTemperaturePlasma(A=(5.0643e-08, "cm^3/(molecule*s)"), n=-0.1077, Ea_g=(8.6247, "eV/molecule"), Ea_e=(8.6247, "eV/molecule"),
+                                    T0=(11604.51812, "K"), Tmin = (1000.0, "K"), Tmax = (100000.0, "K")),
     shortDesc = u"[Tanarro2015]",
     longDesc = u"""
 Table 1, D3
+
+RE-ENCODED (I-295, 2026-09-27). As carried: Ea_g = 0 with Ea_e = E. TwoTemperaturePlasma
+evaluates k = A (Te/T0)^n exp(-Ea_g/(R T)) exp(Ea_e (Te - T)/(R T Te)), so Ea_g = 0 leaves a
+factor exp(E/(R Tg)) in the rate: exp(216.4) at Tg = 298.15 K. It now has Ea_g = Ea_e = E, and
+the rate is the pure Te law A (Te/T0)^n exp(-E/Te).
+
+REFIT (I-295, 2026-09-27) to the Maxwellian average of the IST-Lisbon cross section
+[Alves2014], IST-Lisbon O2 set, LoKI Oxygen/O2_LXCat.txt, process "E + O2 -> E + O(3P)+O(1D), Excitation" (Os = O(1D)). Fitted over Te = 0.5-5 eV as
+k = a (Te/1 eV)^n exp(-E/Te): a = 5.0643e-08 cm^3/s, n = -0.1077, E = 8.6247 eV. Maximum
+fit error x1.017. The hand fit, re-encoded, DISAGREED with the same average by up to
+x35.7 over 0.5-5 eV. Superseded hand fit, kept for the record:
+    kinetics = TwoTemperaturePlasma(A=(2.53e15, "cm^3/(mol*s)"), n=0.0, Ea_g=(0.0, "kJ/mol"), Ea_e=(5.56, "eV/molecule"), Tmin = (1000.0, "K"), Tmax = (100000.0, "K"))
 """
 )
 
-entry(
-    index = 41,
-    label = "H2p + e- <=> H + H",
-    kinetics = TwoTemperaturePlasma(A=(3.53e10, "cm^3/(mol*s)"), n=4.00, Ea_g=(0.0, "kJ/mol"), Ea_e=(0.60, "kJ/mol"),
-        Tmin = (1000.0, "K"), Tmax = (100000.0, "K")),
-    shortDesc = u"[Tanarro2015]",
-    longDesc = u"""
-Table 1, N1
-Fitted Arrhenius to "K_N1" polynom rate between Te=6000-25000 K
-"""
-)
+# H2p + e- DISSOCIATIVE RECOMBINATION COMMENTED OUT (I-295, 2026-09-27), NOT deleted. As carried
+# it was A = 3.53e10 cm^3/(mol*s) (5.86e-14 cm^3/s), n = 4.00, Ea_e = 0.60 kJ/mol, T0 = 1 K,
+# reversible, with Ea_g = 0. Re-encoding Ea_g = Ea_e leaves 66 cm^3/s at Te = 0.5 eV and
+# 6.6e5 cm^3/s at 5 eV, 9-13 orders above a typical 1e-7 cm^3/s DR coefficient. The fit is broken in A, n or T0,
+# not only in its encoding. No reading of it is checkable: the longDesc says it was fitted in
+# kelvin over 6000-25000 K, but T0 = 1 eV (the Tanarro convention) and T0 = 300 K (the
+# convention of the neighbouring DR entries 44-54) differ by 38.7^4 = 2.2e6. The IST-Lisbon
+# sets have no H2+ data. Restore it only from [Tanarro2015] K_N1 itself.
+# entry(
+#     index = 41,
+#     label = "H2p + e- <=> H + H",
+#     kinetics = TwoTemperaturePlasma(A=(3.53e10, "cm^3/(mol*s)"), n=4.00, Ea_g=(0.0, "kJ/mol"), Ea_e=(0.60, "kJ/mol"),
+#         Tmin = (1000.0, "K"), Tmax = (100000.0, "K")),
+#     shortDesc = u"[Tanarro2015]",
+#     longDesc = u"""
+# Table 1, N1
+# Fitted Arrhenius to "K_N1" polynom rate between Te=6000-25000 K
+# """
+# )
 
 # H3p COMMENTED OUT (I-176). H3p is a triangular 3-centre-2-electron ion that RMG cannot
 # represent (no hydrogen atom type carries two single bonds), so it is carried as the
@@ -705,61 +895,91 @@ Fitted Arrhenius to "K_N1" polynom rate between Te=6000-25000 K
 
 entry(
     index = 44,
-    label = "O2p + e- <=> O + Os",
+    label = "O2p + e- => O + Os",
+    reversible = False,
     kinetics = TwoTemperaturePlasma(A=(6.38e16, "cm^3/(mol*s)"), n=-0.7, Ea_g=(0.0, "kJ/mol"), Ea_e=(0.0, "kJ/mol"), T0=(300, "K"),
         Tmin = (1000.0, "K"), Tmax = (100000.0, "K")),
     shortDesc = u"[Tanarro2015]",
     longDesc = u"""
 Table 1, N5
 Fitted Arrhenius to between Te=6000-25000 K
+
+MADE IRREVERSIBLE (I-295, 2026-09-27). The entry was reversible (<=>). PlasmaReactor refuses
+reversible Te-dependent kinetics (NonEquilibriumReverseRateError): it will not price the
+reverse with Keq(Tgas). The direction kept is the one the source measured (dissociative recombination). No reverse
+reaction is added.
 """
 )
 
 entry(
     index = 45,
-    label = "O2p + e- <=> Os + Os",
+    label = "O2p + e- => Os + Os",
+    reversible = False,
     kinetics = TwoTemperaturePlasma(A=(4.55e16, "cm^3/(mol*s)"), n=-0.7, Ea_g=(0.0, "kJ/mol"), Ea_e=(0.0, "kJ/mol"), T0=(300, "K"),
         Tmin = (1000.0, "K"), Tmax = (100000.0, "K")),
     shortDesc = u"[Tanarro2015]",
     longDesc = u"""
 Table 1, N6
 Fitted Arrhenius to between Te=6000-25000 K
+
+MADE IRREVERSIBLE (I-295, 2026-09-27). The entry was reversible (<=>). PlasmaReactor refuses
+reversible Te-dependent kinetics (NonEquilibriumReverseRateError): it will not price the
+reverse with Keq(Tgas). The direction kept is the one the source measured (dissociative recombination). No reverse
+reaction is added.
 """
 )
 
 entry(
     index = 46,
-    label = "OHp + e- <=> O + H",
+    label = "OHp + e- => O + H",
+    reversible = False,
     kinetics = TwoTemperaturePlasma(A=(2.26e16, "cm^3/(mol*s)"), n=-0.5, Ea_g=(0.0, "kJ/mol"), Ea_e=(0.0, "kJ/mol"), T0=(300, "K"),
         Tmin = (1000.0, "K"), Tmax = (100000.0, "K")),
     shortDesc = u"[Tanarro2015]",
     longDesc = u"""
 Table 1, N7
 Fitted Arrhenius to between Te=6000-25000 K
+
+MADE IRREVERSIBLE (I-295, 2026-09-27). The entry was reversible (<=>). PlasmaReactor refuses
+reversible Te-dependent kinetics (NonEquilibriumReverseRateError): it will not price the
+reverse with Keq(Tgas). The direction kept is the one the source measured (dissociative recombination). No reverse
+reaction is added.
 """
 )
 
 entry(
     index = 47,
-    label = "H2Op + e- <=> OH + H",
+    label = "H2Op + e- => OH + H",
+    reversible = False,
     kinetics = TwoTemperaturePlasma(A=(5.18e16, "cm^3/(mol*s)"), n=-0.5, Ea_g=(0.0, "kJ/mol"), Ea_e=(0.0, "kJ/mol"), T0=(300, "K"),
         Tmin = (1000.0, "K"), Tmax = (100000.0, "K")),
     shortDesc = u"[Tanarro2015]",
     longDesc = u"""
 Table 1, N8
 Fitted Arrhenius to between Te=6000-25000 K
+
+MADE IRREVERSIBLE (I-295, 2026-09-27). The entry was reversible (<=>). PlasmaReactor refuses
+reversible Te-dependent kinetics (NonEquilibriumReverseRateError): it will not price the
+reverse with Keq(Tgas). The direction kept is the one the source measured (dissociative recombination). No reverse
+reaction is added.
 """
 )
 
 entry(
     index = 48,
-    label = "H2Op + e- <=> O + H2",
+    label = "H2Op + e- => O + H2",
+    reversible = False,
     kinetics = TwoTemperaturePlasma(A=(2.35e16, "cm^3/(mol*s)"), n=-0.5, Ea_g=(0.0, "kJ/mol"), Ea_e=(0.0, "kJ/mol"), T0=(300, "K"),
         Tmin = (1000.0, "K"), Tmax = (100000.0, "K")),
     shortDesc = u"[Tanarro2015]",
     longDesc = u"""
 Table 1, N9
 Fitted Arrhenius to between Te=6000-25000 K
+
+MADE IRREVERSIBLE (I-295, 2026-09-27). The entry was reversible (<=>). PlasmaReactor refuses
+reversible Te-dependent kinetics (NonEquilibriumReverseRateError): it will not price the
+reverse with Keq(Tgas). The direction kept is the one the source measured (dissociative recombination). No reverse
+reaction is added.
 """
 )
 
@@ -810,44 +1030,63 @@ Fitted Arrhenius to between Te=6000-25000 K
 
 entry(
     index = 52,
-    label = "H3Op + e- <=> OH + H2",
+    label = "H3Op + e- => OH + H2",
+    reversible = False,
     kinetics = TwoTemperaturePlasma(A=(3.62e16, "cm^3/(mol*s)"), n=-0.5, Ea_g=(0.0, "kJ/mol"), Ea_e=(0.0, "kJ/mol"), T0=(300, "K"),
         Tmin = (1000.0, "K"), Tmax = (100000.0, "K")),
     shortDesc = u"[Tanarro2015]",
     longDesc = u"""
 Table 1, N13
 Fitted Arrhenius to between Te=6000-25000 K
+
+MADE IRREVERSIBLE (I-295, 2026-09-27). The entry was reversible (<=>). PlasmaReactor refuses
+reversible Te-dependent kinetics (NonEquilibriumReverseRateError): it will not price the
+reverse with Keq(Tgas). The direction kept is the one the source measured (dissociative recombination). No reverse
+reaction is added.
 """
 )
 
 entry(
     index = 53,
-    label = "H3Op + e- <=> H2O + H",
+    label = "H3Op + e- => H2O + H",
+    reversible = False,
     kinetics = TwoTemperaturePlasma(A=(6.50e16, "cm^3/(mol*s)"), n=-0.5, Ea_g=(0.0, "kJ/mol"), Ea_e=(0.0, "kJ/mol"), T0=(300, "K"),
         Tmin = (1000.0, "K"), Tmax = (100000.0, "K")),
     shortDesc = u"[Tanarro2015]",
     longDesc = u"""
 Table 1, N14
 Fitted Arrhenius to between Te=6000-25000 K
+
+MADE IRREVERSIBLE (I-295, 2026-09-27). The entry was reversible (<=>). PlasmaReactor refuses
+reversible Te-dependent kinetics (NonEquilibriumReverseRateError): it will not price the
+reverse with Keq(Tgas). The direction kept is the one the source measured (dissociative recombination). No reverse
+reaction is added.
 """
 )
 
 entry(
     index = 54,
-    label = "HO2p + e- <=> O2 + H",
+    label = "HO2p + e- => O2 + H",
+    reversible = False,
     kinetics = TwoTemperaturePlasma(A=(1.81e17, "cm^3/(mol*s)"), n=-0.5, Ea_g=(0.0, "kJ/mol"), Ea_e=(0.0, "kJ/mol"), T0=(300, "K"),
         Tmin = (1000.0, "K"), Tmax = (100000.0, "K")),
     shortDesc = u"[Tanarro2015]",
     longDesc = u"""
 Table 1, N15
 Fitted Arrhenius to between Te=6000-25000 K
+
+MADE IRREVERSIBLE (I-295, 2026-09-27). The entry was reversible (<=>). PlasmaReactor refuses
+reversible Te-dependent kinetics (NonEquilibriumReverseRateError): it will not price the
+reverse with Keq(Tgas). The direction kept is the one the source measured (dissociative recombination). No reverse
+reaction is added.
 """
 )
 
 entry(
     index = 55,
-    label = "O2 + e- <=> O- + O",
-    kinetics = TwoTemperaturePlasma(A=(6.44e14, "cm^3/(mol*s)"), n=-1.391, Ea_g=(0.0, "kJ/mol"), Ea_e=(6.26, "eV/molecule"),
+    label = "O2 + e- => O- + O",
+    reversible = False,
+    kinetics = TwoTemperaturePlasma(A=(6.44e14, "cm^3/(mol*s)"), n=-1.391, Ea_g=(6.26, "eV/molecule"), Ea_e=(6.26, "eV/molecule"), T0=(11604.51812, "K"),
         Tmin = (1000.0, "K"), Tmax = (100000.0, "K")),
     shortDesc = u"[Tanarro2015]",
     longDesc = u"""
@@ -858,24 +1097,66 @@ Arrhenius(A=(1.38e14, 'cm^3/(mol*s)'), n=0.0, Ea=(0.0, 'kJ/mol'),
                        T0=(300, 'K'), Tmin=(300, 'K'), Tmax=(10000, 'K')),
     shortDesc = u"[Tanarro2015]",
 Table 1, Dt11
+
+RE-ENCODED (I-295, 2026-09-27). As carried: Ea_g = 0 with Ea_e = E. TwoTemperaturePlasma
+evaluates k = A (Te/T0)^n exp(-Ea_g/(R T)) exp(Ea_e (Te - T)/(R T Te)), so Ea_g = 0 leaves a
+factor exp(E/(R Tg)) in the rate: exp(243.7) at Tg = 298.15 K. It now has Ea_g = Ea_e = E, and
+the rate is the pure Te law A (Te/T0)^n exp(-E/Te).
+
+T0 = 1 eV (11604.51812 K) because [Tanarro2015] writes Te in eV. As carried the entry had the
+default T0 = 1 K, which reads Te in kelvin and multiplies the rate by 11604.5^n. On the four
+Tanarro-sourced entries with n != 0 that could be checked against IST-Lisbon cross sections
+(indices 19, 28, 37, 55), reading Te in eV puts the hand fit within x2.5, x3.0, x19 and x1.2
+of the Maxwellian average. Reading it in kelvin puts them off by x124, x107, x1.6e8 and x5.1e5.
+A, n and E are unchanged.
+
+Verified against IST-Lisbon O2 set, LoKI Oxygen/O2_LXCat.txt, process "E + O2 -> O- + O, Attachment" [Alves2014]
+Maxwellian average, within x1.19 over Te 0.5-5 eV (2026-09-27)
+
+MADE IRREVERSIBLE (I-295, 2026-09-27). The entry was reversible (<=>). PlasmaReactor refuses
+reversible Te-dependent kinetics (NonEquilibriumReverseRateError): it will not price the
+reverse with Keq(Tgas). The direction kept is the one the source measured (dissociative attachment). No reverse
+reaction is added.
 """
 )
 
 entry(
     index = 56,
-    label = "H2O + e- <=> OH + H-",
-    kinetics = TwoTemperaturePlasma(A=(2.13e15, "cm^3/(mol*s)"), n=-1.5, Ea_g=(0.0, "kJ/mol"), Ea_e=(6.66, "eV/molecule"),
+    label = "H2O + e- => OH + H-",
+    reversible = False,
+    kinetics = TwoTemperaturePlasma(A=(2.13e15, "cm^3/(mol*s)"), n=-1.5, Ea_g=(6.66, "eV/molecule"), Ea_e=(6.66, "eV/molecule"), T0=(11604.51812, "K"),
         Tmin = (1000.0, "K"), Tmax = (100000.0, "K")),
     shortDesc = u"[Tanarro2015]",
     longDesc = u"""
 Table 1, A2
+
+RE-ENCODED (I-295, 2026-09-27). As carried: Ea_g = 0 with Ea_e = E. TwoTemperaturePlasma
+evaluates k = A (Te/T0)^n exp(-Ea_g/(R T)) exp(Ea_e (Te - T)/(R T Te)), so Ea_g = 0 leaves a
+factor exp(E/(R Tg)) in the rate: exp(259.2) at Tg = 298.15 K. It now has Ea_g = Ea_e = E, and
+the rate is the pure Te law A (Te/T0)^n exp(-E/Te).
+
+T0 = 1 eV (11604.51812 K) because [Tanarro2015] writes Te in eV. As carried the entry had the
+default T0 = 1 K, which reads Te in kelvin and multiplies the rate by 11604.5^n. On the four
+Tanarro-sourced entries with n != 0 that could be checked against IST-Lisbon cross sections
+(indices 19, 28, 37, 55), reading Te in eV puts the hand fit within x2.5, x3.0, x19 and x1.2
+of the Maxwellian average. Reading it in kelvin puts them off by x124, x107, x1.6e8 and x5.1e5.
+A, n and E are unchanged.
+
+Not verified against cross sections: the IST-Lisbon sets downloaded for I-295 (LoKI commit 6aa3d52980:
+N2, N, O2, O, O3, CO, CO2, He, Ar) carry no process for this hydrogen-bearing species.
+
+MADE IRREVERSIBLE (I-295, 2026-09-27). The entry was reversible (<=>). PlasmaReactor refuses
+reversible Te-dependent kinetics (NonEquilibriumReverseRateError): it will not price the
+reverse with Keq(Tgas). The direction kept is the one the source measured (dissociative attachment). No reverse
+reaction is added.
 """
 )
 
 entry(
     index = 57,
-    label = "H2 + e- <=> H- + H",
-    kinetics = TwoTemperaturePlasma(A=(3.37e11, "cm^3/(mol*s)"), n=0.5, Ea_g=(0.0, "kJ/mol"), Ea_e=(5.5, "eV/molecule"),
+    label = "H2 + e- => H- + H",
+    reversible = False,
+    kinetics = TwoTemperaturePlasma(A=(3.37e11, "cm^3/(mol*s)"), n=0.5, Ea_g=(5.5, "eV/molecule"), Ea_e=(5.5, "eV/molecule"), T0=(11604.51812, "K"),
         Tmin = (1000.0, "K"), Tmax = (100000.0, "K")),
     shortDesc = u"[Tanarro2015]",
     longDesc = u"""
@@ -885,24 +1166,63 @@ Arrhenius(A=(7.83e14, 'cm^3/(mol*s)'), n=0.00, Ea=(0.0, 'kJ/mol'),
                        T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(10000, 'K')),
     shortDesc = u"[Tanarro2015]",
 Table 1, Dt2
+
+RE-ENCODED (I-295, 2026-09-27). As carried: Ea_g = 0 with Ea_e = E. TwoTemperaturePlasma
+evaluates k = A (Te/T0)^n exp(-Ea_g/(R T)) exp(Ea_e (Te - T)/(R T Te)), so Ea_g = 0 leaves a
+factor exp(E/(R Tg)) in the rate: exp(214.1) at Tg = 298.15 K. It now has Ea_g = Ea_e = E, and
+the rate is the pure Te law A (Te/T0)^n exp(-E/Te).
+
+T0 = 1 eV (11604.51812 K) because [Tanarro2015] writes Te in eV. As carried the entry had the
+default T0 = 1 K, which reads Te in kelvin and multiplies the rate by 11604.5^n. On the four
+Tanarro-sourced entries with n != 0 that could be checked against IST-Lisbon cross sections
+(indices 19, 28, 37, 55), reading Te in eV puts the hand fit within x2.5, x3.0, x19 and x1.2
+of the Maxwellian average. Reading it in kelvin puts them off by x124, x107, x1.6e8 and x5.1e5.
+A, n and E are unchanged.
+
+Not verified against cross sections: the IST-Lisbon sets downloaded for I-295 (LoKI commit 6aa3d52980:
+N2, N, O2, O, O3, CO, CO2, He, Ar) carry no process for this hydrogen-bearing species.
+
+MADE IRREVERSIBLE (I-295, 2026-09-27). The entry was reversible (<=>). PlasmaReactor refuses
+reversible Te-dependent kinetics (NonEquilibriumReverseRateError): it will not price the
+reverse with Keq(Tgas). The direction kept is the one the source measured (dissociative attachment). No reverse
+reaction is added.
 """
 )
 
 entry(
     index = 58,
-    label = "O2s + e- <=> O- + O",
-    kinetics = TwoTemperaturePlasma(A=(1.37e14, "cm^3/(mol*s)"), n=0.0, Ea_g=(0.0, "kJ/mol"), Ea_e=(2.29, "eV/molecule"),
-        Tmin = (1000.0, "K"), Tmax = (100000.0, "K")),
+    label = "O2s + e- => O- + O",
+    reversible = False,
+    kinetics = TwoTemperaturePlasma(A=(2.5113e-09, "cm^3/(molecule*s)"), n=-1.1501, Ea_g=(5.1672, "eV/molecule"), Ea_e=(5.1672, "eV/molecule"),
+                                    T0=(11604.51812, "K"), Tmin = (1000.0, "K"), Tmax = (100000.0, "K")),
     shortDesc = u"[Tanarro2015]",
     longDesc = u"""
 Table 1, A4
+
+RE-ENCODED (I-295, 2026-09-27). As carried: Ea_g = 0 with Ea_e = E. TwoTemperaturePlasma
+evaluates k = A (Te/T0)^n exp(-Ea_g/(R T)) exp(Ea_e (Te - T)/(R T Te)), so Ea_g = 0 leaves a
+factor exp(E/(R Tg)) in the rate: exp(89.13) at Tg = 298.15 K. It now has Ea_g = Ea_e = E, and
+the rate is the pure Te law A (Te/T0)^n exp(-E/Te).
+
+REFIT (I-295, 2026-09-27) to the Maxwellian average of the IST-Lisbon cross section
+[Alves2014], IST-Lisbon O2 set (excited-state extra), LoKI Oxygen/O2_LXCat_extra.txt, process "E + Oxygen -> O- + O (O2(a1Dg) -> O- + O(3P)), Attachment" (O2s taken as O2(a1Dg)). Fitted over Te = 0.5-5 eV as
+k = a (Te/1 eV)^n exp(-E/Te): a = 2.5113e-09 cm^3/s, n = -1.1501, E = 5.1672 eV. Maximum
+fit error x1.055. The hand fit, re-encoded, DISAGREED with the same average by up to
+x12.2 over 0.5-5 eV. Superseded hand fit, kept for the record:
+    kinetics = TwoTemperaturePlasma(A=(1.37e14, "cm^3/(mol*s)"), n=0.0, Ea_g=(0.0, "kJ/mol"), Ea_e=(2.29, "eV/molecule"), Tmin = (1000.0, "K"), Tmax = (100000.0, "K"))
+
+MADE IRREVERSIBLE (I-295, 2026-09-27). The entry was reversible (<=>). PlasmaReactor refuses
+reversible Te-dependent kinetics (NonEquilibriumReverseRateError): it will not price the
+reverse with Keq(Tgas). The direction kept is the one the source measured (dissociative attachment). No reverse
+reaction is added.
 """
 )
 
 entry(
     index = 59,
-    label = "H2O + e- <=> H2 + O-",
-    kinetics = TwoTemperaturePlasma(A=(4.26e14, "cm^3/(mol*s)"), n=-1.3, Ea_g=(0.0, "kJ/mol"), Ea_e=(8.61, "eV/molecule"),
+    label = "H2O + e- => H2 + O-",
+    reversible = False,
+    kinetics = TwoTemperaturePlasma(A=(4.26e14, "cm^3/(mol*s)"), n=-1.3, Ea_g=(8.61, "eV/molecule"), Ea_e=(8.61, "eV/molecule"), T0=(11604.51812, "K"),
         Tmin = (1000.0, "K"), Tmax = (100000.0, "K")),
     shortDesc = u"[Tanarro2015]",
     longDesc = u"""
@@ -912,13 +1232,34 @@ Arrhenius(A=(3.61e14, 'cm^3/(mol*s)'), n=-0.24, Ea=(0.0, 'kJ/mol'),
                        T0=(300, 'K'), Tmin=(300, 'K'), Tmax=(10000, 'K')),
     shortDesc = u"[Tanarro2015]",
 Table 1, Dt10
+
+RE-ENCODED (I-295, 2026-09-27). As carried: Ea_g = 0 with Ea_e = E. TwoTemperaturePlasma
+evaluates k = A (Te/T0)^n exp(-Ea_g/(R T)) exp(Ea_e (Te - T)/(R T Te)), so Ea_g = 0 leaves a
+factor exp(E/(R Tg)) in the rate: exp(335.1) at Tg = 298.15 K. It now has Ea_g = Ea_e = E, and
+the rate is the pure Te law A (Te/T0)^n exp(-E/Te).
+
+T0 = 1 eV (11604.51812 K) because [Tanarro2015] writes Te in eV. As carried the entry had the
+default T0 = 1 K, which reads Te in kelvin and multiplies the rate by 11604.5^n. On the four
+Tanarro-sourced entries with n != 0 that could be checked against IST-Lisbon cross sections
+(indices 19, 28, 37, 55), reading Te in eV puts the hand fit within x2.5, x3.0, x19 and x1.2
+of the Maxwellian average. Reading it in kelvin puts them off by x124, x107, x1.6e8 and x5.1e5.
+A, n and E are unchanged.
+
+Not verified against cross sections: the IST-Lisbon sets downloaded for I-295 (LoKI commit 6aa3d52980:
+N2, N, O2, O, O3, CO, CO2, He, Ar) carry no process for this hydrogen-bearing species.
+
+MADE IRREVERSIBLE (I-295, 2026-09-27). The entry was reversible (<=>). PlasmaReactor refuses
+reversible Te-dependent kinetics (NonEquilibriumReverseRateError): it will not price the
+reverse with Keq(Tgas). The direction kept is the one the source measured (dissociative attachment). No reverse
+reaction is added.
 """
 )
 
 entry(
     index = 60,
-    label = "H2O + e- <=> OH- + H",
-    kinetics = TwoTemperaturePlasma(A=(7.47e13, "cm^3/(mol*s)"), n=-1.3, Ea_g=(0.0, "kJ/mol"), Ea_e=(7.32, "eV/molecule"),
+    label = "H2O + e- => OH- + H",
+    reversible = False,
+    kinetics = TwoTemperaturePlasma(A=(7.47e13, "cm^3/(mol*s)"), n=-1.3, Ea_g=(7.32, "eV/molecule"), Ea_e=(7.32, "eV/molecule"), T0=(11604.51812, "K"),
         Tmin = (1000.0, "K"), Tmax = (100000.0, "K")),
     shortDesc = u"[Tanarro2015]",
     longDesc = u"""
@@ -928,6 +1269,26 @@ Arrhenius(A=(1.08e15, 'cm^3/(mol*s)'), n=0.00, Ea=(0.0, 'kJ/mol'),
                        T0=(1, 'K'), Tmin=(300, 'K'), Tmax=(10000, 'K')),
     shortDesc = u"[Tanarro2015]",
 Table 1, Dt5
+
+RE-ENCODED (I-295, 2026-09-27). As carried: Ea_g = 0 with Ea_e = E. TwoTemperaturePlasma
+evaluates k = A (Te/T0)^n exp(-Ea_g/(R T)) exp(Ea_e (Te - T)/(R T Te)), so Ea_g = 0 leaves a
+factor exp(E/(R Tg)) in the rate: exp(284.9) at Tg = 298.15 K. It now has Ea_g = Ea_e = E, and
+the rate is the pure Te law A (Te/T0)^n exp(-E/Te).
+
+T0 = 1 eV (11604.51812 K) because [Tanarro2015] writes Te in eV. As carried the entry had the
+default T0 = 1 K, which reads Te in kelvin and multiplies the rate by 11604.5^n. On the four
+Tanarro-sourced entries with n != 0 that could be checked against IST-Lisbon cross sections
+(indices 19, 28, 37, 55), reading Te in eV puts the hand fit within x2.5, x3.0, x19 and x1.2
+of the Maxwellian average. Reading it in kelvin puts them off by x124, x107, x1.6e8 and x5.1e5.
+A, n and E are unchanged.
+
+Not verified against cross sections: the IST-Lisbon sets downloaded for I-295 (LoKI commit 6aa3d52980:
+N2, N, O2, O, O3, CO, CO2, He, Ar) carry no process for this hydrogen-bearing species.
+
+MADE IRREVERSIBLE (I-295, 2026-09-27). The entry was reversible (<=>). PlasmaReactor refuses
+reversible Te-dependent kinetics (NonEquilibriumReverseRateError): it will not price the
+reverse with Keq(Tgas). The direction kept is the one the source measured (dissociative attachment). No reverse
+reaction is added.
 """
 )
 
@@ -935,11 +1296,26 @@ entry(
     index = 61,
     label = "H- + e- => H + e- + e-",
     reversible = False,
-    kinetics = TwoTemperaturePlasma(A=(1.40e16, "cm^3/(mol*s)"), n=2.0, Ea_g=(0.0, "kJ/mol"), Ea_e=(0.13, "eV/molecule"),
+    kinetics = TwoTemperaturePlasma(A=(1.40e16, "cm^3/(mol*s)"), n=2.0, Ea_g=(0.13, "eV/molecule"), Ea_e=(0.13, "eV/molecule"), T0=(11604.51812, "K"),
         Tmin = (1000.0, "K"), Tmax = (100000.0, "K")),
     shortDesc = u"[Tanarro2015]",
     longDesc = u"""
 Table 1, Dt1
+
+RE-ENCODED (I-295, 2026-09-27). As carried: Ea_g = 0 with Ea_e = E. TwoTemperaturePlasma
+evaluates k = A (Te/T0)^n exp(-Ea_g/(R T)) exp(Ea_e (Te - T)/(R T Te)), so Ea_g = 0 leaves a
+factor exp(E/(R Tg)) in the rate: exp(5.06) at Tg = 298.15 K. It now has Ea_g = Ea_e = E, and
+the rate is the pure Te law A (Te/T0)^n exp(-E/Te).
+
+T0 = 1 eV (11604.51812 K) because [Tanarro2015] writes Te in eV. As carried the entry had the
+default T0 = 1 K, which reads Te in kelvin and multiplies the rate by 11604.5^n. On the four
+Tanarro-sourced entries with n != 0 that could be checked against IST-Lisbon cross sections
+(indices 19, 28, 37, 55), reading Te in eV puts the hand fit within x2.5, x3.0, x19 and x1.2
+of the Maxwellian average. Reading it in kelvin puts them off by x124, x107, x1.6e8 and x5.1e5.
+A, n and E are unchanged.
+
+Not verified against cross sections: the IST-Lisbon sets downloaded for I-295 (LoKI commit 6aa3d52980:
+N2, N, O2, O, O3, CO, CO2, He, Ar) carry no process for this hydrogen-bearing species.
 """
 )
 
@@ -980,11 +1356,26 @@ entry(
     index = 65,
     label = "OH- + e- => OH + e- + e-",
     reversible = False,
-    kinetics = TwoTemperaturePlasma(A=(5.82e18, "cm^3/(mol*s)"), n=-1.9, Ea_g=(0.0, "kJ/mol"), Ea_e=(12.1, "eV/molecule"),
+    kinetics = TwoTemperaturePlasma(A=(5.82e18, "cm^3/(mol*s)"), n=-1.9, Ea_g=(12.1, "eV/molecule"), Ea_e=(12.1, "eV/molecule"), T0=(11604.51812, "K"),
         Tmin = (1000.0, "K"), Tmax = (100000.0, "K")),
     shortDesc = u"[Tanarro2015]",
     longDesc = u"""
 Table 1, Dt7
+
+RE-ENCODED (I-295, 2026-09-27). As carried: Ea_g = 0 with Ea_e = E. TwoTemperaturePlasma
+evaluates k = A (Te/T0)^n exp(-Ea_g/(R T)) exp(Ea_e (Te - T)/(R T Te)), so Ea_g = 0 leaves a
+factor exp(E/(R Tg)) in the rate: exp(471) at Tg = 298.15 K. It now has Ea_g = Ea_e = E, and
+the rate is the pure Te law A (Te/T0)^n exp(-E/Te).
+
+T0 = 1 eV (11604.51812 K) because [Tanarro2015] writes Te in eV. As carried the entry had the
+default T0 = 1 K, which reads Te in kelvin and multiplies the rate by 11604.5^n. On the four
+Tanarro-sourced entries with n != 0 that could be checked against IST-Lisbon cross sections
+(indices 19, 28, 37, 55), reading Te in eV puts the hand fit within x2.5, x3.0, x19 and x1.2
+of the Maxwellian average. Reading it in kelvin puts them off by x124, x107, x1.6e8 and x5.1e5.
+A, n and E are unchanged.
+
+Not verified against cross sections: the IST-Lisbon sets downloaded for I-295 (LoKI commit 6aa3d52980:
+N2, N, O2, O, O3, CO, CO2, He, Ar) carry no process for this hydrogen-bearing species.
 """
 )
 
@@ -1012,23 +1403,55 @@ Table 1, Dt9
 
 entry(
     index = 68,
-    label = "O2 + e- <=> O2s + e-",
-    kinetics = TwoTemperaturePlasma(A=(1.02e15, "cm^3/(mol*s)"), n=0.0, Ea_g=(0.0, "kJ/mol"), Ea_e=(3.1, "eV/molecule"),
-        Tmin = (1000.0, "K"), Tmax = (100000.0, "K")),
+    label = "O2 + e- => O2s + e-",
+    reversible = False,
+    kinetics = TwoTemperaturePlasma(A=(7.8159e-10, "cm^3/(molecule*s)"), n=0.3081, Ea_g=(1.7724, "eV/molecule"), Ea_e=(1.7724, "eV/molecule"),
+                                    T0=(11604.51812, "K"), Tmin = (1000.0, "K"), Tmax = (100000.0, "K")),
     shortDesc = u"[Tanarro2015]",
     longDesc = u"""
 Table 1, X1
+
+RE-ENCODED (I-295, 2026-09-27). As carried: Ea_g = 0 with Ea_e = E. TwoTemperaturePlasma
+evaluates k = A (Te/T0)^n exp(-Ea_g/(R T)) exp(Ea_e (Te - T)/(R T Te)), so Ea_g = 0 leaves a
+factor exp(E/(R Tg)) in the rate: exp(120.7) at Tg = 298.15 K. It now has Ea_g = Ea_e = E, and
+the rate is the pure Te law A (Te/T0)^n exp(-E/Te).
+
+REFIT (I-295, 2026-09-27) to the Maxwellian average of the IST-Lisbon cross section
+[Alves2014], IST-Lisbon O2 set, LoKI Oxygen/O2_LXCat.txt, process "E + O2 -> E + O2(a1Dg), Excitation" (O2s taken as O2(a1Dg)). Fitted over Te = 0.5-5 eV as
+k = a (Te/1 eV)^n exp(-E/Te): a = 7.8159e-10 cm^3/s, n = 0.3081, E = 1.7724 eV. Maximum
+fit error x1.089. The hand fit, re-encoded, DISAGREED with the same average by up to
+x5.77 over 0.5-5 eV. Superseded hand fit, kept for the record:
+    kinetics = TwoTemperaturePlasma(A=(1.02e15, "cm^3/(mol*s)"), n=0.0, Ea_g=(0.0, "kJ/mol"), Ea_e=(3.1, "eV/molecule"), Tmin = (1000.0, "K"), Tmax = (100000.0, "K"))
+
+MADE IRREVERSIBLE (I-295, 2026-09-27). The entry was reversible (<=>). PlasmaReactor refuses
+reversible Te-dependent kinetics (NonEquilibriumReverseRateError): it will not price the
+reverse with Keq(Tgas). The direction kept is the one the source measured (electron-impact excitation). No reverse
+reaction is added.
 """
 )
 
 entry(
     index = 69,
-    label = "O + e- <=> Os + e-",
-    kinetics = TwoTemperaturePlasma(A=(2.71e15, "cm^3/(mol*s)"), n=0.0, Ea_g=(0.0, "kJ/mol"), Ea_e=(2.29, "eV/molecule"),
+    label = "O + e- => Os + e-",
+    reversible = False,
+    kinetics = TwoTemperaturePlasma(A=(2.71e15, "cm^3/(mol*s)"), n=0.0, Ea_g=(2.29, "eV/molecule"), Ea_e=(2.29, "eV/molecule"),
         Tmin = (1000.0, "K"), Tmax = (100000.0, "K")),
     shortDesc = u"[Tanarro2015]",
     longDesc = u"""
 Table 1, X2
+
+RE-ENCODED (I-295, 2026-09-27). As carried: Ea_g = 0 with Ea_e = E. TwoTemperaturePlasma
+evaluates k = A (Te/T0)^n exp(-Ea_g/(R T)) exp(Ea_e (Te - T)/(R T Te)), so Ea_g = 0 leaves a
+factor exp(E/(R Tg)) in the rate: exp(89.13) at Tg = 298.15 K. It now has Ea_g = Ea_e = E, and
+the rate is the pure Te law A (Te/T0)^n exp(-E/Te).
+
+Verified against IST-Lisbon O set, LoKI Oxygen/O_LXCat.txt, process "E + Oxygen <-> E + O(1D), Excitation" (Os = O(1D)) [Alves2014]
+Maxwellian average, within x1.31 over Te 0.5-5 eV (2026-09-27)
+
+MADE IRREVERSIBLE (I-295, 2026-09-27). The entry was reversible (<=>). PlasmaReactor refuses
+reversible Te-dependent kinetics (NonEquilibriumReverseRateError): it will not price the
+reverse with Keq(Tgas). The direction kept is the one the source measured (electron-impact excitation). No reverse
+reaction is added.
 """
 )
 
@@ -1253,6 +1676,11 @@ entry(
     shortDesc = u"[Golyatina2021]",
     longDesc = u"""
 Ar Ionization. Threshold 15.759 eV.
+
+Verified against IST-Lisbon Ar set, LoKI Argon/Ar_LXCat.txt, process "E + Ar -> E + E + Ar+, Ionization" [Alves2014] Maxwellian average,
+within x1.42 over Te 0.5-5 eV (2026-09-27). This is the rate PlasmaReactor actually receives:
+ElectronCollisionPlasma trapezoids sigma*eps*exp(-eps/kTe) on this table's own energy points.
+That quadrature differs by up to 14% from the exact integral of the interpolated table.
 """
 )
 
@@ -1271,6 +1699,11 @@ entry(
     shortDesc = u"[Golyatina2021]",
     longDesc = u"""
 He Ionization. Threshold 24.587 eV.
+
+Verified against IST-Lisbon He set, LoKI Helium/He_LXCat.txt, process "E + He -> E + E + He+, Ionization" [Alves2014] Maxwellian average,
+within x1.49 over Te 0.5-5 eV (2026-09-27). This is the rate PlasmaReactor actually receives:
+ElectronCollisionPlasma trapezoids sigma*eps*exp(-eps/kTe) on this table's own energy points.
+That quadrature differs by up to 14% from the exact integral of the interpolated table.
 """
 )
 
@@ -1332,7 +1765,7 @@ entry(
     index = 91,
     label = "Hp + e- => H",
     reversible = False,
-    kinetics = TwoTemperaturePlasma(A=(2.97e-09, "cm^3/(molecule*s)"), n=-1.0, Ea_g=(0.0, "J/mol"), Ea_e=(0.26,'kJ/mol'),
+    kinetics = TwoTemperaturePlasma(A=(2.97e-09, "cm^3/(molecule*s)"), n=-1.0, Ea_g=(0.26,'kJ/mol'), Ea_e=(0.26,'kJ/mol'),
                                     Tmin = (10, "K"), Tmax = (1000000000, "K")),
     shortDesc = u"[VernerFerland1996]",
     longDesc = u"""
@@ -1346,6 +1779,14 @@ temperatures = ([
 rate_coefficients = ([
     3.44e-11, 2.76e-11, 2.21e-11, 1.76e-11, 1.40e-11, 1.12e-11, 8.86e-12, 7.02e-12, 5.55e-12, 4.38e-12, 3.45e-12, 2.72e-12, 2.13e-12, 1.67e-12, 1.30e-12, 1.01e-12, 7.83e-13, 6.04e-13, 4.64e-13, 3.54e-13, 2.68e-13, 2.02e-13, 1.51e-13, 1.11e-13, 8.13e-14, 5.88e-14, 4.19e-14, 2.95e-14, 2.04e-14, 1.40e-14, 9.39e-15, 6.22e-15, 4.06e-15, 2.61e-15, 1.65e-15, 1.03e-15, 6.39e-16, 3.91e-16, 2.36e-16, 1.42e-16, 8.44e-17, 4.99e-17, 2.93e-17, 1.71e-17, 9.98e-18, 5.79e-18, 3.35e-18, 1.93e-18, 1.11e-18, 6.38e-19
 ], 'cm^3/s'),
+
+RE-ENCODED (I-295, 2026-09-27). As carried: Ea_g = 0 with Ea_e = E. TwoTemperaturePlasma
+evaluates k = A (Te/T0)^n exp(-Ea_g/(R T)) exp(Ea_e (Te - T)/(R T Te)), so Ea_g = 0 leaves a
+factor exp(E/(R Tg)) in the rate: exp(0.1049) at Tg = 298.15 K. It now has Ea_g = Ea_e = E, and
+the rate is the pure Te law A (Te/T0)^n exp(-E/Te).
+
+Not verified against cross sections: radiative recombination is not among the
+IST-Lisbon electron-neutral processes.
 """
 )
 
@@ -1353,7 +1794,7 @@ entry(
     index = 92,
     label = "Hep + e- => He",
     reversible = False,
-    kinetics = TwoTemperaturePlasma(A=(1.21e-09, "cm^3/(molecule*s)"), n=-0.87, Ea_g=(0.0, "J/mol"), Ea_e=(0.19,'kJ/mol'),
+    kinetics = TwoTemperaturePlasma(A=(1.21e-09, "cm^3/(molecule*s)"), n=-0.87, Ea_g=(0.19,'kJ/mol'), Ea_e=(0.19,'kJ/mol'),
                                     Tmin = (10, "K"), Tmax = (1000000000, "K")),
     shortDesc = u"[VernerFerland1996]",
     longDesc = u"""
@@ -1367,6 +1808,14 @@ temperatures = ([
 rate_coefficients = ([
     3.38e-11, 2.70e-11, 2.15e-11, 1.72e-11, 1.37e-11, 1.09e-11, 8.67e-12, 6.90e-12, 5.48e-12, 4.36e-12, 3.46e-12, 2.75e-12, 2.18e-12, 1.73e-12, 1.37e-12, 1.08e-12, 8.55e-13, 6.74e-13, 5.30e-13, 4.16e-13, 3.25e-13, 2.53e-13, 1.97e-13, 1.52e-13, 1.17e-13, 8.90e-14, 6.74e-14, 5.06e-14, 3.76e-14, 2.77e-14, 2.01e-14, 1.44e-14, 1.02e-14, 7.11e-15, 4.88e-15, 3.30e-15, 2.19e-15, 1.44e-15, 9.26e-16, 5.89e-16, 3.69e-16, 2.29e-16, 1.40e-16, 8.49e-17, 5.10e-17, 3.04e-17, 1.80e-17, 1.06e-17, 6.19e-18, 3.61e-18
 ], 'cm^3/s'),
+
+RE-ENCODED (I-295, 2026-09-27). As carried: Ea_g = 0 with Ea_e = E. TwoTemperaturePlasma
+evaluates k = A (Te/T0)^n exp(-Ea_g/(R T)) exp(Ea_e (Te - T)/(R T Te)), so Ea_g = 0 leaves a
+factor exp(E/(R Tg)) in the rate: exp(0.07665) at Tg = 298.15 K. It now has Ea_g = Ea_e = E, and
+the rate is the pure Te law A (Te/T0)^n exp(-E/Te).
+
+Not verified against cross sections: radiative recombination is not among the
+IST-Lisbon electron-neutral processes.
 """
 )
 
@@ -1374,7 +1823,7 @@ entry(
     index = 93,
     label = "Hep2 + e- => Hep",
     reversible = False,
-    kinetics = TwoTemperaturePlasma(A=(7.68e-09, "cm^3/(molecule*s)"), n=-0.91, Ea_g=(0.0, "J/mol"), Ea_e=(0.22,'kJ/mol'),
+    kinetics = TwoTemperaturePlasma(A=(7.68e-09, "cm^3/(molecule*s)"), n=-0.91, Ea_g=(0.22,'kJ/mol'), Ea_e=(0.22,'kJ/mol'),
                                     Tmin = (10, "K"), Tmax = (1000000000, "K")),
     shortDesc = u"[VernerFerland1996]",
     longDesc = u"""
@@ -1388,6 +1837,14 @@ temperatures = ([
 rate_coefficients = ([
     1.54e-10, 1.25e-10, 1.01e-10, 8.10e-11, 6.50e-11, 5.21e-11, 4.17e-11, 3.33e-11, 2.66e-11, 2.11e-11, 1.68e-11, 1.33e-11, 1.05e-11, 8.34e-12, 6.58e-12, 5.18e-12, 4.07e-12, 3.18e-12, 2.49e-12, 1.94e-12, 1.50e-12, 1.16e-12, 8.90e-13, 6.79e-13, 5.15e-13, 3.87e-13, 2.88e-13, 2.13e-13, 1.55e-13, 1.12e-13, 7.95e-14, 5.58e-14, 3.85e-14, 2.62e-14, 1.76e-14, 1.16e-14, 7.52e-15, 4.82e-15, 3.04e-15, 1.90e-15, 1.17e-15, 7.11e-16, 4.29e-16, 2.57e-16, 1.53e-16, 9.00e-17, 5.28e-17, 3.08e-17, 1.79e-17, 1.04e-17
 ], 'cm^3/s'),
+
+RE-ENCODED (I-295, 2026-09-27). As carried: Ea_g = 0 with Ea_e = E. TwoTemperaturePlasma
+evaluates k = A (Te/T0)^n exp(-Ea_g/(R T)) exp(Ea_e (Te - T)/(R T Te)), so Ea_g = 0 leaves a
+factor exp(E/(R Tg)) in the rate: exp(0.08875) at Tg = 298.15 K. It now has Ea_g = Ea_e = E, and
+the rate is the pure Te law A (Te/T0)^n exp(-E/Te).
+
+Not verified against cross sections: radiative recombination is not among the
+IST-Lisbon electron-neutral processes.
 """
 )
 
@@ -1536,10 +1993,8 @@ entry(
     index = 102,
     label = "N2 + e- => N2p + e- + e-",
     reversible = False,
-    kinetics = TwoTemperaturePlasma(A=(1.07e16, "cm^3/(mol*s)"), n=0.5,
-                                    Ea_g=(0.0, "kJ/mol"),
-                                    Ea_e=(15.58, "eV/molecule"),
-                                    Tmin = (1000.0, "K"), Tmax = (100000.0, "K")),
+    kinetics = TwoTemperaturePlasma(A=(4.7045e-09, "cm^3/(molecule*s)"), n=0.9917, Ea_g=(15.2785, "eV/molecule"), Ea_e=(15.2785, "eV/molecule"),
+                                    T0=(11604.51812, "K"), Tmin = (1000.0, "K"), Tmax = (100000.0, "K")),
     shortDesc = u"[Itikawa2006]",
     longDesc = u"""
 N2 electron-impact ionization (direct), threshold 15.58 eV.
@@ -1550,6 +2005,18 @@ in PlasmaAir (e.g. the O2 ionization entry at index 28).
 This reaction is the dominant N2+ source at moderate-to-high Te in air
 plasmas; the existing PlasmaAir associative-ionization channel
 (`N + N <=> N2+ + e-`) only fires once enough atomic N has built up.
+
+RE-ENCODED (I-295, 2026-09-27). As carried: Ea_g = 0 with Ea_e = E. TwoTemperaturePlasma
+evaluates k = A (Te/T0)^n exp(-Ea_g/(R T)) exp(Ea_e (Te - T)/(R T Te)), so Ea_g = 0 leaves a
+factor exp(E/(R Tg)) in the rate: exp(606.4) at Tg = 298.15 K. It now has Ea_g = Ea_e = E, and
+the rate is the pure Te law A (Te/T0)^n exp(-E/Te).
+
+REFIT (I-295, 2026-09-27) to the Maxwellian average of the IST-Lisbon cross section
+[Alves2014], IST-Lisbon N2 set, LoKI Nitrogen/N2_LXCat.txt, processes "E + N2 -> E + E + N2+(X), Ionization" + "E + N2 -> E + E + N2+(B), Ionization" (sum of N2+(X) and N2+(B) ionisation = total N2+ production). Fitted over Te = 0.5-5 eV as
+k = a (Te/1 eV)^n exp(-E/Te): a = 4.7045e-09 cm^3/s, n = 0.9917, E = 15.2785 eV. Maximum
+fit error x1.013. The hand fit, re-encoded with Te read in eV, DISAGREED with the same average by up to
+x2.94 over 0.5-5 eV. Superseded hand fit, kept for the record:
+    kinetics = TwoTemperaturePlasma(A=(1.07e16, "cm^3/(mol*s)"), n=0.5, Ea_g=(0.0, "kJ/mol"), Ea_e=(15.58, "eV/molecule"), Tmin = (1000.0, "K"), Tmax = (100000.0, "K"))
 """,
 )
 
@@ -1558,7 +2025,7 @@ entry(
     label = "H2O + e- => OH + H + e-",
     reversible = False,
     kinetics = TwoTemperaturePlasma(A=(5.0e14, "cm^3/(mol*s)"), n=0.5,
-                                    Ea_g=(0.0, "kJ/mol"),
+                                    Ea_g=(5.0, "eV/molecule"),
                                     Ea_e=(5.0, "eV/molecule"),
                                     Tmin = (1000.0, "K"), Tmax = (100000.0, "K")),
     shortDesc = u"[Itikawa2005]",
@@ -1573,5 +2040,13 @@ ground-state OH + H).
 Tanarro-style Arrhenius fit to Maxwellian-averaged k(Te); pre-exponential
 chosen so that k(Te=1 eV) ~ 1e-9 cm^3 molecule^-1 s^-1 matches Itikawa's
 recommended cross-section.
+
+RE-ENCODED (I-295, 2026-09-27). As carried: Ea_g = 0 with Ea_e = E. TwoTemperaturePlasma
+evaluates k = A (Te/T0)^n exp(-Ea_g/(R T)) exp(Ea_e (Te - T)/(R T Te)), so Ea_g = 0 leaves a
+factor exp(E/(R Tg)) in the rate: exp(194.6) at Tg = 298.15 K. It now has Ea_g = Ea_e = E, and
+the rate is the pure Te law A (Te/T0)^n exp(-E/Te).
+
+Not verified against cross sections: the IST-Lisbon sets downloaded for I-295 (LoKI commit 6aa3d52980:
+N2, N, O2, O, O3, CO, CO2, He, Ar) carry no process for this hydrogen-bearing species.
 """,
 )

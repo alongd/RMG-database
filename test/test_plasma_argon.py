@@ -241,22 +241,8 @@ def test_excitation_rate_does_not_depend_on_gas_temperature(excitation):
     assert rates[2] == pytest.approx(rates[0], rel=1e-10)
 
 
-@pytest.mark.xfail(raises=TypeError, strict=True,
-                   reason='engine defect, not fixed here: the carrier evaluates its two '
-                          'gas-temperature exponentials separately')
 def test_excitation_rate_survives_a_cold_gas(excitation):
-    """At a gas temperature of 150 K the carrier fails instead of returning the Te rate.
-
-    ``get_rate_coefficient_two_temp`` multiplies exp(-Ea_g/RT) by exp(Ea_e (Te-T)/(R T Te))
-    rather than combining the exponents first. At 150 K the first is exp(-894), which
-    underflows to 0.0, and the second is exp(+881), which overflows to inf. Their product is
-    NaN, and Cython's check on the ``**`` in the same expression reports that NaN as a
-    ``TypeError`` ("Cannot convert 'complex' ..."). So the answer is neither inf nor NaN at
-    the caller: it is an exception with a misleading message. Measured on the paired engine,
-    the rate is exact down to 190 K and raises from 180 K (exp(-E/RT) reaches 0.0 there).
-    The analytic value does not depend on T at all. Strict, so an engine fix flips it to
-    XPASS and fails here until the marker is removed.
-    """
+    """The combined-exponent engine returns the finite Te-only rate at a cold gas."""
     k = excitation.kinetics.get_rate_coefficient_two_temp(150.0, 0.900 * EV_IN_K)
     assert math.isfinite(k)
     assert k == pytest.approx(hand_excitation_rate(0.900), rel=1e-4)

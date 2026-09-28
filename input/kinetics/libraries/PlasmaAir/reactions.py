@@ -152,7 +152,8 @@ A Te-Arrhenius fit A Te^n exp(-E/Te) must therefore be written with Ea_g = Ea_e 
 exp(E/(R Tg)) in their rates, e.g. N2 ionisation at ~1e238 cm^3/s at Tg = 298 K and Te = 1 eV.
 A further 19 Te-dependent entries were reversible, which ``PlasmaReactor`` refuses. What was done:
 
-* Every Te-Arrhenius entry is re-encoded to Ea_g = Ea_e, with the author's A, n and E kept.
+* Every Te-Arrhenius entry is re-encoded to Ea_g = Ea_e. Entries not subsequently refitted keep
+  the author's A, n and E.
   [Tanarro2015] entries with n != 0 also get T0 = 1 eV, because that source writes Te in eV. The
   evidence is in each such entry.
 * Every electron-impact entry whose process exists in the IST-Lisbon sets [Alves2014] was
@@ -162,9 +163,9 @@ A further 19 Te-dependent entries were reversible, which ``PlasmaReactor`` refus
   IST-Lisbon process say "not verified against cross sections" and why.
 * Every reversible Te-dependent entry is made irreversible in the direction the source
   measured. No reverse reactions are added.
-* Two entries are commented out, not deleted: index 31 (H2 ionisation; the engine overflows on
-  its 20.07 eV threshold at room temperature) and index 41 (H2+ dissociative recombination;
-  its fit is unrecoverable). The reasons are in the comments above each one.
+* Indices 31 (H2 ionisation) and 41 (H2+ dissociative recombination) are active, with their
+  source laws and temperature ranges recorded on the entries.  Index 31 requires the stable
+  combined-exponent evaluator in RMG-Py i296-te-rate-exponent or later.
 
 ``test/test_plasma_te_rate_encoding.py`` guards all three rules for every ``Plasma*``
 library. The analysis scripts and the integrator's unit tests are under
@@ -191,8 +192,8 @@ entry(
     label = "N2 + e- => N + N + e-",
     reversible = False,
     kinetics = TwoTemperaturePlasma(A=(5.1827e-10, "cm^3/(molecule*s)"), n=2.0336, Ea_g=(9.6785, "eV/molecule"), Ea_e=(9.6785, "eV/molecule"),
-                                    T0=(11604.51812, "K"), Tmin = (1000.0, "K"), Tmax = (100000.0, "K")),
-    shortDesc = u"[Ozawa2008]",
+                                    T0=(11604.51812, "K"), Tmin = (5802.0, "K"), Tmax = (58023.0, "K")),
+    shortDesc = u"[IST-Lisbon/LoKI][Alves2014] N2 dissociation refit",
     longDesc = u"""
 Table III
 
@@ -207,6 +208,7 @@ k = a (Te/1 eV)^n exp(-E/Te): a = 5.1827e-10 cm^3/s, n = 2.0336, E = 9.6785 eV. 
 fit error x1.178. The hand fit, re-encoded, DISAGREED with the same average by up to
 x2.83e+04 over 0.5-5 eV. Superseded hand fit, kept for the record:
     kinetics = TwoTemperaturePlasma(A=(3.00e24, "cm^3/(mol*s)"), n=-1.60, Ea_g=(0.0, "kJ/mol"), Ea_e=(941.3, "kJ/mol"), Tmin = (1000.0, "K"), Tmax = (100000.0, "K"))
+The fitted Ea is a fit parameter, not a physical threshold or electron energy loss per event.
 """
 )
 
@@ -413,8 +415,8 @@ entry(
     label = "O + e- => Op + e- + e-",
     reversible = False,
     kinetics = TwoTemperaturePlasma(A=(6.9893e-09, "cm^3/(molecule*s)"), n=0.5641, Ea_g=(13.6254, "eV/molecule"), Ea_e=(13.6254, "eV/molecule"),
-                                    T0=(11604.51812, "K"), Tmin = (1000.0, "K"), Tmax = (100000.0, "K")),
-    shortDesc = u"[Tanarro2015]",
+                                    T0=(11604.51812, "K"), Tmin = (5802.0, "K"), Tmax = (58023.0, "K")),
+    shortDesc = u"[IST-Lisbon][Alves2014] O ionization refit",
     longDesc = u"""
 Table 1, I1
 Electron Impact Ionization
@@ -445,8 +447,8 @@ entry(
     label = "N + e- => Np + e- + e-",
     reversible = False,
     kinetics = TwoTemperaturePlasma(A=(4.2547e-09, "cm^3/(molecule*s)"), n=0.8140, Ea_g=(14.3650, "eV/molecule"), Ea_e=(14.3650, "eV/molecule"),
-                                    T0=(11604.51812, "K"), Tmin = (1000.0, "K"), Tmax = (100000.0, "K")),
-    shortDesc = u"[Park1993]",
+                                    T0=(11604.51812, "K"), Tmin = (5802.0, "K"), Tmax = (58023.0, "K")),
+    shortDesc = u"[IST-Lisbon/LoKI][Alves2014] N ionization refit",
     longDesc = u"""
 Table 2
 Electron-impact ionization
@@ -573,8 +575,8 @@ entry(
     label = "O2 + e- => O2p + e- + e-",
     reversible = False,
     kinetics = TwoTemperaturePlasma(A=(2.0025e-09, "cm^3/(molecule*s)"), n=1.2987, Ea_g=(11.6282, "eV/molecule"), Ea_e=(11.6282, "eV/molecule"),
-                                    T0=(11604.51812, "K"), Tmin = (1000.0, "K"), Tmax = (100000.0, "K")),
-    shortDesc = u"[Tanarro2015]",
+                                    T0=(11604.51812, "K"), Tmin = (5802.0, "K"), Tmax = (58023.0, "K")),
+    shortDesc = u"[IST-Lisbon][Alves2014] O2 ionization refit",
     longDesc = u"""
 Table 1, I3
 Electron Impact Ionization
@@ -635,44 +637,24 @@ N2, N, O2, O, O3, CO, CO2, He, Ar) carry no process for this hydrogen-bearing sp
 # """
 # )
 
-# H2 IONISATION COMMENTED OUT (I-295, 2026-09-27), NOT deleted. The entry below is correctly
-# re-encoded: Ea_g = Ea_e = 20.07 eV, T0 = 1 eV. The engine still cannot evaluate it at room
-# temperature. RMG-Py TwoTemperaturePlasma.get_rate_coefficient_two_temp (ebb97cd69) multiplies
-# exp(-Ea_g/(R T)) by exp(Ea_e (Te - T)/(R T Te)) as two separate exponentials. The second
-# overflows once Ea_e/(R Tg) > ~709.8, i.e. for E > 18.24 eV at Tg = 298.15 K (E > 18.24 eV *
-# Tg/298.15 K in general). The call then raises TypeError instead of returning a rate. This
-# entry is the only active Te law with E above that limit; it fails below Tg = 328 K. No
-# re-expression fixes it: capping E at 18.0 eV and refitting a and n to this same law over
-# Te = 0.5-5 eV misses it by up to x2.2 (x5.8 at the 15.43 eV threshold). The real fix is in the
-# engine: evaluate one combined exponent, (Ea_e - Ea_g)/(R T) - Ea_e/(R Te). Restore this entry
-# unchanged once that lands. Its superseded carried form had Ea_g = 0 and T0 = 1 K.
-# entry(
-#     index = 31,
-#     label = "H2 + e- => H2p + e- + e-",
-#     reversible = False,
-#     kinetics = TwoTemperaturePlasma(A=(1.88e16, "cm^3/(mol*s)"), n=0.17, Ea_g=(20.07, "eV/molecule"), Ea_e=(20.07, "eV/molecule"), T0=(11604.51812, "K"),
-#                                     Tmin = (1000.0, "K"), Tmax = (100000.0, "K")),
-#     shortDesc = u"[Tanarro2015]",
-#     longDesc = u"""
-# Table 1, I6
-# Electron Impact Ionization
-#
-# RE-ENCODED (I-295, 2026-09-27). As carried: Ea_g = 0 with Ea_e = E. TwoTemperaturePlasma
-# evaluates k = A (Te/T0)^n exp(-Ea_g/(R T)) exp(Ea_e (Te - T)/(R T Te)), so Ea_g = 0 leaves a
-# factor exp(E/(R Tg)) in the rate: exp(781.2) at Tg = 298.15 K. It now has Ea_g = Ea_e = E, and
-# the rate is the pure Te law A (Te/T0)^n exp(-E/Te).
-#
-# T0 = 1 eV (11604.51812 K) because [Tanarro2015] writes Te in eV. As carried the entry had the
-# default T0 = 1 K, which reads Te in kelvin and multiplies the rate by 11604.5^n. On the four
-# Tanarro-sourced entries with n != 0 that could be checked against IST-Lisbon cross sections
-# (indices 19, 28, 37, 55), reading Te in eV puts the hand fit within x2.5, x3.0, x19 and x1.2
-# of the Maxwellian average. Reading it in kelvin puts them off by x124, x107, x1.6e8 and x5.1e5.
-# A, n and E are unchanged.
-#
-# Not verified against cross sections: the IST-Lisbon sets downloaded for I-295 (LoKI commit 6aa3d52980:
-# N2, N, O2, O, O3, CO, CO2, He, Ar) carry no process for this hydrogen-bearing species.
-# """
-# )
+# H2 IONISATION (I-295, 2026-09-27). This active I6 entry is correctly encoded as
+# Ea_g = Ea_e = 20.07 eV with T0 = 1 eV.  RMG-Py i296-te-rate-exponent evaluates its
+# combined exponent stably at room-temperature gas conditions.  The superseded carried
+# form had Ea_g = 0 and T0 = 1 K.
+entry(
+    index = 31,
+    label = "H2 + e- => H2p + e- + e-",
+    reversible = False,
+    kinetics = TwoTemperaturePlasma(A=(1.88e16, "cm^3/(mol*s)"), n=0.17,
+                                    Ea_g=(20.07, "eV/molecule"), Ea_e=(20.07, "eV/molecule"),
+                                    T0=(11604.51812, "K"), Tmin=(5802.0, "K"), Tmax=(58023.0, "K")),
+    shortDesc = u"[Tanarro2015]",
+    longDesc = u"""Table 1, I6.  Correctly encoded pure-Te Tanarro law (Te in eV).
+
+This entry requires RMG-Py i296-te-rate-exponent or later: its 20.07 eV fit parameter
+overflows the old separately evaluated exponentials at room Tg although the product is finite.
+The carried law had Ea_g=0; Ea_g=Ea_e makes the gas-temperature factors cancel.""",
+)
 
 entry(
     index = 32,
@@ -777,10 +759,10 @@ entry(
     label = "O2s + e- => O2p + e- + e-",
     reversible = False,
     kinetics = TwoTemperaturePlasma(A=(1.8586e-09, "cm^3/(molecule*s)"), n=1.3196, Ea_g=(10.7190, "eV/molecule"), Ea_e=(10.7190, "eV/molecule"),
-                                    T0=(11604.51812, "K"), Tmin = (1000.0, "K"), Tmax = (100000.0, "K")),
-    shortDesc = u"[Tanarro2015]",
+                                    T0=(11604.51812, "K"), Tmin = (5802.0, "K"), Tmax = (58023.0, "K")),
+    shortDesc = u"[IST-Lisbon/LoKI][Alves2014] O2(a1Dg) ionization refit",
     longDesc = u"""
-Table 1, I11
+Table 1, I12
 Electron Impact Ionization
 
 RE-ENCODED (I-295, 2026-09-27). As carried: Ea_g = 0 with Ea_e = E. TwoTemperaturePlasma
@@ -829,8 +811,8 @@ entry(
     label = "O2s + e- => O + O + e-",
     reversible = False,
     kinetics = TwoTemperaturePlasma(A=(2.1356e-08, "cm^3/(molecule*s)"), n=-0.5689, Ea_g=(6.0945, "eV/molecule"), Ea_e=(6.0945, "eV/molecule"),
-                                    T0=(11604.51812, "K"), Tmin = (1000.0, "K"), Tmax = (100000.0, "K")),
-    shortDesc = u"[Tanarro2015]",
+                                    T0=(11604.51812, "K"), Tmin = (5802.0, "K"), Tmax = (58023.0, "K")),
+    shortDesc = u"[IST-Lisbon][Alves2014] O2 dissociation refit",
     longDesc = u"""
 Table 1, D7
 
@@ -853,8 +835,8 @@ entry(
     label = "O2 + e- => O + Os + e-",
     reversible = False,
     kinetics = TwoTemperaturePlasma(A=(5.0643e-08, "cm^3/(molecule*s)"), n=-0.1077, Ea_g=(8.6247, "eV/molecule"), Ea_e=(8.6247, "eV/molecule"),
-                                    T0=(11604.51812, "K"), Tmin = (1000.0, "K"), Tmax = (100000.0, "K")),
-    shortDesc = u"[Tanarro2015]",
+                                    T0=(11604.51812, "K"), Tmin = (5802.0, "K"), Tmax = (58023.0, "K")),
+    shortDesc = u"[IST-Lisbon][Alves2014] ground-state O2 dissociation refit",
     longDesc = u"""
 Table 1, D3
 
@@ -872,25 +854,20 @@ x35.7 over 0.5-5 eV. Superseded hand fit, kept for the record:
 """
 )
 
-# H2p + e- DISSOCIATIVE RECOMBINATION COMMENTED OUT (I-295, 2026-09-27), NOT deleted. As carried
-# it was A = 3.53e10 cm^3/(mol*s) (5.86e-14 cm^3/s), n = 4.00, Ea_e = 0.60 kJ/mol, T0 = 1 K,
-# reversible, with Ea_g = 0. Re-encoding Ea_g = Ea_e leaves 66 cm^3/s at Te = 0.5 eV and
-# 6.6e5 cm^3/s at 5 eV, 9-13 orders above a typical 1e-7 cm^3/s DR coefficient. The fit is broken in A, n or T0,
-# not only in its encoding. No reading of it is checkable: the longDesc says it was fitted in
-# kelvin over 6000-25000 K, but T0 = 1 eV (the Tanarro convention) and T0 = 300 K (the
-# convention of the neighbouring DR entries 44-54) differ by 38.7^4 = 2.2e6. The IST-Lisbon
-# sets have no H2+ data. Restore it only from [Tanarro2015] K_N1 itself.
-# entry(
-#     index = 41,
-#     label = "H2p + e- <=> H + H",
-#     kinetics = TwoTemperaturePlasma(A=(3.53e10, "cm^3/(mol*s)"), n=4.00, Ea_g=(0.0, "kJ/mol"), Ea_e=(0.60, "kJ/mol"),
-#         Tmin = (1000.0, "K"), Tmax = (100000.0, "K")),
-#     shortDesc = u"[Tanarro2015]",
-#     longDesc = u"""
-# Table 1, N1
-# Fitted Arrhenius to "K_N1" polynom rate between Te=6000-25000 K
-# """
-# )
+entry(
+    index = 41,
+    label = "H2p + e- => H + H",
+    reversible = False,
+    kinetics = TwoTemperaturePlasma(A=(8.8774e-09, "cm^3/(molecule*s)"), n=-0.4478,
+                                    Ea_g=(0.2959, "eV/molecule"), Ea_e=(0.2959, "eV/molecule"),
+                                    T0=(11604.51812, "K"), Tmin=(5802.0, "K"), Tmax=(58023.0, "K")),
+    shortDesc = u"[Tanarro2015] H2+ dissociative recombination",
+    longDesc = u"""Table 1, N1.  Tanarro et al. (2015), doi:10.1088/0963-0252/24/1/015029,
+states Te in eV and gives K_N1 = 7.51e-9 - 1.12e-9 Te + 1.03e-10 Te^2
+- 4.15e-12 Te^3 + 5.86e-14 Te^4 cm^3/s.  This pure-Te fit over 0.5--5 eV
+has A=8.8774e-9 cm^3/s, n=-0.4478 and E=0.2959 eV; maximum error x1.042.
+Ea is a fit parameter; Ea_g=Ea_e encodes the Te-only law.""",
+)
 
 # H3p COMMENTED OUT (I-176). H3p is a triangular 3-centre-2-electron ion that RMG cannot
 # represent (no hydrogen atom type carries two single bonds), so it is carried as the
@@ -1122,7 +1099,7 @@ entry(
     label = "O2 + e- => O- + O",
     reversible = False,
     kinetics = TwoTemperaturePlasma(A=(6.44e14, "cm^3/(mol*s)"), n=-1.391, Ea_g=(6.26, "eV/molecule"), Ea_e=(6.26, "eV/molecule"), T0=(11604.51812, "K"),
-        Tmin = (1000.0, "K"), Tmax = (100000.0, "K")),
+        Tmin = (5802.0, "K"), Tmax = (58023.0, "K")),
     shortDesc = u"[Tanarro2015]",
     longDesc = u"""
 Table 1, A1
@@ -1229,8 +1206,8 @@ entry(
     label = "O2s + e- => O- + O",
     reversible = False,
     kinetics = TwoTemperaturePlasma(A=(2.5113e-09, "cm^3/(molecule*s)"), n=-1.1501, Ea_g=(5.1672, "eV/molecule"), Ea_e=(5.1672, "eV/molecule"),
-                                    T0=(11604.51812, "K"), Tmin = (1000.0, "K"), Tmax = (100000.0, "K")),
-    shortDesc = u"[Tanarro2015]",
+                                    T0=(11604.51812, "K"), Tmin = (5802.0, "K"), Tmax = (58023.0, "K")),
+    shortDesc = u"[IST-Lisbon/LoKI][Alves2014] O2(a1Dg) attachment refit",
     longDesc = u"""
 Table 1, A4
 
@@ -1441,8 +1418,8 @@ entry(
     label = "O2 + e- => O2s + e-",
     reversible = False,
     kinetics = TwoTemperaturePlasma(A=(7.8159e-10, "cm^3/(molecule*s)"), n=0.3081, Ea_g=(1.7724, "eV/molecule"), Ea_e=(1.7724, "eV/molecule"),
-                                    T0=(11604.51812, "K"), Tmin = (1000.0, "K"), Tmax = (100000.0, "K")),
-    shortDesc = u"[Tanarro2015]",
+                                    T0=(11604.51812, "K"), Tmin = (5802.0, "K"), Tmax = (58023.0, "K")),
+    shortDesc = u"[IST-Lisbon/LoKI][Alves2014] O2(a1Dg) excitation refit",
     longDesc = u"""
 Table 1, X1
 
@@ -1470,7 +1447,7 @@ entry(
     label = "O + e- => Os + e-",
     reversible = False,
     kinetics = TwoTemperaturePlasma(A=(2.71e15, "cm^3/(mol*s)"), n=0.0, Ea_g=(2.29, "eV/molecule"), Ea_e=(2.29, "eV/molecule"),
-        Tmin = (1000.0, "K"), Tmax = (100000.0, "K")),
+        Tmin = (5802.0, "K"), Tmax = (58023.0, "K")),
     shortDesc = u"[Tanarro2015]",
     longDesc = u"""
 Table 1, X2
@@ -2029,12 +2006,12 @@ entry(
     label = "N2 + e- => N2p + e- + e-",
     reversible = False,
     kinetics = TwoTemperaturePlasma(A=(4.7045e-09, "cm^3/(molecule*s)"), n=0.9917, Ea_g=(15.2785, "eV/molecule"), Ea_e=(15.2785, "eV/molecule"),
-                                    T0=(11604.51812, "K"), Tmin = (1000.0, "K"), Tmax = (100000.0, "K")),
-    shortDesc = u"[Itikawa2006]",
+                                    T0=(11604.51812, "K"), Tmin = (5802.0, "K"), Tmax = (58023.0, "K")),
+    shortDesc = u"[IST-Lisbon/LoKI refit: Rapp-Englander-Golden plus Isola]",
     longDesc = u"""
 N2 electron-impact ionization (direct), threshold 15.58 eV.
-Maxwellian-averaged Arrhenius fit to the Phelps/Itikawa N2 ionization
-cross-section, in the same Tanarro-style functional form used elsewhere
+Maxwellian-averaged Arrhenius fit to the Rapp-Englander-Golden plus Isola N2 ionization
+cross sections in the IST-Lisbon LoKI set, in the same Tanarro-style functional form used elsewhere
 in PlasmaAir (e.g. the O2 ionization entry at index 28).
 
 This reaction is the dominant N2+ source at moderate-to-high Te in air
@@ -2052,6 +2029,7 @@ k = a (Te/1 eV)^n exp(-E/Te): a = 4.7045e-09 cm^3/s, n = 0.9917, E = 15.2785 eV.
 fit error x1.013. The hand fit, re-encoded with Te read in eV, DISAGREED with the same average by up to
 x2.94 over 0.5-5 eV. Superseded hand fit, kept for the record:
     kinetics = TwoTemperaturePlasma(A=(1.07e16, "cm^3/(mol*s)"), n=0.5, Ea_g=(0.0, "kJ/mol"), Ea_e=(15.58, "eV/molecule"), Tmin = (1000.0, "K"), Tmax = (100000.0, "K"))
+The fitted Ea is a fit parameter, not a physical threshold or electron energy loss per event.
 """,
 )
 

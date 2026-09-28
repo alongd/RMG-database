@@ -18,11 +18,8 @@ which is why this is a test and not a review note.
 
 THE THREE RULES, over every library whose name starts with ``Plasma``
 --------------------------------------------------------------------
-(a) ENCODING. A ``TwoTemperaturePlasma`` with ``Ea_e != 0`` has ``Ea_g == Ea_e``, unless its
-    longDesc carries the declaration ``GAS-TEMPERATURE DEPENDENCE IS PHYSICAL:`` followed by a
-    justification (at least ``MIN_JUSTIFICATION_CHARS`` characters on the rest of that
-    paragraph). No entry uses the escape today; it exists so that a genuinely two-temperature
-    law is written down as a decision rather than slipping through as the defect above.
+(a) ENCODING. A ``TwoTemperaturePlasma`` has ``Ea_g == Ea_e`` unless both are zero, or its
+    exact ``(library, index)`` is in the structured ``ENCODING_EXEMPTIONS`` map below.
 
 (b) MAGNITUDE. Every electron-temperature-dependent rate (any kinetics that sets
     ``uses_electron_temperature``), evaluated the way ``PlasmaReactor`` evaluates it --
@@ -53,7 +50,6 @@ lists the whole defect rather than the first entry pytest reached.
 
 import math
 import os
-import re
 
 import pytest
 
@@ -67,13 +63,28 @@ TE_EV = (0.5, 1.0, 2.0, 3.0, 5.0)
 EV_IN_K = E_CHARGE / kB                      # 11604.518 K
 CEILING = {2: 1.0e-6, 3: 1.0e-20}            # cm^3/s, cm^6/s
 SI_TO_CGS_PARTICLE = {2: 1.0e6 / Na, 3: 1.0e12 / Na ** 2}   # m^3/(mol s) -> cm^3/s, ...
-DECLARATION = 'GAS-TEMPERATURE DEPENDENCE IS PHYSICAL:'
-MIN_JUSTIFICATION_CHARS = 40
+# The only deliberate exceptions are pinned by library and index, never by prose in an entry.
+# Their source/encoding disagreement is separately tracked and must not be silently broadened.
+ENCODING_EXEMPTIONS = {
+    ('PlasmaAlkali', 1): 'encoding and source agreement unverified; tracked separately',
+    ('PlasmaAlkali', 2): 'encoding and source agreement unverified; tracked separately',
+    ('PlasmaAlkali', 45): 'encoding and source agreement unverified; tracked separately',
+}
 
 LIBRARIES_DIR = os.path.join(settings['database.directory'], 'kinetics', 'libraries')
 PLASMA_LIBRARIES = sorted(name for name in os.listdir(LIBRARIES_DIR)
                           if name.startswith('Plasma')
                           and os.path.isfile(os.path.join(LIBRARIES_DIR, name, 'reactions.py')))
+
+# Exact inventory: additions, deletions, renumbering, and label edits are all regressions.
+TE_INVENTORY = {
+    'PlasmaAir': ((2,'N2 + e- => N + N + e-'),(19,'O + e- => Op + e- + e-'),(20,'N + e- => Np + e- + e-'),(21,'Op + e- => O'),(22,'Np + e- => N'),(28,'O2 + e- => O2p + e- + e-'),(29,'H + e- => Hp + e- + e-'),(31,'H2 + e- => H2p + e- + e-'),(32,'OH + e- => OHp + e- + e-'),(33,'H2O + e- => H2Op + e- + e-'),(37,'O2s + e- => O2p + e- + e-'),(38,'H2O + e- => Os + H2 + e-'),(39,'O2s + e- => O + O + e-'),(40,'O2 + e- => O + Os + e-'),(41,'H2p + e- => H + H'),(44,'O2p + e- => O + Os'),(45,'O2p + e- => Os + Os'),(46,'OHp + e- => O + H'),(47,'H2Op + e- => OH + H'),(48,'H2Op + e- => O + H2'),(49,'H2Op + e- => O + H + H'),(50,'H3Op + e- => OH + H + H'),(51,'H3Op + e- => O + H2 + H'),(52,'H3Op + e- => OH + H2'),(53,'H3Op + e- => H2O + H'),(54,'HO2p + e- => O2 + H'),(55,'O2 + e- => O- + O'),(56,'H2O + e- => OH + H-'),(57,'H2 + e- => H- + H'),(58,'O2s + e- => O- + O'),(59,'H2O + e- => H2 + O-'),(60,'H2O + e- => OH- + H'),(61,'H- + e- => H + e- + e-'),(65,'OH- + e- => OH + e- + e-'),(68,'O2 + e- => O2s + e-'),(69,'O + e- => Os + e-'),(86,'Ar + e- => Arp + e- + e-'),(87,'He + e- => Hep + e- + e-'),(88,'Ne + e- => Nep + e- + e-'),(91,'Hp + e- => H'),(92,'Hep + e- => He'),(93,'Hep2 + e- => Hep'),(102,'N2 + e- => N2p + e- + e-'),(103,'H2O + e- => OH + H + e-')),
+    'PlasmaAlkali': ((1,'Lip + e- => Li'),(2,'Nap + e- => Na'),(38,'Li + e- => Lip + e- + e-'),(39,'Na + e- => Nap + e- + e-'),(40,'K + e- => Kp + e- + e-'),(41,'Mg + e- => Mgp + e- + e-'),(42,'Si + e- => Sip + e- + e-'),(45,'Mgp2 + e- => Mgp')),
+    'PlasmaArgon': ((86,'Ar + e- => Arp + e- + e-'),(87,'Ar + e- => Ars + e-'),(88,'Ars + e- => Arp + e- + e-'),(89,'Ars + e- => Ar + e-'),(91,'Ars + e- => Ar + e-')),
+    'PlasmaArgonDimer': ((1,'Ar2p + e- => Ars + Ar'),(2,'Ar2p + e- => Arp + Ar + e-')),
+    'PlasmaElectronImpactIonization': ((0,'[Li] => [Lip]'),),
+    'PlasmaRadiativeRecombination': ((0,'[Lip] => [Li]'),(1,'[Arp] => [Ar]')),
+}
 
 
 @pytest.fixture(scope='module')
@@ -97,15 +108,6 @@ def _is_te_dependent(kinetics):
     return bool(getattr(kinetics, 'uses_electron_temperature', False))
 
 
-def _declares_physical_gas_temperature(entry):
-    text = entry.long_desc or ''
-    at = text.find(DECLARATION)
-    if at < 0:
-        return False
-    justification = re.split(r'\n\s*\n', text[at + len(DECLARATION):], maxsplit=1)[0]
-    return len(justification.strip()) >= MIN_JUSTIFICATION_CHARS
-
-
 def _evaluate(kinetics, tg, te):
     """The reactor's own dispatch (``PlasmaReactor.evaluate_two_temperature_rate_coefficient``)."""
     if hasattr(kinetics, 'get_rate_coefficient_two_temp'):
@@ -113,10 +115,13 @@ def _evaluate(kinetics, tg, te):
     return kinetics.get_rate_coefficient_electron_temp(te)
 
 
-def _effective_order(reaction):
+def _effective_order(reaction, kinetics):
     order = len(reaction.reactants)
     if not any(s.is_electron() for s in reaction.reactants):
-        order += 1     # implicit incident electron (electron-metadata entries)
+        # An implicit electron is valid only if reaction and kinetics both declare it.
+        if not getattr(reaction, 'electrons', 0) or not getattr(kinetics, 'electrons', 0):
+            return None
+        order += 1
     return order
 
 
@@ -125,7 +130,11 @@ def test_the_guard_sees_every_plasma_library(plasma_entries):
     assert 'PlasmaAir' in PLASMA_LIBRARIES
     seen = {name for name, _ in plasma_entries}
     assert seen == set(PLASMA_LIBRARIES)
-    assert sum(1 for _, entry in plasma_entries if _is_te_dependent(entry.data)) >= 40
+    actual = {}
+    for name, entry in plasma_entries:
+        if _is_te_dependent(entry.data):
+            actual.setdefault(name, []).append((entry.index, entry.label))
+    assert {name: tuple(items) for name, items in actual.items()} == TE_INVENTORY
 
 
 def test_te_arrhenius_is_encoded_with_equal_gas_and_electron_activation_energies(plasma_entries):
@@ -136,11 +145,11 @@ def test_te_arrhenius_is_encoded_with_equal_gas_and_electron_activation_energies
         if not isinstance(k, TwoTemperaturePlasma):
             continue
         ea_g, ea_e = k.Ea_g.value_si, k.Ea_e.value_si
-        if ea_e == 0.0:
+        if ea_g == 0.0 and ea_e == 0.0:
             continue
         if math.isclose(ea_g, ea_e, rel_tol=1e-9, abs_tol=1e-9):
             continue
-        if _declares_physical_gas_temperature(entry):
+        if (name, entry.index) in ENCODING_EXEMPTIONS:
             continue
         offenders.append('{0}: Ea_g={1:.6g} J/mol, Ea_e={2:.6g} J/mol, leaves exp({3:.4g}) at Tg={4} K'.format(
             _tag(name, entry), ea_g, ea_e, (ea_e - ea_g) / (8.314462618 * TG), TG))
@@ -154,7 +163,7 @@ def test_te_rates_are_finite_and_below_the_per_order_ceiling(plasma_entries):
         k = entry.data
         if not _is_te_dependent(k):
             continue
-        order = _effective_order(entry.item)
+        order = _effective_order(entry.item, k)
         if order not in CEILING:
             offenders.append('{0}: effective order {1} (a Te law needs an incident electron and '
                              'at most one other partner)'.format(_tag(name, entry), order))
@@ -166,7 +175,7 @@ def test_te_rates_are_finite_and_below_the_per_order_ceiling(plasma_entries):
             except Exception as ex:  # noqa: BLE001 -- any evaluator failure is an offender
                 bad.append('Te={0} eV: raised {1}'.format(te_ev, type(ex).__name__))
                 continue
-            if not math.isfinite(value) or value > CEILING[order]:
+            if not math.isfinite(value) or value <= 1.0e-300 or value > CEILING[order]:
                 bad.append('Te={0} eV: {1:.3g}'.format(te_ev, value))
         if bad:
             offenders.append('{0} (order {1}, ceiling {2:g}): {3}'.format(
@@ -181,16 +190,12 @@ def test_no_reversible_entry_has_te_dependent_kinetics(plasma_entries):
     assert not offenders, '{0} reversible Te-dependent entries:\n  '.format(len(offenders)) + '\n  '.join(offenders)
 
 
-def test_the_declaration_escape_requires_a_justification():
-    """Negative control for rule (a)'s escape: the bare marker does not exempt an entry."""
-    class _Entry:
-        pass
-    bare, justified = _Entry(), _Entry()
-    bare.long_desc = 'Text.\n' + DECLARATION + ' yes\n\nMore text.'
-    justified.long_desc = DECLARATION + ' the source measured k(Tg, Te) in a drift tube at fixed Tg ' \
-                                        'and fitted both temperatures independently.'
-    assert not _declares_physical_gas_temperature(bare)
-    assert _declares_physical_gas_temperature(justified)
+def test_encoding_exemptions_are_the_pinned_named_set():
+    assert ENCODING_EXEMPTIONS == {
+        ('PlasmaAlkali', 1): 'encoding and source agreement unverified; tracked separately',
+        ('PlasmaAlkali', 2): 'encoding and source agreement unverified; tracked separately',
+        ('PlasmaAlkali', 45): 'encoding and source agreement unverified; tracked separately',
+    }
 
 
 def test_the_ceiling_rule_fires_on_the_defect_it_exists_for():

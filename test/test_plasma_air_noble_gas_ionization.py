@@ -29,7 +29,9 @@ raises.
 
 Labels use this branch's ``p``-for-``+`` cation spelling (``Arp``, not ``Ar+``);
 ``KineticsLibrary.load`` splits a reaction string on a bare ``+``, so a species whose
-own label contains ``+`` is torn in half. The rates are branch ``99``'s, unchanged.
+own label contains ``+`` is torn in half. The cross sections and recombination
+``A``/``n``/``Ea_e`` parameters are branch ``99``'s; I-295 deliberately re-encodes
+the recombination ``Ea_g`` to equal ``Ea_e`` so they are pure-Te laws.
 
 Run::
 
@@ -186,8 +188,8 @@ def test_helium_ionization_is_present_with_branch_99_cross_section(by_label):
     ('Hep + e- => He', 1.21e-09, -0.87, 0.19),
     ('Hep2 + e- => Hep', 7.68e-09, -0.91, 0.22),
 ])
-def test_helium_radiative_recombination_matches_branch_99(by_label, label, A, n, Ea_e_kJ):
-    """[VernerFerland1996] fits, in ``cm^3/(molecule*s)`` -- not per mole."""
+def test_helium_radiative_recombination_reencodes_gas_activation_energy(by_label, label, A, n, Ea_e_kJ):
+    """[VernerFerland1996] fits retain branch-99 parameters but set ``Ea_g = Ea_e``."""
     entry = _entry(by_label, label)
 
     assert isinstance(entry.data, TwoTemperaturePlasma), (
@@ -198,7 +200,7 @@ def test_helium_radiative_recombination_matches_branch_99(by_label, label, A, n,
     assert entry.data.A.value == pytest.approx(A, rel=1e-9)
     assert entry.data.n.value == pytest.approx(n, rel=1e-9)
     assert entry.data.Ea_e.value_si == pytest.approx(Ea_e_kJ * 1000.0, rel=1e-6)
-    assert entry.data.Ea_g.value_si == pytest.approx(0.0, abs=1e-12)
+    assert entry.data.Ea_g.value_si == pytest.approx(Ea_e_kJ * 1000.0, rel=1e-6)
     assert entry.data.Tmin.value_si == pytest.approx(10.0)
     assert entry.data.Tmax.value_si == pytest.approx(1e9)
     assert 'VernerFerland1996' in entry.short_desc

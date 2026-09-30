@@ -50,13 +50,16 @@ import tempfile
 
 import pytest
 
+import rmgpy.data.rmg as rmg_data_module
 from rmgpy import settings
 from rmgpy import electron_placement
 from rmgpy.data.kinetics.database import KineticsDatabase
+from rmgpy.data.rmg import RMGDatabase
 from rmgpy.data.thermo import ThermoDatabase
 from rmgpy.molecule import Molecule
 from rmgpy.reaction import Reaction
 from rmgpy.species import Species
+from rmgpy.thermo.thermoengine import generate_thermo_data
 
 THIS_DATABASE = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir,
                                              'input'))
@@ -123,10 +126,19 @@ def pinned():
 
 @pytest.fixture(scope='module')
 def thermo_db(pinned):
-    db = ThermoDatabase()
-    db.load_libraries(LIBRARY_DIR)
-    db.load_groups(GROUP_DIR)
-    return db
+    """Load thermo through RMG's process-global production path.
+
+    PlasmaReactor's charged-thermo guard reads the same global database as the
+    thermo engine. Save and restore it so this module stays order-independent.
+    """
+    previous = rmg_data_module.database
+    rmg_data_module.database = None
+    try:
+        db = RMGDatabase()
+        db.load_thermo(os.path.join(THIS_DATABASE, 'thermo'))
+        yield db.thermo
+    finally:
+        rmg_data_module.database = previous
 
 
 @pytest.fixture(scope='module')
@@ -514,7 +526,7 @@ def test_the_plasma_reactor_accepts_the_argon_ionisation_reaction(thermo_db,
     arp = argon_ionisation.products[0]
     electron = _species(ELECTRON, 'e-')
     for s in (ar, arp, electron):
-        s.thermo = thermo_db.get_thermo_data(s)
+        s.thermo = generate_thermo_data(s)
     assert LIBRARY in arp.thermo.comment
 
     Te = 23209.0            # 2 eV, inside the Voronov argon fit's 1 eV - 20 keV range

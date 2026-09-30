@@ -26,6 +26,7 @@ import os
 
 import pytest
 
+import rmgpy.data.rmg as rmg_data_module
 from rmgpy import settings
 from rmgpy.data.kinetics.database import KineticsDatabase
 from rmgpy.exceptions import NonEquilibriumReverseRateError
@@ -56,6 +57,17 @@ def _thermo(h298_kj):
 
 def _net_charge(species):
     return sum(atom.charge for atom in species.molecule[0].atoms)
+
+
+@pytest.fixture
+def no_global_thermo_database():
+    """Make the synthetic caller assertion independent of earlier test modules."""
+    previous = rmg_data_module.database
+    rmg_data_module.database = None
+    try:
+        yield
+    finally:
+        rmg_data_module.database = previous
 
 
 def _load_reaction(label):
@@ -93,12 +105,18 @@ def _mechanism_for(reaction):
     for c in reactant_cations:
         imf[c] = 1.0e-4
 
-    reactor = PlasmaReactor(T_GAS, P0, imf, (T_E, "K"), n_sims=1, termination=[])
+    asserted_ions = [s.label for s in species
+                     if not s.is_electron() and _net_charge(s) != 0]
+    reactor = PlasmaReactor(
+        T_GAS, P0, imf, (T_E, "K"), n_sims=1, termination=[],
+        thermo_source_assertions=asserted_ions,
+    )
     return reactor, species
 
 
 @pytest.mark.parametrize("label", IRREVERSIBLE_TE_RECOMBINATIONS)
-def test_carried_irreversible_form_is_admitted_by_the_reactor(label):
+def test_carried_irreversible_form_is_admitted_by_the_reactor(
+        label, no_global_thermo_database):
     reaction = _load_reaction(label)
     assert reaction.reversible is False, "%s must be carried irreversible" % label
     reactor, species = _mechanism_for(reaction)
@@ -107,7 +125,7 @@ def test_carried_irreversible_form_is_admitted_by_the_reactor(label):
 
 
 @pytest.mark.parametrize("label", IRREVERSIBLE_TE_RECOMBINATIONS)
-def test_same_reaction_reversible_is_still_refused(label):
+def test_same_reaction_reversible_is_still_refused(label, no_global_thermo_database):
     """Negative control: a check that cannot fail is not a check."""
     reaction = _load_reaction(label)
     reversible = Reaction(

@@ -68,6 +68,7 @@ import os
 
 import pytest
 
+import rmgpy.data.rmg as rmg_data_module
 from rmgpy import settings
 
 LIBRARY = 'PlasmaElectronImpactIonization'
@@ -130,6 +131,17 @@ def reaction(library):
 @pytest.fixture
 def electron():
     return Species(label='e', molecule=[Molecule().from_adjacency_list('1 e u0 p0 c-1')])
+
+
+@pytest.fixture
+def no_global_thermo_database():
+    """Make the synthetic caller assertion independent of earlier test modules."""
+    previous = rmg_data_module.database
+    rmg_data_module.database = None
+    try:
+        yield
+    finally:
+        rmg_data_module.database = previous
 
 
 @pytest.fixture
@@ -409,7 +421,7 @@ def test_a_declaration_that_does_not_match_this_reaction_is_refused(
 # ---------------------------------------------------------------------------
 
 def test_the_plasma_reactor_accepts_the_reaction_and_evaluates_it_at_the_voronov_rate(
-        reaction, electron, declaration):
+        reaction, electron, declaration, no_global_thermo_database):
     """The whole point: acceptance *and* the right number.
 
     ``PlasmaReactor.initialize_model`` resolves placement itself, so handing it the
@@ -427,6 +439,7 @@ def test_the_plasma_reactor_accepts_the_reaction_and_evaluates_it_at_the_voronov
     reactor = PlasmaReactor(T=(1000, 'K'), P=(1, 'bar'), Te=(Te, 'K'),
                             initial_mole_fractions={lithium: 1.0, cation: 1e-12,
                                                     electron: 1e-12},
+                            thermo_source_assertions=[cation.label],
                             termination=[])
     reactor.initialize_model(core_species=[lithium, cation, electron],
                              core_reactions=[reaction],
@@ -438,7 +451,8 @@ def test_the_plasma_reactor_accepts_the_reaction_and_evaluates_it_at_the_voronov
         reaction.kinetics.get_rate_coefficient_electron_temp(Te), rel=1e-12)
 
 
-def test_the_reactor_would_refuse_the_reaction_without_a_declaration(reaction, electron):
+def test_the_reactor_would_refuse_the_reaction_without_a_declaration(
+        reaction, electron, no_global_thermo_database):
     """Without the declaration the reactor refuses, rather than falling back.
 
     The reactor's own guard rejects a metadata-only electron count, so the failure a
@@ -456,6 +470,7 @@ def test_the_reactor_would_refuse_the_reaction_without_a_declaration(reaction, e
         reactor = PlasmaReactor(T=(1000, 'K'), P=(1, 'bar'), Te=(10000, 'K'),
                                 initial_mole_fractions={lithium: 1.0, cation: 1e-12,
                                                         electron: 1e-12},
+                                thermo_source_assertions=[cation.label],
                                 termination=[])
         with pytest.raises(ElectronPlacementError):
             reactor.initialize_model(core_species=[lithium, cation, electron],

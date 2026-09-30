@@ -8,7 +8,7 @@ Plasma kinetics for Alkali and Alkali Earth metals in air plasma environments.
 
 Reference legend:
 [Golyatina2021]:  R.I. Golyatina, S.A. Marinov, Analytical Cross Section Approximation for Electron Impact Ionization of Alkali and Other Metals, Inert Gases and Hydrogen Atoms, Atoms 2021, 9(90), DOI: 10.3390/atoms9040090
-[VernerFerland1996]: D.A. Verner, G.J. Ferland, Atomic data for astrophysics. I. Radiative recombination rates for H-like, He-like, Li-like and Na-like ions over a broad range of temperature, ApJ 1995, arXiv:astro-ph/9509083v1
+[VernerFerland1996]: D.A. Verner, G.J. Ferland, Atomic data for astrophysics. I. Radiative recombination rates for H-like, He-like, Li-like and Na-like ions over a broad range of temperature, ApJS 103, 467 (1996), DOI: 10.1086/192284, arXiv:astro-ph/9509083v1
 [JensenJones1977]: D.E. Jensen and G.A. Jones, "Reaction Rate Coefficients for Flame Calculations", https://apps.dtic.mil/sti/tr/pdf/ADA047018.pdf
 [AgerTalcottHoward1986]: J.W. Ager, C.L. Talcott, C.J. Howard, "Gas phase kinetics of the reactions of Na and NaO with O3 and N2O", J. Chem. Phys. 1986, 85, 5584-5592, DOI: 10.1063/1.451573
 [AgerHoward1987]: J.W. Ager, C.J. Howard, "Gas phase kinetics of the reactions of NaO with H2, D2, H2O, and D2O", J. Chem. Phys. 1987, 87, 921-925, DOI: 10.1063/1.453726
@@ -753,13 +753,14 @@ entry(
     index = 1,
     label = "Lip + e- => Li",
     reversible = False,
-    kinetics = TwoTemperaturePlasma(A=(1.30e-09, "cm^3/(molecule*s)"), n=-0.95, Ea_g=(0.0, "J/mol"), Ea_e=(0.19,'kJ/mol'),
-                                    Tmin = (10, "K"), Tmax = (1000000000, "K")),
+    kinetics = TwoTemperaturePlasma(A=(4.732868017e-10, "cm^3/(molecule*s)"), n=-0.8205215073, Ea_g=(1.217259363, "kJ/mol"), Ea_e=(1.217259363,'kJ/mol'),
+                                    Tmin = (1000, "K"), Tmax = (100000, "K")),
     shortDesc = u"[VernerFerland1996]",
     longDesc = u"""
 Radiative Recombination to form Li I.
 Z=3, N_product=3 (Product has 3 e-).
 Fit Parameters: a=1.04e-11, b=0.3880, T0=1.08e+02, T1=1.18e+07
+Verner-Ferland fit: Te=1000-100000 K; maximum relative error=1.762351%; method=least-squares fit in log(rate) over 2001 log-spaced temperatures.
 
 temperatures = ([
     1.00e+01, 1.46e+01, 2.12e+01, 3.09e+01, 4.50e+01, 6.55e+01, 9.54e+01, 1.39e+02, 2.02e+02, 2.95e+02, 4.29e+02, 6.25e+02, 9.10e+02, 1.33e+03, 1.93e+03, 2.81e+03, 4.09e+03, 5.96e+03, 8.69e+03, 1.26e+04, 1.84e+04, 2.68e+04, 3.91e+04, 5.69e+04, 8.29e+04, 1.21e+05, 1.76e+05, 2.56e+05, 3.73e+05, 5.43e+05, 7.91e+05, 1.15e+06, 1.68e+06, 2.44e+06, 3.56e+06, 5.18e+06, 7.54e+06, 1.10e+07, 1.60e+07, 2.33e+07, 3.39e+07, 4.94e+07, 7.20e+07, 1.05e+08, 1.53e+08, 2.22e+08, 3.24e+08, 4.71e+08, 6.87e+08, 1.00e+09
@@ -780,13 +781,14 @@ entry(
     index = 2,
     label = "Nap + e- => Na",
     reversible = False,
-    kinetics = TwoTemperaturePlasma(A=(2.72e-08, "cm^3/(molecule*s)"), n=-1.07, Ea_g=(0.0, "J/mol"), Ea_e=(0.25,'kJ/mol'),
-                                    Tmin = (10, "K"), Tmax = (1000000000, "K")),
+    kinetics = TwoTemperaturePlasma(A=(1.011729261e-09, "cm^3/(molecule*s)"), n=-0.9282916514, Ea_g=(2.232004585, "kJ/mol"), Ea_e=(2.232004585,'kJ/mol'),
+                                    Tmin = (1000, "K"), Tmax = (100000, "K")),
     shortDesc = u"[VernerFerland1996]",
     longDesc = u"""
 Radiative Recombination to form Na I.
 Z=11, N_product=11 (Product has 11 e-).
 Fit Parameters: a=5.64e-12, b=0.1749, T0=3.08e+02, T1=2.62e+06
+Verner-Ferland fit: Te=1000-100000 K; maximum relative error=3.132286%; method=least-squares fit in log(rate) over 2001 log-spaced temperatures.
 
 temperatures = ([
     1.00e+01, 1.46e+01, 2.12e+01, 3.09e+01, 4.50e+01, 6.55e+01, 9.54e+01, 1.39e+02, 2.02e+02, 2.95e+02, 4.29e+02, 6.25e+02, 9.10e+02, 1.33e+03, 1.93e+03, 2.81e+03, 4.09e+03, 5.96e+03, 8.69e+03, 1.26e+04, 1.84e+04, 2.68e+04, 3.91e+04, 5.69e+04, 8.29e+04, 1.21e+05, 1.76e+05, 2.56e+05, 3.73e+05, 5.43e+05, 7.91e+05, 1.15e+06, 1.68e+06, 2.44e+06, 3.56e+06, 5.18e+06, 7.54e+06, 1.10e+07, 1.60e+07, 2.33e+07, 3.39e+07, 4.94e+07, 7.20e+07, 1.05e+08, 1.53e+08, 2.22e+08, 3.24e+08, 4.71e+08, 6.87e+08, 1.00e+09
@@ -963,13 +965,14 @@ entry(
     index = 45,
     label = "Mgp2 + e- => Mgp",
     reversible = False,
-    kinetics = TwoTemperaturePlasma(A=(8.69e-09, "cm^3/(molecule*s)"), n=-0.99, Ea_g=(0.0, "J/mol"), Ea_e=(0.23,'kJ/mol'),
-                                    Tmin = (10, "K"), Tmax = (1000000000, "K")),
+    kinetics = TwoTemperaturePlasma(A=(3.105375148e-09, "cm^3/(molecule*s)"), n=-0.8499132216, Ea_g=(2.003492666, "kJ/mol"), Ea_e=(2.003492666,'kJ/mol'),
+                                    Tmin = (1000, "K"), Tmax = (100000, "K")),
     shortDesc = u"[VernerFerland1996]",
     longDesc = u"""
 Radiative Recombination to form Mg II.
 Z=12, N_product=11 (Product has 11 e-).
 Fit Parameters: a=1.92e-11, b=0.3028, T0=4.85e+02, T1=5.89e+06
+Verner-Ferland fit: Te=1000-100000 K; maximum relative error=2.746092%; method=least-squares fit in log(rate) over 2001 log-spaced temperatures.
 
 temperatures = ([
     1.00e+01, 1.46e+01, 2.12e+01, 3.09e+01, 4.50e+01, 6.55e+01, 9.54e+01, 1.39e+02, 2.02e+02, 2.95e+02, 4.29e+02, 6.25e+02, 9.10e+02, 1.33e+03, 1.93e+03, 2.81e+03, 4.09e+03, 5.96e+03, 8.69e+03, 1.26e+04, 1.84e+04, 2.68e+04, 3.91e+04, 5.69e+04, 8.29e+04, 1.21e+05, 1.76e+05, 2.56e+05, 3.73e+05, 5.43e+05, 7.91e+05, 1.15e+06, 1.68e+06, 2.44e+06, 3.56e+06, 5.18e+06, 7.54e+06, 1.10e+07, 1.60e+07, 2.33e+07, 3.39e+07, 4.94e+07, 7.20e+07, 1.05e+08, 1.53e+08, 2.22e+08, 3.24e+08, 4.71e+08, 6.87e+08, 1.00e+09

@@ -63,13 +63,7 @@ TE_EV = (0.5, 1.0, 2.0, 3.0, 5.0)
 EV_IN_K = E_CHARGE / kB                      # 11604.518 K
 CEILING = {2: 1.0e-6, 3: 1.0e-20}            # cm^3/s, cm^6/s
 SI_TO_CGS_PARTICLE = {2: 1.0e6 / Na, 3: 1.0e12 / Na ** 2}   # m^3/(mol s) -> cm^3/s, ...
-# The only deliberate exceptions are pinned by library and index, never by prose in an entry.
-# Their source/encoding disagreement is separately tracked and must not be silently broadened.
-ENCODING_EXEMPTIONS = {
-    ('PlasmaAlkali', 1): 'encoding and source agreement unverified; tracked separately',
-    ('PlasmaAlkali', 2): 'encoding and source agreement unverified; tracked separately',
-    ('PlasmaAlkali', 45): 'encoding and source agreement unverified; tracked separately',
-}
+ENCODING_EXEMPTIONS = {}
 
 LIBRARIES_DIR = os.path.join(settings['database.directory'], 'kinetics', 'libraries')
 PLASMA_LIBRARIES = sorted(name for name in os.listdir(LIBRARIES_DIR)
@@ -191,11 +185,7 @@ def test_no_reversible_entry_has_te_dependent_kinetics(plasma_entries):
 
 
 def test_encoding_exemptions_are_the_pinned_named_set():
-    assert ENCODING_EXEMPTIONS == {
-        ('PlasmaAlkali', 1): 'encoding and source agreement unverified; tracked separately',
-        ('PlasmaAlkali', 2): 'encoding and source agreement unverified; tracked separately',
-        ('PlasmaAlkali', 45): 'encoding and source agreement unverified; tracked separately',
-    }
+    assert ENCODING_EXEMPTIONS == {}
 
 
 def test_the_ceiling_rule_fires_on_the_defect_it_exists_for():

@@ -894,8 +894,7 @@ def test_the_anchor_error_the_engine_delivers_is_the_one_the_library_discloses(e
 
 
 def test_the_only_kinetics_files_that_MENTION_the_metastable_are_the_containments(pinned):
-    """A weak but still meaningful check: nothing in the kinetics tree ships this structure
-    as a named species or a reacting group.
+    """Pin the metastable declarations to forbidden groups and explicitly sourced libraries.
 
     It is NOT a reachability check, and an earlier version of this file wrongly used it as
     one. Families match GROUPS, so a literal search cannot see a template match. The real
@@ -915,8 +914,11 @@ def test_the_only_kinetics_files_that_MENTION_the_metastable_are_the_containment
     template, so it leaves the containments untouched. A second is admitted on the same
     grounds: ``PlasmaArgonDimer`` delivers dissociative recombination ``Ar2p + e- => Ars + Ar``
     (Shiu & Biondi 1978; the metastable product is the owner-ruled upper-bound convention), so
-    its dictionary declares ``Ars`` too. Any other library that starts declaring the structure
-    still fails here."""
+    its dictionary declares ``Ars`` too. ``PlasmaOxygenHeavy`` is admitted for the sourced
+    Ar*+O2 and Ar*+O quenching channels, using the same triplet graph and the source's
+    1s5/1s3 kinetic lump, with 3P2 (1s5) thermo explicitly standing in for that lump.
+    It does not change family containment or add a new resolved level.
+    Any other library that starts declaring the structure still fails here."""
     declared = []
     for root, _dirs, files in os.walk(KINETICS_DIR):
         for name in files:
@@ -938,6 +940,8 @@ def test_the_only_kinetics_files_that_MENTION_the_metastable_are_the_containment
     expected = sorted(expected + [('kinetics/libraries/PlasmaArgon/dictionary.txt',
                                    '1 Ar u2 p3 c0'),
                                   ('kinetics/libraries/PlasmaArgonDimer/dictionary.txt',
+                                   '1 Ar u2 p3 c0'),
+                                  ('kinetics/libraries/PlasmaOxygenHeavy/dictionary.txt',
                                    '1 Ar u2 p3 c0')])
     assert sorted(declared) == expected, sorted(declared)
 

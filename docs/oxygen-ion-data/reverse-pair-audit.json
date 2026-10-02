@@ -1,0 +1,242 @@
+{
+  "scanned_library_files": 190,
+  "active_source_entries": 35278,
+  "irreversible_source_entries": 2454,
+  "loaded_libraries": [
+    "2-BTP/full",
+    "2-BTP/seed",
+    "CF2BrCl",
+    "CH3Cl",
+    "Chernov",
+    "CurranPentane",
+    "Dooley/methylformate_all_ARHEbathgas",
+    "Dooley/methylformate_all_N2bathgas",
+    "ERC-FoundationFuelv0.9",
+    "GRI-Mech3.0",
+    "GRI-Mech3.0-N",
+    "Glarborg/C2",
+    "Glarborg/C3",
+    "Glarborg/highP",
+    "JetSurF1.0",
+    "JetSurF2.0",
+    "Klippenstein_Glarborg2016",
+    "NIST_Fluorine/CH2F2/full",
+    "NIST_Fluorine/CH2F2/seed",
+    "NIST_Fluorine/full",
+    "NIST_Fluorine/seed",
+    "NOx2018",
+    "Narayanaswamy",
+    "Nitrogen_Glarborg_Gimenez_et_al",
+    "Nitrogen_Glarborg_Lucassen_et_al",
+    "Nitrogen_Glarborg_Zhang_et_al",
+    "PlasmaAir",
+    "PlasmaAlkali",
+    "PlasmaArgon",
+    "PlasmaArgonDimer",
+    "PlasmaElectronImpactIonization",
+    "PlasmaOxygenHeavy",
+    "PlasmaRadiativeRecombination",
+    "YF/full",
+    "YF/seed",
+    "primaryH2O2"
+  ],
+  "criterion": "Both reactions irreversible, opposite actual model species, matching collider and electron placement",
+  "pairs": [
+    {
+      "entries": [
+        {
+          "library": "JetSurF1.0",
+          "index": 1435,
+          "label": "PC12H25O2 => P12OOHX2",
+          "rate_class": "Arrhenius"
+        },
+        {
+          "library": "JetSurF2.0",
+          "index": 1416,
+          "label": "P12OOHX2 => PC12H25O2",
+          "rate_class": "Arrhenius"
+        }
+      ],
+      "trials": [
+        {
+          "order": [
+            [
+              "JetSurF1.0",
+              1435
+            ],
+            [
+              "JetSurF2.0",
+              1416
+            ]
+          ],
+          "new": [
+            true,
+            false
+          ],
+          "returned_same_object": true,
+          "survivors": [
+            [
+              "JetSurF1.0",
+              1435
+            ]
+          ]
+        },
+        {
+          "order": [
+            [
+              "JetSurF2.0",
+              1416
+            ],
+            [
+              "JetSurF1.0",
+              1435
+            ]
+          ],
+          "new": [
+            true,
+            false
+          ],
+          "returned_same_object": true,
+          "survivors": [
+            [
+              "JetSurF2.0",
+              1416
+            ]
+          ]
+        }
+      ],
+      "collapses_both_orders": true
+    },
+    {
+      "entries": [
+        {
+          "library": "JetSurF2.0",
+          "index": 1415,
+          "label": "PC12H25O2 => P12OOHX2",
+          "rate_class": "Arrhenius"
+        },
+        {
+          "library": "JetSurF1.0",
+          "index": 1436,
+          "label": "P12OOHX2 => PC12H25O2",
+          "rate_class": "Arrhenius"
+        }
+      ],
+      "trials": [
+        {
+          "order": [
+            [
+              "JetSurF2.0",
+              1415
+            ],
+            [
+              "JetSurF1.0",
+              1436
+            ]
+          ],
+          "new": [
+            true,
+            false
+          ],
+          "returned_same_object": true,
+          "survivors": [
+            [
+              "JetSurF2.0",
+              1415
+            ]
+          ]
+        },
+        {
+          "order": [
+            [
+              "JetSurF1.0",
+              1436
+            ],
+            [
+              "JetSurF2.0",
+              1415
+            ]
+          ],
+          "new": [
+            true,
+            false
+          ],
+          "returned_same_object": true,
+          "survivors": [
+            [
+              "JetSurF1.0",
+              1436
+            ]
+          ]
+        }
+      ],
+      "collapses_both_orders": true
+    },
+    {
+      "entries": [
+        {
+          "library": "PlasmaAir",
+          "index": 55,
+          "label": "O2 + e- => O- + O",
+          "rate_class": "TwoTemperaturePlasma"
+        },
+        {
+          "library": "PlasmaOxygenHeavy",
+          "index": 33,
+          "label": "O + O- => O2 + e-",
+          "rate_class": "Arrhenius"
+        }
+      ],
+      "trials": [
+        {
+          "order": [
+            [
+              "PlasmaAir",
+              55
+            ],
+            [
+              "PlasmaOxygenHeavy",
+              33
+            ]
+          ],
+          "new": [
+            true,
+            false
+          ],
+          "returned_same_object": true,
+          "survivors": [
+            [
+              "PlasmaAir",
+              55
+            ]
+          ]
+        },
+        {
+          "order": [
+            [
+              "PlasmaOxygenHeavy",
+              33
+            ],
+            [
+              "PlasmaAir",
+              55
+            ]
+          ],
+          "new": [
+            true,
+            false
+          ],
+          "returned_same_object": true,
+          "survivors": [
+            [
+              "PlasmaOxygenHeavy",
+              33
+            ]
+          ]
+        }
+      ],
+      "collapses_both_orders": true
+    }
+  ],
+  "loaded_irreversible_reactions": 2454
+}

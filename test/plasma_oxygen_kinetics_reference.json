@@ -1,0 +1,158 @@
+{
+  "31": {
+    "label": "O2p + O- => O2 + O",
+    "particle_a": 2.6e-14,
+    "n": -0.44,
+    "order": 2,
+    "location": "V-31",
+    "grade": "S"
+  },
+  "32": {
+    "label": "Op + O- => O + O",
+    "particle_a": 4e-14,
+    "n": -0.43,
+    "order": 2,
+    "location": "V-32",
+    "grade": "S"
+  },
+  "33": {
+    "label": "O + O- => O2 + e-",
+    "particle_a": 2.3e-16,
+    "n": 0.0,
+    "order": 2,
+    "location": "V-33",
+    "grade": "P"
+  },
+  "34": {
+    "label": "O2 + Op => O + O2p",
+    "particle_a": 2.1e-17,
+    "n": -0.5,
+    "order": 2,
+    "location": "V-34",
+    "grade": "S"
+  },
+  "38": {
+    "label": "O2p + O2- => O2 + O2",
+    "particle_a": 2.01e-13,
+    "n": -0.5,
+    "order": 2,
+    "location": "V-38",
+    "grade": "S"
+  },
+  "39": {
+    "label": "Op + O2- => O2 + O",
+    "particle_a": 2.7e-13,
+    "n": -0.5,
+    "order": 2,
+    "location": "V-39",
+    "grade": "S"
+  },
+  "40": {
+    "label": "O + O2- => O2 + O-",
+    "particle_a": 3.31e-16,
+    "n": 0.0,
+    "order": 2,
+    "location": "V-40",
+    "grade": "S"
+  },
+  "41": {
+    "label": "O2a + O2- => O2 + O2 + e-",
+    "particle_a": 7e-16,
+    "n": 0.0,
+    "order": 2,
+    "location": "Midey abstract",
+    "grade": "A"
+  },
+  "42": {
+    "label": "O2 + O- => O3 + e-",
+    "particle_a": 5e-21,
+    "n": 0.0,
+    "order": 2,
+    "location": "V-42",
+    "grade": "S"
+  },
+  "52": {
+    "label": "O + O2- => O3 + e-",
+    "particle_a": 3.3e-16,
+    "n": 0.0,
+    "order": 2,
+    "location": "V-52",
+    "grade": "S"
+  },
+  "58": {
+    "label": "O2p + O- => O + O + O",
+    "particle_a": 2.6e-14,
+    "n": -0.44,
+    "order": 2,
+    "location": "V-58",
+    "grade": "S"
+  },
+  "67": {
+    "label": "O2p + O2- => O2 + O + O",
+    "particle_a": 1.01e-13,
+    "n": -0.5,
+    "order": 2,
+    "location": "V-67",
+    "grade": "S"
+  },
+  "80": {
+    "label": "O2 + Op + O- => O2 + O2",
+    "particle_a": 2.1e-37,
+    "n": -2.5,
+    "order": 3,
+    "location": "VI-80",
+    "grade": "S"
+  },
+  "81": {
+    "label": "O2 + O2p + O- => O2 + O3",
+    "particle_a": 2.01e-37,
+    "n": -2.5,
+    "order": 3,
+    "location": "VI-81",
+    "grade": "S"
+  },
+  "101": {
+    "label": "Arp + O2 => Ar + O2p",
+    "particle_a": 4.9e-17,
+    "n": -0.78,
+    "order": 2,
+    "location": "Kutasi p. 2, sec. 3, ref. 23",
+    "grade": "S",
+    "second_term": {
+      "particle_a": 9.2e-16,
+      "activation_kelvin": 5027.6
+    }
+  },
+  "102": {
+    "label": "Arp + O => Ar + Op",
+    "particle_a": 1.21e-17,
+    "n": 0.0,
+    "order": 2,
+    "location": "Dong A1-35",
+    "grade": "S"
+  },
+  "103": {
+    "label": "Ars + O2 => Ar + O2",
+    "particle_a": 1.12e-15,
+    "n": 0.0,
+    "order": 2,
+    "location": "Dong A1-31",
+    "grade": "S"
+  },
+  "104": {
+    "label": "Ars + O2 => Ar + O + O",
+    "particle_a": 5.8e-17,
+    "n": 0.0,
+    "order": 2,
+    "location": "Dong A1-33",
+    "grade": "S"
+  },
+  "105": {
+    "label": "Ars + O => Ar + O",
+    "particle_a": 8.1e-18,
+    "n": 0.0,
+    "order": 2,
+    "location": "Dong A1-34",
+    "grade": "S"
+  }
+}

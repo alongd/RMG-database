@@ -411,10 +411,10 @@ def test_the_library_loads_alongside_every_other_thermo_library(thermo_db):
     on_disk = [f for f in os.listdir(LIBRARY_DIR) if f.endswith('.py')]
     assert len(thermo_db.libraries) == len(on_disk)
     assert LIBRARY in thermo_db.libraries
-    # Ar2+ is derived from primary-read spectroscopic constants; the other three entries
-    # are transcribed/reconciled monatomic noble-gas cations.
+    # Ar2+ and O3- are derived from primary-read spectroscopic constants;
+    # the other entries transcribe/reconcile published JANAF or NASA7 data.
     assert list(thermo_db.libraries[LIBRARY].entries) == [
-        '[Arp]', '[Hep]', '[Nep]', '[Ar2p]']
+        '[Arp]', '[Hep]', '[Nep]', '[Ar2p]', '[Op]', '[O2p]', '[Om]', '[O2m]', '[O3m]']
 
 
 def test_the_species_resolves_to_this_library(thermo_db):
@@ -553,7 +553,7 @@ def test_the_only_gas_phase_cations_in_this_database_are_these_set(thermo_db):
     construction, not gas-phase thermochemistry at all) and ``[Lip]``/``H3O``, the free
     monatomic noble-gas cations with real gas-phase thermochemistry are the three this
     library carries: Ar+, He+, and Ne+; it also carries the deliberately derived
-    diatomic Ar2+ entry."""
+    diatomic Ar2+ entry, and sourced O+ and O2+ entries."""
     cations = {}
     for name, library in thermo_db.libraries.items():
         for label, e in library.entries.items():
@@ -561,11 +561,13 @@ def test_the_only_gas_phase_cations_in_this_database_are_these_set(thermo_db):
                 continue
             cations.setdefault(label, set()).add(name)
     assert set(cations) == {'proton', 'H3O', 'Li_ion', '[Lip]', '[Arp]', '[Hep]',
-                            '[Nep]', '[Ar2p]'}, sorted(cations)
+                            '[Nep]', '[Ar2p]', '[Op]', '[O2p]'}, sorted(cations)
     assert cations['[Arp]'] == {LIBRARY}
     assert cations['[Hep]'] == {LIBRARY}
     assert cations['[Nep]'] == {LIBRARY}
     assert cations['[Ar2p]'] == {LIBRARY}
+    assert cations['[Op]'] == {LIBRARY}
+    assert cations['[O2p]'] == {LIBRARY}
 
     # the two electrochemical ones are zero by construction, not by measurement
     for label, expected_libraries in (('proton', {'electrocatThermo',

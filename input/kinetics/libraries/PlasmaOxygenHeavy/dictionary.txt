@@ -1,0 +1,50 @@
+O
+multiplicity 3
+1 O u2 p2 c0
+
+Op
+multiplicity 4
+1 O u3 p1 c+1
+
+O-
+multiplicity 2
+1 O u1 p3 c-1
+
+O2
+multiplicity 3
+1 O u1 p2 c0 {2,S}
+2 O u1 p2 c0 {1,S}
+
+O2p
+multiplicity 2
+1 O u0 p2 c+1 {2,S}
+2 O u1 p2 c0 {1,S}
+
+O2-
+multiplicity 2
+1 O u0 p3 c-1 {2,S}
+2 O u1 p2 c0 {1,S}
+
+O2a
+multiplicity 1
+1 O u0 p2 c0 {2,D}
+2 O u0 p2 c0 {1,D}
+
+O3
+multiplicity 1
+1 O u0 p3 c-1 {2,S}
+2 O u0 p1 c+1 {1,S} {3,D}
+3 O u0 p2 c0 {2,D}
+
+e-
+1 e u1 p0 c-1
+
+Ar
+1 Ar u0 p4 c0
+
+Arp
+1 Ar u1 p3 c+1
+
+Ars
+multiplicity 3
+1 Ar u2 p3 c0

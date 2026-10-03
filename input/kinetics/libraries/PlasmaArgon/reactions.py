@@ -81,14 +81,17 @@ sourced data, not an omission to be filled:
   termolecular ``Arrhenius`` and is admitted: ``PlasmaReactor`` takes one to three
   participants per side.
 
-* **No estimated or analogy-derived rate.** Every entry is a PUBLISHED rate coefficient or
-  fit, not an estimate; an incomplete library that can be named is the deliverable, and a
-  complete-looking one built on fabricated numbers is a failure.
+* **No estimated or analogy-derived rate.** Every entry except 88 is a PUBLISHED rate
+  coefficient or fit, not an estimate. Entry 88 is fitted here to Maxwellian rates of the
+  published Ali & Stone (2008) BEB cross sections; an incomplete library that can be named is
+  the deliverable, and a complete-looking one built on fabricated numbers is a failure.
 
 METASTABLE-ARGON CHANNELS (I-232) -- WHAT THE TEXT ABOVE NO LONGER SAYS
 ------------------------------------------------------------------------
-Six channels of metastable argon ``Ars`` are appended, each a published Maxwellian or
-constant fit (not an estimate):
+Six channels of metastable argon ``Ars`` are appended. Entries 89--93 carry published
+Maxwellian or constant fits (not estimates). Entry 88's coefficients were fitted here from
+the published Ali--Stone BEB cross sections; its 5:1 population weighting is an assumed
+statistical-weight ratio:
 
 * 88  ``Ars + e- => Arp + e- + e-``   stepwise ionisation, Te-dependent;
 * 89  ``Ars + e- => Ar + e-``         superelastic quenching, Te-dependent, one-way;
@@ -99,10 +102,11 @@ constant fit (not an estimate):
 * 92  ``Ars + Ar => Ar + Ar``         two-body quenching by ground-state argon, constant;
 * 93  ``Ars + Ar + Ar => Ar + Ar + Ar``  three-body quenching (via the Ar2 excimer), constant.
 
-88, 89 and 91 are Ashida, Lee & Lieberman (1995), read from the tabulation in Rehman et al.
-(2016), Table 1. 90, 92 and 93 are Lymberopoulos & Economou (1993), Table I, which also
-lists 91's coefficient. Index 87 (I-231) produces ``Ars``; 88-93 are its sinks. There is
-still no diffusion loss of ``Ars`` to the wall.
+88 is a 5:1-weighted 1s5/1s3 analytic-BEB Maxwellian fit from Ali & Stone (2008). 89 and 91
+are Ashida, Lee & Lieberman (1995), read from the tabulation in Rehman et al. (2016), Table 1.
+90, 92 and 93 are Lymberopoulos & Economou (1993), Table I, which also lists 91's coefficient.
+Index 87 (I-231) produces ``Ars``; 88-93 are its sinks. There is still no diffusion loss of
+``Ars`` to the wall.
 91 is a separate entry from 89 on purpose, so that a deck can drop it on its own; it is
 also the largest electron loss of ``Ars`` by a factor of about 500 at 1 eV. At 5 torr and
 298 K, 92 and 93 remove ``Ars`` at about 490 and 2900 per second whatever the electron
@@ -193,28 +197,42 @@ entry(
     label = "Ars + e- => Arp + e- + e-",
     reversible = False,
     kinetics = TwoTemperaturePlasma(
-        A = (6.8e-15, 'm^3/(molecule*s)'),
-        n = 0.67,
-        Ea_g = (4.20, 'eV/molecule'),
-        Ea_e = (4.20, 'eV/molecule'),
+        A = (1.187793909e-13, 'm^3/(molecule*s)'),
+        n = 0.3278287422,
+        Ea_g = (4.401535934, 'eV/molecule'),
+        Ea_e = (4.401535934, 'eV/molecule'),
         T0 = (11604.51812, 'K'),
     ),
-    shortDesc = u"[Ashida1995 via Rehman2016 Table 1] Maxwellian fit, stepwise ionisation from the 4s metastable",
+    shortDesc = u"[AliStone2008 Eq. 3/Table 4] 5:1-weighted 1s5/1s3 BEB Maxwellian fit (assumption)",
     longDesc = u"""
-Stepwise ionisation of metastable argon, k = 6.8e-15 Te^0.67 exp(-4.20/Te) m^3/s, Te in eV.
+Stepwise ionisation of the lumped metastable ``Ars``. The fitted law is
+``k = 1.187793909e-13 Te^0.3278287422 exp(-4.401535934/Te) m^3/s``, with Te in eV.
+It is a least-squares fit in log(k) to the Maxwellian rate coefficient over Te = 0.5--6 eV;
+its maximum relative error there is 3.87%. The fit is validated only on 0.5--6 eV: against
+the analytic BEB integral its relative errors are -40.8% at 0.2 eV, +7.17% at 10 eV, and
++20.1% at 20 eV. No runtime temperature cutoff is imposed.
 
-SOURCE. S. Ashida, C. Lee & M.A. Lieberman, J. Vac. Sci. Technol. A 13(5), 2498-2507
-(1995), read from its tabulation in F. Rehman et al., J. Phys.: Conf. Ser. 682, 012035
-(2016), Table 1 ("Table showing the rate coefficient for argon system as taken from [11]",
-[11] = Ashida 1995). Row: "Ar(4s)m + e -> Ar+ + 2e, 6.80 . 10^-15 Te^0.67 exp(-4.20/Te)",
-Te in eV. The 1995 paper itself was not re-read.
+SOURCE. M. Asgar Ali and P. M. Stone, ``Electron impact ionization of metastable rare gases:
+He, Ne and Ar'', Int. J. Mass Spectrom. 271, 51 (2008), Eq. (3) with Table 4 B/U/N/m
+parameters.
+The analytic BEB cross section was integrated against a Maxwellian distribution separately
+for 1s5 and 1s3. Their physical ionisation thresholds are retained explicitly: 4.2113 eV
+(1s5) and 4.0365 eV (1s3). The fitted activation parameter is an effective parameter of a
+single-law representation, not a replacement physical threshold.
 
-LEVEL. Rehman's model "contains 5 levels: the ground level (Ar), 4s metastable
-(Ar(4s)m), 4s resonance (Ar(4s)r), 4p (Ar(4p)) and ion level (Ar+)". The number therefore
-covers the metastable GROUP, Ar(4s 3P2) + Ar(4s 3P0), which ``Ars`` represents here; the
-thermochemistry of ``Ars`` is that of 3P2 alone (``PlasmaExcitedNeutralThermo``). The 4.20 eV
-threshold agrees with IE - E(3P2) = 15.7596117 - 11.54835442 = 4.21126 eV to 0.3%. Cost: the
-3P0 member (0.17 eV higher, g = 1 against 5) is folded into the 3P2 species.
+LEVEL AND WEIGHTING ASSUMPTION. ``Ars`` represents only the 1s5 + 1s3 metastable group;
+the resonance levels 1s4 and 1s2 are excluded. The central coefficient is
+``(5 k_1s5 + k_1s3)/6``, assuming the statistical population ratio n(1s5):n(1s3) = 5:1.
+This ratio is an assumption, not a measured population. Pure-1s5 and pure-1s3 BEB rates
+are the sensitivity bounds. At Te = 1/2/3/4 eV, respectively, they are
+1s5: 1.36624e-15/1.60717e-14/3.87499e-14/6.13938e-14 m^3/s and
+1s3: 1.75938e-15/1.89211e-14/4.42178e-14/6.89217e-14 m^3/s.
+
+REPLACED LAW. The previous law, ``6.8e-15 Te^0.67 exp(-4.20/Te) m^3/s``, came through a
+KrF-laser-model provenance trail (Kannari 1985 via secondary tabulations), rather than the
+Ali--Stone cross sections. Its Maxwellian value is 10--17 times lower than the per-level BEB
+rates at Te = 1--4 eV, so it is replaced to keep the Maxwellian comparison arm free of that
+data error.
 
 ELECTRON TEMPERATURE. ``TwoTemperaturePlasma`` with Ea_g = Ea_e = E reduces exactly to
 A (Te/T0)^n exp(-E/(R Te)), independent of the gas temperature; T0 = 11604.51812 K = 1 eV
@@ -222,8 +240,8 @@ makes (Te/T0) the temperature in eV. ``PlasmaReactor`` evaluates it through
 ``get_rate_coefficient_two_temp(T, Te)``. Plain ``get_rate_coefficient(T)`` evaluates it at
 Te = T and is wrong for this entry.
 
-HAND CHECK at Te = 0.900 eV (10442.07 K): 0.9^0.67 = 0.931842, exp(-4.20/0.9) =
-9.40356e-3, k = 6.8e-15 x 0.931842 x 9.40356e-3 = 5.95859e-17 m^3/s = 3.58835e7 m^3/(mol s).
+HAND CHECK at Te = 0.900 eV (10442.07 K): k = 8.62545e-16 m^3/s =
+5.19437e8 m^3/(mol s).
 
 Irreversible: its reverse is three-body recombination, and the reactor refuses reversible
 Te-dependent reactions.
@@ -247,7 +265,14 @@ entry(
 Superelastic electron quenching of metastable argon to the ground state,
 k = 4.3e-16 Te^0.74 m^3/s, Te in eV.
 
-SOURCE and LEVEL as for index 88. Row: "Ar(4s)m + e -> Ar + e, 4.30 . 10^-16 Te^0.74".
+SOURCE. S. Ashida, C. Lee & M.A. Lieberman, J. Vac. Sci. Technol. A 13(5), 2498-2507
+(1995), read from its tabulation in F. Rehman et al., J. Phys.: Conf. Ser. 682, 012035
+(2016), Table 1 ("Table showing the rate coefficient for argon system as taken from [11]",
+[11] = Ashida 1995). Row: "Ar(4s)m + e -> Ar + e, 4.30 . 10^-16 Te^0.74", Te in eV.
+The 1995 paper itself was not re-read. LEVEL. Rehman's model "contains 5 levels: the ground
+level (Ar), 4s metastable (Ar(4s)m), 4s resonance (Ar(4s)r), 4p (Ar(4p)) and ion level
+(Ar+)". This rate covers the metastable group Ar(4s 3P2) + Ar(4s 3P0), represented by
+``Ars``.
 
 ONE-WAY BY CONSTRUCTION. This is the reverse of excitation ``Ar + e- => Ars + e-``
 (index 87, I-231). Both directions are entered as
@@ -298,8 +323,9 @@ SOURCE. D.P. Lymberopoulos & D.J. Economou, J. Appl. Phys. 73(8), 3668-3679 (199
 
 in cm^3/s (the table footnote: "Units are cm3/s except for k3q which is in cm6/s"). The
 paper's own references 48-50 were not read. Rehman et al. (2016) Table 1, the source of
-88/89/91, carries no pooling row. LEVEL as for index 88: the paper's ``Ar*`` is "a composite
-(3P0 and 3P2) metastable level". Energetics: 2 x 11.548 = 23.10 eV > 15.76 eV, exothermic.
+89/91, carries no pooling row; 88 now comes from the Ali & Stone (2008) BEB cross sections.
+LEVEL as for index 88: the paper's ``Ar*`` is "a composite (3P0 and 3P2) metastable level".
+Energetics: 2 x 11.548 = 23.10 eV > 15.76 eV, exothermic.
 
 Irreversible: the reverse is three-body, which ``PlasmaReactor`` refuses.
 
@@ -327,7 +353,10 @@ an EFFECTIVE loss of ``Ars`` to the ground state: k = 2.0e-13 m^3/s, independent
 THIS IS NOT THE PHYSICAL VALUE OF THE CHANNEL, AND 91-ON / 91-OFF ARE NOT BOUNDS ON IT. They
 are two SENSITIVITY CASES. The physical answer need not lie between them (see below).
 
-SOURCE as for index 88. Rows: "Ar(4s)m + e -> Ar(4s)r + e, 2.00 . 10^-13" and
+SOURCE. S. Ashida, C. Lee & M.A. Lieberman, J. Vac. Sci. Technol. A 13(5), 2498-2507
+(1995), read from its tabulation in F. Rehman et al., J. Phys.: Conf. Ser. 682, 012035
+(2016), Table 1 ("Table showing the rate coefficient for argon system as taken from [11]",
+[11] = Ashida 1995). Rows: "Ar(4s)m + e -> Ar(4s)r + e, 2.00 . 10^-13" and
 "Ar(4s)r -> Ar + hv, 3.00 . 10^7" (s^-1). The same coefficient is row 5 of Lymberopoulos &
 Economou (1993) Table I: "5  Quenching to resonant  Ar*+e->Ar^r+e  ...  k_r=2x10^-7  48-50"
 (cm^3/s), where the resonant states "decay by emission of radiation".

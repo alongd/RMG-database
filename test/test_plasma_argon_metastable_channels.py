@@ -6,7 +6,7 @@ Unit tests for the metastable-argon channels of ``PlasmaArgon`` (I-232).
 
 Six loss channels of ``Ars`` (the 4s metastable group) were appended at indices 88-93:
 
-* 88 stepwise ionisation ``Ars + e- => Arp + e- + e-``, 6.8e-15 Te^0.67 exp(-4.20/Te) m3/s;
+* 88 stepwise ionisation ``Ars + e- => Arp + e- + e-``, Ali--Stone BEB Maxwellian fit m3/s;
 * 89 electron quenching ``Ars + e- => Ar + e-``, 4.3e-16 Te^0.74 m3/s, one-way;
 * 90 pooling ``Ars + Ars => Arp + Ar + e-``, 6.2e-16 m3/s, gas-temperature (constant);
 * 91 metastable-to-resonance mixing, entered as ``Ars + e- => Ar + e-`` (the resonance level
@@ -15,13 +15,15 @@ Six loss channels of ``Ars`` (the 4s metastable group) were appended at indices 
 * 93 three-body quenching ``Ars + Ar + Ar => Ar + Ar + Ar``, 1.1e-31 cm6/s, gas-temperature
   (constant), the Ar2 excimer collapsed to its prompt radiative products.
 
-88, 89 and 91 are Ashida, Lee & Lieberman 1995 as tabulated in Rehman et al. 2016, Table 1;
-90, 92 and 93 are Lymberopoulos & Economou 1993, Table I.
+88 is a 5:1-weighted 1s5/1s3 analytic-BEB Maxwellian fit from Ali & Stone 2008. 89 and 91
+are Ashida, Lee & Lieberman 1995 as tabulated in Rehman et al. 2016, Table 1; 90, 92 and 93
+are Lymberopoulos & Economou 1993, Table I.
 
-The rates are the reason for this file. Every expected number below is hand arithmetic from
-those coefficients at Te = 0.900 eV (10442.07 K), times Avogadro, not the code's own output:
+The hand-value expectations for entries 88--93 below are arithmetic from their coefficients
+at Te = 0.900 eV (10442.07 K), times Avogadro, not the code's own output. The ten stepwise
+ionisation expectations at 0.5--6 eV are instead independent BEB Maxwellian quadrature targets.
 
-* 88: 6.8e-15 * 0.9^0.67 * exp(-4.20/0.9) = 5.95859e-17 m3/s = 3.58835e7 m3/(mol*s)
+* 88: fitted BEB law at 0.9 eV = 8.62545e-16 m3/s = 5.19437e8 m3/(mol*s)
 * 89: 4.3e-16 * 0.9^0.74                  = 3.97748e-16 m3/s = 2.39529e8 m3/(mol*s)
 * 90: 6.2e-16                              = 6.2e-16 m3/s     = 3.73373e8 m3/(mol*s)
 * 91: 2.0e-13                              = 2.0e-13 m3/s     = 1.204428e11 m3/(mol*s)
@@ -98,7 +100,7 @@ def select(library, channel):
 
 
 @pytest.mark.parametrize('channel, expected', [
-    (STEPWISE, 3.58835e7),
+    (STEPWISE, 5.19437e8),
     ('quenching', 2.39529e8),
     ('mixing', 1.204428e11),
 ])
@@ -111,6 +113,29 @@ def test_electron_impact_channels_are_read_at_te_not_tgas(library, channel, expe
     hot = reaction.kinetics.get_rate_coefficient_two_temp(1000.0, TE_K)
     assert cold == pytest.approx(expected, rel=1e-5)
     assert hot == pytest.approx(cold, rel=1e-12)  # float rounding only; a Tgas term would be O(1)
+
+
+@pytest.mark.parametrize('te_ev, expected', [
+    (0.5, 8.90864142e6),
+    (1.0, 8.62226844e8),
+    (1.5, 4.31046612e9),
+    (2.0, 9.96459070e9),
+    (2.5, 1.67453719e10),
+    (3.0, 2.38845340e10),
+    (3.5, 3.09508330e10),
+    (4.0, 3.77277889e10),
+    (5.0, 5.00976288e10),
+    (6.0, 6.08387920e10),
+])
+def test_stepwise_ionisation_matches_weighted_beb_maxwellian(library, te_ev, expected):
+    """5:1-weighted Ali--Stone Eq. 3/Table 4 Maxwellian targets in molar SI.
+
+    These targets are quadrature outputs, not fitted-law outputs. The 4% relative tolerance
+    exceeds the independently measured 3.8678% maximum fit error over the validated 0.5--6 eV
+    interval, while rejecting the documented endpoint counterexample.
+    """
+    rate = select(library, STEPWISE).kinetics.get_rate_coefficient_two_temp(298.15, te_ev * 11604.51812)
+    assert rate == pytest.approx(expected, rel=0.04, abs=1.0e3)
 
 
 def test_pooling_is_a_gas_temperature_constant(library):

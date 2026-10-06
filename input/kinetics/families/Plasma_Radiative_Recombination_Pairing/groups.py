@@ -59,7 +59,7 @@ this branch:
     He   decrement_radical=['He']   increment_lone_pair=[]       decrement_charge=[]
     Ne   decrement_radical=['Ne']   increment_lone_pair=[]       decrement_charge=[]
 
-so `He+` and `Ne+` — both of which have thermochemistry in `PlasmaCationThermo`
+so `He+` and `Ne+` — both of which have thermochemistry in `PlasmaThermo`
 and both of which recombine by exactly this mechanism — cannot appear in this
 tree. A root of `[Ar,He,Ne] u1 px c+1` raises at load:
 
@@ -72,7 +72,7 @@ row for oxygen that forced a wildcard top on
 work and is owned elsewhere; when it lands, add `He` and `Ne` here and nowhere
 else. Do NOT widen the root to a generic `R` or to `px` to get around it: the
 sibling family's I-236 narrowing measured what a wildcard root costs — 22915 of
-22936 species matched and `AtomTypeError` at 134616 centres.
+22936 species matched and `AtomTypeError` at 134616 centres on the older base.
 
 `Ar u1 p3 c+1` is also, by valence arithmetic, only ever a BARE argon cation:
 argon's formal charge is `8 - 2p - u - bonds`, so `u1 p3 c+1` forces `bonds = 0`.
@@ -86,41 +86,34 @@ number of free electrons the forward reaction produces: 0 produced minus 1
 consumed. Same convention as `Plasma_Electron_Attachment` and the sibling
 `Plasma_Radiative_Recombination`, and same value.
 
-REQUIRES AN RMG-Py REGISTRY ENTRY THAT DOES NOT EXIST YET — BUT NOT WHERE THE
-SIBLING FAMILY'S DOCSTRING SAYS. The reactor-facing electron placement is
-resolved from `FAMILY_ELECTRON_PLACEMENT` in `rmgpy/electron_placement.py`, keyed
-on the family label. This family needs
+The reactor-facing electron placement is resolved from
+`FAMILY_ELECTRON_PLACEMENT` in `rmgpy/electron_placement.py`, keyed on the family
+label. This family needs
 
     'Plasma_Radiative_Recombination_Pairing': (1, 0)
 
 — incident order 1, product count 0, net -1, identical to the pair the sibling
-family and the `PlasmaRadiativeRecombination` library both declare. That file is
-in the CODE repository and was out of scope for the database ticket that added
-this family, so the entry is NOT there yet.
+family and the `PlasmaRadiativeRecombination` library both declare. The paired
+RMG-Py change now provides this registry entry.
 
 What that costs is precisely one thing, and it is NOT reaction generation.
 Measured (`logs/p11-pairing-family.stdout.log`, `logs/p12-placement-gate.stdout.log`):
 
-* `generate_reactions` works with the registry exactly as RMG-Py ships it. This
-  family produces `Ar+ + e- => Ar` with ground-state argon, `electrons = -1`, with
-  no registry entry at all. The claim in `Plasma_Radiative_Recombination/groups.py`
-  that an undeclared family "raises the moment it is asked to produce a reaction"
-  does not hold here; generation never consults the registry.
+* `generate_reactions` works independently of the registry. This family produces
+  `Ar+ + e- => Ar` with ground-state argon and `electrons = -1`; generation never
+  consults the registry.
 * `resolve_electron_placement` is the gate, and the plasma REACTOR is what calls
-  it — `rmgpy/solver/plasma.pyx:276`, during `initialize_model`. Without the entry
-  it raises at `electron_placement.py:462`:
+  it — `rmgpy/solver/plasma.pyx:276`, during `initialize_model`. With the paired
+  entry it resolves the generated reaction's placement as `(1, 0)`:
 
-      ElectronPlacementError: Family 'Plasma_Radiative_Recombination_Pairing' has
-      no electron-placement declaration (reaction [Ar+] => [Ar], electrons=-1);
-      refusing to infer electron placement from the net electron count.
+      [Ar+] + e- => [Ar]
 
   With the entry, and with a rate attached, it certifies the view
   `[Ar+] + e- => [Ar]`.
 
-So the family is complete and correct on the database side, and cannot be
-SIMULATED until that one line lands in RMG-Py. Generation, database checks and
-the tests in `test/test_plasma_radiative_recombination_pairing.py` all pass
-without it.
+So the family is complete and correct on the database side. Generation, database
+checks and the tests in `test/test_plasma_radiative_recombination_pairing.py`
+all pass with the paired engine entry.
 """
 
 template(reactants=["Ar_cation"], products=["Ar_neutral"], ownReverse=False)

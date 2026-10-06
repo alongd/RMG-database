@@ -264,31 +264,14 @@ def test_the_two_families_partition_and_neither_takes_the_other_s_reaction(kinet
     assert pairing.generate_reactions([_molecule('Li+')]) == []
 
 
-def test_known_limitation_the_family_generates_but_cannot_yet_be_simulated(kinetics_db, family):
-    """Where the missing RMG-Py registry entry actually bites -- and where it does not.
-
-    `generate_reactions` never consults `FAMILY_ELECTRON_PLACEMENT`, so the
-    reaction above is produced with the registry exactly as RMG-Py ships it. The
-    gate is `resolve_electron_placement`, which the plasma reactor calls at
-    `rmgpy/solver/plasma.pyx:276`. Until
-
-        'Plasma_Radiative_Recombination_Pairing': (1, 0)
-
-    lands in `rmgpy/electron_placement.py`, this family cannot be simulated. When
-    it lands, this test fails and should be deleted.
-    """
+def test_pairing_reaction_resolves_engine_electron_placement(kinetics_db, family):
+    """The Pairing reaction resolves placement through the paired engine registry."""
     from rmgpy import electron_placement
-    from rmgpy.exceptions import ElectronPlacementError
     from rmgpy.kinetics import Arrhenius
     from rmgpy.species import Species
 
     assert _family_is_really_loaded(family)
-    assert FAMILY not in electron_placement.FAMILY_ELECTRON_PLACEMENT, (
-        'the registry entry has landed in RMG-Py; delete this test and the '
-        'corresponding paragraph in groups.py')
-    assert electron_placement.FAMILY_ELECTRON_PLACEMENT[SIBLING] == (1, 0), (
-        'positive control: the sibling family IS declared, so the registry is '
-        'present and this is not an import problem')
+    assert electron_placement.FAMILY_ELECTRON_PLACEMENT[FAMILY] == (1, 0)
 
     reaction = family.generate_reactions([_molecule('Ar+')])[0]
     reaction.reactants = [Species(molecule=[m]) for m in reaction.reactants]
@@ -296,8 +279,8 @@ def test_known_limitation_the_family_generates_but_cannot_yet_be_simulated(kinet
     reaction.kinetics = Arrhenius(A=(1.007892e+05, 'm^3/(mol*s)'), n=0.0,
                                   Ea=(0.0, 'kJ/mol'), T0=(1, 'K'))
 
-    with pytest.raises(ElectronPlacementError) as excinfo:
-        electron_placement.resolve_electron_placement(
-            reaction, list(reaction.reactants) + list(reaction.products))
-    assert 'has no electron-placement declaration' in str(excinfo.value)
-    assert FAMILY in str(excinfo.value)
+    electron = Species().from_adjacency_list('1 e u1 p0 c-1')
+    view = electron_placement.resolve_electron_placement(
+        reaction, [electron] + list(reaction.reactants) + list(reaction.products))
+    assert view.electrons == 0
+    assert sum(species.is_electron() for species in view.reactants) == 1

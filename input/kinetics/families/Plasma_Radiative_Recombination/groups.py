@@ -29,9 +29,10 @@ correct recipe for it (`LOSE_RADICAL *1 1; GAIN_PAIR *1 1`: the electron PAIRS
 with an existing unpaired electron). This family's recipe cannot do that stage:
 applied to a neutral closed-shell centre it builds `X u1 p<unchanged> c-1`, which
 RMG cannot type. Measured over every species in this database's thermo libraries,
-the pre-I-236 root matched 22915 of 22936 species and its recipe raised
-`AtomTypeError` at 134616 of the 230533 centres it labelled — the crash was the
-majority outcome, not an argon curiosity.
+the older pre-I-236 root matched 22915 of 22936 species and its recipe raised
+`AtomTypeError` at 134616 of the 230533 centres it labelled. On today's database
+the narrowed root matches 3 of 22943 species and raises zero typing errors — the
+crash was the majority outcome on the old base, not an argon curiosity.
 
 WHY THE ROOT NAMES ELEMENTS RATHER THAN A WILDCARD. RMG groups match SUBGRAPHS,
 so a charge written on *1 constrains that atom and never the molecule around it.

@@ -439,7 +439,7 @@ def test_the_plasma_reactor_accepts_the_reaction_and_evaluates_it_at_the_voronov
     reactor = PlasmaReactor(T=(1000, 'K'), P=(1, 'bar'), Te=(Te, 'K'),
                             initial_mole_fractions={lithium: 1.0, cation: 1e-12,
                                                     electron: 1e-12},
-                            thermo_source_assertions=[cation.label],
+                                thermo_source_assertions={cation.label: 'ion'},
                             termination=[])
     reactor.initialize_model(core_species=[lithium, cation, electron],
                              core_reactions=[reaction],
@@ -470,7 +470,7 @@ def test_the_reactor_would_refuse_the_reaction_without_a_declaration(
         reactor = PlasmaReactor(T=(1000, 'K'), P=(1, 'bar'), Te=(10000, 'K'),
                                 initial_mole_fractions={lithium: 1.0, cation: 1e-12,
                                                         electron: 1e-12},
-                                thermo_source_assertions=[cation.label],
+                            thermo_source_assertions={cation.label: 'ion'},
                                 termination=[])
         with pytest.raises(ElectronPlacementError):
             reactor.initialize_model(core_species=[lithium, cation, electron],

@@ -528,7 +528,7 @@ def test_the_plasma_reactor_accepts_the_reaction_and_evaluates_it_at_the_badnell
     reactor = PlasmaReactor(T=(1000, 'K'), P=(1, 'bar'), Te=(Te, 'K'),
                             initial_mole_fractions={cation: 1e-6, neutral: 1.0,
                                                     electron: 1e-6},
-                            thermo_source_assertions=[cation.label],
+                            thermo_source_assertions={cation.label: 'ion'},
                             termination=[])
     reactor.initialize_model(core_species=[cation, neutral, electron],
                              core_reactions=[reaction],
@@ -554,7 +554,7 @@ def test_the_reactor_would_refuse_the_reaction_without_a_declaration(
         reactor = PlasmaReactor(T=(1000, 'K'), P=(1, 'bar'), Te=(1.0 * EV, 'K'),
                                 initial_mole_fractions={cation: 1e-6, neutral: 1.0,
                                                         electron: 1e-6},
-                                thermo_source_assertions=[cation.label],
+                                thermo_source_assertions={cation.label: 'ion'},
                                 termination=[])
         with pytest.raises(ElectronPlacementError):
             reactor.initialize_model(core_species=[cation, neutral, electron],
@@ -1355,7 +1355,7 @@ def test_the_plasma_reactor_accepts_argon_and_evaluates_it_at_the_two_temperatur
     reactor = PlasmaReactor(T=(Tgas, 'K'), P=(5 * 133.322368, 'Pa'), Te=(Te, 'K'),
                             initial_mole_fractions={cation: 1e-6, neutral: 1.0,
                                                     electron: 1e-6},
-                            thermo_source_assertions=[cation.label],
+                            thermo_source_assertions={cation.label: 'ion'},
                             termination=[])
     reactor.initialize_model(core_species=[cation, neutral, electron],
                              core_reactions=[argon_reaction],

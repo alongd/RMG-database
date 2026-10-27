@@ -1784,21 +1784,17 @@ def test_being_a_nasa_is_not_enough_the_library_comment_is_the_gate(entry):
     from rmgpy.thermo import NASA
     from rmgpy.thermo.thermoengine import process_thermo_data
 
-    class _Shim(object):
-        def __init__(self):
-            self.thermo = None
-            self.conformer = None
-
     bare = copy.deepcopy(entry.data)
     bare.comment = ''
-    refit = process_thermo_data(_Shim(), bare, thermo_class=NASA)
+    unresolved = Species()
+    refit = process_thermo_data(unresolved, bare, thermo_class=NASA)
     assert refit.Tmax.value_si == pytest.approx(5000.0)
     with pytest.raises(ValueError):
         refit.get_entropy(6000.0)
 
     stamped = copy.deepcopy(entry.data)
     stamped.comment = 'Thermo library: %s' % LIBRARY
-    kept = process_thermo_data(_Shim(), stamped, thermo_class=NASA)
+    kept = process_thermo_data(unresolved, stamped, thermo_class=NASA)
     assert kept.Tmax.value_si == pytest.approx(6000.0)
 
 
@@ -1962,12 +1958,10 @@ def admitted(pinned):
     cerm.kinetics_estimator = 'rate rules'
 
     # The family now carries a quarantine manifest, written BECAUSE of what the tests below
-    # measure, so admission refuses before any of it can be measured. Assert the refusal
-    # here rather than suppressing it - a fixture that quietly swallowed the exception would
-    # keep passing after the gate stopped firing - then detach the quarantine on the loaded
-    # object, which touches no file, so the evidence that justifies the manifest stays
-    # reproducible now that the manifest exists. The gate itself is tested in
-    # test/test_eii_quarantine.py.
+    # measure, so production model admission refuses the estimate. Keep that refusal as a
+    # positive assertion. Characterize the estimate below the admission boundary through
+    # generate_kinetics, which does not bind it to an admitted model reaction; this keeps
+    # every numerical measurement runnable without disabling or bypassing the manifest.
     from rmgpy.exceptions import QuarantinedKineticsError
     quarantine = db.kinetics.families[EII].quarantine
     assert quarantine is not None, (
@@ -1977,12 +1971,12 @@ def admitted(pinned):
         cerm.apply_kinetics_to_reaction(rxn)
     assert rxn.kinetics is None, 'a refused reaction must be left exactly as generated'
 
-    db.kinetics.families[EII].quarantine = None
-    try:
-        rxn = generated()
-        cerm.apply_kinetics_to_reaction(rxn)
-    finally:
-        db.kinetics.families[EII].quarantine = quarantine
+    assert db.kinetics.families[EII].quarantine is quarantine
+    kinetics, source, entry, is_forward = cerm.generate_kinetics(rxn)
+    assert source == 'rate rules'
+    assert entry is not None
+    assert is_forward
+    rxn.kinetics = kinetics
     estimated_class = rxn.kinetics.__class__.__name__
     estimated_comment = rxn.kinetics.comment
     rxn.fix_barrier_height(force_positive=True, solvent="")

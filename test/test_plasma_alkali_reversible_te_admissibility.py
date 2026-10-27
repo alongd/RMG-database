@@ -105,8 +105,8 @@ def _mechanism_for(reaction):
     for c in reactant_cations:
         imf[c] = 1.0e-4
 
-    asserted_ions = [s.label for s in species
-                     if not s.is_electron() and _net_charge(s) != 0]
+    asserted_ions = {s.label: 'ion' for s in species
+                     if not s.is_electron() and _net_charge(s) != 0}
     reactor = PlasmaReactor(
         T_GAS, P0, imf, (T_E, "K"), n_sims=1, termination=[],
         thermo_source_assertions=asserted_ions,

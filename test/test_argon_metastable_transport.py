@@ -17,23 +17,15 @@ Run with the runtime pinned::
 ``test/conftest.py`` pins ``database.directory`` to this worktree before collection.
 """
 
+import math
 import os
 
 import pytest
 
 from rmgpy.data.thermo import ThermoDatabase
 from rmgpy.data.transport import TransportDatabase
-from rmgpy.exceptions import AtomTypeError
 from rmgpy.molecule import Molecule
 from rmgpy.species import Species
-
-try:
-    from rmgpy.exceptions import SaturatedStructureError
-except ImportError:                     # an engine older than the round-80 saturation fix
-    SaturatedStructureError = None
-
-NO_NUMBER = ((AtomTypeError, SaturatedStructureError) if SaturatedStructureError is not None
-             else (AtomTypeError,))
 
 THIS_DATABASE = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir, 'input'))
 TRANSPORT_DIR = os.path.join(THIS_DATABASE, 'transport')
@@ -79,12 +71,17 @@ def test_metastable_resolves_when_only_this_library_is_loaded():
     assert entry.label == LABEL
 
 
-def test_without_the_entry_the_lookup_still_fails():
-    """Negative control: every other library loaded, and the group estimate refuses."""
+def test_without_the_entry_lookup_uses_labeled_fallback():
+    """Without the entry, every other library is tried before the labeled LJ fallback."""
     others = [os.path.splitext(f)[0] for f in os.listdir(os.path.join(TRANSPORT_DIR, 'libraries'))
               if f.endswith('.py') and f != LIBRARY + '.py']
-    with pytest.raises(NO_NUMBER):
-        _transport_database(others).get_transport_properties(_species(AR_META))
+    transport, library, entry = _transport_database(others).get_transport_properties(
+        _species(AR_META))
+    assert library is None
+    assert entry is None
+    assert 'heavy-atom-count guess' in transport.comment
+    assert math.isfinite(transport.epsilon.value_si)
+    assert math.isfinite(transport.sigma.value_si)
 
 
 def test_entry_is_the_thermo_library_species():

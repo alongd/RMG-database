@@ -109,7 +109,7 @@ with forced 100-5000 K bounds. This does not extend the source coverage;
 [O3m] is delivered only through 1000 K. Published library NASA7 [Om]
 retains its full 298-6000 K interval. Production H/S/Cp errors at both
 reference temperatures and the imposed ranges are documented and tested.
-O+ is the quartet 4S ground state, not PlasmaAir's doublet Op graph.
+O+ is the quartet 4S ground state, shared with PlasmaAir's Op graph.
 The [O3m] entry derives its thermal functions from primary-read measured
 spectroscopic constants and transcribes ATcT Hf(0); its complete calculation,
 assumptions and limitations are in its longDesc and docs/plasma-o2-charged-data.md.
@@ -650,7 +650,7 @@ CHECK AT ANOTHER TABULATED TEMPERATURE
 
 STRUCTURE
     O+(4S) is represented by the adjacency list above.
-    O+ has three unpaired electrons; the existing doublet PlasmaAir Op is not this ground state.
+    O+ has three unpaired electrons; PlasmaAir Op uses this same quartet ground-state graph.
 """,
 )
 

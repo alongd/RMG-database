@@ -50,7 +50,8 @@ Os
 1 O u0 p3 c0
 
 Op
-1 O u1 p2 c+1
+multiplicity 4
+1 O u3 p1 c+1
 
 O-
 1 O u1 p3 c-1

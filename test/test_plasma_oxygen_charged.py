@@ -410,7 +410,9 @@ def state_references():
     expected['Op'] = Molecule().from_adjacency_list('multiplicity 4\n1 O u3 p1 c+1')
     expected['e-'] = air['e-'].molecule[0]
     assert expected['e-'].to_adjacency_list() == argon['e-'].molecule[0].to_adjacency_list()
-    assert not expected['Op'].is_isomorphic(air['Op'].molecule[0])
+    assert air['Op'].molecule[0].multiplicity == 4
+    assert air['Op'].molecule[0].atoms[0].radical_electrons == 3
+    assert expected['Op'].is_isomorphic(air['Op'].molecule[0])
     assert expected['e-'].multiplicity == 2
     assert expected['e-'].atoms[0].radical_electrons == 1
     return expected

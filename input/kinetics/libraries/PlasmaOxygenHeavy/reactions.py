@@ -16,7 +16,7 @@ All entries are irreversible source channels. The explicit electron has electron
 no electron is also carried as implicit metadata. Three-body channels list O2 as an
 explicit collider with ordinary termolecular Arrhenius, not ThirdBody. No Ar collider
 coefficient is inferred. O2a is the existing O2(a1Delta_g) singlet graph.
-Op is the O+(4S) quartet ground state; PlasmaAir's doublet Op is a different species.
+Op is the O+(4S) quartet ground state, shared with PlasmaAir and PlasmaThermo.
 The explicit electron reuses PlasmaAir/PlasmaArgon's exact u1 doublet adjacency;
 zero H/S/Cp does not change its graph or introduce a second model species.
 
@@ -27,9 +27,9 @@ Six strict admission regressions expose this engine-blocked loss; a reverse obje
 is not a valid substitute. The unapplied engine proposal is in
 docs/oxygen-ion-data/irreversible-reverse-proposal.md. No source rate is altered.
 
-Overlapping PlasmaAir ion chemistry still requires source/state selection:
-PlasmaAir 13 has reverse stoichiometric labels to index 34 but a different doublet
-Op graph, and PlasmaAir 66 already contains O- + O2(a) detachment. That existing
+Overlapping PlasmaAir ion chemistry still requires source/channel selection:
+PlasmaAir 13 has reverse stoichiometric labels to index 34 and now shares the same
+quartet Op graph; PlasmaAir 66 already contains O- + O2(a) detachment. That existing
 detachment is not duplicated here. The two O2p+O- product channels 31 and 58 are
 transcribed as separate channels exactly as in the source; both are included in the
 source model, and the original branching measurement was not recovered. Their

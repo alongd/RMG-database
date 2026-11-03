@@ -1,6 +1,5 @@
-N2v0
+N2
 multiplicity 1
-vibrationallevel 0
 1 N u0 p1 c0 {2,T}
 2 N u0 p1 c0 {1,T}
 

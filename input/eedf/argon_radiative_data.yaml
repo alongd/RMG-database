@@ -1,0 +1,1321 @@
+schema_version: 1
+radiative_model: E1
+units:
+  energy: cm^-1
+  A: s^-1
+  wavelength: nm vacuum
+queries:
+  ar-i-levels-ids:
+    url: https://physics.nist.gov/cgi-bin/ASD/energy1.pl?spectrum=Ar+I&units=0&format=3&output=0&page_size=5000&multiplet_ordered=1&conf_out=on&term_out=on&level_out=on&unc_out=1&j_out=on&g_out=on&biblio=on&ids_out=1
+    retrieved_utc: '2026-11-03T00:48:27.904489+00:00'
+    sha256: 37204e6abdfaddb7dce7a197b1bc2b59197749a8ec695d67eb7d33ef053a9254
+  ar-i-lines-all-ids:
+    url: https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Ar+I&limits_type=0&low_w=&upp_w=&unit=1&de=0&format=3&line_out=0&remove_js=on&no_spaces=on&en_unit=0&output=0&bibrefs=1&page_size=5000&show_obs_wl=1&show_calc_wl=1&order_out=0&max_low_enrg=&show_av=3&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&allowed_out=1&forbid_out=1&conf_out=on&term_out=on&enrg_out=on&J_out=on&g_out=on&ids_out=1
+    retrieved_utc: '2026-11-03T00:47:43.036220+00:00'
+    sha256: 015756d4605ff3bd24eed07c12826815d8b1ea3fcacdd1190eb6cfaa22ea36af
+  ar-i-through-4p-e1-completeness:
+    url: https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Ar+I&limits_type=0&low_w=&upp_w=&unit=1&de=0&format=3&line_out=0&remove_js=on&no_spaces=on&en_unit=0&output=0&bibrefs=1&page_size=5000&show_obs_wl=1&show_calc_wl=1&order_out=0&max_low_enrg=&show_av=3&max_upp_enrg=108723&tsb_value=0&min_str=&A_out=0&intens_out=on&allowed_out=1&forbid_out=1&conf_out=on&term_out=on&enrg_out=on&J_out=on&g_out=on&ids_out=1&include_Ritz_E1=1
+    retrieved_utc: '2026-11-03T00:48:27.905494+00:00'
+    sha256: 5663ce9c9c49dfa92a4832420c1f58e31cf56d1951f57aa55f8ef8ab7e1ba448
+  ar-i-through-4p-all-multipoles:
+    url: https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Ar+I&limits_type=0&low_w=&upp_w=&unit=1&de=0&format=3&line_out=0&remove_js=on&no_spaces=on&en_unit=0&output=0&bibrefs=1&page_size=5000&show_obs_wl=1&show_calc_wl=1&order_out=0&max_low_enrg=&show_av=3&max_upp_enrg=108723&tsb_value=0&min_str=&A_out=0&intens_out=on&allowed_out=1&forbid_out=1&conf_out=on&term_out=on&enrg_out=on&J_out=on&g_out=on&ids_out=1&include_Ritz_E1=1&include_Ritz_M1=1&include_Ritz_E2=1&include_Ritz_M2=1
+    retrieved_utc: '2026-11-03T00:49:56.162364+00:00'
+    sha256: fba194d6478f8f4c08bebe14018f59c4bb84bb1be0acbab4ac7eaf68fcab046e
+  ar-i-higher-e1-completeness:
+    url: https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Ar+I&limits_type=0&low_w=&upp_w=&unit=1&de=0&format=3&line_out=0&remove_js=on&no_spaces=on&en_unit=0&output=0&bibrefs=1&page_size=5000&show_obs_wl=1&show_calc_wl=1&order_out=0&max_low_enrg=&show_av=3&max_upp_enrg=122000&tsb_value=0&min_str=&A_out=0&intens_out=on&allowed_out=1&forbid_out=1&conf_out=on&term_out=on&enrg_out=on&J_out=on&g_out=on&ids_out=1&include_Ritz_E1=1
+    retrieved_utc: '2026-11-03T00:50:25.989814+00:00'
+    sha256: bc329da7abcca34f254ca8451cf2fc189759886df276f5c3ed33db75996c0c71
+  line-help:
+    url: https://pml.nist.gov/PhysRefData/ASD/Html/lineshelp.html
+    retrieved_utc: '2026-11-03T00:50:59.336868+00:00'
+    sha256: 95a5aeeefad0adb5fbcdce3c93d41994ec2841b7148448106132f7daa6f0c87e
+references:
+  T5223:
+    citation: Wiese et al., Phys. Rev. A 39, 2461–2471 (1989)
+    url: https://doi.org/10.1103/PhysRevA.39.2461
+  T1242n:
+    citation: Shumaker and Popenoe, JOSA 57, 8–10 (1967); NIST renormalized value
+    url: https://doi.org/10.1364/JOSA.57.000008
+completeness:
+  citation: ar-i-through-4p-e1-completeness
+  method: All possible E1 lines, no wavelength/strength cutoff. Enumerate opposite parity, delta J <=
+    1, exclude 0->0. The four 4s states are the only lower odd levels; ground and 4p are even.
+  candidate_transitions: 30
+  known_A: 29
+  escape_lines: []
+  scope: E1 only. No claim that unmeasured higher multipoles vanish.
+levels:
+- nist_id: '018001.000002'
+  paschen: 1s5
+  J: 2
+  g: 5
+  energy_cm1: '93143.7600'
+  configuration: 3s2.3p5.(2P*<3/2>).4s
+  term: 2[3/2]*
+  parity: odd
+  citation: ar-i-levels-ids
+- nist_id: '018001.000003'
+  paschen: 1s4
+  J: 1
+  g: 3
+  energy_cm1: '93750.5978'
+  configuration: 3s2.3p5.(2P*<3/2>).4s
+  term: 2[3/2]*
+  parity: odd
+  citation: ar-i-levels-ids
+- nist_id: '018001.000004'
+  paschen: 1s3
+  J: 0
+  g: 1
+  energy_cm1: '94553.6652'
+  configuration: 3s2.3p5.(2P*<1/2>).4s
+  term: 2[1/2]*
+  parity: odd
+  citation: ar-i-levels-ids
+- nist_id: '018001.000005'
+  paschen: 1s2
+  J: 1
+  g: 3
+  energy_cm1: '95399.8276'
+  configuration: 3s2.3p5.(2P*<1/2>).4s
+  term: 2[1/2]*
+  parity: odd
+  citation: ar-i-levels-ids
+- nist_id: '018001.000006'
+  paschen: 2p10
+  J: 1
+  g: 3
+  energy_cm1: '104102.0990'
+  configuration: 3s2.3p5.(2P*<3/2>).4p
+  term: 2[1/2]
+  parity: even
+  citation: ar-i-levels-ids
+- nist_id: '018001.000007'
+  paschen: 2p9
+  J: 3
+  g: 7
+  energy_cm1: '105462.7596'
+  configuration: 3s2.3p5.(2P*<3/2>).4p
+  term: 2[5/2]
+  parity: even
+  citation: ar-i-levels-ids
+- nist_id: '018001.000008'
+  paschen: 2p8
+  J: 2
+  g: 5
+  energy_cm1: '105617.2700'
+  configuration: 3s2.3p5.(2P*<3/2>).4p
+  term: 2[5/2]
+  parity: even
+  citation: ar-i-levels-ids
+- nist_id: '018001.000009'
+  paschen: 2p7
+  J: 1
+  g: 3
+  energy_cm1: '106087.2598'
+  configuration: 3s2.3p5.(2P*<3/2>).4p
+  term: 2[3/2]
+  parity: even
+  citation: ar-i-levels-ids
+- nist_id: '018001.000010'
+  paschen: 2p6
+  J: 2
+  g: 5
+  energy_cm1: '106237.5518'
+  configuration: 3s2.3p5.(2P*<3/2>).4p
+  term: 2[3/2]
+  parity: even
+  citation: ar-i-levels-ids
+- nist_id: '018001.000011'
+  paschen: 2p5
+  J: 0
+  g: 1
+  energy_cm1: '107054.2720'
+  configuration: 3s2.3p5.(2P*<3/2>).4p
+  term: 2[1/2]
+  parity: even
+  citation: ar-i-levels-ids
+- nist_id: '018001.000012'
+  paschen: 2p4
+  J: 1
+  g: 3
+  energy_cm1: '107131.7086'
+  configuration: 3s2.3p5.(2P*<1/2>).4p
+  term: 2[3/2]
+  parity: even
+  citation: ar-i-levels-ids
+- nist_id: '018001.000013'
+  paschen: 2p3
+  J: 2
+  g: 5
+  energy_cm1: '107289.7001'
+  configuration: 3s2.3p5.(2P*<1/2>).4p
+  term: 2[3/2]
+  parity: even
+  citation: ar-i-levels-ids
+- nist_id: '018001.000014'
+  paschen: 2p2
+  J: 1
+  g: 3
+  energy_cm1: '107496.4166'
+  configuration: 3s2.3p5.(2P*<1/2>).4p
+  term: 2[1/2]
+  parity: even
+  citation: ar-i-levels-ids
+- nist_id: '018001.000015'
+  paschen: 2p1
+  J: 0
+  g: 1
+  energy_cm1: '108722.6194'
+  configuration: 3s2.3p5.(2P*<1/2>).4p
+  term: 2[1/2]
+  parity: even
+  citation: ar-i-levels-ids
+channels:
+- id: 6
+  process: e + Ar(1S0) -> e + Ar(4p[1/2]1), Excitation
+  threshold_eV: 12.907
+  upper_nist_id: '018001.000006'
+  paschen: 2p10
+- id: 7
+  process: e + Ar(1S0) -> e + Ar(4p[5/2]3), Excitation
+  threshold_eV: 13.076
+  upper_nist_id: '018001.000007'
+  paschen: 2p9
+- id: 8
+  process: e + Ar(1S0) -> e + Ar(4p[5/2]2), Excitation
+  threshold_eV: 13.095
+  upper_nist_id: '018001.000008'
+  paschen: 2p8
+- id: 9
+  process: e + Ar(1S0) -> e + Ar(4p[3/2]1), Excitation
+  threshold_eV: 13.153
+  upper_nist_id: '018001.000009'
+  paschen: 2p7
+- id: 10
+  process: e + Ar(1S0) -> e + Ar(4p[3/2]2), Excitation
+  threshold_eV: 13.172
+  upper_nist_id: '018001.000010'
+  paschen: 2p6
+- id: 11
+  process: e + Ar(1S0) -> e + Ar(4p[1/2]0), Excitation
+  threshold_eV: 13.273
+  upper_nist_id: '018001.000011'
+  paschen: 2p5
+- id: 12
+  process: e + Ar(1S0) -> e + Ar(4p'[3/2]1), Excitation
+  threshold_eV: 13.283
+  upper_nist_id: '018001.000012'
+  paschen: 2p4
+- id: 13
+  process: e + Ar(1S0) -> e + Ar(4p'[3/2]2), Excitation
+  threshold_eV: 13.302
+  upper_nist_id: '018001.000013'
+  paschen: 2p3
+- id: 14
+  process: e + Ar(1S0) -> e + Ar(4p'[1/2]1), Excitation
+  threshold_eV: 13.328
+  upper_nist_id: '018001.000014'
+  paschen: 2p2
+- id: 15
+  process: e + Ar(1S0) -> e + Ar(4p'[1/2]0), Excitation
+  threshold_eV: 13.48
+  upper_nist_id: '018001.000015'
+  paschen: 2p1
+transitions:
+- channel_id: 6
+  transition_id: 018001.000006->018001.000002
+  upper_nist_id: '018001.000006'
+  lower_nist_id: '018001.000002'
+  product_state: Ar(1s5)
+  ritz_vacuum_nm: '912.54706'
+  A_s-1: '1.89e+07'
+  accuracy: B
+  tp_ref: T5223
+  type: E1
+  citation: ar-i-through-4p-e1-completeness
+- channel_id: 6
+  transition_id: 018001.000006->018001.000003
+  upper_nist_id: '018001.000006'
+  lower_nist_id: '018001.000003'
+  product_state: Ar(1s4)
+  ritz_vacuum_nm: '966.04346'
+  A_s-1: '5.4e+06'
+  accuracy: B
+  tp_ref: T5223
+  type: E1
+  citation: ar-i-through-4p-e1-completeness
+- channel_id: 6
+  transition_id: 018001.000006->018001.000004
+  upper_nist_id: '018001.000006'
+  lower_nist_id: '018001.000004'
+  product_state: Ar(1s3)
+  ritz_vacuum_nm: '1047.29217'
+  A_s-1: '9.8e+05'
+  accuracy: C+
+  tp_ref: T5223
+  type: E1
+  citation: ar-i-through-4p-e1-completeness
+- channel_id: 6
+  transition_id: 018001.000006->018001.000005
+  upper_nist_id: '018001.000006'
+  lower_nist_id: '018001.000005'
+  product_state: Ar(1s2)
+  ritz_vacuum_nm: '1149.12527'
+  A_s-1: '1.9e+05'
+  accuracy: C
+  tp_ref: T1242n
+  type: E1
+  citation: ar-i-through-4p-e1-completeness
+- channel_id: 7
+  transition_id: 018001.000007->018001.000002
+  upper_nist_id: '018001.000007'
+  lower_nist_id: '018001.000002'
+  product_state: Ar(1s5)
+  ritz_vacuum_nm: '811.75423'
+  A_s-1: '3.3e+07'
+  accuracy: B
+  tp_ref: T5223
+  type: E1
+  citation: ar-i-through-4p-e1-completeness
+- channel_id: 8
+  transition_id: 018001.000008->018001.000002
+  upper_nist_id: '018001.000008'
+  lower_nist_id: '018001.000002'
+  product_state: Ar(1s5)
+  ritz_vacuum_nm: '801.69896'
+  A_s-1: '9.3e+06'
+  accuracy: B
+  tp_ref: T5223
+  type: E1
+  citation: ar-i-through-4p-e1-completeness
+- channel_id: 8
+  transition_id: 018001.000008->018001.000003
+  upper_nist_id: '018001.000008'
+  lower_nist_id: '018001.000003'
+  product_state: Ar(1s4)
+  ritz_vacuum_nm: '842.69624'
+  A_s-1: '2.15e+07'
+  accuracy: B+
+  tp_ref: T5223
+  type: E1
+  citation: ar-i-through-4p-e1-completeness
+- channel_id: 8
+  transition_id: 018001.000008->018001.000005
+  upper_nist_id: '018001.000008'
+  lower_nist_id: '018001.000005'
+  product_state: Ar(1s2)
+  ritz_vacuum_nm: '978.71851'
+  A_s-1: '1.47e+06'
+  accuracy: B
+  tp_ref: T5223
+  type: E1
+  citation: ar-i-through-4p-e1-completeness
+- channel_id: 9
+  transition_id: 018001.000009->018001.000002
+  upper_nist_id: '018001.000009'
+  lower_nist_id: '018001.000002'
+  product_state: Ar(1s5)
+  ritz_vacuum_nm: '772.58857'
+  A_s-1: '5.2e+06'
+  accuracy: B+
+  tp_ref: T5223
+  type: E1
+  citation: ar-i-through-4p-e1-completeness
+- channel_id: 9
+  transition_id: 018001.000009->018001.000003
+  upper_nist_id: '018001.000009'
+  lower_nist_id: '018001.000003'
+  product_state: Ar(1s4)
+  ritz_vacuum_nm: '810.59204'
+  A_s-1: '2.50e+07'
+  accuracy: B+
+  tp_ref: T5223
+  type: E1
+  citation: ar-i-through-4p-e1-completeness
+- channel_id: 9
+  transition_id: 018001.000009->018001.000004
+  upper_nist_id: '018001.000009'
+  lower_nist_id: '018001.000004'
+  product_state: Ar(1s3)
+  ritz_vacuum_nm: '867.03238'
+  A_s-1: '2.43e+06'
+  accuracy: B
+  tp_ref: T5223
+  type: E1
+  citation: ar-i-through-4p-e1-completeness
+- channel_id: 9
+  transition_id: 018001.000009->018001.000005
+  upper_nist_id: '018001.000009'
+  lower_nist_id: '018001.000005'
+  product_state: Ar(1s2)
+  ritz_vacuum_nm: '935.67845'
+  A_s-1: '1.06e+06'
+  accuracy: B
+  tp_ref: T5223
+  type: E1
+  citation: ar-i-through-4p-e1-completeness
+- channel_id: 10
+  transition_id: 018001.000010->018001.000002
+  upper_nist_id: '018001.000010'
+  lower_nist_id: '018001.000002'
+  product_state: Ar(1s5)
+  ritz_vacuum_nm: '763.72071'
+  A_s-1: '2.45e+07'
+  accuracy: B
+  tp_ref: T5223
+  type: E1
+  citation: ar-i-through-4p-e1-completeness
+- channel_id: 10
+  transition_id: 018001.000010->018001.000003
+  upper_nist_id: '018001.000010'
+  lower_nist_id: '018001.000003'
+  product_state: Ar(1s4)
+  ritz_vacuum_nm: '800.83582'
+  A_s-1: '4.9e+06'
+  accuracy: C+
+  tp_ref: T5223
+  type: E1
+  citation: ar-i-through-4p-e1-completeness
+- channel_id: 10
+  transition_id: 018001.000010->018001.000005
+  upper_nist_id: '018001.000010'
+  lower_nist_id: '018001.000005'
+  product_state: Ar(1s2)
+  ritz_vacuum_nm: '922.70294'
+  A_s-1: '5.0e+06'
+  accuracy: B
+  tp_ref: T5223
+  type: E1
+  citation: ar-i-through-4p-e1-completeness
+- channel_id: 11
+  transition_id: 018001.000011->018001.000003
+  upper_nist_id: '018001.000011'
+  lower_nist_id: '018001.000003'
+  product_state: Ar(1s4)
+  ritz_vacuum_nm: '751.67205'
+  A_s-1: '4.0e+07'
+  accuracy: B
+  tp_ref: T5223
+  type: E1
+  citation: ar-i-through-4p-e1-completeness
+- channel_id: 11
+  transition_id: 018001.000011->018001.000005
+  upper_nist_id: '018001.000011'
+  lower_nist_id: '018001.000005'
+  product_state: Ar(1s2)
+  ritz_vacuum_nm: 858.04R
+  A_s-1: null
+  accuracy: null
+  tp_ref: null
+  type: E1
+  citation: ar-i-through-4p-e1-completeness
+- channel_id: 12
+  transition_id: 018001.000012->018001.000002
+  upper_nist_id: '018001.000012'
+  lower_nist_id: '018001.000002'
+  product_state: Ar(1s5)
+  ritz_vacuum_nm: '714.90111'
+  A_s-1: '6.3e+05'
+  accuracy: B
+  tp_ref: T5223
+  type: E1
+  citation: ar-i-through-4p-e1-completeness
+- channel_id: 12
+  transition_id: 018001.000012->018001.000003
+  upper_nist_id: '018001.000012'
+  lower_nist_id: '018001.000003'
+  product_state: Ar(1s4)
+  ritz_vacuum_nm: '747.32211'
+  A_s-1: '2.20e+04'
+  accuracy: B
+  tp_ref: T5223
+  type: E1
+  citation: ar-i-through-4p-e1-completeness
+- channel_id: 12
+  transition_id: 018001.000012->018001.000004
+  upper_nist_id: '018001.000012'
+  lower_nist_id: '018001.000004'
+  product_state: Ar(1s3)
+  ritz_vacuum_nm: '795.03621'
+  A_s-1: '1.86e+07'
+  accuracy: B
+  tp_ref: T5223
+  type: E1
+  citation: ar-i-through-4p-e1-completeness
+- channel_id: 12
+  transition_id: 018001.000012->018001.000005
+  upper_nist_id: '018001.000012'
+  lower_nist_id: '018001.000005'
+  product_state: Ar(1s2)
+  ritz_vacuum_nm: '852.37823'
+  A_s-1: '1.39e+07'
+  accuracy: B
+  tp_ref: T5223
+  type: E1
+  citation: ar-i-through-4p-e1-completeness
+- channel_id: 13
+  transition_id: 018001.000013->018001.000002
+  upper_nist_id: '018001.000013'
+  lower_nist_id: '018001.000002'
+  product_state: Ar(1s5)
+  ritz_vacuum_nm: '706.91661'
+  A_s-1: '3.8e+06'
+  accuracy: B
+  tp_ref: T5223
+  type: E1
+  citation: ar-i-through-4p-e1-completeness
+- channel_id: 13
+  transition_id: 018001.000013->018001.000003
+  upper_nist_id: '018001.000013'
+  lower_nist_id: '018001.000003'
+  product_state: Ar(1s4)
+  ritz_vacuum_nm: '738.60141'
+  A_s-1: '8.5e+06'
+  accuracy: B
+  tp_ref: T5223
+  type: E1
+  citation: ar-i-through-4p-e1-completeness
+- channel_id: 13
+  transition_id: 018001.000013->018001.000005
+  upper_nist_id: '018001.000013'
+  lower_nist_id: '018001.000005'
+  product_state: Ar(1s2)
+  ritz_vacuum_nm: '841.05191'
+  A_s-1: '2.23e+07'
+  accuracy: B+
+  tp_ref: T5223
+  type: E1
+  citation: ar-i-through-4p-e1-completeness
+- channel_id: 14
+  transition_id: 018001.000014->018001.000002
+  upper_nist_id: '018001.000014'
+  lower_nist_id: '018001.000002'
+  product_state: Ar(1s5)
+  ritz_vacuum_nm: '696.73513'
+  A_s-1: '6.4e+06'
+  accuracy: B+
+  tp_ref: T5223
+  type: E1
+  citation: ar-i-through-4p-e1-completeness
+- channel_id: 14
+  transition_id: 018001.000014->018001.000003
+  upper_nist_id: '018001.000014'
+  lower_nist_id: '018001.000003'
+  product_state: Ar(1s4)
+  ritz_vacuum_nm: '727.49395'
+  A_s-1: '1.83e+06'
+  accuracy: B+
+  tp_ref: T5223
+  type: E1
+  citation: ar-i-through-4p-e1-completeness
+- channel_id: 14
+  transition_id: 018001.000014->018001.000004
+  upper_nist_id: '018001.000014'
+  lower_nist_id: '018001.000004'
+  product_state: Ar(1s3)
+  ritz_vacuum_nm: '772.63324'
+  A_s-1: '1.17e+07'
+  accuracy: B+
+  tp_ref: T5223
+  type: E1
+  citation: ar-i-through-4p-e1-completeness
+- channel_id: 14
+  transition_id: 018001.000014->018001.000005
+  upper_nist_id: '018001.000014'
+  lower_nist_id: '018001.000005'
+  product_state: Ar(1s2)
+  ritz_vacuum_nm: '826.67932'
+  A_s-1: '1.53e+07'
+  accuracy: B+
+  tp_ref: T5223
+  type: E1
+  citation: ar-i-through-4p-e1-completeness
+- channel_id: 15
+  transition_id: 018001.000015->018001.000003
+  upper_nist_id: '018001.000015'
+  lower_nist_id: '018001.000003'
+  product_state: Ar(1s4)
+  ritz_vacuum_nm: '667.91247'
+  A_s-1: '2.36e+05'
+  accuracy: B
+  tp_ref: T5223
+  type: E1
+  citation: ar-i-through-4p-e1-completeness
+- channel_id: 15
+  transition_id: 018001.000015->018001.000005
+  upper_nist_id: '018001.000015'
+  lower_nist_id: '018001.000005'
+  product_state: Ar(1s2)
+  ritz_vacuum_nm: '750.59343'
+  A_s-1: '4.5e+07'
+  accuracy: B
+  tp_ref: T5223
+  type: E1
+  citation: ar-i-through-4p-e1-completeness
+higher_channels:
+- id: 16
+  process: e + Ar(1S0) -> e + Ar(3d[1/2]0+3d[1/2]1), Excitation
+  threshold_eV: 13.84
+  candidate_upper_levels:
+  - Configuration: 3s2.3p5.(2P*<3/2>).3d
+    Term: 2[1/2]*
+    J: '0'
+    g: '1'
+    Prefix: ''
+    Level (cm-1): '111667.766'
+    Suffix: ''
+    Uncertainty (cm-1): ''
+    Level ID: '018001.000016'
+    Reference: ''
+  - Configuration: 3s2.3p5.(2P*<3/2>).3d
+    Term: 2[1/2]*
+    J: '1'
+    g: '3'
+    Prefix: ''
+    Level (cm-1): '111818.028'
+    Suffix: ''
+    Uncertainty (cm-1): ''
+    Level ID: '018001.000017'
+    Reference: ''
+  candidate_identity_status: literal Racah components, or stated principal manifold; weights unresolved
+    for blends
+  E1_candidate_decays: 14
+  A_available: 8
+  A_missing: 6
+  status: unresolved
+  product_yields: null
+  excitation_weights: null
+  citation: ar-i-higher-e1-completeness
+  reason: Incomplete outgoing A matrix; blended level populations are unsourced. Candidate membership
+    of broad 6s remains unresolved.
+- id: 17
+  process: e + Ar(1S0) -> e + Ar(3d[3/2]2), Excitation
+  threshold_eV: 13.9
+  candidate_upper_levels:
+  - Configuration: 3s2.3p5.(2P*<3/2>).3d
+    Term: 2[3/2]*
+    J: '2'
+    g: '5'
+    Prefix: ''
+    Level (cm-1): '112138.924'
+    Suffix: ''
+    Uncertainty (cm-1): ''
+    Level ID: '018001.000018'
+    Reference: ''
+  candidate_identity_status: literal Racah components, or stated principal manifold; weights unresolved
+    for blends
+  E1_candidate_decays: 8
+  A_available: 6
+  A_missing: 2
+  status: unresolved
+  product_yields: null
+  excitation_weights: null
+  citation: ar-i-higher-e1-completeness
+  reason: Incomplete outgoing A matrix; blended level populations are unsourced. Candidate membership
+    of broad 6s remains unresolved.
+- id: 18
+  process: e + Ar(1S0) -> e + Ar(3d[7/2]4), Excitation
+  threshold_eV: 13.98
+  candidate_upper_levels:
+  - Configuration: 3s2.3p5.(2P*<3/2>).3d
+    Term: 2[7/2]*
+    J: '4'
+    g: '9'
+    Prefix: ''
+    Level (cm-1): '112750.153'
+    Suffix: ''
+    Uncertainty (cm-1): ''
+    Level ID: '018001.000019'
+    Reference: ''
+  candidate_identity_status: literal Racah components, or stated principal manifold; weights unresolved
+    for blends
+  E1_candidate_decays: 1
+  A_available: 0
+  A_missing: 1
+  status: unresolved
+  product_yields: null
+  excitation_weights: null
+  citation: ar-i-higher-e1-completeness
+  reason: Incomplete outgoing A matrix; blended level populations are unsourced. Candidate membership
+    of broad 6s remains unresolved.
+- id: 19
+  process: e + Ar(1S0) -> e + Ar(3d[7/2]3), Excitation
+  threshold_eV: 14.01
+  candidate_upper_levels:
+  - Configuration: 3s2.3p5.(2P*<3/2>).3d
+    Term: 2[7/2]*
+    J: '3'
+    g: '7'
+    Prefix: ''
+    Level (cm-1): '113020.355'
+    Suffix: ''
+    Uncertainty (cm-1): ''
+    Level ID: '018001.000020'
+    Reference: ''
+  candidate_identity_status: literal Racah components, or stated principal manifold; weights unresolved
+    for blends
+  E1_candidate_decays: 4
+  A_available: 2
+  A_missing: 2
+  status: unresolved
+  product_yields: null
+  excitation_weights: null
+  citation: ar-i-higher-e1-completeness
+  reason: Incomplete outgoing A matrix; blended level populations are unsourced. Candidate membership
+    of broad 6s remains unresolved.
+- id: 20
+  process: e + Ar(1S0) -> e + Ar(3d[5/2]2+5s[3/2]2), Excitation
+  threshold_eV: 14.06
+  candidate_upper_levels:
+  - Configuration: 3s2.3p5.(2P*<3/2>).3d
+    Term: 2[5/2]*
+    J: '2'
+    g: '5'
+    Prefix: ''
+    Level (cm-1): '113425.964'
+    Suffix: ''
+    Uncertainty (cm-1): ''
+    Level ID: '018001.000021'
+    Reference: ''
+  - Configuration: 3s2.3p5.(2P*<3/2>).5s
+    Term: 2[3/2]*
+    J: '2'
+    g: '5'
+    Prefix: ''
+    Level (cm-1): '113468.473'
+    Suffix: ''
+    Uncertainty (cm-1): ''
+    Level ID: '018001.000022'
+    Reference: ''
+  candidate_identity_status: literal Racah components, or stated principal manifold; weights unresolved
+    for blends
+  E1_candidate_decays: 16
+  A_available: 11
+  A_missing: 5
+  status: unresolved
+  product_yields: null
+  excitation_weights: null
+  citation: ar-i-higher-e1-completeness
+  reason: Incomplete outgoing A matrix; blended level populations are unsourced. Candidate membership
+    of broad 6s remains unresolved.
+- id: 21
+  process: e + Ar(1S0) -> e + Ar(3d[5/2]3+5s[3/2]1), Excitation
+  threshold_eV: 14.09
+  candidate_upper_levels:
+  - Configuration: 3s2.3p5.(2P*<3/2>).3d
+    Term: 2[5/2]*
+    J: '3'
+    g: '7'
+    Prefix: ''
+    Level (cm-1): '113716.555'
+    Suffix: ''
+    Uncertainty (cm-1): ''
+    Level ID: '018001.000024'
+    Reference: ''
+  - Configuration: 3s2.3p5.(2P*<3/2>).5s
+    Term: 2[3/2]*
+    J: '1'
+    g: '3'
+    Prefix: ''
+    Level (cm-1): '113643.260'
+    Suffix: ''
+    Uncertainty (cm-1): ''
+    Level ID: '018001.000023'
+    Reference: ''
+  candidate_identity_status: literal Racah components, or stated principal manifold; weights unresolved
+    for blends
+  E1_candidate_decays: 14
+  A_available: 13
+  A_missing: 1
+  status: unresolved
+  product_yields: null
+  excitation_weights: null
+  citation: ar-i-higher-e1-completeness
+  reason: Incomplete outgoing A matrix; blended level populations are unsourced. Candidate membership
+    of broad 6s remains unresolved.
+- id: 22
+  process: e + Ar(1S0) -> e + Ar(3d[3/2]1), Excitation
+  threshold_eV: 14.15
+  candidate_upper_levels:
+  - Configuration: 3s2.3p5.(2P*<3/2>).3d
+    Term: 2[3/2]*
+    J: '1'
+    g: '3'
+    Prefix: ''
+    Level (cm-1): '114147.732'
+    Suffix: ''
+    Uncertainty (cm-1): ''
+    Level ID: '018001.000025'
+    Reference: ''
+  candidate_identity_status: literal Racah components, or stated principal manifold; weights unresolved
+    for blends
+  E1_candidate_decays: 10
+  A_available: 4
+  A_missing: 6
+  status: unresolved
+  product_yields: null
+  excitation_weights: null
+  citation: ar-i-higher-e1-completeness
+  reason: Incomplete outgoing A matrix; blended level populations are unsourced. Candidate membership
+    of broad 6s remains unresolved.
+- id: 23
+  process: e + Ar(1S0) -> e + Ar(3d'[5/2]2), Excitation
+  threshold_eV: 14.21
+  candidate_upper_levels:
+  - Configuration: 3s2.3p5.(2P*<1/2>).3d
+    Term: 2[5/2]*
+    J: '2'
+    g: '5'
+    Prefix: ''
+    Level (cm-1): '114640.992'
+    Suffix: ''
+    Uncertainty (cm-1): ''
+    Level ID: '018001.000026'
+    Reference: ''
+  candidate_identity_status: literal Racah components, or stated principal manifold; weights unresolved
+    for blends
+  E1_candidate_decays: 8
+  A_available: 3
+  A_missing: 5
+  status: unresolved
+  product_yields: null
+  excitation_weights: null
+  citation: ar-i-higher-e1-completeness
+  reason: Incomplete outgoing A matrix; blended level populations are unsourced. Candidate membership
+    of broad 6s remains unresolved.
+- id: 24
+  process: e + Ar(1S0) -> e + Ar(3d'[5/2or3/2]3or2+5s'[1/2]0or1), Excitation
+  threshold_eV: 14.23
+  candidate_upper_levels:
+  - Configuration: 3s2.3p5.(2P*<1/2>).3d
+    Term: 2[3/2]*
+    J: '2'
+    g: '5'
+    Prefix: ''
+    Level (cm-1): '114805.135'
+    Suffix: ''
+    Uncertainty (cm-1): ''
+    Level ID: '018001.000027'
+    Reference: ''
+  - Configuration: 3s2.3p5.(2P*<1/2>).3d
+    Term: 2[5/2]*
+    J: '3'
+    g: '7'
+    Prefix: ''
+    Level (cm-1): '114821.939'
+    Suffix: ''
+    Uncertainty (cm-1): ''
+    Level ID: '018001.000028'
+    Reference: ''
+  - Configuration: 3s2.3p5.(2P*<1/2>).5s
+    Term: 2[1/2]*
+    J: '0'
+    g: '1'
+    Prefix: ''
+    Level (cm-1): '114861.635'
+    Suffix: ''
+    Uncertainty (cm-1): ''
+    Level ID: '018001.000029'
+    Reference: ''
+  - Configuration: 3s2.3p5.(2P*<1/2>).5s
+    Term: 2[1/2]*
+    J: '1'
+    g: '3'
+    Prefix: ''
+    Level (cm-1): '114975.019'
+    Suffix: ''
+    Uncertainty (cm-1): ''
+    Level ID: '018001.000030'
+    Reference: ''
+  candidate_identity_status: literal Racah components, or stated principal manifold; weights unresolved
+    for blends
+  E1_candidate_decays: 26
+  A_available: 18
+  A_missing: 8
+  status: unresolved
+  product_yields: null
+  excitation_weights: null
+  citation: ar-i-higher-e1-completeness
+  reason: Incomplete outgoing A matrix; blended level populations are unsourced. Candidate membership
+    of broad 6s remains unresolved.
+- id: 25
+  process: e + Ar(1S0) -> e + Ar(3d'[3/2]1), Excitation
+  threshold_eV: 14.3
+  candidate_upper_levels:
+  - Configuration: 3s2.3p5.(2P*<1/2>).3d
+    Term: 2[3/2]*
+    J: '1'
+    g: '3'
+    Prefix: ''
+    Level (cm-1): '115366.866'
+    Suffix: ''
+    Uncertainty (cm-1): ''
+    Level ID: '018001.000031'
+    Reference: ''
+  candidate_identity_status: literal Racah components, or stated principal manifold; weights unresolved
+    for blends
+  E1_candidate_decays: 10
+  A_available: 6
+  A_missing: 4
+  status: unresolved
+  product_yields: null
+  excitation_weights: null
+  citation: ar-i-higher-e1-completeness
+  reason: Incomplete outgoing A matrix; blended level populations are unsourced. Candidate membership
+    of broad 6s remains unresolved.
+- id: 26
+  process: e + Ar(1S0) -> e + Ar(5p[1/2]1), Excitation
+  threshold_eV: 14.464
+  candidate_upper_levels:
+  - Configuration: 3s2.3p5.(2P*<3/2>).5p
+    Term: 2[1/2]
+    J: '1'
+    g: '3'
+    Prefix: ''
+    Level (cm-1): '116659.9934'
+    Suffix: ''
+    Uncertainty (cm-1): ''
+    Level ID: '018001.000032'
+    Reference: ''
+  candidate_identity_status: literal Racah components, or stated principal manifold; weights unresolved
+    for blends
+  E1_candidate_decays: 12
+  A_available: 4
+  A_missing: 8
+  status: unresolved
+  product_yields: null
+  excitation_weights: null
+  citation: ar-i-higher-e1-completeness
+  reason: Incomplete outgoing A matrix; blended level populations are unsourced. Candidate membership
+    of broad 6s remains unresolved.
+- id: 27
+  process: e + Ar(1S0) -> e + Ar(5p[5/2]3), Excitation
+  threshold_eV: 14.499
+  candidate_upper_levels:
+  - Configuration: 3s2.3p5.(2P*<3/2>).5p
+    Term: 2[5/2]
+    J: '3'
+    g: '7'
+    Prefix: ''
+    Level (cm-1): '116942.7542'
+    Suffix: ''
+    Uncertainty (cm-1): ''
+    Level ID: '018001.000033'
+    Reference: ''
+  candidate_identity_status: literal Racah components, or stated principal manifold; weights unresolved
+    for blends
+  E1_candidate_decays: 10
+  A_available: 3
+  A_missing: 7
+  status: unresolved
+  product_yields: null
+  excitation_weights: null
+  citation: ar-i-higher-e1-completeness
+  reason: Incomplete outgoing A matrix; blended level populations are unsourced. Candidate membership
+    of broad 6s remains unresolved.
+- id: 28
+  process: e + Ar(1S0) -> e + Ar(5p[5/2]2), Excitation
+  threshold_eV: 14.506
+  candidate_upper_levels:
+  - Configuration: 3s2.3p5.(2P*<3/2>).5p
+    Term: 2[5/2]
+    J: '2'
+    g: '5'
+    Prefix: ''
+    Level (cm-1): '116999.3259'
+    Suffix: ''
+    Uncertainty (cm-1): ''
+    Level ID: '018001.000034'
+    Reference: ''
+  candidate_identity_status: literal Racah components, or stated principal manifold; weights unresolved
+    for blends
+  E1_candidate_decays: 15
+  A_available: 3
+  A_missing: 12
+  status: unresolved
+  product_yields: null
+  excitation_weights: null
+  citation: ar-i-higher-e1-completeness
+  reason: Incomplete outgoing A matrix; blended level populations are unsourced. Candidate membership
+    of broad 6s remains unresolved.
+- id: 29
+  process: e + Ar(1S0) -> e + Ar(5p[3/2]1), Excitation
+  threshold_eV: 14.525
+  candidate_upper_levels:
+  - Configuration: 3s2.3p5.(2P*<3/2>).5p
+    Term: 2[3/2]
+    J: '1'
+    g: '3'
+    Prefix: ''
+    Level (cm-1): '117151.3264'
+    Suffix: ''
+    Uncertainty (cm-1): ''
+    Level ID: '018001.000035'
+    Reference: ''
+  candidate_identity_status: literal Racah components, or stated principal manifold; weights unresolved
+    for blends
+  E1_candidate_decays: 15
+  A_available: 4
+  A_missing: 11
+  status: unresolved
+  product_yields: null
+  excitation_weights: null
+  citation: ar-i-higher-e1-completeness
+  reason: Incomplete outgoing A matrix; blended level populations are unsourced. Candidate membership
+    of broad 6s remains unresolved.
+- id: 30
+  process: e + Ar(1S0) -> e + Ar(5p[3/2]2), Excitation
+  threshold_eV: 14.529
+  candidate_upper_levels:
+  - Configuration: 3s2.3p5.(2P*<3/2>).5p
+    Term: 2[3/2]
+    J: '2'
+    g: '5'
+    Prefix: ''
+    Level (cm-1): '117183.5901'
+    Suffix: ''
+    Uncertainty (cm-1): ''
+    Level ID: '018001.000036'
+    Reference: ''
+  candidate_identity_status: literal Racah components, or stated principal manifold; weights unresolved
+    for blends
+  E1_candidate_decays: 15
+  A_available: 3
+  A_missing: 12
+  status: unresolved
+  product_yields: null
+  excitation_weights: null
+  citation: ar-i-higher-e1-completeness
+  reason: Incomplete outgoing A matrix; blended level populations are unsourced. Candidate membership
+    of broad 6s remains unresolved.
+- id: 31
+  process: e + Ar(1S0) -> e + Ar(5p[1/2]0), Excitation
+  threshold_eV: 14.564
+  candidate_upper_levels:
+  - Configuration: 3s2.3p5.(2P*<3/2>).5p
+    Term: 2[1/2]
+    J: '0'
+    g: '1'
+    Prefix: ''
+    Level (cm-1): '117562.9553'
+    Suffix: ''
+    Uncertainty (cm-1): ''
+    Level ID: '018001.000037'
+    Reference: ''
+  candidate_identity_status: literal Racah components, or stated principal manifold; weights unresolved
+    for blends
+  E1_candidate_decays: 7
+  A_available: 2
+  A_missing: 5
+  status: unresolved
+  product_yields: null
+  excitation_weights: null
+  citation: ar-i-higher-e1-completeness
+  reason: Incomplete outgoing A matrix; blended level populations are unsourced. Candidate membership
+    of broad 6s remains unresolved.
+- id: 32
+  process: e + Ar(1S0) -> e + Ar(5p'[3/2]1), Excitation
+  threshold_eV: 14.681
+  candidate_upper_levels:
+  - Configuration: 3s2.3p5.(2P*<1/2>).5p
+    Term: 2[3/2]
+    J: '1'
+    g: '3'
+    Prefix: ''
+    Level (cm-1): '118407.4303'
+    Suffix: ''
+    Uncertainty (cm-1): ''
+    Level ID: '018001.000038'
+    Reference: ''
+  candidate_identity_status: literal Racah components, or stated principal manifold; weights unresolved
+    for blends
+  E1_candidate_decays: 16
+  A_available: 3
+  A_missing: 13
+  status: unresolved
+  product_yields: null
+  excitation_weights: null
+  citation: ar-i-higher-e1-completeness
+  reason: Incomplete outgoing A matrix; blended level populations are unsourced. Candidate membership
+    of broad 6s remains unresolved.
+- id: 33
+  process: e + Ar(1S0) -> e + Ar(5p'[1/2]1), Excitation
+  threshold_eV: 14.687
+  candidate_upper_levels:
+  - Configuration: 3s2.3p5.(2P*<1/2>).5p
+    Term: 2[1/2]
+    J: '1'
+    g: '3'
+    Prefix: ''
+    Level (cm-1): '118459.5975'
+    Suffix: ''
+    Uncertainty (cm-1): ''
+    Level ID: '018001.000039'
+    Reference: ''
+  candidate_identity_status: literal Racah components, or stated principal manifold; weights unresolved
+    for blends
+  E1_candidate_decays: 16
+  A_available: 5
+  A_missing: 11
+  status: unresolved
+  product_yields: null
+  excitation_weights: null
+  citation: ar-i-higher-e1-completeness
+  reason: Incomplete outgoing A matrix; blended level populations are unsourced. Candidate membership
+    of broad 6s remains unresolved.
+- id: 34
+  process: e + Ar(1S0) -> e + Ar(5p'[3/2]2), Excitation
+  threshold_eV: 14.688
+  candidate_upper_levels:
+  - Configuration: 3s2.3p5.(2P*<1/2>).5p
+    Term: 2[3/2]
+    J: '2'
+    g: '5'
+    Prefix: ''
+    Level (cm-1): '118469.0508'
+    Suffix: ''
+    Uncertainty (cm-1): ''
+    Level ID: '018001.000040'
+    Reference: ''
+  candidate_identity_status: literal Racah components, or stated principal manifold; weights unresolved
+    for blends
+  E1_candidate_decays: 16
+  A_available: 3
+  A_missing: 13
+  status: unresolved
+  product_yields: null
+  excitation_weights: null
+  citation: ar-i-higher-e1-completeness
+  reason: Incomplete outgoing A matrix; blended level populations are unsourced. Candidate membership
+    of broad 6s remains unresolved.
+- id: 35
+  process: e + Ar(1S0) -> e + Ar(5p'[1/2]0), Excitation
+  threshold_eV: 14.738
+  candidate_upper_levels:
+  - Configuration: 3s2.3p5.(2P*<1/2>).5p
+    Term: 2[1/2]
+    J: '0'
+    g: '1'
+    Prefix: ''
+    Level (cm-1): '118870.9170'
+    Suffix: ''
+    Uncertainty (cm-1): ''
+    Level ID: '018001.000043'
+    Reference: ''
+  candidate_identity_status: literal Racah components, or stated principal manifold; weights unresolved
+    for blends
+  E1_candidate_decays: 7
+  A_available: 1
+  A_missing: 6
+  status: unresolved
+  product_yields: null
+  excitation_weights: null
+  citation: ar-i-higher-e1-completeness
+  reason: Incomplete outgoing A matrix; blended level populations are unsourced. Candidate membership
+    of broad 6s remains unresolved.
+- id: 36
+  process: e + Ar(1S0) -> e + Ar(4d), Excitation
+  threshold_eV: 14.78
+  candidate_upper_levels:
+  - Configuration: 3s2.3p5.(2P*<3/2>).4d
+    Term: 2[1/2]*
+    J: '0'
+    g: '1'
+    Prefix: ''
+    Level (cm-1): '118512.197'
+    Suffix: ''
+    Uncertainty (cm-1): ''
+    Level ID: '018001.000041'
+    Reference: ''
+  - Configuration: 3s2.3p5.(2P*<3/2>).4d
+    Term: 2[1/2]*
+    J: '1'
+    g: '3'
+    Prefix: ''
+    Level (cm-1): '118651.3950'
+    Suffix: ''
+    Uncertainty (cm-1): ''
+    Level ID: '018001.000042'
+    Reference: ''
+  - Configuration: 3s2.3p5.(2P*<3/2>).4d
+    Term: 2[3/2]*
+    J: '2'
+    g: '5'
+    Prefix: ''
+    Level (cm-1): '118906.6110'
+    Suffix: ''
+    Uncertainty (cm-1): ''
+    Level ID: '018001.000044'
+    Reference: ''
+  - Configuration: 3s2.3p5.(2P*<3/2>).4d
+    Term: 2[7/2]*
+    J: '4'
+    g: '9'
+    Prefix: ''
+    Level (cm-1): '119023.648'
+    Suffix: ''
+    Uncertainty (cm-1): ''
+    Level ID: '018001.000045'
+    Reference: ''
+  - Configuration: 3s2.3p5.(2P*<3/2>).4d
+    Term: 2[7/2]*
+    J: '3'
+    g: '7'
+    Prefix: ''
+    Level (cm-1): '119212.87'
+    Suffix: ''
+    Uncertainty (cm-1): ''
+    Level ID: '018001.000046'
+    Reference: ''
+  - Configuration: 3s2.3p5.(2P*<3/2>).4d
+    Term: 2[5/2]*
+    J: '2'
+    g: '5'
+    Prefix: ''
+    Level (cm-1): '119444.83'
+    Suffix: ''
+    Uncertainty (cm-1): ''
+    Level ID: '018001.000047'
+    Reference: ''
+  - Configuration: 3s2.3p5.(2P*<3/2>).4d
+    Term: 2[5/2]*
+    J: '3'
+    g: '7'
+    Prefix: ''
+    Level (cm-1): '119566.03'
+    Suffix: ''
+    Uncertainty (cm-1): ''
+    Level ID: '018001.000048'
+    Reference: ''
+  - Configuration: 3s2.3p5.(2P*<3/2>).4d
+    Term: 2[3/2]*
+    J: '1'
+    g: '3'
+    Prefix: ''
+    Level (cm-1): '119847.77'
+    Suffix: ''
+    Uncertainty (cm-1): ''
+    Level ID: '018001.000051'
+    Reference: ''
+  candidate_identity_status: literal Racah components, or stated principal manifold; weights unresolved
+    for blends
+  E1_candidate_decays: 67
+  A_available: 25
+  A_missing: 42
+  status: unresolved
+  product_yields: null
+  excitation_weights: null
+  citation: ar-i-higher-e1-completeness
+  reason: Incomplete outgoing A matrix; blended level populations are unsourced. Candidate membership
+    of broad 6s remains unresolved.
+- id: 37
+  process: e + Ar(1S0) -> e + Ar(6s), Excitation
+  threshold_eV: 14.842
+  candidate_upper_levels:
+  - Configuration: 3s2.3p5.(2P*<3/2>).6s
+    Term: 2[3/2]*
+    J: '2'
+    g: '5'
+    Prefix: ''
+    Level (cm-1): '119683.0821'
+    Suffix: ''
+    Uncertainty (cm-1): ''
+    Level ID: '018001.000049'
+    Reference: ''
+  - Configuration: 3s2.3p5.(2P*<3/2>).6s
+    Term: 2[3/2]*
+    J: '1'
+    g: '3'
+    Prefix: ''
+    Level (cm-1): '119760.1725'
+    Suffix: ''
+    Uncertainty (cm-1): ''
+    Level ID: '018001.000050'
+    Reference: ''
+  - Configuration: 3s2.3p5.(2P*<1/2>).6s
+    Term: 2[1/2]*
+    J: '0'
+    g: '1'
+    Prefix: ''
+    Level (cm-1): '121096.605'
+    Suffix: ''
+    Uncertainty (cm-1): ''
+    Level ID: '018001.000065'
+    Reference: ''
+  - Configuration: 3s2.3p5.(2P*<1/2>).6s
+    Term: 2[1/2]*
+    J: '1'
+    g: '3'
+    Prefix: ''
+    Level (cm-1): '121161.3135'
+    Suffix: ''
+    Uncertainty (cm-1): ''
+    Level ID: '018001.000066'
+    Reference: ''
+  candidate_identity_status: 6s manifold/core composition unspecified in frozen channel; show both cores,
+    do not assign weights
+  E1_candidate_decays: 55
+  A_available: 30
+  A_missing: 25
+  status: unresolved
+  product_yields: null
+  excitation_weights: null
+  citation: ar-i-higher-e1-completeness
+  reason: Incomplete outgoing A matrix; blended level populations are unsourced. Candidate membership
+    of broad 6s remains unresolved.
+- id: 38
+  process: e + Ar(1S0) -> e + Ar(4d'), Excitation
+  threshold_eV: 14.967
+  candidate_upper_levels:
+  - Configuration: 3s2.3p5.(2P*<1/2>).4d
+    Term: 2[3/2]*
+    J: '2'
+    g: '5'
+    Prefix: ''
+    Level (cm-1): '120600.8905'
+    Suffix: ''
+    Uncertainty (cm-1): ''
+    Level ID: '018001.000060'
+    Reference: ''
+  - Configuration: 3s2.3p5.(2P*<1/2>).4d
+    Term: 2[5/2]*
+    J: '2'
+    g: '5'
+    Prefix: ''
+    Level (cm-1): '120619.0162'
+    Suffix: ''
+    Uncertainty (cm-1): ''
+    Level ID: '018001.000061'
+    Reference: ''
+  - Configuration: 3s2.3p5.(2P*<1/2>).4d
+    Term: 2[5/2]*
+    J: '3'
+    g: '7'
+    Prefix: ''
+    Level (cm-1): '120753.4714'
+    Suffix: ''
+    Uncertainty (cm-1): ''
+    Level ID: '018001.000062'
+    Reference: ''
+  - Configuration: 3s2.3p5.(2P*<1/2>).4d
+    Term: 2[3/2]*
+    J: '1'
+    g: '3'
+    Prefix: ''
+    Level (cm-1): '121011.9198'
+    Suffix: ''
+    Uncertainty (cm-1): ''
+    Level ID: '018001.000063'
+    Reference: ''
+  candidate_identity_status: literal Racah components, or stated principal manifold; weights unresolved
+    for blends
+  E1_candidate_decays: 59
+  A_available: 24
+  A_missing: 35
+  status: unresolved
+  product_yields: null
+  excitation_weights: null
+  citation: ar-i-higher-e1-completeness
+  reason: Incomplete outgoing A matrix; blended level populations are unsourced. Candidate membership
+    of broad 6s remains unresolved.

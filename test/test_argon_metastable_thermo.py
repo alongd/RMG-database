@@ -122,6 +122,8 @@ ENTERED_CP = 20.786           # J/(mol*K)
 
 AR = '1 Ar u0 p4 c0\n'
 AR_META = 'multiplicity 3\nelectronicstate 3P2\n1 Ar u2 p3 c0\n'
+# Historical graph-only witnesses deliberately exercise the old family paths.
+AR_META_UNTAGGED = 'multiplicity 3\n1 Ar u2 p3 c0\n'
 ARP = 'multiplicity 2\n1 Ar u1 p3 c+1\n'
 
 
@@ -977,7 +979,9 @@ def kinetics_db(pinned):
 
 
 def test_exactly_one_PLASMA_family_reaches_it_which_is_not_the_same_as_one_family(kinetics_db):
-    """Round 55, HIGH-2, kept - and renamed, because its old name overstated it.
+    """Historical untagged witness; resolved-state behavior is checked separately.
+
+    Round 55, HIGH-2, kept - and renamed, because its old name overstated it.
 
     Loading this library does not add an isolated number: it activates a stepwise
     ionisation channel for argon. Measured by generating, not by grepping - an earlier
@@ -992,7 +996,7 @@ def test_exactly_one_PLASMA_family_reaches_it_which_is_not_the_same_as_one_famil
     hits = {}
     for name in PLASMA_FAMILIES:
         reactions = kinetics_db.generate_reactions_from_families(
-            [_species(AR_META, 'Ar(3P2)')], products=None, only_families=[name],
+            [_species(AR_META_UNTAGGED, 'Ar(3P2)')], products=None, only_families=[name],
             resonance=True)
         if reactions:
             hits[name] = reactions
@@ -1178,7 +1182,9 @@ def test_the_containment_is_written_where_each_family_already_says_it_belongs(al
 
 
 def test_no_ordinary_family_reaches_the_metastable_any_more(all_families_db):
-    """The containment, measured - and measured to be the CAUSE, not a coincidence.
+    """Historical untagged witness; resolved-state behavior is checked separately.
+
+    The containment, measured - and measured to be the CAUSE, not a coincidence.
 
     Three parts, and the middle one is what stops this being a check that cannot fail:
 
@@ -1189,7 +1195,7 @@ def test_no_ordinary_family_reaches_the_metastable_any_more(all_families_db):
 
     Full 50-partner sweep in docs/argon-metastable-thermo/containment_probe.py; the
     witnesses here are the cheapest exhibit of each family."""
-    meta = _species(AR_META, 'Ar(3P2)')
+    meta = _species(AR_META_UNTAGGED, 'Ar(3P2)')
 
     def reached():
         found = {}
@@ -1406,13 +1412,15 @@ def test_the_containment_does_not_move_the_chemistry_those_families_exist_for(al
 
 def test_the_products_those_families_used_to_build_still_have_no_thermo(all_families_db,
                                                                         thermo_db):
-    """The containment hides the crash; it does not make the structures representable.
+    """Historical untagged witness; resolved-state behavior is checked separately.
+
+    The containment hides the crash; it does not make the structures representable.
 
     With the forbidden entries detached, every argon-bearing product these families build
     still raises ``AtomTypeError`` in ``get_thermo_data``. That is the finding the
     containment is a response to, and it stays measurable after the response exists -
     otherwise the only evidence for the fix would be the fix."""
-    meta = _species(AR_META, 'Ar(3P2)')
+    meta = _species(AR_META_UNTAGGED, 'Ar(3P2)')
     saved = _detach_containment(all_families_db)
     try:
         crashed = 0
@@ -1488,7 +1496,9 @@ def test_a_covalent_neutral_argon_cannot_be_given_a_number_by_construction(therm
 
 
 def test_the_crash_would_fire_before_any_kinetics_quarantine_could_intercept_it(pinned):
-    """Why "quarantine the families that turned red" was never an available fix, measured
+    """Historical untagged witness; resolved-state behavior is checked separately.
+
+    Why "quarantine the families that turned red" was never an available fix, measured
     rather than argued - and why the containment had to be a ``forbidden`` group instead.
 
     The quarantine gate lives in ``apply_kinetics_to_reaction``. Product thermo is
@@ -1551,7 +1561,7 @@ def test_the_crash_would_fire_before_any_kinetics_quarantine_could_intercept_it(
 
         # the real case: the same path raises, and raises in thermo
         with pytest.raises(NO_NUMBER):
-            run([_species(AR_META, 'Ar(3P2)'), h])
+            run([_species(AR_META_UNTAGGED, 'Ar(3P2)'), h])
         assert 'apply_kinetics_to_reaction' not in order, (
             'the job died before the kinetics gate was ever reached')
     finally:
@@ -1687,7 +1697,9 @@ def test_the_rate_that_channel_is_handed_is_a_rank_10_lithium_placeholder(kineti
 
 
 def test_that_rules_premise_that_the_family_cannot_generate_argon_is_now_false(kinetics_db):
-    """The rule's longDesc argues its anchor choice partly from "this family CANNOT
+    """Historical untagged witness; resolved-state behavior is checked separately.
+
+    The rule's longDesc argues its anchor choice partly from "this family CANNOT
     generate argon at all". That was true when written - ground-state argon is u0, outside
     the u[1,2,3,4] template - and this library falsifies it.
 
@@ -1699,7 +1711,7 @@ def test_that_rules_premise_that_the_family_cannot_generate_argon_is_now_false(k
         [_species(AR, 'Ar')], products=None, only_families=[EII], resonance=True)
     assert ground == [], 'ground-state argon should still be outside the template'
     meta = kinetics_db.generate_reactions_from_families(
-        [_species(AR_META, 'Ar(3P2)')], products=None, only_families=[EII], resonance=True)
+        [_species(AR_META_UNTAGGED, 'Ar(3P2)')], products=None, only_families=[EII], resonance=True)
     assert len(meta) == 1
     rule = [e for entries in family.rules.entries.values() for e in entries][0]
     assert 'CANNOT generate argon at all' in rule.long_desc, (
@@ -1914,8 +1926,11 @@ EV_K = 11604.518          # K per eV
 
 @pytest.fixture(scope='module')
 def admitted(pinned):
-    """The one reaction this library unlocks, carried all the way through the model
-    admission path that a real run uses: rate-rule estimate -> fix_barrier_height."""
+    """Historical graph-only estimate with explicitly supplied exact-state thermo.
+
+    Keep the rate-rule and barrier witnesses below the production admission boundary;
+    the tagged species is refused before family generation.
+    """
     pytest.importorskip('rmgpy.rmg.model')
     from rmgpy.data.rmg import RMGDatabase
     from rmgpy.rmg.model import CoreEdgeReactionModel
@@ -1939,7 +1954,7 @@ def admitted(pinned):
 
     def generated():
         reactions = db.kinetics.generate_reactions_from_families(
-            [_species(AR_META, 'Ar(3P2)')], products=None, only_families=[EII],
+            [_species(AR_META_UNTAGGED, 'Ar(3P2)')], products=None, only_families=[EII],
             resonance=True)
         assert len(reactions) == 1
         one = reactions[0]
@@ -1948,7 +1963,12 @@ def admitted(pinned):
                 continue
             if not s.label:
                 s.label = str(s)
-            s.thermo = db.thermo.get_thermo_data(s)
+            # The graph-only historical reaction is not a resolved-state reaction.
+            # Supply the exact 3P2 library thermo explicitly to characterize the old
+            # placeholder; production family generation for AR_META is refused below.
+            lookup = (_species(AR_META, 'Ar(3P2)')
+                      if s.is_isomorphic(_species(AR_META_UNTAGGED)) else s)
+            s.thermo = db.thermo.get_thermo_data(lookup)
         return one
 
     rxn = generated()
@@ -2141,7 +2161,9 @@ def test_nothing_at_the_point_of_use_says_the_rate_is_a_placeholder(admitted):
 # ---- the Q = 0 path, and the save/reload round trip ---------------------------------
 
 def test_an_arkane_structure_only_declaration_reports_ready_with_a_zero_partition_function(entry):
-    """Round 58 HIGH-2, the part that was missing from both the disclosure and the tests.
+    """Historical untagged witness; resolved-state behavior is checked separately.
+
+    Round 58 HIGH-2, the part that was missing from both the disclosure and the tests.
 
     Species.has_statmech takes a shortcut for single-atom species (rmgpy/species.py:528):
     it checks ONLY that conformer.E0 is not None - not that the conformer has modes, and
@@ -2166,7 +2188,7 @@ def test_an_arkane_structure_only_declaration_reports_ready_with_a_zero_partitio
     arkane.input.species_dict.pop(label, None)
     e0_kj = entry.data.to_wilhoit().E0.value_si / 1000.0
     spc = arkane.input.species(label,
-                               structure=arkane.input.adjacencyList(AR_META),
+                               structure=arkane.input.adjacencyList(AR_META_UNTAGGED),
                                E0=(e0_kj, 'kJ/mol'))
 
     assert len(spc.molecule[0].atoms) == 1, 'the shortcut only applies to atomics'
@@ -2189,7 +2211,7 @@ def test_an_arkane_structure_only_declaration_reports_ready_with_a_zero_partitio
     named = 'Ar(3P2)_round118_with_multiplicity'
     arkane.input.species_dict.pop(named, None)
     with_g = arkane.input.species(named,
-                                  structure=arkane.input.adjacencyList(AR_META),
+                                  structure=arkane.input.adjacencyList(AR_META_UNTAGGED),
                                   E0=(e0_kj, 'kJ/mol'), spinMultiplicity=5)
     assert with_g.conformer.get_partition_function(T0) == pytest.approx(5.0, abs=1e-9)
 
@@ -2264,3 +2286,35 @@ def test_the_entry_survives_a_save_reload_round_trip(entry, tmp_path):
         'the writer truncates a6 to six significant figures; if this changes, the '
         'round-trip precision caveat in the longDesc needs revisiting')
     assert restored.get_entropy(T0) != pytest.approx(ENTERED_S298, abs=1e-9)
+
+
+def test_resolved_3p2_is_refused_by_all_family_generation(all_families_db):
+    """State provenance blocks recipes even when historical containment is detached."""
+    meta = _species(AR_META, 'Ar(3P2)')
+    saved = _detach_containment(all_families_db)
+    try:
+        assert all_families_db.generate_reactions_from_families(
+            [meta], products=None, resonance=True) == []
+        for label, adj, _family in ORDINARY_WITNESSES:
+            assert all_families_db.generate_reactions_from_families(
+                [meta, _species(adj, label)], products=None, resonance=True) == []
+    finally:
+        _reattach_containment(all_families_db, saved)
+
+
+@pytest.mark.parametrize('spin', [None, 5])
+def test_arkane_structure_only_resolved_state_is_a_named_refusal(entry, spin):
+    """A supplied degeneracy does not provide exact-state library provenance."""
+    import arkane.input
+    from rmgpy.exceptions import ExcitedSpeciesThermoError
+
+    label = 'Ar(3P2)_resolved_structure_only_%s' % spin
+    kwargs = {} if spin is None else {'spinMultiplicity': spin}
+    arkane.input.species_dict.pop(label, None)
+    try:
+        with pytest.raises(ExcitedSpeciesThermoError, match='Library-only thermochemistry'):
+            arkane.input.species(
+                label, structure=arkane.input.adjacencyList(AR_META),
+                E0=(entry.data.to_wilhoit().E0.value_si / 1000.0, 'kJ/mol'), **kwargs)
+    finally:
+        arkane.input.species_dict.pop(label, None)

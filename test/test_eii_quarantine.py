@@ -59,7 +59,9 @@ SIBLING = 'Plasma_Radiative_Recombination'
 FAMILY_DIR = os.path.join(THIS_DATABASE, 'kinetics', 'families', FAMILY)
 MANIFEST = os.path.join(FAMILY_DIR, 'quarantine.py')
 
+# Graph-only historical witness: resolved states cannot enter family recipes.
 AR_META = 'multiplicity 3\n1 Ar u2 p3 c0\n'
+AR_META_RESOLVED = 'multiplicity 3\nelectronicstate 3P2\n1 Ar u2 p3 c0\n'
 
 #: The campaign state string, verbatim. Changing it is changing the claim, and it is the
 #: string a user sees first in the refusal.
@@ -103,7 +105,10 @@ def loaded():
 
 
 def _generate(db):
-    """This family's one reaction for Ar(3P2), with thermo attached to both sides."""
+    """Historical graph-only reaction with exact-state library thermo supplied explicitly.
+
+    The tagged 3P2 identity is tested separately: it generates no family reaction.
+    """
     from rmgpy.molecule import Molecule
     from rmgpy.species import Species
 
@@ -118,7 +123,11 @@ def _generate(db):
             continue
         if not s.label:
             s.label = str(s)
-        s.thermo = db.thermo.get_thermo_data(s)
+        # Characterize quarantine on the historical graph-only reaction with
+        # explicitly supplied exact-state thermo, not an untagged HBI lookup.
+        lookup = (Species(molecule=[Molecule().from_adjacency_list(AR_META_RESOLVED)])
+                  if s.is_isomorphic(spc) else s)
+        s.thermo = db.thermo.get_thermo_data(lookup)
     return rxn
 
 
@@ -556,3 +565,15 @@ def test_the_manifest_enumerates_the_routes_that_bypass_it():
         'the library/seed bypass is no longer unconditional -- a rate copied by RMG '
         'carries the authorship the gate now reads. Stating it unconditionally overstates '
         'the hole, which is the mirror image of the error round 87 was filed for.')
+
+
+def test_resolved_metastable_uses_exact_thermo_and_generates_no_family_reaction(loaded):
+    from rmgpy.molecule import Molecule
+    from rmgpy.species import Species
+
+    spc = Species(label='Ar(3P2)',
+                  molecule=[Molecule().from_adjacency_list(AR_META_RESOLVED)])
+    thermo = loaded.thermo.get_thermo_data(spc)
+    assert 'PlasmaExcitedNeutralThermo' in thermo.comment
+    assert loaded.kinetics.generate_reactions_from_families(
+        [spc], products=None, only_families=[FAMILY], resonance=True) == []

@@ -49,7 +49,9 @@ def state_species(library, index):
 
 def test_literal_owners_and_distinct_states(database):
     lib = database.libraries['PlasmaArgon']
-    assert set(lib.entries) == {86, 87, 94, 95, 96}
+    cascade_ids = {1000 + channel * 4 + offset for channel in [6, 7, 8, 9, 10, 12, 13, 14, 15]
+                   for offset in range(4)}
+    assert set(lib.entries) == {86, 87, 94, 95, 96} | cascade_ids
     frozen = yaml.safe_load((DATA / 'eedf/argon_channel_map.yaml').read_text())
     assert frozen['class_counts'] == {'A': 152, 'B': 5, 'C': 0, 'D': 0}
     yields = yaml.safe_load((DATA / 'eedf/argon_cascade_yields.yaml').read_text())
@@ -140,10 +142,35 @@ def test_converter_refuses_removed_resonant_owner(database):
     spec = load_spec(path)
     frozen = yaml.safe_load((DATA / 'eedf/argon_channel_map.yaml').read_text())
     library = deepcopy(database.libraries['PlasmaArgon'])
-    for remove, expected in [(False, list(range(6, 39))), (True, [3, *range(6, 39)])]:
+    from rmgpy.tools.eedf.ownership import load_cascade_yields
+    cascade_yields = load_cascade_yields(
+        DATA / 'eedf/argon_cascade_yields.yaml', DATA / 'eedf/argon_radiative_data.yaml')
+    unresolved = [11, *range(16, 39)]
+    for remove, expected in [(False, unresolved), (True, [3, *unresolved])]:
         if remove:
             del library.entries[94]
         with pytest.raises(MissingOwners) as caught:
-            convert_channel_map(spec, frozen, library, 'IST-Lisbon-Ar-2021')
+            convert_channel_map(spec, frozen, library, 'IST-Lisbon-Ar-2021', cascade_yields)
         assert [row['id'] for row in caught.value.report['missing_owners']] == expected
         assert caught.value.report['shared_owners'] == []
+
+
+def test_cascade_library_owners_are_one_sourced_family_per_channel(database):
+    from rmgpy.tools.eedf.ownership import load_cascade_yields, make_branch_family
+    lib = database.libraries['PlasmaArgon']
+    snapshot = load_cascade_yields(
+        DATA / 'eedf/argon_cascade_yields.yaml', DATA / 'eedf/argon_radiative_data.yaml')
+    for channel_id in [6, 7, 8, 9, 10, 12, 13, 14, 15]:
+        row = next(item for item in snapshot['channels'] if item['id'] == channel_id)
+        reactions = [lib.entries[1000 + channel_id * 4 + offset].item for offset in range(4)]
+        owners = [('PlasmaArgon', 1000 + channel_id * 4 + offset,
+                   reaction, lib.entries[1000 + channel_id * 4 + offset].data)
+                  for offset, reaction in enumerate(reactions)]
+        family = make_branch_family(snapshot, channel_id, row['process'], row['threshold_eV'],
+                                    'IST-Lisbon-Ar-2021', owners)
+        assert family['product_yields'] == row['product_yields']
+        assert [lib.entries[1000 + channel_id * 4 + offset].data.branch_product
+                for offset in range(4)] == [
+            'Ar(1s5)', 'Ar(1s4)', 'Ar(1s3)', 'Ar(1s2)']
+        assert all(not reaction.reversible for reaction in reactions)
+        assert all(reaction.duplicate for reaction in reactions)

@@ -44,6 +44,9 @@ raw SHA-256 values and bibliography. Einstein A values are in s^-1; null means
 missing, never zero. Independent delta-J/parity enumeration gates completeness.
 `python scripts/gen_argon_cascades.py` regenerates `argon_cascade_yields.yaml`;
 `--check` verifies byte-identical output against the source digest.
+`python scripts/gen_argon_cascade_reactions.py` projects complete sourced vectors into the marked
+generated region of `input/kinetics/libraries/PlasmaArgon/reactions.py`; run its `--check` after
+generation. It does not calculate or hand-type branching fractions.
 
 The generated schema has `radiative_model: E1`, a source digest and channel
 records keyed by frozen ID, exact process and threshold. Nine records have
@@ -52,8 +55,9 @@ records keyed by frozen ID, exact process and threshold. Nine records have
 018001.000011→018001.000005 (2p5→1s2) transition. A request through
 `require_yields` refuses it. No supplemental value is adopted. Channels 16–38
 also remain unresolved; partial A matrices and unsourced blend populations
-are not normalized. Higher multipoles are outside this E1 model. These files
-are data for future engine work; no cascade reactions are generated here.
+are not normalized. Higher multipoles are outside this E1 model. Branch reaction
+owners are generated only for complete vectors; their fractions partition the
+existing EEDF collision rate, with photon energy accounted once in products.
 
 # Electron-collision channel maps for the LoKI-B electron kinetics
 

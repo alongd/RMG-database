@@ -8,6 +8,7 @@ import yaml
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'scripts'))
 import gen_argon_cascades as gen
+import gen_argon_cascade_reactions as reaction_gen
 
 
 def test_reproducible_and_literal_branch():
@@ -60,3 +61,32 @@ def test_missing_A_is_not_renormalized():
     doc = gen.generate(yaml.safe_dump(data).encode())
     with pytest.raises(ValueError, match='unresolved'):
         gen.require_yields(doc, 6)
+
+
+def test_every_sourced_A_has_a_cited_nist_transition_row():
+    source = yaml.safe_load(gen.SOURCE.read_bytes())
+    references = source['references']
+    assert all(t['transition_id'] == f"{t['upper_nist_id']}->{t['lower_nist_id']}"
+               for t in source['transitions'])
+    for transition in source['transitions']:
+        if transition['A_s-1'] is not None:
+            assert transition['tp_ref'] in references
+            assert references[transition['tp_ref']]['url']
+
+
+def test_cascade_reaction_generator_projects_only_complete_source_rows():
+    document = gen.generate(gen.SOURCE.read_bytes())
+    rendered = reaction_gen.render(gen.render(document).encode())
+    assert rendered.count('branch_product = ') == 36
+    assert rendered.count('branch_yield = ') == 36
+    for channel_id in [6, 7, 8, 9, 10, 12, 13, 14, 15]:
+        assert f'channel {channel_id}; sourced cascade branch' in rendered
+    assert 'channel 11;' not in rendered
+    assert 'channel 16;' not in rendered
+
+
+def test_cascade_reaction_generator_refuses_changed_yield_shape():
+    document = gen.generate(gen.SOURCE.read_bytes())
+    document['channels'][0]['product_yields'].pop('Ar(1s2)')
+    with pytest.raises(ValueError, match='invalid sourced product yields'):
+        reaction_gen.render(gen.render(document).encode())

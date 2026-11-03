@@ -80,12 +80,12 @@ database(
         # either actually carries argon is one of the things this probe measures.
         'PlasmaElectronImpactIonization',
         'PlasmaRadiativeRecombination',
-        # PlasmaArgon carries the single argon reaction the database holds,
+        # PlasmaArgonLegacy carries the single argon reaction the database holds,
         # Ar + e- => Arp + e- + e-, in its own file so an argon deck no longer
         # loads the whole PlasmaAir air library to reach it (I-193). PlasmaAir
         # was removed here: every wall the first-light run hit came from the air
         # ballast, never from the argon chemistry.
-        'PlasmaArgon',
+        'PlasmaArgonLegacy',
     ],
     seedMechanisms=[],
     kineticsDepositories=['training'],
@@ -101,7 +101,7 @@ database(
     kineticsEstimator='rate rules',
 )
 
-# PlasmaArgon carries only the argon ionisation reaction, so the air species that forced
+# PlasmaArgonLegacy carries only the argon ionisation reaction, so the air species that forced
 # a generatedSpeciesConstraints block are gone: no CH (maximumCarbeneRadicals) and no
 # singlet O2s (allowSingletO2) enter the model. Both settings existed only to tolerate the
 # air library and were removed with it (I-193), restoring RMG's default constraints in full.

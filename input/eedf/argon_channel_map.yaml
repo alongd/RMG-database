@@ -100,22 +100,21 @@ states:
     g: 3
     excitation_eV: 11.623
     rmg_species: Ar(1s4)
-    in_library: false
+    in_library: true
   Ar(3P0):
     paschen: 1s3
     racah: 4s'[1/2]0
     g: 1
     excitation_eV: 11.723
-    rmg_species: Ars
+    rmg_species: Ar(1s3)
     in_library: true
-    lumped_into: Ar(3P2)
   Ar(1P1):
     paschen: 1s2
     racah: 4s'[1/2]1
     g: 3
     excitation_eV: 11.828
     rmg_species: Ar(1s2)
-    in_library: false
+    in_library: true
   Ar(+,gnd):
     rmg_species: Arp
     in_library: true
@@ -177,32 +176,34 @@ class_counts:
   C: 0
   D: 0
 class_a_gaps:
-  '[absent] Ar + e- => Ar(1s4) + e-': [3]
-  '[present_lumped] Ar + e- => Ars + e-': [4]
-  '[absent] Ar + e- => Ar(1s2) + e-': [5]
   '[absent] Ar + e- => Ar(1s_i) + e- + hv (radiative cascade via 4p)': [6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
   '[absent] Ar + e- => Ar(1s_i) + e- + hv (radiative cascade via levels above 4p)': [16, 17, 18, 19, 20, 21, 22,
     23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38]
-  '[absent] Ars + e- <=> Ar(1s2) + e-': [44, 127]
-  '[absent] Ars + e- => Ar(1s_i) + e- + hv (radiative cascade via 4p)': [45, 46, 47, 48, 49, 50, 51, 52, 53, 54,
-    128, 129, 130, 131, 132, 133, 134, 135, 136, 137]
-  '[absent] Ars + e- => Ar(1s_i) + e- + hv (radiative cascade via levels above 4p)': [55, 56, 57, 58, 59, 60, 61,
-    62, 63, 64, 65, 66, 67, 68, 69, 70, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152,
-    153]
+  '[absent] Ar(1s3) + e- <=> Ar(1s2) + e-': [44]
+  '[absent] Ar(1s3) + e- => Ar(1s_i) + e- + hv (radiative cascade via 4p)': [45, 46, 47, 48, 49, 50, 51, 52, 53,
+    54]
+  '[absent] Ar(1s3) + e- => Ar(1s_i) + e- + hv (radiative cascade via levels above 4p)': [55, 56, 57, 58, 59, 60,
+    61, 62, 63, 64, 65, 66, 67, 68, 69, 70]
   '[absent] Ar(1s2) + e- => Ar(1s_i) + e- + hv (radiative cascade via 4p)': [71, 72, 73, 74, 75, 76, 77, 78, 79,
     80]
   '[absent] Ar(1s2) + e- => Ar(1s_i) + e- + hv (radiative cascade via levels above 4p)': [81, 82, 83, 84, 85, 86,
     87, 88, 89, 90, 91, 92, 93, 94, 95, 96]
-  '[absent] Ar(1s4) + e- <=> Ars + e-': [97]
+  '[absent] Ar(1s4) + e- <=> Ar(1s3) + e-': [97]
   '[absent] Ar(1s4) + e- <=> Ar(1s2) + e-': [98]
   '[absent] Ar(1s4) + e- => Ar(1s_i) + e- + hv (radiative cascade via 4p)': [99, 100, 101, 102, 103, 104, 105, 106,
     107, 108]
   '[absent] Ar(1s4) + e- => Ar(1s_i) + e- + hv (radiative cascade via levels above 4p)': [109, 110, 111, 112, 113,
     114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124]
   '[absent] Ars + e- <=> Ar(1s4) + e-': [125]
-  '[lumped_internal] Ars + e- <=> Ars + e-': [126]
+  '[absent] Ars + e- <=> Ar(1s3) + e-': [126]
+  '[absent] Ars + e- <=> Ar(1s2) + e-': [127]
+  '[absent] Ars + e- => Ar(1s_i) + e- + hv (radiative cascade via 4p)': [128, 129, 130, 131, 132, 133, 134, 135,
+    136, 137]
+  '[absent] Ars + e- => Ar(1s_i) + e- + hv (radiative cascade via levels above 4p)': [138, 139, 140, 141, 142, 143,
+    144, 145, 146, 147, 148, 149, 150, 151, 152, 153]
+  '[absent] Ars + e- => Arp + e- + e-': [154]
   '[absent] Ar(1s4) + e- => Arp + e- + e-': [155]
-  '[present_lumped] Ars + e- => Arp + e- + e-': [156]
+  '[absent] Ar(1s3) + e- => Arp + e- + e-': [156]
   '[absent] Ar(1s2) + e- => Arp + e- + e-': [157]
 channels:
 - id: 1
@@ -260,10 +261,8 @@ channels:
   rmg:
     reaction: Ar + e- => Ar(1s4) + e-
     library: PlasmaArgon
-    index: null
-    status: absent
-    species_needed:
-    - Ar(1s4)
+    index: 94
+    status: present
   superelastic_required: C3 section 3 requires the inverse; the development descriptor is '->' and the ground set
     is kept unchanged, so the superelastic is NOT in the set (reported, not changed)
 - id: 4
@@ -282,11 +281,10 @@ channels:
   family: excitation into 4s
   class: A
   rmg:
-    reaction: Ar + e- => Ars + e-
+    reaction: Ar + e- => Ar(1s3) + e-
     library: PlasmaArgon
-    index: 87
-    status: present_lumped
-    lumped: Ar(3P0) is lumped into Ars, which stands for Ar(3P2)
+    index: 95
+    status: present
   superelastic_required: C3 section 3 requires the inverse; the development descriptor is '->' and the ground set
     is kept unchanged, so the superelastic is NOT in the set (reported, not changed)
 - id: 5
@@ -307,10 +305,8 @@ channels:
   rmg:
     reaction: Ar + e- => Ar(1s2) + e-
     library: PlasmaArgon
-    index: null
-    status: absent
-    species_needed:
-    - Ar(1s2)
+    index: 96
+    status: present
   superelastic_required: C3 section 3 requires the inverse; the development descriptor is '->' and the ground set
     is kept unchanged, so the superelastic is NOT in the set (reported, not changed)
 - id: 6
@@ -333,9 +329,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: 4p
 - id: 7
   loki_process: e + Ar(1S0) -> e + Ar(4p[5/2]3), Excitation
@@ -357,9 +350,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: 4p
 - id: 8
   loki_process: e + Ar(1S0) -> e + Ar(4p[5/2]2), Excitation
@@ -381,9 +371,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: 4p
 - id: 9
   loki_process: e + Ar(1S0) -> e + Ar(4p[3/2]1), Excitation
@@ -405,9 +392,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: 4p
 - id: 10
   loki_process: e + Ar(1S0) -> e + Ar(4p[3/2]2), Excitation
@@ -429,9 +413,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: 4p
 - id: 11
   loki_process: e + Ar(1S0) -> e + Ar(4p[1/2]0), Excitation
@@ -453,9 +434,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: 4p
 - id: 12
   loki_process: e + Ar(1S0) -> e + Ar(4p'[3/2]1), Excitation
@@ -477,9 +455,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: 4p
 - id: 13
   loki_process: e + Ar(1S0) -> e + Ar(4p'[3/2]2), Excitation
@@ -501,9 +476,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: 4p
 - id: 14
   loki_process: e + Ar(1S0) -> e + Ar(4p'[1/2]1), Excitation
@@ -525,9 +497,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: 4p
 - id: 15
   loki_process: e + Ar(1S0) -> e + Ar(4p'[1/2]0), Excitation
@@ -549,9 +518,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: 4p
 - id: 16
   loki_process: e + Ar(1S0) -> e + Ar(3d[1/2]0+3d[1/2]1), Excitation
@@ -573,9 +539,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
 - id: 17
   loki_process: e + Ar(1S0) -> e + Ar(3d[3/2]2), Excitation
@@ -597,9 +560,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
 - id: 18
   loki_process: e + Ar(1S0) -> e + Ar(3d[7/2]4), Excitation
@@ -621,9 +581,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
 - id: 19
   loki_process: e + Ar(1S0) -> e + Ar(3d[7/2]3), Excitation
@@ -645,9 +602,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
 - id: 20
   loki_process: e + Ar(1S0) -> e + Ar(3d[5/2]2+5s[3/2]2), Excitation
@@ -669,9 +623,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
 - id: 21
   loki_process: e + Ar(1S0) -> e + Ar(3d[5/2]3+5s[3/2]1), Excitation
@@ -693,9 +644,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
 - id: 22
   loki_process: e + Ar(1S0) -> e + Ar(3d[3/2]1), Excitation
@@ -717,9 +665,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
 - id: 23
   loki_process: e + Ar(1S0) -> e + Ar(3d'[5/2]2), Excitation
@@ -741,9 +686,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
 - id: 24
   loki_process: e + Ar(1S0) -> e + Ar(3d'[5/2or3/2]3or2+5s'[1/2]0or1), Excitation
@@ -765,9 +707,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
 - id: 25
   loki_process: e + Ar(1S0) -> e + Ar(3d'[3/2]1), Excitation
@@ -789,9 +728,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
 - id: 26
   loki_process: e + Ar(1S0) -> e + Ar(5p[1/2]1), Excitation
@@ -813,9 +749,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
 - id: 27
   loki_process: e + Ar(1S0) -> e + Ar(5p[5/2]3), Excitation
@@ -837,9 +770,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
 - id: 28
   loki_process: e + Ar(1S0) -> e + Ar(5p[5/2]2), Excitation
@@ -861,9 +791,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
 - id: 29
   loki_process: e + Ar(1S0) -> e + Ar(5p[3/2]1), Excitation
@@ -885,9 +812,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
 - id: 30
   loki_process: e + Ar(1S0) -> e + Ar(5p[3/2]2), Excitation
@@ -909,9 +833,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
 - id: 31
   loki_process: e + Ar(1S0) -> e + Ar(5p[1/2]0), Excitation
@@ -933,9 +854,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
 - id: 32
   loki_process: e + Ar(1S0) -> e + Ar(5p'[3/2]1), Excitation
@@ -957,9 +875,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
 - id: 33
   loki_process: e + Ar(1S0) -> e + Ar(5p'[1/2]1), Excitation
@@ -981,9 +896,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
 - id: 34
   loki_process: e + Ar(1S0) -> e + Ar(5p'[3/2]2), Excitation
@@ -1005,9 +917,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
 - id: 35
   loki_process: e + Ar(1S0) -> e + Ar(5p'[1/2]0), Excitation
@@ -1029,9 +938,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
 - id: 36
   loki_process: e + Ar(1S0) -> e + Ar(4d), Excitation
@@ -1053,9 +959,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
 - id: 37
   loki_process: e + Ar(1S0) -> e + Ar(6s), Excitation
@@ -1077,9 +980,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
 - id: 38
   loki_process: e + Ar(1S0) -> e + Ar(4d'), Excitation
@@ -1101,9 +1001,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
 - id: 39
   loki_process: e + Ar(1S0) -> e + e + Ar(+,gnd), Ionization
@@ -1212,13 +1109,10 @@ channels:
   - DETAILED_BALANCE_INVERSE
   - STATE_RENAME
   rmg:
-    reaction: Ars + e- <=> Ar(1s2) + e-
+    reaction: Ar(1s3) + e- <=> Ar(1s2) + e-
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    lumped: Ar(3P0) is lumped into Ars, which stands for Ar(3P2)
 - id: 45
   loki_process: e + Ar(3P0) -> e + Ar(4p[1/2]1), Excitation
   lxcat_file: Ar4s_assembled.txt
@@ -1237,15 +1131,11 @@ channels:
   conventions:
   - STATE_RENAME
   rmg:
-    reaction: Ars + e- => Ar(1s_i) + e- + hv
+    reaction: Ar(1s3) + e- => Ar(1s_i) + e- + hv
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: 4p
-    lumped: Ar(3P0) is lumped into Ars, which stands for Ar(3P2)
 - id: 46
   loki_process: e + Ar(3P0) -> e + Ar(4p[5/2]3), Excitation
   lxcat_file: Ar4s_assembled.txt
@@ -1264,15 +1154,11 @@ channels:
   conventions:
   - STATE_RENAME
   rmg:
-    reaction: Ars + e- => Ar(1s_i) + e- + hv
+    reaction: Ar(1s3) + e- => Ar(1s_i) + e- + hv
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: 4p
-    lumped: Ar(3P0) is lumped into Ars, which stands for Ar(3P2)
 - id: 47
   loki_process: e + Ar(3P0) -> e + Ar(4p[5/2]2), Excitation
   lxcat_file: Ar4s_assembled.txt
@@ -1291,15 +1177,11 @@ channels:
   conventions:
   - STATE_RENAME
   rmg:
-    reaction: Ars + e- => Ar(1s_i) + e- + hv
+    reaction: Ar(1s3) + e- => Ar(1s_i) + e- + hv
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: 4p
-    lumped: Ar(3P0) is lumped into Ars, which stands for Ar(3P2)
 - id: 48
   loki_process: e + Ar(3P0) -> e + Ar(4p[3/2]1), Excitation
   lxcat_file: Ar4s_assembled.txt
@@ -1318,15 +1200,11 @@ channels:
   conventions:
   - STATE_RENAME
   rmg:
-    reaction: Ars + e- => Ar(1s_i) + e- + hv
+    reaction: Ar(1s3) + e- => Ar(1s_i) + e- + hv
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: 4p
-    lumped: Ar(3P0) is lumped into Ars, which stands for Ar(3P2)
 - id: 49
   loki_process: e + Ar(3P0) -> e + Ar(4p[3/2]2), Excitation
   lxcat_file: Ar4s_assembled.txt
@@ -1345,15 +1223,11 @@ channels:
   conventions:
   - STATE_RENAME
   rmg:
-    reaction: Ars + e- => Ar(1s_i) + e- + hv
+    reaction: Ar(1s3) + e- => Ar(1s_i) + e- + hv
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: 4p
-    lumped: Ar(3P0) is lumped into Ars, which stands for Ar(3P2)
 - id: 50
   loki_process: e + Ar(3P0) -> e + Ar(4p[1/2]0), Excitation
   lxcat_file: Ar4s_assembled.txt
@@ -1372,15 +1246,11 @@ channels:
   conventions:
   - STATE_RENAME
   rmg:
-    reaction: Ars + e- => Ar(1s_i) + e- + hv
+    reaction: Ar(1s3) + e- => Ar(1s_i) + e- + hv
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: 4p
-    lumped: Ar(3P0) is lumped into Ars, which stands for Ar(3P2)
 - id: 51
   loki_process: e + Ar(3P0) -> e + Ar(4p'[3/2]1), Excitation
   lxcat_file: Ar4s_assembled.txt
@@ -1399,15 +1269,11 @@ channels:
   conventions:
   - STATE_RENAME
   rmg:
-    reaction: Ars + e- => Ar(1s_i) + e- + hv
+    reaction: Ar(1s3) + e- => Ar(1s_i) + e- + hv
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: 4p
-    lumped: Ar(3P0) is lumped into Ars, which stands for Ar(3P2)
 - id: 52
   loki_process: e + Ar(3P0) -> e + Ar(4p'[3/2]2), Excitation
   lxcat_file: Ar4s_assembled.txt
@@ -1426,15 +1292,11 @@ channels:
   conventions:
   - STATE_RENAME
   rmg:
-    reaction: Ars + e- => Ar(1s_i) + e- + hv
+    reaction: Ar(1s3) + e- => Ar(1s_i) + e- + hv
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: 4p
-    lumped: Ar(3P0) is lumped into Ars, which stands for Ar(3P2)
 - id: 53
   loki_process: e + Ar(3P0) -> e + Ar(4p'[1/2]1), Excitation
   lxcat_file: Ar4s_assembled.txt
@@ -1453,15 +1315,11 @@ channels:
   conventions:
   - STATE_RENAME
   rmg:
-    reaction: Ars + e- => Ar(1s_i) + e- + hv
+    reaction: Ar(1s3) + e- => Ar(1s_i) + e- + hv
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: 4p
-    lumped: Ar(3P0) is lumped into Ars, which stands for Ar(3P2)
 - id: 54
   loki_process: e + Ar(3P0) -> e + Ar(4p'[1/2]0), Excitation
   lxcat_file: Ar4s_assembled.txt
@@ -1480,15 +1338,11 @@ channels:
   conventions:
   - STATE_RENAME
   rmg:
-    reaction: Ars + e- => Ar(1s_i) + e- + hv
+    reaction: Ar(1s3) + e- => Ar(1s_i) + e- + hv
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: 4p
-    lumped: Ar(3P0) is lumped into Ars, which stands for Ar(3P2)
 - id: 55
   loki_process: e + Ar(3P0) -> e + Ar(3d[1/2]0), Excitation
   lxcat_file: Ar4s_assembled.txt
@@ -1507,15 +1361,11 @@ channels:
   conventions:
   - STATE_RENAME
   rmg:
-    reaction: Ars + e- => Ar(1s_i) + e- + hv
+    reaction: Ar(1s3) + e- => Ar(1s_i) + e- + hv
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
-    lumped: Ar(3P0) is lumped into Ars, which stands for Ar(3P2)
 - id: 56
   loki_process: e + Ar(3P0) -> e + Ar(3d[1/2]1), Excitation
   lxcat_file: Ar4s_assembled.txt
@@ -1534,15 +1384,11 @@ channels:
   conventions:
   - STATE_RENAME
   rmg:
-    reaction: Ars + e- => Ar(1s_i) + e- + hv
+    reaction: Ar(1s3) + e- => Ar(1s_i) + e- + hv
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
-    lumped: Ar(3P0) is lumped into Ars, which stands for Ar(3P2)
 - id: 57
   loki_process: e + Ar(3P0) -> e + Ar(3d[3/2]2), Excitation
   lxcat_file: Ar4s_assembled.txt
@@ -1561,15 +1407,11 @@ channels:
   conventions:
   - STATE_RENAME
   rmg:
-    reaction: Ars + e- => Ar(1s_i) + e- + hv
+    reaction: Ar(1s3) + e- => Ar(1s_i) + e- + hv
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
-    lumped: Ar(3P0) is lumped into Ars, which stands for Ar(3P2)
 - id: 58
   loki_process: e + Ar(3P0) -> e + Ar(3d[7/2]4), Excitation
   lxcat_file: Ar4s_assembled.txt
@@ -1588,15 +1430,11 @@ channels:
   conventions:
   - STATE_RENAME
   rmg:
-    reaction: Ars + e- => Ar(1s_i) + e- + hv
+    reaction: Ar(1s3) + e- => Ar(1s_i) + e- + hv
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
-    lumped: Ar(3P0) is lumped into Ars, which stands for Ar(3P2)
 - id: 59
   loki_process: e + Ar(3P0) -> e + Ar(5s[3/2]2), Excitation
   lxcat_file: Ar4s_assembled.txt
@@ -1615,15 +1453,11 @@ channels:
   conventions:
   - STATE_RENAME
   rmg:
-    reaction: Ars + e- => Ar(1s_i) + e- + hv
+    reaction: Ar(1s3) + e- => Ar(1s_i) + e- + hv
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
-    lumped: Ar(3P0) is lumped into Ars, which stands for Ar(3P2)
 - id: 60
   loki_process: e + Ar(3P0) -> e + Ar(3d[7/2]3), Excitation
   lxcat_file: Ar4s_assembled.txt
@@ -1642,15 +1476,11 @@ channels:
   conventions:
   - STATE_RENAME
   rmg:
-    reaction: Ars + e- => Ar(1s_i) + e- + hv
+    reaction: Ar(1s3) + e- => Ar(1s_i) + e- + hv
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
-    lumped: Ar(3P0) is lumped into Ars, which stands for Ar(3P2)
 - id: 61
   loki_process: e + Ar(3P0) -> e + Ar(5s[3/2]1), Excitation
   lxcat_file: Ar4s_assembled.txt
@@ -1669,15 +1499,11 @@ channels:
   conventions:
   - STATE_RENAME
   rmg:
-    reaction: Ars + e- => Ar(1s_i) + e- + hv
+    reaction: Ar(1s3) + e- => Ar(1s_i) + e- + hv
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
-    lumped: Ar(3P0) is lumped into Ars, which stands for Ar(3P2)
 - id: 62
   loki_process: e + Ar(3P0) -> e + Ar(3d[5/2]2), Excitation
   lxcat_file: Ar4s_assembled.txt
@@ -1696,15 +1522,11 @@ channels:
   conventions:
   - STATE_RENAME
   rmg:
-    reaction: Ars + e- => Ar(1s_i) + e- + hv
+    reaction: Ar(1s3) + e- => Ar(1s_i) + e- + hv
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
-    lumped: Ar(3P0) is lumped into Ars, which stands for Ar(3P2)
 - id: 63
   loki_process: e + Ar(3P0) -> e + Ar(3d[5/2]3), Excitation
   lxcat_file: Ar4s_assembled.txt
@@ -1723,15 +1545,11 @@ channels:
   conventions:
   - STATE_RENAME
   rmg:
-    reaction: Ars + e- => Ar(1s_i) + e- + hv
+    reaction: Ar(1s3) + e- => Ar(1s_i) + e- + hv
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
-    lumped: Ar(3P0) is lumped into Ars, which stands for Ar(3P2)
 - id: 64
   loki_process: e + Ar(3P0) -> e + Ar(3d[3/2]1), Excitation
   lxcat_file: Ar4s_assembled.txt
@@ -1750,15 +1568,11 @@ channels:
   conventions:
   - STATE_RENAME
   rmg:
-    reaction: Ars + e- => Ar(1s_i) + e- + hv
+    reaction: Ar(1s3) + e- => Ar(1s_i) + e- + hv
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
-    lumped: Ar(3P0) is lumped into Ars, which stands for Ar(3P2)
 - id: 65
   loki_process: e + Ar(3P0) -> e + Ar(5s'[1/2]0), Excitation
   lxcat_file: Ar4s_assembled.txt
@@ -1777,15 +1591,11 @@ channels:
   conventions:
   - STATE_RENAME
   rmg:
-    reaction: Ars + e- => Ar(1s_i) + e- + hv
+    reaction: Ar(1s3) + e- => Ar(1s_i) + e- + hv
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
-    lumped: Ar(3P0) is lumped into Ars, which stands for Ar(3P2)
 - id: 66
   loki_process: e + Ar(3P0) -> e + Ar(5s'[1/2]1), Excitation
   lxcat_file: Ar4s_assembled.txt
@@ -1804,15 +1614,11 @@ channels:
   conventions:
   - STATE_RENAME
   rmg:
-    reaction: Ars + e- => Ar(1s_i) + e- + hv
+    reaction: Ar(1s3) + e- => Ar(1s_i) + e- + hv
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
-    lumped: Ar(3P0) is lumped into Ars, which stands for Ar(3P2)
 - id: 67
   loki_process: e + Ar(3P0) -> e + Ar(3d'[5/2]2), Excitation
   lxcat_file: Ar4s_assembled.txt
@@ -1831,15 +1637,11 @@ channels:
   conventions:
   - STATE_RENAME
   rmg:
-    reaction: Ars + e- => Ar(1s_i) + e- + hv
+    reaction: Ar(1s3) + e- => Ar(1s_i) + e- + hv
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
-    lumped: Ar(3P0) is lumped into Ars, which stands for Ar(3P2)
 - id: 68
   loki_process: e + Ar(3P0) -> e + Ar(3d'[3/2]2), Excitation
   lxcat_file: Ar4s_assembled.txt
@@ -1858,15 +1660,11 @@ channels:
   conventions:
   - STATE_RENAME
   rmg:
-    reaction: Ars + e- => Ar(1s_i) + e- + hv
+    reaction: Ar(1s3) + e- => Ar(1s_i) + e- + hv
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
-    lumped: Ar(3P0) is lumped into Ars, which stands for Ar(3P2)
 - id: 69
   loki_process: e + Ar(3P0) -> e + Ar(3d'[5/2]3), Excitation
   lxcat_file: Ar4s_assembled.txt
@@ -1885,15 +1683,11 @@ channels:
   conventions:
   - STATE_RENAME
   rmg:
-    reaction: Ars + e- => Ar(1s_i) + e- + hv
+    reaction: Ar(1s3) + e- => Ar(1s_i) + e- + hv
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
-    lumped: Ar(3P0) is lumped into Ars, which stands for Ar(3P2)
 - id: 70
   loki_process: e + Ar(3P0) -> e + Ar(3d'[3/2]1), Excitation
   lxcat_file: Ar4s_assembled.txt
@@ -1912,15 +1706,11 @@ channels:
   conventions:
   - STATE_RENAME
   rmg:
-    reaction: Ars + e- => Ar(1s_i) + e- + hv
+    reaction: Ar(1s3) + e- => Ar(1s_i) + e- + hv
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
-    lumped: Ar(3P0) is lumped into Ars, which stands for Ar(3P2)
 - id: 71
   loki_process: e + Ar(1P1) -> e + Ar(4p[1/2]1), Excitation
   lxcat_file: Ar4s_assembled.txt
@@ -1943,9 +1733,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: 4p
 - id: 72
   loki_process: e + Ar(1P1) -> e + Ar(4p[5/2]3), Excitation
@@ -1969,9 +1756,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: 4p
 - id: 73
   loki_process: e + Ar(1P1) -> e + Ar(4p[5/2]2), Excitation
@@ -1995,9 +1779,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: 4p
 - id: 74
   loki_process: e + Ar(1P1) -> e + Ar(4p[3/2]1), Excitation
@@ -2021,9 +1802,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: 4p
 - id: 75
   loki_process: e + Ar(1P1) -> e + Ar(4p[3/2]2), Excitation
@@ -2047,9 +1825,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: 4p
 - id: 76
   loki_process: e + Ar(1P1) -> e + Ar(4p[1/2]0), Excitation
@@ -2073,9 +1848,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: 4p
 - id: 77
   loki_process: e + Ar(1P1) -> e + Ar(4p'[3/2]1), Excitation
@@ -2099,9 +1871,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: 4p
 - id: 78
   loki_process: e + Ar(1P1) -> e + Ar(4p'[3/2]2), Excitation
@@ -2125,9 +1894,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: 4p
 - id: 79
   loki_process: e + Ar(1P1) -> e + Ar(4p'[1/2]1), Excitation
@@ -2151,9 +1917,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: 4p
 - id: 80
   loki_process: e + Ar(1P1) -> e + Ar(4p'[1/2]0), Excitation
@@ -2177,9 +1940,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: 4p
 - id: 81
   loki_process: e + Ar(1P1) -> e + Ar(3d[1/2]0), Excitation
@@ -2203,9 +1963,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
 - id: 82
   loki_process: e + Ar(1P1) -> e + Ar(3d[1/2]1), Excitation
@@ -2229,9 +1986,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
 - id: 83
   loki_process: e + Ar(1P1) -> e + Ar(3d[3/2]2), Excitation
@@ -2255,9 +2009,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
 - id: 84
   loki_process: e + Ar(1P1) -> e + Ar(3d[7/2]4), Excitation
@@ -2281,9 +2032,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
 - id: 85
   loki_process: e + Ar(1P1) -> e + Ar(5s[3/2]2), Excitation
@@ -2307,9 +2055,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
 - id: 86
   loki_process: e + Ar(1P1) -> e + Ar(3d[7/2]3), Excitation
@@ -2333,9 +2078,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
 - id: 87
   loki_process: e + Ar(1P1) -> e + Ar(5s[3/2]1), Excitation
@@ -2359,9 +2101,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
 - id: 88
   loki_process: e + Ar(1P1) -> e + Ar(3d[5/2]2), Excitation
@@ -2385,9 +2124,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
 - id: 89
   loki_process: e + Ar(1P1) -> e + Ar(3d[5/2]3), Excitation
@@ -2411,9 +2147,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
 - id: 90
   loki_process: e + Ar(1P1) -> e + Ar(3d[3/2]1), Excitation
@@ -2437,9 +2170,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
 - id: 91
   loki_process: e + Ar(1P1) -> e + Ar(5s'[1/2]0), Excitation
@@ -2463,9 +2193,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
 - id: 92
   loki_process: e + Ar(1P1) -> e + Ar(5s'[1/2]1), Excitation
@@ -2489,9 +2216,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
 - id: 93
   loki_process: e + Ar(1P1) -> e + Ar(3d'[5/2]2), Excitation
@@ -2515,9 +2239,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
 - id: 94
   loki_process: e + Ar(1P1) -> e + Ar(3d'[3/2]2), Excitation
@@ -2541,9 +2262,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
 - id: 95
   loki_process: e + Ar(1P1) -> e + Ar(3d'[5/2]3), Excitation
@@ -2567,9 +2285,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
 - id: 96
   loki_process: e + Ar(1P1) -> e + Ar(3d'[3/2]1), Excitation
@@ -2593,9 +2308,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
 - id: 97
   loki_process: e + Ar(3P1) <-> e + Ar(3P0), Excitation
@@ -2616,13 +2328,10 @@ channels:
   - DETAILED_BALANCE_INVERSE
   - STATE_RENAME
   rmg:
-    reaction: Ar(1s4) + e- <=> Ars + e-
+    reaction: Ar(1s4) + e- <=> Ar(1s3) + e-
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s4)
-    lumped: Ar(3P0) is lumped into Ars, which stands for Ar(3P2)
 - id: 98
   loki_process: e + Ar(3P1) <-> e + Ar(1P1), Excitation
   lxcat_file: Ar4s_assembled.txt
@@ -2646,9 +2355,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
 - id: 99
   loki_process: e + Ar(3P1) -> e + Ar(4p[1/2]1), Excitation
   lxcat_file: Ar4s_assembled.txt
@@ -2671,9 +2377,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: 4p
 - id: 100
   loki_process: e + Ar(3P1) -> e + Ar(4p[5/2]3), Excitation
@@ -2697,9 +2400,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: 4p
 - id: 101
   loki_process: e + Ar(3P1) -> e + Ar(4p[5/2]2), Excitation
@@ -2723,9 +2423,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: 4p
 - id: 102
   loki_process: e + Ar(3P1) -> e + Ar(4p[3/2]1), Excitation
@@ -2749,9 +2446,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: 4p
 - id: 103
   loki_process: e + Ar(3P1) -> e + Ar(4p[3/2]2), Excitation
@@ -2775,9 +2469,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: 4p
 - id: 104
   loki_process: e + Ar(3P1) -> e + Ar(4p[1/2]0), Excitation
@@ -2801,9 +2492,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: 4p
 - id: 105
   loki_process: e + Ar(3P1) -> e + Ar(4p'[3/2]1), Excitation
@@ -2827,9 +2515,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: 4p
 - id: 106
   loki_process: e + Ar(3P1) -> e + Ar(4p'[3/2]2), Excitation
@@ -2853,9 +2538,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: 4p
 - id: 107
   loki_process: e + Ar(3P1) -> e + Ar(4p'[1/2]1), Excitation
@@ -2879,9 +2561,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: 4p
 - id: 108
   loki_process: e + Ar(3P1) -> e + Ar(4p'[1/2]0), Excitation
@@ -2905,9 +2584,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: 4p
 - id: 109
   loki_process: e + Ar(3P1) -> e + Ar(3d[1/2]0), Excitation
@@ -2931,9 +2607,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
 - id: 110
   loki_process: e + Ar(3P1) -> e + Ar(3d[1/2]1), Excitation
@@ -2957,9 +2630,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
 - id: 111
   loki_process: e + Ar(3P1) -> e + Ar(3d[3/2]2), Excitation
@@ -2983,9 +2653,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
 - id: 112
   loki_process: e + Ar(3P1) -> e + Ar(3d[7/2]4), Excitation
@@ -3009,9 +2676,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
 - id: 113
   loki_process: e + Ar(3P1) -> e + Ar(5s[3/2]2), Excitation
@@ -3035,9 +2699,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
 - id: 114
   loki_process: e + Ar(3P1) -> e + Ar(3d[7/2]3), Excitation
@@ -3061,9 +2722,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
 - id: 115
   loki_process: e + Ar(3P1) -> e + Ar(5s[3/2]1), Excitation
@@ -3087,9 +2745,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
 - id: 116
   loki_process: e + Ar(3P1) -> e + Ar(3d[5/2]2), Excitation
@@ -3113,9 +2768,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
 - id: 117
   loki_process: e + Ar(3P1) -> e + Ar(3d[5/2]3), Excitation
@@ -3139,9 +2791,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
 - id: 118
   loki_process: e + Ar(3P1) -> e + Ar(3d[3/2]1), Excitation
@@ -3165,9 +2814,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
 - id: 119
   loki_process: e + Ar(3P1) -> e + Ar(5s'[1/2]0), Excitation
@@ -3191,9 +2837,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
 - id: 120
   loki_process: e + Ar(3P1) -> e + Ar(5s'[1/2]1), Excitation
@@ -3217,9 +2860,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
 - id: 121
   loki_process: e + Ar(3P1) -> e + Ar(3d'[5/2]2), Excitation
@@ -3243,9 +2883,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
 - id: 122
   loki_process: e + Ar(3P1) -> e + Ar(3d'[3/2]2), Excitation
@@ -3269,9 +2906,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
 - id: 123
   loki_process: e + Ar(3P1) -> e + Ar(3d'[5/2]3), Excitation
@@ -3295,9 +2929,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
 - id: 124
   loki_process: e + Ar(3P1) -> e + Ar(3d'[3/2]1), Excitation
@@ -3321,9 +2952,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
 - id: 125
   loki_process: e + Ar(3P2) <-> e + Ar(3P1), Excitation
@@ -3348,8 +2976,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s4)
 - id: 126
   loki_process: e + Ar(3P2) <-> e + Ar(3P0), Excitation
   lxcat_file: Ar4s_assembled.txt
@@ -3369,11 +2995,10 @@ channels:
   - DETAILED_BALANCE_INVERSE
   - STATE_RENAME
   rmg:
-    reaction: Ars + e- <=> Ars + e-
+    reaction: Ars + e- <=> Ar(1s3) + e-
     library: PlasmaArgon
     index: null
-    status: lumped_internal
-    lumped: Ar(3P0) is lumped into Ars, which stands for Ar(3P2)
+    status: absent
 - id: 127
   loki_process: e + Ar(3P2) <-> e + Ar(1P1), Excitation
   lxcat_file: Ar4s_assembled.txt
@@ -3397,8 +3022,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
 - id: 128
   loki_process: e + Ar(3P2) -> e + Ar(4p[1/2]1), Excitation
   lxcat_file: Ar4s_assembled.txt
@@ -3421,9 +3044,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: 4p
 - id: 129
   loki_process: e + Ar(3P2) -> e + Ar(4p[5/2]3), Excitation
@@ -3447,9 +3067,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: 4p
 - id: 130
   loki_process: e + Ar(3P2) -> e + Ar(4p[5/2]2), Excitation
@@ -3473,9 +3090,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: 4p
 - id: 131
   loki_process: e + Ar(3P2) -> e + Ar(4p[3/2]1), Excitation
@@ -3499,9 +3113,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: 4p
 - id: 132
   loki_process: e + Ar(3P2) -> e + Ar(4p[3/2]2), Excitation
@@ -3525,9 +3136,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: 4p
 - id: 133
   loki_process: e + Ar(3P2) -> e + Ar(4p[1/2]0), Excitation
@@ -3551,9 +3159,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: 4p
 - id: 134
   loki_process: e + Ar(3P2) -> e + Ar(4p'[3/2]1), Excitation
@@ -3577,9 +3182,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: 4p
 - id: 135
   loki_process: e + Ar(3P2) -> e + Ar(4p'[3/2]2), Excitation
@@ -3603,9 +3205,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: 4p
 - id: 136
   loki_process: e + Ar(3P2) -> e + Ar(4p'[1/2]1), Excitation
@@ -3629,9 +3228,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: 4p
 - id: 137
   loki_process: e + Ar(3P2) -> e + Ar(4p'[1/2]0), Excitation
@@ -3655,9 +3251,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: 4p
 - id: 138
   loki_process: e + Ar(3P2) -> e + Ar(3d[1/2]0), Excitation
@@ -3681,9 +3274,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
 - id: 139
   loki_process: e + Ar(3P2) -> e + Ar(3d[1/2]1), Excitation
@@ -3707,9 +3297,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
 - id: 140
   loki_process: e + Ar(3P2) -> e + Ar(3d[3/2]2), Excitation
@@ -3733,9 +3320,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
 - id: 141
   loki_process: e + Ar(3P2) -> e + Ar(3d[7/2]4), Excitation
@@ -3759,9 +3343,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
 - id: 142
   loki_process: e + Ar(3P2) -> e + Ar(5s[3/2]2), Excitation
@@ -3785,9 +3366,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
 - id: 143
   loki_process: e + Ar(3P2) -> e + Ar(3d[7/2]3), Excitation
@@ -3811,9 +3389,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
 - id: 144
   loki_process: e + Ar(3P2) -> e + Ar(5s[3/2]1), Excitation
@@ -3837,9 +3412,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
 - id: 145
   loki_process: e + Ar(3P2) -> e + Ar(3d[5/2]2), Excitation
@@ -3863,9 +3435,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
 - id: 146
   loki_process: e + Ar(3P2) -> e + Ar(3d[5/2]3), Excitation
@@ -3889,9 +3458,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
 - id: 147
   loki_process: e + Ar(3P2) -> e + Ar(3d[3/2]1), Excitation
@@ -3915,9 +3481,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
 - id: 148
   loki_process: e + Ar(3P2) -> e + Ar(5s'[1/2]0), Excitation
@@ -3941,9 +3504,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
 - id: 149
   loki_process: e + Ar(3P2) -> e + Ar(5s'[1/2]1), Excitation
@@ -3967,9 +3527,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
 - id: 150
   loki_process: e + Ar(3P2) -> e + Ar(3d'[5/2]2), Excitation
@@ -3993,9 +3550,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
 - id: 151
   loki_process: e + Ar(3P2) -> e + Ar(3d'[3/2]2), Excitation
@@ -4019,9 +3573,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
 - id: 152
   loki_process: e + Ar(3P2) -> e + Ar(3d'[5/2]3), Excitation
@@ -4045,9 +3596,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
 - id: 153
   loki_process: e + Ar(3P2) -> e + Ar(3d'[3/2]1), Excitation
@@ -4071,9 +3619,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
-    - Ar(1s4)
     via: levels above 4p
 - id: 154
   loki_process: e + Ar(3P2) -> e + e + Ar(+,gnd), Ionization
@@ -4096,8 +3641,8 @@ channels:
   rmg:
     reaction: Ars + e- => Arp + e- + e-
     library: PlasmaArgon
-    index: 88
-    status: present
+    index: null
+    status: absent
 - id: 155
   loki_process: e + Ar(3P1) -> e + e + Ar(+,gnd), Ionization
   lxcat_file: Ar4s_assembled.txt
@@ -4121,8 +3666,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s4)
 - id: 156
   loki_process: e + Ar(3P0) -> e + e + Ar(+,gnd), Ionization
   lxcat_file: Ar4s_assembled.txt
@@ -4142,11 +3685,10 @@ channels:
   - LUMPED_TARGET_PER_LEVEL
   - STATE_RENAME
   rmg:
-    reaction: Ars + e- => Arp + e- + e-
+    reaction: Ar(1s3) + e- => Arp + e- + e-
     library: PlasmaArgon
-    index: 88
-    status: present_lumped
-    lumped: Ar(3P0) is lumped into Ars, which stands for Ar(3P2)
+    index: null
+    status: absent
 - id: 157
   loki_process: e + Ar(1P1) -> e + e + Ar(+,gnd), Ionization
   lxcat_file: Ar4s_assembled.txt
@@ -4170,8 +3712,6 @@ channels:
     library: PlasmaArgon
     index: null
     status: absent
-    species_needed:
-    - Ar(1s2)
 not_assembled:
 - source: BSR_Ar_ground.txt
   block: 1

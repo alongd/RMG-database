@@ -139,7 +139,8 @@ class TestCommittedMap:
             for name in rmg.get('species_needed', []):
                 assert name not in species, (c['id'], name)
         assert doc['states']['Ar(3P1)']['rmg_species'] == 'Ar(1s4)'
-        assert doc['states']['Ar(3P0)']['lumped_into'] == 'Ar(3P2)'
+        assert doc['states']['Ar(3P0)']['rmg_species'] == 'Ar(1s3)'
+        assert all('lumped_into' not in doc['states'][s] for s in gen.LEVELS_1S)
 
 
 class TestOverlayLoader:
@@ -181,10 +182,10 @@ def library_copy(tmp_path, edit=None):
 
 
 LIBRARY_EDITS = [
-    (None, set(range(86, 94))),
-    (mutations.disable_library_entry, set(range(86, 94)) - {87}),
-    (mutations.requote_library_label, set(range(86, 94))),
-    (mutations.label_before_index, set(range(86, 94))),
+    (None, {86, 87, 94, 95, 96}),
+    (mutations.disable_library_entry, {86, 87, 94, 95, 96} - {87}),
+    (mutations.requote_library_label, {86, 87, 94, 95, 96}),
+    (mutations.label_before_index, {86, 87, 94, 95, 96}),
 ]
 
 
@@ -319,7 +320,7 @@ class TestInputsAndOutput:
     def test_a_commented_dictionary_record_is_what_rmg_loads(self, tmp_path, multiplicity):
         """A '//' comment before a record does not become a species: the species are the ones RMG parsed."""
         database = library_copy(tmp_path, mutations.library_text(
-            'dictionary.txt', lambda t: t + mutations.COMMENTED_RESONANCE[multiplicity]))
+            'dictionary.txt', lambda t: mutations.replace_resonance(t, mutations.COMMENTED_RESONANCE[multiplicity])))
         _, species, problems = gen.load_library(database, gen.LIBRARY)
         assert problems == []
         molecule = species['Ar(1s2)'].molecule[0]
@@ -387,9 +388,9 @@ class TestInputsAndOutput:
         """A record with an atom copied once too often is Ar2 as RMG loads it, which is not the species the
         overlay's reference means (db-r53 finding 1), by RMG's own comparison."""
         record = ('\n\n// an extra atom' if commented else '\n') + mutations.DIMER_RESONANCE[1:]
-        database = library_copy(tmp_path, mutations.library_text('dictionary.txt', lambda t: t + record))
+        database = library_copy(tmp_path, mutations.library_text('dictionary.txt', lambda t: mutations.replace_resonance(t, record)))
         _, species, problems = gen.load_library(database, gen.LIBRARY)
-        assert problems == [] and species['Ar(1s2)'].molecule[0].get_formula() == 'Ar2'
+        assert species is None and any(mutations.DIMER_REFUSED in p for p in problems)
         _, problems, _, _ = gen.generate(OVERLAY, str(tmp_path), [], database)
         assert any(mutations.DIMER_REFUSED in p for p in problems), problems
 
@@ -463,6 +464,8 @@ class TestInputsAndOutput:
                                    ('facet', 'facet 111', "'111'")):
             assert gen.state_problems(record(f'{line}\n1 Ar u0 p4 c0'), 'Ar(1S0)') == [
                 f'{field} {value}, but it stands for a free gas-phase atom, which has none']
+        for state in gen.LEVELS_1S:
+            assert gen.state_problems(record('multiplicity 3\n1 Ar u2 p3 c0'), state)
         assert gen.state_problems(record('1 e u1 p0 c-1'), None) == []
         assert gen.state_problems(record('1 e u0 p0 c-1'), None) == [
             'multiplicity 1, but a free electron has spin 1/2, multiplicity 2']
@@ -578,7 +581,7 @@ class TestPolicy:
     def test_species_must_be_the_states(self):
         _, species, _ = gen.load_library(DATABASE, gen.LIBRARY)
         records, problems = gen.reference_records(gen.load_overlay_document(OVERLAY)[1])
-        assert problems == [] and set(records) == {'Ar', 'Ars', 'Arp', 'e-', 'Ar(1s2)', 'Ar(1s4)'}
+        assert problems == [] and set(records) == {'Ar', 'Ars', 'Arp', 'e-', 'Ar(1s2)', 'Ar(1s3)', 'Ar(1s4)'}
         paschen = {'Ar(3P1)': '1s4', 'Ar(1P1)': '1s2'}
         assert gen.species_problem('Ar(3P2)', 'Ars', records, species, paschen) is None
         assert gen.species_problem('Ar(3P1)', 'Ar(1s4)', records, species, paschen) is None

@@ -2,9 +2,9 @@
 # encoding: utf-8
 
 """
-Unit tests for the ``PlasmaArgon`` kinetics library (I-193, I-231).
+Unit tests for the ``PlasmaArgonLegacy`` kinetics library (I-193, I-231).
 
-``PlasmaArgon`` exists so a pure-argon deck need not load the whole ``PlasmaAir`` air
+``PlasmaArgonLegacy`` exists so a pure-argon deck need not load the whole ``PlasmaAir`` air
 library (33 species, 88 reactions) to reach the argon reactions the database holds.
 The library is DELIBERATELY small: electron-impact ionisation of neutral argon,
 ``Ar + e- => Arp + e- + e-``, the entry carried verbatim from ``PlasmaAir`` index 86;
@@ -43,7 +43,7 @@ import pytest
 
 from rmgpy import settings
 
-LIBRARY = 'PlasmaArgon'
+LIBRARY = 'PlasmaArgonLegacy'
 
 THIS_DATABASE = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir, 'input'))
 

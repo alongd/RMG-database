@@ -4,6 +4,15 @@
 name = "PlasmaExcitedNeutralThermo"
 shortDesc = u"Sourced gas-phase thermochemistry for electronically excited NEUTRAL species of plasma interest"
 longDesc = u"""
+CURRENT STATE RESOLUTION (2026-11-03)
+-------------------------------------
+The four 4s levels now have distinct electronicstate term/J tokens. The existing
+Ar(3P2) entry is tagged 3P2 without numerical changes; Ars in every kinetics
+library has that identity. Three other exact-state records are appended.
+The historical development notes below describe the original untagged entry;
+their old absence-of-chemistry statements are not the current library inventory.
+See input/eedf/README.md for current owners, loss gaps and Legacy migration.
+
 WHY THIS LIBRARY EXISTS
 -----------------------
 A low-pressure argon discharge keeps most of its non-ionising excited-state energy in the 4s
@@ -56,11 +65,10 @@ WHAT THE READER MUST NOT ASSUME
    the choice can be overruled from one read. An entry here that did not name its level would not
    be a sourced value; it would be an ambiguity with a number attached.
 
-2. **RMG cannot tell these states apart, and will not stop you conflating them.** There is exactly
-   one neutral bond-free ``p3`` argon adjacency list, so a second argon 4s level cannot be added
-   to this database as a second species without a structural distinction RMG does not have. If
-   some later ticket needs both metastables resolved, that is an engine problem, not a data
-   problem, and it must be raised as one.
+2. **Electronic-state identity is explicit.** The electronicstate term/J token now
+   distinguishes the four 4s levels. Ar(3P2) is the same 1s5 species as Ars in
+   all argon-consuming libraries; its original thermo coefficients are unchanged.
+   The three other 4s records below use the sourced level energy and 2J+1 entropy.
 
 3. **A species here is constructible, not present.** Nothing in this library puts anything into
    any reactor. The simulation input files in this campaign declare argon as ground state plus
@@ -128,6 +136,7 @@ entry(
     molecule =
 """
 multiplicity 3
+electronicstate 3P2
 1 Ar u2 p3 c0
 """,
     thermo = NASA(
@@ -1031,5 +1040,98 @@ STILL NOT IN ANY DECK, AND STILL WITHOUT PRODUCTION OR LOSS CHEMISTRY
     but its dictionary carries only ``Ar`` and ``Arp`` -- no metastable species and no metastable
     reaction. The simulation inputs in this campaign declare argon as ground state plus cation
     only and were not edited.
+""",
+)
+
+entry(
+    index = 1,
+    label = "Ar(1s4)",
+    molecule = """
+multiplicity 3
+electronicstate 3P1
+1 Ar u2 p3 c0
+""",
+    thermo = NASA(
+        polynomials = [NASAPolynomial(
+            coeffs = [2.5, 0, 0, 0, 0, 134140.66516453217, 5.47817106230514],
+            Tmin = (200, 'K'), Tmax = (6000, 'K'),
+        )],
+        Tmin = (200, 'K'), Tmax = (6000, 'K'),
+        Cp0 = (20.78618, 'J/(mol*K)'), CpInf = (20.78618, 'J/(mol*K)'),
+    ),
+    shortDesc = "Ar(1s4) 3P1, NIST ASD 93750.5978 cm^-1, g=3",
+    longDesc = """
+NIST ASD level data retrieved 2026-11-03; exact query, level ID and archive hash
+are in input/eedf/argon_radiative_data.yaml (ar-i-levels-ids).
+H298 = E(cm^-1)*100*h*c*N_A = 1121.5062041388783 kJ/mol;
+h=6.62607015e-34 J s, c=299792458 m/s, N_A=6.02214076e23 mol^-1 (exact SI).
+S298 = 154.845 + R_SI*ln(2J+1) = 163.97937080597478 J/(mol K),
+R_SI=1.380649e-23*6.02214076e23 J/(mol K).
+Ground reference: https://janaf.nist.gov/tables/Ar-001.html, 0.1 MPa.
+Constant Cp=2.5 R; coefficients use engine R=8.314472 J/(mol K):
+a6=H298/R-2.5*298.15, a7=S298/R-2.5*ln(298.15). No separately assigned E0.
+This represents one electronic level, not a thermal population over 4s states.
+""",
+)
+
+entry(
+    index = 2,
+    label = "Ar(1s3)",
+    molecule = """
+multiplicity 3
+electronicstate 3P0
+1 Ar u2 p3 c0
+""",
+    thermo = NASA(
+        polynomials = [NASAPolynomial(
+            coeffs = [2.5, 0, 0, 0, 0, 135296.09866696503, 4.379560013284255],
+            Tmin = (200, 'K'), Tmax = (6000, 'K'),
+        )],
+        Tmin = (200, 'K'), Tmax = (6000, 'K'),
+        Cp0 = (20.78618, 'J/(mol*K)'), CpInf = (20.78618, 'J/(mol*K)'),
+    ),
+    shortDesc = "Ar(1s3) 3P0, NIST ASD 94553.6652 cm^-1, g=1",
+    longDesc = """
+NIST ASD level data retrieved 2026-11-03; exact query, level ID and archive hash
+are in input/eedf/argon_radiative_data.yaml (ar-i-levels-ids).
+H298 = E(cm^-1)*100*h*c*N_A = 1131.1130236427182 kJ/mol;
+h=6.62607015e-34 J s, c=299792458 m/s, N_A=6.02214076e23 mol^-1 (exact SI).
+S298 = 154.845 + R_SI*ln(2J+1) = 154.845 J/(mol K),
+R_SI=1.380649e-23*6.02214076e23 J/(mol K).
+Ground reference: https://janaf.nist.gov/tables/Ar-001.html, 0.1 MPa.
+Constant Cp=2.5 R; coefficients use engine R=8.314472 J/(mol K):
+a6=H298/R-2.5*298.15, a7=S298/R-2.5*ln(298.15). No separately assigned E0.
+This represents one electronic level, not a thermal population over 4s states.
+""",
+)
+
+entry(
+    index = 3,
+    label = "Ar(1s2)",
+    molecule = """
+multiplicity 1
+electronicstate 1P1
+1 Ar u0 p4 c0
+""",
+    thermo = NASA(
+        polynomials = [NASAPolynomial(
+            coeffs = [2.5, 0, 0, 0, 0, 136513.53618897, 5.47817106230514],
+            Tmin = (200, 'K'), Tmax = (6000, 'K'),
+        )],
+        Tmin = (200, 'K'), Tmax = (6000, 'K'),
+        Cp0 = (20.78618, 'J/(mol*K)'), CpInf = (20.78618, 'J/(mol*K)'),
+    ),
+    shortDesc = "Ar(1s2) 1P1, NIST ASD 95399.8276 cm^-1, g=3",
+    longDesc = """
+NIST ASD level data retrieved 2026-11-03; exact query, level ID and archive hash
+are in input/eedf/argon_radiative_data.yaml (ar-i-levels-ids).
+H298 = E(cm^-1)*100*h*c*N_A = 1141.2353738311779 kJ/mol;
+h=6.62607015e-34 J s, c=299792458 m/s, N_A=6.02214076e23 mol^-1 (exact SI).
+S298 = 154.845 + R_SI*ln(2J+1) = 163.97937080597478 J/(mol K),
+R_SI=1.380649e-23*6.02214076e23 J/(mol K).
+Ground reference: https://janaf.nist.gov/tables/Ar-001.html, 0.1 MPa.
+Constant Cp=2.5 R; coefficients use engine R=8.314472 J/(mol K):
+a6=H298/R-2.5*298.15, a7=S298/R-2.5*ln(298.15). No separately assigned E0.
+This represents one electronic level, not a thermal population over 4s states.
 """,
 )

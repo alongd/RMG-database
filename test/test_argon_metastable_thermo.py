@@ -121,7 +121,7 @@ ENTERED_S298 = 168.227        # J/(mol*K)
 ENTERED_CP = 20.786           # J/(mol*K)
 
 AR = '1 Ar u0 p4 c0\n'
-AR_META = 'multiplicity 3\n1 Ar u2 p3 c0\n'
+AR_META = 'multiplicity 3\nelectronicstate 3P2\n1 Ar u2 p3 c0\n'
 ARP = 'multiplicity 2\n1 Ar u1 p3 c+1\n'
 
 
@@ -424,8 +424,7 @@ def test_the_library_loads_alongside_every_other_thermo_library(thermo_db):
     assert LIBRARY in on_disk
     assert len(thermo_db.libraries) == len(on_disk), (
         sorted(on_disk - set(thermo_db.libraries)))
-    assert list(thermo_db.libraries[LIBRARY].entries) == [LABEL], (
-        'the library carries exactly one entry; a second one needs its own level named')
+    assert list(thermo_db.libraries[LIBRARY].entries) == [LABEL, 'Ar(1s4)', 'Ar(1s3)', 'Ar(1s2)']
 
 
 def test_the_species_perceives_as_ar0e(pinned):
@@ -456,16 +455,10 @@ def test_thermo_comes_from_this_entry_and_not_from_an_estimator(thermo_db):
 
 
 def test_without_this_library_the_species_cannot_exist_at_all(estimator_only):
-    """Why the entry is load-bearing rather than decorative. Group additivity tries HBI,
-    saturates the two radicals into an ``ArH2`` that has no atom type, and raises. That
-    is a LOUD failure, which is the good kind - nothing is silently fabricated - but it
-    is still a failure, and it is the one this library removes.
-
-    Pinned as it is, not fixed: making group additivity answer for metastable argon would
-    be inventing a number, which this database's plasma libraries forbid."""
-    with pytest.raises(NO_NUMBER) as excinfo:
+    """A tagged state without exact library data refuses before any thermo estimate."""
+    from rmgpy.exceptions import ExcitedSpeciesThermoError
+    with pytest.raises(ExcitedSpeciesThermoError, match='Library-only thermochemistry'):
         estimator_only.get_thermo_data(_species(AR_META, 'Ar(3P2)'))
-    assert 'Ar' in str(excinfo.value) and '3 lone pairs' in str(excinfo.value)
 
 
 # =====================================================================================
@@ -937,7 +930,13 @@ def test_the_only_kinetics_files_that_MENTION_the_metastable_are_the_containment
     expected = sorted(
         ('kinetics/families/%s/groups.py' % family, '1 %s Ar u2 p3 c0' % label)
         for family, label in CONTAINED_FAMILIES.items())
-    expected = sorted(expected + [('kinetics/libraries/PlasmaArgon/dictionary.txt',
+    expected = sorted(expected + [('kinetics/libraries/PlasmaArgonLegacy/dictionary.txt',
+                                   '1 Ar u2 p3 c0'),
+                                  ('kinetics/libraries/PlasmaArgon/dictionary.txt',
+                                   '1 Ar u2 p3 c0'),
+                                  ('kinetics/libraries/PlasmaArgon/dictionary.txt',
+                                   '1 Ar u2 p3 c0'),
+                                  ('kinetics/libraries/PlasmaArgon/dictionary.txt',
                                    '1 Ar u2 p3 c0'),
                                   ('kinetics/libraries/PlasmaArgonDimer/dictionary.txt',
                                    '1 Ar u2 p3 c0'),

@@ -238,6 +238,7 @@ entry(
     molecule = 
 """
 multiplicity 3
+electronicstate 3P2
 1 Ar u2 p3 c0
 """,
     transport = TransportData(
@@ -275,5 +276,83 @@ Why this entry exists: without a library hit, get_transport_properties falls bac
 additivity, which saturates the u2 biradical with hydrogen to give ArH2. No atom type exists
 for that, so the Chemkin export (render_transport_file) aborts with an AtomTypeError. A library
 hit stops the lookup before group estimation runs.
+""",
+)
+
+entry(
+    index = 13,
+    label = "Ar(1s4)",
+    molecule =
+"""
+multiplicity 3
+electronicstate 3P1
+1 Ar u2 p3 c0
+""",
+    transport = TransportData(
+        shapeIndex = 0,
+        epsilon = (1134.93,'J/mol'),
+        sigma = (3.33,'angstroms'),
+        dipoleMoment = (0,'C*m'),
+        polarizability = (1.64,'angstroms^3'),
+        rotrelaxcollnum = 0.0,
+    ),
+    shortDesc = "Ground-state argon transport proxy for an explicit 4s state",
+    longDesc = """Same documented proxy as Ar(3P2), index 12: GRI-Mech 3.0 AR
+tran.dat (epsilon/k=136.500 K, sigma=3.330 Angstrom), CRC Handbook Atomic and
+Molecular Polarizabilities (ground Ar 1.6411 Angstrom^3, rounded to 1.64).
+Not measured state-resolved diffusion or excited-state polarizability.
+No electron-collision cross sections are changed by this transport proxy.
+""",
+)
+
+entry(
+    index = 14,
+    label = "Ar(1s3)",
+    molecule =
+"""
+multiplicity 3
+electronicstate 3P0
+1 Ar u2 p3 c0
+""",
+    transport = TransportData(
+        shapeIndex = 0,
+        epsilon = (1134.93,'J/mol'),
+        sigma = (3.33,'angstroms'),
+        dipoleMoment = (0,'C*m'),
+        polarizability = (1.64,'angstroms^3'),
+        rotrelaxcollnum = 0.0,
+    ),
+    shortDesc = "Ground-state argon transport proxy for an explicit 4s state",
+    longDesc = """Same documented proxy as Ar(3P2), index 12: GRI-Mech 3.0 AR
+tran.dat (epsilon/k=136.500 K, sigma=3.330 Angstrom), CRC Handbook Atomic and
+Molecular Polarizabilities (ground Ar 1.6411 Angstrom^3, rounded to 1.64).
+Not measured state-resolved diffusion or excited-state polarizability.
+No electron-collision cross sections are changed by this transport proxy.
+""",
+)
+
+entry(
+    index = 15,
+    label = "Ar(1s2)",
+    molecule =
+"""
+multiplicity 1
+electronicstate 1P1
+1 Ar u0 p4 c0
+""",
+    transport = TransportData(
+        shapeIndex = 0,
+        epsilon = (1134.93,'J/mol'),
+        sigma = (3.33,'angstroms'),
+        dipoleMoment = (0,'C*m'),
+        polarizability = (1.64,'angstroms^3'),
+        rotrelaxcollnum = 0.0,
+    ),
+    shortDesc = "Ground-state argon transport proxy for an explicit 4s state",
+    longDesc = """Same documented proxy as Ar(3P2), index 12: GRI-Mech 3.0 AR
+tran.dat (epsilon/k=136.500 K, sigma=3.330 Angstrom), CRC Handbook Atomic and
+Molecular Polarizabilities (ground Ar 1.6411 Angstrom^3, rounded to 1.64).
+Not measured state-resolved diffusion or excited-state polarizability.
+No electron-collision cross sections are changed by this transport proxy.
 """,
 )

@@ -28,7 +28,7 @@ NA = 6.02214076e23
 INDICES = (31, 32, 33, 34, 38, 39, 40, 41, 42, 52, 58, 67, 80, 81, 101, 102, 103, 104, 105)
 LIMITS = {'[Op]': (2.5, 2.5), '[O2p]': (3.5, 4.5), '[Om]': (2.5, 2.5),
           '[O2m]': (3.5, 4.5), '[O3m]': (4, 7)}
-LIBRARY_ORDERS = tuple(itertools.permutations(('PlasmaArgon', 'PlasmaAir', 'PlasmaOxygenHeavy')))
+LIBRARY_ORDERS = tuple(itertools.permutations(('PlasmaArgonLegacy', 'PlasmaAir', 'PlasmaOxygenHeavy')))
 FOCAL_CHANNELS = (('PlasmaOxygenHeavy', 33), ('PlasmaAir', 55))
 O3_GRID = (298., 298.15, 300., *range(350, 1001, 50))
 
@@ -43,7 +43,7 @@ def database():
         db.load(str(ROOT / 'input'),
                 thermo_libraries=['PlasmaThermo', 'primaryThermoLibrary', 'electrocatThermo',
                                   'PlasmaExcitedNeutralThermo'],
-                reaction_libraries=['PlasmaOxygenHeavy', 'PlasmaArgon', 'PlasmaAir'],
+                reaction_libraries=['PlasmaOxygenHeavy', 'PlasmaArgonLegacy', 'PlasmaAir'],
                 kinetics_families='none', kinetics_depositories=[], seed_mechanisms=[],
                 transport_libraries=[], depository=False, solvation=False, surface=False)
         yield db
@@ -390,9 +390,9 @@ def test_combined_library_admission_has_one_electron_and_reactor_accepts_it(data
     # The existing same-library excitation and two effective loss channels
     # survive independently with their own kinetics; no reverse substitution.
     for index in (87, 89, 91):
-        matched = [r for r in model.new_reaction_list if (r.library, r.entry.index) == ('PlasmaArgon', index)]
+        matched = [r for r in model.new_reaction_list if (r.library, r.entry.index) == ('PlasmaArgonLegacy', index)]
         assert len(matched) == 1
-        source = database.kinetics.libraries['PlasmaArgon'].entries[index]
+        source = database.kinetics.libraries['PlasmaArgonLegacy'].entries[index]
         assert matched[0].kinetics is source.data
         assert matched[0].is_isomorphic(source.item, either_direction=False)
     initialize_admitted_detachment_reactor(model, electron, reactions)
@@ -403,7 +403,7 @@ def state_references():
     loader = Database()
     base = ROOT/'input/kinetics/libraries'
     air = loader.get_species(str(base/'PlasmaAir/dictionary.txt'), resonance=False)
-    argon = loader.get_species(str(base/'PlasmaArgon/dictionary.txt'), resonance=False)
+    argon = loader.get_species(str(base/'PlasmaArgonLegacy/dictionary.txt'), resonance=False)
     expected = {key: air[key].molecule[0] for key in ('O', 'O-', 'O2', 'O2p', 'O2-', 'O3')}
     expected['O2a'] = air['O2s'].molecule[0]
     expected.update({key: argon[key].molecule[0] for key in ('Ar', 'Arp', 'Ars')})
@@ -543,10 +543,11 @@ def test_three_body_collider_is_explicit_and_is_oxygen(database):
     assert not any('Arp' in e.label and 'O-' in e.label for e in library.entries.values())
 
 
-def test_argon_channels_state_the_3p2_thermo_proxy_for_the_kinetic_lump(database):
+def test_argon_channels_apply_the_unchanged_lumped_rate_to_1s5_only(database):
     library = database.kinetics.libraries['PlasmaOxygenHeavy']
     for index in (103, 104, 105):
         entry = library.entries[index]
         assert '3P2 (Paschen 1s5)' in entry.long_desc
-        assert '1s3 is 3P0' in entry.long_desc
+        assert '3P0 (1s3) species is not consumed' in entry.long_desc
+        assert 'now applies to 1s5 only' in entry.long_desc
         assert 'mapping assumption' in entry.long_desc

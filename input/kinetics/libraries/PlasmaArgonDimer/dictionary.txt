@@ -11,6 +11,7 @@ multiplicity 2
 
 Ars
 multiplicity 3
+electronicstate 3P2
 1 Ar u2 p3 c0
 
 e-

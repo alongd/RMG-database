@@ -33,7 +33,7 @@ LIBRARY = 'PrimaryTransportLibrary'
 LABEL = 'Ar(3P2)'
 
 AR = '1 Ar u0 p4 c0\n'
-AR_META = 'multiplicity 3\n1 Ar u2 p3 c0\n'
+AR_META = 'multiplicity 3\nelectronicstate 3P2\n1 Ar u2 p3 c0\n'
 
 
 def _species(adjacency_list):

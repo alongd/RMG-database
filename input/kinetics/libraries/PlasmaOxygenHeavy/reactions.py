@@ -4,6 +4,10 @@
 name = "PlasmaOxygenHeavy"
 shortDesc = u"Sourced oxygen-ion heavy-particle chemistry; grades stated per entry"
 longDesc = u"""
+STATE RESOLUTION: Ars is explicitly Ar(1s5), electronicstate 3P2, shared with
+PlasmaArgon:87. The original lumped 3P2+3P0 rates retain their numerics but
+now apply to 1s5 only. They provide no production or loss for separate 1s3.
+
 Oxygen-ion charge transfer, mutual neutralisation and detachment; no electron-impact
 rates. This is a partial library with P, A and explicitly retained S provenance.
 Sources are transcribed without a new fit, averaging, or an Ar-for-O2 collider estimate.
@@ -418,11 +422,10 @@ VALUE, SOURCE, LOCATION AND GRADE
     k = 1.21e-17 m3/s, no temperature dependence given in the source.
     No independent validity interval is claimed. Product labels retain the
     source's chemical-state lumping; no additional excited oxygen state.
-    Ars uses the existing triplet graph and the PlasmaExcitedNeutralThermo
-    3P2 (Paschen 1s5) thermo as a proxy for the published kinetic 1s5/1s3
-    lump. This is an explicit mapping assumption: 1s3 is 3P0 and is not
-    represented by that thermo. No population weighting or separate 1s3
-    enthalpy is inferred. The rates cannot resolve individual 1s5/1s3 states.
+    Ars is explicitly electronicstate 3P2 (Paschen 1s5), with unchanged
+    PlasmaExcitedNeutralThermo numerics. This source's lumped 1s5/1s3 rate
+    now applies to 1s5 only, as an explicit mapping assumption. The separate
+    3P0 (1s3) species is not consumed and no population weighting is inferred.
 
 ENCODING
     Particle-based m3/s -> cm3/(mol*s) multiplies by NA*1e6, with
@@ -454,11 +457,10 @@ VALUE, SOURCE, LOCATION AND GRADE
     k = 1.12e-15 m3/s, no temperature dependence given in the source.
     No independent validity interval is claimed. Product labels retain the
     source's chemical-state lumping; no additional excited oxygen state.
-    Ars uses the existing triplet graph and the PlasmaExcitedNeutralThermo
-    3P2 (Paschen 1s5) thermo as a proxy for the published kinetic 1s5/1s3
-    lump. This is an explicit mapping assumption: 1s3 is 3P0 and is not
-    represented by that thermo. No population weighting or separate 1s3
-    enthalpy is inferred. The rates cannot resolve individual 1s5/1s3 states.
+    Ars is explicitly electronicstate 3P2 (Paschen 1s5), with unchanged
+    PlasmaExcitedNeutralThermo numerics. This source's lumped 1s5/1s3 rate
+    now applies to 1s5 only, as an explicit mapping assumption. The separate
+    3P0 (1s3) species is not consumed and no population weighting is inferred.
 
 ENCODING
     Particle-based m3/s -> cm3/(mol*s) multiplies by NA*1e6, with
@@ -490,11 +492,10 @@ VALUE, SOURCE, LOCATION AND GRADE
     k = 5.8e-17 m3/s, no temperature dependence given in the source.
     No independent validity interval is claimed. Product labels retain the
     source's chemical-state lumping; no additional excited oxygen state.
-    Ars uses the existing triplet graph and the PlasmaExcitedNeutralThermo
-    3P2 (Paschen 1s5) thermo as a proxy for the published kinetic 1s5/1s3
-    lump. This is an explicit mapping assumption: 1s3 is 3P0 and is not
-    represented by that thermo. No population weighting or separate 1s3
-    enthalpy is inferred. The rates cannot resolve individual 1s5/1s3 states.
+    Ars is explicitly electronicstate 3P2 (Paschen 1s5), with unchanged
+    PlasmaExcitedNeutralThermo numerics. This source's lumped 1s5/1s3 rate
+    now applies to 1s5 only, as an explicit mapping assumption. The separate
+    3P0 (1s3) species is not consumed and no population weighting is inferred.
 
 ENCODING
     Particle-based m3/s -> cm3/(mol*s) multiplies by NA*1e6, with
@@ -526,11 +527,10 @@ VALUE, SOURCE, LOCATION AND GRADE
     k = 8.1e-18 m3/s, no temperature dependence given in the source.
     No independent validity interval is claimed. Product labels retain the
     source's chemical-state lumping; no additional excited oxygen state.
-    Ars uses the existing triplet graph and the PlasmaExcitedNeutralThermo
-    3P2 (Paschen 1s5) thermo as a proxy for the published kinetic 1s5/1s3
-    lump. This is an explicit mapping assumption: 1s3 is 3P0 and is not
-    represented by that thermo. No population weighting or separate 1s3
-    enthalpy is inferred. The rates cannot resolve individual 1s5/1s3 states.
+    Ars is explicitly electronicstate 3P2 (Paschen 1s5), with unchanged
+    PlasmaExcitedNeutralThermo numerics. This source's lumped 1s5/1s3 rate
+    now applies to 1s5 only, as an explicit mapping assumption. The separate
+    3P0 (1s3) species is not consumed and no population weighting is inferred.
 
 ENCODING
     Particle-based m3/s -> cm3/(mol*s) multiplies by NA*1e6, with

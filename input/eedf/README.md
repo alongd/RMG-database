@@ -1,3 +1,60 @@
+# Argon EEDF database tranche A
+
+**PlasmaArgon remains unrunnable for reacting EEDF.** It now owns the four distinct
+4s excitations (channels 2→87, 3→94, 4→95, 5→96) and ground ionisation (39→86),
+all with EEDFChannel markers for IST-Lisbon-Ar-2021. The pure-Ar converter still
+refuses exactly channels 6–38 (33 missing owners), with no shared owners.
+No channel class, threshold, collision ID or cross-section hash has changed.
+Cascade execution and Holstein–Walsh trapped decay require separate engine work.
+
+Ars is explicitly electronicstate 3P2 (1s5) in PlasmaArgon, PlasmaArgonLegacy,
+PlasmaArgonDimer and PlasmaOxygenHeavy, with the existing 1s5 thermo and transport
+numbers unchanged. The latter libraries' historical 3P2+3P0 lumped rates retain
+their numerical laws but now apply to **1s5 only**; no rate is silently copied to
+1s3. The other three 4s levels are separate species with exact-state thermo and
+explicit ground-argon transport proxies.
+
+| New state | Loss processes absent in this tranche |
+|---|---|
+| Ar(1s4), 3P1 | radiative/trapped decay; quenching; diffusion; mixing; stepwise ionisation; dimer formation |
+| Ar(1s3), 3P0 | radiative/trapped decay; quenching; diffusion; mixing; stepwise ionisation; dimer formation |
+| Ar(1s2), 1P1 | radiative/trapped decay; quenching; diffusion; mixing; stepwise ionisation; dimer formation |
+
+The metastable 1s3 has no allowed E1 resonance decay; the table records absent
+loss implementations, not an assertion that it has an E1 decay to ground.
+
+## Historical Maxwellian decks
+
+Exact one-line migration: **replace `PlasmaArgon` with `PlasmaArgonLegacy` in
+`reactionLibraries` and every `electronEnergies`/source key (`PlasmaArgon:<n>` →
+`PlasmaArgonLegacy:<n>`), leaving all numerical inputs unchanged.**
+
+All eight old laws (86–93), their directions and duplicate flags are preserved.
+The four historical database-owned input decks use this name. Existing external
+and archived decks are not rewritten. An unchanged Maxwellian deck that loads
+PlasmaArgon now refuses with `EEDFChannel ... has no active provider mapping`.
+Old tables retain their old map/reaction fingerprint and must not be relabelled
+as current tables. Loading both law sets is not a migration.
+
+## Sourced radiative data
+
+`argon_radiative_data.yaml` schema version 1 contains four 1s and ten 2p levels,
+30 possible outgoing E1 transitions, per-row query citations, retrieval dates,
+raw SHA-256 values and bibliography. Einstein A values are in s^-1; null means
+missing, never zero. Independent delta-J/parity enumeration gates completeness.
+`python scripts/gen_argon_cascades.py` regenerates `argon_cascade_yields.yaml`;
+`--check` verifies byte-identical output against the source digest.
+
+The generated schema has `radiative_model: E1`, a source digest and channel
+records keyed by frozen ID, exact process and threshold. Nine records have
+`status: complete_for_E1` with four product yields summing to one. Channel 11
+(2p5) has `status: unresolved`, `product_yields: null` and the missing
+018001.000011→018001.000005 (2p5→1s2) transition. A request through
+`require_yields` refuses it. No supplemental value is adopted. Channels 16–38
+also remain unresolved; partial A matrices and unsourced blend populations
+are not normalized. Higher multipoles are outside this E1 model. These files
+are data for future engine work; no cascade reactions are generated here.
+
 # Electron-collision channel maps for the LoKI-B electron kinetics
 
 This directory holds frozen channel maps: one entry per electron collision that LoKI-B solves, each
@@ -102,8 +159,8 @@ reference and library alike, is also held to the LoKI-B state it stands for, so 
 wrong into both, or the reference of a level the library lacks, is caught too: an electronic-state label
 must be that state's LS term (`1S0` for the ground state, `3P2` for `Ars`, `1P1` for `Ar(1s2)`) and is
 refused on a state with none (the ion), an argon atom or the electron has no vibrational level, metal or
-facet, and the electron is a doublet; a field RMG leaves at its default says nothing. A reference
-without a state field is an unresolved record, as the library's are. A 4s level the library lacks must
+facet, and the electron is a doublet. All four 4s records require their explicit
+term/J token; an absent token is refused. A 4s level the library lacks must
 carry the canonical name `Ar(<Paschen name>)`, such as `Ar(1s4)`. A species that holds several 4s levels
 stands for the lowest one; the others are `present_lumped` or `lumped_internal`.
 

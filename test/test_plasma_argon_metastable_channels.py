@@ -2,7 +2,7 @@
 # encoding: utf-8
 
 """
-Unit tests for the metastable-argon channels of ``PlasmaArgon`` (I-232).
+Unit tests for the metastable-argon channels of ``PlasmaArgonLegacy`` (I-232).
 
 Six loss channels of ``Ars`` (the 4s metastable group) were appended at indices 88-93:
 
@@ -44,7 +44,7 @@ import pytest
 
 from rmgpy import settings
 
-LIBRARY = 'PlasmaArgon'
+LIBRARY = 'PlasmaArgonLegacy'
 
 THIS_DATABASE = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir, 'input'))
 

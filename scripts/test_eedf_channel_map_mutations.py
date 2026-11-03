@@ -332,13 +332,13 @@ def empty_collections(doc):
 
 
 def gap_wrong_reaction(doc):
-    doc['class_a_gaps'] = {('[absent] Xe + e- => Kr + e-' if k == '[absent] Ar + e- => Ar(1s4) + e-' else k): v
+    doc['class_a_gaps'] = {('[absent] Xe + e- => Kr + e-' if k == '[absent] Ar + e- => Ar(1s_i) + e- + hv (radiative cascade via 4p)' else k): v
                            for k, v in doc['class_a_gaps'].items()}
 
 
 def absent_declared_present(doc):
-    channel(doc, 3)['rmg']['status'] = 'present'
-    del doc['class_a_gaps']['[absent] Ar + e- => Ar(1s4) + e-']
+    channel(doc, 6)['rmg']['status'] = 'present'
+    del doc['class_a_gaps']['[absent] Ar + e- => Ar(1s_i) + e- + hv (radiative cascade via 4p)']
 
 
 def ionization_to_excitation(doc):
@@ -405,7 +405,7 @@ def library_entry_87(database):
 
 
 def disable_library_entry(database):
-    """Keep entry 87 as text inside a string, as one keeps an entry out of a library: RMG then loads 86, 88-93."""
+    """Keep entry 87 as text inside a string, as one keeps an entry out of a library: RMG then loads 86, 94-96."""
     path, before, entry, after = library_entry_87(database)
     quotes = "'" * 3
     open(path, 'w', encoding='utf-8').write(before + quotes + '\n' + entry + quotes + '\n' + after)
@@ -507,8 +507,13 @@ LIBRARY_TEXT_EDITS = [
 
 # A missing 4s level added as a two-atom record, an atom copied once too often (db-r53)
 DIMER_RESONANCE = '\n\nAr(1s2)\nmultiplicity 1\n1 Ar u0 p4 c0\n2 Ar u0 p4 c0\n'
-DIMER_REFUSED = "species Ar(1s2): the record RMG loads is not the overlay's reference (structure: RMG loads Ar2, the " \
-    "reference Ar)"
+def replace_resonance(text, record):
+    """Replace the now-present 1s2 record for a dictionary mutation."""
+    return re.sub(r'(?m)^Ar\(1s2\)\n(?:(?!\n).+\n?)+', '', text).rstrip() + record + '\n'
+
+
+DIMER_REFUSED = "Reaction Ar + e- => Ar(1s2) + e- in kinetics library PlasmaArgon was not balanced"
+
 # Entry 87's index as a value RMG keeps as the entry's key but that is no index (db-r53)
 BAD_INDICES = [('none', 'None', 'index None is'), ('nonnumeric', '"eighty-seven"', "index 'eighty-seven' is"),
                ('empty', '""', "index '' is"), ('integer_string', '"87"', "index '87' is")]
@@ -521,10 +526,10 @@ IDENTITY_EDITS = [
      "species Ar: the record RMG loads is not the overlay's reference (electronic_state '1P1', the reference ''"),
     ('dictionary_ground_electronic_state_3P2', ('Ar\n1 Ar', 'Ar\nelectronicstate 3P2\n1 Ar'),
      "species Ar: the record RMG loads is not the overlay's reference (electronic_state '3P2', the reference ''"),
-    ('dictionary_metastable_electronic_state_3P1', ('multiplicity 3\n', 'multiplicity 3\nelectronicstate 3P1\n'),
-     "species Ars: the record RMG loads is not the overlay's reference (electronic_state '3P1', the reference ''"),
-    ('dictionary_metastable_electronic_state_1S0', ('multiplicity 3\n', 'multiplicity 3\nelectronicstate 1S0\n'),
-     "species Ars: the record RMG loads is not the overlay's reference (electronic_state '1S0', the reference ''"),
+    ('dictionary_metastable_electronic_state_3P1', ('electronicstate 3P2\n', 'electronicstate 3P1\n'),
+     "Unexpected duplicate reaction Ar + e- => Ars + e- in kinetics library PlasmaArgon"),
+    ('dictionary_metastable_electronic_state_1S0', ('electronicstate 3P2\n', 'electronicstate 1S0\n'),
+     "species Ars: the record RMG loads is not the overlay's reference (electronic_state '1S0', the reference '3P2'"),
     ('dictionary_ground_vibrational_level_1', ('Ar\n1 Ar', 'Ar\nvibrationallevel 1\n1 Ar'),
      "species Ar: the record RMG loads is not the overlay's reference (vibrational_level 1, the reference -1"),
     ('dictionary_ground_metal_Pt', ('Ar\n1 Ar', 'Ar\nmetal Pt\n1 Ar'),
@@ -540,13 +545,11 @@ LABEL_SPACED = ('label = "Ar + e- => Ars + e-",', 'label = "Ar  + e- => Ars + e-
 # A reference record's or a dictionary record's own state fields contradicting the LoKI-B state it stands for
 # (db-r55): the case name, the edit of the overlay's text, the edit of the dictionary's (the same wrong field
 # copied into both), and what the refusal names (the record and the field)
-GROUND_REF, ARS_REF, ELECTRON_REF = '  Ar: |\n    1 Ar', '  Ars: |\n    multiplicity 3\n', '    1 e u1 p0 c-1'
+GROUND_REF, ARS_REF, ELECTRON_REF = '  Ar: |\n    1 Ar', '  Ars: |\n    multiplicity 3\n    electronicstate 3P2\n', '    1 e u1 p0 c-1'
 STATE_EDITS = [
-    ('absent_1s2_reference_ground', ('  Ar(1s2): |\n    multiplicity 1\n',
-                                     '  Ar(1s2): |\n    multiplicity 1\n    electronicstate 1S0\n'), None,
+    ('absent_1s2_reference_ground', ('electronicstate 1P1', 'electronicstate 1S0'), None,
      "species Ar(1s2): its reference record has electronic_state '1S0', but it stands for Ar(1P1), the term 1P1"),
-    ('absent_1s4_reference_3P2', ('  Ar(1s4): |\n    multiplicity 3\n',
-                                  '  Ar(1s4): |\n    multiplicity 3\n    electronicstate 3P2\n'), None,
+    ('absent_1s4_reference_3P2', ('electronicstate 3P1', 'electronicstate 3P2'), None,
      "species Ar(1s4): its reference record has electronic_state '3P2', but it stands for Ar(3P1), the term 3P1"),
     ('absent_1s2_reference_vibrational_level_1', ('  Ar(1s2): |\n    multiplicity 1\n',
                                                   '  Ar(1s2): |\n    multiplicity 1\n    vibrationallevel 1\n'),
@@ -557,9 +560,9 @@ STATE_EDITS = [
     ('copied_ground_electronic_state_1P1', (GROUND_REF, '  Ar: |\n    electronicstate 1P1\n    1 Ar'),
      ('Ar\n1 Ar', 'Ar\nelectronicstate 1P1\n1 Ar'),
      "species Ar: its reference record has electronic_state '1P1', but it stands for Ar(1S0), the term 1S0"),
-    ('copied_metastable_electronic_state_3P1', (ARS_REF, ARS_REF + '    electronicstate 3P1\n'),
-     ('multiplicity 3\n', 'multiplicity 3\nelectronicstate 3P1\n'),
-     "species Ars: the record PlasmaArgon loads has electronic_state '3P1', but it stands for Ar(3P2), the term 3P2"),
+    ('copied_metastable_electronic_state_3P1', (ARS_REF, ARS_REF.replace('3P2', '3P1')),
+     ('electronicstate 3P2\n', 'electronicstate 3P1\n'),
+     "Unexpected duplicate reaction Ar + e- => Ars + e- in kinetics library PlasmaArgon"),
     ('copied_ground_metal_Pt', (GROUND_REF, '  Ar: |\n    metal Pt\n    1 Ar'), ('Ar\n1 Ar', 'Ar\nmetal Pt\n1 Ar'),
      "species Ar: the record PlasmaArgon loads has metal 'Pt', but it stands for a free gas-phase atom"),
     ('copied_ground_vibrational_level_1', (GROUND_REF, '  Ar: |\n    vibrationallevel 1\n    1 Ar'),
@@ -581,29 +584,33 @@ STATE_CONTROLS = [
 NEAR = "holds the species of 'Ar + e- => Ars + e-' {}, so the reaction cannot be matched to it reliably"
 REVERSED_87 = "entry {} ('Ars + e- <=> Ar + e-') " + NEAR.format('the other way round')
 NEAR_EDITS = [
-    ('entry89_now_reversible', [('reversible', 89)], REVERSED_87.format(89)),
-    ('entry91_now_reversible', [('reversible', 91)], REVERSED_87.format(91)),
     ('exact_plus_reversible_copy', [('copy', 87)],
-     "entry 94 ('Ar + e- <=> Ars + e-') " + NEAR.format('as a reversible reaction')),
-    ('exact_plus_reversed_reversible_copy', [('copy', 89)], REVERSED_87.format(94)),
+     "entry 97 ('Ar + e- <=> Ars + e-') " + NEAR.format('as a reversible reaction')),
+    ('exact_plus_reversed_reversible_copy', [('reverse_copy', 87)], REVERSED_87.format(97)),
     ('only_87_reversible', [('reversible', 87)],
      "entry 87 ('Ar + e- <=> Ars + e-') " + NEAR.format('as a reversible reaction')),
-    ('exact_plus_same_copy', [('same', 87)], "holds 'Ar + e- => Ars + e-' as entries [87, 94]"),
+    ('exact_plus_same_copy', [('same', 87)], "holds 'Ar + e- => Ars + e-' as entries [87, 97]"),
 ]
 
 
 def entry_edit(edits):
     """Edit library entries as text: ('reversible', i) makes entry i reversible, arrow and attribute;
-    ('copy', i) adds a reversible copy of it as entry 94, ('same', i) an exact copy."""
+    ('copy', i) adds a reversible copy of it as entry 97, ('same', i) an exact copy."""
     def apply(text):
         for how, index in edits:
             block = re.search(r'entry\(\n    index = %d,\n.*?\n\)\n' % index, text, re.S).group()
             changed = block if how == 'same' else \
                 block.replace('reversible = False,', 'reversible = True,', 1).replace(' => ', ' <=> ', 1)
+            if how != 'reversible':
+                # Admit both entries past native duplicate policy to exercise map matching.
+                text = text.replace(block, block.replace('    reversible =', '    duplicate = True,\n    reversible =', 1), 1)
+                changed = changed.replace('    reversible =', '    duplicate = True,\n    reversible =', 1)
+            if how == 'reverse_copy':
+                changed = changed.replace('Ar + e- <=> Ars + e-', 'Ars + e- <=> Ar + e-')
             if how == 'reversible':
                 text = text.replace(block, changed, 1)
             else:
-                text = text.rstrip('\n') + '\n\n' + changed.replace(f'index = {index},', 'index = 94,', 1)
+                text = text.rstrip('\n') + '\n\n' + changed.replace(f'index = {index},', 'index = 97,', 1)
         return text
     return library_text('reactions.py', apply)
 
@@ -1048,9 +1055,9 @@ CASES += [case(name, 'db-r51 F1/F2', RMG_REFUSES + rmg, database=library_text(fi
 CASES += [
     case('dictionary_commented_triplet_resonance', 'db-r52 F1',
          "species Ar(1s2): the record RMG loads is not the overlay's reference (multiplicity 3, the reference 1",
-         database=library_text('dictionary.txt', lambda t: t + COMMENTED_RESONANCE[3])),
-    case('dictionary_commented_singlet_resonance', 'db-r52 F1', REGEN,
-         database=library_text('dictionary.txt', lambda t: t + COMMENTED_RESONANCE[1])),
+         database=library_text('dictionary.txt', lambda t: replace_resonance(t, COMMENTED_RESONANCE[3]))),
+    case('dictionary_commented_singlet_resonance', 'db-r52 F1', "electronic_state '', the reference '1P1'",
+         database=library_text('dictionary.txt', lambda t: replace_resonance(t, COMMENTED_RESONANCE[1]))),
     case('dictionary_labelled_atoms', 'db-r52 F1', 'PASS',
          database=library_text('dictionary.txt', lambda t: t.replace('1 Ar', '1 *1 Ar'))),
     case('overlay_class_invalid_date', 'db-r52 F3', "class '2026-02-30', but",
@@ -1061,9 +1068,9 @@ CASES += [
     # db-r53: an argon state is one argon atom; an index is a whole number; overlay text is valid Unicode
 CASES += [
     case('dictionary_dimer_resonance', 'db-r53 F1', DIMER_REFUSED,
-         database=library_text('dictionary.txt', lambda t: t + DIMER_RESONANCE)),
+         database=library_text('dictionary.txt', lambda t: replace_resonance(t, DIMER_RESONANCE))),
     case('dictionary_dimer_resonance_commented', 'db-r53 F1', DIMER_REFUSED,
-         database=library_text('dictionary.txt', lambda t: t + '\n\n// an extra atom' + DIMER_RESONANCE[1:])),
+         database=library_text('dictionary.txt', lambda t: replace_resonance(t, '\n\n// an extra atom' + DIMER_RESONANCE[1:]))),
 ] + [case(f'library_index_{name}', 'db-r53 F2',
           f"reactions.py: entry 'Ar + e- => Ars + e-': {expect} not a whole number",
           database=library_text('reactions.py', lambda t, v=value: t.replace('index = 87,', f'index = {v},', 1)))

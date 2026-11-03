@@ -572,7 +572,8 @@ def state_problems(molecule, state):
     """Why an RMG record's own state fields contradict what it stands for, as a list: a vibrational level, metal
     or facet on a free gas-phase atom or electron, an electron that is not a doublet, and, when it stands for a
     LoKI-B state (None for the electron), an electronic-state label that is not that state's LS term, or any
-    label on a state the source gives no term for. Fields RMG leaves at their defaults say nothing and pass."""
+    label on a state the source gives no term for. The four 4s levels require explicit term/J labels;
+    other default fields say nothing."""
     from rmgpy.molecule import Molecule
     blank, problems = Molecule(), []
     if state is None and molecule.multiplicity != 2:
@@ -582,7 +583,7 @@ def state_problems(molecule, state):
             problems.append(f'{field} {getattr(molecule, field)!r}, but it stands for a free gas-phase '
                             f'{"atom" if state else "electron"}, which has none')
     label = molecule.electronic_state
-    if state is not None and label != blank.electronic_state:
+    if state is not None and (label != blank.electronic_state or state in LEVELS_1S):
         term = re.fullmatch(r'[A-Z][a-z]?\((\d[SPDFG]\d)\)', state)
         if not term:
             problems.append(f'electronic_state {label!r}, but the source gives {state} no term to compare it with')

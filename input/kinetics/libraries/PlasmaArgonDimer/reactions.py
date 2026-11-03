@@ -4,6 +4,10 @@
 name = "PlasmaArgonDimer"
 shortDesc = u"Argon dimer-ion formation, dissociative recombination, and electron-impact dissociation"
 longDesc = u"""
+STATE RESOLUTION: Ars is explicitly Ar(1s5), electronicstate 3P2, shared with
+PlasmaArgon:87. The original lumped 3P2+3P0 rates retain their numerics but
+now apply to 1s5 only. They provide no production or loss for separate 1s3.
+
 The three shipped Ar2+ kinetics entries are isolated from PlasmaArgon so ordinary
 argon decks do not load dimer chemistry. Tg dependence above 298.15 K is UNSOURCED
 Tg DEPENDENCE: the conversion is an extrapolated law and the DR and DEI entries use

@@ -22,9 +22,12 @@ AVOGADRO_EV = constants.Na * constants.e
 
 
 def _local_root():
-    root = Path(os.environ.get('EEDF_DATA_ROOT', '/home/alon/Data/lxcat')).expanduser()
+    configured = os.environ.get('EEDF_DATA_ROOT')
+    if not configured:
+        pytest.skip('EEDF_DATA_ROOT unset; local LXCat source store unavailable')
+    root = Path(configured).expanduser()
     if not root.is_dir():
-        pytest.skip(f'local LXCat source store absent at {root}; source hash/coverage checks need it')
+        pytest.skip(f'EEDF_DATA_ROOT path absent at {root}; local LXCat source store unavailable')
     return root
 
 
@@ -184,8 +187,8 @@ def test_real_generator_k10_k29_digest_and_k30_refusal():
             by_k[29]['superelastic_channels'], by_k[29]['top_leak_records']) == (30,1335,1335,435,870)
     assert all(item['runtime_ready'] is False for item in by_k.values())
     assert all(item['runtime_requirements'] == [
-        'qualified EEDF hierarchical N2(X,v) selectors',
-        'coupling executes D6 regeneration before accepting a run'] for item in by_k.values())
+        'coupling automatically executes D6 regeneration before accepting a run',
+        'physical Ar+N2 arm qualification requires a channel map and owners; the converter currently accepts PlasmaArgon owners only'] for item in by_k.values())
     assert 'uncovered initial v=30' in result['K30_refusal']
     repeated = _load_check_module().check_ladder_inputs(_local_root())
     assert [item['sha256'] for item in result['ladders']] == [item['sha256'] for item in repeated['ladders']]

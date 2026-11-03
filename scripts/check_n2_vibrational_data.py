@@ -99,8 +99,8 @@ def check_ladder_inputs(data_root, K_values=(10, 29)):
 
     resolved = resolve_generator_manifest(data_root)
     expected_requirements = [
-        'qualified EEDF hierarchical N2(X,v) selectors',
-        'coupling executes D6 regeneration before accepting a run',
+        'coupling automatically executes D6 regeneration before accepting a run',
+        'physical Ar+N2 arm qualification requires a channel map and owners; the converter currently accepts PlasmaArgon owners only',
     ]
     results = []
     for K in K_values:

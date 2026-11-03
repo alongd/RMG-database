@@ -100,7 +100,7 @@ def check_ladder_inputs(data_root, K_values=(10, 29)):
     resolved = resolve_generator_manifest(data_root)
     expected_requirements = [
         'coupling automatically executes D6 regeneration before accepting a run',
-        'physical Ar+N2 arm qualification requires a channel map and owners; the converter currently accepts PlasmaArgon owners only',
+        'physical Ar+N2 arm qualification requires complete channel maps and class-A owners in their configured per-gas libraries',
     ]
     results = []
     for K in K_values:

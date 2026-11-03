@@ -188,7 +188,7 @@ def test_real_generator_k10_k29_digest_and_k30_refusal():
     assert all(item['runtime_ready'] is False for item in by_k.values())
     assert all(item['runtime_requirements'] == [
         'coupling automatically executes D6 regeneration before accepting a run',
-        'physical Ar+N2 arm qualification requires a channel map and owners; the converter currently accepts PlasmaArgon owners only'] for item in by_k.values())
+        'physical Ar+N2 arm qualification requires complete channel maps and class-A owners in their configured per-gas libraries'] for item in by_k.values())
     assert 'uncovered initial v=30' in result['K30_refusal']
     repeated = _load_check_module().check_ladder_inputs(_local_root())
     assert [item['sha256'] for item in result['ladders']] == [item['sha256'] for item in repeated['ladders']]

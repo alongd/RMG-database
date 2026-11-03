@@ -7,14 +7,14 @@ record_source:
   sha256: 20ba03b8068bfb01b33f17fdac3d3b7f56788a51812ae34aed577fd185df4dc8
   equations:
     9: "F(y) = y^2 integral_0^infinity exp(-x) cosech^2(y/sqrt(x)) dx"
-    10: "F(y) = 1/2 [3-exp(-2y/3)] exp(-2y/3), y < 21.622; (1/8) sqrt(pi/3) y^(7/3) exp(-3 y^(2/3)), y >= 21.622"
+    10: "F(y) = 1/2 [3-exp(-2y/3)] exp(-2y/3), y < 21.622; 8 sqrt(pi/3) y^(7/3) exp(-3 y^(2/3)), y >= 21.622"
     11: "Y_(v,v-1) = DeltaE_(v,v-1) * pi*L/hbar * sqrt(mu/(2*kB*Tg))"
-    12: "P_(v,v-1) = v * (1-chi_e)/(1-chi_e*v) * F(Y_(v,v-1))/F(Y_(1,0)) * P_(1,0)"
+    12: "P_(v,v-1) = v * (1-chi_e)/(1-chi_e*v) * F(Y_(v,v-1)) * P_(1,0); Eq. (20) supplies the prefactor P_(1,0), without division by F(Y_(1,0))"
     13: "P_(v,v-1)^(w-1,w) = Z * v/(1-chi_(e,A2)*v) * w/(1-chi_(e,B2)*w) * mu*kB*Tg/(8*L^2*mu_A2*omega_A2*mu_B2*omega_B2) * F(Y_(v,v-1)^(w-1,w))"
     14: "P_(v,v-1)^(w-1,w) = v*w * (1-chi_(e,A2))/(1-chi_(e,A2)*v) * (1-chi_(e,B2))/(1-chi_(e,B2)*w) * F(Y_(v,v-1)^(w-1,w))/F(Y_(1,0)^(0,1)) * P_(1,0)^(0,1)"
     15: "Y_(v,v-1)^(w-1,w) = |DeltaE_(v,v-1)^(w-1,w)| * pi*L/hbar * sqrt(mu/(2*kB*Tg))"
     20: "P_(1,0)^(N2-N2) = 1.07e-12 * Tg^(3/2) cm^3 s^-1"
-    21: "xi_VT(v) = 0.277*2*Tg - 80.32 + 35.5*((v-1)/39)^0.8"
+    21: "xi_VT(v) = 0.2772*Tg - 80.32 + 35.5*((v-1)/39)^0.8"
     22: "P_(1,0)^(0,1) = 6.35e-17 * Tg^(3/2) cm^3 s^-1"
     23: "xi_VV = 39.0625 - 1.5625*max(v,w) if max(v,w)<10; otherwise 25.2 + 24.1*((max(v,w)-10)/30)^3"
   constants:
@@ -35,8 +35,12 @@ record_source:
       partner_upper_w: [1, 45]
   uncertainty:
     vv_near_resonant: "Guerra 2019 states the near-resonant V-V values can be overestimated by factors 2-3 at 1000 K and up to about 7 at 2000 K versus semiclassical calculations; retained as stated uncertainty, not applied as a correction."
+  cross_check:
+    citation: "LoKI-GM, Code/RateCoeffFunctions/Nitrogen/nitrogenMolecularVT.m lines 54-65 and nitrogenMolecularVV.m lines 87-104 in LoKI_main.zip; implementation cross-check, not source of record."
+    vt_reading: "LoKI uses F(Y) times 1.07e-18*Tg^1.5 (m3/s) without F(Y_1,0) division and xi=0.2772*Tg-80.32+...; this confirms Eqs. (12), (20), and (21) reading."
+    vv_reading: "LoKI uses the deactivating v in xi_VV and the paper's strict v<10 boundary; in Eq. (14)'s convention v>=w, so max(v,w)=v."
   normalization:
-    vt: "Divide the Eq. (12) result by xi_VT(v) from Eq. (21), as specified in the text below Eq. (20)."
+    vt: "Divide the Eq. (12) prefactor-times-F result by xi_VT(v) from Eq. (21), as specified in the text below Eq. (20)."
     vv: "Divide the Eq. (14) result by xi_VV from Eq. (23), as specified in the text below Eq. (22)."
   gaps:
     - id: n2_ar_vt

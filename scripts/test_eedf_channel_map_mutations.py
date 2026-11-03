@@ -540,7 +540,7 @@ IDENTITY_EDITS = [
     ('dictionary_ground_electronic_state_3P2', ('Ar\n1 Ar', 'Ar\nelectronicstate 3P2\n1 Ar'),
      "species Ar: the record RMG loads is not the overlay's reference (electronic_state '3P2', the reference ''"),
     ('dictionary_metastable_electronic_state_3P1', ('electronicstate 3P2\n', 'electronicstate 3P1\n'),
-     "Unexpected duplicate reaction Ar + e- => Ars + e- in kinetics library PlasmaArgon"),
+     "species Ars: the record RMG loads is not the overlay's reference (electronic_state '3P1', the reference '3P2'"),
     ('dictionary_metastable_electronic_state_1S0', ('electronicstate 3P2\n', 'electronicstate 1S0\n'),
      "species Ars: the record RMG loads is not the overlay's reference (electronic_state '1S0', the reference '3P2'"),
     ('dictionary_ground_vibrational_level_1', ('Ar\n1 Ar', 'Ar\nvibrationallevel 1\n1 Ar'),

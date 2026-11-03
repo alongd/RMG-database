@@ -45,6 +45,7 @@ only when the store is named in the environment, and is skipped otherwise:
     EEDF_LOKI_RATES       optional: a LoKI-B rateCoefficients.txt solved on ar-v1
 """
 
+import ast
 import hashlib
 import inspect
 import json
@@ -63,6 +64,7 @@ MAP = os.path.join(DATABASE, 'eedf', 'argon_channel_map.yaml')
 OVERLAY = os.path.join(DATABASE, 'eedf', 'argon_channel_overlay.yaml')
 sys.path.insert(0, SCRIPTS)
 import gen_eedf_channel_map as gen  # noqa: E402
+import gen_argon_cascade_reactions as cascades  # noqa: E402
 import test_eedf_channel_map_mutations as mutations  # noqa: E402
 
 ASSEMBLED = os.environ.get('EEDF_LXCAT_ASSEMBLED')
@@ -181,11 +183,18 @@ def library_copy(tmp_path, edit=None):
     return str(database)
 
 
+CASCADE_INDICES = {
+    ast.literal_eval(keyword.value)
+    for node in ast.parse(cascades.render(cascades.YIELDS.read_bytes())).body
+    if isinstance(node, ast.Expr) and isinstance(node.value, ast.Call)
+    for keyword in node.value.keywords if keyword.arg == 'index'
+}
+LIBRARY_INDICES = {86, 87, 94, 95, 96} | CASCADE_INDICES
 LIBRARY_EDITS = [
-    (None, {86, 87, 94, 95, 96}),
-    (mutations.disable_library_entry, {86, 87, 94, 95, 96} - {87}),
-    (mutations.requote_library_label, {86, 87, 94, 95, 96}),
-    (mutations.label_before_index, {86, 87, 94, 95, 96}),
+    (None, LIBRARY_INDICES),
+    (mutations.disable_library_entry, LIBRARY_INDICES - {87}),
+    (mutations.requote_library_label, LIBRARY_INDICES),
+    (mutations.label_before_index, LIBRARY_INDICES),
 ]
 
 

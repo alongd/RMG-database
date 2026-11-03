@@ -78,6 +78,11 @@ No cross-section value is read into the map or printed.
 
 usage: gen_eedf_channel_map.py --overlay FILE --assembled DIR --source FILE [--source FILE ...]
                                [--database DIR] --output MAP
+
+NO metadata: gen_eedf_channel_map.py --gas no --overlay input/eedf/no_channel_overlay.yaml
+                                   --source /local/Hayashi.zip --output input/eedf/no_channel_map.yaml [--check]
+The opt-in NO path records Hayashi's lumped groups and the Report-10 energy budget;
+it neither assembles LoKI-B files nor creates tracked NO vibrational states.
 """
 
 import argparse
@@ -1891,8 +1896,10 @@ def unused_reason(b, src, family_use, development):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    parser.add_argument('--gas', choices=('ar', 'no'), default='ar', help='argon (default) or Hayashi NO metadata')
+    parser.add_argument('--check', action='store_true', help='require byte equality with --output; write nothing')
     parser.add_argument('--overlay', required=True, help='the hand-written overlay: class and RMG reaction per collision')
-    parser.add_argument('--assembled', required=True, help='directory holding the assembled LoKI-B files')
+    parser.add_argument('--assembled', help='directory holding the assembled LoKI-B files (required for argon)')
     parser.add_argument('--source', action='append', required=True,
                         help='a source LXCat file (repeatable): every file the set was built from or compared with')
     parser.add_argument('--database', default=os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'input'),
@@ -1900,8 +1907,18 @@ def main():
                              "script)")
     parser.add_argument('--output', required=True, help='where to write the map')
     args = parser.parse_args()
+    if args.gas == 'ar' and not args.assembled:
+        parser.error('--assembled is required for argon')
+    if args.gas == 'no' and (args.assembled or len(args.source) != 1):
+        parser.error('NO requires one --source Hayashi.zip and no --assembled')
     try:
-        text, problems, summary, _ = generate(args.overlay, args.assembled, args.source, args.database)
+        if args.gas == 'no':
+            from gen_no_eedf_channel_map import generate as generate_no
+            text, problems, summary, _ = generate_no(args.overlay, args.source[0], args.database)
+        else:
+            text, problems, summary, _ = generate(args.overlay, args.assembled, args.source, args.database)
+    except (ValueError, OSError) as exc:
+        text, problems, summary = None, [f'invalid input: {exc}'], ''
     except Exception as exc:  # a malformed input is a refusal with a reason, never a pass
         traceback.print_exc()
         text, problems, summary = None, [f'internal error {type(exc).__name__}: {exc}'], ''
@@ -1911,17 +1928,23 @@ def main():
                         + ('is a directory, not a file' if os.path.isdir(args.output) else f'no directory {folder}'))
     if not problems:
         try:
-            with open(args.output, 'w', newline='\n') as fh:
-                fh.write(text)
+            if args.check:
+                with open(args.output, 'rb') as fh:
+                    if fh.read() != text.encode('utf-8'):
+                        problems.append('the map differs from its regeneration')
+            else:
+                with open(args.output, 'w', encoding='utf-8', newline='\n') as fh:
+                    fh.write(text)
         except OSError as exc:
-            problems.append(f'--output {args.output}: cannot be written ({type(exc).__name__}: {exc.strerror})')
+            problems.append(f'--output {args.output}: cannot be '
+                            f'{"read" if args.check else "written"} ({type(exc).__name__}: {exc.strerror})')
     print(printable(summary))
     for p in problems:
         print('FAIL', printable(p))
     if problems:
         print(f'RESULT: FAIL ({len(problems)} problems; nothing written)')
         return 1
-    print(f'RESULT: written {args.output}')
+    print(f'RESULT: {"PASS (byte equality)" if args.check else "written"} {args.output}')
     return 0
 
 

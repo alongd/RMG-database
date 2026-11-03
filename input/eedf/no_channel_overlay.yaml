@@ -1,0 +1,40 @@
+# NO classes and species references; physical policy and reasons are generated.
+species:
+  'NO': |
+    multiplicity 2
+    1 N u1 p1 c0 {2,D}
+    2 O u0 p2 c0 {1,D}
+  N: |
+    multiplicity 4
+    1 N u3 p1 c0
+  O-: |
+    multiplicity 2
+    1 O u1 p3 c-1
+  NOp: |
+    1 N u0 p1 c0 {2,T}
+    2 O u0 p1 c+1 {1,T}
+  e-: |
+    1 e u1 p0 c-1
+collisions:
+  E + NO -> NO-, Attachment:
+    class: A
+    reaction: NO + e- => N + O-
+  E + NO -> E + NO, Effective:
+    class: B
+  E + NO -> E + NO(V1)(0.232eV), Excitation:
+    class: B
+  E + NO -> E + NO(V2)(0.455eV), Excitation:
+    class: B
+  E + NO -> E + NO(V3)(0.677eV), Excitation:
+    class: B
+  E + NO -> E + NO(V4)(0.896eV), Excitation:
+    class: B
+  E + NO -> E + NO(V5)(1.11eV), Excitation:
+    class: B
+  E + NO -> E + NO(e1)(5.45eV), Excitation:
+    class: B
+  E + NO -> E + NO(e2)(6.58eV), Excitation:
+    class: B
+  E + NO -> E + E + NO+, Ionization:
+    class: A
+    reaction: NO + e- => NOp + e- + e-

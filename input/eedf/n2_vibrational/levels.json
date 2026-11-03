@@ -1,0 +1,571 @@
+{
+  "electronic_state": "X1Sigma_g+",
+  "energy_unit": "eV",
+  "energy_zero": "v=0",
+  "levels": [
+    {
+      "energy_eV": 0.0,
+      "statistical_weight": 1,
+      "thermo_entry": "N2v0",
+      "v": 0
+    },
+    {
+      "energy_eV": 0.2886,
+      "statistical_weight": 1,
+      "thermo_entry": "N2v1",
+      "v": 1
+    },
+    {
+      "energy_eV": 0.5737,
+      "statistical_weight": 1,
+      "thermo_entry": "N2v2",
+      "v": 2
+    },
+    {
+      "energy_eV": 0.8553,
+      "statistical_weight": 1,
+      "thermo_entry": "N2v3",
+      "v": 3
+    },
+    {
+      "energy_eV": 1.1335,
+      "statistical_weight": 1,
+      "thermo_entry": "N2v4",
+      "v": 4
+    },
+    {
+      "energy_eV": 1.4082,
+      "statistical_weight": 1,
+      "thermo_entry": "N2v5",
+      "v": 5
+    },
+    {
+      "energy_eV": 1.6794,
+      "statistical_weight": 1,
+      "thermo_entry": "N2v6",
+      "v": 6
+    },
+    {
+      "energy_eV": 1.947,
+      "statistical_weight": 1,
+      "thermo_entry": "N2v7",
+      "v": 7
+    },
+    {
+      "energy_eV": 2.2111,
+      "statistical_weight": 1,
+      "thermo_entry": "N2v8",
+      "v": 8
+    },
+    {
+      "energy_eV": 2.4717,
+      "statistical_weight": 1,
+      "thermo_entry": "N2v9",
+      "v": 9
+    },
+    {
+      "energy_eV": 2.7287,
+      "statistical_weight": 1,
+      "thermo_entry": "N2v10",
+      "v": 10
+    },
+    {
+      "energy_eV": 2.9821,
+      "statistical_weight": 1,
+      "thermo_entry": "N2v11",
+      "v": 11
+    },
+    {
+      "energy_eV": 3.232,
+      "statistical_weight": 1,
+      "thermo_entry": "N2v12",
+      "v": 12
+    },
+    {
+      "energy_eV": 3.4782,
+      "statistical_weight": 1,
+      "thermo_entry": "N2v13",
+      "v": 13
+    },
+    {
+      "energy_eV": 3.7208,
+      "statistical_weight": 1,
+      "thermo_entry": "N2v14",
+      "v": 14
+    },
+    {
+      "energy_eV": 3.9598,
+      "statistical_weight": 1,
+      "thermo_entry": "N2v15",
+      "v": 15
+    },
+    {
+      "energy_eV": 4.1951,
+      "statistical_weight": 1,
+      "thermo_entry": "N2v16",
+      "v": 16
+    },
+    {
+      "energy_eV": 4.4268,
+      "statistical_weight": 1,
+      "thermo_entry": "N2v17",
+      "v": 17
+    },
+    {
+      "energy_eV": 4.6547,
+      "statistical_weight": 1,
+      "thermo_entry": "N2v18",
+      "v": 18
+    },
+    {
+      "energy_eV": 4.8789,
+      "statistical_weight": 1,
+      "thermo_entry": "N2v19",
+      "v": 19
+    },
+    {
+      "energy_eV": 5.0993,
+      "statistical_weight": 1,
+      "thermo_entry": "N2v20",
+      "v": 20
+    },
+    {
+      "energy_eV": 5.3159,
+      "statistical_weight": 1,
+      "thermo_entry": "N2v21",
+      "v": 21
+    },
+    {
+      "energy_eV": 5.5286,
+      "statistical_weight": 1,
+      "thermo_entry": "N2v22",
+      "v": 22
+    },
+    {
+      "energy_eV": 5.7375,
+      "statistical_weight": 1,
+      "thermo_entry": "N2v23",
+      "v": 23
+    },
+    {
+      "energy_eV": 5.9423,
+      "statistical_weight": 1,
+      "thermo_entry": "N2v24",
+      "v": 24
+    },
+    {
+      "energy_eV": 6.1432,
+      "statistical_weight": 1,
+      "thermo_entry": "N2v25",
+      "v": 25
+    },
+    {
+      "energy_eV": 6.34,
+      "statistical_weight": 1,
+      "thermo_entry": "N2v26",
+      "v": 26
+    },
+    {
+      "energy_eV": 6.5327,
+      "statistical_weight": 1,
+      "thermo_entry": "N2v27",
+      "v": 27
+    },
+    {
+      "energy_eV": 6.7211,
+      "statistical_weight": 1,
+      "thermo_entry": "N2v28",
+      "v": 28
+    },
+    {
+      "energy_eV": 6.9052,
+      "statistical_weight": 1,
+      "thermo_entry": "N2v29",
+      "v": 29
+    },
+    {
+      "energy_eV": 7.085,
+      "statistical_weight": 1,
+      "thermo_entry": "N2v30",
+      "v": 30
+    },
+    {
+      "energy_eV": 7.2602,
+      "statistical_weight": 1,
+      "thermo_entry": null,
+      "v": 31
+    },
+    {
+      "energy_eV": 7.4309,
+      "statistical_weight": 1,
+      "thermo_entry": null,
+      "v": 32
+    },
+    {
+      "energy_eV": 7.5968,
+      "statistical_weight": 1,
+      "thermo_entry": null,
+      "v": 33
+    },
+    {
+      "energy_eV": 7.7579,
+      "statistical_weight": 1,
+      "thermo_entry": null,
+      "v": 34
+    },
+    {
+      "energy_eV": 7.914,
+      "statistical_weight": 1,
+      "thermo_entry": null,
+      "v": 35
+    },
+    {
+      "energy_eV": 8.065,
+      "statistical_weight": 1,
+      "thermo_entry": null,
+      "v": 36
+    },
+    {
+      "energy_eV": 8.2108,
+      "statistical_weight": 1,
+      "thermo_entry": null,
+      "v": 37
+    },
+    {
+      "energy_eV": 8.3511,
+      "statistical_weight": 1,
+      "thermo_entry": null,
+      "v": 38
+    },
+    {
+      "energy_eV": 8.4857,
+      "statistical_weight": 1,
+      "thermo_entry": null,
+      "v": 39
+    },
+    {
+      "energy_eV": 8.6146,
+      "statistical_weight": 1,
+      "thermo_entry": null,
+      "v": 40
+    },
+    {
+      "energy_eV": 8.7374,
+      "statistical_weight": 1,
+      "thermo_entry": null,
+      "v": 41
+    },
+    {
+      "energy_eV": 8.8539,
+      "statistical_weight": 1,
+      "thermo_entry": null,
+      "v": 42
+    },
+    {
+      "energy_eV": 8.964,
+      "statistical_weight": 1,
+      "thermo_entry": null,
+      "v": 43
+    },
+    {
+      "energy_eV": 9.0675,
+      "statistical_weight": 1,
+      "thermo_entry": null,
+      "v": 44
+    },
+    {
+      "energy_eV": 9.1639,
+      "statistical_weight": 1,
+      "thermo_entry": null,
+      "v": 45
+    },
+    {
+      "energy_eV": 9.2533,
+      "statistical_weight": 1,
+      "thermo_entry": null,
+      "v": 46
+    },
+    {
+      "energy_eV": 9.3353,
+      "statistical_weight": 1,
+      "thermo_entry": null,
+      "v": 47
+    },
+    {
+      "energy_eV": 9.4098,
+      "statistical_weight": 1,
+      "thermo_entry": null,
+      "v": 48
+    },
+    {
+      "energy_eV": 9.4767,
+      "statistical_weight": 1,
+      "thermo_entry": null,
+      "v": 49
+    },
+    {
+      "energy_eV": 9.5359,
+      "statistical_weight": 1,
+      "thermo_entry": null,
+      "v": 50
+    },
+    {
+      "energy_eV": 9.5875,
+      "statistical_weight": 1,
+      "thermo_entry": null,
+      "v": 51
+    },
+    {
+      "energy_eV": 9.6314,
+      "statistical_weight": 1,
+      "thermo_entry": null,
+      "v": 52
+    },
+    {
+      "energy_eV": 9.6677,
+      "statistical_weight": 1,
+      "thermo_entry": null,
+      "v": 53
+    },
+    {
+      "energy_eV": 9.6965,
+      "statistical_weight": 1,
+      "thermo_entry": null,
+      "v": 54
+    },
+    {
+      "energy_eV": 9.7181,
+      "statistical_weight": 1,
+      "thermo_entry": null,
+      "v": 55
+    },
+    {
+      "energy_eV": 9.7333,
+      "statistical_weight": 1,
+      "thermo_entry": null,
+      "v": 56
+    },
+    {
+      "energy_eV": 9.7433,
+      "statistical_weight": 1,
+      "thermo_entry": null,
+      "v": 57
+    },
+    {
+      "energy_eV": 9.7501,
+      "statistical_weight": 1,
+      "thermo_entry": null,
+      "v": 58
+    }
+  ],
+  "molecule": "14N2",
+  "provenance": {
+    "citation": "Laporta database, www.lxcat.net, retrieved 2026-10-16; V. Laporta, R. Celiberto and J.M. Wadehra, Plasma Sources Sci. Technol. 21, 055018 (2012), DOI: 10.1088/0963-0252/21/5/055018.",
+    "energy_source": "Laporta LXCat N2 vibrational excitation threshold for N2(X,v=0) -> N2(X,v=w); E_w is copied exactly from the source threshold, with v=0 set to zero.",
+    "independent_check": {
+      "agreement_gate": "agreement <= 0.001 eV for v<=21; larger high-v deviations attributed to Dunham truncation",
+      "citation": "NIST CCCBDB, Experimental Diatomic Data, 14N2: we=2358.57 cm-1, wexe=14.324 cm-1, weye=-0.00226 cm-1 (reference 2007Iri:389); https://cccbdb.nist.gov/expdiatomicsx.asp",
+      "comparison": [
+        {
+          "difference_laporta_minus_dunham_eV": 0.0,
+          "laporta_energy_eV": 0.0,
+          "nist_dunham_energy_eV": 0.0,
+          "v": 0
+        },
+        {
+          "difference_laporta_minus_dunham_eV": -0.00027260093044861877,
+          "laporta_energy_eV": 0.2886,
+          "nist_dunham_energy_eV": 0.28887260093044864,
+          "v": 1
+        },
+        {
+          "difference_laporta_minus_dunham_eV": -0.0004907807054327362,
+          "laporta_energy_eV": 0.5737,
+          "nist_dunham_energy_eV": 0.5741907807054327,
+          "v": 2
+        },
+        {
+          "difference_laporta_minus_dunham_eV": -0.0006528580992218869,
+          "laporta_energy_eV": 0.8553,
+          "nist_dunham_energy_eV": 0.8559528580992218,
+          "v": 3
+        },
+        {
+          "difference_laporta_minus_dunham_eV": -0.0006571518860847281,
+          "laporta_energy_eV": 1.1335,
+          "nist_dunham_energy_eV": 1.1341571518860847,
+          "v": 4
+        },
+        {
+          "difference_laporta_minus_dunham_eV": -0.000601980840291283,
+          "laporta_energy_eV": 1.4082,
+          "nist_dunham_energy_eV": 1.4088019808402912,
+          "v": 5
+        },
+        {
+          "difference_laporta_minus_dunham_eV": -0.00048566373610969826,
+          "laporta_energy_eV": 1.6794,
+          "nist_dunham_energy_eV": 1.6798856637361097,
+          "v": 6
+        },
+        {
+          "difference_laporta_minus_dunham_eV": -0.00040651934780977506,
+          "laporta_energy_eV": 1.947,
+          "nist_dunham_energy_eV": 1.9474065193478098,
+          "v": 7
+        },
+        {
+          "difference_laporta_minus_dunham_eV": -0.0002628664496606703,
+          "laporta_energy_eV": 2.2111,
+          "nist_dunham_energy_eV": 2.2113628664496607,
+          "v": 8
+        },
+        {
+          "difference_laporta_minus_dunham_eV": -5.3023815931307894e-05,
+          "laporta_energy_eV": 2.4717,
+          "nist_dunham_energy_eV": 2.471753023815931,
+          "v": 9
+        },
+        {
+          "difference_laporta_minus_dunham_eV": 0.00012468977910939927,
+          "laporta_energy_eV": 2.7287,
+          "nist_dunham_energy_eV": 2.7285753102208905,
+          "v": 10
+        },
+        {
+          "difference_laporta_minus_dunham_eV": 0.000271955561191195,
+          "laporta_energy_eV": 2.9821,
+          "nist_dunham_energy_eV": 2.981828044438809,
+          "v": 11
+        },
+        {
+          "difference_laporta_minus_dunham_eV": 0.0004904547560458106,
+          "laporta_energy_eV": 3.232,
+          "nist_dunham_energy_eV": 3.2315095452439544,
+          "v": 12
+        },
+        {
+          "difference_laporta_minus_dunham_eV": 0.0005818685894039,
+          "laporta_energy_eV": 3.4782,
+          "nist_dunham_energy_eV": 3.4776181314105963,
+          "v": 13
+        },
+        {
+          "difference_laporta_minus_dunham_eV": 0.0006478782869967503,
+          "laporta_energy_eV": 3.7208,
+          "nist_dunham_energy_eV": 3.7201521217130034,
+          "v": 14
+        },
+        {
+          "difference_laporta_minus_dunham_eV": 0.0006901650745545496,
+          "laporta_energy_eV": 3.9598,
+          "nist_dunham_energy_eV": 3.9591098349254454,
+          "v": 15
+        },
+        {
+          "difference_laporta_minus_dunham_eV": 0.0006104101778081628,
+          "laporta_energy_eV": 4.1951,
+          "nist_dunham_energy_eV": 4.194489589822192,
+          "v": 16
+        },
+        {
+          "difference_laporta_minus_dunham_eV": 0.0005102948224875448,
+          "laporta_energy_eV": 4.4268,
+          "nist_dunham_energy_eV": 4.4262897051775125,
+          "v": 17
+        },
+        {
+          "difference_laporta_minus_dunham_eV": 0.00019150023432512597,
+          "laporta_energy_eV": 4.6547,
+          "nist_dunham_energy_eV": 4.654508499765675,
+          "v": 18
+        },
+        {
+          "difference_laporta_minus_dunham_eV": -0.0002442923609482506,
+          "laporta_energy_eV": 4.8789,
+          "nist_dunham_energy_eV": 4.879144292360948,
+          "v": 19
+        },
+        {
+          "difference_laporta_minus_dunham_eV": -0.0008954017376021639,
+          "laporta_energy_eV": 5.0993,
+          "nist_dunham_energy_eV": 5.1001954017376026,
+          "v": 20
+        },
+        {
+          "difference_laporta_minus_dunham_eV": -0.0017601466699073143,
+          "laporta_energy_eV": 5.3159,
+          "nist_dunham_energy_eV": 5.317660146669907,
+          "v": 21
+        },
+        {
+          "difference_laporta_minus_dunham_eV": -0.002936845932130616,
+          "laporta_energy_eV": 5.5286,
+          "nist_dunham_energy_eV": 5.531536845932131,
+          "v": 22
+        },
+        {
+          "difference_laporta_minus_dunham_eV": -0.004323818298543891,
+          "laporta_energy_eV": 5.7375,
+          "nist_dunham_energy_eV": 5.741823818298544,
+          "v": 23
+        },
+        {
+          "difference_laporta_minus_dunham_eV": -0.006219382543411811,
+          "laporta_energy_eV": 5.9423,
+          "nist_dunham_energy_eV": 5.948519382543412,
+          "v": 24
+        },
+        {
+          "difference_laporta_minus_dunham_eV": -0.008421857441008207,
+          "laporta_energy_eV": 6.1432,
+          "nist_dunham_energy_eV": 6.151621857441008,
+          "v": 25
+        },
+        {
+          "difference_laporta_minus_dunham_eV": -0.01112956176559976,
+          "laporta_energy_eV": 6.34,
+          "nist_dunham_energy_eV": 6.3511295617656,
+          "v": 26
+        },
+        {
+          "difference_laporta_minus_dunham_eV": -0.014340814291456283,
+          "laporta_energy_eV": 6.5327,
+          "nist_dunham_energy_eV": 6.5470408142914565,
+          "v": 27
+        },
+        {
+          "difference_laporta_minus_dunham_eV": -0.01825393379284801,
+          "laporta_energy_eV": 6.7211,
+          "nist_dunham_energy_eV": 6.739353933792848,
+          "v": 28
+        },
+        {
+          "difference_laporta_minus_dunham_eV": -0.022867239044042087,
+          "laporta_energy_eV": 6.9052,
+          "nist_dunham_energy_eV": 6.928067239044042,
+          "v": 29
+        },
+        {
+          "difference_laporta_minus_dunham_eV": -0.028179048819309216,
+          "laporta_energy_eV": 7.085,
+          "nist_dunham_energy_eV": 7.113179048819309,
+          "v": 30
+        }
+      ],
+      "constants_cm-1": {
+        "we": 2358.57,
+        "wexe": 14.324,
+        "weye": -0.00226
+      },
+      "equation": "G(v)=we*(v+1/2)-wexe*(v+1/2)^2+weye*(v+1/2)^3; E_Dunham(v)=G(v)-G(0)",
+      "pm_ruling_2026-11-03": "Keep Laporta thresholds as the energies of record because the potential curve also produced the cross sections, preserving detailed-balance consistency. The three-term Dunham expression is a low-v spectroscopy fit; smooth high-v divergence is attributed to truncation extrapolation, not a Laporta data error. The PM stated agreement <=0.001 eV through v=21; the reproduced v=21 difference is 0.00176014667 eV, as disclosed in recomputed_gate_note.",
+      "recomputed_gate_note": "The committed per-level calculation gives |dE|=0.00176014667 eV at v=21, so the <=0.001 eV statement is numerically satisfied only through v=20. The Laporta source-of-record ruling remains accepted; the independent stop threshold was 0.005 eV, first exceeded at v=24."
+    },
+    "source_file": "incoming/XS_Laporta_N2v_batch1.txt",
+    "source_sha256": "933bcad9e418e76f3dd783c3731eafc92faa6f85f323d566327c3a24c657a91f",
+    "statistical_weight_citation": "NIST CCCBDB diatomic constants for the 14N2 X1Sigma_g+ state; vibrational term sequence G(v), with rotational constants and rotational quantum number treated separately: https://cccbdb.nist.gov/expdiatomicsx.asp",
+    "statistical_weight_source_sentence": "For the nondegenerate X1Sigma_g+ electronic state, each vibrational eigenstate has one vibrational state at each v, so g_v=1. Rotational and nuclear-spin statistical factors belong to the rotational partition function and are not included in g_v.",
+    "threshold_precision_eV": 0.0001
+  }
+}

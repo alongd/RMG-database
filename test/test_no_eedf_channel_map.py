@@ -4,6 +4,7 @@ Set EEDF_NO_HAYASHI to the local Hayashi.zip to run regeneration and CLI checks.
 Use the built plasma RMG-Py on PYTHONPATH for species identity and library loading.
 """
 
+import ast
 import copy
 import hashlib
 import os
@@ -49,6 +50,54 @@ def test_committed_map_matches_overlay_and_has_ten_unique_channels(doc):
         assert c['class'] == entry['class']
         assert c.get('rmg', {}).get('reaction') == entry['reaction']
     assert doc['class_counts'] == {'A': 2, 'B': 8, 'C': 0, 'D': 0}
+
+
+def test_source_inventory_is_distinct_from_converter_schema(doc):
+    assert doc['schema'] == no.SCHEMA == 'eedf-source-inventory/1'
+    assert doc['schema'] != gen.SCHEMA
+    assert doc['conversion'] == no.CONVERSION
+    assert 'later LoKI-B collision-file assembly step' in doc['conversion']
+    assert 'loki_files' not in doc and 'class_a_gaps' not in doc
+    assert all('loki_process' not in c and 'lxcat_file' not in c for c in doc['channels'])
+
+
+def test_real_rmg_validator_accepts_argon_and_refuses_no_inventory(doc):
+    # Execute the real validator without importing the engine and its compiled dependencies.
+    consumer = Path(os.environ.get('EEDF_RMG_CHANNEL_MAP',
+                                   '/home/alon/Code/RMG-Py-plasma/rmgpy/tools/eedf/channel_map.py'))
+    if not consumer.is_file():
+        pytest.skip('set EEDF_RMG_CHANNEL_MAP to the RMG-Py channel_map.py consumer')
+    function, = [node for node in ast.parse(consumer.read_text()).body
+                 if isinstance(node, ast.FunctionDef) and node.name == '_frozen_rows']
+
+    class SpecError(Exception):
+        pass
+
+    namespace = {'re': no.re, 'SpecError': SpecError}
+    exec(compile(ast.Module(body=[function], type_ignores=[]), str(consumer), 'exec'), namespace)
+    validate = namespace['_frozen_rows']
+    argon = yaml.safe_load((MAP.parent / 'argon_channel_map.yaml').read_text())
+    rows = validate(argon)
+    assert len(rows) == len(argon['channels']) == 157
+    with pytest.raises(SpecError, match='^frozen channel map schema$'):
+        validate(doc)
+
+
+@needs_source
+def test_hayashi_no_blocks_require_loki_descriptor_assembly(source):
+    # loadCollisionsClassic requires a bracketed descriptor on the next line after PARAM.
+    # Use the shared parser mirror to establish why the direct-member path is unavailable.
+    text = source.decode().replace('\r\n', '\n').replace('\r', '\n')
+    count = 0
+    for _, _, raw in gen.blocks(text):
+        lines = raw.splitlines()
+        if lines[1] != 'NO' and not lines[1].startswith('NO -> '):
+            continue
+        records, problems = gen.loki_records(lines)
+        assert len(records) == 1
+        assert any('no descriptor on the next line' in p for p in problems)
+        count += 1
+    assert count == 10
 
 
 def test_v_groups_have_no_populations_and_all_loss_goes_to_heating(doc):

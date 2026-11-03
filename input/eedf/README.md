@@ -390,6 +390,40 @@ regeneration's (a CRLF copy included) is one `BAD  ...` line and exit 2, never a
 run of the cases. The map and overlay are read once, and every case starts from those bytes, so a
 fixture removed or saved again mid-run changes nothing.
 
+### NO source inventory
+
+`no_channel_map.yaml` uses **`eedf-source-inventory/1`**, a source-only metadata
+schema. It records the Hayashi ZIP/member hashes, source block identities and
+thresholds, classifications, species inventory, candidate reaction matches and
+energy dispositions. `source_process` names the source's PROCESS field;
+`checked_libraries` and `matches` describe an ownership search. These fields do
+not supply solver identities or the `rmg.library` contract of
+`eedf-channel-map/2`.
+
+Conversion requires a later collision-file assembly step. The pinned LoKI-B
+`source/EedfCollisions.cpp` function `loadCollisionsClassic` searches for
+`PARAM.:` and requires a bracketed `[lhs -> rhs, Type]` descriptor on the very
+next line. All ten NO blocks in Hayashi's `Cross section.txt` have a COMMENT
+line there instead. Thus the member cannot be used directly as a LoKI file;
+its hash is a source pin, not an assembled-file pin. No collision file or solver
+identity is invented here.
+
+A later assembly must preserve the cross-section data, supply LoKI state and
+process descriptors, and pin the actual solver input bytes in `loki_files`.
+Its `/2` map must derive each `loki_process` and `lxcat_file` from that assembly
+and express class-A ownership through `rmg.library` and `class_a_gaps`. The NO
+inventory itself must be refused by the converter at the schema check. This
+does not change its Report-10 lumping, gas-heating disposition, or the named
+absences of ionisation and dissociative-attachment owner reactions.
+
+Regenerate or check the inventory using `scripts/gen_eedf_channel_map.py --gas
+no --overlay input/eedf/no_channel_overlay.yaml --source /path/to/Hayashi.zip
+--output input/eedf/no_channel_map.yaml --check` (omit `--check` to regenerate).
+The contract test extracts the actual RMG-Py `_frozen_rows` validator with AST:
+argon must be accepted and the NO inventory must be refused specifically at
+the schema check. Set `EEDF_RMG_CHANNEL_MAP` to that consumer's Python file
+when it is not at `/home/alon/Code/RMG-Py-plasma/rmgpy/tools/eedf/channel_map.py`.
+
 ### Written limits
 
 Deliberate forgery by code run as the same user is outside what the checker can see. It does not catch:

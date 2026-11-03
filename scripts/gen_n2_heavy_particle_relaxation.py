@@ -75,7 +75,7 @@ def _f(y):
     if y < 21.622:
         z = math.exp(-2.0 * y / 3.0)
         return 0.5 * (3.0 - z) * z
-    return 0.125 * math.sqrt(math.pi / 3.0) * y ** (7.0 / 3.0) * math.exp(-3.0 * y ** (2.0 / 3.0))
+    return 8.0 * math.sqrt(math.pi / 3.0) * y ** (7.0 / 3.0) * math.exp(-3.0 * y ** (2.0 / 3.0))
 
 
 def _morse_gap_cm(v, constants):
@@ -106,19 +106,18 @@ def rate_vt(v, temperature, parameters):
     omega_xe = rec['constants']['omega_e_xe_cm-1']
     chi = omega_xe / omega
     y = _y_for_gap(_morse_gap_cm(v, rec['constants']), temperature, parameters)
-    y10 = _y_for_gap(_morse_gap_cm(1, rec['constants']), temperature, parameters)
-    p10 = 1.07e-12 * temperature ** 1.5
-    xi = 0.277 * 2.0 * temperature - 80.32 + 35.5 * ((v - 1.0) / 39.0) ** 0.8
-    return v * (1.0 - chi) / (1.0 - chi * v) * _f(y) / _f(y10) * p10 / xi
+    prefactor = 1.07e-12 * temperature ** 1.5
+    xi = 0.2772 * temperature - 80.32 + 35.5 * ((v - 1.0) / 39.0) ** 0.8
+    return v * (1.0 - chi) / (1.0 - chi * v) * _f(y) * prefactor / xi
 
 
 def rate_vv(v, partner_low, temperature, parameters):
-    """Eq. (14), (22), and (23) for N2(v)+N2(partner_low), cm^3/molecule/s."""
+    """Eq. (14), (22), and (23) for v+(w-1)->(v-1)+w, cm^3/molecule/s."""
     bounds = parameters['record_source']['validity']['vv']
     partner_high = partner_low + 1
     vmax = bounds['deactivating_v'][1]
     wmax = bounds['partner_upper_w'][1]
-    if not (1 <= v <= vmax and 0 <= partner_low < wmax):
+    if not (1 <= v <= vmax and 0 <= partner_low < wmax and partner_high <= v):
         raise ValueError(f'Guerra Eq. (22)-(23) V-V refuses v={v}, partner={partner_low}')
     tmin, tmax = bounds['temperature_K']
     if not tmin <= temperature <= tmax:
@@ -131,9 +130,11 @@ def rate_vv(v, partner_low, temperature, parameters):
     y = _y_for_gap(mismatch, temperature, parameters)
     yref = _y_for_gap(0.0, temperature, parameters)
     p010 = 6.35e-17 * temperature ** 1.5
-    vmax_w = max(v, partner_high)
-    xi = (39.0625 - 1.5625 * vmax_w if vmax_w < 10 else
-          25.2 + 24.1 * ((vmax_w - 10.0) / 30.0) ** 3)
+    # In Eq. (14)'s v + (w-1) -> (v-1) + w convention, v is
+    # the deactivating (higher) level and w <= v. Eq. (23) writes max(v,w),
+    # which is therefore v, as in LoKI's implementation.
+    xi = (39.0625 - 1.5625 * v if v < 10 else
+          25.2 + 24.1 * ((v - 10.0) / 30.0) ** 3)
     return (v * partner_high * (1.0 - chi) / (1.0 - chi * v)
             * (1.0 - chi) / (1.0 - chi * partner_high)
             * _f(y) / _f(yref) * p010 / xi)
@@ -183,8 +184,8 @@ def generate(parameters_raw, levels_raw, maximum_v=30):
 
     vv_t = _temperature_grid(*parameters['record_source']['validity']['vv']['temperature_K'])
     for v in range(1, maximum_v):
-        for partner in range(v, maximum_v):
-            # Adjacent-level exchange has identical reactant and product multisets.
+        for partner in range(v):
+            # Eq. (14) uses deactivating level v and upper partner level w=partner+1 <= v.
             def forward(t, v=v, partner=partner):
                 return rate_vv(v, partner, t, parameters)
             label = f'N2v{v} + N2v{partner} <=> N2v{v - 1} + N2v{partner + 1}'

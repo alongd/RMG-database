@@ -3,7 +3,7 @@
     "billing": "Billing1979_*.pdf Table 3/4",
     "record": "Guerra2019_*.pdf Eqs. 12,14,20-23"
   },
-  "billing_scaling_note": "For each temperature row the scientific-notation multiplier printed in the n=20 column is applied to the n=1..9 mantissas in that row; this reproduces the Table 7 B/F 20-19 to 1-0 scaling check. Table 4 uses its printed row multiplier similarly.",
+  "billing_scaling_note": "Billing Tables 3 and 4 (pp. 397) print the n=1..9 mantissas and a temperature-row power-of-ten scale in the n=20 column; the n=20 mantissa is separately multiplied by its printed power. Table 3 n=4 at 1000 K reads 7.7 (not the pdftotext OCR 1.7); Table 3 n=20 at 1000 K reads 1900 x 10^-17 cm3/s. Image-checked against the source PDF.",
   "flag_rule": "ratio outside [0.3,3]",
   "points": [
     {
@@ -11,640 +11,640 @@
       "billing_table": 3,
       "T_K": 300,
       "n": 1,
-      "guerra_over_billing": 80925173094.66838,
-      "flag": true
+      "guerra_over_billing": 2.567255199564495,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 300,
       "n": 2,
-      "guerra_over_billing": 94489855533.24675,
-      "flag": true
+      "guerra_over_billing": 1.8379588463736836,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 300,
       "n": 3,
-      "guerra_over_billing": 108857270699.17262,
-      "flag": true
+      "guerra_over_billing": 1.659300347773759,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 300,
       "n": 4,
-      "guerra_over_billing": 119364783999.14046,
-      "flag": true
+      "guerra_over_billing": 1.5302246107856479,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 300,
       "n": 5,
-      "guerra_over_billing": 134009623377.42029,
-      "flag": true
+      "guerra_over_billing": 1.5010056140414096,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 300,
       "n": 6,
-      "guerra_over_billing": 144066441317.75272,
-      "flag": true
+      "guerra_over_billing": 1.4445253082710696,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 300,
       "n": 7,
-      "guerra_over_billing": 154139625142.07098,
-      "flag": true
+      "guerra_over_billing": 1.407188798191696,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 300,
       "n": 8,
-      "guerra_over_billing": 144833126926.10242,
-      "flag": true
+      "guerra_over_billing": 1.2190636120243186,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 300,
       "n": 9,
-      "guerra_over_billing": 149169792506.13858,
-      "flag": true
+      "guerra_over_billing": 1.1688470317781656,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 300,
       "n": 20,
-      "guerra_over_billing": 212880824887.62848,
-      "flag": true
+      "guerra_over_billing": 1.0363651776679854,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 400,
       "n": 1,
-      "guerra_over_billing": 10098150245.375612,
-      "flag": true
+      "guerra_over_billing": 1.1974710738498147,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 400,
       "n": 2,
-      "guerra_over_billing": 10396222338.857567,
-      "flag": true
+      "guerra_over_billing": 1.1764338221332493,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 400,
       "n": 3,
-      "guerra_over_billing": 11629336549.65467,
-      "flag": true
+      "guerra_over_billing": 1.273782994955344,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 400,
       "n": 4,
-      "guerra_over_billing": 11109188369.504307,
-      "flag": true
+      "guerra_over_billing": 1.18328570377767,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 400,
       "n": 5,
-      "guerra_over_billing": 11440366950.169937,
-      "flag": true
+      "guerra_over_billing": 1.188480840167507,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 400,
       "n": 6,
-      "guerra_over_billing": 11995978139.465908,
-      "flag": true
+      "guerra_over_billing": 1.2180602410694192,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 400,
       "n": 7,
-      "guerra_over_billing": 11777583015.177235,
-      "flag": true
+      "guerra_over_billing": 1.1708642295752738,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 400,
       "n": 8,
-      "guerra_over_billing": 11918411281.063877,
-      "flag": true
+      "guerra_over_billing": 1.161692095793665,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 400,
       "n": 9,
-      "guerra_over_billing": 11811027205.029526,
-      "flag": true
+      "guerra_over_billing": 1.130041550296421,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 400,
       "n": 20,
-      "guerra_over_billing": 13847846877.595089,
-      "flag": true
+      "guerra_over_billing": 1.1335172723593077,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 500,
       "n": 1,
-      "guerra_over_billing": 1520612629.6044176,
-      "flag": true
+      "guerra_over_billing": 1.2557775508625535,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 500,
       "n": 2,
-      "guerra_over_billing": 1710236992.6313617,
-      "flag": true
+      "guerra_over_billing": 1.3810943110516793,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 500,
       "n": 3,
-      "guerra_over_billing": 1724158362.334713,
-      "flag": true
+      "guerra_over_billing": 1.3702162454029596,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 500,
       "n": 4,
-      "guerra_over_billing": 1656342958.6228228,
-      "flag": true
+      "guerra_over_billing": 1.2980051977932487,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 500,
       "n": 5,
-      "guerra_over_billing": 1682431566.2316918,
-      "flag": true
+      "guerra_over_billing": 1.3017323874087585,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 500,
       "n": 6,
-      "guerra_over_billing": 1703361864.3691695,
-      "flag": true
+      "guerra_over_billing": 1.3024049283726995,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 500,
       "n": 7,
-      "guerra_over_billing": 1800233154.5326512,
-      "flag": true
+      "guerra_over_billing": 1.3612405142090613,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 500,
       "n": 8,
-      "guerra_over_billing": 1751856827.3371148,
-      "flag": true
+      "guerra_over_billing": 1.310777505316016,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 500,
       "n": 9,
-      "guerra_over_billing": 1718035895.0659103,
-      "flag": true
+      "guerra_over_billing": 1.2726397366893027,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 500,
       "n": 20,
-      "guerra_over_billing": 1717616508.5081065,
-      "flag": true
+      "guerra_over_billing": 1.163734142560404,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 700,
       "n": 1,
-      "guerra_over_billing": 92069529.81784546,
-      "flag": true
+      "guerra_over_billing": 1.3047377542563765,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 700,
       "n": 2,
-      "guerra_over_billing": 99420991.28042641,
-      "flag": true
+      "guerra_over_billing": 1.3943724424308748,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 700,
       "n": 3,
-      "guerra_over_billing": 98381753.51869291,
-      "flag": true
+      "guerra_over_billing": 1.3694315094535567,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 700,
       "n": 4,
-      "guerra_over_billing": 99454323.74887645,
-      "flag": true
+      "guerra_over_billing": 1.3751412167848163,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 700,
       "n": 5,
-      "guerra_over_billing": 99353290.51627152,
-      "flag": true
+      "guerra_over_billing": 1.3653159396382823,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 700,
       "n": 6,
-      "guerra_over_billing": 102197245.34010503,
-      "flag": true
+      "guerra_over_billing": 1.3963131398998183,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 700,
       "n": 7,
-      "guerra_over_billing": 95798094.52135089,
-      "flag": true
+      "guerra_over_billing": 1.3017346792217632,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 700,
       "n": 8,
-      "guerra_over_billing": 96377797.39214501,
-      "flag": true
+      "guerra_over_billing": 1.3027783378604114,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 700,
       "n": 9,
-      "guerra_over_billing": 98078938.09603012,
-      "flag": true
+      "guerra_over_billing": 1.3191280724254415,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 700,
       "n": 20,
-      "guerra_over_billing": 64397249.237931274,
-      "flag": true
+      "guerra_over_billing": 0.8266859179428311,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 1000,
       "n": 1,
-      "guerra_over_billing": 6493906.696465902,
-      "flag": true
+      "guerra_over_billing": 1.4137167939107336,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 1000,
       "n": 2,
-      "guerra_over_billing": 6616022.9146712795,
-      "flag": true
+      "guerra_over_billing": 1.432281790422652,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 1000,
       "n": 3,
-      "guerra_over_billing": 6620662.824863396,
-      "flag": true
+      "guerra_over_billing": 1.4274367589435404,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 1000,
       "n": 4,
-      "guerra_over_billing": 6503717.802502452,
-      "flag": true
+      "guerra_over_billing": 1.3971189170367375,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 1000,
       "n": 5,
-      "guerra_over_billing": 6301185.598790158,
-      "flag": true
+      "guerra_over_billing": 1.3490473368429559,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 1000,
       "n": 6,
-      "guerra_over_billing": 6451836.073425313,
-      "flag": true
+      "guerra_over_billing": 1.3769084274001526,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 1000,
       "n": 7,
-      "guerra_over_billing": 6191313.4237730615,
-      "flag": true
+      "guerra_over_billing": 1.3173044150793891,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 1000,
       "n": 8,
-      "guerra_over_billing": 6297534.055207755,
-      "flag": true
+      "guerra_over_billing": 1.3360057190034302,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 1000,
       "n": 9,
-      "guerra_over_billing": 6207646.675991668,
-      "flag": true
+      "guerra_over_billing": 1.3132388538254411,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 1000,
       "n": 20,
-      "guerra_over_billing": 209863354.17850792,
-      "flag": true
+      "guerra_over_billing": 0.6754437685350193,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 1500,
       "n": 1,
-      "guerra_over_billing": 376394.3885218556,
-      "flag": true
+      "guerra_over_billing": 1.3143602934157848,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 1500,
       "n": 2,
-      "guerra_over_billing": 371492.56005035667,
-      "flag": true
+      "guerra_over_billing": 1.2932152288575187,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 1500,
       "n": 3,
-      "guerra_over_billing": 377803.5086991307,
-      "flag": true
+      "guerra_over_billing": 1.3121781708140103,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 1500,
       "n": 4,
-      "guerra_over_billing": 371643.70412129513,
-      "flag": true
+      "guerra_over_billing": 1.2881428675933335,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 1500,
       "n": 5,
-      "guerra_over_billing": 394916.16437847744,
-      "flag": true
+      "guerra_over_billing": 1.366203749915171,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 1500,
       "n": 6,
-      "guerra_over_billing": 394849.703185553,
-      "flag": true
+      "guerra_over_billing": 1.3635162179000218,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 1500,
       "n": 7,
-      "guerra_over_billing": 391689.3444826957,
-      "flag": true
+      "guerra_over_billing": 1.3502760494517398,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 1500,
       "n": 8,
-      "guerra_over_billing": 392679.2617521236,
-      "flag": true
+      "guerra_over_billing": 1.351446816828008,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 1500,
       "n": 9,
-      "guerra_over_billing": 399732.289357508,
-      "flag": true
+      "guerra_over_billing": 1.3735162061127133,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 1500,
       "n": 20,
-      "guerra_over_billing": 253340.28961916635,
-      "flag": true
+      "guerra_over_billing": 0.8571680238061712,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 2000,
       "n": 1,
-      "guerra_over_billing": 46562.99112417825,
-      "flag": true
+      "guerra_over_billing": 0.9974099762595668,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 2000,
       "n": 2,
-      "guerra_over_billing": 47088.216451627726,
-      "flag": true
+      "guerra_over_billing": 1.006498544515476,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 2000,
       "n": 3,
-      "guerra_over_billing": 48468.58146388102,
-      "flag": true
+      "guerra_over_billing": 1.0343655757149923,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 2000,
       "n": 4,
-      "guerra_over_billing": 48885.75471254563,
-      "flag": true
+      "guerra_over_billing": 1.041789627405075,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 2000,
       "n": 5,
-      "guerra_over_billing": 50205.001145228794,
-      "flag": true
+      "guerra_over_billing": 1.068492162341282,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 2000,
       "n": 6,
-      "guerra_over_billing": 49674.12619290702,
-      "flag": true
+      "guerra_over_billing": 1.0558724194728675,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 2000,
       "n": 7,
-      "guerra_over_billing": 50598.64949992809,
-      "flag": true
+      "guerra_over_billing": 1.0742371885713955,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 2000,
       "n": 8,
-      "guerra_over_billing": 52544.87960701411,
-      "flag": true
+      "guerra_over_billing": 1.114270049058416,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 2000,
       "n": 9,
-      "guerra_over_billing": 52256.081283849955,
-      "flag": true
+      "guerra_over_billing": 1.1069076248336667,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 2000,
       "n": 20,
-      "guerra_over_billing": 51623.3643105787,
-      "flag": true
+      "guerra_over_billing": 1.0817282025082786,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 3000,
       "n": 1,
-      "guerra_over_billing": 4117.02280367519,
-      "flag": true
+      "guerra_over_billing": 0.7647133718933288,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 3000,
       "n": 2,
-      "guerra_over_billing": 4128.619919515471,
-      "flag": true
+      "guerra_over_billing": 0.7658550270931112,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 3000,
       "n": 3,
-      "guerra_over_billing": 4280.8985983414905,
-      "flag": true
+      "guerra_over_billing": 0.7933279786686218,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 3000,
       "n": 4,
-      "guerra_over_billing": 4312.672949934387,
-      "flag": true
+      "guerra_over_billing": 0.7985163685172659,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 3000,
       "n": 5,
-      "guerra_over_billing": 4364.477810523719,
-      "flag": true
+      "guerra_over_billing": 0.80744872496353,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 3000,
       "n": 6,
-      "guerra_over_billing": 4452.5785085214675,
-      "flag": true
+      "guerra_over_billing": 0.823109974983511,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 3000,
       "n": 7,
-      "guerra_over_billing": 4456.365719874764,
-      "flag": true
+      "guerra_over_billing": 0.8231987412547281,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 3000,
       "n": 8,
-      "guerra_over_billing": 4644.189408845182,
-      "flag": true
+      "guerra_over_billing": 0.8572799296949277,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 3000,
       "n": 9,
-      "guerra_over_billing": 4780.400926863869,
-      "flag": true
+      "guerra_over_billing": 0.8818105981552248,
+      "flag": false
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 3000,
       "n": 20,
-      "guerra_over_billing": 6907.134529820651,
-      "flag": true
+      "guerra_over_billing": 1.2655198228672324,
+      "flag": false
     },
     {
       "process": "V-V N2-N2",

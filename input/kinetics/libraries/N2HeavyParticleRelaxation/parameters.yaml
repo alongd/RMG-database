@@ -1,0 +1,59 @@
+schema_version: 1
+name: N2HeavyParticleRelaxation
+short_desc: Guerra 2019 N2(X,v) heavy-particle V-T and V-V rate coefficients
+record_source:
+  citation: "V. Guerra et al., Plasma Sources Sci. Technol. 28 (2019) 073001"
+  file: Guerra2019_*.pdf
+  sha256: 20ba03b8068bfb01b33f17fdac3d3b7f56788a51812ae34aed577fd185df4dc8
+  equations:
+    9: "F(y) = y^2 integral_0^infinity exp(-x) cosech^2(y/sqrt(x)) dx"
+    10: "F(y) = 1/2 [3-exp(-2y/3)] exp(-2y/3), y < 21.622; (1/8) sqrt(pi/3) y^(7/3) exp(-3 y^(2/3)), y >= 21.622"
+    11: "Y_(v,v-1) = DeltaE_(v,v-1) * pi*L/hbar * sqrt(mu/(2*kB*Tg))"
+    12: "P_(v,v-1) = v * (1-chi_e)/(1-chi_e*v) * F(Y_(v,v-1))/F(Y_(1,0)) * P_(1,0)"
+    13: "P_(v,v-1)^(w-1,w) = Z * v/(1-chi_(e,A2)*v) * w/(1-chi_(e,B2)*w) * mu*kB*Tg/(8*L^2*mu_A2*omega_A2*mu_B2*omega_B2) * F(Y_(v,v-1)^(w-1,w))"
+    14: "P_(v,v-1)^(w-1,w) = v*w * (1-chi_(e,A2))/(1-chi_(e,A2)*v) * (1-chi_(e,B2))/(1-chi_(e,B2)*w) * F(Y_(v,v-1)^(w-1,w))/F(Y_(1,0)^(0,1)) * P_(1,0)^(0,1)"
+    15: "Y_(v,v-1)^(w-1,w) = |DeltaE_(v,v-1)^(w-1,w)| * pi*L/hbar * sqrt(mu/(2*kB*Tg))"
+    20: "P_(1,0)^(N2-N2) = 1.07e-12 * Tg^(3/2) cm^3 s^-1"
+    21: "xi_VT(v) = 0.277*2*Tg - 80.32 + 35.5*((v-1)/39)^0.8"
+    22: "P_(1,0)^(0,1) = 6.35e-17 * Tg^(3/2) cm^3 s^-1"
+    23: "xi_VV = 39.0625 - 1.5625*max(v,w) if max(v,w)<10; otherwise 25.2 + 24.1*((max(v,w)-10)/30)^3"
+  constants:
+    L_angstrom: 0.2
+    omega_e_cm-1: 2358.57
+    omega_e_xe_cm-1: 14.324
+    nitrogen_molecule_mass_u: 28.0134
+  constant_sources:
+    vibrational_morse: "Guerra et al. 2019, Eq. (6), p. 9; omega_e=2358.57 cm^-1 and omega_e*x_e=14.324 cm^-1 [106]."
+    molecule_mass: "N2 molecular mass 28.0134 u used to evaluate the reduced mass in Eqs. (11) and (15)."
+  validity:
+    vt:
+      temperature_K: [300, 3500]
+      deactivating_v: [1, 45]
+    vv:
+      temperature_K: [200, 3500]
+      deactivating_v: [1, 44]
+      partner_upper_w: [1, 45]
+  uncertainty:
+    vv_near_resonant: "Guerra 2019 states the near-resonant V-V values can be overestimated by factors 2-3 at 1000 K and up to about 7 at 2000 K versus semiclassical calculations; retained as stated uncertainty, not applied as a correction."
+  normalization:
+    vt: "Divide the Eq. (12) result by xi_VT(v) from Eq. (21), as specified in the text below Eq. (20)."
+    vv: "Divide the Eq. (14) result by xi_VV from Eq. (23), as specified in the text below Eq. (22)."
+  gaps:
+    - id: n2_ar_vt
+      name: "N2-Ar V-T rate"
+      status: absent
+      note: "No sourced N2-Ar V-T law was found in Billing 1979 or Guerra 2019."
+    - id: ar_metastable_n2_quenching
+      name: "Ar(1s)+N2 quenching"
+      status: deferred
+      note: "Ar(1s)+N2 quenching: total rate at 300 K only; product states need N2 electronic species; deferred. Velazco et al. Table I reports only a total at 300 K; N2(B) and N2(C) are not in the database."
+    - id: n2_n_vt
+      name: "N2-N V-T"
+      status: out_of_scope
+      note: "N atom collisions are outside this ticket."
+billing_check:
+  citation: "G. D. Billing and E. R. Fisher, Chem. Phys. 43 (1979) 395-401"
+  file: Billing1979_*.pdf
+  sha256: 0c2c2a70f5873d334406f7097fbca5587d696d5689ca2683a1f13fc8258d483b
+  tables: [3, 4]
+  use: "Independent pointwise check only. The derived Guerra/Billing ratios are committed in test/fixtures/n2_billing_ratio_fixture.json; source table payloads are not copied."

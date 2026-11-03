@@ -1,0 +1,46 @@
+schema: nitrogen-fate-absences/1
+absences:
+- id: N2-A-N2-quenching
+  process: N2(A)+N2(X) quenching
+  reason: No verified state-specific rate in local Guerra Table 5 or checked LoKI-GM
+    rate entry.
+  blocks: Quantitative N2(A) loss and closed heavy-particle energy budget.
+- id: N2-C-N2-quenching
+  process: N2(C)+N2(X) quenching
+  reason: No verified state-specific rate in local Guerra Table 5 or checked LoKI-GM
+    rate entry.
+  blocks: Quantitative N2(C) collisional loss.
+- id: N2-aprime-radiative-decay
+  process: N2(a')->radiative products
+  reason: No radiative transition probability verified in local Guerra Table 5 or
+    LoKI-GM scheme.
+  blocks: Radiative fate and photon-energy closure for N2(a').
+- id: Ar1s5-N2-branching
+  process: Ar(1s5)+N2 -> products
+  reason: Velazco et al. Table I gives total quenching only, no product branching.
+  blocks: Product-resolved Ar metastable transfer; total removal is available.
+- id: Ar1s3-N2-branching
+  process: Ar(1s3)+N2 -> products
+  reason: Velazco et al. Table I gives total quenching only, no product branching.
+  blocks: Product-resolved Ar metastable transfer; total removal is available.
+- id: sing-sup-state-assignment
+  process: N2(X)->N2(sing-sup)
+  reason: LoKI-GM treats this as energy-loss-only and no independently matched spectroscopic
+    state assignment was established.
+  blocks: Resolved product identity and state-specific thermochemistry.
+download_list:
+- Piper, J. Chem. Phys. 91 (1989) 864-873 [Guerra 2019 ref. 208] — primary value for
+  N2(B)->N2(A) transition probability; not locally verified.
+- Piper, J. Chem. Phys. 87 (1987) 1625-1629 [Guerra 2019 ref. 200] — primary source
+  for N2(a') collisional quenching; not locally verified.
+- Fraser, Rawlins and Miller, J. Chem. Phys. 88 (1988) 538-544 [Guerra 2019 ref. 210]
+  — primary W->B and w->a infrared fluorescence source; not locally verified.
+- Marinelli et al., J. Chem. Phys. 90 (1989) 2167-2173 [Guerra 2019 ref. 199] — N2(a)
+  quenching/radiative channel data; not locally verified.
+- 'Sá and Loureiro, J. Phys. D: Appl. Phys. 30 (1997) 2320-2330 [Guerra 2019 ref.
+  198] — N2(w)+N2 quenching; not locally verified.'
+- Velazco, Kolts and Setser, J. Chem. Phys. 69 (1978) 4357-4373, DOI 10.1063/1.436447,
+  Table I — already local; total rates only, product branching remains unknown.
+- Primary source for LoKI-GM N2+(B)->N2+(X) radiative rate 1.6e7 s-1 (nitrogen_mod.chem
+  line 112); primary citation absent from local file and must be identified/downloaded
+  by owner.

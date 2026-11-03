@@ -988,3 +988,18 @@ LIMITATIONS AND RANGE
     ion thermal table would supersede the derived thermal functions.
 """,
 )
+
+entry(
+    index = 900,
+    label = "[N2pB]",
+    molecule = """multiplicity 2\nelectronicstate 2Sigma_u+\n1 N u0 p1 c0 {2,T}\n2 N u1 p0 c+1 {1,T}\n""",
+    thermo = NASA(
+        polynomials = [
+            NASAPolynomial(coeffs=[3.53101, -0.000123661, -5.02999e-07, 2.43531e-09, -1.40881e-12, 216393.8105101805, 2.96747], Tmin=(200, 'K'), Tmax=(1000, 'K')),
+            NASAPolynomial(coeffs=[2.95258, 0.0013969, -4.92632e-07, 7.8601e-11, -4.60755e-15, 216516.84151018053, 5.87189], Tmin=(1000, 'K'), Tmax=(6000, 'K')),
+        ], Tmin=(200, 'K'), Tmax=(6000, 'K'),
+        Cp0=(20.78618, 'J/(mol*K)'), CpInf=(29.10065, 'J/(mol*K)'),
+    ),
+    shortDesc = "N2+(B 2Sigma_u+), Huber-Herzberg Te and IE",
+    longDesc = "NIST Chemistry WebBook SRD 69 Huber & Herzberg N2+ B-X T_e=25461.46 cm^-1; N2 ionization energy 15.5808 eV (Huber & Herzberg 1979). Total relative to N2(X) = 18.737618709 eV. Cp copied from primaryThermoLibrary N2. Archived source page SHA-256 015466fff8e0519a522db45c20987751c93aa83ff51e9ce030f57883d48b19f7.",
+)

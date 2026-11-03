@@ -1135,3 +1135,95 @@ a6=H298/R-2.5*298.15, a7=S298/R-2.5*ln(298.15). No separately assigned E0.
 This represents one electronic level, not a thermal population over 4s states.
 """,
 )
+
+# N2 electronic levels: NIST Chemistry WebBook SRD 69, Huber & Herzberg constants.
+
+entry(
+    index = 10,
+    label = "N2(A)",
+    molecule = """multiplicity 3\nelectronicstate 3Sigma_u+\n1 N u1 p1 c0 {2,D}\n2 N u1 p1 c0 {1,D}\n""",
+    thermo = NASA(
+        polynomials = [
+            NASAPolynomial(coeffs=[3.53101, -0.000123661, -5.02999e-07, 2.43531e-09, -1.40881e-12, 71184.76050926968, 2.96747], Tmin=(200, 'K'), Tmax=(1000, 'K')),
+            NASAPolynomial(coeffs=[2.95258, 0.0013969, -4.92632e-07, 7.8601e-11, -4.60755e-15, 71307.79150926968, 5.87189], Tmin=(1000, 'K'), Tmax=(6000, 'K')),
+        ], Tmin=(200, 'K'), Tmax=(6000, 'K'),
+        Cp0=(20.78618, 'J/(mol*K)'), CpInf=(29.10065, 'J/(mol*K)'),
+    ),
+    shortDesc = "A 3Σu+; NIST Huber-Herzberg T_e=50203.63 cm^-1",
+    longDesc = "NIST Chemistry WebBook SRD 69, Constants of diatomic molecules, Huber & Herzberg (data through 1977); archived page SHA-256 356d7110c3249f0800e6d3de91e6510c3d4e82d51cb673f4775b11d5cdd64499. T_e=50203.63 cm^-1 = 6.224456824 eV. NASA coefficients copy primaryThermoLibrary N2 Cp and shift enthalpy by T_e; entropy unchanged.",
+)
+
+entry(
+    index = 11,
+    label = "N2(B)",
+    molecule = """multiplicity 3\nelectronicstate 3Pi_g\n1 N u1 p1 c0 {2,D}\n2 N u1 p1 c0 {1,D}\n""",
+    thermo = NASA(
+        polynomials = [
+            NASAPolynomial(coeffs=[3.53101, -0.000123661, -5.02999e-07, 2.43531e-09, -1.40881e-12, 84731.86544466855, 2.96747], Tmin=(200, 'K'), Tmax=(1000, 'K')),
+            NASAPolynomial(coeffs=[2.95258, 0.0013969, -4.92632e-07, 7.8601e-11, -4.60755e-15, 84854.89644466856, 5.87189], Tmin=(1000, 'K'), Tmax=(6000, 'K')),
+        ], Tmin=(200, 'K'), Tmax=(6000, 'K'),
+        Cp0=(20.78618, 'J/(mol*K)'), CpInf=(29.10065, 'J/(mol*K)'),
+    ),
+    shortDesc = "B 3Πg; NIST Huber-Herzberg T_e=59619.35 cm^-1",
+    longDesc = "NIST Chemistry WebBook SRD 69, Constants of diatomic molecules, Huber & Herzberg (data through 1977); archived page SHA-256 356d7110c3249f0800e6d3de91e6510c3d4e82d51cb673f4775b11d5cdd64499. T_e=59619.35 cm^-1 = 7.391857321 eV. NASA coefficients copy primaryThermoLibrary N2 Cp and shift enthalpy by T_e; entropy unchanged.",
+)
+
+entry(
+    index = 12,
+    label = "N2(C)",
+    molecule = """multiplicity 3\nelectronicstate 3Pi_u\n1 N u1 p1 c0 {2,D}\n2 N u1 p1 c0 {1,D}\n""",
+    thermo = NASA(
+        polynomials = [
+            NASAPolynomial(coeffs=[3.53101, -0.000123661, -5.02999e-07, 2.43531e-09, -1.40881e-12, 127200.957170398, 2.96747], Tmin=(200, 'K'), Tmax=(1000, 'K')),
+            NASAPolynomial(coeffs=[2.95258, 0.0013969, -4.92632e-07, 7.8601e-11, -4.60755e-15, 127323.988170398, 5.87189], Tmin=(1000, 'K'), Tmax=(6000, 'K')),
+        ], Tmin=(200, 'K'), Tmax=(6000, 'K'),
+        Cp0=(20.78618, 'J/(mol*K)'), CpInf=(29.10065, 'J/(mol*K)'),
+    ),
+    shortDesc = "C 3Πu; NIST Huber-Herzberg T_e=89136.88 cm^-1",
+    longDesc = "NIST Chemistry WebBook SRD 69, Constants of diatomic molecules, Huber & Herzberg (data through 1977); archived page SHA-256 356d7110c3249f0800e6d3de91e6510c3d4e82d51cb673f4775b11d5cdd64499. T_e=89136.88 cm^-1 = 11.051564618 eV. NASA coefficients copy primaryThermoLibrary N2 Cp and shift enthalpy by T_e; entropy unchanged.",
+)
+
+entry(
+    index = 13,
+    label = "N2(a')",
+    molecule = """multiplicity 1\nelectronicstate 1Sigma_u-\n1 N u0 p1 c0 {2,T}\n2 N u0 p1 c0 {1,T}\n""",
+    thermo = NASA(
+        polynomials = [
+            NASAPolynomial(coeffs=[3.53101, -0.000123661, -5.02999e-07, 2.43531e-09, -1.40881e-12, 97009.38070810982, 2.96747], Tmin=(200, 'K'), Tmax=(1000, 'K')),
+            NASAPolynomial(coeffs=[2.95258, 0.0013969, -4.92632e-07, 7.8601e-11, -4.60755e-15, 97132.41170810982, 5.87189], Tmin=(1000, 'K'), Tmax=(6000, 'K')),
+        ], Tmin=(200, 'K'), Tmax=(6000, 'K'),
+        Cp0=(20.78618, 'J/(mol*K)'), CpInf=(29.10065, 'J/(mol*K)'),
+    ),
+    shortDesc = "a′ 1Σu−; NIST Huber-Herzberg T_e=68152.66 cm^-1",
+    longDesc = "NIST Chemistry WebBook SRD 69, Constants of diatomic molecules, Huber & Herzberg (data through 1977); archived page SHA-256 356d7110c3249f0800e6d3de91e6510c3d4e82d51cb673f4775b11d5cdd64499. T_e=68152.66 cm^-1 = 8.449852922 eV. NASA coefficients copy primaryThermoLibrary N2 Cp and shift enthalpy by T_e; entropy unchanged.",
+)
+
+entry(
+    index = 14,
+    label = "N2(a)",
+    molecule = """multiplicity 1\nelectronicstate 1Pi_g\n1 N u0 p1 c0 {2,T}\n2 N u0 p1 c0 {1,T}\n""",
+    thermo = NASA(
+        polynomials = [
+            NASAPolynomial(coeffs=[3.53101, -0.000123661, -5.02999e-07, 2.43531e-09, -1.40881e-12, 98635.77225532818, 2.96747], Tmin=(200, 'K'), Tmax=(1000, 'K')),
+            NASAPolynomial(coeffs=[2.95258, 0.0013969, -4.92632e-07, 7.8601e-11, -4.60755e-15, 98758.80325532818, 5.87189], Tmin=(1000, 'K'), Tmax=(6000, 'K')),
+        ], Tmin=(200, 'K'), Tmax=(6000, 'K'),
+        Cp0=(20.78618, 'J/(mol*K)'), CpInf=(29.10065, 'J/(mol*K)'),
+    ),
+    shortDesc = "a 1Πg; NIST Huber-Herzberg T_e=69283.06 cm^-1",
+    longDesc = "NIST Chemistry WebBook SRD 69, Constants of diatomic molecules, Huber & Herzberg (data through 1977); archived page SHA-256 356d7110c3249f0800e6d3de91e6510c3d4e82d51cb673f4775b11d5cdd64499. T_e=69283.06 cm^-1 = 8.590004659 eV. NASA coefficients copy primaryThermoLibrary N2 Cp and shift enthalpy by T_e; entropy unchanged.",
+)
+
+entry(
+    index = 15,
+    label = "N2(w)",
+    molecule = """multiplicity 1\nelectronicstate 1Delta_u\n1 N u0 p1 c0 {2,T}\n2 N u0 p1 c0 {1,T}\n""",
+    thermo = NASA(
+        polynomials = [
+            NASAPolynomial(coeffs=[3.53101, -0.000123661, -5.02999e-07, 2.43531e-09, -1.40881e-12, 102684.97500391143, 2.96747], Tmin=(200, 'K'), Tmax=(1000, 'K')),
+            NASAPolynomial(coeffs=[2.95258, 0.0013969, -4.92632e-07, 7.8601e-11, -4.60755e-15, 102808.00600391143, 5.87189], Tmin=(1000, 'K'), Tmax=(6000, 'K')),
+        ], Tmin=(200, 'K'), Tmax=(6000, 'K'),
+        Cp0=(20.78618, 'J/(mol*K)'), CpInf=(29.10065, 'J/(mol*K)'),
+    ),
+    shortDesc = "w 1Δu; NIST Huber-Herzberg T_e=72097.4 cm^-1",
+    longDesc = "NIST Chemistry WebBook SRD 69, Constants of diatomic molecules, Huber & Herzberg (data through 1977); archived page SHA-256 356d7110c3249f0800e6d3de91e6510c3d4e82d51cb673f4775b11d5cdd64499. T_e=72097.4 cm^-1 = 8.938938349 eV. NASA coefficients copy primaryThermoLibrary N2 Cp and shift enthalpy by T_e; entropy unchanged.",
+)

@@ -338,7 +338,7 @@ class TestInputsAndOutput:
                             f"not"]
 
     @pytest.mark.parametrize('file, old, new', [
-        ('reactions.py', 'kinetics = TwoTemperaturePlasma(', 'kinetics = TwoTemperaturePlamsa('),
+        ('reactions.py', 'kinetics = EEDFChannel(', 'kinetics = EEDFChanel('),
         ('dictionary.txt', 'multiplicity 3', 'multiplicty 3')])
     def test_a_file_saved_after_it_is_read_is_never_seen(self, tmp_path, monkeypatch, file, old, new):
         """db-r52's concurrent save, made deterministic: each library file is saved again, with an edit RMG

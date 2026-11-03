@@ -32,12 +32,12 @@
 Mutation tests for scripts/check_eedf_channel_map.py. Each case copies the assembled LoKI-B directory, the
 map and the overlay into a scratch directory outside the repository, applies one mistake, runs the checker,
 and expects it to refuse for the reason the case names: exit status 1, RESULT: FAIL and a FAIL line holding
-that reason (argparse's usage error, exit 2, for a missing argument). Ten cases must pass: the unmodified
+that reason (argparse's usage error, exit 2, for a missing argument). Controls must pass: the unmodified
 inputs, the overlay rewritten in another layout, the library with one entry's label single-quoted, given
 before its index or written with one space more, its dictionary's atoms labelled, the ground state labelled
 with its own term in its record and its reference, the electron's record with a lone pair or no charge
 (which RMG normalises), and a source given from another folder under another source's file name, which must
-also regenerate the committed map. The suite's own inputs must be sound before any case runs and are read
+also regenerate the committed map; and a scratch library with 1s4 absent. The suite's own inputs must be sound before any case runs and are read
 once (fixture_problem): a mistake in them is one BAD line, exit 2.
 A crash, or a traceback on stderr, counts as neither a pass nor a refusal. The LXCat data never enter the
 repository: the store is passed as arguments, as to the checker.
@@ -339,6 +339,19 @@ def gap_wrong_reaction(doc):
 def absent_declared_present(doc):
     channel(doc, 6)['rmg']['status'] = 'present'
     del doc['class_a_gaps']['[absent] Ar + e- => Ar(1s_i) + e- + hv (radiative cascade via 4p)']
+
+
+def without_resonant_species(database):
+    """A scratch library with 1s4 absent, so cascade channel 6 needs that species."""
+    folder = os.path.join(database, 'kinetics', 'libraries', gen.LIBRARY)
+    for name, pattern in (
+            ('reactions.py', r'(?ms)^entry\(\n    index = 94,\n.*?^\)\n'),
+            ('dictionary.txt', r'(?m)^Ar\(1s4\)\n(?:[^\n]+\n)+')):
+        path = os.path.join(folder, name)
+        text = open(path, encoding='utf-8').read()
+        text, count = re.subn(pattern, '', text)
+        assert count == 1, (name, count)
+        open(path, 'w', encoding='utf-8').write(text)
 
 
 def ionization_to_excitation(doc):
@@ -745,17 +758,19 @@ def extra_source(name, copy_as):
 # --- the cases -----------------------------------------------------------------------------------------------
 
 def case(name, origin, expect, map=None, overlay=None, store=None, refresh=False, drop_source=None,
-         database=None, source_edit=None, no_sources=False, rates=True, generate=False, source_list=None):
+         database=None, source_edit=None, no_sources=False, rates=True, generate=False, source_list=None,
+         fixture_database=None):
     """One mistake: edits of the map (of its parsed document, or of its bytes when marked raw), the overlay
     (likewise; a document edit also sees the map), the store (followed, with refresh, by putting the new
     file hashes into the map), the command line, the library or a source file; and what the checker must
     do: 'PASS', or refuse with a FAIL line holding the given text. With generate, the map is first written
     by the generator beside the checker from the same inputs and command line, as an honest regeneration
     would write it, and a refusal there is the verdict; a case that must pass must then also regenerate the
-    committed map byte for byte. source_list rewrites the list of source paths given."""
+    committed map byte for byte. source_list rewrites the list of source paths given.
+    fixture_database changes a scratch library and regenerates a valid baseline before the mistake."""
     return dict(name=name, origin=origin, expect=expect, map=map, overlay=overlay, store=store, refresh=refresh,
                 drop_source=drop_source, database=database, source_edit=source_edit, no_sources=no_sources,
-                rates=rates, generate=generate, source_list=source_list)
+                rates=rates, generate=generate, source_list=source_list, fixture_database=fixture_database)
 
 
 REGEN = 'differs from its regeneration'
@@ -871,9 +886,12 @@ CASES = [
          map=reclassify(6, 'B'), overlay=overlay_set(6, cls='B', drop_reaction=True)),
     # db-r43 finding 4: reaction and species presence come from the library
     case('absent_declared_present', 'db-r43 F4', REGEN, map=absent_declared_present),
+    case('species_needed_fixture', 'control', 'PASS', fixture_database=without_resonant_species),
     case('species_needed_wrong', 'db-r43 F4', REGEN,
-         map=lambda d: channel(d, 3)['rmg'].__setitem__('species_needed', ['Xe*'])),
-    case('species_needed_deleted', 'db-r43 F4', REGEN, map=lambda d: channel(d, 3)['rmg'].pop('species_needed')),
+         map=lambda d: channel(d, 6)['rmg'].__setitem__('species_needed', ['Xe*']),
+         fixture_database=without_resonant_species),
+    case('species_needed_deleted', 'db-r43 F4', REGEN,
+         map=lambda d: channel(d, 6)['rmg'].pop('species_needed'), fixture_database=without_resonant_species),
     case('missing_species_misnamed', 'db-r43 F4', 'a missing 4s level is named Ar(1s4)',
          overlay=overlay_replace('Ar(1s4)', 'Ar1s4')),
     case('singlet_lumped_into_triplet', 'db-r43 F4', 'multiplicity 3, the LS term 1',
@@ -1146,6 +1164,16 @@ def run_case(args, c, map0, overlay0, scratch, omitted):
     work = os.path.join(scratch, c['name'])
     asm = os.path.join(work, 'assembled')
     shutil.copytree(args.assembled, asm)
+    database = args.database
+    if c['fixture_database']:
+        database = os.path.join(work, 'fixture-input')
+        lib = os.path.join('kinetics', 'libraries', gen.LIBRARY)
+        shutil.copytree(os.path.join(args.database, lib), os.path.join(database, lib))
+        c['fixture_database'](database)
+        map0, problems, _, _ = gen.generate(args.overlay, asm, args.source, database)
+        assert problems == [], problems
+        needed = channel(yaml.safe_load(map0), 6)['rmg']['species_needed']
+        assert needed == ['Ar(1s4)'], needed
     doc0 = yaml.safe_load(map0)
     hashes = {name: gen.sha256(os.path.join(asm, name)) for name in os.listdir(asm)}
     if c['store']:
@@ -1181,7 +1209,6 @@ def run_case(args, c, map0, overlay0, scratch, omitted):
     overlay_path = os.path.join(work, 'argon_channel_overlay.yaml')
     open(overlay_path, 'wb').write(data)
     # the library and the source files
-    database = args.database
     if c['database']:
         database = os.path.join(work, 'input')
         lib = os.path.join('kinetics', 'libraries', gen.LIBRARY)

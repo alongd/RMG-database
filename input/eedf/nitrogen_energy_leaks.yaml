@@ -1,0 +1,76 @@
+source: NIST Chemistry WebBook SRD 69 Huber & Herzberg; threshold source IST-Lisbon
+  N2_LXCat.txt
+cm-1_per_eV: 8065.543937
+channels:
+- process: E + N2 -> E + N2[A3Su+(v=0-4)], Excitation
+  threshold_eV: 6.2
+  mapped_state: N2(A)
+  T_e_eV: 6.224456824256464
+  threshold_minus_T_e_eV: -0.024456824
+  meaning: threshold energy in excess of represented state energy; retained explicitly
+- process: E + N2 -> E + N2 [A3Su+(v=5-9)], Excitation
+  threshold_eV: 7.0
+  mapped_state: N2(A)
+  T_e_eV: 6.224456824256464
+  threshold_minus_T_e_eV: 0.775543176
+  meaning: threshold energy in excess of represented state energy; retained explicitly
+- process: E + N2 -> E + N2(B3Pg), Excitation
+  threshold_eV: 7.4
+  mapped_state: N2(B)
+  T_e_eV: 7.391857321178461
+  threshold_minus_T_e_eV: 0.008142679
+  meaning: threshold energy in excess of represented state energy; retained explicitly
+- process: E + N2 -> E + N2(W3Du), Excitation
+  threshold_eV: 7.4
+  mapped_state: N2(B)
+  T_e_eV: 7.391857321178461
+  threshold_minus_T_e_eV: 0.008142679
+  meaning: threshold energy in excess of represented state energy; retained explicitly
+- process: E + N2 -> E + N2 [A3Su+(v=10+)], Excitation
+  threshold_eV: 7.8
+  mapped_state: N2(A)
+  T_e_eV: 6.224456824256464
+  threshold_minus_T_e_eV: 1.575543176
+  meaning: threshold energy in excess of represented state energy; retained explicitly
+- process: E + N2 -> E + N2(B3Su-), Excitation
+  threshold_eV: 8.2
+  mapped_state: N2(B)
+  T_e_eV: 7.391857321178461
+  threshold_minus_T_e_eV: 0.808142679
+  meaning: threshold energy in excess of represented state energy; retained explicitly
+- process: E + N2 -> E + N2(a1Su-), Excitation
+  threshold_eV: 8.4
+  mapped_state: N2(a')
+  T_e_eV: 8.449852921556282
+  threshold_minus_T_e_eV: -0.049852922
+  meaning: threshold energy in excess of represented state energy; retained explicitly
+- process: E + N2 -> E + N2(a1Pg), Excitation
+  threshold_eV: 8.6
+  mapped_state: N2(a)
+  T_e_eV: 8.590004659471239
+  threshold_minus_T_e_eV: 0.009995341
+  meaning: threshold energy in excess of represented state energy; retained explicitly
+- process: E + N2 -> E + N2(w1Du), Excitation
+  threshold_eV: 8.9
+  mapped_state: N2(w)
+  T_e_eV: 8.938938348504838
+  threshold_minus_T_e_eV: -0.038938349
+  meaning: threshold energy in excess of represented state energy; retained explicitly
+- process: E + N2 -> E + N2(C3Pu), Excitation
+  threshold_eV: 11.0
+  mapped_state: N2(C)
+  T_e_eV: 11.051564618114856
+  threshold_minus_T_e_eV: -0.051564618
+  meaning: threshold energy in excess of represented state energy; retained explicitly
+- process: E + N2 -> E + E + N2+(X), Ionization
+  threshold_eV: 15.6
+  mapped_state: N2p
+  T_e_eV: 15.5808
+  threshold_minus_T_e_eV: 0.0192
+  meaning: threshold energy in excess of represented state energy; retained explicitly
+- process: E + N2 -> E + E + N2+(B), Ionization
+  threshold_eV: 18.8
+  mapped_state: N2pB
+  T_e_eV: 18.73761870917567
+  threshold_minus_T_e_eV: 0.062381291
+  meaning: threshold energy in excess of represented state energy; retained explicitly

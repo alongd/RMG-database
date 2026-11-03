@@ -1,0 +1,107 @@
+source:
+  review: V. Guerra, A. Tejero-del-Caz, C. D. Pintassilgo, L. L. Alves, Plasma Sources
+    Sci. Technol. 28 (2019) 073001, Table 5
+  unit_note: Guerra Table 5 reports two-body rates in m3 s-1 and radiative transition
+    probabilities in s-1.
+collisional:
+- id: N2-w-N2-to-a
+  reaction: N2(w)+N2(X)->N2(a)+N2(X)
+  value: 1.0e-17
+  units: m3/s
+  source_table: Table 5 N4; primary [198]
+- id: N2-a-N2-to-aprime
+  reaction: N2(a)+N2(X)->N2(a')+N2(X)
+  value: 2.0e-17
+  units: m3/s
+  source_table: Table 5 N5; primary [199]
+- id: N2-aprime-N2-to-B
+  reaction: N2(a')+N2(X)->N2(B)+N2(X)
+  value: 1.9e-19
+  units: m3/s
+  source_table: Table 5 N6; primary [200]
+- id: N2-B-N2-to-A
+  reaction: N2(B)+N2(X)->N2(A)+N2(X)
+  value: 2.85e-17
+  units: m3/s
+  source_table: Table 5 N7; primary [126,201]
+- id: N2-B-N2-to-X
+  reaction: N2(B)+N2(X)->2N2(X)
+  value: 1.5e-18
+  units: m3/s
+  source_table: Table 5 N8; primary [126,201]
+argon_quenching:
+- id: Ar1s5-N2-total-quenching
+  reaction: Ar(1s5)+N2 -> quenching products (unresolved)
+  value: 3.6e-11
+  units: cm3/s
+  temperature_K: 300
+  source_table: Velazco, Kolts & Setser, JCP 69 (1978) 4357-4373, Table I, p. 4360;
+    Ar(3P2) column
+- id: Ar1s3-N2-total-quenching
+  reaction: Ar(1s3)+N2 -> quenching products (unresolved)
+  value: 1.6e-11
+  units: cm3/s
+  temperature_K: 300
+  source_table: Velazco, Kolts & Setser, JCP 69 (1978) 4357-4373, Table I, p. 4360;
+    Ar(3P0) column
+radiative:
+- id: N2-C-to-B
+  reaction: N2(C)->N2(B)+hnu
+  value: 2.74e7
+  units: s-1
+  source_table: Table 5 N23; primary [206]
+- id: N2-B-to-A
+  reaction: N2(B)->N2(A)+hnu
+  value: 2.0e5
+  units: s-1
+  source_table: Table 5 N25; primary [208]
+- id: N2-a-to-X
+  reaction: N2(a)->N2(X)+hnu
+  value: 1.8e4
+  units: s-1
+  source_table: Table 5 N26; primary [199]
+- id: N2-a-to-aprime
+  reaction: N2(a)->N2(a')+hnu
+  value: 1.91e2
+  units: s-1
+  source_table: Table 5 N27; primary [209]
+- id: N2-w-to-a
+  reaction: N2(w)->N2(a)+hnu
+  value: 6.5e2
+  units: s-1
+  source_table: Table 5 N28; primary [210]
+- id: N2-W-to-B
+  reaction: N2(W)->N2(B)+hnu
+  value: null
+  units: s-1
+  source_table: W→B fluorescence identified by Fraser et al. 1988, cited in Guerra
+    2019 ref. 210; primary value not locally verified
+- id: N2-Bprime-to-B
+  reaction: N2(B')->N2(B)+hnu
+  value: 3.81e4
+  units: s-1
+  source_table: Table 5 N24; primary [207]; source state is B-prime, retained only
+    as fate/coupling evidence
+- id: N2plus-B-to-X
+  reaction: N2+(B)->N2+(X)+hnu
+  value: 16000000.0
+  units: s-1
+  source_table: LoKI-GM scheme Code/Input/Nitrogen/nitrogen_mod.chem line 112; primary
+    citation not locally verified
+primary_references:
+  '[198]': 'Sá and Loureiro, J. Phys. D: Appl. Phys. 30 (1997) 2320-2330; primary
+    paper not locally verified'
+  '[199]': Marinelli et al., J. Chem. Phys. 90 (1989) 2167-2173; primary paper not
+    locally verified
+  '[200]': Piper, J. Chem. Phys. 87 (1987) 1625-1629; primary paper not locally verified
+  '[201]': Piper, J. Chem. Phys. 97 (1992) 270-275; primary paper not locally verified
+  '[206]': Lofthus and Krupenie, J. Phys. Chem. Ref. Data 6 (1977) 113-307; primary
+    review locally cited, not downloaded as separate article
+  '[207]': Benesch and Fraedrich, J. Chem. Phys. 81 (1984) 5367-5374; primary paper
+    not locally verified
+  '[208]': Piper, J. Chem. Phys. 91 (1989) 864-873; primary paper not locally verified
+  '[209]': Freund, J. Chem. Phys. 56 (1972) 4344-4351; primary paper not locally verified
+  '[210]': Fraser, Rawlins and Miller, J. Chem. Phys. 88 (1988) 538-544; primary paper
+    not locally verified
+  '[126]': Guerra 2019 bibliography entry [126]; exact primary bibliography citation
+    is not locally transcribed; obtain before upgrading provenance

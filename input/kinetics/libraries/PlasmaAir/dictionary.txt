@@ -164,3 +164,45 @@ H3Op
 2 H u0 p0 c0 {1,S}
 3 H u0 p0 c0 {1,S}
 4 H u0 p0 c0 {1,S}
+
+N2(A)
+multiplicity 3
+electronicstate 3Sigma_u+
+1 N u1 p1 c0 {2,D}
+2 N u1 p1 c0 {1,D}
+
+N2(B)
+multiplicity 3
+electronicstate 3Pi_g
+1 N u1 p1 c0 {2,D}
+2 N u1 p1 c0 {1,D}
+
+N2(C)
+multiplicity 3
+electronicstate 3Pi_u
+1 N u1 p1 c0 {2,D}
+2 N u1 p1 c0 {1,D}
+
+N2(a')
+multiplicity 1
+electronicstate 1Sigma_u-
+1 N u0 p1 c0 {2,T}
+2 N u0 p1 c0 {1,T}
+
+N2(a)
+multiplicity 1
+electronicstate 1Pi_g
+1 N u0 p1 c0 {2,T}
+2 N u0 p1 c0 {1,T}
+
+N2(w)
+multiplicity 1
+electronicstate 1Delta_u
+1 N u0 p1 c0 {2,T}
+2 N u0 p1 c0 {1,T}
+
+N2pB
+multiplicity 2
+electronicstate 2Sigma_u+
+1 N u0 p1 c0 {2,T}
+2 N u1 p0 c+1 {1,T}

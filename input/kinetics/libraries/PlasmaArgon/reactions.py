@@ -8,7 +8,8 @@ Five ordinary IST-Lisbon-Ar-2021 collision owners plus sourced branched owners
 for complete 2p-to-1s cascade channels. Ars is Ar(1s5), 3P2,
 shared with PlasmaArgonDimer and PlasmaOxygenHeavy. Ar(1s4), Ar(1s3), Ar(1s2)
 are separate electronic states. This library is not runnable for reacting EEDF:
-channel 11 and channels 16–38 remain unresolved. The three new states have
+channels 16–38 remain unresolved; channel 11 uses the sourced Wiese upper
+bound as an effective zero branch. The three new states have
 production but no loss: no radiative/trapped decay, quenching, diffusion,
 mixing, stepwise ionisation or dimer formation. No cascade or trapped-decay
 rate is added here.
@@ -108,7 +109,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s5)',
         branch_yield = 0.7420494699646644,
-        yield_table_sha256 = '200cd309f4915122117f37293bb74fcb785d0b5805d3d9868d3fe5eec2dac0f5',
+        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 6; sourced cascade branch",
     longDesc = """
@@ -130,7 +131,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s4)',
         branch_yield = 0.21201413427561838,
-        yield_table_sha256 = '200cd309f4915122117f37293bb74fcb785d0b5805d3d9868d3fe5eec2dac0f5',
+        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 6; sourced cascade branch",
     longDesc = """
@@ -152,7 +153,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s3)',
         branch_yield = 0.038476639183352965,
-        yield_table_sha256 = '200cd309f4915122117f37293bb74fcb785d0b5805d3d9868d3fe5eec2dac0f5',
+        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 6; sourced cascade branch",
     longDesc = """
@@ -174,7 +175,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s2)',
         branch_yield = 0.00745975657636435,
-        yield_table_sha256 = '200cd309f4915122117f37293bb74fcb785d0b5805d3d9868d3fe5eec2dac0f5',
+        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 6; sourced cascade branch",
     longDesc = """
@@ -196,7 +197,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s5)',
         branch_yield = 1.0,
-        yield_table_sha256 = '200cd309f4915122117f37293bb74fcb785d0b5805d3d9868d3fe5eec2dac0f5',
+        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 7; sourced cascade branch",
     longDesc = """
@@ -218,7 +219,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s4)',
         branch_yield = 0.0,
-        yield_table_sha256 = '200cd309f4915122117f37293bb74fcb785d0b5805d3d9868d3fe5eec2dac0f5',
+        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 7; sourced cascade branch",
     longDesc = """
@@ -240,7 +241,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s3)',
         branch_yield = 0.0,
-        yield_table_sha256 = '200cd309f4915122117f37293bb74fcb785d0b5805d3d9868d3fe5eec2dac0f5',
+        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 7; sourced cascade branch",
     longDesc = """
@@ -262,7 +263,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s2)',
         branch_yield = 0.0,
-        yield_table_sha256 = '200cd309f4915122117f37293bb74fcb785d0b5805d3d9868d3fe5eec2dac0f5',
+        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 7; sourced cascade branch",
     longDesc = """
@@ -284,7 +285,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s5)',
         branch_yield = 0.28819336845367216,
-        yield_table_sha256 = '200cd309f4915122117f37293bb74fcb785d0b5805d3d9868d3fe5eec2dac0f5',
+        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 8; sourced cascade branch",
     longDesc = """
@@ -306,7 +307,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s4)',
         branch_yield = 0.6662534862101023,
-        yield_table_sha256 = '200cd309f4915122117f37293bb74fcb785d0b5805d3d9868d3fe5eec2dac0f5',
+        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 8; sourced cascade branch",
     longDesc = """
@@ -328,7 +329,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s3)',
         branch_yield = 0.0,
-        yield_table_sha256 = '200cd309f4915122117f37293bb74fcb785d0b5805d3d9868d3fe5eec2dac0f5',
+        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 8; sourced cascade branch",
     longDesc = """
@@ -350,7 +351,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s2)',
         branch_yield = 0.0455531453362256,
-        yield_table_sha256 = '200cd309f4915122117f37293bb74fcb785d0b5805d3d9868d3fe5eec2dac0f5',
+        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 8; sourced cascade branch",
     longDesc = """
@@ -372,7 +373,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s5)',
         branch_yield = 0.1543484713564856,
-        yield_table_sha256 = '200cd309f4915122117f37293bb74fcb785d0b5805d3d9868d3fe5eec2dac0f5',
+        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 9; sourced cascade branch",
     longDesc = """
@@ -394,7 +395,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s4)',
         branch_yield = 0.7420599584446423,
-        yield_table_sha256 = '200cd309f4915122117f37293bb74fcb785d0b5805d3d9868d3fe5eec2dac0f5',
+        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 9; sourced cascade branch",
     longDesc = """
@@ -416,7 +417,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s3)',
         branch_yield = 0.07212822796081923,
-        yield_table_sha256 = '200cd309f4915122117f37293bb74fcb785d0b5805d3d9868d3fe5eec2dac0f5',
+        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 9; sourced cascade branch",
     longDesc = """
@@ -438,7 +439,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s2)',
         branch_yield = 0.03146334223805283,
-        yield_table_sha256 = '200cd309f4915122117f37293bb74fcb785d0b5805d3d9868d3fe5eec2dac0f5',
+        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 9; sourced cascade branch",
     longDesc = """
@@ -460,7 +461,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s5)',
         branch_yield = 0.7122093023255814,
-        yield_table_sha256 = '200cd309f4915122117f37293bb74fcb785d0b5805d3d9868d3fe5eec2dac0f5',
+        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 10; sourced cascade branch",
     longDesc = """
@@ -482,7 +483,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s4)',
         branch_yield = 0.14244186046511628,
-        yield_table_sha256 = '200cd309f4915122117f37293bb74fcb785d0b5805d3d9868d3fe5eec2dac0f5',
+        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 10; sourced cascade branch",
     longDesc = """
@@ -504,7 +505,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s3)',
         branch_yield = 0.0,
-        yield_table_sha256 = '200cd309f4915122117f37293bb74fcb785d0b5805d3d9868d3fe5eec2dac0f5',
+        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 10; sourced cascade branch",
     longDesc = """
@@ -526,7 +527,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s2)',
         branch_yield = 0.14534883720930233,
-        yield_table_sha256 = '200cd309f4915122117f37293bb74fcb785d0b5805d3d9868d3fe5eec2dac0f5',
+        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 10; sourced cascade branch",
     longDesc = """
@@ -535,6 +536,94 @@ from argon_cascade_yields.yaml. Transition A values, citations and NIST row iden
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
 electron collision rate; photon energy is accounted for once through branch products.
 Transition rows: 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005.
+""",
+)
+
+entry(
+    index = 1044,
+    label = "Ar + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1S0) -> e + Ar(4p[1/2]0), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.0,
+        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 11; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 11. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000011->018001.000003, 018001.000011->018001.000005.
+""",
+)
+
+entry(
+    index = 1045,
+    label = "Ar + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1S0) -> e + Ar(4p[1/2]0), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 1.0,
+        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 11; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 11. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000011->018001.000003, 018001.000011->018001.000005.
+""",
+)
+
+entry(
+    index = 1046,
+    label = "Ar + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1S0) -> e + Ar(4p[1/2]0), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.0,
+        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 11; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 11. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000011->018001.000003, 018001.000011->018001.000005.
+""",
+)
+
+entry(
+    index = 1047,
+    label = "Ar + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1S0) -> e + Ar(4p[1/2]0), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.0,
+        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 11; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 11. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000011->018001.000003, 018001.000011->018001.000005.
 """,
 )
 
@@ -548,7 +637,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s5)',
         branch_yield = 0.01900337837837838,
-        yield_table_sha256 = '200cd309f4915122117f37293bb74fcb785d0b5805d3d9868d3fe5eec2dac0f5',
+        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 12; sourced cascade branch",
     longDesc = """
@@ -570,7 +659,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s4)',
         branch_yield = 0.0006636100386100386,
-        yield_table_sha256 = '200cd309f4915122117f37293bb74fcb785d0b5805d3d9868d3fe5eec2dac0f5',
+        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 12; sourced cascade branch",
     longDesc = """
@@ -592,7 +681,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s3)',
         branch_yield = 0.5610521235521235,
-        yield_table_sha256 = '200cd309f4915122117f37293bb74fcb785d0b5805d3d9868d3fe5eec2dac0f5',
+        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 12; sourced cascade branch",
     longDesc = """
@@ -614,7 +703,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s2)',
         branch_yield = 0.41928088803088803,
-        yield_table_sha256 = '200cd309f4915122117f37293bb74fcb785d0b5805d3d9868d3fe5eec2dac0f5',
+        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 12; sourced cascade branch",
     longDesc = """
@@ -636,7 +725,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s5)',
         branch_yield = 0.10982658959537572,
-        yield_table_sha256 = '200cd309f4915122117f37293bb74fcb785d0b5805d3d9868d3fe5eec2dac0f5',
+        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 13; sourced cascade branch",
     longDesc = """
@@ -658,7 +747,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s4)',
         branch_yield = 0.24566473988439305,
-        yield_table_sha256 = '200cd309f4915122117f37293bb74fcb785d0b5805d3d9868d3fe5eec2dac0f5',
+        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 13; sourced cascade branch",
     longDesc = """
@@ -680,7 +769,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s3)',
         branch_yield = 0.0,
-        yield_table_sha256 = '200cd309f4915122117f37293bb74fcb785d0b5805d3d9868d3fe5eec2dac0f5',
+        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 13; sourced cascade branch",
     longDesc = """
@@ -702,7 +791,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s2)',
         branch_yield = 0.6445086705202312,
-        yield_table_sha256 = '200cd309f4915122117f37293bb74fcb785d0b5805d3d9868d3fe5eec2dac0f5',
+        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 13; sourced cascade branch",
     longDesc = """
@@ -724,7 +813,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s5)',
         branch_yield = 0.1816633550950894,
-        yield_table_sha256 = '200cd309f4915122117f37293bb74fcb785d0b5805d3d9868d3fe5eec2dac0f5',
+        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 14; sourced cascade branch",
     longDesc = """
@@ -746,7 +835,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s4)',
         branch_yield = 0.05194436559750213,
-        yield_table_sha256 = '200cd309f4915122117f37293bb74fcb785d0b5805d3d9868d3fe5eec2dac0f5',
+        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 14; sourced cascade branch",
     longDesc = """
@@ -768,7 +857,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s3)',
         branch_yield = 0.33210332103321033,
-        yield_table_sha256 = '200cd309f4915122117f37293bb74fcb785d0b5805d3d9868d3fe5eec2dac0f5',
+        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 14; sourced cascade branch",
     longDesc = """
@@ -790,7 +879,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s2)',
         branch_yield = 0.4342889582741981,
-        yield_table_sha256 = '200cd309f4915122117f37293bb74fcb785d0b5805d3d9868d3fe5eec2dac0f5',
+        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 14; sourced cascade branch",
     longDesc = """
@@ -812,7 +901,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s5)',
         branch_yield = 0.0,
-        yield_table_sha256 = '200cd309f4915122117f37293bb74fcb785d0b5805d3d9868d3fe5eec2dac0f5',
+        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 15; sourced cascade branch",
     longDesc = """
@@ -834,7 +923,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s4)',
         branch_yield = 0.005217083738615262,
-        yield_table_sha256 = '200cd309f4915122117f37293bb74fcb785d0b5805d3d9868d3fe5eec2dac0f5',
+        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 15; sourced cascade branch",
     longDesc = """
@@ -856,7 +945,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s3)',
         branch_yield = 0.0,
-        yield_table_sha256 = '200cd309f4915122117f37293bb74fcb785d0b5805d3d9868d3fe5eec2dac0f5',
+        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 15; sourced cascade branch",
     longDesc = """
@@ -878,7 +967,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s2)',
         branch_yield = 0.9947829162613847,
-        yield_table_sha256 = '200cd309f4915122117f37293bb74fcb785d0b5805d3d9868d3fe5eec2dac0f5',
+        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 15; sourced cascade branch",
     longDesc = """

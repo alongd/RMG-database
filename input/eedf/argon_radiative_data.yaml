@@ -36,12 +36,17 @@ references:
   T1242n:
     citation: Shumaker and Popenoe, JOSA 57, 8–10 (1967); NIST renormalized value
     url: https://doi.org/10.1364/JOSA.57.000008
+  Wiese1989_local_upper_bound:
+    citation: Wiese et al., Phys. Rev. A 39, 2461–2471 (1989), Table IV
+    local_path: /home/alon/Data/vibkin/Wiese1989_Ar_*.pdf
+    sha256: 3aec21c0b35d2febc1bf92fa8b4469c7e5ff34090178eb0adac4c360e3176e57
 completeness:
   citation: ar-i-through-4p-e1-completeness
   method: All possible E1 lines, no wavelength/strength cutoff. Enumerate opposite parity, delta J <=
     1, exclude 0->0. The four 4s states are the only lower odd levels; ground and 4p are even.
   candidate_transitions: 30
   known_A: 29
+  upper_bound_A: 1
   escape_lines: []
   scope: E1 only. No claim that unmeasured higher multipoles vanish.
 levels:
@@ -405,9 +410,13 @@ transitions:
   lower_nist_id: '018001.000005'
   product_state: Ar(1s2)
   ritz_vacuum_nm: 858.04R
-  A_s-1: null
+  nist_A_s-1: null
+  A_s-1: '0'
+  A_source_status: upper_bound_adopted_as_zero_for_branching
+  A_upper_bound_operator: '<'
+  A_upper_bound_s-1: '1e3'
   accuracy: null
-  tp_ref: null
+  tp_ref: Wiese1989_local_upper_bound
   type: E1
   citation: ar-i-through-4p-e1-completeness
 - channel_id: 12

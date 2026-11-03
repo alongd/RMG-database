@@ -4,6 +4,7 @@ import argparse
 from decimal import Decimal
 import hashlib
 from pathlib import Path
+import re
 import sys
 
 import yaml
@@ -43,6 +44,8 @@ def generate(raw):
     if [c['id'] for c in data['higher_channels']] != list(range(16, 39)):
         raise ValueError('expected higher channels 16–38 exactly once')
     transitions = data['transitions']
+    upper_bound_rows = [t for t in transitions
+                        if t.get('A_source_status') == 'upper_bound_adopted_as_zero_for_branching']
     expected_pairs = set()
     output = []
     for channel in channels:
@@ -63,21 +66,62 @@ def generate(raw):
                 raise ValueError('transition product identity mismatch')
             value = t['A_s-1']
             if value is None:
+                if any(key in t for key in ('A_source_status', 'A_upper_bound_operator',
+                                            'A_upper_bound_s-1', 'nist_A_s-1')):
+                    raise ValueError('channel-11 upper-bound A must retain its effective zero value')
                 missing.append(t['transition_id'])
                 continue
-            if t['tp_ref'] not in data['references'] or not data['references'][t['tp_ref']].get('url'):
+            reference = data['references'].get(t['tp_ref'])
+            if not reference or not (reference.get('url') or
+                                     (reference.get('local_path') and
+                                      reference['local_path'].startswith('/') and
+                                      re.fullmatch('[0-9a-f]{64}', reference.get('sha256', '')))):
                 raise ValueError('missing A citation')
             a = Decimal(str(value))
-            if not a.is_finite() or a <= 0:
-                raise ValueError('A must be finite and positive; missing is null, not zero')
+            if not a.is_finite() or a < 0:
+                raise ValueError('A must be finite and nonnegative; missing is null')
+            if a == 0:
+                if (t.get('A_source_status') != 'upper_bound_adopted_as_zero_for_branching'
+                        or t.get('A_upper_bound_operator') != '<'
+                        or t.get('nist_A_s-1') is not None
+                        or t['tp_ref'] != 'Wiese1989_local_upper_bound'
+                        or t['channel_id'] != 11
+                        or t['transition_id'] != '018001.000011->018001.000005'):
+                    raise ValueError('zero A requires the explicit channel-11 upper-bound source')
+                bound = Decimal(str(t.get('A_upper_bound_s-1')))
+                if not bound.is_finite() or bound <= 0:
+                    raise ValueError('channel-11 upper bound must be finite and positive')
+            elif any(key in t for key in ('A_source_status', 'A_upper_bound_operator',
+                                         'A_upper_bound_s-1', 'nist_A_s-1')):
+                raise ValueError('upper-bound metadata is valid only for the adopted zero A')
             rates[state] = a
         total = sum(rates.values(), Decimal(0))
         yields = None if missing else {'Ar(' + lo['paschen'] + ')': float(rates.get('Ar(' + lo['paschen'] + ')', 0) / total) for lo in lower}
+        branching_error_bound = None
+        bounded = [t for t in rows if t.get('A_source_status') == 'upper_bound_adopted_as_zero_for_branching']
+        if bounded:
+            if len(bounded) != 1 or total <= 0:
+                raise ValueError('expected one channel-11 A upper bound and positive known sum')
+            bound = Decimal(str(bounded[0]['A_upper_bound_s-1']))
+            branching_error_bound = {
+                'transition_id': bounded[0]['transition_id'],
+                'source_ref': bounded[0]['tp_ref'],
+                'operator': bounded[0]['A_upper_bound_operator'],
+                'bound_s-1': str(bound),
+                'sum_known_A_s-1': str(total),
+                'maximum_branching_error': float(bound / total),
+            }
         output.append(dict(channel, status='unresolved' if missing else 'complete_for_E1',
                            product_yields=yields, missing_transitions=missing,
-                           transition_ids=[t['transition_id'] for t in rows]))
+                           transition_ids=[t['transition_id'] for t in rows],
+                           **({'branching_error_bound': branching_error_bound}
+                              if branching_error_bound is not None else {})))
     if len(transitions) != len(expected_pairs):
         raise ValueError('unexpected escape or extra transition')
+    measured_rows = [t for t in transitions if t['A_s-1'] is not None and t not in upper_bound_rows]
+    if (audit.get('known_A') != len(measured_rows)
+            or audit.get('upper_bound_A', 0) != len(upper_bound_rows)):
+        raise ValueError('completeness audit counts differ from measured and upper-bound A rows')
     for channel in data['higher_channels']:
         if channel['status'] != 'unresolved' or channel['product_yields'] is not None or channel['excitation_weights'] is not None:
             raise ValueError('higher-channel yields and weights remain unsourced')
@@ -109,7 +153,7 @@ def main():
             parser.error('generated yields differ; regenerate with scripts/gen_argon_cascades.py')
     else:
         args.output.write_text(text)
-    print('argon E1 yields: nine complete; channel 11 and channels 16–38 unresolved')
+    print('argon E1 yields: ten complete (channel 11 uses Wiese upper bound); channels 16–38 unresolved')
     return 0
 
 

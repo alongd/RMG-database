@@ -49,15 +49,17 @@ generated region of `input/kinetics/libraries/PlasmaArgon/reactions.py`; run its
 generation. It does not calculate or hand-type branching fractions.
 
 The generated schema has `radiative_model: E1`, a source digest and channel
-records keyed by frozen ID, exact process and threshold. Nine records have
+records keyed by frozen ID, exact process and threshold. Ten records have
 `status: complete_for_E1` with four product yields summing to one. Channel 11
-(2p5) has `status: unresolved`, `product_yields: null` and the missing
-018001.000011→018001.000005 (2p5→1s2) transition. A request through
-`require_yields` refuses it. No supplemental value is adopted. Channels 16–38
-also remain unresolved; partial A matrices and unsourced blend populations
-are not normalized. Higher multipoles are outside this E1 model. Branch reaction
-owners are generated only for complete vectors; their fractions partition the
-existing EEDF collision rate, with photon energy accounted once in products.
+(2p5) uses Wiese's sourced `<1e3 s^-1` upper bound for 018001.000011→018001.000005
+(2p5→1s2) as an effective A of zero for branching. The yield artifact records
+the conservative maximum branching error (upper bound divided by the known
+2p5 A sum), along with the bound's local path and SHA-256 in the source file.
+Asghar 2020 supplies no measured A for this line. Channels 16–38 remain
+unresolved; partial A matrices and unsourced blend populations are not
+normalized. Higher multipoles are outside this E1 model. Branch reaction owners
+are generated only for complete vectors; their fractions partition the existing
+EEDF collision rate, with photon energy accounted once in products.
 
 # Electron-collision channel maps for the LoKI-B electron kinetics
 

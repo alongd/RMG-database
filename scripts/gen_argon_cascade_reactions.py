@@ -18,7 +18,7 @@ PRODUCTS = [
     ('Ar(1s3)', 'Ar(1s3)'),
     ('Ar(1s2)', 'Ar(1s2)'),
 ]
-EXPECTED_CHANNELS = [6, 7, 8, 9, 10, 12, 13, 14, 15]
+EXPECTED_CHANNELS = list(range(6, 16))
 
 
 def render(yields_raw):
@@ -31,7 +31,7 @@ def render(yields_raw):
         raise ValueError('cascade yield channels must be a list')
     selected = [row for row in channels if row.get('status') == 'complete_for_E1']
     if [row.get('id') for row in selected] != EXPECTED_CHANNELS:
-        raise ValueError('expected exactly the nine complete E1 channels')
+        raise ValueError('expected exactly the ten complete E1 channels')
     if len(document.get('source_sha256', '')) != 64:
         raise ValueError('invalid radiative source digest')
     yield_digest = hashlib.sha256(yields_raw).hexdigest()
@@ -98,7 +98,7 @@ def main():
             parser.error('generated cascade reactions differ; rerun scripts/gen_argon_cascade_reactions.py')
     else:
         args.reactions.write_text(text)
-    print('argon cascade reactions: nine channels, 36 sourced branch owners')
+    print('argon cascade reactions: ten channels, 40 sourced branch owners')
     return 0
 
 

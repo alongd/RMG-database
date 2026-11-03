@@ -1,0 +1,1290 @@
+{
+  "sources": {
+    "billing": "Billing1979_*.pdf Table 3/4",
+    "record": "Guerra2019_*.pdf Eqs. 12,14,20-23"
+  },
+  "billing_scaling_note": "For each temperature row the scientific-notation multiplier printed in the n=20 column is applied to the n=1..9 mantissas in that row; this reproduces the Table 7 B/F 20-19 to 1-0 scaling check. Table 4 uses its printed row multiplier similarly.",
+  "flag_rule": "ratio outside [0.3,3]",
+  "points": [
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 300,
+      "n": 1,
+      "guerra_over_billing": 80925173094.66838,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 300,
+      "n": 2,
+      "guerra_over_billing": 94489855533.24675,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 300,
+      "n": 3,
+      "guerra_over_billing": 108857270699.17262,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 300,
+      "n": 4,
+      "guerra_over_billing": 119364783999.14046,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 300,
+      "n": 5,
+      "guerra_over_billing": 134009623377.42029,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 300,
+      "n": 6,
+      "guerra_over_billing": 144066441317.75272,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 300,
+      "n": 7,
+      "guerra_over_billing": 154139625142.07098,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 300,
+      "n": 8,
+      "guerra_over_billing": 144833126926.10242,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 300,
+      "n": 9,
+      "guerra_over_billing": 149169792506.13858,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 300,
+      "n": 20,
+      "guerra_over_billing": 212880824887.62848,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 400,
+      "n": 1,
+      "guerra_over_billing": 10098150245.375612,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 400,
+      "n": 2,
+      "guerra_over_billing": 10396222338.857567,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 400,
+      "n": 3,
+      "guerra_over_billing": 11629336549.65467,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 400,
+      "n": 4,
+      "guerra_over_billing": 11109188369.504307,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 400,
+      "n": 5,
+      "guerra_over_billing": 11440366950.169937,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 400,
+      "n": 6,
+      "guerra_over_billing": 11995978139.465908,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 400,
+      "n": 7,
+      "guerra_over_billing": 11777583015.177235,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 400,
+      "n": 8,
+      "guerra_over_billing": 11918411281.063877,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 400,
+      "n": 9,
+      "guerra_over_billing": 11811027205.029526,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 400,
+      "n": 20,
+      "guerra_over_billing": 13847846877.595089,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 500,
+      "n": 1,
+      "guerra_over_billing": 1520612629.6044176,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 500,
+      "n": 2,
+      "guerra_over_billing": 1710236992.6313617,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 500,
+      "n": 3,
+      "guerra_over_billing": 1724158362.334713,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 500,
+      "n": 4,
+      "guerra_over_billing": 1656342958.6228228,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 500,
+      "n": 5,
+      "guerra_over_billing": 1682431566.2316918,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 500,
+      "n": 6,
+      "guerra_over_billing": 1703361864.3691695,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 500,
+      "n": 7,
+      "guerra_over_billing": 1800233154.5326512,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 500,
+      "n": 8,
+      "guerra_over_billing": 1751856827.3371148,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 500,
+      "n": 9,
+      "guerra_over_billing": 1718035895.0659103,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 500,
+      "n": 20,
+      "guerra_over_billing": 1717616508.5081065,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 700,
+      "n": 1,
+      "guerra_over_billing": 92069529.81784546,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 700,
+      "n": 2,
+      "guerra_over_billing": 99420991.28042641,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 700,
+      "n": 3,
+      "guerra_over_billing": 98381753.51869291,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 700,
+      "n": 4,
+      "guerra_over_billing": 99454323.74887645,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 700,
+      "n": 5,
+      "guerra_over_billing": 99353290.51627152,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 700,
+      "n": 6,
+      "guerra_over_billing": 102197245.34010503,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 700,
+      "n": 7,
+      "guerra_over_billing": 95798094.52135089,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 700,
+      "n": 8,
+      "guerra_over_billing": 96377797.39214501,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 700,
+      "n": 9,
+      "guerra_over_billing": 98078938.09603012,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 700,
+      "n": 20,
+      "guerra_over_billing": 64397249.237931274,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 1000,
+      "n": 1,
+      "guerra_over_billing": 6493906.696465902,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 1000,
+      "n": 2,
+      "guerra_over_billing": 6616022.9146712795,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 1000,
+      "n": 3,
+      "guerra_over_billing": 6620662.824863396,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 1000,
+      "n": 4,
+      "guerra_over_billing": 6503717.802502452,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 1000,
+      "n": 5,
+      "guerra_over_billing": 6301185.598790158,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 1000,
+      "n": 6,
+      "guerra_over_billing": 6451836.073425313,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 1000,
+      "n": 7,
+      "guerra_over_billing": 6191313.4237730615,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 1000,
+      "n": 8,
+      "guerra_over_billing": 6297534.055207755,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 1000,
+      "n": 9,
+      "guerra_over_billing": 6207646.675991668,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 1000,
+      "n": 20,
+      "guerra_over_billing": 209863354.17850792,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 1500,
+      "n": 1,
+      "guerra_over_billing": 376394.3885218556,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 1500,
+      "n": 2,
+      "guerra_over_billing": 371492.56005035667,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 1500,
+      "n": 3,
+      "guerra_over_billing": 377803.5086991307,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 1500,
+      "n": 4,
+      "guerra_over_billing": 371643.70412129513,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 1500,
+      "n": 5,
+      "guerra_over_billing": 394916.16437847744,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 1500,
+      "n": 6,
+      "guerra_over_billing": 394849.703185553,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 1500,
+      "n": 7,
+      "guerra_over_billing": 391689.3444826957,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 1500,
+      "n": 8,
+      "guerra_over_billing": 392679.2617521236,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 1500,
+      "n": 9,
+      "guerra_over_billing": 399732.289357508,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 1500,
+      "n": 20,
+      "guerra_over_billing": 253340.28961916635,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 2000,
+      "n": 1,
+      "guerra_over_billing": 46562.99112417825,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 2000,
+      "n": 2,
+      "guerra_over_billing": 47088.216451627726,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 2000,
+      "n": 3,
+      "guerra_over_billing": 48468.58146388102,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 2000,
+      "n": 4,
+      "guerra_over_billing": 48885.75471254563,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 2000,
+      "n": 5,
+      "guerra_over_billing": 50205.001145228794,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 2000,
+      "n": 6,
+      "guerra_over_billing": 49674.12619290702,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 2000,
+      "n": 7,
+      "guerra_over_billing": 50598.64949992809,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 2000,
+      "n": 8,
+      "guerra_over_billing": 52544.87960701411,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 2000,
+      "n": 9,
+      "guerra_over_billing": 52256.081283849955,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 2000,
+      "n": 20,
+      "guerra_over_billing": 51623.3643105787,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 3000,
+      "n": 1,
+      "guerra_over_billing": 4117.02280367519,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 3000,
+      "n": 2,
+      "guerra_over_billing": 4128.619919515471,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 3000,
+      "n": 3,
+      "guerra_over_billing": 4280.8985983414905,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 3000,
+      "n": 4,
+      "guerra_over_billing": 4312.672949934387,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 3000,
+      "n": 5,
+      "guerra_over_billing": 4364.477810523719,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 3000,
+      "n": 6,
+      "guerra_over_billing": 4452.5785085214675,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 3000,
+      "n": 7,
+      "guerra_over_billing": 4456.365719874764,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 3000,
+      "n": 8,
+      "guerra_over_billing": 4644.189408845182,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 3000,
+      "n": 9,
+      "guerra_over_billing": 4780.400926863869,
+      "flag": true
+    },
+    {
+      "process": "V-T N2-N2",
+      "billing_table": 3,
+      "T_K": 3000,
+      "n": 20,
+      "guerra_over_billing": 6907.134529820651,
+      "flag": true
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 200,
+      "n": 1,
+      "guerra_over_billing": 1.140349983627829,
+      "flag": false
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 200,
+      "n": 2,
+      "guerra_over_billing": 0.8718367645624785,
+      "flag": false
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 200,
+      "n": 3,
+      "guerra_over_billing": 0.7428980556149195,
+      "flag": false
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 200,
+      "n": 4,
+      "guerra_over_billing": 0.5449786137975225,
+      "flag": false
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 200,
+      "n": 5,
+      "guerra_over_billing": 0.4678000551682536,
+      "flag": false
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 200,
+      "n": 6,
+      "guerra_over_billing": 0.35612159061879173,
+      "flag": false
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 200,
+      "n": 7,
+      "guerra_over_billing": 0.30109530243247973,
+      "flag": false
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 200,
+      "n": 8,
+      "guerra_over_billing": 0.2711122005487166,
+      "flag": true
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 200,
+      "n": 9,
+      "guerra_over_billing": 0.2473116641046636,
+      "flag": true
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 200,
+      "n": 20,
+      "guerra_over_billing": 0.06315313224615837,
+      "flag": true
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 300,
+      "n": 1,
+      "guerra_over_billing": 0.9776464558277663,
+      "flag": false
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 300,
+      "n": 2,
+      "guerra_over_billing": 0.8135992148232475,
+      "flag": false
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 300,
+      "n": 3,
+      "guerra_over_billing": 0.7520637320841739,
+      "flag": false
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 300,
+      "n": 4,
+      "guerra_over_billing": 0.6525497044019555,
+      "flag": false
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 300,
+      "n": 5,
+      "guerra_over_billing": 0.5511642529388646,
+      "flag": false
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 300,
+      "n": 6,
+      "guerra_over_billing": 0.46093549013308827,
+      "flag": false
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 300,
+      "n": 7,
+      "guerra_over_billing": 0.39764471886014824,
+      "flag": false
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 300,
+      "n": 8,
+      "guerra_over_billing": 0.3699802408759537,
+      "flag": false
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 300,
+      "n": 9,
+      "guerra_over_billing": 0.3561996078204046,
+      "flag": false
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 300,
+      "n": 20,
+      "guerra_over_billing": 0.1190821844495122,
+      "flag": true
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 400,
+      "n": 1,
+      "guerra_over_billing": 0.9676190476190476,
+      "flag": false
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 400,
+      "n": 2,
+      "guerra_over_billing": 0.8650227303096194,
+      "flag": false
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 400,
+      "n": 3,
+      "guerra_over_billing": 0.825504213634155,
+      "flag": false
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 400,
+      "n": 4,
+      "guerra_over_billing": 0.7372364392532039,
+      "flag": false
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 400,
+      "n": 5,
+      "guerra_over_billing": 0.6658965150393201,
+      "flag": false
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 400,
+      "n": 6,
+      "guerra_over_billing": 0.5651198479986606,
+      "flag": false
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 400,
+      "n": 7,
+      "guerra_over_billing": 0.5043623455059129,
+      "flag": false
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 400,
+      "n": 8,
+      "guerra_over_billing": 0.46643804154592833,
+      "flag": false
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 400,
+      "n": 9,
+      "guerra_over_billing": 0.4436197460318522,
+      "flag": false
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 400,
+      "n": 20,
+      "guerra_over_billing": 0.16020389781906894,
+      "flag": true
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 500,
+      "n": 1,
+      "guerra_over_billing": 1.051780122749901,
+      "flag": false
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 500,
+      "n": 2,
+      "guerra_over_billing": 0.9281760594525478,
+      "flag": false
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 500,
+      "n": 3,
+      "guerra_over_billing": 0.8880276365926502,
+      "flag": false
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 500,
+      "n": 4,
+      "guerra_over_billing": 0.8291696912435365,
+      "flag": false
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 500,
+      "n": 5,
+      "guerra_over_billing": 0.7690181025433761,
+      "flag": false
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 500,
+      "n": 6,
+      "guerra_over_billing": 0.6657344729595562,
+      "flag": false
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 500,
+      "n": 7,
+      "guerra_over_billing": 0.6028196772171194,
+      "flag": false
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 500,
+      "n": 8,
+      "guerra_over_billing": 0.5559252443031689,
+      "flag": false
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 500,
+      "n": 9,
+      "guerra_over_billing": 0.518403545671838,
+      "flag": false
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 500,
+      "n": 20,
+      "guerra_over_billing": 0.19441554901260802,
+      "flag": true
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 700,
+      "n": 1,
+      "guerra_over_billing": 1.0814128347293892,
+      "flag": false
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 700,
+      "n": 2,
+      "guerra_over_billing": 1.0184443582009874,
+      "flag": false
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 700,
+      "n": 3,
+      "guerra_over_billing": 0.9698873998212326,
+      "flag": false
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 700,
+      "n": 4,
+      "guerra_over_billing": 0.9421559763610224,
+      "flag": false
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 700,
+      "n": 5,
+      "guerra_over_billing": 0.8549324047204268,
+      "flag": false
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 700,
+      "n": 6,
+      "guerra_over_billing": 0.8014848597558283,
+      "flag": false
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 700,
+      "n": 7,
+      "guerra_over_billing": 0.7323002655160241,
+      "flag": false
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 700,
+      "n": 8,
+      "guerra_over_billing": 0.6578030479818133,
+      "flag": false
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 700,
+      "n": 9,
+      "guerra_over_billing": 0.6260185024549855,
+      "flag": false
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 700,
+      "n": 20,
+      "guerra_over_billing": 0.2365239790174464,
+      "flag": true
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 1000,
+      "n": 1,
+      "guerra_over_billing": 1.0928143206568275,
+      "flag": false
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 1000,
+      "n": 2,
+      "guerra_over_billing": 1.0302397110321142,
+      "flag": false
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 1000,
+      "n": 3,
+      "guerra_over_billing": 0.9790033326840252,
+      "flag": false
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 1000,
+      "n": 4,
+      "guerra_over_billing": 0.9695826293466954,
+      "flag": false
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 1000,
+      "n": 5,
+      "guerra_over_billing": 0.9206478093473521,
+      "flag": false
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 1000,
+      "n": 6,
+      "guerra_over_billing": 0.8921055481904016,
+      "flag": false
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 1000,
+      "n": 7,
+      "guerra_over_billing": 0.844251029855814,
+      "flag": false
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 1000,
+      "n": 8,
+      "guerra_over_billing": 0.7865914212597082,
+      "flag": false
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 1000,
+      "n": 9,
+      "guerra_over_billing": 0.7253753309898259,
+      "flag": false
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 1000,
+      "n": 20,
+      "guerra_over_billing": 0.29640586185629725,
+      "flag": true
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 1500,
+      "n": 1,
+      "guerra_over_billing": 1.0930419665963154,
+      "flag": false
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 1500,
+      "n": 2,
+      "guerra_over_billing": 1.0442414617893638,
+      "flag": false
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 1500,
+      "n": 3,
+      "guerra_over_billing": 0.9838821739050992,
+      "flag": false
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 1500,
+      "n": 4,
+      "guerra_over_billing": 0.9720522098771411,
+      "flag": false
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 1500,
+      "n": 5,
+      "guerra_over_billing": 0.9817545127388899,
+      "flag": false
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 1500,
+      "n": 6,
+      "guerra_over_billing": 0.9420076955346547,
+      "flag": false
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 1500,
+      "n": 7,
+      "guerra_over_billing": 0.9285838848265635,
+      "flag": false
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 1500,
+      "n": 8,
+      "guerra_over_billing": 0.8847605882681466,
+      "flag": false
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 1500,
+      "n": 9,
+      "guerra_over_billing": 0.8513295128313961,
+      "flag": false
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 1500,
+      "n": 20,
+      "guerra_over_billing": 0.37897794629274567,
+      "flag": false
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 2000,
+      "n": 1,
+      "guerra_over_billing": 1.009708917839905,
+      "flag": false
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 2000,
+      "n": 2,
+      "guerra_over_billing": 1.0116214686088263,
+      "flag": false
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 2000,
+      "n": 3,
+      "guerra_over_billing": 0.9809096910393331,
+      "flag": false
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 2000,
+      "n": 4,
+      "guerra_over_billing": 0.9908460435731614,
+      "flag": false
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 2000,
+      "n": 5,
+      "guerra_over_billing": 0.9890668887218915,
+      "flag": false
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 2000,
+      "n": 6,
+      "guerra_over_billing": 0.981387974771914,
+      "flag": false
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 2000,
+      "n": 7,
+      "guerra_over_billing": 0.9711680641251978,
+      "flag": false
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 2000,
+      "n": 8,
+      "guerra_over_billing": 0.9606637895608897,
+      "flag": false
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 2000,
+      "n": 9,
+      "guerra_over_billing": 0.9515704778369144,
+      "flag": false
+    },
+    {
+      "process": "V-V N2-N2",
+      "billing_table": 4,
+      "T_K": 2000,
+      "n": 20,
+      "guerra_over_billing": 0.45023064164654125,
+      "flag": false
+    }
+  ]
+}

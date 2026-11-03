@@ -1,0 +1,185 @@
+N2v0
+multiplicity 1
+vibrationallevel 0
+1 N u0 p1 c0 {2,T}
+2 N u0 p1 c0 {1,T}
+
+N2v1
+multiplicity 1
+vibrationallevel 1
+1 N u0 p1 c0 {2,T}
+2 N u0 p1 c0 {1,T}
+
+N2v2
+multiplicity 1
+vibrationallevel 2
+1 N u0 p1 c0 {2,T}
+2 N u0 p1 c0 {1,T}
+
+N2v3
+multiplicity 1
+vibrationallevel 3
+1 N u0 p1 c0 {2,T}
+2 N u0 p1 c0 {1,T}
+
+N2v4
+multiplicity 1
+vibrationallevel 4
+1 N u0 p1 c0 {2,T}
+2 N u0 p1 c0 {1,T}
+
+N2v5
+multiplicity 1
+vibrationallevel 5
+1 N u0 p1 c0 {2,T}
+2 N u0 p1 c0 {1,T}
+
+N2v6
+multiplicity 1
+vibrationallevel 6
+1 N u0 p1 c0 {2,T}
+2 N u0 p1 c0 {1,T}
+
+N2v7
+multiplicity 1
+vibrationallevel 7
+1 N u0 p1 c0 {2,T}
+2 N u0 p1 c0 {1,T}
+
+N2v8
+multiplicity 1
+vibrationallevel 8
+1 N u0 p1 c0 {2,T}
+2 N u0 p1 c0 {1,T}
+
+N2v9
+multiplicity 1
+vibrationallevel 9
+1 N u0 p1 c0 {2,T}
+2 N u0 p1 c0 {1,T}
+
+N2v10
+multiplicity 1
+vibrationallevel 10
+1 N u0 p1 c0 {2,T}
+2 N u0 p1 c0 {1,T}
+
+N2v11
+multiplicity 1
+vibrationallevel 11
+1 N u0 p1 c0 {2,T}
+2 N u0 p1 c0 {1,T}
+
+N2v12
+multiplicity 1
+vibrationallevel 12
+1 N u0 p1 c0 {2,T}
+2 N u0 p1 c0 {1,T}
+
+N2v13
+multiplicity 1
+vibrationallevel 13
+1 N u0 p1 c0 {2,T}
+2 N u0 p1 c0 {1,T}
+
+N2v14
+multiplicity 1
+vibrationallevel 14
+1 N u0 p1 c0 {2,T}
+2 N u0 p1 c0 {1,T}
+
+N2v15
+multiplicity 1
+vibrationallevel 15
+1 N u0 p1 c0 {2,T}
+2 N u0 p1 c0 {1,T}
+
+N2v16
+multiplicity 1
+vibrationallevel 16
+1 N u0 p1 c0 {2,T}
+2 N u0 p1 c0 {1,T}
+
+N2v17
+multiplicity 1
+vibrationallevel 17
+1 N u0 p1 c0 {2,T}
+2 N u0 p1 c0 {1,T}
+
+N2v18
+multiplicity 1
+vibrationallevel 18
+1 N u0 p1 c0 {2,T}
+2 N u0 p1 c0 {1,T}
+
+N2v19
+multiplicity 1
+vibrationallevel 19
+1 N u0 p1 c0 {2,T}
+2 N u0 p1 c0 {1,T}
+
+N2v20
+multiplicity 1
+vibrationallevel 20
+1 N u0 p1 c0 {2,T}
+2 N u0 p1 c0 {1,T}
+
+N2v21
+multiplicity 1
+vibrationallevel 21
+1 N u0 p1 c0 {2,T}
+2 N u0 p1 c0 {1,T}
+
+N2v22
+multiplicity 1
+vibrationallevel 22
+1 N u0 p1 c0 {2,T}
+2 N u0 p1 c0 {1,T}
+
+N2v23
+multiplicity 1
+vibrationallevel 23
+1 N u0 p1 c0 {2,T}
+2 N u0 p1 c0 {1,T}
+
+N2v24
+multiplicity 1
+vibrationallevel 24
+1 N u0 p1 c0 {2,T}
+2 N u0 p1 c0 {1,T}
+
+N2v25
+multiplicity 1
+vibrationallevel 25
+1 N u0 p1 c0 {2,T}
+2 N u0 p1 c0 {1,T}
+
+N2v26
+multiplicity 1
+vibrationallevel 26
+1 N u0 p1 c0 {2,T}
+2 N u0 p1 c0 {1,T}
+
+N2v27
+multiplicity 1
+vibrationallevel 27
+1 N u0 p1 c0 {2,T}
+2 N u0 p1 c0 {1,T}
+
+N2v28
+multiplicity 1
+vibrationallevel 28
+1 N u0 p1 c0 {2,T}
+2 N u0 p1 c0 {1,T}
+
+N2v29
+multiplicity 1
+vibrationallevel 29
+1 N u0 p1 c0 {2,T}
+2 N u0 p1 c0 {1,T}
+
+N2v30
+multiplicity 1
+vibrationallevel 30
+1 N u0 p1 c0 {2,T}
+2 N u0 p1 c0 {1,T}

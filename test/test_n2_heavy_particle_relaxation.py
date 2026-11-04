@@ -378,7 +378,7 @@ options(generateOutputHTML=False, generatePlots=False, saveEdgeSpecies=False,
     solver = SimpleReactor((1000, 'K'), (1, 'bar'), original_solver.initial_mole_fractions)
     solver.initialize_model(core.species, core.reactions, [], [])
     expected = np.array([core.reactions[i].kinetics.get_rate_coefficient(1000.) for i in table_indices])
-    assert len(original_solver.kf) == len(core.reactions)
+    assert original_solver.num_core_reactions == len(core.reactions)
     np.testing.assert_array_equal(original_solver.kf[table_indices], expected)
     np.testing.assert_array_equal(solver.kf[table_indices], expected)
     solver.advance(1e-9)

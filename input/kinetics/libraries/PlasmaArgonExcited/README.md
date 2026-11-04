@@ -166,10 +166,15 @@ and N25 in [Guerra et al., PSST 28, 073001 (2019), Table 5](https://doi.org/10.1
 N23 cites [Lofthus & Krupenie, JPCRD 6, 113–307 (1977)](https://doi.org/10.1063/1.555546):
 Table 82 gives C(v=0) lifetime (3.66±0.05)e-8 s. Its measurement uncertainty
 is not an error bar for arbitrary vibrational populations. Lofthus–Krupenie
-also reports B lifetimes varying roughly from 8 to 4 microseconds, rather
-than a unique electronic-manifold average. N25 in Guerra cites Piper, JCP
-91, 864–873 (1989); use that published lumped rate rather than inventing
-vibrational weights. Its numerical uncertainty is unspecified.
+also lists B lifetimes from 8.0 microseconds at v=0 to 4.1 microseconds at
+v=12, rather than a unique electronic-manifold average. N25 in Guerra cites
+Piper, JCP 91, 864–873 (1989); use that published lumped rate rather than
+inventing vibrational weights. The approved **lumping uncertainty** is this
+v-dependent lifetime range, 4.1–8.0 microseconds, or a rate range of
+1.25e5–2.44e5 s^-1 around the nominal 5 microseconds / 2e5 s^-1.
+It describes sensitivity to the unresolved vibrational population, not a
+statistical confidence interval. Guerra supplies no statistical uncertainty
+for N25.
 
 This closure neglects explicit vibrational redistribution and photon trapping
 in those molecular bands. It prevents C/B from becoming permanent reservoirs;

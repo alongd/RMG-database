@@ -584,10 +584,14 @@ Guerra et al., Plasma Sources Sci. Technol. 28, 073001 (2019),
 doi:10.1088/1361-6595/ab252c, Table 5 N25, citing Piper,
 J. Chem. Phys. 91, 864-873 (1989). Adopt the published vibrationally lumped
 B->A rate 2e5 s^-1, not an invented mean of individual vibrational lifetimes.
-For comparison, Lofthus and Krupenie, J. Phys. Chem. Ref. Data 6, 113-307
-(1977), doi:10.1063/1.555546, Table 82 reports B-state lifetimes varying with v
-(about 8 to 4 microseconds); it does not give a unique lumped B lifetime.
-Guerra supplies no numerical uncertainty for the lumped N25 coefficient.
+Lofthus and Krupenie, J. Phys. Chem. Ref. Data 6, 113-307 (1977),
+doi:10.1063/1.555546, Table 82 lists B-state lifetimes from 8.0 microseconds
+(v=0) to 4.1 microseconds (v=12). Use this vibrational dependence as the
+lumping uncertainty: lifetime 4.1-8.0 microseconds, corresponding to rates
+1.25e5-2.44e5 s^-1, around the nominal 5 microseconds / 2e5 s^-1.
+This is a population-dependent sensitivity range, not a statistical confidence
+interval or a unique vibrational average. Guerra supplies no statistical
+uncertainty for the lumped N25 coefficient.
 Photon escapes; explicitly irreversible. N2(A) loss is outside this library.
 """,
 )

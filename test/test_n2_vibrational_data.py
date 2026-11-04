@@ -194,8 +194,7 @@ def test_real_generator_k10_k29_digest_and_k30_refusal():
     assert [item['sha256'] for item in result['ladders']] == [item['sha256'] for item in repeated['ladders']]
 
 
-def test_owner_d6_policy_is_pinned_and_resolved():
-    root = _local_root()
+def test_owner_d6_policy_is_pinned_in_source_manifest():
     expected = {
         'set_by': 'owner',
         'owner_decision': 'Owner decision 2026-11-04',
@@ -205,4 +204,9 @@ def test_owner_d6_policy_is_pinned_and_resolved():
     }
     record = json.loads(SOURCES_PATH.read_bytes())
     assert record['D6'] == expected
+
+
+def test_checker_resolves_owner_d6_policy():
+    root = _local_root()
+    expected = json.loads(SOURCES_PATH.read_bytes())['D6']
     assert _load_check_module().resolve_generator_manifest(root)['D6'] == expected

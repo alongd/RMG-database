@@ -57,6 +57,14 @@ species:
     record: '1 e u1 p0 c-1
 
       '
+states:
+  NO(X):
+    paschen: ground
+    g: 4
+    excitation_eV: 0.0
+    rmg_species: 'NO'
+    source: "Yurchenko et al., ExoMol line list XXI: Nitric Oxide (NO), MNRAS 470, 882 (2017), DOI: 10.1093/mnras/stx1211;\
+      \ X $^2\\Pi$ term, g=(2S+1)(2\u039B+1)=4."
 declared_conventions:
 - name: LUMPED_VIBRATIONAL_GAS_HEATING
   statement: 'Hayashi V1-V5 are lumped vibrational energy-loss groups, not state-to-state NO(v) data. Report-10

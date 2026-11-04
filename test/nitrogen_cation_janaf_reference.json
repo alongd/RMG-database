@@ -3,6 +3,8 @@
   "electron_convention_h298_kJ_mol": 1509.499,
   "ion_convention_electron_h_correction_kJ_mol": 6.197392574006,
   "s298_j_mol_k": 197.660,
+  "printed_200_k_entropy_j_mol_k": 197.660,
+  "printed_100_k_entropy_j_mol_k": 165.859,
   "rows": {
     "298.15": {"cp": 29.137, "s": 197.660, "dh_kj_mol": 0.0},
     "400": {"cp": 29.321, "s": 206.242, "dh_kj_mol": 2.975},

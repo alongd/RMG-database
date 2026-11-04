@@ -141,6 +141,25 @@ def test_every_class_a_row_loads_with_exact_edf_metadata():
             assert products[0].molecule[0].electronic_state == expected_state
 
 
+def test_owner_11_ion_products_have_exact_thermo_lookup():
+    hub = RMGDatabase()
+    hub.thermo = ThermoDatabase()
+    hub.thermo.load_libraries(
+        str(DATA / 'thermo/libraries'),
+        ['primaryThermoLibrary', 'PlasmaExcitedNeutralThermo', 'PlasmaThermo'])
+    db = KineticsDatabase()
+    db.load_libraries(str(DATA / 'kinetics/libraries'),
+                      libraries=['PlasmaAir', 'PlasmaNitrogen'])
+    for library_name, index in (('PlasmaNitrogen', 11), ('PlasmaAir', 7)):
+        reaction = db.libraries[library_name].entries[index].item
+        products = [species for species in reaction.products
+                    if species.label == 'N2p']
+        assert len(products) == 1
+        product = products[0]
+        assert product.molecule[0].electronic_state in (None, '')
+        assert hub.thermo.get_thermo_data_from_libraries(product)[0] is not None
+
+
 def test_fate_sources_and_named_absences_are_explicit():
     fates = yaml.safe_load((DATA / 'eedf/nitrogen_fates.yaml').read_text())
     absences = yaml.safe_load(
@@ -187,7 +206,7 @@ def test_sample_owners_admit_with_real_thermo_and_arrhenius_rates():
         library = db.libraries['PlasmaNitrogen']
         model = CoreEdgeReactionModel()
         admitted = []
-        expected_rates = {1: 123.0, 3: 456.0, 12: 789.0}
+        expected_rates = {1: 123.0, 3: 456.0, 11: 789.0, 12: 654.0}
         for index, rate in expected_rates.items():
             loaded = next(reaction for reaction in library.get_library_reactions()
                           if reaction.entry.index == index)

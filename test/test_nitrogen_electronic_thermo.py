@@ -55,6 +55,13 @@ def test_n2plus_x_reproduces_nist_janaf_columns_and_ion_convention(thermo_db):
         expected_h298, abs=1e-8)
     assert 'ion convention' in entry.long_desc
     assert 'electron H=S=Cp=0' in entry.long_desc
+    # NIST-JANAF N-024 prints S(200 K) as 197.660, identical to S(298.15 K),
+    # although its 100 K row is 165.859. Preserve and document the source row;
+    # do not force a discontinuous entropy fit to reproduce the apparent typo.
+    assert reference['printed_200_k_entropy_j_mol_k'] == reference['s298_j_mol_k']
+    assert reference['printed_100_k_entropy_j_mol_k'] < reference[
+        'printed_200_k_entropy_j_mol_k']
+    assert '200 K entropy row prints 197.660' in entry.long_desc
     for temperature_text, row in reference['rows'].items():
         temperature = float(temperature_text)
         assert ion_x.get_heat_capacity(temperature) == pytest.approx(
@@ -86,6 +93,16 @@ def test_n2plus_b_is_x_thermo_plus_webbook_b_x_energy(thermo_db):
         assert b_poly.coeffs[5] - x_poly.coeffs[5] == pytest.approx(
             expected / R_RUNTIME, abs=1e-7)
     assert '25461.4_6' in plasma['[N2pB]'].long_desc
+
+
+def test_n2plus_nasa_join_is_continuous(thermo_db):
+    entry = thermo_db.libraries['PlasmaThermo'].entries['[N2p]'].data
+    low, high = entry.polynomials
+    for getter in ('get_heat_capacity', 'get_enthalpy', 'get_entropy'):
+        # NASA switches polynomials at Tmid; evaluate both sides directly.
+        low_value = getattr(low, getter)(1000.0)
+        high_value = getattr(high, getter)(1000.0)
+        assert low_value == pytest.approx(high_value, abs=1e-4)
 
 
 def test_three_a_band_energy_leaks_are_preserved():

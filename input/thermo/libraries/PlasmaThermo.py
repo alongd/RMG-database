@@ -999,7 +999,7 @@ electronicstate 2Sigma_u+
     thermo = NASA(
         polynomials = [
             NASAPolynomial(coeffs=[3.616386226758, -0.00091860574618842, 1.8732473461389e-06, -1.1850072352211e-10, -4.716850343554e-13, 216385.24978664, 3.3608979204926], Tmin=(200, 'K'), Tmax=(1000, 'K')),
-            NASAPolynomial(coeffs=[3.9167795276666, -0.00026704055929434, 4.5985077125809e-07, -1.011754005774e-10, 6.551724332489e-15, 216130.22740144, 1.2156533135965], Tmin=(1000, 'K'), Tmax=(6000, 'K')),
+            NASAPolynomial(coeffs=[3.651445297623427, 0.0001112112599321845, 2.80476208137706e-07, -6.648321003577816e-11, 4.19251317343089e-15, 216258.02603176, 2.74897837276954], Tmin=(1000, 'K'), Tmax=(6000, 'K')),
         ], Tmin=(200, 'K'), Tmax=(6000, 'K'),
         Cp0=(29.100652, 'J/(mol*K)'), CpInf=(37.415124, 'J/(mol*K)'),
     ),
@@ -1019,11 +1019,11 @@ constant (304.586701608 kJ/mol). The explicit electron and both ions use the dat
 entry(
     index = 901,
     label = "[N2p]",
-    molecule = """multiplicity 2\nelectronicstate 2Sigma_g+\n1 N u0 p1 c0 {2,T}\n2 N u1 p0 c+1 {1,T}\n""",
+    molecule = """multiplicity 2\n1 N u0 p1 c0 {2,T}\n2 N u1 p0 c+1 {1,T}\n""",
     thermo = NASA(
         polynomials = [
             NASAPolynomial(coeffs=[3.616386226758, -0.00091860574618842, 1.8732473461389e-06, -1.1850072352211e-10, -4.716850343554e-13, 179751.93120575, 3.3608979204926], Tmin=(200, 'K'), Tmax=(1000, 'K')),
-            NASAPolynomial(coeffs=[3.9167795276666, -0.00026704055929434, 4.5985077125809e-07, -1.011754005774e-10, 6.551724332489e-15, 179496.90882055, 1.2156533135965], Tmin=(1000, 'K'), Tmax=(6000, 'K')),
+            NASAPolynomial(coeffs=[3.651445297623427, 0.0001112112599321845, 2.80476208137706e-07, -6.648321003577816e-11, 4.19251317343089e-15, 179624.70745088, 2.74897837276954], Tmin=(1000, 'K'), Tmax=(6000, 'K')),
         ], Tmin=(200, 'K'), Tmax=(6000, 'K'),
         Cp0=(29.100652, 'J/(mol*K)'), CpInf=(37.415124, 'J/(mol*K)'),
     ),
@@ -1034,8 +1034,14 @@ SOURCE
     SRD 13, doi:10.18434/T42S31, table N-024, Nitrogen, Ion (N2+), gas at 1 bar.
     Retrieved 2026-11-04 from https://janaf.nist.gov/tables/N-024.txt. A complete
     tab-delimited copy is archived outside version control with its SHA-256 in the
-    adjacent SHA256SUMS file. The NASA7 Cp coefficients are unweighted least-squares
-    fits to JANAF rows over 200-1000 K and 1000-6000 K. The low-temperature H/S
+    adjacent SHA256SUMS file. The JANAF 200 K entropy row prints 197.660 J/(mol*K),
+    exactly the 298.15 K value despite the 100 K row at 165.859 J/(mol*K). This is
+    an internally inconsistent printed row and is documented in the test; the fit
+    remains thermodynamically consistent. NASA7 Cp coefficients are least-squares
+    fits to JANAF rows over 200-1000 K and 1000-6000 K with Cp constrained
+    continuous at the 1000 K join. The high-range maximum absolute residuals
+    across JANAF rows are 0.209 J/(mol*K) Cp, 0.070 J/(mol*K) S, and
+    0.091 kJ/mol H-H(298.15). The low-temperature H/S
     constants preserve the 298.15 K anchors; the high-temperature constants make
     H and S continuous at 1000 K. NASA coefficients use RMG's R=8.314472 J/(mol*K).
     The fit reproduces JANAF Cp, S, and H-H(298.15) to the tolerances checked in

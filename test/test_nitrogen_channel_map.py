@@ -1,5 +1,7 @@
 """N2 channel inventory, owner metadata and fate provenance checks."""
 from copy import deepcopy
+import hashlib
+import os
 from pathlib import Path
 import subprocess
 import sys
@@ -16,16 +18,13 @@ from rmgpy.rmg.model import CoreEdgeReactionModel
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / 'input'
-SOURCE = Path(
-    '/home/alon/runs/i310-electron-kinetics/src/LoKI-B-cpp/input/Nitrogen/'
-    'N2_LXCat.txt')
+SOURCE = os.environ.get('EEDF_N2_LXCAT_SOURCE')
+sys.path.insert(0, str(ROOT / 'scripts'))
+import gen_nitrogen_channel_map as generator  # noqa: E402
 
 
-def test_generator_check_and_complete_channel_inventory():
-    subprocess.run(
-        [sys.executable, str(ROOT / 'scripts/gen_nitrogen_channel_map.py'),
-         '--source', str(SOURCE), '--check'], check=True, cwd=ROOT
-    )
+def test_committed_map_and_complete_channel_inventory():
+    """Portable assertions: the committed map and its owners need no LXCat file."""
     frozen = yaml.safe_load(
         (DATA / 'eedf/nitrogen_channel_map.yaml').read_text())
     assert frozen['class_counts'] == {'A': 12, 'B': 14, 'C': 0, 'D': 0}
@@ -38,6 +37,65 @@ def test_generator_check_and_complete_channel_inventory():
                == 'PlasmaNitrogen' for row in class_a)
     assert all(row['owner_index']
                is None for row in frozen['channels'] if row['class'] != 'A')
+
+
+@pytest.mark.skipif(not SOURCE,
+                    reason='set EEDF_N2_LXCAT_SOURCE for source regeneration')
+def test_generator_regenerates_from_opt_in_source():
+    subprocess.run(
+        [sys.executable, str(ROOT / 'scripts/gen_nitrogen_channel_map.py'),
+         '--source', SOURCE, '--check'], check=True, cwd=ROOT
+    )
+
+
+def _synthetic_overlay_files(tmp_path, owner_overrides=None, duplicate=False):
+    frozen = yaml.safe_load(
+        (DATA / 'eedf/nitrogen_channel_map.yaml').read_text())
+    owner = next(row for row in frozen['channels'] if row['class'] == 'A')
+    channel = {key: owner[key] for key in (
+        'id', 'process', 'threshold_eV', 'class', 'owner_index',
+        'owner_library', 'owner_label', 'reason')}
+    channel.update(owner_overrides or {})
+    source = tmp_path / 'source.txt'
+    source.write_text('Excitation\nheader\n5.0\nPROCESS: test process\n')
+    overlay = tmp_path / 'overlay.yaml'
+    payload = {
+        'schema': 'eedf-channel-overlay/1',
+        'collision_set': 'synthetic-test-set',
+        'source_sha256': hashlib.sha256(source.read_bytes()).hexdigest(),
+        'channels': [{**channel, 'id': 1, 'process': 'test process',
+                      'threshold_eV': 5.0}],
+    }
+    text = yaml.safe_dump(payload, sort_keys=False)
+    if duplicate:
+        text = text.replace('schema: eedf-channel-overlay/1\n',
+                            'schema: eedf-channel-overlay/1\nschema: duplicate\n')
+    overlay.write_text(text)
+    return source, overlay
+
+
+@pytest.mark.parametrize(('field', 'value'), [
+    ('owner_index', True), ('owner_library', ''), ('owner_label', ''),
+])
+def test_generator_rejects_malformed_class_a_owner_metadata(
+        tmp_path, field, value):
+    source, overlay = _synthetic_overlay_files(
+        tmp_path, {field: value})
+    with pytest.raises(ValueError, match='class A requires'):
+        generator.generate(source, overlay)
+
+
+def test_generator_rejects_owner_that_does_not_load_as_named_entry(tmp_path):
+    source, overlay = _synthetic_overlay_files(
+        tmp_path, {'owner_label': 'not-the-library-label'})
+    with pytest.raises(ValueError, match='does not load as label'):
+        generator.generate(source, overlay)
+
+
+def test_generator_rejects_duplicate_yaml_keys(tmp_path):
+    source, overlay = _synthetic_overlay_files(tmp_path, duplicate=True)
+    with pytest.raises(yaml.YAMLError, match='duplicate key'):
+        generator.generate(source, overlay)
 
 
 def test_every_class_a_row_loads_with_exact_edf_metadata():
@@ -97,6 +155,12 @@ def test_fate_sources_and_named_absences_are_explicit():
                  + fates['argon_quenching'])
     assert all(row.get('source_table') for row in all_fates)
     assert all(row.get('blocks') for row in absences['absences'])
+    w_to_b = next(row for row in fates['radiative']
+                  if row['id'] == 'N2-W-to-B')
+    assert w_to_b['value'] is None
+    w_absence = next(row for row in absences['absences']
+                     if row['id'] == 'N2-W-rapid-lumping-timescale')
+    assert 'timescale' in w_absence['reason']
     assert any('Piper' in citation for citation in absences['download_list'])
 
 

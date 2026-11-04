@@ -426,7 +426,9 @@ def test_the_library_loads_alongside_every_other_thermo_library(thermo_db):
     assert LIBRARY in on_disk
     assert len(thermo_db.libraries) == len(on_disk), (
         sorted(on_disk - set(thermo_db.libraries)))
-    assert list(thermo_db.libraries[LIBRARY].entries) == [LABEL, 'Ar(1s4)', 'Ar(1s3)', 'Ar(1s2)']
+    assert list(thermo_db.libraries[LIBRARY].entries) == [
+        LABEL, 'Ar(1s4)', 'Ar(1s3)', 'Ar(1s2)',
+        'N2(A)', 'N2(B)', 'N2(C)', "N2(a')", 'N2(a)', 'N2(w)']
 
 
 def test_the_species_perceives_as_ar0e(pinned):

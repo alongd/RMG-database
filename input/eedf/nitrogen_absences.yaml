@@ -28,6 +28,12 @@ absences:
   reason: LoKI-GM treats this as energy-loss-only and no independently matched spectroscopic
     state assignment was established.
   blocks: Resolved product identity and state-specific thermochemistry.
+- id: N2-W-rapid-lumping-timescale
+  process: N2(W)->N2(B) rapid lumping
+  reason: The W-to-B transition is identified, but a primary lifetime or branching
+    measurement establishing the relaxation timescale has not been verified.
+  blocks: Quantitative justification for treating W as immediately lumped into B at
+    the intended discharge timescales.
 download_list:
 - Piper, J. Chem. Phys. 91 (1989) 864-873 [Guerra 2019 ref. 208] — primary value for
   N2(B)->N2(A) transition probability; not locally verified.

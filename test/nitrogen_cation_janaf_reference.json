@@ -1,0 +1,14 @@
+{
+  "source": "NIST-JANAF Fourth Edition, table N-024, N2+(g), accessed 2026-11-04",
+  "electron_convention_h298_kJ_mol": 1509.499,
+  "ion_convention_electron_h_correction_kJ_mol": 6.197392574006,
+  "s298_j_mol_k": 197.660,
+  "rows": {
+    "298.15": {"cp": 29.137, "s": 197.660, "dh_kj_mol": 0.0},
+    "400": {"cp": 29.321, "s": 206.242, "dh_kj_mol": 2.975},
+    "1000": {"cp": 33.108, "s": 234.486, "dh_kj_mol": 21.650},
+    "2000": {"cp": 37.496, "s": 258.847, "dh_kj_mol": 57.039},
+    "4000": {"cp": 44.994, "s": 287.471, "dh_kj_mol": 140.537},
+    "6000": {"cp": 45.761, "s": 306.007, "dh_kj_mol": 232.015}
+  }
+}

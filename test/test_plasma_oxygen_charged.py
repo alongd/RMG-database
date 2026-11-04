@@ -459,7 +459,8 @@ def test_exact_entry_inventory(database):
     thermo = database.thermo.libraries['PlasmaThermo'].entries
     assert {label: entry.index for label, entry in thermo.items()} == {
         '[Arp]': 0, '[Hep]': 1, '[Nep]': 2, '[Ar2p]': 3,
-        '[Op]': 4, '[O2p]': 5, '[Om]': 6, '[O2m]': 7, '[O3m]': 8}
+        '[Op]': 4, '[O2p]': 5, '[Om]': 6, '[O2m]': 7, '[O3m]': 8,
+        '[N2pB]': 900, '[N2p]': 901}
 
 
 def assert_particle_rates(data, source):

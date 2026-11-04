@@ -6,11 +6,61 @@ from pathlib import Path
 import sys
 
 import yaml
+from yaml.constructor import ConstructorError
+from rmgpy.data.kinetics.database import KineticsDatabase
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_OVERLAY = ROOT / 'input/eedf/nitrogen_channel_overlay.yaml'
 DEFAULT_OUTPUT = ROOT / 'input/eedf/nitrogen_channel_map.yaml'
 TYPES = {'Elastic', 'Effective', 'Excitation', 'Ionization', 'Attachment'}
+
+
+class UniqueKeyLoader(yaml.SafeLoader):
+    """Safe YAML loader that refuses ambiguous duplicate mapping keys."""
+
+
+def _construct_unique_mapping(loader, node, deep=False):
+    mapping = {}
+    for key_node, value_node in node.value:
+        key = loader.construct_object(key_node, deep=deep)
+        if key in mapping:
+            raise ConstructorError(
+                'while constructing a mapping', node.start_mark,
+                f'duplicate key {key!r}', key_node.start_mark)
+        mapping[key] = loader.construct_object(value_node, deep=deep)
+    return mapping
+
+
+UniqueKeyLoader.add_constructor(
+    yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG, _construct_unique_mapping)
+
+
+def load_yaml(path):
+    with Path(path).open(encoding='utf-8') as stream:
+        return yaml.load(stream, Loader=UniqueKeyLoader)
+
+
+def validate_owner_metadata(channel, library_dir, cache=None):
+    """Require a class-A owner to name the exact loadable library entry."""
+    owner = channel.get('owner_index')
+    library = channel.get('owner_library')
+    label = channel.get('owner_label')
+    if (isinstance(owner, bool) or not isinstance(owner, int) or owner <= 0
+            or not isinstance(library, str) or not library.strip()
+            or not isinstance(label, str) or not label.strip()):
+        raise ValueError(
+            'class A requires a positive integer owner index and nonempty '
+            'owner library and label')
+    cache = {} if cache is None else cache
+    if library not in cache:
+        database = KineticsDatabase()
+        database.load_libraries(str(library_dir), libraries=[library])
+        cache[library] = database.libraries[library]
+    entries = cache[library].entries
+    entry = entries.get(owner)
+    if entry is None or entry.index != owner or entry.label != label:
+        raise ValueError(
+            f'class A owner {library}[{owner}] does not load as label {label!r}')
 
 
 def parse_source(path):
@@ -42,10 +92,10 @@ def parse_source(path):
     return rows
 
 
-def generate(source, overlay_path):
+def generate(source, overlay_path, library_dir=None):
     source = Path(source)
     rows = parse_source(source)
-    overlay = yaml.safe_load(Path(overlay_path).read_text(encoding='utf-8'))
+    overlay = load_yaml(overlay_path)
     if (not isinstance(overlay, dict)
             or overlay.get('schema') != 'eedf-channel-overlay/1'):
         raise ValueError('overlay schema missing or unsupported')
@@ -62,6 +112,7 @@ def generate(source, overlay_path):
         raise ValueError(
             f'overlay inventory has {count} rows; source has {len(rows)}')
     output = []
+    owner_cache = {}
     seen_processes = set()
     for i, (row, channel) in enumerate(zip(rows, channels), 1):
         if not isinstance(channel, dict) or channel.get('id') != i:
@@ -81,11 +132,10 @@ def generate(source, overlay_path):
         owner = channel.get('owner_index')
         library = channel.get('owner_library')
         label = channel.get('owner_label')
-        if (cls == 'A' and (not isinstance(owner, int)
-                            or not isinstance(library, str)
-                            or not isinstance(label, str))):
-            raise ValueError(
-                f'channel {i}: class A requires owner index/library/label')
+        if cls == 'A':
+            validate_owner_metadata(
+                channel, library_dir or ROOT / 'input/kinetics/libraries',
+                owner_cache)
         if cls != 'A' and any(v is not None for v in (owner, library, label)):
             raise ValueError(
                 f'channel {i}: non-A class cannot name a reaction owner')
@@ -116,6 +166,11 @@ def main(argv=None):
         parser.error(str(exc))
     out = Path(args.output)
     if args.check:
+        try:
+            if out.is_file():
+                load_yaml(out)
+        except (OSError, yaml.YAMLError) as exc:
+            parser.error(f'{out}: invalid generated YAML: {exc}')
         if not out.is_file() or out.read_text(encoding='utf-8') != payload:
             print(
                 f'{out}: stale or missing; regenerate with '

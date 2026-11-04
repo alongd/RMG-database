@@ -471,7 +471,8 @@ def test_no_charged_entry_other_than_lithium_cation_changed(thermo_db):
 
     Additions, removals, and changes in any library are all regressions. This ticket's
     containment invariant is narrower: relative to ``48f032aa2``, only
-    ``LithiumPrimaryThermo/[Lip]`` may move.
+    ``LithiumPrimaryThermo/[Lip]`` may change among pre-existing entries; the two
+    explicitly admitted nitrogen cations are additions, not moves.
     """
     landing_base_libraries = _thermo_libraries_at_commit(LANDING_BASE_COMMIT)
 
@@ -485,7 +486,9 @@ def test_no_charged_entry_other_than_lithium_cation_changed(thermo_db):
 
     base_entries = charged_entries(landing_base_libraries)
     head_entries = charged_entries(thermo_db.libraries)
-    assert set(head_entries) == set(base_entries)
+    new_nitrogen_entries = {(
+        'PlasmaThermo', '[N2p]'), ('PlasmaThermo', '[N2pB]')}
+    assert set(head_entries) == set(base_entries) | new_nitrogen_entries
 
     def quantity_signature(quantity):
         if quantity is None:
@@ -517,7 +520,8 @@ def test_no_charged_entry_other_than_lithium_cation_changed(thermo_db):
         raise AssertionError(f'unsupported charged thermo model {type(data).__name__}')
 
     moved = set()
-    for key, now in head_entries.items():
+    for key in set(base_entries) & set(head_entries):
+        now = head_entries[key]
         was = base_entries[key]
         if thermo_signature(now) != thermo_signature(was):
             moved.add(key)

@@ -349,7 +349,7 @@ simulator(atol=1e-16, rtol=1e-8)
 model(toleranceMoveToCore=0.1, toleranceInterruptSimulation=1.0)
 # State-preserving Cantera/RMS export for resolved-state table models is planned separately.
 options(generateOutputHTML=False, generatePlots=False, saveEdgeSpecies=False,
-        saveSimulationProfiles=True, generateChemkin=True,
+        saveSimulationProfiles=True, generateChemkin=True, generateCanteraFromChemkin=False,
         generateRMSYAML=False, generateCanteraYAML1=False, generateCanteraYAML2=False)
 """.replace("generateRMSYAML=False, ", "" if rms_default else "generateRMSYAML=False, "))
     return deck
@@ -389,6 +389,8 @@ def test_short_real_rmg_job_keeps_table_kinetics_and_writes_chemkin(tmp_path, mo
     solver.advance(1e-9)
     assert solver.t >= 1e-9
     np.testing.assert_array_equal(solver.kf[table_indices], expected)
+    assert job.generate_cantera_from_chemkin is False
+    assert not list((output / 'cantera_from_ck').glob('*.yaml'))
     assert (output / 'chemkin' / 'chem.inp').is_file()
     annotated = (output / 'chemkin' / 'chem_annotated.inp').read_text()
     assert 'Output-only modified Arrhenius fit' in annotated

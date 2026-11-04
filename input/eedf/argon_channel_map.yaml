@@ -170,6 +170,49 @@ declared_conventions:
     96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118,
     119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140,
     141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157]
+- name: HIGHER_EXCITATION_STATISTICAL_WEIGHTS
+  statement: Assume excitation populations proportional to g=2J+1 within each listed blend; this is a modelling
+    convention, not measured populations. Bogaerts et al. (1998) provides a statistical-population precedent. Report
+    all member extremes and the maximum pairwise total-variation distance.
+  references:
+  - Bogaerts1998
+  applies_to: [16, 20, 21, 24, 36, 37, 38]
+  radiative_source_sha256: d2a8d52225aaf75b72214989126f94b35bebf8a024fe189cdc1ab1c4c699c7f9
+- name: RESONANCE_RADIATION_TRAPPED
+  statement: 'Optically thick reabsorption of ground resonance photons: nominal g=0. Only ground-return E1 lines
+    are trapped. Bound escaped branching by g*A0/(g*A0+sum A_other), with g the larger Holstein Doppler and resonance
+    estimates. This closed-form convention is not an engine transport model. Use NIST A where available, otherwise
+    the explicitly tagged K11 fill. A-accuracy propagation is reported separately from the escape estimate evaluated
+    at the sourced nominal A values.'
+  temperature_K: 298.0
+  pressure_Ar_torr: 4.0
+  length_m: 0.05
+  mass_u: 39.948
+  minimum_length_m: 0.05
+  minimum_ground_column_m_2: 6.480872373169772e+21
+  maximum_escape_factor: 0.001
+  geometry_source: RMG-Py examples/rmg/plasma_argon_energy_balance/input.py, chamberGeometry radius 5 cm, length
+    30 cm; characteristic length min(radius,length/2)=5 cm. Holstein slab estimates at this length.
+  geometry_commit: 817e4a9fbf368612a7dfc309c6c7f173dfd5afbc
+  references:
+  - Holstein1947
+  - Holstein1951
+  - Walsh1959
+  - NIST_broadening
+  - NIST_A_f
+  - NIST_Ar_mass
+  applies_to: [16, 21, 22, 24, 25, 26, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38]
+  radiative_source_sha256: d2a8d52225aaf75b72214989126f94b35bebf8a024fe189cdc1ab1c4c699c7f9
+- name: CALCULATED_LIST_OMISSION_BOUND
+  transition_id: 018001.000058->018001.000002
+  method: terminal-segment
+  statement: The parity-allowed delta-J=-1 3p5 4f -> 3p5 4s transition has delta-l=3 and obtains E1 amplitude through
+    configuration mixing. Weakness is not a zero. gf1800.com lists GFLO=-7.5, but also EGFLO/EBOLT settings; observed
+    rows below that floor occur, so no applicable omission upper bound is established. Retain status unbounded-omitted,
+    A in [0,infinity], nominal A=0. The exact terminal segment joins the known-edge vector to unit 1s5.
+  source_url: https://kurucz.cfa.harvard.edu/atoms/1800/gf1800.com
+  applies_to: [38]
+  radiative_source_sha256: d2a8d52225aaf75b72214989126f94b35bebf8a024fe189cdc1ab1c4c699c7f9
 class_counts:
   A: 152
   B: 5
@@ -534,6 +577,9 @@ channels:
   superelastic_in_set: false
   family: excitation above 4s from ground via levels above 4p
   class: A
+  conventions:
+  - HIGHER_EXCITATION_STATISTICAL_WEIGHTS
+  - RESONANCE_RADIATION_TRAPPED
   rmg:
     reaction: Ar + e- => Ar(1s_i) + e- + hv
     library: PlasmaArgon
@@ -618,6 +664,8 @@ channels:
   superelastic_in_set: false
   family: excitation above 4s from ground via levels above 4p
   class: A
+  conventions:
+  - HIGHER_EXCITATION_STATISTICAL_WEIGHTS
   rmg:
     reaction: Ar + e- => Ar(1s_i) + e- + hv
     library: PlasmaArgon
@@ -639,6 +687,9 @@ channels:
   superelastic_in_set: false
   family: excitation above 4s from ground via levels above 4p
   class: A
+  conventions:
+  - HIGHER_EXCITATION_STATISTICAL_WEIGHTS
+  - RESONANCE_RADIATION_TRAPPED
   rmg:
     reaction: Ar + e- => Ar(1s_i) + e- + hv
     library: PlasmaArgon
@@ -660,6 +711,8 @@ channels:
   superelastic_in_set: false
   family: excitation above 4s from ground via levels above 4p
   class: A
+  conventions:
+  - RESONANCE_RADIATION_TRAPPED
   rmg:
     reaction: Ar + e- => Ar(1s_i) + e- + hv
     library: PlasmaArgon
@@ -702,6 +755,9 @@ channels:
   superelastic_in_set: false
   family: excitation above 4s from ground via levels above 4p
   class: A
+  conventions:
+  - HIGHER_EXCITATION_STATISTICAL_WEIGHTS
+  - RESONANCE_RADIATION_TRAPPED
   rmg:
     reaction: Ar + e- => Ar(1s_i) + e- + hv
     library: PlasmaArgon
@@ -723,6 +779,8 @@ channels:
   superelastic_in_set: false
   family: excitation above 4s from ground via levels above 4p
   class: A
+  conventions:
+  - RESONANCE_RADIATION_TRAPPED
   rmg:
     reaction: Ar + e- => Ar(1s_i) + e- + hv
     library: PlasmaArgon
@@ -744,6 +802,8 @@ channels:
   superelastic_in_set: false
   family: excitation above 4s from ground via levels above 4p
   class: A
+  conventions:
+  - RESONANCE_RADIATION_TRAPPED
   rmg:
     reaction: Ar + e- => Ar(1s_i) + e- + hv
     library: PlasmaArgon
@@ -786,6 +846,8 @@ channels:
   superelastic_in_set: false
   family: excitation above 4s from ground via levels above 4p
   class: A
+  conventions:
+  - RESONANCE_RADIATION_TRAPPED
   rmg:
     reaction: Ar + e- => Ar(1s_i) + e- + hv
     library: PlasmaArgon
@@ -807,6 +869,8 @@ channels:
   superelastic_in_set: false
   family: excitation above 4s from ground via levels above 4p
   class: A
+  conventions:
+  - RESONANCE_RADIATION_TRAPPED
   rmg:
     reaction: Ar + e- => Ar(1s_i) + e- + hv
     library: PlasmaArgon
@@ -828,6 +892,8 @@ channels:
   superelastic_in_set: false
   family: excitation above 4s from ground via levels above 4p
   class: A
+  conventions:
+  - RESONANCE_RADIATION_TRAPPED
   rmg:
     reaction: Ar + e- => Ar(1s_i) + e- + hv
     library: PlasmaArgon
@@ -849,6 +915,8 @@ channels:
   superelastic_in_set: false
   family: excitation above 4s from ground via levels above 4p
   class: A
+  conventions:
+  - RESONANCE_RADIATION_TRAPPED
   rmg:
     reaction: Ar + e- => Ar(1s_i) + e- + hv
     library: PlasmaArgon
@@ -870,6 +938,8 @@ channels:
   superelastic_in_set: false
   family: excitation above 4s from ground via levels above 4p
   class: A
+  conventions:
+  - RESONANCE_RADIATION_TRAPPED
   rmg:
     reaction: Ar + e- => Ar(1s_i) + e- + hv
     library: PlasmaArgon
@@ -891,6 +961,8 @@ channels:
   superelastic_in_set: false
   family: excitation above 4s from ground via levels above 4p
   class: A
+  conventions:
+  - RESONANCE_RADIATION_TRAPPED
   rmg:
     reaction: Ar + e- => Ar(1s_i) + e- + hv
     library: PlasmaArgon
@@ -912,6 +984,8 @@ channels:
   superelastic_in_set: false
   family: excitation above 4s from ground via levels above 4p
   class: A
+  conventions:
+  - RESONANCE_RADIATION_TRAPPED
   rmg:
     reaction: Ar + e- => Ar(1s_i) + e- + hv
     library: PlasmaArgon
@@ -933,6 +1007,8 @@ channels:
   superelastic_in_set: false
   family: excitation above 4s from ground via levels above 4p
   class: A
+  conventions:
+  - RESONANCE_RADIATION_TRAPPED
   rmg:
     reaction: Ar + e- => Ar(1s_i) + e- + hv
     library: PlasmaArgon
@@ -954,6 +1030,9 @@ channels:
   superelastic_in_set: false
   family: excitation above 4s from ground via levels above 4p
   class: A
+  conventions:
+  - HIGHER_EXCITATION_STATISTICAL_WEIGHTS
+  - RESONANCE_RADIATION_TRAPPED
   rmg:
     reaction: Ar + e- => Ar(1s_i) + e- + hv
     library: PlasmaArgon
@@ -975,6 +1054,9 @@ channels:
   superelastic_in_set: false
   family: excitation above 4s from ground via levels above 4p
   class: A
+  conventions:
+  - HIGHER_EXCITATION_STATISTICAL_WEIGHTS
+  - RESONANCE_RADIATION_TRAPPED
   rmg:
     reaction: Ar + e- => Ar(1s_i) + e- + hv
     library: PlasmaArgon
@@ -996,6 +1078,10 @@ channels:
   superelastic_in_set: false
   family: excitation above 4s from ground via levels above 4p
   class: A
+  conventions:
+  - HIGHER_EXCITATION_STATISTICAL_WEIGHTS
+  - RESONANCE_RADIATION_TRAPPED
+  - CALCULATED_LIST_OMISSION_BOUND
   rmg:
     reaction: Ar + e- => Ar(1s_i) + e- + hv
     library: PlasmaArgon

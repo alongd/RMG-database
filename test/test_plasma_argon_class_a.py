@@ -49,7 +49,7 @@ def state_species(library, index):
 
 def test_literal_owners_and_distinct_states(database):
     lib = database.libraries['PlasmaArgon']
-    cascade_ids = {1000 + channel * 4 + offset for channel in range(6, 16)
+    cascade_ids = {1000 + channel * 4 + offset for channel in range(6, 39)
                    for offset in range(4)}
     assert set(lib.entries) == {86, 87, 94, 95, 96} | cascade_ids
     frozen = yaml.safe_load((DATA / 'eedf/argon_channel_map.yaml').read_text())
@@ -145,14 +145,16 @@ def test_converter_refuses_removed_resonant_owner(database):
     from rmgpy.tools.eedf.ownership import load_cascade_yields
     cascade_yields = load_cascade_yields(
         DATA / 'eedf/argon_cascade_yields.yaml', DATA / 'eedf/argon_radiative_data.yaml')
-    unresolved = list(range(16, 39))
-    for remove, expected in [(False, unresolved), (True, [3, *unresolved])]:
-        if remove:
-            del library.entries[94]
-        with pytest.raises(MissingOwners) as caught:
-            convert_channel_map(spec, frozen, library, 'IST-Lisbon-Ar-2021', cascade_yields)
-        assert [row['id'] for row in caught.value.report['missing_owners']] == expected
-        assert caught.value.report['shared_owners'] == []
+    converted, report = convert_channel_map(
+        spec, frozen, library, 'IST-Lisbon-Ar-2021', cascade_yields)
+    assert len(converted) == 39  # One row per physical collision, including elastic
+    assert report['missing_owners'] == []
+    assert report['shared_owners'] == []
+    del library.entries[94]
+    with pytest.raises(MissingOwners) as caught:
+        convert_channel_map(spec, frozen, library, 'IST-Lisbon-Ar-2021', cascade_yields)
+    assert [row['id'] for row in caught.value.report['missing_owners']] == [3]
+    assert caught.value.report['shared_owners'] == []
 
 
 def test_cascade_library_owners_are_one_sourced_family_per_channel(database):
@@ -160,7 +162,7 @@ def test_cascade_library_owners_are_one_sourced_family_per_channel(database):
     lib = database.libraries['PlasmaArgon']
     snapshot = load_cascade_yields(
         DATA / 'eedf/argon_cascade_yields.yaml', DATA / 'eedf/argon_radiative_data.yaml')
-    for channel_id in range(6, 16):
+    for channel_id in range(6, 39):
         row = next(item for item in snapshot['channels'] if item['id'] == channel_id)
         reactions = [lib.entries[1000 + channel_id * 4 + offset].item for offset in range(4)]
         owners = [('PlasmaArgon', 1000 + channel_id * 4 + offset,

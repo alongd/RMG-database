@@ -154,7 +154,10 @@ STATE_RENAMES = {
     "Ar(4s'[1/2]1)": 'Ar(1P1)',
     'Ar(+)': 'Ar(+,gnd)',
 }
-CONVENTIONS = ('ELASTIC_REUSE_GROUND', 'DETAILED_BALANCE_INVERSE', 'LUMPED_TARGET_PER_LEVEL', 'STATE_RENAME')
+SOURCE_CONVENTIONS = ('ELASTIC_REUSE_GROUND', 'DETAILED_BALANCE_INVERSE', 'LUMPED_TARGET_PER_LEVEL', 'STATE_RENAME')
+CASCADE_CONVENTIONS = ('HIGHER_EXCITATION_STATISTICAL_WEIGHTS', 'RESONANCE_RADIATION_TRAPPED',
+                       'CALCULATED_LIST_OMISSION_BOUND')
+CONVENTIONS = SOURCE_CONVENTIONS + CASCADE_CONVENTIONS
 # A 1s<->1s threshold must equal the difference of the two levels' ground-state excitation thresholds.
 LEVEL_GAP_TOLERANCE_EV = 0.01
 
@@ -1682,6 +1685,7 @@ def generate(overlay_path, assembled, source_paths, database):
     doc['states'] = states
     doc['policy'] = POLICY
     doc['declared_conventions'] = convention_registry(linked, energy, ionization_energy, weights, paschen)
+    doc['declared_conventions'].extend(higher_cascade_conventions(linked))
     counts = collections.Counter(c['class'] for c in linked if 'class' in c)
     doc['class_counts'] = {k: counts.get(k, 0) for k in 'ABCD'}
     gaps = collections.OrderedDict()
@@ -1847,10 +1851,42 @@ def channel(c):
     return entry
 
 
+def higher_cascade_conventions(linked):
+    """Declare cascade assumptions from the generator's cited source catalogue.
+
+    These describe chemistry ownership, not transformations of the external
+    LXCat files, so they are added only after the source manifest is checked.
+    """
+    import gen_argon_cascades as cascades
+    raw = cascades.SOURCE.read_bytes()
+    source = yaml.safe_load(raw)
+    generated = cascades.generate(raw)
+    rows = {r['process']: r for r in generated['channels'] if r['id'] >= 16}
+    definitions = source['higher_cascade']['conventions']
+    covered = {name: [] for name in CASCADE_CONVENTIONS}
+    for c in linked:
+        row = rows.get(c['label'])
+        if row is None or c.get('class') != 'A':
+            continue
+        names = []
+        if len(row['upper_nist_ids']) > 1:
+            names.append('HIGHER_EXCITATION_STATISTICAL_WEIGHTS')
+        if row['ground_lines']:
+            names.append('RESONANCE_RADIATION_TRAPPED')
+        if row['omission_interval']['flux_share'] > 0:
+            names.append('CALCULATED_LIST_OMISSION_BOUND')
+        for name in names:
+            c['need'].add(name)
+            covered[name].append(c['id'])
+    return [dict(name=name, **definitions[name], applies_to=ids,
+                 radiative_source_sha256=generated['source_sha256'])
+            for name, ids in covered.items() if ids]
+
+
 def convention_registry(linked, energy, ionization_energy, weights, paschen):
     """Each convention used, with a statement written from the collisions it covers."""
     out = []
-    for name in CONVENTIONS:
+    for name in SOURCE_CONVENTIONS:
         covered = [c for c in linked if name in c['need']]
         if not covered:
             continue

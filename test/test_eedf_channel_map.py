@@ -928,3 +928,20 @@ class TestAgainstTheStore:
         cp = subprocess.run(cmd, capture_output=True, text=True)
         assert cp.returncode == 0, cp.stdout[-4000:]
         assert cp.stderr == ''
+
+
+def test_higher_cascade_conventions_declared(committed):
+    _, doc = committed
+    records = {r['name']: r for r in doc['declared_conventions']}
+    assert records['HIGHER_EXCITATION_STATISTICAL_WEIGHTS']['applies_to'] == [16, 20, 21, 24, 36, 37, 38]
+    assert records['CALCULATED_LIST_OMISSION_BOUND']['applies_to'] == [38]
+    trapping = records['RESONANCE_RADIATION_TRAPPED']
+    assert trapping['minimum_length_m'] == .05
+    assert trapping['minimum_ground_column_m_2'] > 6e21
+    for c in doc['channels']:
+        if 16 <= c['id'] <= 38:
+            assert c['class'] == 'A'
+        for name in c.get('conventions', []):
+            if name in ('HIGHER_EXCITATION_STATISTICAL_WEIGHTS', 'CALCULATED_LIST_OMISSION_BOUND',
+                        'RESONANCE_RADIATION_TRAPPED'):
+                assert c['id'] in records[name]['applies_to']

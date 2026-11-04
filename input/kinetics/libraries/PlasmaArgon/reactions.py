@@ -109,7 +109,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s5)',
         branch_yield = 0.7420494699646644,
-        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 6; sourced cascade branch",
     longDesc = """
@@ -131,7 +131,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s4)',
         branch_yield = 0.21201413427561838,
-        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 6; sourced cascade branch",
     longDesc = """
@@ -153,7 +153,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s3)',
         branch_yield = 0.038476639183352965,
-        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 6; sourced cascade branch",
     longDesc = """
@@ -175,7 +175,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s2)',
         branch_yield = 0.00745975657636435,
-        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 6; sourced cascade branch",
     longDesc = """
@@ -197,7 +197,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s5)',
         branch_yield = 1.0,
-        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 7; sourced cascade branch",
     longDesc = """
@@ -219,7 +219,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s4)',
         branch_yield = 0.0,
-        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 7; sourced cascade branch",
     longDesc = """
@@ -241,7 +241,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s3)',
         branch_yield = 0.0,
-        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 7; sourced cascade branch",
     longDesc = """
@@ -263,7 +263,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s2)',
         branch_yield = 0.0,
-        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 7; sourced cascade branch",
     longDesc = """
@@ -285,7 +285,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s5)',
         branch_yield = 0.28819336845367216,
-        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 8; sourced cascade branch",
     longDesc = """
@@ -307,7 +307,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s4)',
         branch_yield = 0.6662534862101023,
-        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 8; sourced cascade branch",
     longDesc = """
@@ -329,7 +329,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s3)',
         branch_yield = 0.0,
-        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 8; sourced cascade branch",
     longDesc = """
@@ -351,7 +351,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s2)',
         branch_yield = 0.0455531453362256,
-        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 8; sourced cascade branch",
     longDesc = """
@@ -373,7 +373,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s5)',
         branch_yield = 0.1543484713564856,
-        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 9; sourced cascade branch",
     longDesc = """
@@ -395,7 +395,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s4)',
         branch_yield = 0.7420599584446423,
-        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 9; sourced cascade branch",
     longDesc = """
@@ -417,7 +417,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s3)',
         branch_yield = 0.07212822796081923,
-        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 9; sourced cascade branch",
     longDesc = """
@@ -439,7 +439,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s2)',
         branch_yield = 0.03146334223805283,
-        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 9; sourced cascade branch",
     longDesc = """
@@ -461,7 +461,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s5)',
         branch_yield = 0.7122093023255814,
-        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 10; sourced cascade branch",
     longDesc = """
@@ -483,7 +483,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s4)',
         branch_yield = 0.14244186046511628,
-        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 10; sourced cascade branch",
     longDesc = """
@@ -505,7 +505,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s3)',
         branch_yield = 0.0,
-        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 10; sourced cascade branch",
     longDesc = """
@@ -527,7 +527,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s2)',
         branch_yield = 0.14534883720930233,
-        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 10; sourced cascade branch",
     longDesc = """
@@ -549,7 +549,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s5)',
         branch_yield = 0.0,
-        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 11; sourced cascade branch",
     longDesc = """
@@ -571,7 +571,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s4)',
         branch_yield = 1.0,
-        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 11; sourced cascade branch",
     longDesc = """
@@ -593,7 +593,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s3)',
         branch_yield = 0.0,
-        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 11; sourced cascade branch",
     longDesc = """
@@ -615,7 +615,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s2)',
         branch_yield = 0.0,
-        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 11; sourced cascade branch",
     longDesc = """
@@ -637,7 +637,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s5)',
         branch_yield = 0.01900337837837838,
-        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 12; sourced cascade branch",
     longDesc = """
@@ -659,7 +659,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s4)',
         branch_yield = 0.0006636100386100386,
-        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 12; sourced cascade branch",
     longDesc = """
@@ -681,7 +681,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s3)',
         branch_yield = 0.5610521235521235,
-        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 12; sourced cascade branch",
     longDesc = """
@@ -703,7 +703,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s2)',
         branch_yield = 0.41928088803088803,
-        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 12; sourced cascade branch",
     longDesc = """
@@ -725,7 +725,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s5)',
         branch_yield = 0.10982658959537572,
-        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 13; sourced cascade branch",
     longDesc = """
@@ -747,7 +747,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s4)',
         branch_yield = 0.24566473988439305,
-        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 13; sourced cascade branch",
     longDesc = """
@@ -769,7 +769,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s3)',
         branch_yield = 0.0,
-        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 13; sourced cascade branch",
     longDesc = """
@@ -791,7 +791,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s2)',
         branch_yield = 0.6445086705202312,
-        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 13; sourced cascade branch",
     longDesc = """
@@ -813,7 +813,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s5)',
         branch_yield = 0.1816633550950894,
-        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 14; sourced cascade branch",
     longDesc = """
@@ -835,7 +835,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s4)',
         branch_yield = 0.05194436559750213,
-        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 14; sourced cascade branch",
     longDesc = """
@@ -857,7 +857,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s3)',
         branch_yield = 0.33210332103321033,
-        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 14; sourced cascade branch",
     longDesc = """
@@ -879,7 +879,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s2)',
         branch_yield = 0.4342889582741981,
-        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 14; sourced cascade branch",
     longDesc = """
@@ -901,7 +901,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s5)',
         branch_yield = 0.0,
-        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 15; sourced cascade branch",
     longDesc = """
@@ -923,7 +923,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s4)',
         branch_yield = 0.005217083738615262,
-        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 15; sourced cascade branch",
     longDesc = """
@@ -945,7 +945,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s3)',
         branch_yield = 0.0,
-        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 15; sourced cascade branch",
     longDesc = """
@@ -967,7 +967,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s2)',
         branch_yield = 0.9947829162613847,
-        yield_table_sha256 = '85815430d3d71edf3241a168c30209d459be717eb544c1e8ed99e88fe9937676',
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 15; sourced cascade branch",
     longDesc = """
@@ -976,6 +976,2030 @@ from argon_cascade_yields.yaml. Transition A values, citations and NIST row iden
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
 electron collision rate; photon energy is accounted for once through branch products.
 Transition rows: 018001.000015->018001.000003, 018001.000015->018001.000005.
+""",
+)
+
+entry(
+    index = 1064,
+    label = "Ar + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1S0) -> e + Ar(3d[1/2]0+3d[1/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.6528895654506393,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 16; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 16. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000016->018001.000006, 018001.000016->018001.000009, 018001.000016->018001.000012, 018001.000016->018001.000014, 018001.000017->018001.000001, 018001.000017->018001.000006, 018001.000017->018001.000008, 018001.000017->018001.000009, 018001.000017->018001.000010, 018001.000017->018001.000011, 018001.000017->018001.000012, 018001.000017->018001.000013, 018001.000017->018001.000014, 018001.000017->018001.000015.
+""",
+)
+
+entry(
+    index = 1065,
+    label = "Ar + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1S0) -> e + Ar(3d[1/2]0+3d[1/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.2628670450225776,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 16; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 16. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000016->018001.000006, 018001.000016->018001.000009, 018001.000016->018001.000012, 018001.000016->018001.000014, 018001.000017->018001.000001, 018001.000017->018001.000006, 018001.000017->018001.000008, 018001.000017->018001.000009, 018001.000017->018001.000010, 018001.000017->018001.000011, 018001.000017->018001.000012, 018001.000017->018001.000013, 018001.000017->018001.000014, 018001.000017->018001.000015.
+""",
+)
+
+entry(
+    index = 1066,
+    label = "Ar + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1S0) -> e + Ar(3d[1/2]0+3d[1/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.0427856365388511,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 16; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 16. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000016->018001.000006, 018001.000016->018001.000009, 018001.000016->018001.000012, 018001.000016->018001.000014, 018001.000017->018001.000001, 018001.000017->018001.000006, 018001.000017->018001.000008, 018001.000017->018001.000009, 018001.000017->018001.000010, 018001.000017->018001.000011, 018001.000017->018001.000012, 018001.000017->018001.000013, 018001.000017->018001.000014, 018001.000017->018001.000015.
+""",
+)
+
+entry(
+    index = 1067,
+    label = "Ar + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1S0) -> e + Ar(3d[1/2]0+3d[1/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.041457752987932285,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 16; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 16. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000016->018001.000006, 018001.000016->018001.000009, 018001.000016->018001.000012, 018001.000016->018001.000014, 018001.000017->018001.000001, 018001.000017->018001.000006, 018001.000017->018001.000008, 018001.000017->018001.000009, 018001.000017->018001.000010, 018001.000017->018001.000011, 018001.000017->018001.000012, 018001.000017->018001.000013, 018001.000017->018001.000014, 018001.000017->018001.000015.
+""",
+)
+
+entry(
+    index = 1068,
+    label = "Ar + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1S0) -> e + Ar(3d[3/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.6628004734416516,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 17; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 17. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000018->018001.000006, 018001.000018->018001.000007, 018001.000018->018001.000008, 018001.000018->018001.000009, 018001.000018->018001.000010, 018001.000018->018001.000012, 018001.000018->018001.000013, 018001.000018->018001.000014.
+""",
+)
+
+entry(
+    index = 1069,
+    label = "Ar + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1S0) -> e + Ar(3d[3/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.21019305957628312,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 17; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 17. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000018->018001.000006, 018001.000018->018001.000007, 018001.000018->018001.000008, 018001.000018->018001.000009, 018001.000018->018001.000010, 018001.000018->018001.000012, 018001.000018->018001.000013, 018001.000018->018001.000014.
+""",
+)
+
+entry(
+    index = 1070,
+    label = "Ar + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1S0) -> e + Ar(3d[3/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.036621743474735735,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 17; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 17. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000018->018001.000006, 018001.000018->018001.000007, 018001.000018->018001.000008, 018001.000018->018001.000009, 018001.000018->018001.000010, 018001.000018->018001.000012, 018001.000018->018001.000013, 018001.000018->018001.000014.
+""",
+)
+
+entry(
+    index = 1071,
+    label = "Ar + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1S0) -> e + Ar(3d[3/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.09038472350732961,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 17; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 17. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000018->018001.000006, 018001.000018->018001.000007, 018001.000018->018001.000008, 018001.000018->018001.000009, 018001.000018->018001.000010, 018001.000018->018001.000012, 018001.000018->018001.000013, 018001.000018->018001.000014.
+""",
+)
+
+entry(
+    index = 1072,
+    label = "Ar + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1S0) -> e + Ar(3d[7/2]4), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 1.0,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 18; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 18. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002, 018001.000019->018001.000007.
+""",
+)
+
+entry(
+    index = 1073,
+    label = "Ar + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1S0) -> e + Ar(3d[7/2]4), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.0,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 18; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 18. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002, 018001.000019->018001.000007.
+""",
+)
+
+entry(
+    index = 1074,
+    label = "Ar + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1S0) -> e + Ar(3d[7/2]4), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.0,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 18; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 18. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002, 018001.000019->018001.000007.
+""",
+)
+
+entry(
+    index = 1075,
+    label = "Ar + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1S0) -> e + Ar(3d[7/2]4), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.0,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 18; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 18. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002, 018001.000019->018001.000007.
+""",
+)
+
+entry(
+    index = 1076,
+    label = "Ar + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1S0) -> e + Ar(3d[7/2]3), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.42750082388093896,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 19; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 19. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000020->018001.000007, 018001.000020->018001.000008, 018001.000020->018001.000010, 018001.000020->018001.000013.
+""",
+)
+
+entry(
+    index = 1077,
+    label = "Ar + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1S0) -> e + Ar(3d[7/2]3), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.528810865203049,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 19; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 19. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000020->018001.000007, 018001.000020->018001.000008, 018001.000020->018001.000010, 018001.000020->018001.000013.
+""",
+)
+
+entry(
+    index = 1078,
+    label = "Ar + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1S0) -> e + Ar(3d[7/2]3), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.0,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 19; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 19. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000020->018001.000007, 018001.000020->018001.000008, 018001.000020->018001.000010, 018001.000020->018001.000013.
+""",
+)
+
+entry(
+    index = 1079,
+    label = "Ar + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1S0) -> e + Ar(3d[7/2]3), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.043688310916012024,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 19; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 19. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000020->018001.000007, 018001.000020->018001.000008, 018001.000020->018001.000010, 018001.000020->018001.000013.
+""",
+)
+
+entry(
+    index = 1080,
+    label = "Ar + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1S0) -> e + Ar(3d[5/2]2+5s[3/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.5195299235244069,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 20; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 20. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000021->018001.000006, 018001.000021->018001.000007, 018001.000021->018001.000008, 018001.000021->018001.000009, 018001.000021->018001.000010, 018001.000021->018001.000012, 018001.000021->018001.000013, 018001.000021->018001.000014, 018001.000022->018001.000006, 018001.000022->018001.000007, 018001.000022->018001.000008, 018001.000022->018001.000009, 018001.000022->018001.000010, 018001.000022->018001.000012, 018001.000022->018001.000013, 018001.000022->018001.000014.
+""",
+)
+
+entry(
+    index = 1081,
+    label = "Ar + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1S0) -> e + Ar(3d[5/2]2+5s[3/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.38381546095040653,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 20; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 20. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000021->018001.000006, 018001.000021->018001.000007, 018001.000021->018001.000008, 018001.000021->018001.000009, 018001.000021->018001.000010, 018001.000021->018001.000012, 018001.000021->018001.000013, 018001.000021->018001.000014, 018001.000022->018001.000006, 018001.000022->018001.000007, 018001.000022->018001.000008, 018001.000022->018001.000009, 018001.000022->018001.000010, 018001.000022->018001.000012, 018001.000022->018001.000013, 018001.000022->018001.000014.
+""",
+)
+
+entry(
+    index = 1082,
+    label = "Ar + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1S0) -> e + Ar(3d[5/2]2+5s[3/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.044277036442971957,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 20; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 20. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000021->018001.000006, 018001.000021->018001.000007, 018001.000021->018001.000008, 018001.000021->018001.000009, 018001.000021->018001.000010, 018001.000021->018001.000012, 018001.000021->018001.000013, 018001.000021->018001.000014, 018001.000022->018001.000006, 018001.000022->018001.000007, 018001.000022->018001.000008, 018001.000022->018001.000009, 018001.000022->018001.000010, 018001.000022->018001.000012, 018001.000022->018001.000013, 018001.000022->018001.000014.
+""",
+)
+
+entry(
+    index = 1083,
+    label = "Ar + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1S0) -> e + Ar(3d[5/2]2+5s[3/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.05237757908221467,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 20; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 20. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000021->018001.000006, 018001.000021->018001.000007, 018001.000021->018001.000008, 018001.000021->018001.000009, 018001.000021->018001.000010, 018001.000021->018001.000012, 018001.000021->018001.000013, 018001.000021->018001.000014, 018001.000022->018001.000006, 018001.000022->018001.000007, 018001.000022->018001.000008, 018001.000022->018001.000009, 018001.000022->018001.000010, 018001.000022->018001.000012, 018001.000022->018001.000013, 018001.000022->018001.000014.
+""",
+)
+
+entry(
+    index = 1084,
+    label = "Ar + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1S0) -> e + Ar(3d[5/2]3+5s[3/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.6020989310342992,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 21; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 21. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000023->018001.000001, 018001.000023->018001.000006, 018001.000023->018001.000008, 018001.000023->018001.000009, 018001.000023->018001.000010, 018001.000023->018001.000011, 018001.000023->018001.000012, 018001.000023->018001.000013, 018001.000023->018001.000014, 018001.000023->018001.000015, 018001.000024->018001.000007, 018001.000024->018001.000008, 018001.000024->018001.000010, 018001.000024->018001.000013.
+""",
+)
+
+entry(
+    index = 1085,
+    label = "Ar + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1S0) -> e + Ar(3d[5/2]3+5s[3/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.28826606289167284,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 21; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 21. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000023->018001.000001, 018001.000023->018001.000006, 018001.000023->018001.000008, 018001.000023->018001.000009, 018001.000023->018001.000010, 018001.000023->018001.000011, 018001.000023->018001.000012, 018001.000023->018001.000013, 018001.000023->018001.000014, 018001.000023->018001.000015, 018001.000024->018001.000007, 018001.000024->018001.000008, 018001.000024->018001.000010, 018001.000024->018001.000013.
+""",
+)
+
+entry(
+    index = 1086,
+    label = "Ar + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1S0) -> e + Ar(3d[5/2]3+5s[3/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.010016634530398394,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 21; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 21. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000023->018001.000001, 018001.000023->018001.000006, 018001.000023->018001.000008, 018001.000023->018001.000009, 018001.000023->018001.000010, 018001.000023->018001.000011, 018001.000023->018001.000012, 018001.000023->018001.000013, 018001.000023->018001.000014, 018001.000023->018001.000015, 018001.000024->018001.000007, 018001.000024->018001.000008, 018001.000024->018001.000010, 018001.000024->018001.000013.
+""",
+)
+
+entry(
+    index = 1087,
+    label = "Ar + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1S0) -> e + Ar(3d[5/2]3+5s[3/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.09961837154362942,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 21; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 21. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000023->018001.000001, 018001.000023->018001.000006, 018001.000023->018001.000008, 018001.000023->018001.000009, 018001.000023->018001.000010, 018001.000023->018001.000011, 018001.000023->018001.000012, 018001.000023->018001.000013, 018001.000023->018001.000014, 018001.000023->018001.000015, 018001.000024->018001.000007, 018001.000024->018001.000008, 018001.000024->018001.000010, 018001.000024->018001.000013.
+""",
+)
+
+entry(
+    index = 1088,
+    label = "Ar + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1S0) -> e + Ar(3d[3/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.10661529252532245,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 22; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 22. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000025->018001.000001, 018001.000025->018001.000006, 018001.000025->018001.000008, 018001.000025->018001.000009, 018001.000025->018001.000010, 018001.000025->018001.000011, 018001.000025->018001.000012, 018001.000025->018001.000013, 018001.000025->018001.000014, 018001.000025->018001.000015.
+""",
+)
+
+entry(
+    index = 1089,
+    label = "Ar + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1S0) -> e + Ar(3d[3/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.6830111167619378,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 22; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 22. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000025->018001.000001, 018001.000025->018001.000006, 018001.000025->018001.000008, 018001.000025->018001.000009, 018001.000025->018001.000010, 018001.000025->018001.000011, 018001.000025->018001.000012, 018001.000025->018001.000013, 018001.000025->018001.000014, 018001.000025->018001.000015.
+""",
+)
+
+entry(
+    index = 1090,
+    label = "Ar + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1S0) -> e + Ar(3d[3/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.06806417104728463,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 22; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 22. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000025->018001.000001, 018001.000025->018001.000006, 018001.000025->018001.000008, 018001.000025->018001.000009, 018001.000025->018001.000010, 018001.000025->018001.000011, 018001.000025->018001.000012, 018001.000025->018001.000013, 018001.000025->018001.000014, 018001.000025->018001.000015.
+""",
+)
+
+entry(
+    index = 1091,
+    label = "Ar + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1S0) -> e + Ar(3d[3/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.1423094196654553,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 22; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 22. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000025->018001.000001, 018001.000025->018001.000006, 018001.000025->018001.000008, 018001.000025->018001.000009, 018001.000025->018001.000010, 018001.000025->018001.000011, 018001.000025->018001.000012, 018001.000025->018001.000013, 018001.000025->018001.000014, 018001.000025->018001.000015.
+""",
+)
+
+entry(
+    index = 1092,
+    label = "Ar + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(1S0) -> e + Ar(3d'[5/2]2), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.06526622919931016,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 23; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 23. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000026->018001.000006, 018001.000026->018001.000007, 018001.000026->018001.000008, 018001.000026->018001.000009, 018001.000026->018001.000010, 018001.000026->018001.000012, 018001.000026->018001.000013, 018001.000026->018001.000014.
+""",
+)
+
+entry(
+    index = 1093,
+    label = "Ar + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(1S0) -> e + Ar(3d'[5/2]2), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.10901503322328669,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 23; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 23. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000026->018001.000006, 018001.000026->018001.000007, 018001.000026->018001.000008, 018001.000026->018001.000009, 018001.000026->018001.000010, 018001.000026->018001.000012, 018001.000026->018001.000013, 018001.000026->018001.000014.
+""",
+)
+
+entry(
+    index = 1094,
+    label = "Ar + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(1S0) -> e + Ar(3d'[5/2]2), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.4251772331223881,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 23; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 23. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000026->018001.000006, 018001.000026->018001.000007, 018001.000026->018001.000008, 018001.000026->018001.000009, 018001.000026->018001.000010, 018001.000026->018001.000012, 018001.000026->018001.000013, 018001.000026->018001.000014.
+""",
+)
+
+entry(
+    index = 1095,
+    label = "Ar + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(1S0) -> e + Ar(3d'[5/2]2), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.40054150445501513,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 23; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 23. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000026->018001.000006, 018001.000026->018001.000007, 018001.000026->018001.000008, 018001.000026->018001.000009, 018001.000026->018001.000010, 018001.000026->018001.000012, 018001.000026->018001.000013, 018001.000026->018001.000014.
+""",
+)
+
+entry(
+    index = 1096,
+    label = "Ar + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(1S0) -> e + Ar(3d'[5/2or3/2]3or2+5s'[1/2]0or1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.273473260467054,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 24; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 24. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000027->018001.000006, 018001.000027->018001.000007, 018001.000027->018001.000008, 018001.000027->018001.000009, 018001.000027->018001.000010, 018001.000027->018001.000012, 018001.000027->018001.000013, 018001.000027->018001.000014, 018001.000028->018001.000007, 018001.000028->018001.000008, 018001.000028->018001.000010, 018001.000028->018001.000013, 018001.000029->018001.000006, 018001.000029->018001.000009, 018001.000029->018001.000012, 018001.000029->018001.000014, 018001.000030->018001.000001, 018001.000030->018001.000006, 018001.000030->018001.000008, 018001.000030->018001.000009, 018001.000030->018001.000010, 018001.000030->018001.000011, 018001.000030->018001.000012, 018001.000030->018001.000013, 018001.000030->018001.000014, 018001.000030->018001.000015.
+""",
+)
+
+entry(
+    index = 1097,
+    label = "Ar + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(1S0) -> e + Ar(3d'[5/2or3/2]3or2+5s'[1/2]0or1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.17668961029781355,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 24; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 24. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000027->018001.000006, 018001.000027->018001.000007, 018001.000027->018001.000008, 018001.000027->018001.000009, 018001.000027->018001.000010, 018001.000027->018001.000012, 018001.000027->018001.000013, 018001.000027->018001.000014, 018001.000028->018001.000007, 018001.000028->018001.000008, 018001.000028->018001.000010, 018001.000028->018001.000013, 018001.000029->018001.000006, 018001.000029->018001.000009, 018001.000029->018001.000012, 018001.000029->018001.000014, 018001.000030->018001.000001, 018001.000030->018001.000006, 018001.000030->018001.000008, 018001.000030->018001.000009, 018001.000030->018001.000010, 018001.000030->018001.000011, 018001.000030->018001.000012, 018001.000030->018001.000013, 018001.000030->018001.000014, 018001.000030->018001.000015.
+""",
+)
+
+entry(
+    index = 1098,
+    label = "Ar + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(1S0) -> e + Ar(3d'[5/2or3/2]3or2+5s'[1/2]0or1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.09900686235657598,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 24; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 24. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000027->018001.000006, 018001.000027->018001.000007, 018001.000027->018001.000008, 018001.000027->018001.000009, 018001.000027->018001.000010, 018001.000027->018001.000012, 018001.000027->018001.000013, 018001.000027->018001.000014, 018001.000028->018001.000007, 018001.000028->018001.000008, 018001.000028->018001.000010, 018001.000028->018001.000013, 018001.000029->018001.000006, 018001.000029->018001.000009, 018001.000029->018001.000012, 018001.000029->018001.000014, 018001.000030->018001.000001, 018001.000030->018001.000006, 018001.000030->018001.000008, 018001.000030->018001.000009, 018001.000030->018001.000010, 018001.000030->018001.000011, 018001.000030->018001.000012, 018001.000030->018001.000013, 018001.000030->018001.000014, 018001.000030->018001.000015.
+""",
+)
+
+entry(
+    index = 1099,
+    label = "Ar + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(1S0) -> e + Ar(3d'[5/2or3/2]3or2+5s'[1/2]0or1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.45083026687855643,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 24; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 24. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000027->018001.000006, 018001.000027->018001.000007, 018001.000027->018001.000008, 018001.000027->018001.000009, 018001.000027->018001.000010, 018001.000027->018001.000012, 018001.000027->018001.000013, 018001.000027->018001.000014, 018001.000028->018001.000007, 018001.000028->018001.000008, 018001.000028->018001.000010, 018001.000028->018001.000013, 018001.000029->018001.000006, 018001.000029->018001.000009, 018001.000029->018001.000012, 018001.000029->018001.000014, 018001.000030->018001.000001, 018001.000030->018001.000006, 018001.000030->018001.000008, 018001.000030->018001.000009, 018001.000030->018001.000010, 018001.000030->018001.000011, 018001.000030->018001.000012, 018001.000030->018001.000013, 018001.000030->018001.000014, 018001.000030->018001.000015.
+""",
+)
+
+entry(
+    index = 1100,
+    label = "Ar + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(1S0) -> e + Ar(3d'[3/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.09849268689985227,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 25; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 25. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000031->018001.000001, 018001.000031->018001.000006, 018001.000031->018001.000008, 018001.000031->018001.000009, 018001.000031->018001.000010, 018001.000031->018001.000011, 018001.000031->018001.000012, 018001.000031->018001.000013, 018001.000031->018001.000014, 018001.000031->018001.000015.
+""",
+)
+
+entry(
+    index = 1101,
+    label = "Ar + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(1S0) -> e + Ar(3d'[3/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.0812013508241652,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 25; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 25. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000031->018001.000001, 018001.000031->018001.000006, 018001.000031->018001.000008, 018001.000031->018001.000009, 018001.000031->018001.000010, 018001.000031->018001.000011, 018001.000031->018001.000012, 018001.000031->018001.000013, 018001.000031->018001.000014, 018001.000031->018001.000015.
+""",
+)
+
+entry(
+    index = 1102,
+    label = "Ar + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(1S0) -> e + Ar(3d'[3/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.2613652608067601,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 25; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 25. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000031->018001.000001, 018001.000031->018001.000006, 018001.000031->018001.000008, 018001.000031->018001.000009, 018001.000031->018001.000010, 018001.000031->018001.000011, 018001.000031->018001.000012, 018001.000031->018001.000013, 018001.000031->018001.000014, 018001.000031->018001.000015.
+""",
+)
+
+entry(
+    index = 1103,
+    label = "Ar + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(1S0) -> e + Ar(3d'[3/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.5589407014692225,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 25; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 25. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000031->018001.000001, 018001.000031->018001.000006, 018001.000031->018001.000008, 018001.000031->018001.000009, 018001.000031->018001.000010, 018001.000031->018001.000011, 018001.000031->018001.000012, 018001.000031->018001.000013, 018001.000031->018001.000014, 018001.000031->018001.000015.
+""",
+)
+
+entry(
+    index = 1104,
+    label = "Ar + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1S0) -> e + Ar(5p[1/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.6870073198598112,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 26; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 26. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000016->018001.000006, 018001.000016->018001.000009, 018001.000016->018001.000012, 018001.000016->018001.000014, 018001.000017->018001.000001, 018001.000017->018001.000006, 018001.000017->018001.000008, 018001.000017->018001.000009, 018001.000017->018001.000010, 018001.000017->018001.000011, 018001.000017->018001.000012, 018001.000017->018001.000013, 018001.000017->018001.000014, 018001.000017->018001.000015, 018001.000018->018001.000006, 018001.000018->018001.000007, 018001.000018->018001.000008, 018001.000018->018001.000009, 018001.000018->018001.000010, 018001.000018->018001.000012, 018001.000018->018001.000013, 018001.000018->018001.000014, 018001.000021->018001.000006, 018001.000021->018001.000007, 018001.000021->018001.000008, 018001.000021->018001.000009, 018001.000021->018001.000010, 018001.000021->018001.000012, 018001.000021->018001.000013, 018001.000021->018001.000014, 018001.000022->018001.000006, 018001.000022->018001.000007, 018001.000022->018001.000008, 018001.000022->018001.000009, 018001.000022->018001.000010, 018001.000022->018001.000012, 018001.000022->018001.000013, 018001.000022->018001.000014, 018001.000023->018001.000001, 018001.000023->018001.000006, 018001.000023->018001.000008, 018001.000023->018001.000009, 018001.000023->018001.000010, 018001.000023->018001.000011, 018001.000023->018001.000012, 018001.000023->018001.000013, 018001.000023->018001.000014, 018001.000023->018001.000015, 018001.000025->018001.000001, 018001.000025->018001.000006, 018001.000025->018001.000008, 018001.000025->018001.000009, 018001.000025->018001.000010, 018001.000025->018001.000011, 018001.000025->018001.000012, 018001.000025->018001.000013, 018001.000025->018001.000014, 018001.000025->018001.000015, 018001.000026->018001.000006, 018001.000026->018001.000007, 018001.000026->018001.000008, 018001.000026->018001.000009, 018001.000026->018001.000010, 018001.000026->018001.000012, 018001.000026->018001.000013, 018001.000026->018001.000014, 018001.000027->018001.000006, 018001.000027->018001.000007, 018001.000027->018001.000008, 018001.000027->018001.000009, 018001.000027->018001.000010, 018001.000027->018001.000012, 018001.000027->018001.000013, 018001.000027->018001.000014, 018001.000029->018001.000006, 018001.000029->018001.000009, 018001.000029->018001.000012, 018001.000029->018001.000014, 018001.000030->018001.000001, 018001.000030->018001.000006, 018001.000030->018001.000008, 018001.000030->018001.000009, 018001.000030->018001.000010, 018001.000030->018001.000011, 018001.000030->018001.000012, 018001.000030->018001.000013, 018001.000030->018001.000014, 018001.000030->018001.000015, 018001.000031->018001.000001, 018001.000031->018001.000006, 018001.000031->018001.000008, 018001.000031->018001.000009, 018001.000031->018001.000010, 018001.000031->018001.000011, 018001.000031->018001.000012, 018001.000031->018001.000013, 018001.000031->018001.000014, 018001.000031->018001.000015, 018001.000032->018001.000002, 018001.000032->018001.000003, 018001.000032->018001.000004, 018001.000032->018001.000005, 018001.000032->018001.000016, 018001.000032->018001.000017, 018001.000032->018001.000018, 018001.000032->018001.000021, 018001.000032->018001.000022, 018001.000032->018001.000023, 018001.000032->018001.000025, 018001.000032->018001.000026, 018001.000032->018001.000027, 018001.000032->018001.000029, 018001.000032->018001.000030, 018001.000032->018001.000031.
+""",
+)
+
+entry(
+    index = 1105,
+    label = "Ar + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1S0) -> e + Ar(5p[1/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.20909356384261682,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 26; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 26. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000016->018001.000006, 018001.000016->018001.000009, 018001.000016->018001.000012, 018001.000016->018001.000014, 018001.000017->018001.000001, 018001.000017->018001.000006, 018001.000017->018001.000008, 018001.000017->018001.000009, 018001.000017->018001.000010, 018001.000017->018001.000011, 018001.000017->018001.000012, 018001.000017->018001.000013, 018001.000017->018001.000014, 018001.000017->018001.000015, 018001.000018->018001.000006, 018001.000018->018001.000007, 018001.000018->018001.000008, 018001.000018->018001.000009, 018001.000018->018001.000010, 018001.000018->018001.000012, 018001.000018->018001.000013, 018001.000018->018001.000014, 018001.000021->018001.000006, 018001.000021->018001.000007, 018001.000021->018001.000008, 018001.000021->018001.000009, 018001.000021->018001.000010, 018001.000021->018001.000012, 018001.000021->018001.000013, 018001.000021->018001.000014, 018001.000022->018001.000006, 018001.000022->018001.000007, 018001.000022->018001.000008, 018001.000022->018001.000009, 018001.000022->018001.000010, 018001.000022->018001.000012, 018001.000022->018001.000013, 018001.000022->018001.000014, 018001.000023->018001.000001, 018001.000023->018001.000006, 018001.000023->018001.000008, 018001.000023->018001.000009, 018001.000023->018001.000010, 018001.000023->018001.000011, 018001.000023->018001.000012, 018001.000023->018001.000013, 018001.000023->018001.000014, 018001.000023->018001.000015, 018001.000025->018001.000001, 018001.000025->018001.000006, 018001.000025->018001.000008, 018001.000025->018001.000009, 018001.000025->018001.000010, 018001.000025->018001.000011, 018001.000025->018001.000012, 018001.000025->018001.000013, 018001.000025->018001.000014, 018001.000025->018001.000015, 018001.000026->018001.000006, 018001.000026->018001.000007, 018001.000026->018001.000008, 018001.000026->018001.000009, 018001.000026->018001.000010, 018001.000026->018001.000012, 018001.000026->018001.000013, 018001.000026->018001.000014, 018001.000027->018001.000006, 018001.000027->018001.000007, 018001.000027->018001.000008, 018001.000027->018001.000009, 018001.000027->018001.000010, 018001.000027->018001.000012, 018001.000027->018001.000013, 018001.000027->018001.000014, 018001.000029->018001.000006, 018001.000029->018001.000009, 018001.000029->018001.000012, 018001.000029->018001.000014, 018001.000030->018001.000001, 018001.000030->018001.000006, 018001.000030->018001.000008, 018001.000030->018001.000009, 018001.000030->018001.000010, 018001.000030->018001.000011, 018001.000030->018001.000012, 018001.000030->018001.000013, 018001.000030->018001.000014, 018001.000030->018001.000015, 018001.000031->018001.000001, 018001.000031->018001.000006, 018001.000031->018001.000008, 018001.000031->018001.000009, 018001.000031->018001.000010, 018001.000031->018001.000011, 018001.000031->018001.000012, 018001.000031->018001.000013, 018001.000031->018001.000014, 018001.000031->018001.000015, 018001.000032->018001.000002, 018001.000032->018001.000003, 018001.000032->018001.000004, 018001.000032->018001.000005, 018001.000032->018001.000016, 018001.000032->018001.000017, 018001.000032->018001.000018, 018001.000032->018001.000021, 018001.000032->018001.000022, 018001.000032->018001.000023, 018001.000032->018001.000025, 018001.000032->018001.000026, 018001.000032->018001.000027, 018001.000032->018001.000029, 018001.000032->018001.000030, 018001.000032->018001.000031.
+""",
+)
+
+entry(
+    index = 1106,
+    label = "Ar + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1S0) -> e + Ar(5p[1/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.04170889480331087,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 26; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 26. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000016->018001.000006, 018001.000016->018001.000009, 018001.000016->018001.000012, 018001.000016->018001.000014, 018001.000017->018001.000001, 018001.000017->018001.000006, 018001.000017->018001.000008, 018001.000017->018001.000009, 018001.000017->018001.000010, 018001.000017->018001.000011, 018001.000017->018001.000012, 018001.000017->018001.000013, 018001.000017->018001.000014, 018001.000017->018001.000015, 018001.000018->018001.000006, 018001.000018->018001.000007, 018001.000018->018001.000008, 018001.000018->018001.000009, 018001.000018->018001.000010, 018001.000018->018001.000012, 018001.000018->018001.000013, 018001.000018->018001.000014, 018001.000021->018001.000006, 018001.000021->018001.000007, 018001.000021->018001.000008, 018001.000021->018001.000009, 018001.000021->018001.000010, 018001.000021->018001.000012, 018001.000021->018001.000013, 018001.000021->018001.000014, 018001.000022->018001.000006, 018001.000022->018001.000007, 018001.000022->018001.000008, 018001.000022->018001.000009, 018001.000022->018001.000010, 018001.000022->018001.000012, 018001.000022->018001.000013, 018001.000022->018001.000014, 018001.000023->018001.000001, 018001.000023->018001.000006, 018001.000023->018001.000008, 018001.000023->018001.000009, 018001.000023->018001.000010, 018001.000023->018001.000011, 018001.000023->018001.000012, 018001.000023->018001.000013, 018001.000023->018001.000014, 018001.000023->018001.000015, 018001.000025->018001.000001, 018001.000025->018001.000006, 018001.000025->018001.000008, 018001.000025->018001.000009, 018001.000025->018001.000010, 018001.000025->018001.000011, 018001.000025->018001.000012, 018001.000025->018001.000013, 018001.000025->018001.000014, 018001.000025->018001.000015, 018001.000026->018001.000006, 018001.000026->018001.000007, 018001.000026->018001.000008, 018001.000026->018001.000009, 018001.000026->018001.000010, 018001.000026->018001.000012, 018001.000026->018001.000013, 018001.000026->018001.000014, 018001.000027->018001.000006, 018001.000027->018001.000007, 018001.000027->018001.000008, 018001.000027->018001.000009, 018001.000027->018001.000010, 018001.000027->018001.000012, 018001.000027->018001.000013, 018001.000027->018001.000014, 018001.000029->018001.000006, 018001.000029->018001.000009, 018001.000029->018001.000012, 018001.000029->018001.000014, 018001.000030->018001.000001, 018001.000030->018001.000006, 018001.000030->018001.000008, 018001.000030->018001.000009, 018001.000030->018001.000010, 018001.000030->018001.000011, 018001.000030->018001.000012, 018001.000030->018001.000013, 018001.000030->018001.000014, 018001.000030->018001.000015, 018001.000031->018001.000001, 018001.000031->018001.000006, 018001.000031->018001.000008, 018001.000031->018001.000009, 018001.000031->018001.000010, 018001.000031->018001.000011, 018001.000031->018001.000012, 018001.000031->018001.000013, 018001.000031->018001.000014, 018001.000031->018001.000015, 018001.000032->018001.000002, 018001.000032->018001.000003, 018001.000032->018001.000004, 018001.000032->018001.000005, 018001.000032->018001.000016, 018001.000032->018001.000017, 018001.000032->018001.000018, 018001.000032->018001.000021, 018001.000032->018001.000022, 018001.000032->018001.000023, 018001.000032->018001.000025, 018001.000032->018001.000026, 018001.000032->018001.000027, 018001.000032->018001.000029, 018001.000032->018001.000030, 018001.000032->018001.000031.
+""",
+)
+
+entry(
+    index = 1107,
+    label = "Ar + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1S0) -> e + Ar(5p[1/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.06219022149426114,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 26; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 26. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000016->018001.000006, 018001.000016->018001.000009, 018001.000016->018001.000012, 018001.000016->018001.000014, 018001.000017->018001.000001, 018001.000017->018001.000006, 018001.000017->018001.000008, 018001.000017->018001.000009, 018001.000017->018001.000010, 018001.000017->018001.000011, 018001.000017->018001.000012, 018001.000017->018001.000013, 018001.000017->018001.000014, 018001.000017->018001.000015, 018001.000018->018001.000006, 018001.000018->018001.000007, 018001.000018->018001.000008, 018001.000018->018001.000009, 018001.000018->018001.000010, 018001.000018->018001.000012, 018001.000018->018001.000013, 018001.000018->018001.000014, 018001.000021->018001.000006, 018001.000021->018001.000007, 018001.000021->018001.000008, 018001.000021->018001.000009, 018001.000021->018001.000010, 018001.000021->018001.000012, 018001.000021->018001.000013, 018001.000021->018001.000014, 018001.000022->018001.000006, 018001.000022->018001.000007, 018001.000022->018001.000008, 018001.000022->018001.000009, 018001.000022->018001.000010, 018001.000022->018001.000012, 018001.000022->018001.000013, 018001.000022->018001.000014, 018001.000023->018001.000001, 018001.000023->018001.000006, 018001.000023->018001.000008, 018001.000023->018001.000009, 018001.000023->018001.000010, 018001.000023->018001.000011, 018001.000023->018001.000012, 018001.000023->018001.000013, 018001.000023->018001.000014, 018001.000023->018001.000015, 018001.000025->018001.000001, 018001.000025->018001.000006, 018001.000025->018001.000008, 018001.000025->018001.000009, 018001.000025->018001.000010, 018001.000025->018001.000011, 018001.000025->018001.000012, 018001.000025->018001.000013, 018001.000025->018001.000014, 018001.000025->018001.000015, 018001.000026->018001.000006, 018001.000026->018001.000007, 018001.000026->018001.000008, 018001.000026->018001.000009, 018001.000026->018001.000010, 018001.000026->018001.000012, 018001.000026->018001.000013, 018001.000026->018001.000014, 018001.000027->018001.000006, 018001.000027->018001.000007, 018001.000027->018001.000008, 018001.000027->018001.000009, 018001.000027->018001.000010, 018001.000027->018001.000012, 018001.000027->018001.000013, 018001.000027->018001.000014, 018001.000029->018001.000006, 018001.000029->018001.000009, 018001.000029->018001.000012, 018001.000029->018001.000014, 018001.000030->018001.000001, 018001.000030->018001.000006, 018001.000030->018001.000008, 018001.000030->018001.000009, 018001.000030->018001.000010, 018001.000030->018001.000011, 018001.000030->018001.000012, 018001.000030->018001.000013, 018001.000030->018001.000014, 018001.000030->018001.000015, 018001.000031->018001.000001, 018001.000031->018001.000006, 018001.000031->018001.000008, 018001.000031->018001.000009, 018001.000031->018001.000010, 018001.000031->018001.000011, 018001.000031->018001.000012, 018001.000031->018001.000013, 018001.000031->018001.000014, 018001.000031->018001.000015, 018001.000032->018001.000002, 018001.000032->018001.000003, 018001.000032->018001.000004, 018001.000032->018001.000005, 018001.000032->018001.000016, 018001.000032->018001.000017, 018001.000032->018001.000018, 018001.000032->018001.000021, 018001.000032->018001.000022, 018001.000032->018001.000023, 018001.000032->018001.000025, 018001.000032->018001.000026, 018001.000032->018001.000027, 018001.000032->018001.000029, 018001.000032->018001.000030, 018001.000032->018001.000031.
+""",
+)
+
+entry(
+    index = 1108,
+    label = "Ar + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1S0) -> e + Ar(5p[5/2]3), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.8518391759160372,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 27; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 27. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000018->018001.000006, 018001.000018->018001.000007, 018001.000018->018001.000008, 018001.000018->018001.000009, 018001.000018->018001.000010, 018001.000018->018001.000012, 018001.000018->018001.000013, 018001.000018->018001.000014, 018001.000019->018001.000007, 018001.000020->018001.000007, 018001.000020->018001.000008, 018001.000020->018001.000010, 018001.000020->018001.000013, 018001.000021->018001.000006, 018001.000021->018001.000007, 018001.000021->018001.000008, 018001.000021->018001.000009, 018001.000021->018001.000010, 018001.000021->018001.000012, 018001.000021->018001.000013, 018001.000021->018001.000014, 018001.000022->018001.000006, 018001.000022->018001.000007, 018001.000022->018001.000008, 018001.000022->018001.000009, 018001.000022->018001.000010, 018001.000022->018001.000012, 018001.000022->018001.000013, 018001.000022->018001.000014, 018001.000024->018001.000007, 018001.000024->018001.000008, 018001.000024->018001.000010, 018001.000024->018001.000013, 018001.000026->018001.000006, 018001.000026->018001.000007, 018001.000026->018001.000008, 018001.000026->018001.000009, 018001.000026->018001.000010, 018001.000026->018001.000012, 018001.000026->018001.000013, 018001.000026->018001.000014, 018001.000027->018001.000006, 018001.000027->018001.000007, 018001.000027->018001.000008, 018001.000027->018001.000009, 018001.000027->018001.000010, 018001.000027->018001.000012, 018001.000027->018001.000013, 018001.000027->018001.000014, 018001.000028->018001.000007, 018001.000028->018001.000008, 018001.000028->018001.000010, 018001.000028->018001.000013, 018001.000033->018001.000002, 018001.000033->018001.000018, 018001.000033->018001.000019, 018001.000033->018001.000020, 018001.000033->018001.000021, 018001.000033->018001.000022, 018001.000033->018001.000024, 018001.000033->018001.000026, 018001.000033->018001.000027, 018001.000033->018001.000028.
+""",
+)
+
+entry(
+    index = 1109,
+    label = "Ar + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1S0) -> e + Ar(5p[5/2]3), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.10477172236188315,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 27; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 27. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000018->018001.000006, 018001.000018->018001.000007, 018001.000018->018001.000008, 018001.000018->018001.000009, 018001.000018->018001.000010, 018001.000018->018001.000012, 018001.000018->018001.000013, 018001.000018->018001.000014, 018001.000019->018001.000007, 018001.000020->018001.000007, 018001.000020->018001.000008, 018001.000020->018001.000010, 018001.000020->018001.000013, 018001.000021->018001.000006, 018001.000021->018001.000007, 018001.000021->018001.000008, 018001.000021->018001.000009, 018001.000021->018001.000010, 018001.000021->018001.000012, 018001.000021->018001.000013, 018001.000021->018001.000014, 018001.000022->018001.000006, 018001.000022->018001.000007, 018001.000022->018001.000008, 018001.000022->018001.000009, 018001.000022->018001.000010, 018001.000022->018001.000012, 018001.000022->018001.000013, 018001.000022->018001.000014, 018001.000024->018001.000007, 018001.000024->018001.000008, 018001.000024->018001.000010, 018001.000024->018001.000013, 018001.000026->018001.000006, 018001.000026->018001.000007, 018001.000026->018001.000008, 018001.000026->018001.000009, 018001.000026->018001.000010, 018001.000026->018001.000012, 018001.000026->018001.000013, 018001.000026->018001.000014, 018001.000027->018001.000006, 018001.000027->018001.000007, 018001.000027->018001.000008, 018001.000027->018001.000009, 018001.000027->018001.000010, 018001.000027->018001.000012, 018001.000027->018001.000013, 018001.000027->018001.000014, 018001.000028->018001.000007, 018001.000028->018001.000008, 018001.000028->018001.000010, 018001.000028->018001.000013, 018001.000033->018001.000002, 018001.000033->018001.000018, 018001.000033->018001.000019, 018001.000033->018001.000020, 018001.000033->018001.000021, 018001.000033->018001.000022, 018001.000033->018001.000024, 018001.000033->018001.000026, 018001.000033->018001.000027, 018001.000033->018001.000028.
+""",
+)
+
+entry(
+    index = 1110,
+    label = "Ar + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1S0) -> e + Ar(5p[5/2]3), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.01117131177789698,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 27; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 27. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000018->018001.000006, 018001.000018->018001.000007, 018001.000018->018001.000008, 018001.000018->018001.000009, 018001.000018->018001.000010, 018001.000018->018001.000012, 018001.000018->018001.000013, 018001.000018->018001.000014, 018001.000019->018001.000007, 018001.000020->018001.000007, 018001.000020->018001.000008, 018001.000020->018001.000010, 018001.000020->018001.000013, 018001.000021->018001.000006, 018001.000021->018001.000007, 018001.000021->018001.000008, 018001.000021->018001.000009, 018001.000021->018001.000010, 018001.000021->018001.000012, 018001.000021->018001.000013, 018001.000021->018001.000014, 018001.000022->018001.000006, 018001.000022->018001.000007, 018001.000022->018001.000008, 018001.000022->018001.000009, 018001.000022->018001.000010, 018001.000022->018001.000012, 018001.000022->018001.000013, 018001.000022->018001.000014, 018001.000024->018001.000007, 018001.000024->018001.000008, 018001.000024->018001.000010, 018001.000024->018001.000013, 018001.000026->018001.000006, 018001.000026->018001.000007, 018001.000026->018001.000008, 018001.000026->018001.000009, 018001.000026->018001.000010, 018001.000026->018001.000012, 018001.000026->018001.000013, 018001.000026->018001.000014, 018001.000027->018001.000006, 018001.000027->018001.000007, 018001.000027->018001.000008, 018001.000027->018001.000009, 018001.000027->018001.000010, 018001.000027->018001.000012, 018001.000027->018001.000013, 018001.000027->018001.000014, 018001.000028->018001.000007, 018001.000028->018001.000008, 018001.000028->018001.000010, 018001.000028->018001.000013, 018001.000033->018001.000002, 018001.000033->018001.000018, 018001.000033->018001.000019, 018001.000033->018001.000020, 018001.000033->018001.000021, 018001.000033->018001.000022, 018001.000033->018001.000024, 018001.000033->018001.000026, 018001.000033->018001.000027, 018001.000033->018001.000028.
+""",
+)
+
+entry(
+    index = 1111,
+    label = "Ar + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1S0) -> e + Ar(5p[5/2]3), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.03221778994418268,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 27; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 27. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000018->018001.000006, 018001.000018->018001.000007, 018001.000018->018001.000008, 018001.000018->018001.000009, 018001.000018->018001.000010, 018001.000018->018001.000012, 018001.000018->018001.000013, 018001.000018->018001.000014, 018001.000019->018001.000007, 018001.000020->018001.000007, 018001.000020->018001.000008, 018001.000020->018001.000010, 018001.000020->018001.000013, 018001.000021->018001.000006, 018001.000021->018001.000007, 018001.000021->018001.000008, 018001.000021->018001.000009, 018001.000021->018001.000010, 018001.000021->018001.000012, 018001.000021->018001.000013, 018001.000021->018001.000014, 018001.000022->018001.000006, 018001.000022->018001.000007, 018001.000022->018001.000008, 018001.000022->018001.000009, 018001.000022->018001.000010, 018001.000022->018001.000012, 018001.000022->018001.000013, 018001.000022->018001.000014, 018001.000024->018001.000007, 018001.000024->018001.000008, 018001.000024->018001.000010, 018001.000024->018001.000013, 018001.000026->018001.000006, 018001.000026->018001.000007, 018001.000026->018001.000008, 018001.000026->018001.000009, 018001.000026->018001.000010, 018001.000026->018001.000012, 018001.000026->018001.000013, 018001.000026->018001.000014, 018001.000027->018001.000006, 018001.000027->018001.000007, 018001.000027->018001.000008, 018001.000027->018001.000009, 018001.000027->018001.000010, 018001.000027->018001.000012, 018001.000027->018001.000013, 018001.000027->018001.000014, 018001.000028->018001.000007, 018001.000028->018001.000008, 018001.000028->018001.000010, 018001.000028->018001.000013, 018001.000033->018001.000002, 018001.000033->018001.000018, 018001.000033->018001.000019, 018001.000033->018001.000020, 018001.000033->018001.000021, 018001.000033->018001.000022, 018001.000033->018001.000024, 018001.000033->018001.000026, 018001.000033->018001.000027, 018001.000033->018001.000028.
+""",
+)
+
+entry(
+    index = 1112,
+    label = "Ar + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1S0) -> e + Ar(5p[5/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.44144266018098,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 28; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 28. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000017->018001.000001, 018001.000017->018001.000006, 018001.000017->018001.000008, 018001.000017->018001.000009, 018001.000017->018001.000010, 018001.000017->018001.000011, 018001.000017->018001.000012, 018001.000017->018001.000013, 018001.000017->018001.000014, 018001.000017->018001.000015, 018001.000018->018001.000006, 018001.000018->018001.000007, 018001.000018->018001.000008, 018001.000018->018001.000009, 018001.000018->018001.000010, 018001.000018->018001.000012, 018001.000018->018001.000013, 018001.000018->018001.000014, 018001.000020->018001.000007, 018001.000020->018001.000008, 018001.000020->018001.000010, 018001.000020->018001.000013, 018001.000021->018001.000006, 018001.000021->018001.000007, 018001.000021->018001.000008, 018001.000021->018001.000009, 018001.000021->018001.000010, 018001.000021->018001.000012, 018001.000021->018001.000013, 018001.000021->018001.000014, 018001.000022->018001.000006, 018001.000022->018001.000007, 018001.000022->018001.000008, 018001.000022->018001.000009, 018001.000022->018001.000010, 018001.000022->018001.000012, 018001.000022->018001.000013, 018001.000022->018001.000014, 018001.000023->018001.000001, 018001.000023->018001.000006, 018001.000023->018001.000008, 018001.000023->018001.000009, 018001.000023->018001.000010, 018001.000023->018001.000011, 018001.000023->018001.000012, 018001.000023->018001.000013, 018001.000023->018001.000014, 018001.000023->018001.000015, 018001.000024->018001.000007, 018001.000024->018001.000008, 018001.000024->018001.000010, 018001.000024->018001.000013, 018001.000025->018001.000001, 018001.000025->018001.000006, 018001.000025->018001.000008, 018001.000025->018001.000009, 018001.000025->018001.000010, 018001.000025->018001.000011, 018001.000025->018001.000012, 018001.000025->018001.000013, 018001.000025->018001.000014, 018001.000025->018001.000015, 018001.000026->018001.000006, 018001.000026->018001.000007, 018001.000026->018001.000008, 018001.000026->018001.000009, 018001.000026->018001.000010, 018001.000026->018001.000012, 018001.000026->018001.000013, 018001.000026->018001.000014, 018001.000027->018001.000006, 018001.000027->018001.000007, 018001.000027->018001.000008, 018001.000027->018001.000009, 018001.000027->018001.000010, 018001.000027->018001.000012, 018001.000027->018001.000013, 018001.000027->018001.000014, 018001.000028->018001.000007, 018001.000028->018001.000008, 018001.000028->018001.000010, 018001.000028->018001.000013, 018001.000030->018001.000001, 018001.000030->018001.000006, 018001.000030->018001.000008, 018001.000030->018001.000009, 018001.000030->018001.000010, 018001.000030->018001.000011, 018001.000030->018001.000012, 018001.000030->018001.000013, 018001.000030->018001.000014, 018001.000030->018001.000015, 018001.000031->018001.000001, 018001.000031->018001.000006, 018001.000031->018001.000008, 018001.000031->018001.000009, 018001.000031->018001.000010, 018001.000031->018001.000011, 018001.000031->018001.000012, 018001.000031->018001.000013, 018001.000031->018001.000014, 018001.000031->018001.000015, 018001.000034->018001.000002, 018001.000034->018001.000003, 018001.000034->018001.000005, 018001.000034->018001.000017, 018001.000034->018001.000018, 018001.000034->018001.000020, 018001.000034->018001.000021, 018001.000034->018001.000022, 018001.000034->018001.000023, 018001.000034->018001.000024, 018001.000034->018001.000025, 018001.000034->018001.000026, 018001.000034->018001.000027, 018001.000034->018001.000028, 018001.000034->018001.000030, 018001.000034->018001.000031.
+""",
+)
+
+entry(
+    index = 1113,
+    label = "Ar + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1S0) -> e + Ar(5p[5/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.4741449519820217,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 28; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 28. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000017->018001.000001, 018001.000017->018001.000006, 018001.000017->018001.000008, 018001.000017->018001.000009, 018001.000017->018001.000010, 018001.000017->018001.000011, 018001.000017->018001.000012, 018001.000017->018001.000013, 018001.000017->018001.000014, 018001.000017->018001.000015, 018001.000018->018001.000006, 018001.000018->018001.000007, 018001.000018->018001.000008, 018001.000018->018001.000009, 018001.000018->018001.000010, 018001.000018->018001.000012, 018001.000018->018001.000013, 018001.000018->018001.000014, 018001.000020->018001.000007, 018001.000020->018001.000008, 018001.000020->018001.000010, 018001.000020->018001.000013, 018001.000021->018001.000006, 018001.000021->018001.000007, 018001.000021->018001.000008, 018001.000021->018001.000009, 018001.000021->018001.000010, 018001.000021->018001.000012, 018001.000021->018001.000013, 018001.000021->018001.000014, 018001.000022->018001.000006, 018001.000022->018001.000007, 018001.000022->018001.000008, 018001.000022->018001.000009, 018001.000022->018001.000010, 018001.000022->018001.000012, 018001.000022->018001.000013, 018001.000022->018001.000014, 018001.000023->018001.000001, 018001.000023->018001.000006, 018001.000023->018001.000008, 018001.000023->018001.000009, 018001.000023->018001.000010, 018001.000023->018001.000011, 018001.000023->018001.000012, 018001.000023->018001.000013, 018001.000023->018001.000014, 018001.000023->018001.000015, 018001.000024->018001.000007, 018001.000024->018001.000008, 018001.000024->018001.000010, 018001.000024->018001.000013, 018001.000025->018001.000001, 018001.000025->018001.000006, 018001.000025->018001.000008, 018001.000025->018001.000009, 018001.000025->018001.000010, 018001.000025->018001.000011, 018001.000025->018001.000012, 018001.000025->018001.000013, 018001.000025->018001.000014, 018001.000025->018001.000015, 018001.000026->018001.000006, 018001.000026->018001.000007, 018001.000026->018001.000008, 018001.000026->018001.000009, 018001.000026->018001.000010, 018001.000026->018001.000012, 018001.000026->018001.000013, 018001.000026->018001.000014, 018001.000027->018001.000006, 018001.000027->018001.000007, 018001.000027->018001.000008, 018001.000027->018001.000009, 018001.000027->018001.000010, 018001.000027->018001.000012, 018001.000027->018001.000013, 018001.000027->018001.000014, 018001.000028->018001.000007, 018001.000028->018001.000008, 018001.000028->018001.000010, 018001.000028->018001.000013, 018001.000030->018001.000001, 018001.000030->018001.000006, 018001.000030->018001.000008, 018001.000030->018001.000009, 018001.000030->018001.000010, 018001.000030->018001.000011, 018001.000030->018001.000012, 018001.000030->018001.000013, 018001.000030->018001.000014, 018001.000030->018001.000015, 018001.000031->018001.000001, 018001.000031->018001.000006, 018001.000031->018001.000008, 018001.000031->018001.000009, 018001.000031->018001.000010, 018001.000031->018001.000011, 018001.000031->018001.000012, 018001.000031->018001.000013, 018001.000031->018001.000014, 018001.000031->018001.000015, 018001.000034->018001.000002, 018001.000034->018001.000003, 018001.000034->018001.000005, 018001.000034->018001.000017, 018001.000034->018001.000018, 018001.000034->018001.000020, 018001.000034->018001.000021, 018001.000034->018001.000022, 018001.000034->018001.000023, 018001.000034->018001.000024, 018001.000034->018001.000025, 018001.000034->018001.000026, 018001.000034->018001.000027, 018001.000034->018001.000028, 018001.000034->018001.000030, 018001.000034->018001.000031.
+""",
+)
+
+entry(
+    index = 1114,
+    label = "Ar + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1S0) -> e + Ar(5p[5/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.02341245848489619,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 28; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 28. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000017->018001.000001, 018001.000017->018001.000006, 018001.000017->018001.000008, 018001.000017->018001.000009, 018001.000017->018001.000010, 018001.000017->018001.000011, 018001.000017->018001.000012, 018001.000017->018001.000013, 018001.000017->018001.000014, 018001.000017->018001.000015, 018001.000018->018001.000006, 018001.000018->018001.000007, 018001.000018->018001.000008, 018001.000018->018001.000009, 018001.000018->018001.000010, 018001.000018->018001.000012, 018001.000018->018001.000013, 018001.000018->018001.000014, 018001.000020->018001.000007, 018001.000020->018001.000008, 018001.000020->018001.000010, 018001.000020->018001.000013, 018001.000021->018001.000006, 018001.000021->018001.000007, 018001.000021->018001.000008, 018001.000021->018001.000009, 018001.000021->018001.000010, 018001.000021->018001.000012, 018001.000021->018001.000013, 018001.000021->018001.000014, 018001.000022->018001.000006, 018001.000022->018001.000007, 018001.000022->018001.000008, 018001.000022->018001.000009, 018001.000022->018001.000010, 018001.000022->018001.000012, 018001.000022->018001.000013, 018001.000022->018001.000014, 018001.000023->018001.000001, 018001.000023->018001.000006, 018001.000023->018001.000008, 018001.000023->018001.000009, 018001.000023->018001.000010, 018001.000023->018001.000011, 018001.000023->018001.000012, 018001.000023->018001.000013, 018001.000023->018001.000014, 018001.000023->018001.000015, 018001.000024->018001.000007, 018001.000024->018001.000008, 018001.000024->018001.000010, 018001.000024->018001.000013, 018001.000025->018001.000001, 018001.000025->018001.000006, 018001.000025->018001.000008, 018001.000025->018001.000009, 018001.000025->018001.000010, 018001.000025->018001.000011, 018001.000025->018001.000012, 018001.000025->018001.000013, 018001.000025->018001.000014, 018001.000025->018001.000015, 018001.000026->018001.000006, 018001.000026->018001.000007, 018001.000026->018001.000008, 018001.000026->018001.000009, 018001.000026->018001.000010, 018001.000026->018001.000012, 018001.000026->018001.000013, 018001.000026->018001.000014, 018001.000027->018001.000006, 018001.000027->018001.000007, 018001.000027->018001.000008, 018001.000027->018001.000009, 018001.000027->018001.000010, 018001.000027->018001.000012, 018001.000027->018001.000013, 018001.000027->018001.000014, 018001.000028->018001.000007, 018001.000028->018001.000008, 018001.000028->018001.000010, 018001.000028->018001.000013, 018001.000030->018001.000001, 018001.000030->018001.000006, 018001.000030->018001.000008, 018001.000030->018001.000009, 018001.000030->018001.000010, 018001.000030->018001.000011, 018001.000030->018001.000012, 018001.000030->018001.000013, 018001.000030->018001.000014, 018001.000030->018001.000015, 018001.000031->018001.000001, 018001.000031->018001.000006, 018001.000031->018001.000008, 018001.000031->018001.000009, 018001.000031->018001.000010, 018001.000031->018001.000011, 018001.000031->018001.000012, 018001.000031->018001.000013, 018001.000031->018001.000014, 018001.000031->018001.000015, 018001.000034->018001.000002, 018001.000034->018001.000003, 018001.000034->018001.000005, 018001.000034->018001.000017, 018001.000034->018001.000018, 018001.000034->018001.000020, 018001.000034->018001.000021, 018001.000034->018001.000022, 018001.000034->018001.000023, 018001.000034->018001.000024, 018001.000034->018001.000025, 018001.000034->018001.000026, 018001.000034->018001.000027, 018001.000034->018001.000028, 018001.000034->018001.000030, 018001.000034->018001.000031.
+""",
+)
+
+entry(
+    index = 1115,
+    label = "Ar + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1S0) -> e + Ar(5p[5/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.06099992935210203,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 28; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 28. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000017->018001.000001, 018001.000017->018001.000006, 018001.000017->018001.000008, 018001.000017->018001.000009, 018001.000017->018001.000010, 018001.000017->018001.000011, 018001.000017->018001.000012, 018001.000017->018001.000013, 018001.000017->018001.000014, 018001.000017->018001.000015, 018001.000018->018001.000006, 018001.000018->018001.000007, 018001.000018->018001.000008, 018001.000018->018001.000009, 018001.000018->018001.000010, 018001.000018->018001.000012, 018001.000018->018001.000013, 018001.000018->018001.000014, 018001.000020->018001.000007, 018001.000020->018001.000008, 018001.000020->018001.000010, 018001.000020->018001.000013, 018001.000021->018001.000006, 018001.000021->018001.000007, 018001.000021->018001.000008, 018001.000021->018001.000009, 018001.000021->018001.000010, 018001.000021->018001.000012, 018001.000021->018001.000013, 018001.000021->018001.000014, 018001.000022->018001.000006, 018001.000022->018001.000007, 018001.000022->018001.000008, 018001.000022->018001.000009, 018001.000022->018001.000010, 018001.000022->018001.000012, 018001.000022->018001.000013, 018001.000022->018001.000014, 018001.000023->018001.000001, 018001.000023->018001.000006, 018001.000023->018001.000008, 018001.000023->018001.000009, 018001.000023->018001.000010, 018001.000023->018001.000011, 018001.000023->018001.000012, 018001.000023->018001.000013, 018001.000023->018001.000014, 018001.000023->018001.000015, 018001.000024->018001.000007, 018001.000024->018001.000008, 018001.000024->018001.000010, 018001.000024->018001.000013, 018001.000025->018001.000001, 018001.000025->018001.000006, 018001.000025->018001.000008, 018001.000025->018001.000009, 018001.000025->018001.000010, 018001.000025->018001.000011, 018001.000025->018001.000012, 018001.000025->018001.000013, 018001.000025->018001.000014, 018001.000025->018001.000015, 018001.000026->018001.000006, 018001.000026->018001.000007, 018001.000026->018001.000008, 018001.000026->018001.000009, 018001.000026->018001.000010, 018001.000026->018001.000012, 018001.000026->018001.000013, 018001.000026->018001.000014, 018001.000027->018001.000006, 018001.000027->018001.000007, 018001.000027->018001.000008, 018001.000027->018001.000009, 018001.000027->018001.000010, 018001.000027->018001.000012, 018001.000027->018001.000013, 018001.000027->018001.000014, 018001.000028->018001.000007, 018001.000028->018001.000008, 018001.000028->018001.000010, 018001.000028->018001.000013, 018001.000030->018001.000001, 018001.000030->018001.000006, 018001.000030->018001.000008, 018001.000030->018001.000009, 018001.000030->018001.000010, 018001.000030->018001.000011, 018001.000030->018001.000012, 018001.000030->018001.000013, 018001.000030->018001.000014, 018001.000030->018001.000015, 018001.000031->018001.000001, 018001.000031->018001.000006, 018001.000031->018001.000008, 018001.000031->018001.000009, 018001.000031->018001.000010, 018001.000031->018001.000011, 018001.000031->018001.000012, 018001.000031->018001.000013, 018001.000031->018001.000014, 018001.000031->018001.000015, 018001.000034->018001.000002, 018001.000034->018001.000003, 018001.000034->018001.000005, 018001.000034->018001.000017, 018001.000034->018001.000018, 018001.000034->018001.000020, 018001.000034->018001.000021, 018001.000034->018001.000022, 018001.000034->018001.000023, 018001.000034->018001.000024, 018001.000034->018001.000025, 018001.000034->018001.000026, 018001.000034->018001.000027, 018001.000034->018001.000028, 018001.000034->018001.000030, 018001.000034->018001.000031.
+""",
+)
+
+entry(
+    index = 1116,
+    label = "Ar + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1S0) -> e + Ar(5p[3/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.3490788957154747,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 29; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 29. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000016->018001.000006, 018001.000016->018001.000009, 018001.000016->018001.000012, 018001.000016->018001.000014, 018001.000017->018001.000001, 018001.000017->018001.000006, 018001.000017->018001.000008, 018001.000017->018001.000009, 018001.000017->018001.000010, 018001.000017->018001.000011, 018001.000017->018001.000012, 018001.000017->018001.000013, 018001.000017->018001.000014, 018001.000017->018001.000015, 018001.000018->018001.000006, 018001.000018->018001.000007, 018001.000018->018001.000008, 018001.000018->018001.000009, 018001.000018->018001.000010, 018001.000018->018001.000012, 018001.000018->018001.000013, 018001.000018->018001.000014, 018001.000021->018001.000006, 018001.000021->018001.000007, 018001.000021->018001.000008, 018001.000021->018001.000009, 018001.000021->018001.000010, 018001.000021->018001.000012, 018001.000021->018001.000013, 018001.000021->018001.000014, 018001.000022->018001.000006, 018001.000022->018001.000007, 018001.000022->018001.000008, 018001.000022->018001.000009, 018001.000022->018001.000010, 018001.000022->018001.000012, 018001.000022->018001.000013, 018001.000022->018001.000014, 018001.000023->018001.000001, 018001.000023->018001.000006, 018001.000023->018001.000008, 018001.000023->018001.000009, 018001.000023->018001.000010, 018001.000023->018001.000011, 018001.000023->018001.000012, 018001.000023->018001.000013, 018001.000023->018001.000014, 018001.000023->018001.000015, 018001.000025->018001.000001, 018001.000025->018001.000006, 018001.000025->018001.000008, 018001.000025->018001.000009, 018001.000025->018001.000010, 018001.000025->018001.000011, 018001.000025->018001.000012, 018001.000025->018001.000013, 018001.000025->018001.000014, 018001.000025->018001.000015, 018001.000026->018001.000006, 018001.000026->018001.000007, 018001.000026->018001.000008, 018001.000026->018001.000009, 018001.000026->018001.000010, 018001.000026->018001.000012, 018001.000026->018001.000013, 018001.000026->018001.000014, 018001.000027->018001.000006, 018001.000027->018001.000007, 018001.000027->018001.000008, 018001.000027->018001.000009, 018001.000027->018001.000010, 018001.000027->018001.000012, 018001.000027->018001.000013, 018001.000027->018001.000014, 018001.000029->018001.000006, 018001.000029->018001.000009, 018001.000029->018001.000012, 018001.000029->018001.000014, 018001.000030->018001.000001, 018001.000030->018001.000006, 018001.000030->018001.000008, 018001.000030->018001.000009, 018001.000030->018001.000010, 018001.000030->018001.000011, 018001.000030->018001.000012, 018001.000030->018001.000013, 018001.000030->018001.000014, 018001.000030->018001.000015, 018001.000031->018001.000001, 018001.000031->018001.000006, 018001.000031->018001.000008, 018001.000031->018001.000009, 018001.000031->018001.000010, 018001.000031->018001.000011, 018001.000031->018001.000012, 018001.000031->018001.000013, 018001.000031->018001.000014, 018001.000031->018001.000015, 018001.000035->018001.000002, 018001.000035->018001.000003, 018001.000035->018001.000004, 018001.000035->018001.000005, 018001.000035->018001.000016, 018001.000035->018001.000017, 018001.000035->018001.000018, 018001.000035->018001.000021, 018001.000035->018001.000022, 018001.000035->018001.000023, 018001.000035->018001.000025, 018001.000035->018001.000026, 018001.000035->018001.000027, 018001.000035->018001.000029, 018001.000035->018001.000030, 018001.000035->018001.000031.
+""",
+)
+
+entry(
+    index = 1117,
+    label = "Ar + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1S0) -> e + Ar(5p[3/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.5257806659693235,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 29; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 29. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000016->018001.000006, 018001.000016->018001.000009, 018001.000016->018001.000012, 018001.000016->018001.000014, 018001.000017->018001.000001, 018001.000017->018001.000006, 018001.000017->018001.000008, 018001.000017->018001.000009, 018001.000017->018001.000010, 018001.000017->018001.000011, 018001.000017->018001.000012, 018001.000017->018001.000013, 018001.000017->018001.000014, 018001.000017->018001.000015, 018001.000018->018001.000006, 018001.000018->018001.000007, 018001.000018->018001.000008, 018001.000018->018001.000009, 018001.000018->018001.000010, 018001.000018->018001.000012, 018001.000018->018001.000013, 018001.000018->018001.000014, 018001.000021->018001.000006, 018001.000021->018001.000007, 018001.000021->018001.000008, 018001.000021->018001.000009, 018001.000021->018001.000010, 018001.000021->018001.000012, 018001.000021->018001.000013, 018001.000021->018001.000014, 018001.000022->018001.000006, 018001.000022->018001.000007, 018001.000022->018001.000008, 018001.000022->018001.000009, 018001.000022->018001.000010, 018001.000022->018001.000012, 018001.000022->018001.000013, 018001.000022->018001.000014, 018001.000023->018001.000001, 018001.000023->018001.000006, 018001.000023->018001.000008, 018001.000023->018001.000009, 018001.000023->018001.000010, 018001.000023->018001.000011, 018001.000023->018001.000012, 018001.000023->018001.000013, 018001.000023->018001.000014, 018001.000023->018001.000015, 018001.000025->018001.000001, 018001.000025->018001.000006, 018001.000025->018001.000008, 018001.000025->018001.000009, 018001.000025->018001.000010, 018001.000025->018001.000011, 018001.000025->018001.000012, 018001.000025->018001.000013, 018001.000025->018001.000014, 018001.000025->018001.000015, 018001.000026->018001.000006, 018001.000026->018001.000007, 018001.000026->018001.000008, 018001.000026->018001.000009, 018001.000026->018001.000010, 018001.000026->018001.000012, 018001.000026->018001.000013, 018001.000026->018001.000014, 018001.000027->018001.000006, 018001.000027->018001.000007, 018001.000027->018001.000008, 018001.000027->018001.000009, 018001.000027->018001.000010, 018001.000027->018001.000012, 018001.000027->018001.000013, 018001.000027->018001.000014, 018001.000029->018001.000006, 018001.000029->018001.000009, 018001.000029->018001.000012, 018001.000029->018001.000014, 018001.000030->018001.000001, 018001.000030->018001.000006, 018001.000030->018001.000008, 018001.000030->018001.000009, 018001.000030->018001.000010, 018001.000030->018001.000011, 018001.000030->018001.000012, 018001.000030->018001.000013, 018001.000030->018001.000014, 018001.000030->018001.000015, 018001.000031->018001.000001, 018001.000031->018001.000006, 018001.000031->018001.000008, 018001.000031->018001.000009, 018001.000031->018001.000010, 018001.000031->018001.000011, 018001.000031->018001.000012, 018001.000031->018001.000013, 018001.000031->018001.000014, 018001.000031->018001.000015, 018001.000035->018001.000002, 018001.000035->018001.000003, 018001.000035->018001.000004, 018001.000035->018001.000005, 018001.000035->018001.000016, 018001.000035->018001.000017, 018001.000035->018001.000018, 018001.000035->018001.000021, 018001.000035->018001.000022, 018001.000035->018001.000023, 018001.000035->018001.000025, 018001.000035->018001.000026, 018001.000035->018001.000027, 018001.000035->018001.000029, 018001.000035->018001.000030, 018001.000035->018001.000031.
+""",
+)
+
+entry(
+    index = 1118,
+    label = "Ar + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1S0) -> e + Ar(5p[3/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.046652938140346135,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 29; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 29. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000016->018001.000006, 018001.000016->018001.000009, 018001.000016->018001.000012, 018001.000016->018001.000014, 018001.000017->018001.000001, 018001.000017->018001.000006, 018001.000017->018001.000008, 018001.000017->018001.000009, 018001.000017->018001.000010, 018001.000017->018001.000011, 018001.000017->018001.000012, 018001.000017->018001.000013, 018001.000017->018001.000014, 018001.000017->018001.000015, 018001.000018->018001.000006, 018001.000018->018001.000007, 018001.000018->018001.000008, 018001.000018->018001.000009, 018001.000018->018001.000010, 018001.000018->018001.000012, 018001.000018->018001.000013, 018001.000018->018001.000014, 018001.000021->018001.000006, 018001.000021->018001.000007, 018001.000021->018001.000008, 018001.000021->018001.000009, 018001.000021->018001.000010, 018001.000021->018001.000012, 018001.000021->018001.000013, 018001.000021->018001.000014, 018001.000022->018001.000006, 018001.000022->018001.000007, 018001.000022->018001.000008, 018001.000022->018001.000009, 018001.000022->018001.000010, 018001.000022->018001.000012, 018001.000022->018001.000013, 018001.000022->018001.000014, 018001.000023->018001.000001, 018001.000023->018001.000006, 018001.000023->018001.000008, 018001.000023->018001.000009, 018001.000023->018001.000010, 018001.000023->018001.000011, 018001.000023->018001.000012, 018001.000023->018001.000013, 018001.000023->018001.000014, 018001.000023->018001.000015, 018001.000025->018001.000001, 018001.000025->018001.000006, 018001.000025->018001.000008, 018001.000025->018001.000009, 018001.000025->018001.000010, 018001.000025->018001.000011, 018001.000025->018001.000012, 018001.000025->018001.000013, 018001.000025->018001.000014, 018001.000025->018001.000015, 018001.000026->018001.000006, 018001.000026->018001.000007, 018001.000026->018001.000008, 018001.000026->018001.000009, 018001.000026->018001.000010, 018001.000026->018001.000012, 018001.000026->018001.000013, 018001.000026->018001.000014, 018001.000027->018001.000006, 018001.000027->018001.000007, 018001.000027->018001.000008, 018001.000027->018001.000009, 018001.000027->018001.000010, 018001.000027->018001.000012, 018001.000027->018001.000013, 018001.000027->018001.000014, 018001.000029->018001.000006, 018001.000029->018001.000009, 018001.000029->018001.000012, 018001.000029->018001.000014, 018001.000030->018001.000001, 018001.000030->018001.000006, 018001.000030->018001.000008, 018001.000030->018001.000009, 018001.000030->018001.000010, 018001.000030->018001.000011, 018001.000030->018001.000012, 018001.000030->018001.000013, 018001.000030->018001.000014, 018001.000030->018001.000015, 018001.000031->018001.000001, 018001.000031->018001.000006, 018001.000031->018001.000008, 018001.000031->018001.000009, 018001.000031->018001.000010, 018001.000031->018001.000011, 018001.000031->018001.000012, 018001.000031->018001.000013, 018001.000031->018001.000014, 018001.000031->018001.000015, 018001.000035->018001.000002, 018001.000035->018001.000003, 018001.000035->018001.000004, 018001.000035->018001.000005, 018001.000035->018001.000016, 018001.000035->018001.000017, 018001.000035->018001.000018, 018001.000035->018001.000021, 018001.000035->018001.000022, 018001.000035->018001.000023, 018001.000035->018001.000025, 018001.000035->018001.000026, 018001.000035->018001.000027, 018001.000035->018001.000029, 018001.000035->018001.000030, 018001.000035->018001.000031.
+""",
+)
+
+entry(
+    index = 1119,
+    label = "Ar + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1S0) -> e + Ar(5p[3/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.07848750017485549,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 29; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 29. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000016->018001.000006, 018001.000016->018001.000009, 018001.000016->018001.000012, 018001.000016->018001.000014, 018001.000017->018001.000001, 018001.000017->018001.000006, 018001.000017->018001.000008, 018001.000017->018001.000009, 018001.000017->018001.000010, 018001.000017->018001.000011, 018001.000017->018001.000012, 018001.000017->018001.000013, 018001.000017->018001.000014, 018001.000017->018001.000015, 018001.000018->018001.000006, 018001.000018->018001.000007, 018001.000018->018001.000008, 018001.000018->018001.000009, 018001.000018->018001.000010, 018001.000018->018001.000012, 018001.000018->018001.000013, 018001.000018->018001.000014, 018001.000021->018001.000006, 018001.000021->018001.000007, 018001.000021->018001.000008, 018001.000021->018001.000009, 018001.000021->018001.000010, 018001.000021->018001.000012, 018001.000021->018001.000013, 018001.000021->018001.000014, 018001.000022->018001.000006, 018001.000022->018001.000007, 018001.000022->018001.000008, 018001.000022->018001.000009, 018001.000022->018001.000010, 018001.000022->018001.000012, 018001.000022->018001.000013, 018001.000022->018001.000014, 018001.000023->018001.000001, 018001.000023->018001.000006, 018001.000023->018001.000008, 018001.000023->018001.000009, 018001.000023->018001.000010, 018001.000023->018001.000011, 018001.000023->018001.000012, 018001.000023->018001.000013, 018001.000023->018001.000014, 018001.000023->018001.000015, 018001.000025->018001.000001, 018001.000025->018001.000006, 018001.000025->018001.000008, 018001.000025->018001.000009, 018001.000025->018001.000010, 018001.000025->018001.000011, 018001.000025->018001.000012, 018001.000025->018001.000013, 018001.000025->018001.000014, 018001.000025->018001.000015, 018001.000026->018001.000006, 018001.000026->018001.000007, 018001.000026->018001.000008, 018001.000026->018001.000009, 018001.000026->018001.000010, 018001.000026->018001.000012, 018001.000026->018001.000013, 018001.000026->018001.000014, 018001.000027->018001.000006, 018001.000027->018001.000007, 018001.000027->018001.000008, 018001.000027->018001.000009, 018001.000027->018001.000010, 018001.000027->018001.000012, 018001.000027->018001.000013, 018001.000027->018001.000014, 018001.000029->018001.000006, 018001.000029->018001.000009, 018001.000029->018001.000012, 018001.000029->018001.000014, 018001.000030->018001.000001, 018001.000030->018001.000006, 018001.000030->018001.000008, 018001.000030->018001.000009, 018001.000030->018001.000010, 018001.000030->018001.000011, 018001.000030->018001.000012, 018001.000030->018001.000013, 018001.000030->018001.000014, 018001.000030->018001.000015, 018001.000031->018001.000001, 018001.000031->018001.000006, 018001.000031->018001.000008, 018001.000031->018001.000009, 018001.000031->018001.000010, 018001.000031->018001.000011, 018001.000031->018001.000012, 018001.000031->018001.000013, 018001.000031->018001.000014, 018001.000031->018001.000015, 018001.000035->018001.000002, 018001.000035->018001.000003, 018001.000035->018001.000004, 018001.000035->018001.000005, 018001.000035->018001.000016, 018001.000035->018001.000017, 018001.000035->018001.000018, 018001.000035->018001.000021, 018001.000035->018001.000022, 018001.000035->018001.000023, 018001.000035->018001.000025, 018001.000035->018001.000026, 018001.000035->018001.000027, 018001.000035->018001.000029, 018001.000035->018001.000030, 018001.000035->018001.000031.
+""",
+)
+
+entry(
+    index = 1120,
+    label = "Ar + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1S0) -> e + Ar(5p[3/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.7006778701805106,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 30; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 30. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000017->018001.000001, 018001.000017->018001.000006, 018001.000017->018001.000008, 018001.000017->018001.000009, 018001.000017->018001.000010, 018001.000017->018001.000011, 018001.000017->018001.000012, 018001.000017->018001.000013, 018001.000017->018001.000014, 018001.000017->018001.000015, 018001.000018->018001.000006, 018001.000018->018001.000007, 018001.000018->018001.000008, 018001.000018->018001.000009, 018001.000018->018001.000010, 018001.000018->018001.000012, 018001.000018->018001.000013, 018001.000018->018001.000014, 018001.000020->018001.000007, 018001.000020->018001.000008, 018001.000020->018001.000010, 018001.000020->018001.000013, 018001.000021->018001.000006, 018001.000021->018001.000007, 018001.000021->018001.000008, 018001.000021->018001.000009, 018001.000021->018001.000010, 018001.000021->018001.000012, 018001.000021->018001.000013, 018001.000021->018001.000014, 018001.000022->018001.000006, 018001.000022->018001.000007, 018001.000022->018001.000008, 018001.000022->018001.000009, 018001.000022->018001.000010, 018001.000022->018001.000012, 018001.000022->018001.000013, 018001.000022->018001.000014, 018001.000023->018001.000001, 018001.000023->018001.000006, 018001.000023->018001.000008, 018001.000023->018001.000009, 018001.000023->018001.000010, 018001.000023->018001.000011, 018001.000023->018001.000012, 018001.000023->018001.000013, 018001.000023->018001.000014, 018001.000023->018001.000015, 018001.000024->018001.000007, 018001.000024->018001.000008, 018001.000024->018001.000010, 018001.000024->018001.000013, 018001.000025->018001.000001, 018001.000025->018001.000006, 018001.000025->018001.000008, 018001.000025->018001.000009, 018001.000025->018001.000010, 018001.000025->018001.000011, 018001.000025->018001.000012, 018001.000025->018001.000013, 018001.000025->018001.000014, 018001.000025->018001.000015, 018001.000026->018001.000006, 018001.000026->018001.000007, 018001.000026->018001.000008, 018001.000026->018001.000009, 018001.000026->018001.000010, 018001.000026->018001.000012, 018001.000026->018001.000013, 018001.000026->018001.000014, 018001.000027->018001.000006, 018001.000027->018001.000007, 018001.000027->018001.000008, 018001.000027->018001.000009, 018001.000027->018001.000010, 018001.000027->018001.000012, 018001.000027->018001.000013, 018001.000027->018001.000014, 018001.000028->018001.000007, 018001.000028->018001.000008, 018001.000028->018001.000010, 018001.000028->018001.000013, 018001.000030->018001.000001, 018001.000030->018001.000006, 018001.000030->018001.000008, 018001.000030->018001.000009, 018001.000030->018001.000010, 018001.000030->018001.000011, 018001.000030->018001.000012, 018001.000030->018001.000013, 018001.000030->018001.000014, 018001.000030->018001.000015, 018001.000031->018001.000001, 018001.000031->018001.000006, 018001.000031->018001.000008, 018001.000031->018001.000009, 018001.000031->018001.000010, 018001.000031->018001.000011, 018001.000031->018001.000012, 018001.000031->018001.000013, 018001.000031->018001.000014, 018001.000031->018001.000015, 018001.000036->018001.000002, 018001.000036->018001.000003, 018001.000036->018001.000005, 018001.000036->018001.000017, 018001.000036->018001.000018, 018001.000036->018001.000020, 018001.000036->018001.000021, 018001.000036->018001.000022, 018001.000036->018001.000023, 018001.000036->018001.000024, 018001.000036->018001.000025, 018001.000036->018001.000026, 018001.000036->018001.000027, 018001.000036->018001.000028, 018001.000036->018001.000030, 018001.000036->018001.000031.
+""",
+)
+
+entry(
+    index = 1121,
+    label = "Ar + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1S0) -> e + Ar(5p[3/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.21323737063369283,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 30; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 30. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000017->018001.000001, 018001.000017->018001.000006, 018001.000017->018001.000008, 018001.000017->018001.000009, 018001.000017->018001.000010, 018001.000017->018001.000011, 018001.000017->018001.000012, 018001.000017->018001.000013, 018001.000017->018001.000014, 018001.000017->018001.000015, 018001.000018->018001.000006, 018001.000018->018001.000007, 018001.000018->018001.000008, 018001.000018->018001.000009, 018001.000018->018001.000010, 018001.000018->018001.000012, 018001.000018->018001.000013, 018001.000018->018001.000014, 018001.000020->018001.000007, 018001.000020->018001.000008, 018001.000020->018001.000010, 018001.000020->018001.000013, 018001.000021->018001.000006, 018001.000021->018001.000007, 018001.000021->018001.000008, 018001.000021->018001.000009, 018001.000021->018001.000010, 018001.000021->018001.000012, 018001.000021->018001.000013, 018001.000021->018001.000014, 018001.000022->018001.000006, 018001.000022->018001.000007, 018001.000022->018001.000008, 018001.000022->018001.000009, 018001.000022->018001.000010, 018001.000022->018001.000012, 018001.000022->018001.000013, 018001.000022->018001.000014, 018001.000023->018001.000001, 018001.000023->018001.000006, 018001.000023->018001.000008, 018001.000023->018001.000009, 018001.000023->018001.000010, 018001.000023->018001.000011, 018001.000023->018001.000012, 018001.000023->018001.000013, 018001.000023->018001.000014, 018001.000023->018001.000015, 018001.000024->018001.000007, 018001.000024->018001.000008, 018001.000024->018001.000010, 018001.000024->018001.000013, 018001.000025->018001.000001, 018001.000025->018001.000006, 018001.000025->018001.000008, 018001.000025->018001.000009, 018001.000025->018001.000010, 018001.000025->018001.000011, 018001.000025->018001.000012, 018001.000025->018001.000013, 018001.000025->018001.000014, 018001.000025->018001.000015, 018001.000026->018001.000006, 018001.000026->018001.000007, 018001.000026->018001.000008, 018001.000026->018001.000009, 018001.000026->018001.000010, 018001.000026->018001.000012, 018001.000026->018001.000013, 018001.000026->018001.000014, 018001.000027->018001.000006, 018001.000027->018001.000007, 018001.000027->018001.000008, 018001.000027->018001.000009, 018001.000027->018001.000010, 018001.000027->018001.000012, 018001.000027->018001.000013, 018001.000027->018001.000014, 018001.000028->018001.000007, 018001.000028->018001.000008, 018001.000028->018001.000010, 018001.000028->018001.000013, 018001.000030->018001.000001, 018001.000030->018001.000006, 018001.000030->018001.000008, 018001.000030->018001.000009, 018001.000030->018001.000010, 018001.000030->018001.000011, 018001.000030->018001.000012, 018001.000030->018001.000013, 018001.000030->018001.000014, 018001.000030->018001.000015, 018001.000031->018001.000001, 018001.000031->018001.000006, 018001.000031->018001.000008, 018001.000031->018001.000009, 018001.000031->018001.000010, 018001.000031->018001.000011, 018001.000031->018001.000012, 018001.000031->018001.000013, 018001.000031->018001.000014, 018001.000031->018001.000015, 018001.000036->018001.000002, 018001.000036->018001.000003, 018001.000036->018001.000005, 018001.000036->018001.000017, 018001.000036->018001.000018, 018001.000036->018001.000020, 018001.000036->018001.000021, 018001.000036->018001.000022, 018001.000036->018001.000023, 018001.000036->018001.000024, 018001.000036->018001.000025, 018001.000036->018001.000026, 018001.000036->018001.000027, 018001.000036->018001.000028, 018001.000036->018001.000030, 018001.000036->018001.000031.
+""",
+)
+
+entry(
+    index = 1122,
+    label = "Ar + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1S0) -> e + Ar(5p[3/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.0205826453192599,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 30; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 30. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000017->018001.000001, 018001.000017->018001.000006, 018001.000017->018001.000008, 018001.000017->018001.000009, 018001.000017->018001.000010, 018001.000017->018001.000011, 018001.000017->018001.000012, 018001.000017->018001.000013, 018001.000017->018001.000014, 018001.000017->018001.000015, 018001.000018->018001.000006, 018001.000018->018001.000007, 018001.000018->018001.000008, 018001.000018->018001.000009, 018001.000018->018001.000010, 018001.000018->018001.000012, 018001.000018->018001.000013, 018001.000018->018001.000014, 018001.000020->018001.000007, 018001.000020->018001.000008, 018001.000020->018001.000010, 018001.000020->018001.000013, 018001.000021->018001.000006, 018001.000021->018001.000007, 018001.000021->018001.000008, 018001.000021->018001.000009, 018001.000021->018001.000010, 018001.000021->018001.000012, 018001.000021->018001.000013, 018001.000021->018001.000014, 018001.000022->018001.000006, 018001.000022->018001.000007, 018001.000022->018001.000008, 018001.000022->018001.000009, 018001.000022->018001.000010, 018001.000022->018001.000012, 018001.000022->018001.000013, 018001.000022->018001.000014, 018001.000023->018001.000001, 018001.000023->018001.000006, 018001.000023->018001.000008, 018001.000023->018001.000009, 018001.000023->018001.000010, 018001.000023->018001.000011, 018001.000023->018001.000012, 018001.000023->018001.000013, 018001.000023->018001.000014, 018001.000023->018001.000015, 018001.000024->018001.000007, 018001.000024->018001.000008, 018001.000024->018001.000010, 018001.000024->018001.000013, 018001.000025->018001.000001, 018001.000025->018001.000006, 018001.000025->018001.000008, 018001.000025->018001.000009, 018001.000025->018001.000010, 018001.000025->018001.000011, 018001.000025->018001.000012, 018001.000025->018001.000013, 018001.000025->018001.000014, 018001.000025->018001.000015, 018001.000026->018001.000006, 018001.000026->018001.000007, 018001.000026->018001.000008, 018001.000026->018001.000009, 018001.000026->018001.000010, 018001.000026->018001.000012, 018001.000026->018001.000013, 018001.000026->018001.000014, 018001.000027->018001.000006, 018001.000027->018001.000007, 018001.000027->018001.000008, 018001.000027->018001.000009, 018001.000027->018001.000010, 018001.000027->018001.000012, 018001.000027->018001.000013, 018001.000027->018001.000014, 018001.000028->018001.000007, 018001.000028->018001.000008, 018001.000028->018001.000010, 018001.000028->018001.000013, 018001.000030->018001.000001, 018001.000030->018001.000006, 018001.000030->018001.000008, 018001.000030->018001.000009, 018001.000030->018001.000010, 018001.000030->018001.000011, 018001.000030->018001.000012, 018001.000030->018001.000013, 018001.000030->018001.000014, 018001.000030->018001.000015, 018001.000031->018001.000001, 018001.000031->018001.000006, 018001.000031->018001.000008, 018001.000031->018001.000009, 018001.000031->018001.000010, 018001.000031->018001.000011, 018001.000031->018001.000012, 018001.000031->018001.000013, 018001.000031->018001.000014, 018001.000031->018001.000015, 018001.000036->018001.000002, 018001.000036->018001.000003, 018001.000036->018001.000005, 018001.000036->018001.000017, 018001.000036->018001.000018, 018001.000036->018001.000020, 018001.000036->018001.000021, 018001.000036->018001.000022, 018001.000036->018001.000023, 018001.000036->018001.000024, 018001.000036->018001.000025, 018001.000036->018001.000026, 018001.000036->018001.000027, 018001.000036->018001.000028, 018001.000036->018001.000030, 018001.000036->018001.000031.
+""",
+)
+
+entry(
+    index = 1123,
+    label = "Ar + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1S0) -> e + Ar(5p[3/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.06550211386653675,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 30; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 30. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000017->018001.000001, 018001.000017->018001.000006, 018001.000017->018001.000008, 018001.000017->018001.000009, 018001.000017->018001.000010, 018001.000017->018001.000011, 018001.000017->018001.000012, 018001.000017->018001.000013, 018001.000017->018001.000014, 018001.000017->018001.000015, 018001.000018->018001.000006, 018001.000018->018001.000007, 018001.000018->018001.000008, 018001.000018->018001.000009, 018001.000018->018001.000010, 018001.000018->018001.000012, 018001.000018->018001.000013, 018001.000018->018001.000014, 018001.000020->018001.000007, 018001.000020->018001.000008, 018001.000020->018001.000010, 018001.000020->018001.000013, 018001.000021->018001.000006, 018001.000021->018001.000007, 018001.000021->018001.000008, 018001.000021->018001.000009, 018001.000021->018001.000010, 018001.000021->018001.000012, 018001.000021->018001.000013, 018001.000021->018001.000014, 018001.000022->018001.000006, 018001.000022->018001.000007, 018001.000022->018001.000008, 018001.000022->018001.000009, 018001.000022->018001.000010, 018001.000022->018001.000012, 018001.000022->018001.000013, 018001.000022->018001.000014, 018001.000023->018001.000001, 018001.000023->018001.000006, 018001.000023->018001.000008, 018001.000023->018001.000009, 018001.000023->018001.000010, 018001.000023->018001.000011, 018001.000023->018001.000012, 018001.000023->018001.000013, 018001.000023->018001.000014, 018001.000023->018001.000015, 018001.000024->018001.000007, 018001.000024->018001.000008, 018001.000024->018001.000010, 018001.000024->018001.000013, 018001.000025->018001.000001, 018001.000025->018001.000006, 018001.000025->018001.000008, 018001.000025->018001.000009, 018001.000025->018001.000010, 018001.000025->018001.000011, 018001.000025->018001.000012, 018001.000025->018001.000013, 018001.000025->018001.000014, 018001.000025->018001.000015, 018001.000026->018001.000006, 018001.000026->018001.000007, 018001.000026->018001.000008, 018001.000026->018001.000009, 018001.000026->018001.000010, 018001.000026->018001.000012, 018001.000026->018001.000013, 018001.000026->018001.000014, 018001.000027->018001.000006, 018001.000027->018001.000007, 018001.000027->018001.000008, 018001.000027->018001.000009, 018001.000027->018001.000010, 018001.000027->018001.000012, 018001.000027->018001.000013, 018001.000027->018001.000014, 018001.000028->018001.000007, 018001.000028->018001.000008, 018001.000028->018001.000010, 018001.000028->018001.000013, 018001.000030->018001.000001, 018001.000030->018001.000006, 018001.000030->018001.000008, 018001.000030->018001.000009, 018001.000030->018001.000010, 018001.000030->018001.000011, 018001.000030->018001.000012, 018001.000030->018001.000013, 018001.000030->018001.000014, 018001.000030->018001.000015, 018001.000031->018001.000001, 018001.000031->018001.000006, 018001.000031->018001.000008, 018001.000031->018001.000009, 018001.000031->018001.000010, 018001.000031->018001.000011, 018001.000031->018001.000012, 018001.000031->018001.000013, 018001.000031->018001.000014, 018001.000031->018001.000015, 018001.000036->018001.000002, 018001.000036->018001.000003, 018001.000036->018001.000005, 018001.000036->018001.000017, 018001.000036->018001.000018, 018001.000036->018001.000020, 018001.000036->018001.000021, 018001.000036->018001.000022, 018001.000036->018001.000023, 018001.000036->018001.000024, 018001.000036->018001.000025, 018001.000036->018001.000026, 018001.000036->018001.000027, 018001.000036->018001.000028, 018001.000036->018001.000030, 018001.000036->018001.000031.
+""",
+)
+
+entry(
+    index = 1124,
+    label = "Ar + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1S0) -> e + Ar(5p[1/2]0), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.21346608289605373,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 31; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 31. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000017->018001.000001, 018001.000017->018001.000006, 018001.000017->018001.000008, 018001.000017->018001.000009, 018001.000017->018001.000010, 018001.000017->018001.000011, 018001.000017->018001.000012, 018001.000017->018001.000013, 018001.000017->018001.000014, 018001.000017->018001.000015, 018001.000023->018001.000001, 018001.000023->018001.000006, 018001.000023->018001.000008, 018001.000023->018001.000009, 018001.000023->018001.000010, 018001.000023->018001.000011, 018001.000023->018001.000012, 018001.000023->018001.000013, 018001.000023->018001.000014, 018001.000023->018001.000015, 018001.000025->018001.000001, 018001.000025->018001.000006, 018001.000025->018001.000008, 018001.000025->018001.000009, 018001.000025->018001.000010, 018001.000025->018001.000011, 018001.000025->018001.000012, 018001.000025->018001.000013, 018001.000025->018001.000014, 018001.000025->018001.000015, 018001.000030->018001.000001, 018001.000030->018001.000006, 018001.000030->018001.000008, 018001.000030->018001.000009, 018001.000030->018001.000010, 018001.000030->018001.000011, 018001.000030->018001.000012, 018001.000030->018001.000013, 018001.000030->018001.000014, 018001.000030->018001.000015, 018001.000031->018001.000001, 018001.000031->018001.000006, 018001.000031->018001.000008, 018001.000031->018001.000009, 018001.000031->018001.000010, 018001.000031->018001.000011, 018001.000031->018001.000012, 018001.000031->018001.000013, 018001.000031->018001.000014, 018001.000031->018001.000015, 018001.000037->018001.000003, 018001.000037->018001.000005, 018001.000037->018001.000017, 018001.000037->018001.000023, 018001.000037->018001.000025, 018001.000037->018001.000030, 018001.000037->018001.000031.
+""",
+)
+
+entry(
+    index = 1125,
+    label = "Ar + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1S0) -> e + Ar(5p[1/2]0), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.5829249917058877,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 31; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 31. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000017->018001.000001, 018001.000017->018001.000006, 018001.000017->018001.000008, 018001.000017->018001.000009, 018001.000017->018001.000010, 018001.000017->018001.000011, 018001.000017->018001.000012, 018001.000017->018001.000013, 018001.000017->018001.000014, 018001.000017->018001.000015, 018001.000023->018001.000001, 018001.000023->018001.000006, 018001.000023->018001.000008, 018001.000023->018001.000009, 018001.000023->018001.000010, 018001.000023->018001.000011, 018001.000023->018001.000012, 018001.000023->018001.000013, 018001.000023->018001.000014, 018001.000023->018001.000015, 018001.000025->018001.000001, 018001.000025->018001.000006, 018001.000025->018001.000008, 018001.000025->018001.000009, 018001.000025->018001.000010, 018001.000025->018001.000011, 018001.000025->018001.000012, 018001.000025->018001.000013, 018001.000025->018001.000014, 018001.000025->018001.000015, 018001.000030->018001.000001, 018001.000030->018001.000006, 018001.000030->018001.000008, 018001.000030->018001.000009, 018001.000030->018001.000010, 018001.000030->018001.000011, 018001.000030->018001.000012, 018001.000030->018001.000013, 018001.000030->018001.000014, 018001.000030->018001.000015, 018001.000031->018001.000001, 018001.000031->018001.000006, 018001.000031->018001.000008, 018001.000031->018001.000009, 018001.000031->018001.000010, 018001.000031->018001.000011, 018001.000031->018001.000012, 018001.000031->018001.000013, 018001.000031->018001.000014, 018001.000031->018001.000015, 018001.000037->018001.000003, 018001.000037->018001.000005, 018001.000037->018001.000017, 018001.000037->018001.000023, 018001.000037->018001.000025, 018001.000037->018001.000030, 018001.000037->018001.000031.
+""",
+)
+
+entry(
+    index = 1126,
+    label = "Ar + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1S0) -> e + Ar(5p[1/2]0), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.031045499015481422,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 31; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 31. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000017->018001.000001, 018001.000017->018001.000006, 018001.000017->018001.000008, 018001.000017->018001.000009, 018001.000017->018001.000010, 018001.000017->018001.000011, 018001.000017->018001.000012, 018001.000017->018001.000013, 018001.000017->018001.000014, 018001.000017->018001.000015, 018001.000023->018001.000001, 018001.000023->018001.000006, 018001.000023->018001.000008, 018001.000023->018001.000009, 018001.000023->018001.000010, 018001.000023->018001.000011, 018001.000023->018001.000012, 018001.000023->018001.000013, 018001.000023->018001.000014, 018001.000023->018001.000015, 018001.000025->018001.000001, 018001.000025->018001.000006, 018001.000025->018001.000008, 018001.000025->018001.000009, 018001.000025->018001.000010, 018001.000025->018001.000011, 018001.000025->018001.000012, 018001.000025->018001.000013, 018001.000025->018001.000014, 018001.000025->018001.000015, 018001.000030->018001.000001, 018001.000030->018001.000006, 018001.000030->018001.000008, 018001.000030->018001.000009, 018001.000030->018001.000010, 018001.000030->018001.000011, 018001.000030->018001.000012, 018001.000030->018001.000013, 018001.000030->018001.000014, 018001.000030->018001.000015, 018001.000031->018001.000001, 018001.000031->018001.000006, 018001.000031->018001.000008, 018001.000031->018001.000009, 018001.000031->018001.000010, 018001.000031->018001.000011, 018001.000031->018001.000012, 018001.000031->018001.000013, 018001.000031->018001.000014, 018001.000031->018001.000015, 018001.000037->018001.000003, 018001.000037->018001.000005, 018001.000037->018001.000017, 018001.000037->018001.000023, 018001.000037->018001.000025, 018001.000037->018001.000030, 018001.000037->018001.000031.
+""",
+)
+
+entry(
+    index = 1127,
+    label = "Ar + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1S0) -> e + Ar(5p[1/2]0), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.17256342638257735,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 31; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 31. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000017->018001.000001, 018001.000017->018001.000006, 018001.000017->018001.000008, 018001.000017->018001.000009, 018001.000017->018001.000010, 018001.000017->018001.000011, 018001.000017->018001.000012, 018001.000017->018001.000013, 018001.000017->018001.000014, 018001.000017->018001.000015, 018001.000023->018001.000001, 018001.000023->018001.000006, 018001.000023->018001.000008, 018001.000023->018001.000009, 018001.000023->018001.000010, 018001.000023->018001.000011, 018001.000023->018001.000012, 018001.000023->018001.000013, 018001.000023->018001.000014, 018001.000023->018001.000015, 018001.000025->018001.000001, 018001.000025->018001.000006, 018001.000025->018001.000008, 018001.000025->018001.000009, 018001.000025->018001.000010, 018001.000025->018001.000011, 018001.000025->018001.000012, 018001.000025->018001.000013, 018001.000025->018001.000014, 018001.000025->018001.000015, 018001.000030->018001.000001, 018001.000030->018001.000006, 018001.000030->018001.000008, 018001.000030->018001.000009, 018001.000030->018001.000010, 018001.000030->018001.000011, 018001.000030->018001.000012, 018001.000030->018001.000013, 018001.000030->018001.000014, 018001.000030->018001.000015, 018001.000031->018001.000001, 018001.000031->018001.000006, 018001.000031->018001.000008, 018001.000031->018001.000009, 018001.000031->018001.000010, 018001.000031->018001.000011, 018001.000031->018001.000012, 018001.000031->018001.000013, 018001.000031->018001.000014, 018001.000031->018001.000015, 018001.000037->018001.000003, 018001.000037->018001.000005, 018001.000037->018001.000017, 018001.000037->018001.000023, 018001.000037->018001.000025, 018001.000037->018001.000030, 018001.000037->018001.000031.
+""",
+)
+
+entry(
+    index = 1128,
+    label = "Ar + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(1S0) -> e + Ar(5p'[3/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.1494162364299983,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 32; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 32. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000016->018001.000006, 018001.000016->018001.000009, 018001.000016->018001.000012, 018001.000016->018001.000014, 018001.000017->018001.000001, 018001.000017->018001.000006, 018001.000017->018001.000008, 018001.000017->018001.000009, 018001.000017->018001.000010, 018001.000017->018001.000011, 018001.000017->018001.000012, 018001.000017->018001.000013, 018001.000017->018001.000014, 018001.000017->018001.000015, 018001.000018->018001.000006, 018001.000018->018001.000007, 018001.000018->018001.000008, 018001.000018->018001.000009, 018001.000018->018001.000010, 018001.000018->018001.000012, 018001.000018->018001.000013, 018001.000018->018001.000014, 018001.000021->018001.000006, 018001.000021->018001.000007, 018001.000021->018001.000008, 018001.000021->018001.000009, 018001.000021->018001.000010, 018001.000021->018001.000012, 018001.000021->018001.000013, 018001.000021->018001.000014, 018001.000022->018001.000006, 018001.000022->018001.000007, 018001.000022->018001.000008, 018001.000022->018001.000009, 018001.000022->018001.000010, 018001.000022->018001.000012, 018001.000022->018001.000013, 018001.000022->018001.000014, 018001.000023->018001.000001, 018001.000023->018001.000006, 018001.000023->018001.000008, 018001.000023->018001.000009, 018001.000023->018001.000010, 018001.000023->018001.000011, 018001.000023->018001.000012, 018001.000023->018001.000013, 018001.000023->018001.000014, 018001.000023->018001.000015, 018001.000025->018001.000001, 018001.000025->018001.000006, 018001.000025->018001.000008, 018001.000025->018001.000009, 018001.000025->018001.000010, 018001.000025->018001.000011, 018001.000025->018001.000012, 018001.000025->018001.000013, 018001.000025->018001.000014, 018001.000025->018001.000015, 018001.000026->018001.000006, 018001.000026->018001.000007, 018001.000026->018001.000008, 018001.000026->018001.000009, 018001.000026->018001.000010, 018001.000026->018001.000012, 018001.000026->018001.000013, 018001.000026->018001.000014, 018001.000027->018001.000006, 018001.000027->018001.000007, 018001.000027->018001.000008, 018001.000027->018001.000009, 018001.000027->018001.000010, 018001.000027->018001.000012, 018001.000027->018001.000013, 018001.000027->018001.000014, 018001.000029->018001.000006, 018001.000029->018001.000009, 018001.000029->018001.000012, 018001.000029->018001.000014, 018001.000030->018001.000001, 018001.000030->018001.000006, 018001.000030->018001.000008, 018001.000030->018001.000009, 018001.000030->018001.000010, 018001.000030->018001.000011, 018001.000030->018001.000012, 018001.000030->018001.000013, 018001.000030->018001.000014, 018001.000030->018001.000015, 018001.000031->018001.000001, 018001.000031->018001.000006, 018001.000031->018001.000008, 018001.000031->018001.000009, 018001.000031->018001.000010, 018001.000031->018001.000011, 018001.000031->018001.000012, 018001.000031->018001.000013, 018001.000031->018001.000014, 018001.000031->018001.000015, 018001.000038->018001.000002, 018001.000038->018001.000003, 018001.000038->018001.000004, 018001.000038->018001.000005, 018001.000038->018001.000016, 018001.000038->018001.000017, 018001.000038->018001.000018, 018001.000038->018001.000021, 018001.000038->018001.000022, 018001.000038->018001.000023, 018001.000038->018001.000025, 018001.000038->018001.000026, 018001.000038->018001.000027, 018001.000038->018001.000029, 018001.000038->018001.000030, 018001.000038->018001.000031.
+""",
+)
+
+entry(
+    index = 1129,
+    label = "Ar + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(1S0) -> e + Ar(5p'[3/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.20198918714495578,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 32; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 32. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000016->018001.000006, 018001.000016->018001.000009, 018001.000016->018001.000012, 018001.000016->018001.000014, 018001.000017->018001.000001, 018001.000017->018001.000006, 018001.000017->018001.000008, 018001.000017->018001.000009, 018001.000017->018001.000010, 018001.000017->018001.000011, 018001.000017->018001.000012, 018001.000017->018001.000013, 018001.000017->018001.000014, 018001.000017->018001.000015, 018001.000018->018001.000006, 018001.000018->018001.000007, 018001.000018->018001.000008, 018001.000018->018001.000009, 018001.000018->018001.000010, 018001.000018->018001.000012, 018001.000018->018001.000013, 018001.000018->018001.000014, 018001.000021->018001.000006, 018001.000021->018001.000007, 018001.000021->018001.000008, 018001.000021->018001.000009, 018001.000021->018001.000010, 018001.000021->018001.000012, 018001.000021->018001.000013, 018001.000021->018001.000014, 018001.000022->018001.000006, 018001.000022->018001.000007, 018001.000022->018001.000008, 018001.000022->018001.000009, 018001.000022->018001.000010, 018001.000022->018001.000012, 018001.000022->018001.000013, 018001.000022->018001.000014, 018001.000023->018001.000001, 018001.000023->018001.000006, 018001.000023->018001.000008, 018001.000023->018001.000009, 018001.000023->018001.000010, 018001.000023->018001.000011, 018001.000023->018001.000012, 018001.000023->018001.000013, 018001.000023->018001.000014, 018001.000023->018001.000015, 018001.000025->018001.000001, 018001.000025->018001.000006, 018001.000025->018001.000008, 018001.000025->018001.000009, 018001.000025->018001.000010, 018001.000025->018001.000011, 018001.000025->018001.000012, 018001.000025->018001.000013, 018001.000025->018001.000014, 018001.000025->018001.000015, 018001.000026->018001.000006, 018001.000026->018001.000007, 018001.000026->018001.000008, 018001.000026->018001.000009, 018001.000026->018001.000010, 018001.000026->018001.000012, 018001.000026->018001.000013, 018001.000026->018001.000014, 018001.000027->018001.000006, 018001.000027->018001.000007, 018001.000027->018001.000008, 018001.000027->018001.000009, 018001.000027->018001.000010, 018001.000027->018001.000012, 018001.000027->018001.000013, 018001.000027->018001.000014, 018001.000029->018001.000006, 018001.000029->018001.000009, 018001.000029->018001.000012, 018001.000029->018001.000014, 018001.000030->018001.000001, 018001.000030->018001.000006, 018001.000030->018001.000008, 018001.000030->018001.000009, 018001.000030->018001.000010, 018001.000030->018001.000011, 018001.000030->018001.000012, 018001.000030->018001.000013, 018001.000030->018001.000014, 018001.000030->018001.000015, 018001.000031->018001.000001, 018001.000031->018001.000006, 018001.000031->018001.000008, 018001.000031->018001.000009, 018001.000031->018001.000010, 018001.000031->018001.000011, 018001.000031->018001.000012, 018001.000031->018001.000013, 018001.000031->018001.000014, 018001.000031->018001.000015, 018001.000038->018001.000002, 018001.000038->018001.000003, 018001.000038->018001.000004, 018001.000038->018001.000005, 018001.000038->018001.000016, 018001.000038->018001.000017, 018001.000038->018001.000018, 018001.000038->018001.000021, 018001.000038->018001.000022, 018001.000038->018001.000023, 018001.000038->018001.000025, 018001.000038->018001.000026, 018001.000038->018001.000027, 018001.000038->018001.000029, 018001.000038->018001.000030, 018001.000038->018001.000031.
+""",
+)
+
+entry(
+    index = 1130,
+    label = "Ar + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(1S0) -> e + Ar(5p'[3/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.30128099214555304,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 32; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 32. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000016->018001.000006, 018001.000016->018001.000009, 018001.000016->018001.000012, 018001.000016->018001.000014, 018001.000017->018001.000001, 018001.000017->018001.000006, 018001.000017->018001.000008, 018001.000017->018001.000009, 018001.000017->018001.000010, 018001.000017->018001.000011, 018001.000017->018001.000012, 018001.000017->018001.000013, 018001.000017->018001.000014, 018001.000017->018001.000015, 018001.000018->018001.000006, 018001.000018->018001.000007, 018001.000018->018001.000008, 018001.000018->018001.000009, 018001.000018->018001.000010, 018001.000018->018001.000012, 018001.000018->018001.000013, 018001.000018->018001.000014, 018001.000021->018001.000006, 018001.000021->018001.000007, 018001.000021->018001.000008, 018001.000021->018001.000009, 018001.000021->018001.000010, 018001.000021->018001.000012, 018001.000021->018001.000013, 018001.000021->018001.000014, 018001.000022->018001.000006, 018001.000022->018001.000007, 018001.000022->018001.000008, 018001.000022->018001.000009, 018001.000022->018001.000010, 018001.000022->018001.000012, 018001.000022->018001.000013, 018001.000022->018001.000014, 018001.000023->018001.000001, 018001.000023->018001.000006, 018001.000023->018001.000008, 018001.000023->018001.000009, 018001.000023->018001.000010, 018001.000023->018001.000011, 018001.000023->018001.000012, 018001.000023->018001.000013, 018001.000023->018001.000014, 018001.000023->018001.000015, 018001.000025->018001.000001, 018001.000025->018001.000006, 018001.000025->018001.000008, 018001.000025->018001.000009, 018001.000025->018001.000010, 018001.000025->018001.000011, 018001.000025->018001.000012, 018001.000025->018001.000013, 018001.000025->018001.000014, 018001.000025->018001.000015, 018001.000026->018001.000006, 018001.000026->018001.000007, 018001.000026->018001.000008, 018001.000026->018001.000009, 018001.000026->018001.000010, 018001.000026->018001.000012, 018001.000026->018001.000013, 018001.000026->018001.000014, 018001.000027->018001.000006, 018001.000027->018001.000007, 018001.000027->018001.000008, 018001.000027->018001.000009, 018001.000027->018001.000010, 018001.000027->018001.000012, 018001.000027->018001.000013, 018001.000027->018001.000014, 018001.000029->018001.000006, 018001.000029->018001.000009, 018001.000029->018001.000012, 018001.000029->018001.000014, 018001.000030->018001.000001, 018001.000030->018001.000006, 018001.000030->018001.000008, 018001.000030->018001.000009, 018001.000030->018001.000010, 018001.000030->018001.000011, 018001.000030->018001.000012, 018001.000030->018001.000013, 018001.000030->018001.000014, 018001.000030->018001.000015, 018001.000031->018001.000001, 018001.000031->018001.000006, 018001.000031->018001.000008, 018001.000031->018001.000009, 018001.000031->018001.000010, 018001.000031->018001.000011, 018001.000031->018001.000012, 018001.000031->018001.000013, 018001.000031->018001.000014, 018001.000031->018001.000015, 018001.000038->018001.000002, 018001.000038->018001.000003, 018001.000038->018001.000004, 018001.000038->018001.000005, 018001.000038->018001.000016, 018001.000038->018001.000017, 018001.000038->018001.000018, 018001.000038->018001.000021, 018001.000038->018001.000022, 018001.000038->018001.000023, 018001.000038->018001.000025, 018001.000038->018001.000026, 018001.000038->018001.000027, 018001.000038->018001.000029, 018001.000038->018001.000030, 018001.000038->018001.000031.
+""",
+)
+
+entry(
+    index = 1131,
+    label = "Ar + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(1S0) -> e + Ar(5p'[3/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.347313584279493,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 32; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 32. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000016->018001.000006, 018001.000016->018001.000009, 018001.000016->018001.000012, 018001.000016->018001.000014, 018001.000017->018001.000001, 018001.000017->018001.000006, 018001.000017->018001.000008, 018001.000017->018001.000009, 018001.000017->018001.000010, 018001.000017->018001.000011, 018001.000017->018001.000012, 018001.000017->018001.000013, 018001.000017->018001.000014, 018001.000017->018001.000015, 018001.000018->018001.000006, 018001.000018->018001.000007, 018001.000018->018001.000008, 018001.000018->018001.000009, 018001.000018->018001.000010, 018001.000018->018001.000012, 018001.000018->018001.000013, 018001.000018->018001.000014, 018001.000021->018001.000006, 018001.000021->018001.000007, 018001.000021->018001.000008, 018001.000021->018001.000009, 018001.000021->018001.000010, 018001.000021->018001.000012, 018001.000021->018001.000013, 018001.000021->018001.000014, 018001.000022->018001.000006, 018001.000022->018001.000007, 018001.000022->018001.000008, 018001.000022->018001.000009, 018001.000022->018001.000010, 018001.000022->018001.000012, 018001.000022->018001.000013, 018001.000022->018001.000014, 018001.000023->018001.000001, 018001.000023->018001.000006, 018001.000023->018001.000008, 018001.000023->018001.000009, 018001.000023->018001.000010, 018001.000023->018001.000011, 018001.000023->018001.000012, 018001.000023->018001.000013, 018001.000023->018001.000014, 018001.000023->018001.000015, 018001.000025->018001.000001, 018001.000025->018001.000006, 018001.000025->018001.000008, 018001.000025->018001.000009, 018001.000025->018001.000010, 018001.000025->018001.000011, 018001.000025->018001.000012, 018001.000025->018001.000013, 018001.000025->018001.000014, 018001.000025->018001.000015, 018001.000026->018001.000006, 018001.000026->018001.000007, 018001.000026->018001.000008, 018001.000026->018001.000009, 018001.000026->018001.000010, 018001.000026->018001.000012, 018001.000026->018001.000013, 018001.000026->018001.000014, 018001.000027->018001.000006, 018001.000027->018001.000007, 018001.000027->018001.000008, 018001.000027->018001.000009, 018001.000027->018001.000010, 018001.000027->018001.000012, 018001.000027->018001.000013, 018001.000027->018001.000014, 018001.000029->018001.000006, 018001.000029->018001.000009, 018001.000029->018001.000012, 018001.000029->018001.000014, 018001.000030->018001.000001, 018001.000030->018001.000006, 018001.000030->018001.000008, 018001.000030->018001.000009, 018001.000030->018001.000010, 018001.000030->018001.000011, 018001.000030->018001.000012, 018001.000030->018001.000013, 018001.000030->018001.000014, 018001.000030->018001.000015, 018001.000031->018001.000001, 018001.000031->018001.000006, 018001.000031->018001.000008, 018001.000031->018001.000009, 018001.000031->018001.000010, 018001.000031->018001.000011, 018001.000031->018001.000012, 018001.000031->018001.000013, 018001.000031->018001.000014, 018001.000031->018001.000015, 018001.000038->018001.000002, 018001.000038->018001.000003, 018001.000038->018001.000004, 018001.000038->018001.000005, 018001.000038->018001.000016, 018001.000038->018001.000017, 018001.000038->018001.000018, 018001.000038->018001.000021, 018001.000038->018001.000022, 018001.000038->018001.000023, 018001.000038->018001.000025, 018001.000038->018001.000026, 018001.000038->018001.000027, 018001.000038->018001.000029, 018001.000038->018001.000030, 018001.000038->018001.000031.
+""",
+)
+
+entry(
+    index = 1132,
+    label = "Ar + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(1S0) -> e + Ar(5p'[1/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.2778176167249639,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 33; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 33. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000016->018001.000006, 018001.000016->018001.000009, 018001.000016->018001.000012, 018001.000016->018001.000014, 018001.000017->018001.000001, 018001.000017->018001.000006, 018001.000017->018001.000008, 018001.000017->018001.000009, 018001.000017->018001.000010, 018001.000017->018001.000011, 018001.000017->018001.000012, 018001.000017->018001.000013, 018001.000017->018001.000014, 018001.000017->018001.000015, 018001.000018->018001.000006, 018001.000018->018001.000007, 018001.000018->018001.000008, 018001.000018->018001.000009, 018001.000018->018001.000010, 018001.000018->018001.000012, 018001.000018->018001.000013, 018001.000018->018001.000014, 018001.000021->018001.000006, 018001.000021->018001.000007, 018001.000021->018001.000008, 018001.000021->018001.000009, 018001.000021->018001.000010, 018001.000021->018001.000012, 018001.000021->018001.000013, 018001.000021->018001.000014, 018001.000022->018001.000006, 018001.000022->018001.000007, 018001.000022->018001.000008, 018001.000022->018001.000009, 018001.000022->018001.000010, 018001.000022->018001.000012, 018001.000022->018001.000013, 018001.000022->018001.000014, 018001.000023->018001.000001, 018001.000023->018001.000006, 018001.000023->018001.000008, 018001.000023->018001.000009, 018001.000023->018001.000010, 018001.000023->018001.000011, 018001.000023->018001.000012, 018001.000023->018001.000013, 018001.000023->018001.000014, 018001.000023->018001.000015, 018001.000025->018001.000001, 018001.000025->018001.000006, 018001.000025->018001.000008, 018001.000025->018001.000009, 018001.000025->018001.000010, 018001.000025->018001.000011, 018001.000025->018001.000012, 018001.000025->018001.000013, 018001.000025->018001.000014, 018001.000025->018001.000015, 018001.000026->018001.000006, 018001.000026->018001.000007, 018001.000026->018001.000008, 018001.000026->018001.000009, 018001.000026->018001.000010, 018001.000026->018001.000012, 018001.000026->018001.000013, 018001.000026->018001.000014, 018001.000027->018001.000006, 018001.000027->018001.000007, 018001.000027->018001.000008, 018001.000027->018001.000009, 018001.000027->018001.000010, 018001.000027->018001.000012, 018001.000027->018001.000013, 018001.000027->018001.000014, 018001.000029->018001.000006, 018001.000029->018001.000009, 018001.000029->018001.000012, 018001.000029->018001.000014, 018001.000030->018001.000001, 018001.000030->018001.000006, 018001.000030->018001.000008, 018001.000030->018001.000009, 018001.000030->018001.000010, 018001.000030->018001.000011, 018001.000030->018001.000012, 018001.000030->018001.000013, 018001.000030->018001.000014, 018001.000030->018001.000015, 018001.000031->018001.000001, 018001.000031->018001.000006, 018001.000031->018001.000008, 018001.000031->018001.000009, 018001.000031->018001.000010, 018001.000031->018001.000011, 018001.000031->018001.000012, 018001.000031->018001.000013, 018001.000031->018001.000014, 018001.000031->018001.000015, 018001.000039->018001.000002, 018001.000039->018001.000003, 018001.000039->018001.000004, 018001.000039->018001.000005, 018001.000039->018001.000016, 018001.000039->018001.000017, 018001.000039->018001.000018, 018001.000039->018001.000021, 018001.000039->018001.000022, 018001.000039->018001.000023, 018001.000039->018001.000025, 018001.000039->018001.000026, 018001.000039->018001.000027, 018001.000039->018001.000029, 018001.000039->018001.000030, 018001.000039->018001.000031.
+""",
+)
+
+entry(
+    index = 1133,
+    label = "Ar + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(1S0) -> e + Ar(5p'[1/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.13067508283280213,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 33; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 33. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000016->018001.000006, 018001.000016->018001.000009, 018001.000016->018001.000012, 018001.000016->018001.000014, 018001.000017->018001.000001, 018001.000017->018001.000006, 018001.000017->018001.000008, 018001.000017->018001.000009, 018001.000017->018001.000010, 018001.000017->018001.000011, 018001.000017->018001.000012, 018001.000017->018001.000013, 018001.000017->018001.000014, 018001.000017->018001.000015, 018001.000018->018001.000006, 018001.000018->018001.000007, 018001.000018->018001.000008, 018001.000018->018001.000009, 018001.000018->018001.000010, 018001.000018->018001.000012, 018001.000018->018001.000013, 018001.000018->018001.000014, 018001.000021->018001.000006, 018001.000021->018001.000007, 018001.000021->018001.000008, 018001.000021->018001.000009, 018001.000021->018001.000010, 018001.000021->018001.000012, 018001.000021->018001.000013, 018001.000021->018001.000014, 018001.000022->018001.000006, 018001.000022->018001.000007, 018001.000022->018001.000008, 018001.000022->018001.000009, 018001.000022->018001.000010, 018001.000022->018001.000012, 018001.000022->018001.000013, 018001.000022->018001.000014, 018001.000023->018001.000001, 018001.000023->018001.000006, 018001.000023->018001.000008, 018001.000023->018001.000009, 018001.000023->018001.000010, 018001.000023->018001.000011, 018001.000023->018001.000012, 018001.000023->018001.000013, 018001.000023->018001.000014, 018001.000023->018001.000015, 018001.000025->018001.000001, 018001.000025->018001.000006, 018001.000025->018001.000008, 018001.000025->018001.000009, 018001.000025->018001.000010, 018001.000025->018001.000011, 018001.000025->018001.000012, 018001.000025->018001.000013, 018001.000025->018001.000014, 018001.000025->018001.000015, 018001.000026->018001.000006, 018001.000026->018001.000007, 018001.000026->018001.000008, 018001.000026->018001.000009, 018001.000026->018001.000010, 018001.000026->018001.000012, 018001.000026->018001.000013, 018001.000026->018001.000014, 018001.000027->018001.000006, 018001.000027->018001.000007, 018001.000027->018001.000008, 018001.000027->018001.000009, 018001.000027->018001.000010, 018001.000027->018001.000012, 018001.000027->018001.000013, 018001.000027->018001.000014, 018001.000029->018001.000006, 018001.000029->018001.000009, 018001.000029->018001.000012, 018001.000029->018001.000014, 018001.000030->018001.000001, 018001.000030->018001.000006, 018001.000030->018001.000008, 018001.000030->018001.000009, 018001.000030->018001.000010, 018001.000030->018001.000011, 018001.000030->018001.000012, 018001.000030->018001.000013, 018001.000030->018001.000014, 018001.000030->018001.000015, 018001.000031->018001.000001, 018001.000031->018001.000006, 018001.000031->018001.000008, 018001.000031->018001.000009, 018001.000031->018001.000010, 018001.000031->018001.000011, 018001.000031->018001.000012, 018001.000031->018001.000013, 018001.000031->018001.000014, 018001.000031->018001.000015, 018001.000039->018001.000002, 018001.000039->018001.000003, 018001.000039->018001.000004, 018001.000039->018001.000005, 018001.000039->018001.000016, 018001.000039->018001.000017, 018001.000039->018001.000018, 018001.000039->018001.000021, 018001.000039->018001.000022, 018001.000039->018001.000023, 018001.000039->018001.000025, 018001.000039->018001.000026, 018001.000039->018001.000027, 018001.000039->018001.000029, 018001.000039->018001.000030, 018001.000039->018001.000031.
+""",
+)
+
+entry(
+    index = 1134,
+    label = "Ar + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(1S0) -> e + Ar(5p'[1/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.2373346598691178,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 33; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 33. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000016->018001.000006, 018001.000016->018001.000009, 018001.000016->018001.000012, 018001.000016->018001.000014, 018001.000017->018001.000001, 018001.000017->018001.000006, 018001.000017->018001.000008, 018001.000017->018001.000009, 018001.000017->018001.000010, 018001.000017->018001.000011, 018001.000017->018001.000012, 018001.000017->018001.000013, 018001.000017->018001.000014, 018001.000017->018001.000015, 018001.000018->018001.000006, 018001.000018->018001.000007, 018001.000018->018001.000008, 018001.000018->018001.000009, 018001.000018->018001.000010, 018001.000018->018001.000012, 018001.000018->018001.000013, 018001.000018->018001.000014, 018001.000021->018001.000006, 018001.000021->018001.000007, 018001.000021->018001.000008, 018001.000021->018001.000009, 018001.000021->018001.000010, 018001.000021->018001.000012, 018001.000021->018001.000013, 018001.000021->018001.000014, 018001.000022->018001.000006, 018001.000022->018001.000007, 018001.000022->018001.000008, 018001.000022->018001.000009, 018001.000022->018001.000010, 018001.000022->018001.000012, 018001.000022->018001.000013, 018001.000022->018001.000014, 018001.000023->018001.000001, 018001.000023->018001.000006, 018001.000023->018001.000008, 018001.000023->018001.000009, 018001.000023->018001.000010, 018001.000023->018001.000011, 018001.000023->018001.000012, 018001.000023->018001.000013, 018001.000023->018001.000014, 018001.000023->018001.000015, 018001.000025->018001.000001, 018001.000025->018001.000006, 018001.000025->018001.000008, 018001.000025->018001.000009, 018001.000025->018001.000010, 018001.000025->018001.000011, 018001.000025->018001.000012, 018001.000025->018001.000013, 018001.000025->018001.000014, 018001.000025->018001.000015, 018001.000026->018001.000006, 018001.000026->018001.000007, 018001.000026->018001.000008, 018001.000026->018001.000009, 018001.000026->018001.000010, 018001.000026->018001.000012, 018001.000026->018001.000013, 018001.000026->018001.000014, 018001.000027->018001.000006, 018001.000027->018001.000007, 018001.000027->018001.000008, 018001.000027->018001.000009, 018001.000027->018001.000010, 018001.000027->018001.000012, 018001.000027->018001.000013, 018001.000027->018001.000014, 018001.000029->018001.000006, 018001.000029->018001.000009, 018001.000029->018001.000012, 018001.000029->018001.000014, 018001.000030->018001.000001, 018001.000030->018001.000006, 018001.000030->018001.000008, 018001.000030->018001.000009, 018001.000030->018001.000010, 018001.000030->018001.000011, 018001.000030->018001.000012, 018001.000030->018001.000013, 018001.000030->018001.000014, 018001.000030->018001.000015, 018001.000031->018001.000001, 018001.000031->018001.000006, 018001.000031->018001.000008, 018001.000031->018001.000009, 018001.000031->018001.000010, 018001.000031->018001.000011, 018001.000031->018001.000012, 018001.000031->018001.000013, 018001.000031->018001.000014, 018001.000031->018001.000015, 018001.000039->018001.000002, 018001.000039->018001.000003, 018001.000039->018001.000004, 018001.000039->018001.000005, 018001.000039->018001.000016, 018001.000039->018001.000017, 018001.000039->018001.000018, 018001.000039->018001.000021, 018001.000039->018001.000022, 018001.000039->018001.000023, 018001.000039->018001.000025, 018001.000039->018001.000026, 018001.000039->018001.000027, 018001.000039->018001.000029, 018001.000039->018001.000030, 018001.000039->018001.000031.
+""",
+)
+
+entry(
+    index = 1135,
+    label = "Ar + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(1S0) -> e + Ar(5p'[1/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.35417264057311604,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 33; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 33. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000016->018001.000006, 018001.000016->018001.000009, 018001.000016->018001.000012, 018001.000016->018001.000014, 018001.000017->018001.000001, 018001.000017->018001.000006, 018001.000017->018001.000008, 018001.000017->018001.000009, 018001.000017->018001.000010, 018001.000017->018001.000011, 018001.000017->018001.000012, 018001.000017->018001.000013, 018001.000017->018001.000014, 018001.000017->018001.000015, 018001.000018->018001.000006, 018001.000018->018001.000007, 018001.000018->018001.000008, 018001.000018->018001.000009, 018001.000018->018001.000010, 018001.000018->018001.000012, 018001.000018->018001.000013, 018001.000018->018001.000014, 018001.000021->018001.000006, 018001.000021->018001.000007, 018001.000021->018001.000008, 018001.000021->018001.000009, 018001.000021->018001.000010, 018001.000021->018001.000012, 018001.000021->018001.000013, 018001.000021->018001.000014, 018001.000022->018001.000006, 018001.000022->018001.000007, 018001.000022->018001.000008, 018001.000022->018001.000009, 018001.000022->018001.000010, 018001.000022->018001.000012, 018001.000022->018001.000013, 018001.000022->018001.000014, 018001.000023->018001.000001, 018001.000023->018001.000006, 018001.000023->018001.000008, 018001.000023->018001.000009, 018001.000023->018001.000010, 018001.000023->018001.000011, 018001.000023->018001.000012, 018001.000023->018001.000013, 018001.000023->018001.000014, 018001.000023->018001.000015, 018001.000025->018001.000001, 018001.000025->018001.000006, 018001.000025->018001.000008, 018001.000025->018001.000009, 018001.000025->018001.000010, 018001.000025->018001.000011, 018001.000025->018001.000012, 018001.000025->018001.000013, 018001.000025->018001.000014, 018001.000025->018001.000015, 018001.000026->018001.000006, 018001.000026->018001.000007, 018001.000026->018001.000008, 018001.000026->018001.000009, 018001.000026->018001.000010, 018001.000026->018001.000012, 018001.000026->018001.000013, 018001.000026->018001.000014, 018001.000027->018001.000006, 018001.000027->018001.000007, 018001.000027->018001.000008, 018001.000027->018001.000009, 018001.000027->018001.000010, 018001.000027->018001.000012, 018001.000027->018001.000013, 018001.000027->018001.000014, 018001.000029->018001.000006, 018001.000029->018001.000009, 018001.000029->018001.000012, 018001.000029->018001.000014, 018001.000030->018001.000001, 018001.000030->018001.000006, 018001.000030->018001.000008, 018001.000030->018001.000009, 018001.000030->018001.000010, 018001.000030->018001.000011, 018001.000030->018001.000012, 018001.000030->018001.000013, 018001.000030->018001.000014, 018001.000030->018001.000015, 018001.000031->018001.000001, 018001.000031->018001.000006, 018001.000031->018001.000008, 018001.000031->018001.000009, 018001.000031->018001.000010, 018001.000031->018001.000011, 018001.000031->018001.000012, 018001.000031->018001.000013, 018001.000031->018001.000014, 018001.000031->018001.000015, 018001.000039->018001.000002, 018001.000039->018001.000003, 018001.000039->018001.000004, 018001.000039->018001.000005, 018001.000039->018001.000016, 018001.000039->018001.000017, 018001.000039->018001.000018, 018001.000039->018001.000021, 018001.000039->018001.000022, 018001.000039->018001.000023, 018001.000039->018001.000025, 018001.000039->018001.000026, 018001.000039->018001.000027, 018001.000039->018001.000029, 018001.000039->018001.000030, 018001.000039->018001.000031.
+""",
+)
+
+entry(
+    index = 1136,
+    label = "Ar + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(1S0) -> e + Ar(5p'[3/2]2), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.25149019311380744,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 34; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 34. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000017->018001.000001, 018001.000017->018001.000006, 018001.000017->018001.000008, 018001.000017->018001.000009, 018001.000017->018001.000010, 018001.000017->018001.000011, 018001.000017->018001.000012, 018001.000017->018001.000013, 018001.000017->018001.000014, 018001.000017->018001.000015, 018001.000018->018001.000006, 018001.000018->018001.000007, 018001.000018->018001.000008, 018001.000018->018001.000009, 018001.000018->018001.000010, 018001.000018->018001.000012, 018001.000018->018001.000013, 018001.000018->018001.000014, 018001.000020->018001.000007, 018001.000020->018001.000008, 018001.000020->018001.000010, 018001.000020->018001.000013, 018001.000021->018001.000006, 018001.000021->018001.000007, 018001.000021->018001.000008, 018001.000021->018001.000009, 018001.000021->018001.000010, 018001.000021->018001.000012, 018001.000021->018001.000013, 018001.000021->018001.000014, 018001.000022->018001.000006, 018001.000022->018001.000007, 018001.000022->018001.000008, 018001.000022->018001.000009, 018001.000022->018001.000010, 018001.000022->018001.000012, 018001.000022->018001.000013, 018001.000022->018001.000014, 018001.000023->018001.000001, 018001.000023->018001.000006, 018001.000023->018001.000008, 018001.000023->018001.000009, 018001.000023->018001.000010, 018001.000023->018001.000011, 018001.000023->018001.000012, 018001.000023->018001.000013, 018001.000023->018001.000014, 018001.000023->018001.000015, 018001.000024->018001.000007, 018001.000024->018001.000008, 018001.000024->018001.000010, 018001.000024->018001.000013, 018001.000025->018001.000001, 018001.000025->018001.000006, 018001.000025->018001.000008, 018001.000025->018001.000009, 018001.000025->018001.000010, 018001.000025->018001.000011, 018001.000025->018001.000012, 018001.000025->018001.000013, 018001.000025->018001.000014, 018001.000025->018001.000015, 018001.000026->018001.000006, 018001.000026->018001.000007, 018001.000026->018001.000008, 018001.000026->018001.000009, 018001.000026->018001.000010, 018001.000026->018001.000012, 018001.000026->018001.000013, 018001.000026->018001.000014, 018001.000027->018001.000006, 018001.000027->018001.000007, 018001.000027->018001.000008, 018001.000027->018001.000009, 018001.000027->018001.000010, 018001.000027->018001.000012, 018001.000027->018001.000013, 018001.000027->018001.000014, 018001.000028->018001.000007, 018001.000028->018001.000008, 018001.000028->018001.000010, 018001.000028->018001.000013, 018001.000030->018001.000001, 018001.000030->018001.000006, 018001.000030->018001.000008, 018001.000030->018001.000009, 018001.000030->018001.000010, 018001.000030->018001.000011, 018001.000030->018001.000012, 018001.000030->018001.000013, 018001.000030->018001.000014, 018001.000030->018001.000015, 018001.000031->018001.000001, 018001.000031->018001.000006, 018001.000031->018001.000008, 018001.000031->018001.000009, 018001.000031->018001.000010, 018001.000031->018001.000011, 018001.000031->018001.000012, 018001.000031->018001.000013, 018001.000031->018001.000014, 018001.000031->018001.000015, 018001.000040->018001.000002, 018001.000040->018001.000003, 018001.000040->018001.000005, 018001.000040->018001.000017, 018001.000040->018001.000018, 018001.000040->018001.000020, 018001.000040->018001.000021, 018001.000040->018001.000022, 018001.000040->018001.000023, 018001.000040->018001.000024, 018001.000040->018001.000025, 018001.000040->018001.000026, 018001.000040->018001.000027, 018001.000040->018001.000028, 018001.000040->018001.000030, 018001.000040->018001.000031.
+""",
+)
+
+entry(
+    index = 1137,
+    label = "Ar + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(1S0) -> e + Ar(5p'[3/2]2), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.22592134485191623,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 34; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 34. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000017->018001.000001, 018001.000017->018001.000006, 018001.000017->018001.000008, 018001.000017->018001.000009, 018001.000017->018001.000010, 018001.000017->018001.000011, 018001.000017->018001.000012, 018001.000017->018001.000013, 018001.000017->018001.000014, 018001.000017->018001.000015, 018001.000018->018001.000006, 018001.000018->018001.000007, 018001.000018->018001.000008, 018001.000018->018001.000009, 018001.000018->018001.000010, 018001.000018->018001.000012, 018001.000018->018001.000013, 018001.000018->018001.000014, 018001.000020->018001.000007, 018001.000020->018001.000008, 018001.000020->018001.000010, 018001.000020->018001.000013, 018001.000021->018001.000006, 018001.000021->018001.000007, 018001.000021->018001.000008, 018001.000021->018001.000009, 018001.000021->018001.000010, 018001.000021->018001.000012, 018001.000021->018001.000013, 018001.000021->018001.000014, 018001.000022->018001.000006, 018001.000022->018001.000007, 018001.000022->018001.000008, 018001.000022->018001.000009, 018001.000022->018001.000010, 018001.000022->018001.000012, 018001.000022->018001.000013, 018001.000022->018001.000014, 018001.000023->018001.000001, 018001.000023->018001.000006, 018001.000023->018001.000008, 018001.000023->018001.000009, 018001.000023->018001.000010, 018001.000023->018001.000011, 018001.000023->018001.000012, 018001.000023->018001.000013, 018001.000023->018001.000014, 018001.000023->018001.000015, 018001.000024->018001.000007, 018001.000024->018001.000008, 018001.000024->018001.000010, 018001.000024->018001.000013, 018001.000025->018001.000001, 018001.000025->018001.000006, 018001.000025->018001.000008, 018001.000025->018001.000009, 018001.000025->018001.000010, 018001.000025->018001.000011, 018001.000025->018001.000012, 018001.000025->018001.000013, 018001.000025->018001.000014, 018001.000025->018001.000015, 018001.000026->018001.000006, 018001.000026->018001.000007, 018001.000026->018001.000008, 018001.000026->018001.000009, 018001.000026->018001.000010, 018001.000026->018001.000012, 018001.000026->018001.000013, 018001.000026->018001.000014, 018001.000027->018001.000006, 018001.000027->018001.000007, 018001.000027->018001.000008, 018001.000027->018001.000009, 018001.000027->018001.000010, 018001.000027->018001.000012, 018001.000027->018001.000013, 018001.000027->018001.000014, 018001.000028->018001.000007, 018001.000028->018001.000008, 018001.000028->018001.000010, 018001.000028->018001.000013, 018001.000030->018001.000001, 018001.000030->018001.000006, 018001.000030->018001.000008, 018001.000030->018001.000009, 018001.000030->018001.000010, 018001.000030->018001.000011, 018001.000030->018001.000012, 018001.000030->018001.000013, 018001.000030->018001.000014, 018001.000030->018001.000015, 018001.000031->018001.000001, 018001.000031->018001.000006, 018001.000031->018001.000008, 018001.000031->018001.000009, 018001.000031->018001.000010, 018001.000031->018001.000011, 018001.000031->018001.000012, 018001.000031->018001.000013, 018001.000031->018001.000014, 018001.000031->018001.000015, 018001.000040->018001.000002, 018001.000040->018001.000003, 018001.000040->018001.000005, 018001.000040->018001.000017, 018001.000040->018001.000018, 018001.000040->018001.000020, 018001.000040->018001.000021, 018001.000040->018001.000022, 018001.000040->018001.000023, 018001.000040->018001.000024, 018001.000040->018001.000025, 018001.000040->018001.000026, 018001.000040->018001.000027, 018001.000040->018001.000028, 018001.000040->018001.000030, 018001.000040->018001.000031.
+""",
+)
+
+entry(
+    index = 1138,
+    label = "Ar + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(1S0) -> e + Ar(5p'[3/2]2), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.0689444008924506,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 34; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 34. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000017->018001.000001, 018001.000017->018001.000006, 018001.000017->018001.000008, 018001.000017->018001.000009, 018001.000017->018001.000010, 018001.000017->018001.000011, 018001.000017->018001.000012, 018001.000017->018001.000013, 018001.000017->018001.000014, 018001.000017->018001.000015, 018001.000018->018001.000006, 018001.000018->018001.000007, 018001.000018->018001.000008, 018001.000018->018001.000009, 018001.000018->018001.000010, 018001.000018->018001.000012, 018001.000018->018001.000013, 018001.000018->018001.000014, 018001.000020->018001.000007, 018001.000020->018001.000008, 018001.000020->018001.000010, 018001.000020->018001.000013, 018001.000021->018001.000006, 018001.000021->018001.000007, 018001.000021->018001.000008, 018001.000021->018001.000009, 018001.000021->018001.000010, 018001.000021->018001.000012, 018001.000021->018001.000013, 018001.000021->018001.000014, 018001.000022->018001.000006, 018001.000022->018001.000007, 018001.000022->018001.000008, 018001.000022->018001.000009, 018001.000022->018001.000010, 018001.000022->018001.000012, 018001.000022->018001.000013, 018001.000022->018001.000014, 018001.000023->018001.000001, 018001.000023->018001.000006, 018001.000023->018001.000008, 018001.000023->018001.000009, 018001.000023->018001.000010, 018001.000023->018001.000011, 018001.000023->018001.000012, 018001.000023->018001.000013, 018001.000023->018001.000014, 018001.000023->018001.000015, 018001.000024->018001.000007, 018001.000024->018001.000008, 018001.000024->018001.000010, 018001.000024->018001.000013, 018001.000025->018001.000001, 018001.000025->018001.000006, 018001.000025->018001.000008, 018001.000025->018001.000009, 018001.000025->018001.000010, 018001.000025->018001.000011, 018001.000025->018001.000012, 018001.000025->018001.000013, 018001.000025->018001.000014, 018001.000025->018001.000015, 018001.000026->018001.000006, 018001.000026->018001.000007, 018001.000026->018001.000008, 018001.000026->018001.000009, 018001.000026->018001.000010, 018001.000026->018001.000012, 018001.000026->018001.000013, 018001.000026->018001.000014, 018001.000027->018001.000006, 018001.000027->018001.000007, 018001.000027->018001.000008, 018001.000027->018001.000009, 018001.000027->018001.000010, 018001.000027->018001.000012, 018001.000027->018001.000013, 018001.000027->018001.000014, 018001.000028->018001.000007, 018001.000028->018001.000008, 018001.000028->018001.000010, 018001.000028->018001.000013, 018001.000030->018001.000001, 018001.000030->018001.000006, 018001.000030->018001.000008, 018001.000030->018001.000009, 018001.000030->018001.000010, 018001.000030->018001.000011, 018001.000030->018001.000012, 018001.000030->018001.000013, 018001.000030->018001.000014, 018001.000030->018001.000015, 018001.000031->018001.000001, 018001.000031->018001.000006, 018001.000031->018001.000008, 018001.000031->018001.000009, 018001.000031->018001.000010, 018001.000031->018001.000011, 018001.000031->018001.000012, 018001.000031->018001.000013, 018001.000031->018001.000014, 018001.000031->018001.000015, 018001.000040->018001.000002, 018001.000040->018001.000003, 018001.000040->018001.000005, 018001.000040->018001.000017, 018001.000040->018001.000018, 018001.000040->018001.000020, 018001.000040->018001.000021, 018001.000040->018001.000022, 018001.000040->018001.000023, 018001.000040->018001.000024, 018001.000040->018001.000025, 018001.000040->018001.000026, 018001.000040->018001.000027, 018001.000040->018001.000028, 018001.000040->018001.000030, 018001.000040->018001.000031.
+""",
+)
+
+entry(
+    index = 1139,
+    label = "Ar + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(1S0) -> e + Ar(5p'[3/2]2), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.45364406114182565,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 34; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 34. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000017->018001.000001, 018001.000017->018001.000006, 018001.000017->018001.000008, 018001.000017->018001.000009, 018001.000017->018001.000010, 018001.000017->018001.000011, 018001.000017->018001.000012, 018001.000017->018001.000013, 018001.000017->018001.000014, 018001.000017->018001.000015, 018001.000018->018001.000006, 018001.000018->018001.000007, 018001.000018->018001.000008, 018001.000018->018001.000009, 018001.000018->018001.000010, 018001.000018->018001.000012, 018001.000018->018001.000013, 018001.000018->018001.000014, 018001.000020->018001.000007, 018001.000020->018001.000008, 018001.000020->018001.000010, 018001.000020->018001.000013, 018001.000021->018001.000006, 018001.000021->018001.000007, 018001.000021->018001.000008, 018001.000021->018001.000009, 018001.000021->018001.000010, 018001.000021->018001.000012, 018001.000021->018001.000013, 018001.000021->018001.000014, 018001.000022->018001.000006, 018001.000022->018001.000007, 018001.000022->018001.000008, 018001.000022->018001.000009, 018001.000022->018001.000010, 018001.000022->018001.000012, 018001.000022->018001.000013, 018001.000022->018001.000014, 018001.000023->018001.000001, 018001.000023->018001.000006, 018001.000023->018001.000008, 018001.000023->018001.000009, 018001.000023->018001.000010, 018001.000023->018001.000011, 018001.000023->018001.000012, 018001.000023->018001.000013, 018001.000023->018001.000014, 018001.000023->018001.000015, 018001.000024->018001.000007, 018001.000024->018001.000008, 018001.000024->018001.000010, 018001.000024->018001.000013, 018001.000025->018001.000001, 018001.000025->018001.000006, 018001.000025->018001.000008, 018001.000025->018001.000009, 018001.000025->018001.000010, 018001.000025->018001.000011, 018001.000025->018001.000012, 018001.000025->018001.000013, 018001.000025->018001.000014, 018001.000025->018001.000015, 018001.000026->018001.000006, 018001.000026->018001.000007, 018001.000026->018001.000008, 018001.000026->018001.000009, 018001.000026->018001.000010, 018001.000026->018001.000012, 018001.000026->018001.000013, 018001.000026->018001.000014, 018001.000027->018001.000006, 018001.000027->018001.000007, 018001.000027->018001.000008, 018001.000027->018001.000009, 018001.000027->018001.000010, 018001.000027->018001.000012, 018001.000027->018001.000013, 018001.000027->018001.000014, 018001.000028->018001.000007, 018001.000028->018001.000008, 018001.000028->018001.000010, 018001.000028->018001.000013, 018001.000030->018001.000001, 018001.000030->018001.000006, 018001.000030->018001.000008, 018001.000030->018001.000009, 018001.000030->018001.000010, 018001.000030->018001.000011, 018001.000030->018001.000012, 018001.000030->018001.000013, 018001.000030->018001.000014, 018001.000030->018001.000015, 018001.000031->018001.000001, 018001.000031->018001.000006, 018001.000031->018001.000008, 018001.000031->018001.000009, 018001.000031->018001.000010, 018001.000031->018001.000011, 018001.000031->018001.000012, 018001.000031->018001.000013, 018001.000031->018001.000014, 018001.000031->018001.000015, 018001.000040->018001.000002, 018001.000040->018001.000003, 018001.000040->018001.000005, 018001.000040->018001.000017, 018001.000040->018001.000018, 018001.000040->018001.000020, 018001.000040->018001.000021, 018001.000040->018001.000022, 018001.000040->018001.000023, 018001.000040->018001.000024, 018001.000040->018001.000025, 018001.000040->018001.000026, 018001.000040->018001.000027, 018001.000040->018001.000028, 018001.000040->018001.000030, 018001.000040->018001.000031.
+""",
+)
+
+entry(
+    index = 1140,
+    label = "Ar + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(1S0) -> e + Ar(5p'[1/2]0), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.11471649080530245,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 35; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 35. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000016->018001.000006, 018001.000016->018001.000009, 018001.000016->018001.000012, 018001.000016->018001.000014, 018001.000017->018001.000001, 018001.000017->018001.000006, 018001.000017->018001.000008, 018001.000017->018001.000009, 018001.000017->018001.000010, 018001.000017->018001.000011, 018001.000017->018001.000012, 018001.000017->018001.000013, 018001.000017->018001.000014, 018001.000017->018001.000015, 018001.000018->018001.000006, 018001.000018->018001.000007, 018001.000018->018001.000008, 018001.000018->018001.000009, 018001.000018->018001.000010, 018001.000018->018001.000012, 018001.000018->018001.000013, 018001.000018->018001.000014, 018001.000020->018001.000007, 018001.000020->018001.000008, 018001.000020->018001.000010, 018001.000020->018001.000013, 018001.000021->018001.000006, 018001.000021->018001.000007, 018001.000021->018001.000008, 018001.000021->018001.000009, 018001.000021->018001.000010, 018001.000021->018001.000012, 018001.000021->018001.000013, 018001.000021->018001.000014, 018001.000022->018001.000006, 018001.000022->018001.000007, 018001.000022->018001.000008, 018001.000022->018001.000009, 018001.000022->018001.000010, 018001.000022->018001.000012, 018001.000022->018001.000013, 018001.000022->018001.000014, 018001.000023->018001.000001, 018001.000023->018001.000006, 018001.000023->018001.000008, 018001.000023->018001.000009, 018001.000023->018001.000010, 018001.000023->018001.000011, 018001.000023->018001.000012, 018001.000023->018001.000013, 018001.000023->018001.000014, 018001.000023->018001.000015, 018001.000024->018001.000007, 018001.000024->018001.000008, 018001.000024->018001.000010, 018001.000024->018001.000013, 018001.000025->018001.000001, 018001.000025->018001.000006, 018001.000025->018001.000008, 018001.000025->018001.000009, 018001.000025->018001.000010, 018001.000025->018001.000011, 018001.000025->018001.000012, 018001.000025->018001.000013, 018001.000025->018001.000014, 018001.000025->018001.000015, 018001.000026->018001.000006, 018001.000026->018001.000007, 018001.000026->018001.000008, 018001.000026->018001.000009, 018001.000026->018001.000010, 018001.000026->018001.000012, 018001.000026->018001.000013, 018001.000026->018001.000014, 018001.000027->018001.000006, 018001.000027->018001.000007, 018001.000027->018001.000008, 018001.000027->018001.000009, 018001.000027->018001.000010, 018001.000027->018001.000012, 018001.000027->018001.000013, 018001.000027->018001.000014, 018001.000028->018001.000007, 018001.000028->018001.000008, 018001.000028->018001.000010, 018001.000028->018001.000013, 018001.000029->018001.000006, 018001.000029->018001.000009, 018001.000029->018001.000012, 018001.000029->018001.000014, 018001.000030->018001.000001, 018001.000030->018001.000006, 018001.000030->018001.000008, 018001.000030->018001.000009, 018001.000030->018001.000010, 018001.000030->018001.000011, 018001.000030->018001.000012, 018001.000030->018001.000013, 018001.000030->018001.000014, 018001.000030->018001.000015, 018001.000031->018001.000001, 018001.000031->018001.000006, 018001.000031->018001.000008, 018001.000031->018001.000009, 018001.000031->018001.000010, 018001.000031->018001.000011, 018001.000031->018001.000012, 018001.000031->018001.000013, 018001.000031->018001.000014, 018001.000031->018001.000015, 018001.000032->018001.000002, 018001.000032->018001.000003, 018001.000032->018001.000004, 018001.000032->018001.000005, 018001.000032->018001.000016, 018001.000032->018001.000017, 018001.000032->018001.000018, 018001.000032->018001.000021, 018001.000032->018001.000022, 018001.000032->018001.000023, 018001.000032->018001.000025, 018001.000032->018001.000026, 018001.000032->018001.000027, 018001.000032->018001.000029, 018001.000032->018001.000030, 018001.000032->018001.000031, 018001.000034->018001.000002, 018001.000034->018001.000003, 018001.000034->018001.000005, 018001.000034->018001.000017, 018001.000034->018001.000018, 018001.000034->018001.000020, 018001.000034->018001.000021, 018001.000034->018001.000022, 018001.000034->018001.000023, 018001.000034->018001.000024, 018001.000034->018001.000025, 018001.000034->018001.000026, 018001.000034->018001.000027, 018001.000034->018001.000028, 018001.000034->018001.000030, 018001.000034->018001.000031, 018001.000035->018001.000002, 018001.000035->018001.000003, 018001.000035->018001.000004, 018001.000035->018001.000005, 018001.000035->018001.000016, 018001.000035->018001.000017, 018001.000035->018001.000018, 018001.000035->018001.000021, 018001.000035->018001.000022, 018001.000035->018001.000023, 018001.000035->018001.000025, 018001.000035->018001.000026, 018001.000035->018001.000027, 018001.000035->018001.000029, 018001.000035->018001.000030, 018001.000035->018001.000031, 018001.000036->018001.000002, 018001.000036->018001.000003, 018001.000036->018001.000005, 018001.000036->018001.000017, 018001.000036->018001.000018, 018001.000036->018001.000020, 018001.000036->018001.000021, 018001.000036->018001.000022, 018001.000036->018001.000023, 018001.000036->018001.000024, 018001.000036->018001.000025, 018001.000036->018001.000026, 018001.000036->018001.000027, 018001.000036->018001.000028, 018001.000036->018001.000030, 018001.000036->018001.000031, 018001.000037->018001.000003, 018001.000037->018001.000005, 018001.000037->018001.000017, 018001.000037->018001.000023, 018001.000037->018001.000025, 018001.000037->018001.000030, 018001.000037->018001.000031, 018001.000038->018001.000002, 018001.000038->018001.000003, 018001.000038->018001.000004, 018001.000038->018001.000005, 018001.000038->018001.000016, 018001.000038->018001.000017, 018001.000038->018001.000018, 018001.000038->018001.000021, 018001.000038->018001.000022, 018001.000038->018001.000023, 018001.000038->018001.000025, 018001.000038->018001.000026, 018001.000038->018001.000027, 018001.000038->018001.000029, 018001.000038->018001.000030, 018001.000038->018001.000031, 018001.000039->018001.000002, 018001.000039->018001.000003, 018001.000039->018001.000004, 018001.000039->018001.000005, 018001.000039->018001.000016, 018001.000039->018001.000017, 018001.000039->018001.000018, 018001.000039->018001.000021, 018001.000039->018001.000022, 018001.000039->018001.000023, 018001.000039->018001.000025, 018001.000039->018001.000026, 018001.000039->018001.000027, 018001.000039->018001.000029, 018001.000039->018001.000030, 018001.000039->018001.000031, 018001.000040->018001.000002, 018001.000040->018001.000003, 018001.000040->018001.000005, 018001.000040->018001.000017, 018001.000040->018001.000018, 018001.000040->018001.000020, 018001.000040->018001.000021, 018001.000040->018001.000022, 018001.000040->018001.000023, 018001.000040->018001.000024, 018001.000040->018001.000025, 018001.000040->018001.000026, 018001.000040->018001.000027, 018001.000040->018001.000028, 018001.000040->018001.000030, 018001.000040->018001.000031, 018001.000042->018001.000001, 018001.000042->018001.000006, 018001.000042->018001.000008, 018001.000042->018001.000009, 018001.000042->018001.000010, 018001.000042->018001.000011, 018001.000042->018001.000012, 018001.000042->018001.000013, 018001.000042->018001.000014, 018001.000042->018001.000015, 018001.000042->018001.000032, 018001.000042->018001.000034, 018001.000042->018001.000035, 018001.000042->018001.000036, 018001.000042->018001.000037, 018001.000042->018001.000038, 018001.000042->018001.000039, 018001.000042->018001.000040, 018001.000043->018001.000003, 018001.000043->018001.000005, 018001.000043->018001.000017, 018001.000043->018001.000023, 018001.000043->018001.000025, 018001.000043->018001.000030, 018001.000043->018001.000031, 018001.000043->018001.000042.
+""",
+)
+
+entry(
+    index = 1141,
+    label = "Ar + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(1S0) -> e + Ar(5p'[1/2]0), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.14364014819721868,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 35; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 35. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000016->018001.000006, 018001.000016->018001.000009, 018001.000016->018001.000012, 018001.000016->018001.000014, 018001.000017->018001.000001, 018001.000017->018001.000006, 018001.000017->018001.000008, 018001.000017->018001.000009, 018001.000017->018001.000010, 018001.000017->018001.000011, 018001.000017->018001.000012, 018001.000017->018001.000013, 018001.000017->018001.000014, 018001.000017->018001.000015, 018001.000018->018001.000006, 018001.000018->018001.000007, 018001.000018->018001.000008, 018001.000018->018001.000009, 018001.000018->018001.000010, 018001.000018->018001.000012, 018001.000018->018001.000013, 018001.000018->018001.000014, 018001.000020->018001.000007, 018001.000020->018001.000008, 018001.000020->018001.000010, 018001.000020->018001.000013, 018001.000021->018001.000006, 018001.000021->018001.000007, 018001.000021->018001.000008, 018001.000021->018001.000009, 018001.000021->018001.000010, 018001.000021->018001.000012, 018001.000021->018001.000013, 018001.000021->018001.000014, 018001.000022->018001.000006, 018001.000022->018001.000007, 018001.000022->018001.000008, 018001.000022->018001.000009, 018001.000022->018001.000010, 018001.000022->018001.000012, 018001.000022->018001.000013, 018001.000022->018001.000014, 018001.000023->018001.000001, 018001.000023->018001.000006, 018001.000023->018001.000008, 018001.000023->018001.000009, 018001.000023->018001.000010, 018001.000023->018001.000011, 018001.000023->018001.000012, 018001.000023->018001.000013, 018001.000023->018001.000014, 018001.000023->018001.000015, 018001.000024->018001.000007, 018001.000024->018001.000008, 018001.000024->018001.000010, 018001.000024->018001.000013, 018001.000025->018001.000001, 018001.000025->018001.000006, 018001.000025->018001.000008, 018001.000025->018001.000009, 018001.000025->018001.000010, 018001.000025->018001.000011, 018001.000025->018001.000012, 018001.000025->018001.000013, 018001.000025->018001.000014, 018001.000025->018001.000015, 018001.000026->018001.000006, 018001.000026->018001.000007, 018001.000026->018001.000008, 018001.000026->018001.000009, 018001.000026->018001.000010, 018001.000026->018001.000012, 018001.000026->018001.000013, 018001.000026->018001.000014, 018001.000027->018001.000006, 018001.000027->018001.000007, 018001.000027->018001.000008, 018001.000027->018001.000009, 018001.000027->018001.000010, 018001.000027->018001.000012, 018001.000027->018001.000013, 018001.000027->018001.000014, 018001.000028->018001.000007, 018001.000028->018001.000008, 018001.000028->018001.000010, 018001.000028->018001.000013, 018001.000029->018001.000006, 018001.000029->018001.000009, 018001.000029->018001.000012, 018001.000029->018001.000014, 018001.000030->018001.000001, 018001.000030->018001.000006, 018001.000030->018001.000008, 018001.000030->018001.000009, 018001.000030->018001.000010, 018001.000030->018001.000011, 018001.000030->018001.000012, 018001.000030->018001.000013, 018001.000030->018001.000014, 018001.000030->018001.000015, 018001.000031->018001.000001, 018001.000031->018001.000006, 018001.000031->018001.000008, 018001.000031->018001.000009, 018001.000031->018001.000010, 018001.000031->018001.000011, 018001.000031->018001.000012, 018001.000031->018001.000013, 018001.000031->018001.000014, 018001.000031->018001.000015, 018001.000032->018001.000002, 018001.000032->018001.000003, 018001.000032->018001.000004, 018001.000032->018001.000005, 018001.000032->018001.000016, 018001.000032->018001.000017, 018001.000032->018001.000018, 018001.000032->018001.000021, 018001.000032->018001.000022, 018001.000032->018001.000023, 018001.000032->018001.000025, 018001.000032->018001.000026, 018001.000032->018001.000027, 018001.000032->018001.000029, 018001.000032->018001.000030, 018001.000032->018001.000031, 018001.000034->018001.000002, 018001.000034->018001.000003, 018001.000034->018001.000005, 018001.000034->018001.000017, 018001.000034->018001.000018, 018001.000034->018001.000020, 018001.000034->018001.000021, 018001.000034->018001.000022, 018001.000034->018001.000023, 018001.000034->018001.000024, 018001.000034->018001.000025, 018001.000034->018001.000026, 018001.000034->018001.000027, 018001.000034->018001.000028, 018001.000034->018001.000030, 018001.000034->018001.000031, 018001.000035->018001.000002, 018001.000035->018001.000003, 018001.000035->018001.000004, 018001.000035->018001.000005, 018001.000035->018001.000016, 018001.000035->018001.000017, 018001.000035->018001.000018, 018001.000035->018001.000021, 018001.000035->018001.000022, 018001.000035->018001.000023, 018001.000035->018001.000025, 018001.000035->018001.000026, 018001.000035->018001.000027, 018001.000035->018001.000029, 018001.000035->018001.000030, 018001.000035->018001.000031, 018001.000036->018001.000002, 018001.000036->018001.000003, 018001.000036->018001.000005, 018001.000036->018001.000017, 018001.000036->018001.000018, 018001.000036->018001.000020, 018001.000036->018001.000021, 018001.000036->018001.000022, 018001.000036->018001.000023, 018001.000036->018001.000024, 018001.000036->018001.000025, 018001.000036->018001.000026, 018001.000036->018001.000027, 018001.000036->018001.000028, 018001.000036->018001.000030, 018001.000036->018001.000031, 018001.000037->018001.000003, 018001.000037->018001.000005, 018001.000037->018001.000017, 018001.000037->018001.000023, 018001.000037->018001.000025, 018001.000037->018001.000030, 018001.000037->018001.000031, 018001.000038->018001.000002, 018001.000038->018001.000003, 018001.000038->018001.000004, 018001.000038->018001.000005, 018001.000038->018001.000016, 018001.000038->018001.000017, 018001.000038->018001.000018, 018001.000038->018001.000021, 018001.000038->018001.000022, 018001.000038->018001.000023, 018001.000038->018001.000025, 018001.000038->018001.000026, 018001.000038->018001.000027, 018001.000038->018001.000029, 018001.000038->018001.000030, 018001.000038->018001.000031, 018001.000039->018001.000002, 018001.000039->018001.000003, 018001.000039->018001.000004, 018001.000039->018001.000005, 018001.000039->018001.000016, 018001.000039->018001.000017, 018001.000039->018001.000018, 018001.000039->018001.000021, 018001.000039->018001.000022, 018001.000039->018001.000023, 018001.000039->018001.000025, 018001.000039->018001.000026, 018001.000039->018001.000027, 018001.000039->018001.000029, 018001.000039->018001.000030, 018001.000039->018001.000031, 018001.000040->018001.000002, 018001.000040->018001.000003, 018001.000040->018001.000005, 018001.000040->018001.000017, 018001.000040->018001.000018, 018001.000040->018001.000020, 018001.000040->018001.000021, 018001.000040->018001.000022, 018001.000040->018001.000023, 018001.000040->018001.000024, 018001.000040->018001.000025, 018001.000040->018001.000026, 018001.000040->018001.000027, 018001.000040->018001.000028, 018001.000040->018001.000030, 018001.000040->018001.000031, 018001.000042->018001.000001, 018001.000042->018001.000006, 018001.000042->018001.000008, 018001.000042->018001.000009, 018001.000042->018001.000010, 018001.000042->018001.000011, 018001.000042->018001.000012, 018001.000042->018001.000013, 018001.000042->018001.000014, 018001.000042->018001.000015, 018001.000042->018001.000032, 018001.000042->018001.000034, 018001.000042->018001.000035, 018001.000042->018001.000036, 018001.000042->018001.000037, 018001.000042->018001.000038, 018001.000042->018001.000039, 018001.000042->018001.000040, 018001.000043->018001.000003, 018001.000043->018001.000005, 018001.000043->018001.000017, 018001.000043->018001.000023, 018001.000043->018001.000025, 018001.000043->018001.000030, 018001.000043->018001.000031, 018001.000043->018001.000042.
+""",
+)
+
+entry(
+    index = 1142,
+    label = "Ar + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(1S0) -> e + Ar(5p'[1/2]0), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.08720952980743388,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 35; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 35. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000016->018001.000006, 018001.000016->018001.000009, 018001.000016->018001.000012, 018001.000016->018001.000014, 018001.000017->018001.000001, 018001.000017->018001.000006, 018001.000017->018001.000008, 018001.000017->018001.000009, 018001.000017->018001.000010, 018001.000017->018001.000011, 018001.000017->018001.000012, 018001.000017->018001.000013, 018001.000017->018001.000014, 018001.000017->018001.000015, 018001.000018->018001.000006, 018001.000018->018001.000007, 018001.000018->018001.000008, 018001.000018->018001.000009, 018001.000018->018001.000010, 018001.000018->018001.000012, 018001.000018->018001.000013, 018001.000018->018001.000014, 018001.000020->018001.000007, 018001.000020->018001.000008, 018001.000020->018001.000010, 018001.000020->018001.000013, 018001.000021->018001.000006, 018001.000021->018001.000007, 018001.000021->018001.000008, 018001.000021->018001.000009, 018001.000021->018001.000010, 018001.000021->018001.000012, 018001.000021->018001.000013, 018001.000021->018001.000014, 018001.000022->018001.000006, 018001.000022->018001.000007, 018001.000022->018001.000008, 018001.000022->018001.000009, 018001.000022->018001.000010, 018001.000022->018001.000012, 018001.000022->018001.000013, 018001.000022->018001.000014, 018001.000023->018001.000001, 018001.000023->018001.000006, 018001.000023->018001.000008, 018001.000023->018001.000009, 018001.000023->018001.000010, 018001.000023->018001.000011, 018001.000023->018001.000012, 018001.000023->018001.000013, 018001.000023->018001.000014, 018001.000023->018001.000015, 018001.000024->018001.000007, 018001.000024->018001.000008, 018001.000024->018001.000010, 018001.000024->018001.000013, 018001.000025->018001.000001, 018001.000025->018001.000006, 018001.000025->018001.000008, 018001.000025->018001.000009, 018001.000025->018001.000010, 018001.000025->018001.000011, 018001.000025->018001.000012, 018001.000025->018001.000013, 018001.000025->018001.000014, 018001.000025->018001.000015, 018001.000026->018001.000006, 018001.000026->018001.000007, 018001.000026->018001.000008, 018001.000026->018001.000009, 018001.000026->018001.000010, 018001.000026->018001.000012, 018001.000026->018001.000013, 018001.000026->018001.000014, 018001.000027->018001.000006, 018001.000027->018001.000007, 018001.000027->018001.000008, 018001.000027->018001.000009, 018001.000027->018001.000010, 018001.000027->018001.000012, 018001.000027->018001.000013, 018001.000027->018001.000014, 018001.000028->018001.000007, 018001.000028->018001.000008, 018001.000028->018001.000010, 018001.000028->018001.000013, 018001.000029->018001.000006, 018001.000029->018001.000009, 018001.000029->018001.000012, 018001.000029->018001.000014, 018001.000030->018001.000001, 018001.000030->018001.000006, 018001.000030->018001.000008, 018001.000030->018001.000009, 018001.000030->018001.000010, 018001.000030->018001.000011, 018001.000030->018001.000012, 018001.000030->018001.000013, 018001.000030->018001.000014, 018001.000030->018001.000015, 018001.000031->018001.000001, 018001.000031->018001.000006, 018001.000031->018001.000008, 018001.000031->018001.000009, 018001.000031->018001.000010, 018001.000031->018001.000011, 018001.000031->018001.000012, 018001.000031->018001.000013, 018001.000031->018001.000014, 018001.000031->018001.000015, 018001.000032->018001.000002, 018001.000032->018001.000003, 018001.000032->018001.000004, 018001.000032->018001.000005, 018001.000032->018001.000016, 018001.000032->018001.000017, 018001.000032->018001.000018, 018001.000032->018001.000021, 018001.000032->018001.000022, 018001.000032->018001.000023, 018001.000032->018001.000025, 018001.000032->018001.000026, 018001.000032->018001.000027, 018001.000032->018001.000029, 018001.000032->018001.000030, 018001.000032->018001.000031, 018001.000034->018001.000002, 018001.000034->018001.000003, 018001.000034->018001.000005, 018001.000034->018001.000017, 018001.000034->018001.000018, 018001.000034->018001.000020, 018001.000034->018001.000021, 018001.000034->018001.000022, 018001.000034->018001.000023, 018001.000034->018001.000024, 018001.000034->018001.000025, 018001.000034->018001.000026, 018001.000034->018001.000027, 018001.000034->018001.000028, 018001.000034->018001.000030, 018001.000034->018001.000031, 018001.000035->018001.000002, 018001.000035->018001.000003, 018001.000035->018001.000004, 018001.000035->018001.000005, 018001.000035->018001.000016, 018001.000035->018001.000017, 018001.000035->018001.000018, 018001.000035->018001.000021, 018001.000035->018001.000022, 018001.000035->018001.000023, 018001.000035->018001.000025, 018001.000035->018001.000026, 018001.000035->018001.000027, 018001.000035->018001.000029, 018001.000035->018001.000030, 018001.000035->018001.000031, 018001.000036->018001.000002, 018001.000036->018001.000003, 018001.000036->018001.000005, 018001.000036->018001.000017, 018001.000036->018001.000018, 018001.000036->018001.000020, 018001.000036->018001.000021, 018001.000036->018001.000022, 018001.000036->018001.000023, 018001.000036->018001.000024, 018001.000036->018001.000025, 018001.000036->018001.000026, 018001.000036->018001.000027, 018001.000036->018001.000028, 018001.000036->018001.000030, 018001.000036->018001.000031, 018001.000037->018001.000003, 018001.000037->018001.000005, 018001.000037->018001.000017, 018001.000037->018001.000023, 018001.000037->018001.000025, 018001.000037->018001.000030, 018001.000037->018001.000031, 018001.000038->018001.000002, 018001.000038->018001.000003, 018001.000038->018001.000004, 018001.000038->018001.000005, 018001.000038->018001.000016, 018001.000038->018001.000017, 018001.000038->018001.000018, 018001.000038->018001.000021, 018001.000038->018001.000022, 018001.000038->018001.000023, 018001.000038->018001.000025, 018001.000038->018001.000026, 018001.000038->018001.000027, 018001.000038->018001.000029, 018001.000038->018001.000030, 018001.000038->018001.000031, 018001.000039->018001.000002, 018001.000039->018001.000003, 018001.000039->018001.000004, 018001.000039->018001.000005, 018001.000039->018001.000016, 018001.000039->018001.000017, 018001.000039->018001.000018, 018001.000039->018001.000021, 018001.000039->018001.000022, 018001.000039->018001.000023, 018001.000039->018001.000025, 018001.000039->018001.000026, 018001.000039->018001.000027, 018001.000039->018001.000029, 018001.000039->018001.000030, 018001.000039->018001.000031, 018001.000040->018001.000002, 018001.000040->018001.000003, 018001.000040->018001.000005, 018001.000040->018001.000017, 018001.000040->018001.000018, 018001.000040->018001.000020, 018001.000040->018001.000021, 018001.000040->018001.000022, 018001.000040->018001.000023, 018001.000040->018001.000024, 018001.000040->018001.000025, 018001.000040->018001.000026, 018001.000040->018001.000027, 018001.000040->018001.000028, 018001.000040->018001.000030, 018001.000040->018001.000031, 018001.000042->018001.000001, 018001.000042->018001.000006, 018001.000042->018001.000008, 018001.000042->018001.000009, 018001.000042->018001.000010, 018001.000042->018001.000011, 018001.000042->018001.000012, 018001.000042->018001.000013, 018001.000042->018001.000014, 018001.000042->018001.000015, 018001.000042->018001.000032, 018001.000042->018001.000034, 018001.000042->018001.000035, 018001.000042->018001.000036, 018001.000042->018001.000037, 018001.000042->018001.000038, 018001.000042->018001.000039, 018001.000042->018001.000040, 018001.000043->018001.000003, 018001.000043->018001.000005, 018001.000043->018001.000017, 018001.000043->018001.000023, 018001.000043->018001.000025, 018001.000043->018001.000030, 018001.000043->018001.000031, 018001.000043->018001.000042.
+""",
+)
+
+entry(
+    index = 1143,
+    label = "Ar + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(1S0) -> e + Ar(5p'[1/2]0), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.6544338311900452,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 35; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 35. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000016->018001.000006, 018001.000016->018001.000009, 018001.000016->018001.000012, 018001.000016->018001.000014, 018001.000017->018001.000001, 018001.000017->018001.000006, 018001.000017->018001.000008, 018001.000017->018001.000009, 018001.000017->018001.000010, 018001.000017->018001.000011, 018001.000017->018001.000012, 018001.000017->018001.000013, 018001.000017->018001.000014, 018001.000017->018001.000015, 018001.000018->018001.000006, 018001.000018->018001.000007, 018001.000018->018001.000008, 018001.000018->018001.000009, 018001.000018->018001.000010, 018001.000018->018001.000012, 018001.000018->018001.000013, 018001.000018->018001.000014, 018001.000020->018001.000007, 018001.000020->018001.000008, 018001.000020->018001.000010, 018001.000020->018001.000013, 018001.000021->018001.000006, 018001.000021->018001.000007, 018001.000021->018001.000008, 018001.000021->018001.000009, 018001.000021->018001.000010, 018001.000021->018001.000012, 018001.000021->018001.000013, 018001.000021->018001.000014, 018001.000022->018001.000006, 018001.000022->018001.000007, 018001.000022->018001.000008, 018001.000022->018001.000009, 018001.000022->018001.000010, 018001.000022->018001.000012, 018001.000022->018001.000013, 018001.000022->018001.000014, 018001.000023->018001.000001, 018001.000023->018001.000006, 018001.000023->018001.000008, 018001.000023->018001.000009, 018001.000023->018001.000010, 018001.000023->018001.000011, 018001.000023->018001.000012, 018001.000023->018001.000013, 018001.000023->018001.000014, 018001.000023->018001.000015, 018001.000024->018001.000007, 018001.000024->018001.000008, 018001.000024->018001.000010, 018001.000024->018001.000013, 018001.000025->018001.000001, 018001.000025->018001.000006, 018001.000025->018001.000008, 018001.000025->018001.000009, 018001.000025->018001.000010, 018001.000025->018001.000011, 018001.000025->018001.000012, 018001.000025->018001.000013, 018001.000025->018001.000014, 018001.000025->018001.000015, 018001.000026->018001.000006, 018001.000026->018001.000007, 018001.000026->018001.000008, 018001.000026->018001.000009, 018001.000026->018001.000010, 018001.000026->018001.000012, 018001.000026->018001.000013, 018001.000026->018001.000014, 018001.000027->018001.000006, 018001.000027->018001.000007, 018001.000027->018001.000008, 018001.000027->018001.000009, 018001.000027->018001.000010, 018001.000027->018001.000012, 018001.000027->018001.000013, 018001.000027->018001.000014, 018001.000028->018001.000007, 018001.000028->018001.000008, 018001.000028->018001.000010, 018001.000028->018001.000013, 018001.000029->018001.000006, 018001.000029->018001.000009, 018001.000029->018001.000012, 018001.000029->018001.000014, 018001.000030->018001.000001, 018001.000030->018001.000006, 018001.000030->018001.000008, 018001.000030->018001.000009, 018001.000030->018001.000010, 018001.000030->018001.000011, 018001.000030->018001.000012, 018001.000030->018001.000013, 018001.000030->018001.000014, 018001.000030->018001.000015, 018001.000031->018001.000001, 018001.000031->018001.000006, 018001.000031->018001.000008, 018001.000031->018001.000009, 018001.000031->018001.000010, 018001.000031->018001.000011, 018001.000031->018001.000012, 018001.000031->018001.000013, 018001.000031->018001.000014, 018001.000031->018001.000015, 018001.000032->018001.000002, 018001.000032->018001.000003, 018001.000032->018001.000004, 018001.000032->018001.000005, 018001.000032->018001.000016, 018001.000032->018001.000017, 018001.000032->018001.000018, 018001.000032->018001.000021, 018001.000032->018001.000022, 018001.000032->018001.000023, 018001.000032->018001.000025, 018001.000032->018001.000026, 018001.000032->018001.000027, 018001.000032->018001.000029, 018001.000032->018001.000030, 018001.000032->018001.000031, 018001.000034->018001.000002, 018001.000034->018001.000003, 018001.000034->018001.000005, 018001.000034->018001.000017, 018001.000034->018001.000018, 018001.000034->018001.000020, 018001.000034->018001.000021, 018001.000034->018001.000022, 018001.000034->018001.000023, 018001.000034->018001.000024, 018001.000034->018001.000025, 018001.000034->018001.000026, 018001.000034->018001.000027, 018001.000034->018001.000028, 018001.000034->018001.000030, 018001.000034->018001.000031, 018001.000035->018001.000002, 018001.000035->018001.000003, 018001.000035->018001.000004, 018001.000035->018001.000005, 018001.000035->018001.000016, 018001.000035->018001.000017, 018001.000035->018001.000018, 018001.000035->018001.000021, 018001.000035->018001.000022, 018001.000035->018001.000023, 018001.000035->018001.000025, 018001.000035->018001.000026, 018001.000035->018001.000027, 018001.000035->018001.000029, 018001.000035->018001.000030, 018001.000035->018001.000031, 018001.000036->018001.000002, 018001.000036->018001.000003, 018001.000036->018001.000005, 018001.000036->018001.000017, 018001.000036->018001.000018, 018001.000036->018001.000020, 018001.000036->018001.000021, 018001.000036->018001.000022, 018001.000036->018001.000023, 018001.000036->018001.000024, 018001.000036->018001.000025, 018001.000036->018001.000026, 018001.000036->018001.000027, 018001.000036->018001.000028, 018001.000036->018001.000030, 018001.000036->018001.000031, 018001.000037->018001.000003, 018001.000037->018001.000005, 018001.000037->018001.000017, 018001.000037->018001.000023, 018001.000037->018001.000025, 018001.000037->018001.000030, 018001.000037->018001.000031, 018001.000038->018001.000002, 018001.000038->018001.000003, 018001.000038->018001.000004, 018001.000038->018001.000005, 018001.000038->018001.000016, 018001.000038->018001.000017, 018001.000038->018001.000018, 018001.000038->018001.000021, 018001.000038->018001.000022, 018001.000038->018001.000023, 018001.000038->018001.000025, 018001.000038->018001.000026, 018001.000038->018001.000027, 018001.000038->018001.000029, 018001.000038->018001.000030, 018001.000038->018001.000031, 018001.000039->018001.000002, 018001.000039->018001.000003, 018001.000039->018001.000004, 018001.000039->018001.000005, 018001.000039->018001.000016, 018001.000039->018001.000017, 018001.000039->018001.000018, 018001.000039->018001.000021, 018001.000039->018001.000022, 018001.000039->018001.000023, 018001.000039->018001.000025, 018001.000039->018001.000026, 018001.000039->018001.000027, 018001.000039->018001.000029, 018001.000039->018001.000030, 018001.000039->018001.000031, 018001.000040->018001.000002, 018001.000040->018001.000003, 018001.000040->018001.000005, 018001.000040->018001.000017, 018001.000040->018001.000018, 018001.000040->018001.000020, 018001.000040->018001.000021, 018001.000040->018001.000022, 018001.000040->018001.000023, 018001.000040->018001.000024, 018001.000040->018001.000025, 018001.000040->018001.000026, 018001.000040->018001.000027, 018001.000040->018001.000028, 018001.000040->018001.000030, 018001.000040->018001.000031, 018001.000042->018001.000001, 018001.000042->018001.000006, 018001.000042->018001.000008, 018001.000042->018001.000009, 018001.000042->018001.000010, 018001.000042->018001.000011, 018001.000042->018001.000012, 018001.000042->018001.000013, 018001.000042->018001.000014, 018001.000042->018001.000015, 018001.000042->018001.000032, 018001.000042->018001.000034, 018001.000042->018001.000035, 018001.000042->018001.000036, 018001.000042->018001.000037, 018001.000042->018001.000038, 018001.000042->018001.000039, 018001.000042->018001.000040, 018001.000043->018001.000003, 018001.000043->018001.000005, 018001.000043->018001.000017, 018001.000043->018001.000023, 018001.000043->018001.000025, 018001.000043->018001.000030, 018001.000043->018001.000031, 018001.000043->018001.000042.
+""",
+)
+
+entry(
+    index = 1144,
+    label = "Ar + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1S0) -> e + Ar(4d), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.5939497681501911,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 36; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 36. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000016->018001.000006, 018001.000016->018001.000009, 018001.000016->018001.000012, 018001.000016->018001.000014, 018001.000017->018001.000001, 018001.000017->018001.000006, 018001.000017->018001.000008, 018001.000017->018001.000009, 018001.000017->018001.000010, 018001.000017->018001.000011, 018001.000017->018001.000012, 018001.000017->018001.000013, 018001.000017->018001.000014, 018001.000017->018001.000015, 018001.000018->018001.000006, 018001.000018->018001.000007, 018001.000018->018001.000008, 018001.000018->018001.000009, 018001.000018->018001.000010, 018001.000018->018001.000012, 018001.000018->018001.000013, 018001.000018->018001.000014, 018001.000019->018001.000007, 018001.000020->018001.000007, 018001.000020->018001.000008, 018001.000020->018001.000010, 018001.000020->018001.000013, 018001.000021->018001.000006, 018001.000021->018001.000007, 018001.000021->018001.000008, 018001.000021->018001.000009, 018001.000021->018001.000010, 018001.000021->018001.000012, 018001.000021->018001.000013, 018001.000021->018001.000014, 018001.000022->018001.000006, 018001.000022->018001.000007, 018001.000022->018001.000008, 018001.000022->018001.000009, 018001.000022->018001.000010, 018001.000022->018001.000012, 018001.000022->018001.000013, 018001.000022->018001.000014, 018001.000023->018001.000001, 018001.000023->018001.000006, 018001.000023->018001.000008, 018001.000023->018001.000009, 018001.000023->018001.000010, 018001.000023->018001.000011, 018001.000023->018001.000012, 018001.000023->018001.000013, 018001.000023->018001.000014, 018001.000023->018001.000015, 018001.000024->018001.000007, 018001.000024->018001.000008, 018001.000024->018001.000010, 018001.000024->018001.000013, 018001.000025->018001.000001, 018001.000025->018001.000006, 018001.000025->018001.000008, 018001.000025->018001.000009, 018001.000025->018001.000010, 018001.000025->018001.000011, 018001.000025->018001.000012, 018001.000025->018001.000013, 018001.000025->018001.000014, 018001.000025->018001.000015, 018001.000026->018001.000006, 018001.000026->018001.000007, 018001.000026->018001.000008, 018001.000026->018001.000009, 018001.000026->018001.000010, 018001.000026->018001.000012, 018001.000026->018001.000013, 018001.000026->018001.000014, 018001.000027->018001.000006, 018001.000027->018001.000007, 018001.000027->018001.000008, 018001.000027->018001.000009, 018001.000027->018001.000010, 018001.000027->018001.000012, 018001.000027->018001.000013, 018001.000027->018001.000014, 018001.000028->018001.000007, 018001.000028->018001.000008, 018001.000028->018001.000010, 018001.000028->018001.000013, 018001.000029->018001.000006, 018001.000029->018001.000009, 018001.000029->018001.000012, 018001.000029->018001.000014, 018001.000030->018001.000001, 018001.000030->018001.000006, 018001.000030->018001.000008, 018001.000030->018001.000009, 018001.000030->018001.000010, 018001.000030->018001.000011, 018001.000030->018001.000012, 018001.000030->018001.000013, 018001.000030->018001.000014, 018001.000030->018001.000015, 018001.000031->018001.000001, 018001.000031->018001.000006, 018001.000031->018001.000008, 018001.000031->018001.000009, 018001.000031->018001.000010, 018001.000031->018001.000011, 018001.000031->018001.000012, 018001.000031->018001.000013, 018001.000031->018001.000014, 018001.000031->018001.000015, 018001.000032->018001.000002, 018001.000032->018001.000003, 018001.000032->018001.000004, 018001.000032->018001.000005, 018001.000032->018001.000016, 018001.000032->018001.000017, 018001.000032->018001.000018, 018001.000032->018001.000021, 018001.000032->018001.000022, 018001.000032->018001.000023, 018001.000032->018001.000025, 018001.000032->018001.000026, 018001.000032->018001.000027, 018001.000032->018001.000029, 018001.000032->018001.000030, 018001.000032->018001.000031, 018001.000033->018001.000002, 018001.000033->018001.000018, 018001.000033->018001.000019, 018001.000033->018001.000020, 018001.000033->018001.000021, 018001.000033->018001.000022, 018001.000033->018001.000024, 018001.000033->018001.000026, 018001.000033->018001.000027, 018001.000033->018001.000028, 018001.000034->018001.000002, 018001.000034->018001.000003, 018001.000034->018001.000005, 018001.000034->018001.000017, 018001.000034->018001.000018, 018001.000034->018001.000020, 018001.000034->018001.000021, 018001.000034->018001.000022, 018001.000034->018001.000023, 018001.000034->018001.000024, 018001.000034->018001.000025, 018001.000034->018001.000026, 018001.000034->018001.000027, 018001.000034->018001.000028, 018001.000034->018001.000030, 018001.000034->018001.000031, 018001.000035->018001.000002, 018001.000035->018001.000003, 018001.000035->018001.000004, 018001.000035->018001.000005, 018001.000035->018001.000016, 018001.000035->018001.000017, 018001.000035->018001.000018, 018001.000035->018001.000021, 018001.000035->018001.000022, 018001.000035->018001.000023, 018001.000035->018001.000025, 018001.000035->018001.000026, 018001.000035->018001.000027, 018001.000035->018001.000029, 018001.000035->018001.000030, 018001.000035->018001.000031, 018001.000036->018001.000002, 018001.000036->018001.000003, 018001.000036->018001.000005, 018001.000036->018001.000017, 018001.000036->018001.000018, 018001.000036->018001.000020, 018001.000036->018001.000021, 018001.000036->018001.000022, 018001.000036->018001.000023, 018001.000036->018001.000024, 018001.000036->018001.000025, 018001.000036->018001.000026, 018001.000036->018001.000027, 018001.000036->018001.000028, 018001.000036->018001.000030, 018001.000036->018001.000031, 018001.000037->018001.000003, 018001.000037->018001.000005, 018001.000037->018001.000017, 018001.000037->018001.000023, 018001.000037->018001.000025, 018001.000037->018001.000030, 018001.000037->018001.000031, 018001.000038->018001.000002, 018001.000038->018001.000003, 018001.000038->018001.000004, 018001.000038->018001.000005, 018001.000038->018001.000016, 018001.000038->018001.000017, 018001.000038->018001.000018, 018001.000038->018001.000021, 018001.000038->018001.000022, 018001.000038->018001.000023, 018001.000038->018001.000025, 018001.000038->018001.000026, 018001.000038->018001.000027, 018001.000038->018001.000029, 018001.000038->018001.000030, 018001.000038->018001.000031, 018001.000039->018001.000002, 018001.000039->018001.000003, 018001.000039->018001.000004, 018001.000039->018001.000005, 018001.000039->018001.000016, 018001.000039->018001.000017, 018001.000039->018001.000018, 018001.000039->018001.000021, 018001.000039->018001.000022, 018001.000039->018001.000023, 018001.000039->018001.000025, 018001.000039->018001.000026, 018001.000039->018001.000027, 018001.000039->018001.000029, 018001.000039->018001.000030, 018001.000039->018001.000031, 018001.000040->018001.000002, 018001.000040->018001.000003, 018001.000040->018001.000005, 018001.000040->018001.000017, 018001.000040->018001.000018, 018001.000040->018001.000020, 018001.000040->018001.000021, 018001.000040->018001.000022, 018001.000040->018001.000023, 018001.000040->018001.000024, 018001.000040->018001.000025, 018001.000040->018001.000026, 018001.000040->018001.000027, 018001.000040->018001.000028, 018001.000040->018001.000030, 018001.000040->018001.000031, 018001.000041->018001.000006, 018001.000041->018001.000009, 018001.000041->018001.000012, 018001.000041->018001.000014, 018001.000041->018001.000032, 018001.000041->018001.000035, 018001.000041->018001.000038, 018001.000041->018001.000039, 018001.000042->018001.000001, 018001.000042->018001.000006, 018001.000042->018001.000008, 018001.000042->018001.000009, 018001.000042->018001.000010, 018001.000042->018001.000011, 018001.000042->018001.000012, 018001.000042->018001.000013, 018001.000042->018001.000014, 018001.000042->018001.000015, 018001.000042->018001.000032, 018001.000042->018001.000034, 018001.000042->018001.000035, 018001.000042->018001.000036, 018001.000042->018001.000037, 018001.000042->018001.000038, 018001.000042->018001.000039, 018001.000042->018001.000040, 018001.000043->018001.000003, 018001.000043->018001.000005, 018001.000043->018001.000017, 018001.000043->018001.000023, 018001.000043->018001.000025, 018001.000043->018001.000030, 018001.000043->018001.000031, 018001.000043->018001.000042, 018001.000044->018001.000006, 018001.000044->018001.000007, 018001.000044->018001.000008, 018001.000044->018001.000009, 018001.000044->018001.000010, 018001.000044->018001.000012, 018001.000044->018001.000013, 018001.000044->018001.000014, 018001.000044->018001.000032, 018001.000044->018001.000033, 018001.000044->018001.000034, 018001.000044->018001.000035, 018001.000044->018001.000036, 018001.000044->018001.000038, 018001.000044->018001.000039, 018001.000044->018001.000040, 018001.000045->018001.000007, 018001.000045->018001.000033, 018001.000046->018001.000007, 018001.000046->018001.000008, 018001.000046->018001.000010, 018001.000046->018001.000013, 018001.000046->018001.000033, 018001.000046->018001.000034, 018001.000046->018001.000036, 018001.000046->018001.000040, 018001.000047->018001.000006, 018001.000047->018001.000007, 018001.000047->018001.000008, 018001.000047->018001.000009, 018001.000047->018001.000010, 018001.000047->018001.000012, 018001.000047->018001.000013, 018001.000047->018001.000014, 018001.000047->018001.000032, 018001.000047->018001.000033, 018001.000047->018001.000034, 018001.000047->018001.000035, 018001.000047->018001.000036, 018001.000047->018001.000038, 018001.000047->018001.000039, 018001.000047->018001.000040, 018001.000048->018001.000007, 018001.000048->018001.000008, 018001.000048->018001.000010, 018001.000048->018001.000013, 018001.000048->018001.000033, 018001.000048->018001.000034, 018001.000048->018001.000036, 018001.000048->018001.000040, 018001.000051->018001.000001, 018001.000051->018001.000006, 018001.000051->018001.000008, 018001.000051->018001.000009, 018001.000051->018001.000010, 018001.000051->018001.000011, 018001.000051->018001.000012, 018001.000051->018001.000013, 018001.000051->018001.000014, 018001.000051->018001.000015, 018001.000051->018001.000032, 018001.000051->018001.000034, 018001.000051->018001.000035, 018001.000051->018001.000036, 018001.000051->018001.000037, 018001.000051->018001.000038, 018001.000051->018001.000039, 018001.000051->018001.000040, 018001.000051->018001.000043.
+""",
+)
+
+entry(
+    index = 1145,
+    label = "Ar + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1S0) -> e + Ar(4d), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.285584460698244,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 36; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 36. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000016->018001.000006, 018001.000016->018001.000009, 018001.000016->018001.000012, 018001.000016->018001.000014, 018001.000017->018001.000001, 018001.000017->018001.000006, 018001.000017->018001.000008, 018001.000017->018001.000009, 018001.000017->018001.000010, 018001.000017->018001.000011, 018001.000017->018001.000012, 018001.000017->018001.000013, 018001.000017->018001.000014, 018001.000017->018001.000015, 018001.000018->018001.000006, 018001.000018->018001.000007, 018001.000018->018001.000008, 018001.000018->018001.000009, 018001.000018->018001.000010, 018001.000018->018001.000012, 018001.000018->018001.000013, 018001.000018->018001.000014, 018001.000019->018001.000007, 018001.000020->018001.000007, 018001.000020->018001.000008, 018001.000020->018001.000010, 018001.000020->018001.000013, 018001.000021->018001.000006, 018001.000021->018001.000007, 018001.000021->018001.000008, 018001.000021->018001.000009, 018001.000021->018001.000010, 018001.000021->018001.000012, 018001.000021->018001.000013, 018001.000021->018001.000014, 018001.000022->018001.000006, 018001.000022->018001.000007, 018001.000022->018001.000008, 018001.000022->018001.000009, 018001.000022->018001.000010, 018001.000022->018001.000012, 018001.000022->018001.000013, 018001.000022->018001.000014, 018001.000023->018001.000001, 018001.000023->018001.000006, 018001.000023->018001.000008, 018001.000023->018001.000009, 018001.000023->018001.000010, 018001.000023->018001.000011, 018001.000023->018001.000012, 018001.000023->018001.000013, 018001.000023->018001.000014, 018001.000023->018001.000015, 018001.000024->018001.000007, 018001.000024->018001.000008, 018001.000024->018001.000010, 018001.000024->018001.000013, 018001.000025->018001.000001, 018001.000025->018001.000006, 018001.000025->018001.000008, 018001.000025->018001.000009, 018001.000025->018001.000010, 018001.000025->018001.000011, 018001.000025->018001.000012, 018001.000025->018001.000013, 018001.000025->018001.000014, 018001.000025->018001.000015, 018001.000026->018001.000006, 018001.000026->018001.000007, 018001.000026->018001.000008, 018001.000026->018001.000009, 018001.000026->018001.000010, 018001.000026->018001.000012, 018001.000026->018001.000013, 018001.000026->018001.000014, 018001.000027->018001.000006, 018001.000027->018001.000007, 018001.000027->018001.000008, 018001.000027->018001.000009, 018001.000027->018001.000010, 018001.000027->018001.000012, 018001.000027->018001.000013, 018001.000027->018001.000014, 018001.000028->018001.000007, 018001.000028->018001.000008, 018001.000028->018001.000010, 018001.000028->018001.000013, 018001.000029->018001.000006, 018001.000029->018001.000009, 018001.000029->018001.000012, 018001.000029->018001.000014, 018001.000030->018001.000001, 018001.000030->018001.000006, 018001.000030->018001.000008, 018001.000030->018001.000009, 018001.000030->018001.000010, 018001.000030->018001.000011, 018001.000030->018001.000012, 018001.000030->018001.000013, 018001.000030->018001.000014, 018001.000030->018001.000015, 018001.000031->018001.000001, 018001.000031->018001.000006, 018001.000031->018001.000008, 018001.000031->018001.000009, 018001.000031->018001.000010, 018001.000031->018001.000011, 018001.000031->018001.000012, 018001.000031->018001.000013, 018001.000031->018001.000014, 018001.000031->018001.000015, 018001.000032->018001.000002, 018001.000032->018001.000003, 018001.000032->018001.000004, 018001.000032->018001.000005, 018001.000032->018001.000016, 018001.000032->018001.000017, 018001.000032->018001.000018, 018001.000032->018001.000021, 018001.000032->018001.000022, 018001.000032->018001.000023, 018001.000032->018001.000025, 018001.000032->018001.000026, 018001.000032->018001.000027, 018001.000032->018001.000029, 018001.000032->018001.000030, 018001.000032->018001.000031, 018001.000033->018001.000002, 018001.000033->018001.000018, 018001.000033->018001.000019, 018001.000033->018001.000020, 018001.000033->018001.000021, 018001.000033->018001.000022, 018001.000033->018001.000024, 018001.000033->018001.000026, 018001.000033->018001.000027, 018001.000033->018001.000028, 018001.000034->018001.000002, 018001.000034->018001.000003, 018001.000034->018001.000005, 018001.000034->018001.000017, 018001.000034->018001.000018, 018001.000034->018001.000020, 018001.000034->018001.000021, 018001.000034->018001.000022, 018001.000034->018001.000023, 018001.000034->018001.000024, 018001.000034->018001.000025, 018001.000034->018001.000026, 018001.000034->018001.000027, 018001.000034->018001.000028, 018001.000034->018001.000030, 018001.000034->018001.000031, 018001.000035->018001.000002, 018001.000035->018001.000003, 018001.000035->018001.000004, 018001.000035->018001.000005, 018001.000035->018001.000016, 018001.000035->018001.000017, 018001.000035->018001.000018, 018001.000035->018001.000021, 018001.000035->018001.000022, 018001.000035->018001.000023, 018001.000035->018001.000025, 018001.000035->018001.000026, 018001.000035->018001.000027, 018001.000035->018001.000029, 018001.000035->018001.000030, 018001.000035->018001.000031, 018001.000036->018001.000002, 018001.000036->018001.000003, 018001.000036->018001.000005, 018001.000036->018001.000017, 018001.000036->018001.000018, 018001.000036->018001.000020, 018001.000036->018001.000021, 018001.000036->018001.000022, 018001.000036->018001.000023, 018001.000036->018001.000024, 018001.000036->018001.000025, 018001.000036->018001.000026, 018001.000036->018001.000027, 018001.000036->018001.000028, 018001.000036->018001.000030, 018001.000036->018001.000031, 018001.000037->018001.000003, 018001.000037->018001.000005, 018001.000037->018001.000017, 018001.000037->018001.000023, 018001.000037->018001.000025, 018001.000037->018001.000030, 018001.000037->018001.000031, 018001.000038->018001.000002, 018001.000038->018001.000003, 018001.000038->018001.000004, 018001.000038->018001.000005, 018001.000038->018001.000016, 018001.000038->018001.000017, 018001.000038->018001.000018, 018001.000038->018001.000021, 018001.000038->018001.000022, 018001.000038->018001.000023, 018001.000038->018001.000025, 018001.000038->018001.000026, 018001.000038->018001.000027, 018001.000038->018001.000029, 018001.000038->018001.000030, 018001.000038->018001.000031, 018001.000039->018001.000002, 018001.000039->018001.000003, 018001.000039->018001.000004, 018001.000039->018001.000005, 018001.000039->018001.000016, 018001.000039->018001.000017, 018001.000039->018001.000018, 018001.000039->018001.000021, 018001.000039->018001.000022, 018001.000039->018001.000023, 018001.000039->018001.000025, 018001.000039->018001.000026, 018001.000039->018001.000027, 018001.000039->018001.000029, 018001.000039->018001.000030, 018001.000039->018001.000031, 018001.000040->018001.000002, 018001.000040->018001.000003, 018001.000040->018001.000005, 018001.000040->018001.000017, 018001.000040->018001.000018, 018001.000040->018001.000020, 018001.000040->018001.000021, 018001.000040->018001.000022, 018001.000040->018001.000023, 018001.000040->018001.000024, 018001.000040->018001.000025, 018001.000040->018001.000026, 018001.000040->018001.000027, 018001.000040->018001.000028, 018001.000040->018001.000030, 018001.000040->018001.000031, 018001.000041->018001.000006, 018001.000041->018001.000009, 018001.000041->018001.000012, 018001.000041->018001.000014, 018001.000041->018001.000032, 018001.000041->018001.000035, 018001.000041->018001.000038, 018001.000041->018001.000039, 018001.000042->018001.000001, 018001.000042->018001.000006, 018001.000042->018001.000008, 018001.000042->018001.000009, 018001.000042->018001.000010, 018001.000042->018001.000011, 018001.000042->018001.000012, 018001.000042->018001.000013, 018001.000042->018001.000014, 018001.000042->018001.000015, 018001.000042->018001.000032, 018001.000042->018001.000034, 018001.000042->018001.000035, 018001.000042->018001.000036, 018001.000042->018001.000037, 018001.000042->018001.000038, 018001.000042->018001.000039, 018001.000042->018001.000040, 018001.000043->018001.000003, 018001.000043->018001.000005, 018001.000043->018001.000017, 018001.000043->018001.000023, 018001.000043->018001.000025, 018001.000043->018001.000030, 018001.000043->018001.000031, 018001.000043->018001.000042, 018001.000044->018001.000006, 018001.000044->018001.000007, 018001.000044->018001.000008, 018001.000044->018001.000009, 018001.000044->018001.000010, 018001.000044->018001.000012, 018001.000044->018001.000013, 018001.000044->018001.000014, 018001.000044->018001.000032, 018001.000044->018001.000033, 018001.000044->018001.000034, 018001.000044->018001.000035, 018001.000044->018001.000036, 018001.000044->018001.000038, 018001.000044->018001.000039, 018001.000044->018001.000040, 018001.000045->018001.000007, 018001.000045->018001.000033, 018001.000046->018001.000007, 018001.000046->018001.000008, 018001.000046->018001.000010, 018001.000046->018001.000013, 018001.000046->018001.000033, 018001.000046->018001.000034, 018001.000046->018001.000036, 018001.000046->018001.000040, 018001.000047->018001.000006, 018001.000047->018001.000007, 018001.000047->018001.000008, 018001.000047->018001.000009, 018001.000047->018001.000010, 018001.000047->018001.000012, 018001.000047->018001.000013, 018001.000047->018001.000014, 018001.000047->018001.000032, 018001.000047->018001.000033, 018001.000047->018001.000034, 018001.000047->018001.000035, 018001.000047->018001.000036, 018001.000047->018001.000038, 018001.000047->018001.000039, 018001.000047->018001.000040, 018001.000048->018001.000007, 018001.000048->018001.000008, 018001.000048->018001.000010, 018001.000048->018001.000013, 018001.000048->018001.000033, 018001.000048->018001.000034, 018001.000048->018001.000036, 018001.000048->018001.000040, 018001.000051->018001.000001, 018001.000051->018001.000006, 018001.000051->018001.000008, 018001.000051->018001.000009, 018001.000051->018001.000010, 018001.000051->018001.000011, 018001.000051->018001.000012, 018001.000051->018001.000013, 018001.000051->018001.000014, 018001.000051->018001.000015, 018001.000051->018001.000032, 018001.000051->018001.000034, 018001.000051->018001.000035, 018001.000051->018001.000036, 018001.000051->018001.000037, 018001.000051->018001.000038, 018001.000051->018001.000039, 018001.000051->018001.000040, 018001.000051->018001.000043.
+""",
+)
+
+entry(
+    index = 1146,
+    label = "Ar + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1S0) -> e + Ar(4d), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.03263386556517485,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 36; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 36. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000016->018001.000006, 018001.000016->018001.000009, 018001.000016->018001.000012, 018001.000016->018001.000014, 018001.000017->018001.000001, 018001.000017->018001.000006, 018001.000017->018001.000008, 018001.000017->018001.000009, 018001.000017->018001.000010, 018001.000017->018001.000011, 018001.000017->018001.000012, 018001.000017->018001.000013, 018001.000017->018001.000014, 018001.000017->018001.000015, 018001.000018->018001.000006, 018001.000018->018001.000007, 018001.000018->018001.000008, 018001.000018->018001.000009, 018001.000018->018001.000010, 018001.000018->018001.000012, 018001.000018->018001.000013, 018001.000018->018001.000014, 018001.000019->018001.000007, 018001.000020->018001.000007, 018001.000020->018001.000008, 018001.000020->018001.000010, 018001.000020->018001.000013, 018001.000021->018001.000006, 018001.000021->018001.000007, 018001.000021->018001.000008, 018001.000021->018001.000009, 018001.000021->018001.000010, 018001.000021->018001.000012, 018001.000021->018001.000013, 018001.000021->018001.000014, 018001.000022->018001.000006, 018001.000022->018001.000007, 018001.000022->018001.000008, 018001.000022->018001.000009, 018001.000022->018001.000010, 018001.000022->018001.000012, 018001.000022->018001.000013, 018001.000022->018001.000014, 018001.000023->018001.000001, 018001.000023->018001.000006, 018001.000023->018001.000008, 018001.000023->018001.000009, 018001.000023->018001.000010, 018001.000023->018001.000011, 018001.000023->018001.000012, 018001.000023->018001.000013, 018001.000023->018001.000014, 018001.000023->018001.000015, 018001.000024->018001.000007, 018001.000024->018001.000008, 018001.000024->018001.000010, 018001.000024->018001.000013, 018001.000025->018001.000001, 018001.000025->018001.000006, 018001.000025->018001.000008, 018001.000025->018001.000009, 018001.000025->018001.000010, 018001.000025->018001.000011, 018001.000025->018001.000012, 018001.000025->018001.000013, 018001.000025->018001.000014, 018001.000025->018001.000015, 018001.000026->018001.000006, 018001.000026->018001.000007, 018001.000026->018001.000008, 018001.000026->018001.000009, 018001.000026->018001.000010, 018001.000026->018001.000012, 018001.000026->018001.000013, 018001.000026->018001.000014, 018001.000027->018001.000006, 018001.000027->018001.000007, 018001.000027->018001.000008, 018001.000027->018001.000009, 018001.000027->018001.000010, 018001.000027->018001.000012, 018001.000027->018001.000013, 018001.000027->018001.000014, 018001.000028->018001.000007, 018001.000028->018001.000008, 018001.000028->018001.000010, 018001.000028->018001.000013, 018001.000029->018001.000006, 018001.000029->018001.000009, 018001.000029->018001.000012, 018001.000029->018001.000014, 018001.000030->018001.000001, 018001.000030->018001.000006, 018001.000030->018001.000008, 018001.000030->018001.000009, 018001.000030->018001.000010, 018001.000030->018001.000011, 018001.000030->018001.000012, 018001.000030->018001.000013, 018001.000030->018001.000014, 018001.000030->018001.000015, 018001.000031->018001.000001, 018001.000031->018001.000006, 018001.000031->018001.000008, 018001.000031->018001.000009, 018001.000031->018001.000010, 018001.000031->018001.000011, 018001.000031->018001.000012, 018001.000031->018001.000013, 018001.000031->018001.000014, 018001.000031->018001.000015, 018001.000032->018001.000002, 018001.000032->018001.000003, 018001.000032->018001.000004, 018001.000032->018001.000005, 018001.000032->018001.000016, 018001.000032->018001.000017, 018001.000032->018001.000018, 018001.000032->018001.000021, 018001.000032->018001.000022, 018001.000032->018001.000023, 018001.000032->018001.000025, 018001.000032->018001.000026, 018001.000032->018001.000027, 018001.000032->018001.000029, 018001.000032->018001.000030, 018001.000032->018001.000031, 018001.000033->018001.000002, 018001.000033->018001.000018, 018001.000033->018001.000019, 018001.000033->018001.000020, 018001.000033->018001.000021, 018001.000033->018001.000022, 018001.000033->018001.000024, 018001.000033->018001.000026, 018001.000033->018001.000027, 018001.000033->018001.000028, 018001.000034->018001.000002, 018001.000034->018001.000003, 018001.000034->018001.000005, 018001.000034->018001.000017, 018001.000034->018001.000018, 018001.000034->018001.000020, 018001.000034->018001.000021, 018001.000034->018001.000022, 018001.000034->018001.000023, 018001.000034->018001.000024, 018001.000034->018001.000025, 018001.000034->018001.000026, 018001.000034->018001.000027, 018001.000034->018001.000028, 018001.000034->018001.000030, 018001.000034->018001.000031, 018001.000035->018001.000002, 018001.000035->018001.000003, 018001.000035->018001.000004, 018001.000035->018001.000005, 018001.000035->018001.000016, 018001.000035->018001.000017, 018001.000035->018001.000018, 018001.000035->018001.000021, 018001.000035->018001.000022, 018001.000035->018001.000023, 018001.000035->018001.000025, 018001.000035->018001.000026, 018001.000035->018001.000027, 018001.000035->018001.000029, 018001.000035->018001.000030, 018001.000035->018001.000031, 018001.000036->018001.000002, 018001.000036->018001.000003, 018001.000036->018001.000005, 018001.000036->018001.000017, 018001.000036->018001.000018, 018001.000036->018001.000020, 018001.000036->018001.000021, 018001.000036->018001.000022, 018001.000036->018001.000023, 018001.000036->018001.000024, 018001.000036->018001.000025, 018001.000036->018001.000026, 018001.000036->018001.000027, 018001.000036->018001.000028, 018001.000036->018001.000030, 018001.000036->018001.000031, 018001.000037->018001.000003, 018001.000037->018001.000005, 018001.000037->018001.000017, 018001.000037->018001.000023, 018001.000037->018001.000025, 018001.000037->018001.000030, 018001.000037->018001.000031, 018001.000038->018001.000002, 018001.000038->018001.000003, 018001.000038->018001.000004, 018001.000038->018001.000005, 018001.000038->018001.000016, 018001.000038->018001.000017, 018001.000038->018001.000018, 018001.000038->018001.000021, 018001.000038->018001.000022, 018001.000038->018001.000023, 018001.000038->018001.000025, 018001.000038->018001.000026, 018001.000038->018001.000027, 018001.000038->018001.000029, 018001.000038->018001.000030, 018001.000038->018001.000031, 018001.000039->018001.000002, 018001.000039->018001.000003, 018001.000039->018001.000004, 018001.000039->018001.000005, 018001.000039->018001.000016, 018001.000039->018001.000017, 018001.000039->018001.000018, 018001.000039->018001.000021, 018001.000039->018001.000022, 018001.000039->018001.000023, 018001.000039->018001.000025, 018001.000039->018001.000026, 018001.000039->018001.000027, 018001.000039->018001.000029, 018001.000039->018001.000030, 018001.000039->018001.000031, 018001.000040->018001.000002, 018001.000040->018001.000003, 018001.000040->018001.000005, 018001.000040->018001.000017, 018001.000040->018001.000018, 018001.000040->018001.000020, 018001.000040->018001.000021, 018001.000040->018001.000022, 018001.000040->018001.000023, 018001.000040->018001.000024, 018001.000040->018001.000025, 018001.000040->018001.000026, 018001.000040->018001.000027, 018001.000040->018001.000028, 018001.000040->018001.000030, 018001.000040->018001.000031, 018001.000041->018001.000006, 018001.000041->018001.000009, 018001.000041->018001.000012, 018001.000041->018001.000014, 018001.000041->018001.000032, 018001.000041->018001.000035, 018001.000041->018001.000038, 018001.000041->018001.000039, 018001.000042->018001.000001, 018001.000042->018001.000006, 018001.000042->018001.000008, 018001.000042->018001.000009, 018001.000042->018001.000010, 018001.000042->018001.000011, 018001.000042->018001.000012, 018001.000042->018001.000013, 018001.000042->018001.000014, 018001.000042->018001.000015, 018001.000042->018001.000032, 018001.000042->018001.000034, 018001.000042->018001.000035, 018001.000042->018001.000036, 018001.000042->018001.000037, 018001.000042->018001.000038, 018001.000042->018001.000039, 018001.000042->018001.000040, 018001.000043->018001.000003, 018001.000043->018001.000005, 018001.000043->018001.000017, 018001.000043->018001.000023, 018001.000043->018001.000025, 018001.000043->018001.000030, 018001.000043->018001.000031, 018001.000043->018001.000042, 018001.000044->018001.000006, 018001.000044->018001.000007, 018001.000044->018001.000008, 018001.000044->018001.000009, 018001.000044->018001.000010, 018001.000044->018001.000012, 018001.000044->018001.000013, 018001.000044->018001.000014, 018001.000044->018001.000032, 018001.000044->018001.000033, 018001.000044->018001.000034, 018001.000044->018001.000035, 018001.000044->018001.000036, 018001.000044->018001.000038, 018001.000044->018001.000039, 018001.000044->018001.000040, 018001.000045->018001.000007, 018001.000045->018001.000033, 018001.000046->018001.000007, 018001.000046->018001.000008, 018001.000046->018001.000010, 018001.000046->018001.000013, 018001.000046->018001.000033, 018001.000046->018001.000034, 018001.000046->018001.000036, 018001.000046->018001.000040, 018001.000047->018001.000006, 018001.000047->018001.000007, 018001.000047->018001.000008, 018001.000047->018001.000009, 018001.000047->018001.000010, 018001.000047->018001.000012, 018001.000047->018001.000013, 018001.000047->018001.000014, 018001.000047->018001.000032, 018001.000047->018001.000033, 018001.000047->018001.000034, 018001.000047->018001.000035, 018001.000047->018001.000036, 018001.000047->018001.000038, 018001.000047->018001.000039, 018001.000047->018001.000040, 018001.000048->018001.000007, 018001.000048->018001.000008, 018001.000048->018001.000010, 018001.000048->018001.000013, 018001.000048->018001.000033, 018001.000048->018001.000034, 018001.000048->018001.000036, 018001.000048->018001.000040, 018001.000051->018001.000001, 018001.000051->018001.000006, 018001.000051->018001.000008, 018001.000051->018001.000009, 018001.000051->018001.000010, 018001.000051->018001.000011, 018001.000051->018001.000012, 018001.000051->018001.000013, 018001.000051->018001.000014, 018001.000051->018001.000015, 018001.000051->018001.000032, 018001.000051->018001.000034, 018001.000051->018001.000035, 018001.000051->018001.000036, 018001.000051->018001.000037, 018001.000051->018001.000038, 018001.000051->018001.000039, 018001.000051->018001.000040, 018001.000051->018001.000043.
+""",
+)
+
+entry(
+    index = 1147,
+    label = "Ar + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1S0) -> e + Ar(4d), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.0878319055863901,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 36; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 36. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000016->018001.000006, 018001.000016->018001.000009, 018001.000016->018001.000012, 018001.000016->018001.000014, 018001.000017->018001.000001, 018001.000017->018001.000006, 018001.000017->018001.000008, 018001.000017->018001.000009, 018001.000017->018001.000010, 018001.000017->018001.000011, 018001.000017->018001.000012, 018001.000017->018001.000013, 018001.000017->018001.000014, 018001.000017->018001.000015, 018001.000018->018001.000006, 018001.000018->018001.000007, 018001.000018->018001.000008, 018001.000018->018001.000009, 018001.000018->018001.000010, 018001.000018->018001.000012, 018001.000018->018001.000013, 018001.000018->018001.000014, 018001.000019->018001.000007, 018001.000020->018001.000007, 018001.000020->018001.000008, 018001.000020->018001.000010, 018001.000020->018001.000013, 018001.000021->018001.000006, 018001.000021->018001.000007, 018001.000021->018001.000008, 018001.000021->018001.000009, 018001.000021->018001.000010, 018001.000021->018001.000012, 018001.000021->018001.000013, 018001.000021->018001.000014, 018001.000022->018001.000006, 018001.000022->018001.000007, 018001.000022->018001.000008, 018001.000022->018001.000009, 018001.000022->018001.000010, 018001.000022->018001.000012, 018001.000022->018001.000013, 018001.000022->018001.000014, 018001.000023->018001.000001, 018001.000023->018001.000006, 018001.000023->018001.000008, 018001.000023->018001.000009, 018001.000023->018001.000010, 018001.000023->018001.000011, 018001.000023->018001.000012, 018001.000023->018001.000013, 018001.000023->018001.000014, 018001.000023->018001.000015, 018001.000024->018001.000007, 018001.000024->018001.000008, 018001.000024->018001.000010, 018001.000024->018001.000013, 018001.000025->018001.000001, 018001.000025->018001.000006, 018001.000025->018001.000008, 018001.000025->018001.000009, 018001.000025->018001.000010, 018001.000025->018001.000011, 018001.000025->018001.000012, 018001.000025->018001.000013, 018001.000025->018001.000014, 018001.000025->018001.000015, 018001.000026->018001.000006, 018001.000026->018001.000007, 018001.000026->018001.000008, 018001.000026->018001.000009, 018001.000026->018001.000010, 018001.000026->018001.000012, 018001.000026->018001.000013, 018001.000026->018001.000014, 018001.000027->018001.000006, 018001.000027->018001.000007, 018001.000027->018001.000008, 018001.000027->018001.000009, 018001.000027->018001.000010, 018001.000027->018001.000012, 018001.000027->018001.000013, 018001.000027->018001.000014, 018001.000028->018001.000007, 018001.000028->018001.000008, 018001.000028->018001.000010, 018001.000028->018001.000013, 018001.000029->018001.000006, 018001.000029->018001.000009, 018001.000029->018001.000012, 018001.000029->018001.000014, 018001.000030->018001.000001, 018001.000030->018001.000006, 018001.000030->018001.000008, 018001.000030->018001.000009, 018001.000030->018001.000010, 018001.000030->018001.000011, 018001.000030->018001.000012, 018001.000030->018001.000013, 018001.000030->018001.000014, 018001.000030->018001.000015, 018001.000031->018001.000001, 018001.000031->018001.000006, 018001.000031->018001.000008, 018001.000031->018001.000009, 018001.000031->018001.000010, 018001.000031->018001.000011, 018001.000031->018001.000012, 018001.000031->018001.000013, 018001.000031->018001.000014, 018001.000031->018001.000015, 018001.000032->018001.000002, 018001.000032->018001.000003, 018001.000032->018001.000004, 018001.000032->018001.000005, 018001.000032->018001.000016, 018001.000032->018001.000017, 018001.000032->018001.000018, 018001.000032->018001.000021, 018001.000032->018001.000022, 018001.000032->018001.000023, 018001.000032->018001.000025, 018001.000032->018001.000026, 018001.000032->018001.000027, 018001.000032->018001.000029, 018001.000032->018001.000030, 018001.000032->018001.000031, 018001.000033->018001.000002, 018001.000033->018001.000018, 018001.000033->018001.000019, 018001.000033->018001.000020, 018001.000033->018001.000021, 018001.000033->018001.000022, 018001.000033->018001.000024, 018001.000033->018001.000026, 018001.000033->018001.000027, 018001.000033->018001.000028, 018001.000034->018001.000002, 018001.000034->018001.000003, 018001.000034->018001.000005, 018001.000034->018001.000017, 018001.000034->018001.000018, 018001.000034->018001.000020, 018001.000034->018001.000021, 018001.000034->018001.000022, 018001.000034->018001.000023, 018001.000034->018001.000024, 018001.000034->018001.000025, 018001.000034->018001.000026, 018001.000034->018001.000027, 018001.000034->018001.000028, 018001.000034->018001.000030, 018001.000034->018001.000031, 018001.000035->018001.000002, 018001.000035->018001.000003, 018001.000035->018001.000004, 018001.000035->018001.000005, 018001.000035->018001.000016, 018001.000035->018001.000017, 018001.000035->018001.000018, 018001.000035->018001.000021, 018001.000035->018001.000022, 018001.000035->018001.000023, 018001.000035->018001.000025, 018001.000035->018001.000026, 018001.000035->018001.000027, 018001.000035->018001.000029, 018001.000035->018001.000030, 018001.000035->018001.000031, 018001.000036->018001.000002, 018001.000036->018001.000003, 018001.000036->018001.000005, 018001.000036->018001.000017, 018001.000036->018001.000018, 018001.000036->018001.000020, 018001.000036->018001.000021, 018001.000036->018001.000022, 018001.000036->018001.000023, 018001.000036->018001.000024, 018001.000036->018001.000025, 018001.000036->018001.000026, 018001.000036->018001.000027, 018001.000036->018001.000028, 018001.000036->018001.000030, 018001.000036->018001.000031, 018001.000037->018001.000003, 018001.000037->018001.000005, 018001.000037->018001.000017, 018001.000037->018001.000023, 018001.000037->018001.000025, 018001.000037->018001.000030, 018001.000037->018001.000031, 018001.000038->018001.000002, 018001.000038->018001.000003, 018001.000038->018001.000004, 018001.000038->018001.000005, 018001.000038->018001.000016, 018001.000038->018001.000017, 018001.000038->018001.000018, 018001.000038->018001.000021, 018001.000038->018001.000022, 018001.000038->018001.000023, 018001.000038->018001.000025, 018001.000038->018001.000026, 018001.000038->018001.000027, 018001.000038->018001.000029, 018001.000038->018001.000030, 018001.000038->018001.000031, 018001.000039->018001.000002, 018001.000039->018001.000003, 018001.000039->018001.000004, 018001.000039->018001.000005, 018001.000039->018001.000016, 018001.000039->018001.000017, 018001.000039->018001.000018, 018001.000039->018001.000021, 018001.000039->018001.000022, 018001.000039->018001.000023, 018001.000039->018001.000025, 018001.000039->018001.000026, 018001.000039->018001.000027, 018001.000039->018001.000029, 018001.000039->018001.000030, 018001.000039->018001.000031, 018001.000040->018001.000002, 018001.000040->018001.000003, 018001.000040->018001.000005, 018001.000040->018001.000017, 018001.000040->018001.000018, 018001.000040->018001.000020, 018001.000040->018001.000021, 018001.000040->018001.000022, 018001.000040->018001.000023, 018001.000040->018001.000024, 018001.000040->018001.000025, 018001.000040->018001.000026, 018001.000040->018001.000027, 018001.000040->018001.000028, 018001.000040->018001.000030, 018001.000040->018001.000031, 018001.000041->018001.000006, 018001.000041->018001.000009, 018001.000041->018001.000012, 018001.000041->018001.000014, 018001.000041->018001.000032, 018001.000041->018001.000035, 018001.000041->018001.000038, 018001.000041->018001.000039, 018001.000042->018001.000001, 018001.000042->018001.000006, 018001.000042->018001.000008, 018001.000042->018001.000009, 018001.000042->018001.000010, 018001.000042->018001.000011, 018001.000042->018001.000012, 018001.000042->018001.000013, 018001.000042->018001.000014, 018001.000042->018001.000015, 018001.000042->018001.000032, 018001.000042->018001.000034, 018001.000042->018001.000035, 018001.000042->018001.000036, 018001.000042->018001.000037, 018001.000042->018001.000038, 018001.000042->018001.000039, 018001.000042->018001.000040, 018001.000043->018001.000003, 018001.000043->018001.000005, 018001.000043->018001.000017, 018001.000043->018001.000023, 018001.000043->018001.000025, 018001.000043->018001.000030, 018001.000043->018001.000031, 018001.000043->018001.000042, 018001.000044->018001.000006, 018001.000044->018001.000007, 018001.000044->018001.000008, 018001.000044->018001.000009, 018001.000044->018001.000010, 018001.000044->018001.000012, 018001.000044->018001.000013, 018001.000044->018001.000014, 018001.000044->018001.000032, 018001.000044->018001.000033, 018001.000044->018001.000034, 018001.000044->018001.000035, 018001.000044->018001.000036, 018001.000044->018001.000038, 018001.000044->018001.000039, 018001.000044->018001.000040, 018001.000045->018001.000007, 018001.000045->018001.000033, 018001.000046->018001.000007, 018001.000046->018001.000008, 018001.000046->018001.000010, 018001.000046->018001.000013, 018001.000046->018001.000033, 018001.000046->018001.000034, 018001.000046->018001.000036, 018001.000046->018001.000040, 018001.000047->018001.000006, 018001.000047->018001.000007, 018001.000047->018001.000008, 018001.000047->018001.000009, 018001.000047->018001.000010, 018001.000047->018001.000012, 018001.000047->018001.000013, 018001.000047->018001.000014, 018001.000047->018001.000032, 018001.000047->018001.000033, 018001.000047->018001.000034, 018001.000047->018001.000035, 018001.000047->018001.000036, 018001.000047->018001.000038, 018001.000047->018001.000039, 018001.000047->018001.000040, 018001.000048->018001.000007, 018001.000048->018001.000008, 018001.000048->018001.000010, 018001.000048->018001.000013, 018001.000048->018001.000033, 018001.000048->018001.000034, 018001.000048->018001.000036, 018001.000048->018001.000040, 018001.000051->018001.000001, 018001.000051->018001.000006, 018001.000051->018001.000008, 018001.000051->018001.000009, 018001.000051->018001.000010, 018001.000051->018001.000011, 018001.000051->018001.000012, 018001.000051->018001.000013, 018001.000051->018001.000014, 018001.000051->018001.000015, 018001.000051->018001.000032, 018001.000051->018001.000034, 018001.000051->018001.000035, 018001.000051->018001.000036, 018001.000051->018001.000037, 018001.000051->018001.000038, 018001.000051->018001.000039, 018001.000051->018001.000040, 018001.000051->018001.000043.
+""",
+)
+
+entry(
+    index = 1148,
+    label = "Ar + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1S0) -> e + Ar(6s), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.6124928726752685,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 37; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 37. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000016->018001.000006, 018001.000016->018001.000009, 018001.000016->018001.000012, 018001.000016->018001.000014, 018001.000017->018001.000001, 018001.000017->018001.000006, 018001.000017->018001.000008, 018001.000017->018001.000009, 018001.000017->018001.000010, 018001.000017->018001.000011, 018001.000017->018001.000012, 018001.000017->018001.000013, 018001.000017->018001.000014, 018001.000017->018001.000015, 018001.000018->018001.000006, 018001.000018->018001.000007, 018001.000018->018001.000008, 018001.000018->018001.000009, 018001.000018->018001.000010, 018001.000018->018001.000012, 018001.000018->018001.000013, 018001.000018->018001.000014, 018001.000019->018001.000007, 018001.000020->018001.000007, 018001.000020->018001.000008, 018001.000020->018001.000010, 018001.000020->018001.000013, 018001.000021->018001.000006, 018001.000021->018001.000007, 018001.000021->018001.000008, 018001.000021->018001.000009, 018001.000021->018001.000010, 018001.000021->018001.000012, 018001.000021->018001.000013, 018001.000021->018001.000014, 018001.000022->018001.000006, 018001.000022->018001.000007, 018001.000022->018001.000008, 018001.000022->018001.000009, 018001.000022->018001.000010, 018001.000022->018001.000012, 018001.000022->018001.000013, 018001.000022->018001.000014, 018001.000023->018001.000001, 018001.000023->018001.000006, 018001.000023->018001.000008, 018001.000023->018001.000009, 018001.000023->018001.000010, 018001.000023->018001.000011, 018001.000023->018001.000012, 018001.000023->018001.000013, 018001.000023->018001.000014, 018001.000023->018001.000015, 018001.000024->018001.000007, 018001.000024->018001.000008, 018001.000024->018001.000010, 018001.000024->018001.000013, 018001.000025->018001.000001, 018001.000025->018001.000006, 018001.000025->018001.000008, 018001.000025->018001.000009, 018001.000025->018001.000010, 018001.000025->018001.000011, 018001.000025->018001.000012, 018001.000025->018001.000013, 018001.000025->018001.000014, 018001.000025->018001.000015, 018001.000026->018001.000006, 018001.000026->018001.000007, 018001.000026->018001.000008, 018001.000026->018001.000009, 018001.000026->018001.000010, 018001.000026->018001.000012, 018001.000026->018001.000013, 018001.000026->018001.000014, 018001.000027->018001.000006, 018001.000027->018001.000007, 018001.000027->018001.000008, 018001.000027->018001.000009, 018001.000027->018001.000010, 018001.000027->018001.000012, 018001.000027->018001.000013, 018001.000027->018001.000014, 018001.000028->018001.000007, 018001.000028->018001.000008, 018001.000028->018001.000010, 018001.000028->018001.000013, 018001.000029->018001.000006, 018001.000029->018001.000009, 018001.000029->018001.000012, 018001.000029->018001.000014, 018001.000030->018001.000001, 018001.000030->018001.000006, 018001.000030->018001.000008, 018001.000030->018001.000009, 018001.000030->018001.000010, 018001.000030->018001.000011, 018001.000030->018001.000012, 018001.000030->018001.000013, 018001.000030->018001.000014, 018001.000030->018001.000015, 018001.000031->018001.000001, 018001.000031->018001.000006, 018001.000031->018001.000008, 018001.000031->018001.000009, 018001.000031->018001.000010, 018001.000031->018001.000011, 018001.000031->018001.000012, 018001.000031->018001.000013, 018001.000031->018001.000014, 018001.000031->018001.000015, 018001.000032->018001.000002, 018001.000032->018001.000003, 018001.000032->018001.000004, 018001.000032->018001.000005, 018001.000032->018001.000016, 018001.000032->018001.000017, 018001.000032->018001.000018, 018001.000032->018001.000021, 018001.000032->018001.000022, 018001.000032->018001.000023, 018001.000032->018001.000025, 018001.000032->018001.000026, 018001.000032->018001.000027, 018001.000032->018001.000029, 018001.000032->018001.000030, 018001.000032->018001.000031, 018001.000033->018001.000002, 018001.000033->018001.000018, 018001.000033->018001.000019, 018001.000033->018001.000020, 018001.000033->018001.000021, 018001.000033->018001.000022, 018001.000033->018001.000024, 018001.000033->018001.000026, 018001.000033->018001.000027, 018001.000033->018001.000028, 018001.000034->018001.000002, 018001.000034->018001.000003, 018001.000034->018001.000005, 018001.000034->018001.000017, 018001.000034->018001.000018, 018001.000034->018001.000020, 018001.000034->018001.000021, 018001.000034->018001.000022, 018001.000034->018001.000023, 018001.000034->018001.000024, 018001.000034->018001.000025, 018001.000034->018001.000026, 018001.000034->018001.000027, 018001.000034->018001.000028, 018001.000034->018001.000030, 018001.000034->018001.000031, 018001.000035->018001.000002, 018001.000035->018001.000003, 018001.000035->018001.000004, 018001.000035->018001.000005, 018001.000035->018001.000016, 018001.000035->018001.000017, 018001.000035->018001.000018, 018001.000035->018001.000021, 018001.000035->018001.000022, 018001.000035->018001.000023, 018001.000035->018001.000025, 018001.000035->018001.000026, 018001.000035->018001.000027, 018001.000035->018001.000029, 018001.000035->018001.000030, 018001.000035->018001.000031, 018001.000036->018001.000002, 018001.000036->018001.000003, 018001.000036->018001.000005, 018001.000036->018001.000017, 018001.000036->018001.000018, 018001.000036->018001.000020, 018001.000036->018001.000021, 018001.000036->018001.000022, 018001.000036->018001.000023, 018001.000036->018001.000024, 018001.000036->018001.000025, 018001.000036->018001.000026, 018001.000036->018001.000027, 018001.000036->018001.000028, 018001.000036->018001.000030, 018001.000036->018001.000031, 018001.000037->018001.000003, 018001.000037->018001.000005, 018001.000037->018001.000017, 018001.000037->018001.000023, 018001.000037->018001.000025, 018001.000037->018001.000030, 018001.000037->018001.000031, 018001.000038->018001.000002, 018001.000038->018001.000003, 018001.000038->018001.000004, 018001.000038->018001.000005, 018001.000038->018001.000016, 018001.000038->018001.000017, 018001.000038->018001.000018, 018001.000038->018001.000021, 018001.000038->018001.000022, 018001.000038->018001.000023, 018001.000038->018001.000025, 018001.000038->018001.000026, 018001.000038->018001.000027, 018001.000038->018001.000029, 018001.000038->018001.000030, 018001.000038->018001.000031, 018001.000039->018001.000002, 018001.000039->018001.000003, 018001.000039->018001.000004, 018001.000039->018001.000005, 018001.000039->018001.000016, 018001.000039->018001.000017, 018001.000039->018001.000018, 018001.000039->018001.000021, 018001.000039->018001.000022, 018001.000039->018001.000023, 018001.000039->018001.000025, 018001.000039->018001.000026, 018001.000039->018001.000027, 018001.000039->018001.000029, 018001.000039->018001.000030, 018001.000039->018001.000031, 018001.000040->018001.000002, 018001.000040->018001.000003, 018001.000040->018001.000005, 018001.000040->018001.000017, 018001.000040->018001.000018, 018001.000040->018001.000020, 018001.000040->018001.000021, 018001.000040->018001.000022, 018001.000040->018001.000023, 018001.000040->018001.000024, 018001.000040->018001.000025, 018001.000040->018001.000026, 018001.000040->018001.000027, 018001.000040->018001.000028, 018001.000040->018001.000030, 018001.000040->018001.000031, 018001.000042->018001.000001, 018001.000042->018001.000006, 018001.000042->018001.000008, 018001.000042->018001.000009, 018001.000042->018001.000010, 018001.000042->018001.000011, 018001.000042->018001.000012, 018001.000042->018001.000013, 018001.000042->018001.000014, 018001.000042->018001.000015, 018001.000042->018001.000032, 018001.000042->018001.000034, 018001.000042->018001.000035, 018001.000042->018001.000036, 018001.000042->018001.000037, 018001.000042->018001.000038, 018001.000042->018001.000039, 018001.000042->018001.000040, 018001.000043->018001.000003, 018001.000043->018001.000005, 018001.000043->018001.000017, 018001.000043->018001.000023, 018001.000043->018001.000025, 018001.000043->018001.000030, 018001.000043->018001.000031, 018001.000043->018001.000042, 018001.000049->018001.000006, 018001.000049->018001.000007, 018001.000049->018001.000008, 018001.000049->018001.000009, 018001.000049->018001.000010, 018001.000049->018001.000012, 018001.000049->018001.000013, 018001.000049->018001.000014, 018001.000049->018001.000032, 018001.000049->018001.000033, 018001.000049->018001.000034, 018001.000049->018001.000035, 018001.000049->018001.000036, 018001.000049->018001.000038, 018001.000049->018001.000039, 018001.000049->018001.000040, 018001.000050->018001.000001, 018001.000050->018001.000006, 018001.000050->018001.000008, 018001.000050->018001.000009, 018001.000050->018001.000010, 018001.000050->018001.000011, 018001.000050->018001.000012, 018001.000050->018001.000013, 018001.000050->018001.000014, 018001.000050->018001.000015, 018001.000050->018001.000032, 018001.000050->018001.000034, 018001.000050->018001.000035, 018001.000050->018001.000036, 018001.000050->018001.000037, 018001.000050->018001.000038, 018001.000050->018001.000039, 018001.000050->018001.000040, 018001.000050->018001.000043.
+""",
+)
+
+entry(
+    index = 1149,
+    label = "Ar + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1S0) -> e + Ar(6s), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.29732810472737503,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 37; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 37. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000016->018001.000006, 018001.000016->018001.000009, 018001.000016->018001.000012, 018001.000016->018001.000014, 018001.000017->018001.000001, 018001.000017->018001.000006, 018001.000017->018001.000008, 018001.000017->018001.000009, 018001.000017->018001.000010, 018001.000017->018001.000011, 018001.000017->018001.000012, 018001.000017->018001.000013, 018001.000017->018001.000014, 018001.000017->018001.000015, 018001.000018->018001.000006, 018001.000018->018001.000007, 018001.000018->018001.000008, 018001.000018->018001.000009, 018001.000018->018001.000010, 018001.000018->018001.000012, 018001.000018->018001.000013, 018001.000018->018001.000014, 018001.000019->018001.000007, 018001.000020->018001.000007, 018001.000020->018001.000008, 018001.000020->018001.000010, 018001.000020->018001.000013, 018001.000021->018001.000006, 018001.000021->018001.000007, 018001.000021->018001.000008, 018001.000021->018001.000009, 018001.000021->018001.000010, 018001.000021->018001.000012, 018001.000021->018001.000013, 018001.000021->018001.000014, 018001.000022->018001.000006, 018001.000022->018001.000007, 018001.000022->018001.000008, 018001.000022->018001.000009, 018001.000022->018001.000010, 018001.000022->018001.000012, 018001.000022->018001.000013, 018001.000022->018001.000014, 018001.000023->018001.000001, 018001.000023->018001.000006, 018001.000023->018001.000008, 018001.000023->018001.000009, 018001.000023->018001.000010, 018001.000023->018001.000011, 018001.000023->018001.000012, 018001.000023->018001.000013, 018001.000023->018001.000014, 018001.000023->018001.000015, 018001.000024->018001.000007, 018001.000024->018001.000008, 018001.000024->018001.000010, 018001.000024->018001.000013, 018001.000025->018001.000001, 018001.000025->018001.000006, 018001.000025->018001.000008, 018001.000025->018001.000009, 018001.000025->018001.000010, 018001.000025->018001.000011, 018001.000025->018001.000012, 018001.000025->018001.000013, 018001.000025->018001.000014, 018001.000025->018001.000015, 018001.000026->018001.000006, 018001.000026->018001.000007, 018001.000026->018001.000008, 018001.000026->018001.000009, 018001.000026->018001.000010, 018001.000026->018001.000012, 018001.000026->018001.000013, 018001.000026->018001.000014, 018001.000027->018001.000006, 018001.000027->018001.000007, 018001.000027->018001.000008, 018001.000027->018001.000009, 018001.000027->018001.000010, 018001.000027->018001.000012, 018001.000027->018001.000013, 018001.000027->018001.000014, 018001.000028->018001.000007, 018001.000028->018001.000008, 018001.000028->018001.000010, 018001.000028->018001.000013, 018001.000029->018001.000006, 018001.000029->018001.000009, 018001.000029->018001.000012, 018001.000029->018001.000014, 018001.000030->018001.000001, 018001.000030->018001.000006, 018001.000030->018001.000008, 018001.000030->018001.000009, 018001.000030->018001.000010, 018001.000030->018001.000011, 018001.000030->018001.000012, 018001.000030->018001.000013, 018001.000030->018001.000014, 018001.000030->018001.000015, 018001.000031->018001.000001, 018001.000031->018001.000006, 018001.000031->018001.000008, 018001.000031->018001.000009, 018001.000031->018001.000010, 018001.000031->018001.000011, 018001.000031->018001.000012, 018001.000031->018001.000013, 018001.000031->018001.000014, 018001.000031->018001.000015, 018001.000032->018001.000002, 018001.000032->018001.000003, 018001.000032->018001.000004, 018001.000032->018001.000005, 018001.000032->018001.000016, 018001.000032->018001.000017, 018001.000032->018001.000018, 018001.000032->018001.000021, 018001.000032->018001.000022, 018001.000032->018001.000023, 018001.000032->018001.000025, 018001.000032->018001.000026, 018001.000032->018001.000027, 018001.000032->018001.000029, 018001.000032->018001.000030, 018001.000032->018001.000031, 018001.000033->018001.000002, 018001.000033->018001.000018, 018001.000033->018001.000019, 018001.000033->018001.000020, 018001.000033->018001.000021, 018001.000033->018001.000022, 018001.000033->018001.000024, 018001.000033->018001.000026, 018001.000033->018001.000027, 018001.000033->018001.000028, 018001.000034->018001.000002, 018001.000034->018001.000003, 018001.000034->018001.000005, 018001.000034->018001.000017, 018001.000034->018001.000018, 018001.000034->018001.000020, 018001.000034->018001.000021, 018001.000034->018001.000022, 018001.000034->018001.000023, 018001.000034->018001.000024, 018001.000034->018001.000025, 018001.000034->018001.000026, 018001.000034->018001.000027, 018001.000034->018001.000028, 018001.000034->018001.000030, 018001.000034->018001.000031, 018001.000035->018001.000002, 018001.000035->018001.000003, 018001.000035->018001.000004, 018001.000035->018001.000005, 018001.000035->018001.000016, 018001.000035->018001.000017, 018001.000035->018001.000018, 018001.000035->018001.000021, 018001.000035->018001.000022, 018001.000035->018001.000023, 018001.000035->018001.000025, 018001.000035->018001.000026, 018001.000035->018001.000027, 018001.000035->018001.000029, 018001.000035->018001.000030, 018001.000035->018001.000031, 018001.000036->018001.000002, 018001.000036->018001.000003, 018001.000036->018001.000005, 018001.000036->018001.000017, 018001.000036->018001.000018, 018001.000036->018001.000020, 018001.000036->018001.000021, 018001.000036->018001.000022, 018001.000036->018001.000023, 018001.000036->018001.000024, 018001.000036->018001.000025, 018001.000036->018001.000026, 018001.000036->018001.000027, 018001.000036->018001.000028, 018001.000036->018001.000030, 018001.000036->018001.000031, 018001.000037->018001.000003, 018001.000037->018001.000005, 018001.000037->018001.000017, 018001.000037->018001.000023, 018001.000037->018001.000025, 018001.000037->018001.000030, 018001.000037->018001.000031, 018001.000038->018001.000002, 018001.000038->018001.000003, 018001.000038->018001.000004, 018001.000038->018001.000005, 018001.000038->018001.000016, 018001.000038->018001.000017, 018001.000038->018001.000018, 018001.000038->018001.000021, 018001.000038->018001.000022, 018001.000038->018001.000023, 018001.000038->018001.000025, 018001.000038->018001.000026, 018001.000038->018001.000027, 018001.000038->018001.000029, 018001.000038->018001.000030, 018001.000038->018001.000031, 018001.000039->018001.000002, 018001.000039->018001.000003, 018001.000039->018001.000004, 018001.000039->018001.000005, 018001.000039->018001.000016, 018001.000039->018001.000017, 018001.000039->018001.000018, 018001.000039->018001.000021, 018001.000039->018001.000022, 018001.000039->018001.000023, 018001.000039->018001.000025, 018001.000039->018001.000026, 018001.000039->018001.000027, 018001.000039->018001.000029, 018001.000039->018001.000030, 018001.000039->018001.000031, 018001.000040->018001.000002, 018001.000040->018001.000003, 018001.000040->018001.000005, 018001.000040->018001.000017, 018001.000040->018001.000018, 018001.000040->018001.000020, 018001.000040->018001.000021, 018001.000040->018001.000022, 018001.000040->018001.000023, 018001.000040->018001.000024, 018001.000040->018001.000025, 018001.000040->018001.000026, 018001.000040->018001.000027, 018001.000040->018001.000028, 018001.000040->018001.000030, 018001.000040->018001.000031, 018001.000042->018001.000001, 018001.000042->018001.000006, 018001.000042->018001.000008, 018001.000042->018001.000009, 018001.000042->018001.000010, 018001.000042->018001.000011, 018001.000042->018001.000012, 018001.000042->018001.000013, 018001.000042->018001.000014, 018001.000042->018001.000015, 018001.000042->018001.000032, 018001.000042->018001.000034, 018001.000042->018001.000035, 018001.000042->018001.000036, 018001.000042->018001.000037, 018001.000042->018001.000038, 018001.000042->018001.000039, 018001.000042->018001.000040, 018001.000043->018001.000003, 018001.000043->018001.000005, 018001.000043->018001.000017, 018001.000043->018001.000023, 018001.000043->018001.000025, 018001.000043->018001.000030, 018001.000043->018001.000031, 018001.000043->018001.000042, 018001.000049->018001.000006, 018001.000049->018001.000007, 018001.000049->018001.000008, 018001.000049->018001.000009, 018001.000049->018001.000010, 018001.000049->018001.000012, 018001.000049->018001.000013, 018001.000049->018001.000014, 018001.000049->018001.000032, 018001.000049->018001.000033, 018001.000049->018001.000034, 018001.000049->018001.000035, 018001.000049->018001.000036, 018001.000049->018001.000038, 018001.000049->018001.000039, 018001.000049->018001.000040, 018001.000050->018001.000001, 018001.000050->018001.000006, 018001.000050->018001.000008, 018001.000050->018001.000009, 018001.000050->018001.000010, 018001.000050->018001.000011, 018001.000050->018001.000012, 018001.000050->018001.000013, 018001.000050->018001.000014, 018001.000050->018001.000015, 018001.000050->018001.000032, 018001.000050->018001.000034, 018001.000050->018001.000035, 018001.000050->018001.000036, 018001.000050->018001.000037, 018001.000050->018001.000038, 018001.000050->018001.000039, 018001.000050->018001.000040, 018001.000050->018001.000043.
+""",
+)
+
+entry(
+    index = 1150,
+    label = "Ar + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1S0) -> e + Ar(6s), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.02823154532130811,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 37; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 37. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000016->018001.000006, 018001.000016->018001.000009, 018001.000016->018001.000012, 018001.000016->018001.000014, 018001.000017->018001.000001, 018001.000017->018001.000006, 018001.000017->018001.000008, 018001.000017->018001.000009, 018001.000017->018001.000010, 018001.000017->018001.000011, 018001.000017->018001.000012, 018001.000017->018001.000013, 018001.000017->018001.000014, 018001.000017->018001.000015, 018001.000018->018001.000006, 018001.000018->018001.000007, 018001.000018->018001.000008, 018001.000018->018001.000009, 018001.000018->018001.000010, 018001.000018->018001.000012, 018001.000018->018001.000013, 018001.000018->018001.000014, 018001.000019->018001.000007, 018001.000020->018001.000007, 018001.000020->018001.000008, 018001.000020->018001.000010, 018001.000020->018001.000013, 018001.000021->018001.000006, 018001.000021->018001.000007, 018001.000021->018001.000008, 018001.000021->018001.000009, 018001.000021->018001.000010, 018001.000021->018001.000012, 018001.000021->018001.000013, 018001.000021->018001.000014, 018001.000022->018001.000006, 018001.000022->018001.000007, 018001.000022->018001.000008, 018001.000022->018001.000009, 018001.000022->018001.000010, 018001.000022->018001.000012, 018001.000022->018001.000013, 018001.000022->018001.000014, 018001.000023->018001.000001, 018001.000023->018001.000006, 018001.000023->018001.000008, 018001.000023->018001.000009, 018001.000023->018001.000010, 018001.000023->018001.000011, 018001.000023->018001.000012, 018001.000023->018001.000013, 018001.000023->018001.000014, 018001.000023->018001.000015, 018001.000024->018001.000007, 018001.000024->018001.000008, 018001.000024->018001.000010, 018001.000024->018001.000013, 018001.000025->018001.000001, 018001.000025->018001.000006, 018001.000025->018001.000008, 018001.000025->018001.000009, 018001.000025->018001.000010, 018001.000025->018001.000011, 018001.000025->018001.000012, 018001.000025->018001.000013, 018001.000025->018001.000014, 018001.000025->018001.000015, 018001.000026->018001.000006, 018001.000026->018001.000007, 018001.000026->018001.000008, 018001.000026->018001.000009, 018001.000026->018001.000010, 018001.000026->018001.000012, 018001.000026->018001.000013, 018001.000026->018001.000014, 018001.000027->018001.000006, 018001.000027->018001.000007, 018001.000027->018001.000008, 018001.000027->018001.000009, 018001.000027->018001.000010, 018001.000027->018001.000012, 018001.000027->018001.000013, 018001.000027->018001.000014, 018001.000028->018001.000007, 018001.000028->018001.000008, 018001.000028->018001.000010, 018001.000028->018001.000013, 018001.000029->018001.000006, 018001.000029->018001.000009, 018001.000029->018001.000012, 018001.000029->018001.000014, 018001.000030->018001.000001, 018001.000030->018001.000006, 018001.000030->018001.000008, 018001.000030->018001.000009, 018001.000030->018001.000010, 018001.000030->018001.000011, 018001.000030->018001.000012, 018001.000030->018001.000013, 018001.000030->018001.000014, 018001.000030->018001.000015, 018001.000031->018001.000001, 018001.000031->018001.000006, 018001.000031->018001.000008, 018001.000031->018001.000009, 018001.000031->018001.000010, 018001.000031->018001.000011, 018001.000031->018001.000012, 018001.000031->018001.000013, 018001.000031->018001.000014, 018001.000031->018001.000015, 018001.000032->018001.000002, 018001.000032->018001.000003, 018001.000032->018001.000004, 018001.000032->018001.000005, 018001.000032->018001.000016, 018001.000032->018001.000017, 018001.000032->018001.000018, 018001.000032->018001.000021, 018001.000032->018001.000022, 018001.000032->018001.000023, 018001.000032->018001.000025, 018001.000032->018001.000026, 018001.000032->018001.000027, 018001.000032->018001.000029, 018001.000032->018001.000030, 018001.000032->018001.000031, 018001.000033->018001.000002, 018001.000033->018001.000018, 018001.000033->018001.000019, 018001.000033->018001.000020, 018001.000033->018001.000021, 018001.000033->018001.000022, 018001.000033->018001.000024, 018001.000033->018001.000026, 018001.000033->018001.000027, 018001.000033->018001.000028, 018001.000034->018001.000002, 018001.000034->018001.000003, 018001.000034->018001.000005, 018001.000034->018001.000017, 018001.000034->018001.000018, 018001.000034->018001.000020, 018001.000034->018001.000021, 018001.000034->018001.000022, 018001.000034->018001.000023, 018001.000034->018001.000024, 018001.000034->018001.000025, 018001.000034->018001.000026, 018001.000034->018001.000027, 018001.000034->018001.000028, 018001.000034->018001.000030, 018001.000034->018001.000031, 018001.000035->018001.000002, 018001.000035->018001.000003, 018001.000035->018001.000004, 018001.000035->018001.000005, 018001.000035->018001.000016, 018001.000035->018001.000017, 018001.000035->018001.000018, 018001.000035->018001.000021, 018001.000035->018001.000022, 018001.000035->018001.000023, 018001.000035->018001.000025, 018001.000035->018001.000026, 018001.000035->018001.000027, 018001.000035->018001.000029, 018001.000035->018001.000030, 018001.000035->018001.000031, 018001.000036->018001.000002, 018001.000036->018001.000003, 018001.000036->018001.000005, 018001.000036->018001.000017, 018001.000036->018001.000018, 018001.000036->018001.000020, 018001.000036->018001.000021, 018001.000036->018001.000022, 018001.000036->018001.000023, 018001.000036->018001.000024, 018001.000036->018001.000025, 018001.000036->018001.000026, 018001.000036->018001.000027, 018001.000036->018001.000028, 018001.000036->018001.000030, 018001.000036->018001.000031, 018001.000037->018001.000003, 018001.000037->018001.000005, 018001.000037->018001.000017, 018001.000037->018001.000023, 018001.000037->018001.000025, 018001.000037->018001.000030, 018001.000037->018001.000031, 018001.000038->018001.000002, 018001.000038->018001.000003, 018001.000038->018001.000004, 018001.000038->018001.000005, 018001.000038->018001.000016, 018001.000038->018001.000017, 018001.000038->018001.000018, 018001.000038->018001.000021, 018001.000038->018001.000022, 018001.000038->018001.000023, 018001.000038->018001.000025, 018001.000038->018001.000026, 018001.000038->018001.000027, 018001.000038->018001.000029, 018001.000038->018001.000030, 018001.000038->018001.000031, 018001.000039->018001.000002, 018001.000039->018001.000003, 018001.000039->018001.000004, 018001.000039->018001.000005, 018001.000039->018001.000016, 018001.000039->018001.000017, 018001.000039->018001.000018, 018001.000039->018001.000021, 018001.000039->018001.000022, 018001.000039->018001.000023, 018001.000039->018001.000025, 018001.000039->018001.000026, 018001.000039->018001.000027, 018001.000039->018001.000029, 018001.000039->018001.000030, 018001.000039->018001.000031, 018001.000040->018001.000002, 018001.000040->018001.000003, 018001.000040->018001.000005, 018001.000040->018001.000017, 018001.000040->018001.000018, 018001.000040->018001.000020, 018001.000040->018001.000021, 018001.000040->018001.000022, 018001.000040->018001.000023, 018001.000040->018001.000024, 018001.000040->018001.000025, 018001.000040->018001.000026, 018001.000040->018001.000027, 018001.000040->018001.000028, 018001.000040->018001.000030, 018001.000040->018001.000031, 018001.000042->018001.000001, 018001.000042->018001.000006, 018001.000042->018001.000008, 018001.000042->018001.000009, 018001.000042->018001.000010, 018001.000042->018001.000011, 018001.000042->018001.000012, 018001.000042->018001.000013, 018001.000042->018001.000014, 018001.000042->018001.000015, 018001.000042->018001.000032, 018001.000042->018001.000034, 018001.000042->018001.000035, 018001.000042->018001.000036, 018001.000042->018001.000037, 018001.000042->018001.000038, 018001.000042->018001.000039, 018001.000042->018001.000040, 018001.000043->018001.000003, 018001.000043->018001.000005, 018001.000043->018001.000017, 018001.000043->018001.000023, 018001.000043->018001.000025, 018001.000043->018001.000030, 018001.000043->018001.000031, 018001.000043->018001.000042, 018001.000049->018001.000006, 018001.000049->018001.000007, 018001.000049->018001.000008, 018001.000049->018001.000009, 018001.000049->018001.000010, 018001.000049->018001.000012, 018001.000049->018001.000013, 018001.000049->018001.000014, 018001.000049->018001.000032, 018001.000049->018001.000033, 018001.000049->018001.000034, 018001.000049->018001.000035, 018001.000049->018001.000036, 018001.000049->018001.000038, 018001.000049->018001.000039, 018001.000049->018001.000040, 018001.000050->018001.000001, 018001.000050->018001.000006, 018001.000050->018001.000008, 018001.000050->018001.000009, 018001.000050->018001.000010, 018001.000050->018001.000011, 018001.000050->018001.000012, 018001.000050->018001.000013, 018001.000050->018001.000014, 018001.000050->018001.000015, 018001.000050->018001.000032, 018001.000050->018001.000034, 018001.000050->018001.000035, 018001.000050->018001.000036, 018001.000050->018001.000037, 018001.000050->018001.000038, 018001.000050->018001.000039, 018001.000050->018001.000040, 018001.000050->018001.000043.
+""",
+)
+
+entry(
+    index = 1151,
+    label = "Ar + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1S0) -> e + Ar(6s), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.06194747727604841,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 37; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 37. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000016->018001.000006, 018001.000016->018001.000009, 018001.000016->018001.000012, 018001.000016->018001.000014, 018001.000017->018001.000001, 018001.000017->018001.000006, 018001.000017->018001.000008, 018001.000017->018001.000009, 018001.000017->018001.000010, 018001.000017->018001.000011, 018001.000017->018001.000012, 018001.000017->018001.000013, 018001.000017->018001.000014, 018001.000017->018001.000015, 018001.000018->018001.000006, 018001.000018->018001.000007, 018001.000018->018001.000008, 018001.000018->018001.000009, 018001.000018->018001.000010, 018001.000018->018001.000012, 018001.000018->018001.000013, 018001.000018->018001.000014, 018001.000019->018001.000007, 018001.000020->018001.000007, 018001.000020->018001.000008, 018001.000020->018001.000010, 018001.000020->018001.000013, 018001.000021->018001.000006, 018001.000021->018001.000007, 018001.000021->018001.000008, 018001.000021->018001.000009, 018001.000021->018001.000010, 018001.000021->018001.000012, 018001.000021->018001.000013, 018001.000021->018001.000014, 018001.000022->018001.000006, 018001.000022->018001.000007, 018001.000022->018001.000008, 018001.000022->018001.000009, 018001.000022->018001.000010, 018001.000022->018001.000012, 018001.000022->018001.000013, 018001.000022->018001.000014, 018001.000023->018001.000001, 018001.000023->018001.000006, 018001.000023->018001.000008, 018001.000023->018001.000009, 018001.000023->018001.000010, 018001.000023->018001.000011, 018001.000023->018001.000012, 018001.000023->018001.000013, 018001.000023->018001.000014, 018001.000023->018001.000015, 018001.000024->018001.000007, 018001.000024->018001.000008, 018001.000024->018001.000010, 018001.000024->018001.000013, 018001.000025->018001.000001, 018001.000025->018001.000006, 018001.000025->018001.000008, 018001.000025->018001.000009, 018001.000025->018001.000010, 018001.000025->018001.000011, 018001.000025->018001.000012, 018001.000025->018001.000013, 018001.000025->018001.000014, 018001.000025->018001.000015, 018001.000026->018001.000006, 018001.000026->018001.000007, 018001.000026->018001.000008, 018001.000026->018001.000009, 018001.000026->018001.000010, 018001.000026->018001.000012, 018001.000026->018001.000013, 018001.000026->018001.000014, 018001.000027->018001.000006, 018001.000027->018001.000007, 018001.000027->018001.000008, 018001.000027->018001.000009, 018001.000027->018001.000010, 018001.000027->018001.000012, 018001.000027->018001.000013, 018001.000027->018001.000014, 018001.000028->018001.000007, 018001.000028->018001.000008, 018001.000028->018001.000010, 018001.000028->018001.000013, 018001.000029->018001.000006, 018001.000029->018001.000009, 018001.000029->018001.000012, 018001.000029->018001.000014, 018001.000030->018001.000001, 018001.000030->018001.000006, 018001.000030->018001.000008, 018001.000030->018001.000009, 018001.000030->018001.000010, 018001.000030->018001.000011, 018001.000030->018001.000012, 018001.000030->018001.000013, 018001.000030->018001.000014, 018001.000030->018001.000015, 018001.000031->018001.000001, 018001.000031->018001.000006, 018001.000031->018001.000008, 018001.000031->018001.000009, 018001.000031->018001.000010, 018001.000031->018001.000011, 018001.000031->018001.000012, 018001.000031->018001.000013, 018001.000031->018001.000014, 018001.000031->018001.000015, 018001.000032->018001.000002, 018001.000032->018001.000003, 018001.000032->018001.000004, 018001.000032->018001.000005, 018001.000032->018001.000016, 018001.000032->018001.000017, 018001.000032->018001.000018, 018001.000032->018001.000021, 018001.000032->018001.000022, 018001.000032->018001.000023, 018001.000032->018001.000025, 018001.000032->018001.000026, 018001.000032->018001.000027, 018001.000032->018001.000029, 018001.000032->018001.000030, 018001.000032->018001.000031, 018001.000033->018001.000002, 018001.000033->018001.000018, 018001.000033->018001.000019, 018001.000033->018001.000020, 018001.000033->018001.000021, 018001.000033->018001.000022, 018001.000033->018001.000024, 018001.000033->018001.000026, 018001.000033->018001.000027, 018001.000033->018001.000028, 018001.000034->018001.000002, 018001.000034->018001.000003, 018001.000034->018001.000005, 018001.000034->018001.000017, 018001.000034->018001.000018, 018001.000034->018001.000020, 018001.000034->018001.000021, 018001.000034->018001.000022, 018001.000034->018001.000023, 018001.000034->018001.000024, 018001.000034->018001.000025, 018001.000034->018001.000026, 018001.000034->018001.000027, 018001.000034->018001.000028, 018001.000034->018001.000030, 018001.000034->018001.000031, 018001.000035->018001.000002, 018001.000035->018001.000003, 018001.000035->018001.000004, 018001.000035->018001.000005, 018001.000035->018001.000016, 018001.000035->018001.000017, 018001.000035->018001.000018, 018001.000035->018001.000021, 018001.000035->018001.000022, 018001.000035->018001.000023, 018001.000035->018001.000025, 018001.000035->018001.000026, 018001.000035->018001.000027, 018001.000035->018001.000029, 018001.000035->018001.000030, 018001.000035->018001.000031, 018001.000036->018001.000002, 018001.000036->018001.000003, 018001.000036->018001.000005, 018001.000036->018001.000017, 018001.000036->018001.000018, 018001.000036->018001.000020, 018001.000036->018001.000021, 018001.000036->018001.000022, 018001.000036->018001.000023, 018001.000036->018001.000024, 018001.000036->018001.000025, 018001.000036->018001.000026, 018001.000036->018001.000027, 018001.000036->018001.000028, 018001.000036->018001.000030, 018001.000036->018001.000031, 018001.000037->018001.000003, 018001.000037->018001.000005, 018001.000037->018001.000017, 018001.000037->018001.000023, 018001.000037->018001.000025, 018001.000037->018001.000030, 018001.000037->018001.000031, 018001.000038->018001.000002, 018001.000038->018001.000003, 018001.000038->018001.000004, 018001.000038->018001.000005, 018001.000038->018001.000016, 018001.000038->018001.000017, 018001.000038->018001.000018, 018001.000038->018001.000021, 018001.000038->018001.000022, 018001.000038->018001.000023, 018001.000038->018001.000025, 018001.000038->018001.000026, 018001.000038->018001.000027, 018001.000038->018001.000029, 018001.000038->018001.000030, 018001.000038->018001.000031, 018001.000039->018001.000002, 018001.000039->018001.000003, 018001.000039->018001.000004, 018001.000039->018001.000005, 018001.000039->018001.000016, 018001.000039->018001.000017, 018001.000039->018001.000018, 018001.000039->018001.000021, 018001.000039->018001.000022, 018001.000039->018001.000023, 018001.000039->018001.000025, 018001.000039->018001.000026, 018001.000039->018001.000027, 018001.000039->018001.000029, 018001.000039->018001.000030, 018001.000039->018001.000031, 018001.000040->018001.000002, 018001.000040->018001.000003, 018001.000040->018001.000005, 018001.000040->018001.000017, 018001.000040->018001.000018, 018001.000040->018001.000020, 018001.000040->018001.000021, 018001.000040->018001.000022, 018001.000040->018001.000023, 018001.000040->018001.000024, 018001.000040->018001.000025, 018001.000040->018001.000026, 018001.000040->018001.000027, 018001.000040->018001.000028, 018001.000040->018001.000030, 018001.000040->018001.000031, 018001.000042->018001.000001, 018001.000042->018001.000006, 018001.000042->018001.000008, 018001.000042->018001.000009, 018001.000042->018001.000010, 018001.000042->018001.000011, 018001.000042->018001.000012, 018001.000042->018001.000013, 018001.000042->018001.000014, 018001.000042->018001.000015, 018001.000042->018001.000032, 018001.000042->018001.000034, 018001.000042->018001.000035, 018001.000042->018001.000036, 018001.000042->018001.000037, 018001.000042->018001.000038, 018001.000042->018001.000039, 018001.000042->018001.000040, 018001.000043->018001.000003, 018001.000043->018001.000005, 018001.000043->018001.000017, 018001.000043->018001.000023, 018001.000043->018001.000025, 018001.000043->018001.000030, 018001.000043->018001.000031, 018001.000043->018001.000042, 018001.000049->018001.000006, 018001.000049->018001.000007, 018001.000049->018001.000008, 018001.000049->018001.000009, 018001.000049->018001.000010, 018001.000049->018001.000012, 018001.000049->018001.000013, 018001.000049->018001.000014, 018001.000049->018001.000032, 018001.000049->018001.000033, 018001.000049->018001.000034, 018001.000049->018001.000035, 018001.000049->018001.000036, 018001.000049->018001.000038, 018001.000049->018001.000039, 018001.000049->018001.000040, 018001.000050->018001.000001, 018001.000050->018001.000006, 018001.000050->018001.000008, 018001.000050->018001.000009, 018001.000050->018001.000010, 018001.000050->018001.000011, 018001.000050->018001.000012, 018001.000050->018001.000013, 018001.000050->018001.000014, 018001.000050->018001.000015, 018001.000050->018001.000032, 018001.000050->018001.000034, 018001.000050->018001.000035, 018001.000050->018001.000036, 018001.000050->018001.000037, 018001.000050->018001.000038, 018001.000050->018001.000039, 018001.000050->018001.000040, 018001.000050->018001.000043.
+""",
+)
+
+entry(
+    index = 1152,
+    label = "Ar + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(1S0) -> e + Ar(4d'), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.32605507761176916,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 38; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 38. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000016->018001.000006, 018001.000016->018001.000009, 018001.000016->018001.000012, 018001.000016->018001.000014, 018001.000017->018001.000001, 018001.000017->018001.000006, 018001.000017->018001.000008, 018001.000017->018001.000009, 018001.000017->018001.000010, 018001.000017->018001.000011, 018001.000017->018001.000012, 018001.000017->018001.000013, 018001.000017->018001.000014, 018001.000017->018001.000015, 018001.000018->018001.000006, 018001.000018->018001.000007, 018001.000018->018001.000008, 018001.000018->018001.000009, 018001.000018->018001.000010, 018001.000018->018001.000012, 018001.000018->018001.000013, 018001.000018->018001.000014, 018001.000019->018001.000007, 018001.000020->018001.000007, 018001.000020->018001.000008, 018001.000020->018001.000010, 018001.000020->018001.000013, 018001.000021->018001.000006, 018001.000021->018001.000007, 018001.000021->018001.000008, 018001.000021->018001.000009, 018001.000021->018001.000010, 018001.000021->018001.000012, 018001.000021->018001.000013, 018001.000021->018001.000014, 018001.000022->018001.000006, 018001.000022->018001.000007, 018001.000022->018001.000008, 018001.000022->018001.000009, 018001.000022->018001.000010, 018001.000022->018001.000012, 018001.000022->018001.000013, 018001.000022->018001.000014, 018001.000023->018001.000001, 018001.000023->018001.000006, 018001.000023->018001.000008, 018001.000023->018001.000009, 018001.000023->018001.000010, 018001.000023->018001.000011, 018001.000023->018001.000012, 018001.000023->018001.000013, 018001.000023->018001.000014, 018001.000023->018001.000015, 018001.000024->018001.000007, 018001.000024->018001.000008, 018001.000024->018001.000010, 018001.000024->018001.000013, 018001.000025->018001.000001, 018001.000025->018001.000006, 018001.000025->018001.000008, 018001.000025->018001.000009, 018001.000025->018001.000010, 018001.000025->018001.000011, 018001.000025->018001.000012, 018001.000025->018001.000013, 018001.000025->018001.000014, 018001.000025->018001.000015, 018001.000026->018001.000006, 018001.000026->018001.000007, 018001.000026->018001.000008, 018001.000026->018001.000009, 018001.000026->018001.000010, 018001.000026->018001.000012, 018001.000026->018001.000013, 018001.000026->018001.000014, 018001.000027->018001.000006, 018001.000027->018001.000007, 018001.000027->018001.000008, 018001.000027->018001.000009, 018001.000027->018001.000010, 018001.000027->018001.000012, 018001.000027->018001.000013, 018001.000027->018001.000014, 018001.000028->018001.000007, 018001.000028->018001.000008, 018001.000028->018001.000010, 018001.000028->018001.000013, 018001.000029->018001.000006, 018001.000029->018001.000009, 018001.000029->018001.000012, 018001.000029->018001.000014, 018001.000030->018001.000001, 018001.000030->018001.000006, 018001.000030->018001.000008, 018001.000030->018001.000009, 018001.000030->018001.000010, 018001.000030->018001.000011, 018001.000030->018001.000012, 018001.000030->018001.000013, 018001.000030->018001.000014, 018001.000030->018001.000015, 018001.000031->018001.000001, 018001.000031->018001.000006, 018001.000031->018001.000008, 018001.000031->018001.000009, 018001.000031->018001.000010, 018001.000031->018001.000011, 018001.000031->018001.000012, 018001.000031->018001.000013, 018001.000031->018001.000014, 018001.000031->018001.000015, 018001.000032->018001.000002, 018001.000032->018001.000003, 018001.000032->018001.000004, 018001.000032->018001.000005, 018001.000032->018001.000016, 018001.000032->018001.000017, 018001.000032->018001.000018, 018001.000032->018001.000021, 018001.000032->018001.000022, 018001.000032->018001.000023, 018001.000032->018001.000025, 018001.000032->018001.000026, 018001.000032->018001.000027, 018001.000032->018001.000029, 018001.000032->018001.000030, 018001.000032->018001.000031, 018001.000033->018001.000002, 018001.000033->018001.000018, 018001.000033->018001.000019, 018001.000033->018001.000020, 018001.000033->018001.000021, 018001.000033->018001.000022, 018001.000033->018001.000024, 018001.000033->018001.000026, 018001.000033->018001.000027, 018001.000033->018001.000028, 018001.000034->018001.000002, 018001.000034->018001.000003, 018001.000034->018001.000005, 018001.000034->018001.000017, 018001.000034->018001.000018, 018001.000034->018001.000020, 018001.000034->018001.000021, 018001.000034->018001.000022, 018001.000034->018001.000023, 018001.000034->018001.000024, 018001.000034->018001.000025, 018001.000034->018001.000026, 018001.000034->018001.000027, 018001.000034->018001.000028, 018001.000034->018001.000030, 018001.000034->018001.000031, 018001.000035->018001.000002, 018001.000035->018001.000003, 018001.000035->018001.000004, 018001.000035->018001.000005, 018001.000035->018001.000016, 018001.000035->018001.000017, 018001.000035->018001.000018, 018001.000035->018001.000021, 018001.000035->018001.000022, 018001.000035->018001.000023, 018001.000035->018001.000025, 018001.000035->018001.000026, 018001.000035->018001.000027, 018001.000035->018001.000029, 018001.000035->018001.000030, 018001.000035->018001.000031, 018001.000036->018001.000002, 018001.000036->018001.000003, 018001.000036->018001.000005, 018001.000036->018001.000017, 018001.000036->018001.000018, 018001.000036->018001.000020, 018001.000036->018001.000021, 018001.000036->018001.000022, 018001.000036->018001.000023, 018001.000036->018001.000024, 018001.000036->018001.000025, 018001.000036->018001.000026, 018001.000036->018001.000027, 018001.000036->018001.000028, 018001.000036->018001.000030, 018001.000036->018001.000031, 018001.000037->018001.000003, 018001.000037->018001.000005, 018001.000037->018001.000017, 018001.000037->018001.000023, 018001.000037->018001.000025, 018001.000037->018001.000030, 018001.000037->018001.000031, 018001.000038->018001.000002, 018001.000038->018001.000003, 018001.000038->018001.000004, 018001.000038->018001.000005, 018001.000038->018001.000016, 018001.000038->018001.000017, 018001.000038->018001.000018, 018001.000038->018001.000021, 018001.000038->018001.000022, 018001.000038->018001.000023, 018001.000038->018001.000025, 018001.000038->018001.000026, 018001.000038->018001.000027, 018001.000038->018001.000029, 018001.000038->018001.000030, 018001.000038->018001.000031, 018001.000039->018001.000002, 018001.000039->018001.000003, 018001.000039->018001.000004, 018001.000039->018001.000005, 018001.000039->018001.000016, 018001.000039->018001.000017, 018001.000039->018001.000018, 018001.000039->018001.000021, 018001.000039->018001.000022, 018001.000039->018001.000023, 018001.000039->018001.000025, 018001.000039->018001.000026, 018001.000039->018001.000027, 018001.000039->018001.000029, 018001.000039->018001.000030, 018001.000039->018001.000031, 018001.000040->018001.000002, 018001.000040->018001.000003, 018001.000040->018001.000005, 018001.000040->018001.000017, 018001.000040->018001.000018, 018001.000040->018001.000020, 018001.000040->018001.000021, 018001.000040->018001.000022, 018001.000040->018001.000023, 018001.000040->018001.000024, 018001.000040->018001.000025, 018001.000040->018001.000026, 018001.000040->018001.000027, 018001.000040->018001.000028, 018001.000040->018001.000030, 018001.000040->018001.000031, 018001.000041->018001.000006, 018001.000041->018001.000009, 018001.000041->018001.000012, 018001.000041->018001.000014, 018001.000041->018001.000032, 018001.000041->018001.000035, 018001.000041->018001.000038, 018001.000041->018001.000039, 018001.000042->018001.000001, 018001.000042->018001.000006, 018001.000042->018001.000008, 018001.000042->018001.000009, 018001.000042->018001.000010, 018001.000042->018001.000011, 018001.000042->018001.000012, 018001.000042->018001.000013, 018001.000042->018001.000014, 018001.000042->018001.000015, 018001.000042->018001.000032, 018001.000042->018001.000034, 018001.000042->018001.000035, 018001.000042->018001.000036, 018001.000042->018001.000037, 018001.000042->018001.000038, 018001.000042->018001.000039, 018001.000042->018001.000040, 018001.000043->018001.000003, 018001.000043->018001.000005, 018001.000043->018001.000017, 018001.000043->018001.000023, 018001.000043->018001.000025, 018001.000043->018001.000030, 018001.000043->018001.000031, 018001.000043->018001.000042, 018001.000044->018001.000006, 018001.000044->018001.000007, 018001.000044->018001.000008, 018001.000044->018001.000009, 018001.000044->018001.000010, 018001.000044->018001.000012, 018001.000044->018001.000013, 018001.000044->018001.000014, 018001.000044->018001.000032, 018001.000044->018001.000033, 018001.000044->018001.000034, 018001.000044->018001.000035, 018001.000044->018001.000036, 018001.000044->018001.000038, 018001.000044->018001.000039, 018001.000044->018001.000040, 018001.000045->018001.000007, 018001.000045->018001.000033, 018001.000046->018001.000007, 018001.000046->018001.000008, 018001.000046->018001.000010, 018001.000046->018001.000013, 018001.000046->018001.000033, 018001.000046->018001.000034, 018001.000046->018001.000036, 018001.000046->018001.000040, 018001.000047->018001.000006, 018001.000047->018001.000007, 018001.000047->018001.000008, 018001.000047->018001.000009, 018001.000047->018001.000010, 018001.000047->018001.000012, 018001.000047->018001.000013, 018001.000047->018001.000014, 018001.000047->018001.000032, 018001.000047->018001.000033, 018001.000047->018001.000034, 018001.000047->018001.000035, 018001.000047->018001.000036, 018001.000047->018001.000038, 018001.000047->018001.000039, 018001.000047->018001.000040, 018001.000048->018001.000007, 018001.000048->018001.000008, 018001.000048->018001.000010, 018001.000048->018001.000013, 018001.000048->018001.000033, 018001.000048->018001.000034, 018001.000048->018001.000036, 018001.000048->018001.000040, 018001.000049->018001.000006, 018001.000049->018001.000007, 018001.000049->018001.000008, 018001.000049->018001.000009, 018001.000049->018001.000010, 018001.000049->018001.000012, 018001.000049->018001.000013, 018001.000049->018001.000014, 018001.000049->018001.000032, 018001.000049->018001.000033, 018001.000049->018001.000034, 018001.000049->018001.000035, 018001.000049->018001.000036, 018001.000049->018001.000038, 018001.000049->018001.000039, 018001.000049->018001.000040, 018001.000050->018001.000001, 018001.000050->018001.000006, 018001.000050->018001.000008, 018001.000050->018001.000009, 018001.000050->018001.000010, 018001.000050->018001.000011, 018001.000050->018001.000012, 018001.000050->018001.000013, 018001.000050->018001.000014, 018001.000050->018001.000015, 018001.000050->018001.000032, 018001.000050->018001.000034, 018001.000050->018001.000035, 018001.000050->018001.000036, 018001.000050->018001.000037, 018001.000050->018001.000038, 018001.000050->018001.000039, 018001.000050->018001.000040, 018001.000050->018001.000043, 018001.000051->018001.000001, 018001.000051->018001.000006, 018001.000051->018001.000008, 018001.000051->018001.000009, 018001.000051->018001.000010, 018001.000051->018001.000011, 018001.000051->018001.000012, 018001.000051->018001.000013, 018001.000051->018001.000014, 018001.000051->018001.000015, 018001.000051->018001.000032, 018001.000051->018001.000034, 018001.000051->018001.000035, 018001.000051->018001.000036, 018001.000051->018001.000037, 018001.000051->018001.000038, 018001.000051->018001.000039, 018001.000051->018001.000040, 018001.000051->018001.000043, 018001.000052->018001.000002, 018001.000052->018001.000003, 018001.000052->018001.000004, 018001.000052->018001.000005, 018001.000052->018001.000016, 018001.000052->018001.000017, 018001.000052->018001.000018, 018001.000052->018001.000021, 018001.000052->018001.000022, 018001.000052->018001.000023, 018001.000052->018001.000025, 018001.000052->018001.000026, 018001.000052->018001.000027, 018001.000052->018001.000029, 018001.000052->018001.000030, 018001.000052->018001.000031, 018001.000052->018001.000041, 018001.000052->018001.000042, 018001.000052->018001.000044, 018001.000052->018001.000047, 018001.000052->018001.000049, 018001.000052->018001.000050, 018001.000052->018001.000051, 018001.000053->018001.000002, 018001.000053->018001.000003, 018001.000053->018001.000005, 018001.000053->018001.000017, 018001.000053->018001.000018, 018001.000053->018001.000020, 018001.000053->018001.000021, 018001.000053->018001.000022, 018001.000053->018001.000023, 018001.000053->018001.000024, 018001.000053->018001.000025, 018001.000053->018001.000026, 018001.000053->018001.000027, 018001.000053->018001.000028, 018001.000053->018001.000030, 018001.000053->018001.000031, 018001.000053->018001.000042, 018001.000053->018001.000044, 018001.000053->018001.000046, 018001.000053->018001.000047, 018001.000053->018001.000048, 018001.000053->018001.000049, 018001.000053->018001.000050, 018001.000053->018001.000051, 018001.000055->018001.000019, 018001.000055->018001.000020, 018001.000055->018001.000024, 018001.000055->018001.000028, 018001.000055->018001.000045, 018001.000055->018001.000046, 018001.000055->018001.000048, 018001.000056->018001.000002, 018001.000056->018001.000018, 018001.000056->018001.000019, 018001.000056->018001.000020, 018001.000056->018001.000021, 018001.000056->018001.000022, 018001.000056->018001.000024, 018001.000056->018001.000026, 018001.000056->018001.000027, 018001.000056->018001.000028, 018001.000056->018001.000044, 018001.000056->018001.000045, 018001.000056->018001.000046, 018001.000056->018001.000047, 018001.000056->018001.000048, 018001.000056->018001.000049, 018001.000057->018001.000002, 018001.000057->018001.000003, 018001.000057->018001.000005, 018001.000057->018001.000017, 018001.000057->018001.000018, 018001.000057->018001.000020, 018001.000057->018001.000021, 018001.000057->018001.000022, 018001.000057->018001.000023, 018001.000057->018001.000024, 018001.000057->018001.000025, 018001.000057->018001.000026, 018001.000057->018001.000027, 018001.000057->018001.000028, 018001.000057->018001.000030, 018001.000057->018001.000031, 018001.000057->018001.000042, 018001.000057->018001.000044, 018001.000057->018001.000046, 018001.000057->018001.000047, 018001.000057->018001.000048, 018001.000057->018001.000049, 018001.000057->018001.000050, 018001.000057->018001.000051, 018001.000058->018001.000002, 018001.000058->018001.000018, 018001.000058->018001.000019, 018001.000058->018001.000020, 018001.000058->018001.000021, 018001.000058->018001.000022, 018001.000058->018001.000024, 018001.000058->018001.000026, 018001.000058->018001.000027, 018001.000058->018001.000028, 018001.000058->018001.000044, 018001.000058->018001.000045, 018001.000058->018001.000046, 018001.000058->018001.000047, 018001.000058->018001.000048, 018001.000058->018001.000049, 018001.000059->018001.000019, 018001.000059->018001.000020, 018001.000059->018001.000024, 018001.000059->018001.000028, 018001.000059->018001.000045, 018001.000059->018001.000046, 018001.000059->018001.000048, 018001.000060->018001.000006, 018001.000060->018001.000007, 018001.000060->018001.000008, 018001.000060->018001.000009, 018001.000060->018001.000010, 018001.000060->018001.000012, 018001.000060->018001.000013, 018001.000060->018001.000014, 018001.000060->018001.000032, 018001.000060->018001.000033, 018001.000060->018001.000034, 018001.000060->018001.000035, 018001.000060->018001.000036, 018001.000060->018001.000038, 018001.000060->018001.000039, 018001.000060->018001.000040, 018001.000060->018001.000052, 018001.000060->018001.000053, 018001.000060->018001.000056, 018001.000060->018001.000057, 018001.000060->018001.000058, 018001.000061->018001.000006, 018001.000061->018001.000007, 018001.000061->018001.000008, 018001.000061->018001.000009, 018001.000061->018001.000010, 018001.000061->018001.000012, 018001.000061->018001.000013, 018001.000061->018001.000014, 018001.000061->018001.000032, 018001.000061->018001.000033, 018001.000061->018001.000034, 018001.000061->018001.000035, 018001.000061->018001.000036, 018001.000061->018001.000038, 018001.000061->018001.000039, 018001.000061->018001.000040, 018001.000061->018001.000052, 018001.000061->018001.000053, 018001.000061->018001.000056, 018001.000061->018001.000057, 018001.000061->018001.000058, 018001.000062->018001.000007, 018001.000062->018001.000008, 018001.000062->018001.000010, 018001.000062->018001.000013, 018001.000062->018001.000033, 018001.000062->018001.000034, 018001.000062->018001.000036, 018001.000062->018001.000040, 018001.000062->018001.000053, 018001.000062->018001.000055, 018001.000062->018001.000056, 018001.000062->018001.000057, 018001.000062->018001.000058, 018001.000062->018001.000059, 018001.000063->018001.000001, 018001.000063->018001.000006, 018001.000063->018001.000008, 018001.000063->018001.000009, 018001.000063->018001.000010, 018001.000063->018001.000011, 018001.000063->018001.000012, 018001.000063->018001.000013, 018001.000063->018001.000014, 018001.000063->018001.000015, 018001.000063->018001.000032, 018001.000063->018001.000034, 018001.000063->018001.000035, 018001.000063->018001.000036, 018001.000063->018001.000037, 018001.000063->018001.000038, 018001.000063->018001.000039, 018001.000063->018001.000040, 018001.000063->018001.000043, 018001.000063->018001.000052, 018001.000063->018001.000053, 018001.000063->018001.000057.
+""",
+)
+
+entry(
+    index = 1153,
+    label = "Ar + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(1S0) -> e + Ar(4d'), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.2147125806161314,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 38; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 38. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000016->018001.000006, 018001.000016->018001.000009, 018001.000016->018001.000012, 018001.000016->018001.000014, 018001.000017->018001.000001, 018001.000017->018001.000006, 018001.000017->018001.000008, 018001.000017->018001.000009, 018001.000017->018001.000010, 018001.000017->018001.000011, 018001.000017->018001.000012, 018001.000017->018001.000013, 018001.000017->018001.000014, 018001.000017->018001.000015, 018001.000018->018001.000006, 018001.000018->018001.000007, 018001.000018->018001.000008, 018001.000018->018001.000009, 018001.000018->018001.000010, 018001.000018->018001.000012, 018001.000018->018001.000013, 018001.000018->018001.000014, 018001.000019->018001.000007, 018001.000020->018001.000007, 018001.000020->018001.000008, 018001.000020->018001.000010, 018001.000020->018001.000013, 018001.000021->018001.000006, 018001.000021->018001.000007, 018001.000021->018001.000008, 018001.000021->018001.000009, 018001.000021->018001.000010, 018001.000021->018001.000012, 018001.000021->018001.000013, 018001.000021->018001.000014, 018001.000022->018001.000006, 018001.000022->018001.000007, 018001.000022->018001.000008, 018001.000022->018001.000009, 018001.000022->018001.000010, 018001.000022->018001.000012, 018001.000022->018001.000013, 018001.000022->018001.000014, 018001.000023->018001.000001, 018001.000023->018001.000006, 018001.000023->018001.000008, 018001.000023->018001.000009, 018001.000023->018001.000010, 018001.000023->018001.000011, 018001.000023->018001.000012, 018001.000023->018001.000013, 018001.000023->018001.000014, 018001.000023->018001.000015, 018001.000024->018001.000007, 018001.000024->018001.000008, 018001.000024->018001.000010, 018001.000024->018001.000013, 018001.000025->018001.000001, 018001.000025->018001.000006, 018001.000025->018001.000008, 018001.000025->018001.000009, 018001.000025->018001.000010, 018001.000025->018001.000011, 018001.000025->018001.000012, 018001.000025->018001.000013, 018001.000025->018001.000014, 018001.000025->018001.000015, 018001.000026->018001.000006, 018001.000026->018001.000007, 018001.000026->018001.000008, 018001.000026->018001.000009, 018001.000026->018001.000010, 018001.000026->018001.000012, 018001.000026->018001.000013, 018001.000026->018001.000014, 018001.000027->018001.000006, 018001.000027->018001.000007, 018001.000027->018001.000008, 018001.000027->018001.000009, 018001.000027->018001.000010, 018001.000027->018001.000012, 018001.000027->018001.000013, 018001.000027->018001.000014, 018001.000028->018001.000007, 018001.000028->018001.000008, 018001.000028->018001.000010, 018001.000028->018001.000013, 018001.000029->018001.000006, 018001.000029->018001.000009, 018001.000029->018001.000012, 018001.000029->018001.000014, 018001.000030->018001.000001, 018001.000030->018001.000006, 018001.000030->018001.000008, 018001.000030->018001.000009, 018001.000030->018001.000010, 018001.000030->018001.000011, 018001.000030->018001.000012, 018001.000030->018001.000013, 018001.000030->018001.000014, 018001.000030->018001.000015, 018001.000031->018001.000001, 018001.000031->018001.000006, 018001.000031->018001.000008, 018001.000031->018001.000009, 018001.000031->018001.000010, 018001.000031->018001.000011, 018001.000031->018001.000012, 018001.000031->018001.000013, 018001.000031->018001.000014, 018001.000031->018001.000015, 018001.000032->018001.000002, 018001.000032->018001.000003, 018001.000032->018001.000004, 018001.000032->018001.000005, 018001.000032->018001.000016, 018001.000032->018001.000017, 018001.000032->018001.000018, 018001.000032->018001.000021, 018001.000032->018001.000022, 018001.000032->018001.000023, 018001.000032->018001.000025, 018001.000032->018001.000026, 018001.000032->018001.000027, 018001.000032->018001.000029, 018001.000032->018001.000030, 018001.000032->018001.000031, 018001.000033->018001.000002, 018001.000033->018001.000018, 018001.000033->018001.000019, 018001.000033->018001.000020, 018001.000033->018001.000021, 018001.000033->018001.000022, 018001.000033->018001.000024, 018001.000033->018001.000026, 018001.000033->018001.000027, 018001.000033->018001.000028, 018001.000034->018001.000002, 018001.000034->018001.000003, 018001.000034->018001.000005, 018001.000034->018001.000017, 018001.000034->018001.000018, 018001.000034->018001.000020, 018001.000034->018001.000021, 018001.000034->018001.000022, 018001.000034->018001.000023, 018001.000034->018001.000024, 018001.000034->018001.000025, 018001.000034->018001.000026, 018001.000034->018001.000027, 018001.000034->018001.000028, 018001.000034->018001.000030, 018001.000034->018001.000031, 018001.000035->018001.000002, 018001.000035->018001.000003, 018001.000035->018001.000004, 018001.000035->018001.000005, 018001.000035->018001.000016, 018001.000035->018001.000017, 018001.000035->018001.000018, 018001.000035->018001.000021, 018001.000035->018001.000022, 018001.000035->018001.000023, 018001.000035->018001.000025, 018001.000035->018001.000026, 018001.000035->018001.000027, 018001.000035->018001.000029, 018001.000035->018001.000030, 018001.000035->018001.000031, 018001.000036->018001.000002, 018001.000036->018001.000003, 018001.000036->018001.000005, 018001.000036->018001.000017, 018001.000036->018001.000018, 018001.000036->018001.000020, 018001.000036->018001.000021, 018001.000036->018001.000022, 018001.000036->018001.000023, 018001.000036->018001.000024, 018001.000036->018001.000025, 018001.000036->018001.000026, 018001.000036->018001.000027, 018001.000036->018001.000028, 018001.000036->018001.000030, 018001.000036->018001.000031, 018001.000037->018001.000003, 018001.000037->018001.000005, 018001.000037->018001.000017, 018001.000037->018001.000023, 018001.000037->018001.000025, 018001.000037->018001.000030, 018001.000037->018001.000031, 018001.000038->018001.000002, 018001.000038->018001.000003, 018001.000038->018001.000004, 018001.000038->018001.000005, 018001.000038->018001.000016, 018001.000038->018001.000017, 018001.000038->018001.000018, 018001.000038->018001.000021, 018001.000038->018001.000022, 018001.000038->018001.000023, 018001.000038->018001.000025, 018001.000038->018001.000026, 018001.000038->018001.000027, 018001.000038->018001.000029, 018001.000038->018001.000030, 018001.000038->018001.000031, 018001.000039->018001.000002, 018001.000039->018001.000003, 018001.000039->018001.000004, 018001.000039->018001.000005, 018001.000039->018001.000016, 018001.000039->018001.000017, 018001.000039->018001.000018, 018001.000039->018001.000021, 018001.000039->018001.000022, 018001.000039->018001.000023, 018001.000039->018001.000025, 018001.000039->018001.000026, 018001.000039->018001.000027, 018001.000039->018001.000029, 018001.000039->018001.000030, 018001.000039->018001.000031, 018001.000040->018001.000002, 018001.000040->018001.000003, 018001.000040->018001.000005, 018001.000040->018001.000017, 018001.000040->018001.000018, 018001.000040->018001.000020, 018001.000040->018001.000021, 018001.000040->018001.000022, 018001.000040->018001.000023, 018001.000040->018001.000024, 018001.000040->018001.000025, 018001.000040->018001.000026, 018001.000040->018001.000027, 018001.000040->018001.000028, 018001.000040->018001.000030, 018001.000040->018001.000031, 018001.000041->018001.000006, 018001.000041->018001.000009, 018001.000041->018001.000012, 018001.000041->018001.000014, 018001.000041->018001.000032, 018001.000041->018001.000035, 018001.000041->018001.000038, 018001.000041->018001.000039, 018001.000042->018001.000001, 018001.000042->018001.000006, 018001.000042->018001.000008, 018001.000042->018001.000009, 018001.000042->018001.000010, 018001.000042->018001.000011, 018001.000042->018001.000012, 018001.000042->018001.000013, 018001.000042->018001.000014, 018001.000042->018001.000015, 018001.000042->018001.000032, 018001.000042->018001.000034, 018001.000042->018001.000035, 018001.000042->018001.000036, 018001.000042->018001.000037, 018001.000042->018001.000038, 018001.000042->018001.000039, 018001.000042->018001.000040, 018001.000043->018001.000003, 018001.000043->018001.000005, 018001.000043->018001.000017, 018001.000043->018001.000023, 018001.000043->018001.000025, 018001.000043->018001.000030, 018001.000043->018001.000031, 018001.000043->018001.000042, 018001.000044->018001.000006, 018001.000044->018001.000007, 018001.000044->018001.000008, 018001.000044->018001.000009, 018001.000044->018001.000010, 018001.000044->018001.000012, 018001.000044->018001.000013, 018001.000044->018001.000014, 018001.000044->018001.000032, 018001.000044->018001.000033, 018001.000044->018001.000034, 018001.000044->018001.000035, 018001.000044->018001.000036, 018001.000044->018001.000038, 018001.000044->018001.000039, 018001.000044->018001.000040, 018001.000045->018001.000007, 018001.000045->018001.000033, 018001.000046->018001.000007, 018001.000046->018001.000008, 018001.000046->018001.000010, 018001.000046->018001.000013, 018001.000046->018001.000033, 018001.000046->018001.000034, 018001.000046->018001.000036, 018001.000046->018001.000040, 018001.000047->018001.000006, 018001.000047->018001.000007, 018001.000047->018001.000008, 018001.000047->018001.000009, 018001.000047->018001.000010, 018001.000047->018001.000012, 018001.000047->018001.000013, 018001.000047->018001.000014, 018001.000047->018001.000032, 018001.000047->018001.000033, 018001.000047->018001.000034, 018001.000047->018001.000035, 018001.000047->018001.000036, 018001.000047->018001.000038, 018001.000047->018001.000039, 018001.000047->018001.000040, 018001.000048->018001.000007, 018001.000048->018001.000008, 018001.000048->018001.000010, 018001.000048->018001.000013, 018001.000048->018001.000033, 018001.000048->018001.000034, 018001.000048->018001.000036, 018001.000048->018001.000040, 018001.000049->018001.000006, 018001.000049->018001.000007, 018001.000049->018001.000008, 018001.000049->018001.000009, 018001.000049->018001.000010, 018001.000049->018001.000012, 018001.000049->018001.000013, 018001.000049->018001.000014, 018001.000049->018001.000032, 018001.000049->018001.000033, 018001.000049->018001.000034, 018001.000049->018001.000035, 018001.000049->018001.000036, 018001.000049->018001.000038, 018001.000049->018001.000039, 018001.000049->018001.000040, 018001.000050->018001.000001, 018001.000050->018001.000006, 018001.000050->018001.000008, 018001.000050->018001.000009, 018001.000050->018001.000010, 018001.000050->018001.000011, 018001.000050->018001.000012, 018001.000050->018001.000013, 018001.000050->018001.000014, 018001.000050->018001.000015, 018001.000050->018001.000032, 018001.000050->018001.000034, 018001.000050->018001.000035, 018001.000050->018001.000036, 018001.000050->018001.000037, 018001.000050->018001.000038, 018001.000050->018001.000039, 018001.000050->018001.000040, 018001.000050->018001.000043, 018001.000051->018001.000001, 018001.000051->018001.000006, 018001.000051->018001.000008, 018001.000051->018001.000009, 018001.000051->018001.000010, 018001.000051->018001.000011, 018001.000051->018001.000012, 018001.000051->018001.000013, 018001.000051->018001.000014, 018001.000051->018001.000015, 018001.000051->018001.000032, 018001.000051->018001.000034, 018001.000051->018001.000035, 018001.000051->018001.000036, 018001.000051->018001.000037, 018001.000051->018001.000038, 018001.000051->018001.000039, 018001.000051->018001.000040, 018001.000051->018001.000043, 018001.000052->018001.000002, 018001.000052->018001.000003, 018001.000052->018001.000004, 018001.000052->018001.000005, 018001.000052->018001.000016, 018001.000052->018001.000017, 018001.000052->018001.000018, 018001.000052->018001.000021, 018001.000052->018001.000022, 018001.000052->018001.000023, 018001.000052->018001.000025, 018001.000052->018001.000026, 018001.000052->018001.000027, 018001.000052->018001.000029, 018001.000052->018001.000030, 018001.000052->018001.000031, 018001.000052->018001.000041, 018001.000052->018001.000042, 018001.000052->018001.000044, 018001.000052->018001.000047, 018001.000052->018001.000049, 018001.000052->018001.000050, 018001.000052->018001.000051, 018001.000053->018001.000002, 018001.000053->018001.000003, 018001.000053->018001.000005, 018001.000053->018001.000017, 018001.000053->018001.000018, 018001.000053->018001.000020, 018001.000053->018001.000021, 018001.000053->018001.000022, 018001.000053->018001.000023, 018001.000053->018001.000024, 018001.000053->018001.000025, 018001.000053->018001.000026, 018001.000053->018001.000027, 018001.000053->018001.000028, 018001.000053->018001.000030, 018001.000053->018001.000031, 018001.000053->018001.000042, 018001.000053->018001.000044, 018001.000053->018001.000046, 018001.000053->018001.000047, 018001.000053->018001.000048, 018001.000053->018001.000049, 018001.000053->018001.000050, 018001.000053->018001.000051, 018001.000055->018001.000019, 018001.000055->018001.000020, 018001.000055->018001.000024, 018001.000055->018001.000028, 018001.000055->018001.000045, 018001.000055->018001.000046, 018001.000055->018001.000048, 018001.000056->018001.000002, 018001.000056->018001.000018, 018001.000056->018001.000019, 018001.000056->018001.000020, 018001.000056->018001.000021, 018001.000056->018001.000022, 018001.000056->018001.000024, 018001.000056->018001.000026, 018001.000056->018001.000027, 018001.000056->018001.000028, 018001.000056->018001.000044, 018001.000056->018001.000045, 018001.000056->018001.000046, 018001.000056->018001.000047, 018001.000056->018001.000048, 018001.000056->018001.000049, 018001.000057->018001.000002, 018001.000057->018001.000003, 018001.000057->018001.000005, 018001.000057->018001.000017, 018001.000057->018001.000018, 018001.000057->018001.000020, 018001.000057->018001.000021, 018001.000057->018001.000022, 018001.000057->018001.000023, 018001.000057->018001.000024, 018001.000057->018001.000025, 018001.000057->018001.000026, 018001.000057->018001.000027, 018001.000057->018001.000028, 018001.000057->018001.000030, 018001.000057->018001.000031, 018001.000057->018001.000042, 018001.000057->018001.000044, 018001.000057->018001.000046, 018001.000057->018001.000047, 018001.000057->018001.000048, 018001.000057->018001.000049, 018001.000057->018001.000050, 018001.000057->018001.000051, 018001.000058->018001.000002, 018001.000058->018001.000018, 018001.000058->018001.000019, 018001.000058->018001.000020, 018001.000058->018001.000021, 018001.000058->018001.000022, 018001.000058->018001.000024, 018001.000058->018001.000026, 018001.000058->018001.000027, 018001.000058->018001.000028, 018001.000058->018001.000044, 018001.000058->018001.000045, 018001.000058->018001.000046, 018001.000058->018001.000047, 018001.000058->018001.000048, 018001.000058->018001.000049, 018001.000059->018001.000019, 018001.000059->018001.000020, 018001.000059->018001.000024, 018001.000059->018001.000028, 018001.000059->018001.000045, 018001.000059->018001.000046, 018001.000059->018001.000048, 018001.000060->018001.000006, 018001.000060->018001.000007, 018001.000060->018001.000008, 018001.000060->018001.000009, 018001.000060->018001.000010, 018001.000060->018001.000012, 018001.000060->018001.000013, 018001.000060->018001.000014, 018001.000060->018001.000032, 018001.000060->018001.000033, 018001.000060->018001.000034, 018001.000060->018001.000035, 018001.000060->018001.000036, 018001.000060->018001.000038, 018001.000060->018001.000039, 018001.000060->018001.000040, 018001.000060->018001.000052, 018001.000060->018001.000053, 018001.000060->018001.000056, 018001.000060->018001.000057, 018001.000060->018001.000058, 018001.000061->018001.000006, 018001.000061->018001.000007, 018001.000061->018001.000008, 018001.000061->018001.000009, 018001.000061->018001.000010, 018001.000061->018001.000012, 018001.000061->018001.000013, 018001.000061->018001.000014, 018001.000061->018001.000032, 018001.000061->018001.000033, 018001.000061->018001.000034, 018001.000061->018001.000035, 018001.000061->018001.000036, 018001.000061->018001.000038, 018001.000061->018001.000039, 018001.000061->018001.000040, 018001.000061->018001.000052, 018001.000061->018001.000053, 018001.000061->018001.000056, 018001.000061->018001.000057, 018001.000061->018001.000058, 018001.000062->018001.000007, 018001.000062->018001.000008, 018001.000062->018001.000010, 018001.000062->018001.000013, 018001.000062->018001.000033, 018001.000062->018001.000034, 018001.000062->018001.000036, 018001.000062->018001.000040, 018001.000062->018001.000053, 018001.000062->018001.000055, 018001.000062->018001.000056, 018001.000062->018001.000057, 018001.000062->018001.000058, 018001.000062->018001.000059, 018001.000063->018001.000001, 018001.000063->018001.000006, 018001.000063->018001.000008, 018001.000063->018001.000009, 018001.000063->018001.000010, 018001.000063->018001.000011, 018001.000063->018001.000012, 018001.000063->018001.000013, 018001.000063->018001.000014, 018001.000063->018001.000015, 018001.000063->018001.000032, 018001.000063->018001.000034, 018001.000063->018001.000035, 018001.000063->018001.000036, 018001.000063->018001.000037, 018001.000063->018001.000038, 018001.000063->018001.000039, 018001.000063->018001.000040, 018001.000063->018001.000043, 018001.000063->018001.000052, 018001.000063->018001.000053, 018001.000063->018001.000057.
+""",
+)
+
+entry(
+    index = 1154,
+    label = "Ar + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(1S0) -> e + Ar(4d'), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.12533124896639247,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 38; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 38. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000016->018001.000006, 018001.000016->018001.000009, 018001.000016->018001.000012, 018001.000016->018001.000014, 018001.000017->018001.000001, 018001.000017->018001.000006, 018001.000017->018001.000008, 018001.000017->018001.000009, 018001.000017->018001.000010, 018001.000017->018001.000011, 018001.000017->018001.000012, 018001.000017->018001.000013, 018001.000017->018001.000014, 018001.000017->018001.000015, 018001.000018->018001.000006, 018001.000018->018001.000007, 018001.000018->018001.000008, 018001.000018->018001.000009, 018001.000018->018001.000010, 018001.000018->018001.000012, 018001.000018->018001.000013, 018001.000018->018001.000014, 018001.000019->018001.000007, 018001.000020->018001.000007, 018001.000020->018001.000008, 018001.000020->018001.000010, 018001.000020->018001.000013, 018001.000021->018001.000006, 018001.000021->018001.000007, 018001.000021->018001.000008, 018001.000021->018001.000009, 018001.000021->018001.000010, 018001.000021->018001.000012, 018001.000021->018001.000013, 018001.000021->018001.000014, 018001.000022->018001.000006, 018001.000022->018001.000007, 018001.000022->018001.000008, 018001.000022->018001.000009, 018001.000022->018001.000010, 018001.000022->018001.000012, 018001.000022->018001.000013, 018001.000022->018001.000014, 018001.000023->018001.000001, 018001.000023->018001.000006, 018001.000023->018001.000008, 018001.000023->018001.000009, 018001.000023->018001.000010, 018001.000023->018001.000011, 018001.000023->018001.000012, 018001.000023->018001.000013, 018001.000023->018001.000014, 018001.000023->018001.000015, 018001.000024->018001.000007, 018001.000024->018001.000008, 018001.000024->018001.000010, 018001.000024->018001.000013, 018001.000025->018001.000001, 018001.000025->018001.000006, 018001.000025->018001.000008, 018001.000025->018001.000009, 018001.000025->018001.000010, 018001.000025->018001.000011, 018001.000025->018001.000012, 018001.000025->018001.000013, 018001.000025->018001.000014, 018001.000025->018001.000015, 018001.000026->018001.000006, 018001.000026->018001.000007, 018001.000026->018001.000008, 018001.000026->018001.000009, 018001.000026->018001.000010, 018001.000026->018001.000012, 018001.000026->018001.000013, 018001.000026->018001.000014, 018001.000027->018001.000006, 018001.000027->018001.000007, 018001.000027->018001.000008, 018001.000027->018001.000009, 018001.000027->018001.000010, 018001.000027->018001.000012, 018001.000027->018001.000013, 018001.000027->018001.000014, 018001.000028->018001.000007, 018001.000028->018001.000008, 018001.000028->018001.000010, 018001.000028->018001.000013, 018001.000029->018001.000006, 018001.000029->018001.000009, 018001.000029->018001.000012, 018001.000029->018001.000014, 018001.000030->018001.000001, 018001.000030->018001.000006, 018001.000030->018001.000008, 018001.000030->018001.000009, 018001.000030->018001.000010, 018001.000030->018001.000011, 018001.000030->018001.000012, 018001.000030->018001.000013, 018001.000030->018001.000014, 018001.000030->018001.000015, 018001.000031->018001.000001, 018001.000031->018001.000006, 018001.000031->018001.000008, 018001.000031->018001.000009, 018001.000031->018001.000010, 018001.000031->018001.000011, 018001.000031->018001.000012, 018001.000031->018001.000013, 018001.000031->018001.000014, 018001.000031->018001.000015, 018001.000032->018001.000002, 018001.000032->018001.000003, 018001.000032->018001.000004, 018001.000032->018001.000005, 018001.000032->018001.000016, 018001.000032->018001.000017, 018001.000032->018001.000018, 018001.000032->018001.000021, 018001.000032->018001.000022, 018001.000032->018001.000023, 018001.000032->018001.000025, 018001.000032->018001.000026, 018001.000032->018001.000027, 018001.000032->018001.000029, 018001.000032->018001.000030, 018001.000032->018001.000031, 018001.000033->018001.000002, 018001.000033->018001.000018, 018001.000033->018001.000019, 018001.000033->018001.000020, 018001.000033->018001.000021, 018001.000033->018001.000022, 018001.000033->018001.000024, 018001.000033->018001.000026, 018001.000033->018001.000027, 018001.000033->018001.000028, 018001.000034->018001.000002, 018001.000034->018001.000003, 018001.000034->018001.000005, 018001.000034->018001.000017, 018001.000034->018001.000018, 018001.000034->018001.000020, 018001.000034->018001.000021, 018001.000034->018001.000022, 018001.000034->018001.000023, 018001.000034->018001.000024, 018001.000034->018001.000025, 018001.000034->018001.000026, 018001.000034->018001.000027, 018001.000034->018001.000028, 018001.000034->018001.000030, 018001.000034->018001.000031, 018001.000035->018001.000002, 018001.000035->018001.000003, 018001.000035->018001.000004, 018001.000035->018001.000005, 018001.000035->018001.000016, 018001.000035->018001.000017, 018001.000035->018001.000018, 018001.000035->018001.000021, 018001.000035->018001.000022, 018001.000035->018001.000023, 018001.000035->018001.000025, 018001.000035->018001.000026, 018001.000035->018001.000027, 018001.000035->018001.000029, 018001.000035->018001.000030, 018001.000035->018001.000031, 018001.000036->018001.000002, 018001.000036->018001.000003, 018001.000036->018001.000005, 018001.000036->018001.000017, 018001.000036->018001.000018, 018001.000036->018001.000020, 018001.000036->018001.000021, 018001.000036->018001.000022, 018001.000036->018001.000023, 018001.000036->018001.000024, 018001.000036->018001.000025, 018001.000036->018001.000026, 018001.000036->018001.000027, 018001.000036->018001.000028, 018001.000036->018001.000030, 018001.000036->018001.000031, 018001.000037->018001.000003, 018001.000037->018001.000005, 018001.000037->018001.000017, 018001.000037->018001.000023, 018001.000037->018001.000025, 018001.000037->018001.000030, 018001.000037->018001.000031, 018001.000038->018001.000002, 018001.000038->018001.000003, 018001.000038->018001.000004, 018001.000038->018001.000005, 018001.000038->018001.000016, 018001.000038->018001.000017, 018001.000038->018001.000018, 018001.000038->018001.000021, 018001.000038->018001.000022, 018001.000038->018001.000023, 018001.000038->018001.000025, 018001.000038->018001.000026, 018001.000038->018001.000027, 018001.000038->018001.000029, 018001.000038->018001.000030, 018001.000038->018001.000031, 018001.000039->018001.000002, 018001.000039->018001.000003, 018001.000039->018001.000004, 018001.000039->018001.000005, 018001.000039->018001.000016, 018001.000039->018001.000017, 018001.000039->018001.000018, 018001.000039->018001.000021, 018001.000039->018001.000022, 018001.000039->018001.000023, 018001.000039->018001.000025, 018001.000039->018001.000026, 018001.000039->018001.000027, 018001.000039->018001.000029, 018001.000039->018001.000030, 018001.000039->018001.000031, 018001.000040->018001.000002, 018001.000040->018001.000003, 018001.000040->018001.000005, 018001.000040->018001.000017, 018001.000040->018001.000018, 018001.000040->018001.000020, 018001.000040->018001.000021, 018001.000040->018001.000022, 018001.000040->018001.000023, 018001.000040->018001.000024, 018001.000040->018001.000025, 018001.000040->018001.000026, 018001.000040->018001.000027, 018001.000040->018001.000028, 018001.000040->018001.000030, 018001.000040->018001.000031, 018001.000041->018001.000006, 018001.000041->018001.000009, 018001.000041->018001.000012, 018001.000041->018001.000014, 018001.000041->018001.000032, 018001.000041->018001.000035, 018001.000041->018001.000038, 018001.000041->018001.000039, 018001.000042->018001.000001, 018001.000042->018001.000006, 018001.000042->018001.000008, 018001.000042->018001.000009, 018001.000042->018001.000010, 018001.000042->018001.000011, 018001.000042->018001.000012, 018001.000042->018001.000013, 018001.000042->018001.000014, 018001.000042->018001.000015, 018001.000042->018001.000032, 018001.000042->018001.000034, 018001.000042->018001.000035, 018001.000042->018001.000036, 018001.000042->018001.000037, 018001.000042->018001.000038, 018001.000042->018001.000039, 018001.000042->018001.000040, 018001.000043->018001.000003, 018001.000043->018001.000005, 018001.000043->018001.000017, 018001.000043->018001.000023, 018001.000043->018001.000025, 018001.000043->018001.000030, 018001.000043->018001.000031, 018001.000043->018001.000042, 018001.000044->018001.000006, 018001.000044->018001.000007, 018001.000044->018001.000008, 018001.000044->018001.000009, 018001.000044->018001.000010, 018001.000044->018001.000012, 018001.000044->018001.000013, 018001.000044->018001.000014, 018001.000044->018001.000032, 018001.000044->018001.000033, 018001.000044->018001.000034, 018001.000044->018001.000035, 018001.000044->018001.000036, 018001.000044->018001.000038, 018001.000044->018001.000039, 018001.000044->018001.000040, 018001.000045->018001.000007, 018001.000045->018001.000033, 018001.000046->018001.000007, 018001.000046->018001.000008, 018001.000046->018001.000010, 018001.000046->018001.000013, 018001.000046->018001.000033, 018001.000046->018001.000034, 018001.000046->018001.000036, 018001.000046->018001.000040, 018001.000047->018001.000006, 018001.000047->018001.000007, 018001.000047->018001.000008, 018001.000047->018001.000009, 018001.000047->018001.000010, 018001.000047->018001.000012, 018001.000047->018001.000013, 018001.000047->018001.000014, 018001.000047->018001.000032, 018001.000047->018001.000033, 018001.000047->018001.000034, 018001.000047->018001.000035, 018001.000047->018001.000036, 018001.000047->018001.000038, 018001.000047->018001.000039, 018001.000047->018001.000040, 018001.000048->018001.000007, 018001.000048->018001.000008, 018001.000048->018001.000010, 018001.000048->018001.000013, 018001.000048->018001.000033, 018001.000048->018001.000034, 018001.000048->018001.000036, 018001.000048->018001.000040, 018001.000049->018001.000006, 018001.000049->018001.000007, 018001.000049->018001.000008, 018001.000049->018001.000009, 018001.000049->018001.000010, 018001.000049->018001.000012, 018001.000049->018001.000013, 018001.000049->018001.000014, 018001.000049->018001.000032, 018001.000049->018001.000033, 018001.000049->018001.000034, 018001.000049->018001.000035, 018001.000049->018001.000036, 018001.000049->018001.000038, 018001.000049->018001.000039, 018001.000049->018001.000040, 018001.000050->018001.000001, 018001.000050->018001.000006, 018001.000050->018001.000008, 018001.000050->018001.000009, 018001.000050->018001.000010, 018001.000050->018001.000011, 018001.000050->018001.000012, 018001.000050->018001.000013, 018001.000050->018001.000014, 018001.000050->018001.000015, 018001.000050->018001.000032, 018001.000050->018001.000034, 018001.000050->018001.000035, 018001.000050->018001.000036, 018001.000050->018001.000037, 018001.000050->018001.000038, 018001.000050->018001.000039, 018001.000050->018001.000040, 018001.000050->018001.000043, 018001.000051->018001.000001, 018001.000051->018001.000006, 018001.000051->018001.000008, 018001.000051->018001.000009, 018001.000051->018001.000010, 018001.000051->018001.000011, 018001.000051->018001.000012, 018001.000051->018001.000013, 018001.000051->018001.000014, 018001.000051->018001.000015, 018001.000051->018001.000032, 018001.000051->018001.000034, 018001.000051->018001.000035, 018001.000051->018001.000036, 018001.000051->018001.000037, 018001.000051->018001.000038, 018001.000051->018001.000039, 018001.000051->018001.000040, 018001.000051->018001.000043, 018001.000052->018001.000002, 018001.000052->018001.000003, 018001.000052->018001.000004, 018001.000052->018001.000005, 018001.000052->018001.000016, 018001.000052->018001.000017, 018001.000052->018001.000018, 018001.000052->018001.000021, 018001.000052->018001.000022, 018001.000052->018001.000023, 018001.000052->018001.000025, 018001.000052->018001.000026, 018001.000052->018001.000027, 018001.000052->018001.000029, 018001.000052->018001.000030, 018001.000052->018001.000031, 018001.000052->018001.000041, 018001.000052->018001.000042, 018001.000052->018001.000044, 018001.000052->018001.000047, 018001.000052->018001.000049, 018001.000052->018001.000050, 018001.000052->018001.000051, 018001.000053->018001.000002, 018001.000053->018001.000003, 018001.000053->018001.000005, 018001.000053->018001.000017, 018001.000053->018001.000018, 018001.000053->018001.000020, 018001.000053->018001.000021, 018001.000053->018001.000022, 018001.000053->018001.000023, 018001.000053->018001.000024, 018001.000053->018001.000025, 018001.000053->018001.000026, 018001.000053->018001.000027, 018001.000053->018001.000028, 018001.000053->018001.000030, 018001.000053->018001.000031, 018001.000053->018001.000042, 018001.000053->018001.000044, 018001.000053->018001.000046, 018001.000053->018001.000047, 018001.000053->018001.000048, 018001.000053->018001.000049, 018001.000053->018001.000050, 018001.000053->018001.000051, 018001.000055->018001.000019, 018001.000055->018001.000020, 018001.000055->018001.000024, 018001.000055->018001.000028, 018001.000055->018001.000045, 018001.000055->018001.000046, 018001.000055->018001.000048, 018001.000056->018001.000002, 018001.000056->018001.000018, 018001.000056->018001.000019, 018001.000056->018001.000020, 018001.000056->018001.000021, 018001.000056->018001.000022, 018001.000056->018001.000024, 018001.000056->018001.000026, 018001.000056->018001.000027, 018001.000056->018001.000028, 018001.000056->018001.000044, 018001.000056->018001.000045, 018001.000056->018001.000046, 018001.000056->018001.000047, 018001.000056->018001.000048, 018001.000056->018001.000049, 018001.000057->018001.000002, 018001.000057->018001.000003, 018001.000057->018001.000005, 018001.000057->018001.000017, 018001.000057->018001.000018, 018001.000057->018001.000020, 018001.000057->018001.000021, 018001.000057->018001.000022, 018001.000057->018001.000023, 018001.000057->018001.000024, 018001.000057->018001.000025, 018001.000057->018001.000026, 018001.000057->018001.000027, 018001.000057->018001.000028, 018001.000057->018001.000030, 018001.000057->018001.000031, 018001.000057->018001.000042, 018001.000057->018001.000044, 018001.000057->018001.000046, 018001.000057->018001.000047, 018001.000057->018001.000048, 018001.000057->018001.000049, 018001.000057->018001.000050, 018001.000057->018001.000051, 018001.000058->018001.000002, 018001.000058->018001.000018, 018001.000058->018001.000019, 018001.000058->018001.000020, 018001.000058->018001.000021, 018001.000058->018001.000022, 018001.000058->018001.000024, 018001.000058->018001.000026, 018001.000058->018001.000027, 018001.000058->018001.000028, 018001.000058->018001.000044, 018001.000058->018001.000045, 018001.000058->018001.000046, 018001.000058->018001.000047, 018001.000058->018001.000048, 018001.000058->018001.000049, 018001.000059->018001.000019, 018001.000059->018001.000020, 018001.000059->018001.000024, 018001.000059->018001.000028, 018001.000059->018001.000045, 018001.000059->018001.000046, 018001.000059->018001.000048, 018001.000060->018001.000006, 018001.000060->018001.000007, 018001.000060->018001.000008, 018001.000060->018001.000009, 018001.000060->018001.000010, 018001.000060->018001.000012, 018001.000060->018001.000013, 018001.000060->018001.000014, 018001.000060->018001.000032, 018001.000060->018001.000033, 018001.000060->018001.000034, 018001.000060->018001.000035, 018001.000060->018001.000036, 018001.000060->018001.000038, 018001.000060->018001.000039, 018001.000060->018001.000040, 018001.000060->018001.000052, 018001.000060->018001.000053, 018001.000060->018001.000056, 018001.000060->018001.000057, 018001.000060->018001.000058, 018001.000061->018001.000006, 018001.000061->018001.000007, 018001.000061->018001.000008, 018001.000061->018001.000009, 018001.000061->018001.000010, 018001.000061->018001.000012, 018001.000061->018001.000013, 018001.000061->018001.000014, 018001.000061->018001.000032, 018001.000061->018001.000033, 018001.000061->018001.000034, 018001.000061->018001.000035, 018001.000061->018001.000036, 018001.000061->018001.000038, 018001.000061->018001.000039, 018001.000061->018001.000040, 018001.000061->018001.000052, 018001.000061->018001.000053, 018001.000061->018001.000056, 018001.000061->018001.000057, 018001.000061->018001.000058, 018001.000062->018001.000007, 018001.000062->018001.000008, 018001.000062->018001.000010, 018001.000062->018001.000013, 018001.000062->018001.000033, 018001.000062->018001.000034, 018001.000062->018001.000036, 018001.000062->018001.000040, 018001.000062->018001.000053, 018001.000062->018001.000055, 018001.000062->018001.000056, 018001.000062->018001.000057, 018001.000062->018001.000058, 018001.000062->018001.000059, 018001.000063->018001.000001, 018001.000063->018001.000006, 018001.000063->018001.000008, 018001.000063->018001.000009, 018001.000063->018001.000010, 018001.000063->018001.000011, 018001.000063->018001.000012, 018001.000063->018001.000013, 018001.000063->018001.000014, 018001.000063->018001.000015, 018001.000063->018001.000032, 018001.000063->018001.000034, 018001.000063->018001.000035, 018001.000063->018001.000036, 018001.000063->018001.000037, 018001.000063->018001.000038, 018001.000063->018001.000039, 018001.000063->018001.000040, 018001.000063->018001.000043, 018001.000063->018001.000052, 018001.000063->018001.000053, 018001.000063->018001.000057.
+""",
+)
+
+entry(
+    index = 1155,
+    label = "Ar + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(1S0) -> e + Ar(4d'), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.3339010928057071,
+        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 38; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 38. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000016->018001.000006, 018001.000016->018001.000009, 018001.000016->018001.000012, 018001.000016->018001.000014, 018001.000017->018001.000001, 018001.000017->018001.000006, 018001.000017->018001.000008, 018001.000017->018001.000009, 018001.000017->018001.000010, 018001.000017->018001.000011, 018001.000017->018001.000012, 018001.000017->018001.000013, 018001.000017->018001.000014, 018001.000017->018001.000015, 018001.000018->018001.000006, 018001.000018->018001.000007, 018001.000018->018001.000008, 018001.000018->018001.000009, 018001.000018->018001.000010, 018001.000018->018001.000012, 018001.000018->018001.000013, 018001.000018->018001.000014, 018001.000019->018001.000007, 018001.000020->018001.000007, 018001.000020->018001.000008, 018001.000020->018001.000010, 018001.000020->018001.000013, 018001.000021->018001.000006, 018001.000021->018001.000007, 018001.000021->018001.000008, 018001.000021->018001.000009, 018001.000021->018001.000010, 018001.000021->018001.000012, 018001.000021->018001.000013, 018001.000021->018001.000014, 018001.000022->018001.000006, 018001.000022->018001.000007, 018001.000022->018001.000008, 018001.000022->018001.000009, 018001.000022->018001.000010, 018001.000022->018001.000012, 018001.000022->018001.000013, 018001.000022->018001.000014, 018001.000023->018001.000001, 018001.000023->018001.000006, 018001.000023->018001.000008, 018001.000023->018001.000009, 018001.000023->018001.000010, 018001.000023->018001.000011, 018001.000023->018001.000012, 018001.000023->018001.000013, 018001.000023->018001.000014, 018001.000023->018001.000015, 018001.000024->018001.000007, 018001.000024->018001.000008, 018001.000024->018001.000010, 018001.000024->018001.000013, 018001.000025->018001.000001, 018001.000025->018001.000006, 018001.000025->018001.000008, 018001.000025->018001.000009, 018001.000025->018001.000010, 018001.000025->018001.000011, 018001.000025->018001.000012, 018001.000025->018001.000013, 018001.000025->018001.000014, 018001.000025->018001.000015, 018001.000026->018001.000006, 018001.000026->018001.000007, 018001.000026->018001.000008, 018001.000026->018001.000009, 018001.000026->018001.000010, 018001.000026->018001.000012, 018001.000026->018001.000013, 018001.000026->018001.000014, 018001.000027->018001.000006, 018001.000027->018001.000007, 018001.000027->018001.000008, 018001.000027->018001.000009, 018001.000027->018001.000010, 018001.000027->018001.000012, 018001.000027->018001.000013, 018001.000027->018001.000014, 018001.000028->018001.000007, 018001.000028->018001.000008, 018001.000028->018001.000010, 018001.000028->018001.000013, 018001.000029->018001.000006, 018001.000029->018001.000009, 018001.000029->018001.000012, 018001.000029->018001.000014, 018001.000030->018001.000001, 018001.000030->018001.000006, 018001.000030->018001.000008, 018001.000030->018001.000009, 018001.000030->018001.000010, 018001.000030->018001.000011, 018001.000030->018001.000012, 018001.000030->018001.000013, 018001.000030->018001.000014, 018001.000030->018001.000015, 018001.000031->018001.000001, 018001.000031->018001.000006, 018001.000031->018001.000008, 018001.000031->018001.000009, 018001.000031->018001.000010, 018001.000031->018001.000011, 018001.000031->018001.000012, 018001.000031->018001.000013, 018001.000031->018001.000014, 018001.000031->018001.000015, 018001.000032->018001.000002, 018001.000032->018001.000003, 018001.000032->018001.000004, 018001.000032->018001.000005, 018001.000032->018001.000016, 018001.000032->018001.000017, 018001.000032->018001.000018, 018001.000032->018001.000021, 018001.000032->018001.000022, 018001.000032->018001.000023, 018001.000032->018001.000025, 018001.000032->018001.000026, 018001.000032->018001.000027, 018001.000032->018001.000029, 018001.000032->018001.000030, 018001.000032->018001.000031, 018001.000033->018001.000002, 018001.000033->018001.000018, 018001.000033->018001.000019, 018001.000033->018001.000020, 018001.000033->018001.000021, 018001.000033->018001.000022, 018001.000033->018001.000024, 018001.000033->018001.000026, 018001.000033->018001.000027, 018001.000033->018001.000028, 018001.000034->018001.000002, 018001.000034->018001.000003, 018001.000034->018001.000005, 018001.000034->018001.000017, 018001.000034->018001.000018, 018001.000034->018001.000020, 018001.000034->018001.000021, 018001.000034->018001.000022, 018001.000034->018001.000023, 018001.000034->018001.000024, 018001.000034->018001.000025, 018001.000034->018001.000026, 018001.000034->018001.000027, 018001.000034->018001.000028, 018001.000034->018001.000030, 018001.000034->018001.000031, 018001.000035->018001.000002, 018001.000035->018001.000003, 018001.000035->018001.000004, 018001.000035->018001.000005, 018001.000035->018001.000016, 018001.000035->018001.000017, 018001.000035->018001.000018, 018001.000035->018001.000021, 018001.000035->018001.000022, 018001.000035->018001.000023, 018001.000035->018001.000025, 018001.000035->018001.000026, 018001.000035->018001.000027, 018001.000035->018001.000029, 018001.000035->018001.000030, 018001.000035->018001.000031, 018001.000036->018001.000002, 018001.000036->018001.000003, 018001.000036->018001.000005, 018001.000036->018001.000017, 018001.000036->018001.000018, 018001.000036->018001.000020, 018001.000036->018001.000021, 018001.000036->018001.000022, 018001.000036->018001.000023, 018001.000036->018001.000024, 018001.000036->018001.000025, 018001.000036->018001.000026, 018001.000036->018001.000027, 018001.000036->018001.000028, 018001.000036->018001.000030, 018001.000036->018001.000031, 018001.000037->018001.000003, 018001.000037->018001.000005, 018001.000037->018001.000017, 018001.000037->018001.000023, 018001.000037->018001.000025, 018001.000037->018001.000030, 018001.000037->018001.000031, 018001.000038->018001.000002, 018001.000038->018001.000003, 018001.000038->018001.000004, 018001.000038->018001.000005, 018001.000038->018001.000016, 018001.000038->018001.000017, 018001.000038->018001.000018, 018001.000038->018001.000021, 018001.000038->018001.000022, 018001.000038->018001.000023, 018001.000038->018001.000025, 018001.000038->018001.000026, 018001.000038->018001.000027, 018001.000038->018001.000029, 018001.000038->018001.000030, 018001.000038->018001.000031, 018001.000039->018001.000002, 018001.000039->018001.000003, 018001.000039->018001.000004, 018001.000039->018001.000005, 018001.000039->018001.000016, 018001.000039->018001.000017, 018001.000039->018001.000018, 018001.000039->018001.000021, 018001.000039->018001.000022, 018001.000039->018001.000023, 018001.000039->018001.000025, 018001.000039->018001.000026, 018001.000039->018001.000027, 018001.000039->018001.000029, 018001.000039->018001.000030, 018001.000039->018001.000031, 018001.000040->018001.000002, 018001.000040->018001.000003, 018001.000040->018001.000005, 018001.000040->018001.000017, 018001.000040->018001.000018, 018001.000040->018001.000020, 018001.000040->018001.000021, 018001.000040->018001.000022, 018001.000040->018001.000023, 018001.000040->018001.000024, 018001.000040->018001.000025, 018001.000040->018001.000026, 018001.000040->018001.000027, 018001.000040->018001.000028, 018001.000040->018001.000030, 018001.000040->018001.000031, 018001.000041->018001.000006, 018001.000041->018001.000009, 018001.000041->018001.000012, 018001.000041->018001.000014, 018001.000041->018001.000032, 018001.000041->018001.000035, 018001.000041->018001.000038, 018001.000041->018001.000039, 018001.000042->018001.000001, 018001.000042->018001.000006, 018001.000042->018001.000008, 018001.000042->018001.000009, 018001.000042->018001.000010, 018001.000042->018001.000011, 018001.000042->018001.000012, 018001.000042->018001.000013, 018001.000042->018001.000014, 018001.000042->018001.000015, 018001.000042->018001.000032, 018001.000042->018001.000034, 018001.000042->018001.000035, 018001.000042->018001.000036, 018001.000042->018001.000037, 018001.000042->018001.000038, 018001.000042->018001.000039, 018001.000042->018001.000040, 018001.000043->018001.000003, 018001.000043->018001.000005, 018001.000043->018001.000017, 018001.000043->018001.000023, 018001.000043->018001.000025, 018001.000043->018001.000030, 018001.000043->018001.000031, 018001.000043->018001.000042, 018001.000044->018001.000006, 018001.000044->018001.000007, 018001.000044->018001.000008, 018001.000044->018001.000009, 018001.000044->018001.000010, 018001.000044->018001.000012, 018001.000044->018001.000013, 018001.000044->018001.000014, 018001.000044->018001.000032, 018001.000044->018001.000033, 018001.000044->018001.000034, 018001.000044->018001.000035, 018001.000044->018001.000036, 018001.000044->018001.000038, 018001.000044->018001.000039, 018001.000044->018001.000040, 018001.000045->018001.000007, 018001.000045->018001.000033, 018001.000046->018001.000007, 018001.000046->018001.000008, 018001.000046->018001.000010, 018001.000046->018001.000013, 018001.000046->018001.000033, 018001.000046->018001.000034, 018001.000046->018001.000036, 018001.000046->018001.000040, 018001.000047->018001.000006, 018001.000047->018001.000007, 018001.000047->018001.000008, 018001.000047->018001.000009, 018001.000047->018001.000010, 018001.000047->018001.000012, 018001.000047->018001.000013, 018001.000047->018001.000014, 018001.000047->018001.000032, 018001.000047->018001.000033, 018001.000047->018001.000034, 018001.000047->018001.000035, 018001.000047->018001.000036, 018001.000047->018001.000038, 018001.000047->018001.000039, 018001.000047->018001.000040, 018001.000048->018001.000007, 018001.000048->018001.000008, 018001.000048->018001.000010, 018001.000048->018001.000013, 018001.000048->018001.000033, 018001.000048->018001.000034, 018001.000048->018001.000036, 018001.000048->018001.000040, 018001.000049->018001.000006, 018001.000049->018001.000007, 018001.000049->018001.000008, 018001.000049->018001.000009, 018001.000049->018001.000010, 018001.000049->018001.000012, 018001.000049->018001.000013, 018001.000049->018001.000014, 018001.000049->018001.000032, 018001.000049->018001.000033, 018001.000049->018001.000034, 018001.000049->018001.000035, 018001.000049->018001.000036, 018001.000049->018001.000038, 018001.000049->018001.000039, 018001.000049->018001.000040, 018001.000050->018001.000001, 018001.000050->018001.000006, 018001.000050->018001.000008, 018001.000050->018001.000009, 018001.000050->018001.000010, 018001.000050->018001.000011, 018001.000050->018001.000012, 018001.000050->018001.000013, 018001.000050->018001.000014, 018001.000050->018001.000015, 018001.000050->018001.000032, 018001.000050->018001.000034, 018001.000050->018001.000035, 018001.000050->018001.000036, 018001.000050->018001.000037, 018001.000050->018001.000038, 018001.000050->018001.000039, 018001.000050->018001.000040, 018001.000050->018001.000043, 018001.000051->018001.000001, 018001.000051->018001.000006, 018001.000051->018001.000008, 018001.000051->018001.000009, 018001.000051->018001.000010, 018001.000051->018001.000011, 018001.000051->018001.000012, 018001.000051->018001.000013, 018001.000051->018001.000014, 018001.000051->018001.000015, 018001.000051->018001.000032, 018001.000051->018001.000034, 018001.000051->018001.000035, 018001.000051->018001.000036, 018001.000051->018001.000037, 018001.000051->018001.000038, 018001.000051->018001.000039, 018001.000051->018001.000040, 018001.000051->018001.000043, 018001.000052->018001.000002, 018001.000052->018001.000003, 018001.000052->018001.000004, 018001.000052->018001.000005, 018001.000052->018001.000016, 018001.000052->018001.000017, 018001.000052->018001.000018, 018001.000052->018001.000021, 018001.000052->018001.000022, 018001.000052->018001.000023, 018001.000052->018001.000025, 018001.000052->018001.000026, 018001.000052->018001.000027, 018001.000052->018001.000029, 018001.000052->018001.000030, 018001.000052->018001.000031, 018001.000052->018001.000041, 018001.000052->018001.000042, 018001.000052->018001.000044, 018001.000052->018001.000047, 018001.000052->018001.000049, 018001.000052->018001.000050, 018001.000052->018001.000051, 018001.000053->018001.000002, 018001.000053->018001.000003, 018001.000053->018001.000005, 018001.000053->018001.000017, 018001.000053->018001.000018, 018001.000053->018001.000020, 018001.000053->018001.000021, 018001.000053->018001.000022, 018001.000053->018001.000023, 018001.000053->018001.000024, 018001.000053->018001.000025, 018001.000053->018001.000026, 018001.000053->018001.000027, 018001.000053->018001.000028, 018001.000053->018001.000030, 018001.000053->018001.000031, 018001.000053->018001.000042, 018001.000053->018001.000044, 018001.000053->018001.000046, 018001.000053->018001.000047, 018001.000053->018001.000048, 018001.000053->018001.000049, 018001.000053->018001.000050, 018001.000053->018001.000051, 018001.000055->018001.000019, 018001.000055->018001.000020, 018001.000055->018001.000024, 018001.000055->018001.000028, 018001.000055->018001.000045, 018001.000055->018001.000046, 018001.000055->018001.000048, 018001.000056->018001.000002, 018001.000056->018001.000018, 018001.000056->018001.000019, 018001.000056->018001.000020, 018001.000056->018001.000021, 018001.000056->018001.000022, 018001.000056->018001.000024, 018001.000056->018001.000026, 018001.000056->018001.000027, 018001.000056->018001.000028, 018001.000056->018001.000044, 018001.000056->018001.000045, 018001.000056->018001.000046, 018001.000056->018001.000047, 018001.000056->018001.000048, 018001.000056->018001.000049, 018001.000057->018001.000002, 018001.000057->018001.000003, 018001.000057->018001.000005, 018001.000057->018001.000017, 018001.000057->018001.000018, 018001.000057->018001.000020, 018001.000057->018001.000021, 018001.000057->018001.000022, 018001.000057->018001.000023, 018001.000057->018001.000024, 018001.000057->018001.000025, 018001.000057->018001.000026, 018001.000057->018001.000027, 018001.000057->018001.000028, 018001.000057->018001.000030, 018001.000057->018001.000031, 018001.000057->018001.000042, 018001.000057->018001.000044, 018001.000057->018001.000046, 018001.000057->018001.000047, 018001.000057->018001.000048, 018001.000057->018001.000049, 018001.000057->018001.000050, 018001.000057->018001.000051, 018001.000058->018001.000002, 018001.000058->018001.000018, 018001.000058->018001.000019, 018001.000058->018001.000020, 018001.000058->018001.000021, 018001.000058->018001.000022, 018001.000058->018001.000024, 018001.000058->018001.000026, 018001.000058->018001.000027, 018001.000058->018001.000028, 018001.000058->018001.000044, 018001.000058->018001.000045, 018001.000058->018001.000046, 018001.000058->018001.000047, 018001.000058->018001.000048, 018001.000058->018001.000049, 018001.000059->018001.000019, 018001.000059->018001.000020, 018001.000059->018001.000024, 018001.000059->018001.000028, 018001.000059->018001.000045, 018001.000059->018001.000046, 018001.000059->018001.000048, 018001.000060->018001.000006, 018001.000060->018001.000007, 018001.000060->018001.000008, 018001.000060->018001.000009, 018001.000060->018001.000010, 018001.000060->018001.000012, 018001.000060->018001.000013, 018001.000060->018001.000014, 018001.000060->018001.000032, 018001.000060->018001.000033, 018001.000060->018001.000034, 018001.000060->018001.000035, 018001.000060->018001.000036, 018001.000060->018001.000038, 018001.000060->018001.000039, 018001.000060->018001.000040, 018001.000060->018001.000052, 018001.000060->018001.000053, 018001.000060->018001.000056, 018001.000060->018001.000057, 018001.000060->018001.000058, 018001.000061->018001.000006, 018001.000061->018001.000007, 018001.000061->018001.000008, 018001.000061->018001.000009, 018001.000061->018001.000010, 018001.000061->018001.000012, 018001.000061->018001.000013, 018001.000061->018001.000014, 018001.000061->018001.000032, 018001.000061->018001.000033, 018001.000061->018001.000034, 018001.000061->018001.000035, 018001.000061->018001.000036, 018001.000061->018001.000038, 018001.000061->018001.000039, 018001.000061->018001.000040, 018001.000061->018001.000052, 018001.000061->018001.000053, 018001.000061->018001.000056, 018001.000061->018001.000057, 018001.000061->018001.000058, 018001.000062->018001.000007, 018001.000062->018001.000008, 018001.000062->018001.000010, 018001.000062->018001.000013, 018001.000062->018001.000033, 018001.000062->018001.000034, 018001.000062->018001.000036, 018001.000062->018001.000040, 018001.000062->018001.000053, 018001.000062->018001.000055, 018001.000062->018001.000056, 018001.000062->018001.000057, 018001.000062->018001.000058, 018001.000062->018001.000059, 018001.000063->018001.000001, 018001.000063->018001.000006, 018001.000063->018001.000008, 018001.000063->018001.000009, 018001.000063->018001.000010, 018001.000063->018001.000011, 018001.000063->018001.000012, 018001.000063->018001.000013, 018001.000063->018001.000014, 018001.000063->018001.000015, 018001.000063->018001.000032, 018001.000063->018001.000034, 018001.000063->018001.000035, 018001.000063->018001.000036, 018001.000063->018001.000037, 018001.000063->018001.000038, 018001.000063->018001.000039, 018001.000063->018001.000040, 018001.000063->018001.000043, 018001.000063->018001.000052, 018001.000063->018001.000053, 018001.000063->018001.000057.
 """,
 )
 

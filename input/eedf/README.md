@@ -55,9 +55,13 @@ records keyed by frozen ID, exact process and threshold. Ten records have
 (2p5→1s2) as an effective A of zero for branching. The yield artifact records
 the conservative maximum branching error (upper bound divided by the known
 2p5 A sum), along with the bound's local path and SHA-256 in the source file.
-Asghar 2020 supplies no measured A for this line. Channels 16–38 remain
-unresolved; partial A matrices and unsourced blend populations are not
-normalized. Higher multipoles are outside this E1 model. Branch reaction owners
+Asghar 2020 supplies no measured A for this line. Channels 16–38 (3d, 5s,
+5p, 4d, 6s) are complete under three declared conventions recorded in the
+yield file: Kurucz K11 calculated A values fill NIST gaps (accuracy unrated,
+reported as intervals), trapped ground-resonance lines
+(`RESONANCE_RADIATION_TRAPPED`), and g=2J+1 blend populations
+(`HIGHER_EXCITATION_STATISTICAL_WEIGHTS`). One omitted 4f edge is carried as
+`unbounded-omitted`. Partial A matrices are never normalized. Higher multipoles are outside this E1 model. Branch reaction owners
 are generated only for complete vectors; their fractions partition the existing
 EEDF collision rate, with photon energy accounted once in products.
 

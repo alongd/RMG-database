@@ -5,10 +5,11 @@ name = "PlasmaArgon"
 shortDesc = "State-resolved argon EEDF excitation and ionisation owners"
 longDesc = """
 Five ordinary IST-Lisbon-Ar-2021 collision owners plus sourced branched owners
-for complete 2p-to-1s cascade channels. Ars is Ar(1s5), 3P2,
+for every class-A cascade channel (6–38): the 2p levels and the higher
+3d/5s/5p/4d/6s levels, whose yields and declared conventions are generated in
+input/eedf/argon_cascade_yields.yaml. Ars is Ar(1s5), 3P2,
 shared with PlasmaArgonDimer and PlasmaOxygenHeavy. Ar(1s4), Ar(1s3), Ar(1s2)
-are separate electronic states. This library is not runnable for reacting EEDF:
-channels 16–38 remain unresolved; channel 11 uses the sourced Wiese upper
+are separate electronic states. Channel 11 uses the sourced Wiese upper
 bound as an effective zero branch. The three new states have
 production but no loss: no radiative/trapped decay, quenching, diffusion,
 mixing, stepwise ionisation or dimer formation. No cascade or trapped-decay

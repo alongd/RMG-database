@@ -1,0 +1,19 @@
+NO
+multiplicity 2
+1 N u1 p1 c0 {2,D}
+2 O u0 p2 c0 {1,D}
+
+N
+multiplicity 4
+1 N u3 p1 c0
+
+O-
+multiplicity 2
+1 O u1 p3 c-1
+
+NOp
+1 N u0 p1 c0 {2,T}
+2 O u0 p1 c+1 {1,T}
+
+e-
+1 e u1 p0 c-1

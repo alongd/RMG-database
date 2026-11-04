@@ -390,39 +390,32 @@ regeneration's (a CRLF copy included) is one `BAD  ...` line and exit 2, never a
 run of the cases. The map and overlay are read once, and every case starts from those bytes, so a
 fixture removed or saved again mid-run changes nothing.
 
-### NO source inventory
+### NO Hayashi collision set
 
-`no_channel_map.yaml` uses **`eedf-source-inventory/1`**, a source-only metadata
-schema. It records the Hayashi ZIP/member hashes, source block identities and
-thresholds, classifications, species inventory, candidate reaction matches and
-energy dispositions. `source_process` names the source's PROCESS field;
-`checked_libraries` and `matches` describe an ownership search. These fields do
-not supply solver identities or the `rmg.library` contract of
-`eedf-channel-map/2`.
+`no_channel_map.yaml` uses **`eedf-channel-map/2`** and pins the actual
+LoKI-B solver labels, the assembled file hash, the Hayashi ZIP/member hashes,
+source-block hashes, thresholds and class-A owners. The only cross-section
+payload is in the local `/home/alon/Data/lxcat/assembled/no-v1/` store.
 
-Conversion requires a later collision-file assembly step. The pinned LoKI-B
-`source/EedfCollisions.cpp` function `loadCollisionsClassic` searches for
-`PARAM.:` and requires a bracketed `[lhs -> rhs, Type]` descriptor on the very
-next line. All ten NO blocks in Hayashi's `Cross section.txt` have a COMMENT
-line there instead. Thus the member cannot be used directly as a LoKI file;
-its hash is a source pin, not an assembled-file pin. No collision file or solver
-identity is invented here.
+`scripts/assemble_no_loki_collisions.py` inserts the descriptor required by
+`loadCollisionsClassic` and a source-provenance comment after each `PARAM.:
+` line. Each source table is copied byte-for-byte. The deterministic manifest
+and `provenance.tsv` record the block hashes. Regenerate or check with:
 
-A later assembly must preserve the cross-section data, supply LoKI state and
-process descriptors, and pin the actual solver input bytes in `loki_files`.
-Its `/2` map must derive each `loki_process` and `lxcat_file` from that assembly
-and express class-A ownership through `rmg.library` and `class_a_gaps`. The NO
-inventory itself must be refused by the converter at the schema check. This
-does not change its Report-10 lumping, gas-heating disposition, or the named
-absences of ionisation and dissociative-attachment owner reactions.
+```sh
+python scripts/assemble_no_loki_collisions.py --archive /path/to/Hayashi.zip --store /path/to/no-v1
+python scripts/assemble_no_loki_collisions.py --archive /path/to/Hayashi.zip --store /path/to/no-v1 --check
+python scripts/gen_eedf_channel_map.py --gas no --overlay input/eedf/no_channel_overlay.yaml \
+  --source /path/to/Hayashi.zip --assembled /path/to/no-v1 \
+  --output input/eedf/no_channel_map.yaml --check
+```
 
-Regenerate or check the inventory using `scripts/gen_eedf_channel_map.py --gas
-no --overlay input/eedf/no_channel_overlay.yaml --source /path/to/Hayashi.zip
---output input/eedf/no_channel_map.yaml --check` (omit `--check` to regenerate).
-The contract test extracts the actual RMG-Py `_frozen_rows` validator with AST:
-argon must be accepted and the NO inventory must be refused specifically at
-the schema check. Set `EEDF_RMG_CHANNEL_MAP` to that consumer's Python file
-when it is not at `/home/alon/Code/RMG-Py-plasma/rmgpy/tools/eedf/channel_map.py`.
+The five lumped V channels stay ownerless energy losses and use one
+NO-specific runtime `flux_group`, `NO_lumped_vibrational_heating`, which is
+reported as gas heating. `PlasmaNitricOxide` owns only dissociative attachment
+and ionisation, with markers tied to the exact solver identities. Its species
+dictionary includes NO, NOp, N, O- and e-. Other plasma libraries are checked
+for overlapping NO electron-impact owner reactions before combining libraries.
 
 ### Written limits
 

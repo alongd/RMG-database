@@ -1,40 +1,50 @@
-# NO classes and species references; physical policy and reasons are generated.
+# NO classes and species references; process keys are LoKI-B solver identities.
 species:
-  'NO': |
-    multiplicity 2
+  'NO': 'multiplicity 2
+
     1 N u1 p1 c0 {2,D}
+
     2 O u0 p2 c0 {1,D}
-  N: |
-    multiplicity 4
+
+    '
+  N: 'multiplicity 4
+
     1 N u3 p1 c0
-  O-: |
-    multiplicity 2
+
+    '
+  O-: 'multiplicity 2
+
     1 O u1 p3 c-1
-  NOp: |
-    1 N u0 p1 c0 {2,T}
+
+    '
+  NOp: '1 N u0 p1 c0 {2,T}
+
     2 O u0 p1 c+1 {1,T}
-  e-: |
-    1 e u1 p0 c-1
+
+    '
+  e-: '1 e u1 p0 c-1
+
+    '
 collisions:
-  E + NO -> NO-, Attachment:
+  e + NO(X) -> N(4S) + O(-,gnd), Attachment:
     class: A
     reaction: NO + e- => N + O-
-  E + NO -> E + NO, Effective:
+  e + NO(X) -> e + NO(X), Effective:
     class: B
-  E + NO -> E + NO(V1)(0.232eV), Excitation:
+  e + NO(X) -> e + NO(V1), Excitation:
     class: B
-  E + NO -> E + NO(V2)(0.455eV), Excitation:
+  e + NO(X) -> e + NO(V2), Excitation:
     class: B
-  E + NO -> E + NO(V3)(0.677eV), Excitation:
+  e + NO(X) -> e + NO(V3), Excitation:
     class: B
-  E + NO -> E + NO(V4)(0.896eV), Excitation:
+  e + NO(X) -> e + NO(V4), Excitation:
     class: B
-  E + NO -> E + NO(V5)(1.11eV), Excitation:
+  e + NO(X) -> e + NO(V5), Excitation:
     class: B
-  E + NO -> E + NO(e1)(5.45eV), Excitation:
+  e + NO(X) -> e + NO(e1), Excitation:
     class: B
-  E + NO -> E + NO(e2)(6.58eV), Excitation:
+  e + NO(X) -> e + NO(e2), Excitation:
     class: B
-  E + NO -> E + E + NO+, Ionization:
+  e + NO(X) -> e + e + NO(+,gnd), Ionization:
     class: A
     reaction: NO + e- => NOp + e- + e-

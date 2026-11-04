@@ -332,13 +332,7 @@ def test_named_gaps_are_explicit_and_ar_quenching_is_deferred():
     assert 'deferred' in note
 
 
-def test_short_real_rmg_job_keeps_table_kinetics_and_writes_bounded_exports(tmp_path, monkeypatch):
-    """A simple reactor uses KineticsData while Chemkin and both YAML writers emit output fits."""
-    from rmgpy import settings
-    from rmgpy.kinetics import KineticsData
-    from rmgpy.rmg.main import RMG
-
-    monkeypatch.setitem(settings, 'database.directory', str(ROOT / 'input'))
+def _write_relaxation_job_deck(tmp_path, rms_default=False):
     deck = tmp_path / 'input.py'
     deck.write_text("""\
 database(thermoLibraries=['primaryThermoLibrary', 'N2Vibrational'],
@@ -353,17 +347,28 @@ simpleReactor(temperature=(1000, 'K'), pressure=(1, 'bar'),
               terminationTime=(1e-9, 's'))
 simulator(atol=1e-16, rtol=1e-8)
 model(toleranceMoveToCore=0.1, toleranceInterruptSimulation=1.0)
+# State-preserving Cantera/RMS export for resolved-state table models is planned separately.
 options(generateOutputHTML=False, generatePlots=False, saveEdgeSpecies=False,
         saveSimulationProfiles=True, generateChemkin=True,
-        generateCanteraYAML1=True, generateCanteraYAML2=True)
-""")
+        generateRMSYAML=False, generateCanteraYAML1=False, generateCanteraYAML2=False)
+""".replace("generateRMSYAML=False, ", "" if rms_default else "generateRMSYAML=False, "))
+    return deck
+
+
+def test_short_real_rmg_job_keeps_table_kinetics_and_writes_chemkin(tmp_path, monkeypatch):
+    """A real job advances with table kinetics and reloadable Chemkin output."""
+    from rmgpy import settings
+    from rmgpy.kinetics import KineticsData
+    from rmgpy.rmg.main import RMG
+
+    monkeypatch.setitem(settings, 'database.directory', str(ROOT / 'input'))
+    deck = _write_relaxation_job_deck(tmp_path)
     output = tmp_path / 'job'
     output.mkdir()
     job = RMG(input_file=str(deck), output_directory=str(output))
     job.execute()
 
     import numpy as np
-    import cantera as ct
     from rmgpy.chemkin import load_chemkin_file
     from rmgpy.solver.simple import SimpleReactor
 
@@ -392,13 +397,6 @@ options(generateOutputHTML=False, generatePlots=False, saveEdgeSpecies=False,
         str(output / 'chemkin' / 'chem_annotated.inp'),
         str(output / 'chemkin' / 'species_dictionary.txt'))
     assert loaded_species and loaded_reactions
-    for writer in ('cantera1', 'cantera2'):
-        yaml_output = output / writer / 'chem.yaml'
-        assert yaml_output.is_file()
-        assert ct.Solution(str(yaml_output)).n_reactions > 0
-        contents = yaml_output.read_text()
-        assert 'maximum relative fit error' in contents
-        assert 'The source table is the record' in contents
     profiles = list(output.glob('simulation*')) + list(output.glob('solver/*'))
     assert profiles
 
@@ -424,3 +422,49 @@ options(generateOutputHTML=False, generatePlots=False, saveEdgeSpecies=False,
     for temperature in (300.0, 1000.0):
         assert balance_channel.get_rate_coefficient(temperature) / reverse.get_rate_coefficient(temperature) == pytest.approx(
             balance_channel.get_equilibrium_constant(temperature), rel=1e-12, abs=0)
+
+
+def test_default_rms_refuses_table_kinetics_before_simulation(tmp_path, monkeypatch):
+    from rmgpy import settings
+    from rmgpy.rmg.main import RMG
+
+    monkeypatch.setitem(settings, 'database.directory', str(ROOT / 'input'))
+    deck = _write_relaxation_job_deck(tmp_path, rms_default=True)
+    assert 'generateRMSYAML' not in deck.read_text()
+    output = tmp_path / 'job'
+    output.mkdir()
+    job = RMG(input_file=str(deck), output_directory=str(output))
+    simulated = []
+
+    class SimulationWitness:
+        # Observe the instance boundary without patching an immutable solver class.
+        def __init__(self, system):
+            object.__setattr__(self, 'system', system)
+
+        def __getattr__(self, name):
+            return getattr(self.system, name)
+
+        def __setattr__(self, name, value):
+            setattr(self.system, name, value)
+
+        def simulate(self, *args, **kwargs):
+            simulated.append(True)
+            pytest.fail('RMS table refusal must precede every simulation call')
+
+    initialize = job.initialize
+
+    def initialize_with_witness(**kwargs):
+        result = initialize(**kwargs)
+        job.reaction_systems = [SimulationWitness(system) for system in job.reaction_systems]
+        return result
+
+    monkeypatch.setattr(job, 'initialize', initialize_with_witness)
+    with pytest.raises(ValueError) as error:
+        job.execute()
+    assert str(error.value) == (
+        'RMS table kinetics export is unsupported: KineticsData cannot be exported to RMS. '
+        'Set generateRMSYAML=False in options() to turn RMS output off.')
+    assert not simulated
+    # Initial output fails while every solver is still at its initial time.
+    assert job.reaction_systems and all(system.t == 0 for system in job.reaction_systems)
+    assert not list(output.glob('solver/simulation*'))

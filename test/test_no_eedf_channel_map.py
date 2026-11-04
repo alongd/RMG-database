@@ -37,7 +37,8 @@ def test_map_is_converter_schema_two_and_inventory_is_classified_once(doc):
         'paschen': 'ground', 'g': 4, 'excitation_eV': 0.0, 'rmg_species': 'NO',
         'source': no.NO_GROUND_STATE_SOURCE}}
     assert 'X $^2\\Pi$' in no.NO_GROUND_STATE_SOURCE
-    assert 'g=(2S+1)(2Λ+1)=4' in no.NO_GROUND_STATE_SOURCE
+    assert '(2S+1) × 2 = 4 for a non-Σ term (two ±Λ components)' in no.NO_GROUND_STATE_SOURCE
+    assert 'Wong et al.' in no.NO_GROUND_STATE_SOURCE
     channels = doc['channels']
     assert len(channels) == 10
     assert [channel['id'] for channel in channels] == list(range(1, 11))

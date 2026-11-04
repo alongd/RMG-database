@@ -168,6 +168,43 @@ class TestOverlayLoader:
         assert problems == [] and loaded == {'x': {'class': 'A', 'reaction': 'a => b'}}
 
 
+class TestReactionOwnerResolution:
+
+    @staticmethod
+    def loaded_entry(process, collision_set='IST-Lisbon-Ar-2021'):
+        return gen.LoadedReaction('Ar + e- => Ars + e-', ('Ar', 'e-'), ('Ars', 'e-'), False,
+                                  process, collision_set, True)
+
+    @staticmethod
+    def collision():
+        return {'label': 'e + Ar(1S0) -> e + Ar(3P2), Excitation',
+                'reaction': 'Ar + e- => Ars + e-', 'target': 'Ar(1S0)', 'product': 'Ar(3P2)'}
+
+    def test_same_equation_entries_resolve_by_eedf_process_marker(self):
+        """Two loaded entries may share an equation; the LoKI process marker selects its actual owner."""
+        direct = 'e + Ar(1S0) -> e + Ar(3P2), Excitation'
+        cascade = 'e + Ar(1S0) -> e + Ar(4p[1/2]1), Excitation'
+        reactions = {87: self.loaded_entry(direct), 1024: self.loaded_entry(cascade)}
+        problems = []
+
+        owner = gen.rmg_mapping(self.collision(), reactions, {}, {}, {}, problems)
+
+        assert owner['index'] == 87 and owner['status'] == 'present'
+        assert problems == []
+
+    def test_same_equation_entries_with_repeated_marker_refuse_by_process(self):
+        """A repeated process marker is reported by name; entry order never chooses an owner."""
+        direct = 'e + Ar(1S0) -> e + Ar(3P2), Excitation'
+        reactions = {87: self.loaded_entry(direct), 1024: self.loaded_entry(direct)}
+        problems = []
+
+        owner = gen.rmg_mapping(self.collision(), reactions, {}, {}, {}, problems)
+
+        assert owner['index'] is None and owner['status'] == 'absent'
+        assert len(problems) == 1
+        assert direct in problems[0] and 'matching entries [87, 1024]' in problems[0]
+
+
 def plain(loaded):
     """load_library()'s result with each RMG species as its adjacency list, so two loads can be compared."""
     reactions, species, problems = loaded

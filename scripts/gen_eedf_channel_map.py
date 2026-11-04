@@ -552,9 +552,9 @@ def as_text(data):
 # The fields RMG's Molecule.is_isomorphic compares besides the graph, in the order a refusal names them; they
 # only explain RMG's verdict, never replace it
 STATE_FIELDS = ('multiplicity', 'electronic_state', 'vibrational_level', 'metal', 'facet')
-# A reaction of a kinetics library as RMG loaded it: its label, the dictionary labels of its reactants and of
-# its products (each sorted), and whether it is reversible
-LoadedReaction = collections.namedtuple('LoadedReaction', 'label reactants products reversible')
+# A reaction as RMG loaded it, including the EEDF marker that can distinguish equal reaction equations.
+LoadedReaction = collections.namedtuple(
+    'LoadedReaction', 'label reactants products reversible eedf_process eedf_collision_set has_eedf_marker')
 
 
 def identity_problem(loaded, reference):
@@ -694,14 +694,20 @@ def load_library(database, library):
     reactions = {}
     for index, entry in sorted(loaded.entries.items()):
         reaction = entry.item
+        marker = getattr(entry, 'data', None)
+        if marker is None:
+            marker = getattr(reaction, 'kinetics', None)
+        has_eedf_marker = bool(getattr(marker, 'uses_eedf', False))
         who = [label_of.get(id(x)) for x in list(reaction.reactants) + list(reaction.products)]
         if None in who:
             problems.append(f'library {library} reactions.py: entry {index}: a participant RMG loaded is not one '
                             f'of the dictionary species, so the reaction cannot be known by its species')
             continue
         n = len(reaction.reactants)
-        reactions[index] = LoadedReaction(entry.label, tuple(sorted(who[:n])), tuple(sorted(who[n:])),
-                                  bool(reaction.reversible))
+        reactions[index] = LoadedReaction(
+            entry.label, tuple(sorted(who[:n])), tuple(sorted(who[n:])), bool(reaction.reversible),
+            getattr(marker, 'process', None) if has_eedf_marker else None,
+            getattr(marker, 'collision_set', None) if has_eedf_marker else None, has_eedf_marker)
     problems += reconcile_library(library, {i: x.label for i, x in loaded.entries.items()}, species,
                                   as_text(content), as_text(dictionary))
     return (None, None, problems) if problems else (reactions, species, [])
@@ -1747,15 +1753,34 @@ def species_problem(state, name, records, species, paschen):
 
 def rmg_mapping(c, reactions, species, species_of, holds, problems):
     """The RMG side of a class-A collision, derived from the library: index, status and missing species. The
-    reaction is found by what RMG loaded, its reactants', its products' dictionary species and its direction,
-    never by its label's text; an entry holding the same species another way (the other way round when either
+    reaction is found by what RMG loaded, its reactants', its products' dictionary species and its direction;
+    when equations collide, the loaded EEDF process/collision-set marker must identify one entry. It is never
+    found by its label's text; an entry holding the same species another way (the other way round when either
     side is reversible, or with the other direction) cannot be matched reliably and is refused, even beside an
     entry that holds it exactly, and so is a reaction several entries hold, since the map names one index."""
     lhs, arrow, rhs = parse_reaction(c['reaction'])
     out = collections.OrderedDict([('reaction', c['reaction']), ('library', LIBRARY), ('index', None)])
     want = (tuple(sorted(lhs)), tuple(sorted(rhs)), arrow == '<=>')
-    same = [i for i, r in sorted(reactions.items()) if (r.reactants, r.products, r.reversible) == want]
-    near = [(i, r) for i, r in sorted(reactions.items()) if i not in same and (
+    same_equation = [i for i, r in sorted(reactions.items()) if (r.reactants, r.products, r.reversible) == want]
+    same = same_equation
+    owner_problem = None
+    if len(same_equation) > 1 or any(reactions[i].has_eedf_marker for i in same_equation):
+        marked = [i for i in same_equation if reactions[i].has_eedf_marker
+                  and reactions[i].eedf_process == c['label']
+                  and isinstance(reactions[i].eedf_collision_set, str)
+                  and reactions[i].eedf_collision_set.strip()]
+        if len(marked) == 1:
+            same = marked
+        elif len(marked) > 1 or len(same_equation) > 1:
+            same = []
+            owner_problem = (f"{c['label']}: {LIBRARY} has same-equation entries {same_equation} for "
+                             f"{c['reaction']!r}, but its EEDF process/collision-set marker does not identify "
+                             f"exactly one owner (matching entries {marked})")
+        else:
+            same = []
+            owner_problem = (f"{c['label']}: {LIBRARY} entry {same_equation[0]} holds {c['reaction']!r}, "
+                             "but its EEDF marker does not name this LoKI process")
+    near = [(i, r) for i, r in sorted(reactions.items()) if i not in same_equation and (
         (r.reactants, r.products) == want[:2]
         or (r.reactants, r.products) == (want[1], want[0]) and (r.reversible or want[2]))]
     states = [c['target']] + ([] if 'cascade' in c else [c['product']])
@@ -1769,6 +1794,9 @@ def rmg_mapping(c, reactions, species, species_of, holds, problems):
                         + (f' (entry {same[0]} holds it as written)' if same else ''))
     if internal:
         out['status'] = 'lumped_internal'
+    elif owner_problem:
+        problems.append(owner_problem)
+        out['status'] = 'absent'
     elif len(same) > 1:
         problems.append(f"{c['label']}: {LIBRARY} holds {c['reaction']!r} as entries {same}, and the map names one "
                         f"index, so it cannot say which")

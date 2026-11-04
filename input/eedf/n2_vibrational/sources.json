@@ -3,6 +3,13 @@
     "channel_emitted": false,
     "name": "resonant e-V dissociation: not in the source set"
   },
+  "D6": {
+    "set_by": "owner",
+    "owner_decision": "Owner decision 2026-11-04",
+    "top_fraction_limit": 0.01,
+    "top_leak_share_limit": 0.05,
+    "K_step": 5
+  },
   "energy_tolerance_eV": 0.00015,
   "level_source": "input/eedf/n2_vibrational/levels.json",
   "local_data_root_env": "EEDF_DATA_ROOT",

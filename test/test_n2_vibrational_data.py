@@ -192,3 +192,17 @@ def test_real_generator_k10_k29_digest_and_k30_refusal():
     assert 'uncovered initial v=30' in result['K30_refusal']
     repeated = _load_check_module().check_ladder_inputs(_local_root())
     assert [item['sha256'] for item in result['ladders']] == [item['sha256'] for item in repeated['ladders']]
+
+
+def test_owner_d6_policy_is_pinned_and_resolved():
+    root = _local_root()
+    expected = {
+        'set_by': 'owner',
+        'owner_decision': 'Owner decision 2026-11-04',
+        'top_fraction_limit': 0.01,
+        'top_leak_share_limit': 0.05,
+        'K_step': 5,
+    }
+    record = json.loads(SOURCES_PATH.read_bytes())
+    assert record['D6'] == expected
+    assert _load_check_module().resolve_generator_manifest(root)['D6'] == expected

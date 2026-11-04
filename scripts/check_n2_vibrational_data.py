@@ -62,8 +62,7 @@ def resolve_generator_manifest(data_root):
         'source_assignments': record['source_assignments'],
         'thermo_library': thermo_pin,
         'energy_tolerance_eV': record['energy_tolerance_eV'],
-        'D6': {'set_by': 'owner', 'top_fraction_limit': None,
-               'top_leak_share_limit': None, 'K_step': 5},
+        'D6': record['D6'],
     }
     from rmgpy.tools.eedf.n2_vibrational import read_cross_sections
     selected_counts = {pin['source_id']: 0 for pin in cross_sections}

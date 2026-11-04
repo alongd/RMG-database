@@ -22,6 +22,7 @@ needs_store = pytest.mark.skipif(not STORE, reason='NO assembled store is unset 
 needs_archive = pytest.mark.skipif(not Path(ARCHIVE).is_file(), reason='local Hayashi archive is unavailable')
 
 
+@needs_archive
 def test_assembly_preserves_source_tables_and_emits_one_descriptor_per_no_block():
     built = assembly.build(ARCHIVE)
     assembled = built[assembly.ASSEMBLED_FILE].decode('ascii')

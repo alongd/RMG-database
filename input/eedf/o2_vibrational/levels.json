@@ -1,0 +1,539 @@
+{
+  "electronic_state": "X3Sigma_g-",
+  "energy_unit": "eV",
+  "energy_zero": "v=0",
+  "levels": [
+    {
+      "energy_eV": 0.0,
+      "statistical_weight": 1,
+      "thermo_entry": "O2v0",
+      "v": 0
+    },
+    {
+      "energy_eV": 0.196,
+      "statistical_weight": 1,
+      "thermo_entry": "O2v1",
+      "v": 1
+    },
+    {
+      "energy_eV": 0.388,
+      "statistical_weight": 1,
+      "thermo_entry": "O2v2",
+      "v": 2
+    },
+    {
+      "energy_eV": 0.573,
+      "statistical_weight": 1,
+      "thermo_entry": "O2v3",
+      "v": 3
+    },
+    {
+      "energy_eV": 0.756,
+      "statistical_weight": 1,
+      "thermo_entry": "O2v4",
+      "v": 4
+    },
+    {
+      "energy_eV": 0.937,
+      "statistical_weight": 1,
+      "thermo_entry": "O2v5",
+      "v": 5
+    },
+    {
+      "energy_eV": 1.117,
+      "statistical_weight": 1,
+      "thermo_entry": "O2v6",
+      "v": 6
+    },
+    {
+      "energy_eV": 1.291,
+      "statistical_weight": 1,
+      "thermo_entry": "O2v7",
+      "v": 7
+    },
+    {
+      "energy_eV": 1.461,
+      "statistical_weight": 1,
+      "thermo_entry": "O2v8",
+      "v": 8
+    },
+    {
+      "energy_eV": 1.629,
+      "statistical_weight": 1,
+      "thermo_entry": "O2v9",
+      "v": 9
+    },
+    {
+      "energy_eV": 1.796,
+      "statistical_weight": 1,
+      "thermo_entry": "O2v10",
+      "v": 10
+    },
+    {
+      "energy_eV": 1.96,
+      "statistical_weight": 1,
+      "thermo_entry": null,
+      "v": 11
+    },
+    {
+      "energy_eV": 2.122,
+      "statistical_weight": 1,
+      "thermo_entry": null,
+      "v": 12
+    },
+    {
+      "energy_eV": 2.281,
+      "statistical_weight": 1,
+      "thermo_entry": null,
+      "v": 13
+    },
+    {
+      "energy_eV": 2.435,
+      "statistical_weight": 1,
+      "thermo_entry": null,
+      "v": 14
+    },
+    {
+      "energy_eV": 2.587,
+      "statistical_weight": 1,
+      "thermo_entry": null,
+      "v": 15
+    },
+    {
+      "energy_eV": 2.735,
+      "statistical_weight": 1,
+      "thermo_entry": null,
+      "v": 16
+    },
+    {
+      "energy_eV": 2.881,
+      "statistical_weight": 1,
+      "thermo_entry": null,
+      "v": 17
+    },
+    {
+      "energy_eV": 3.024,
+      "statistical_weight": 1,
+      "thermo_entry": null,
+      "v": 18
+    },
+    {
+      "energy_eV": 3.164,
+      "statistical_weight": 1,
+      "thermo_entry": null,
+      "v": 19
+    },
+    {
+      "energy_eV": 3.301,
+      "statistical_weight": 1,
+      "thermo_entry": null,
+      "v": 20
+    },
+    {
+      "energy_eV": 3.436,
+      "statistical_weight": 1,
+      "thermo_entry": null,
+      "v": 21
+    },
+    {
+      "energy_eV": 3.568,
+      "statistical_weight": 1,
+      "thermo_entry": null,
+      "v": 22
+    },
+    {
+      "energy_eV": 3.696,
+      "statistical_weight": 1,
+      "thermo_entry": null,
+      "v": 23
+    },
+    {
+      "energy_eV": 3.821,
+      "statistical_weight": 1,
+      "thermo_entry": null,
+      "v": 24
+    },
+    {
+      "energy_eV": 3.942,
+      "statistical_weight": 1,
+      "thermo_entry": null,
+      "v": 25
+    },
+    {
+      "energy_eV": 4.059,
+      "statistical_weight": 1,
+      "thermo_entry": null,
+      "v": 26
+    },
+    {
+      "energy_eV": 4.172,
+      "statistical_weight": 1,
+      "thermo_entry": null,
+      "v": 27
+    },
+    {
+      "energy_eV": 4.28,
+      "statistical_weight": 1,
+      "thermo_entry": null,
+      "v": 28
+    },
+    {
+      "energy_eV": 4.382,
+      "statistical_weight": 1,
+      "thermo_entry": null,
+      "v": 29
+    },
+    {
+      "energy_eV": 4.476,
+      "statistical_weight": 1,
+      "thermo_entry": null,
+      "v": 30
+    },
+    {
+      "energy_eV": 4.565,
+      "statistical_weight": 1,
+      "thermo_entry": null,
+      "v": 31
+    },
+    {
+      "energy_eV": 4.651,
+      "statistical_weight": 1,
+      "thermo_entry": null,
+      "v": 32
+    },
+    {
+      "energy_eV": 4.73,
+      "statistical_weight": 1,
+      "thermo_entry": null,
+      "v": 33
+    },
+    {
+      "energy_eV": 4.794,
+      "statistical_weight": 1,
+      "thermo_entry": null,
+      "v": 34
+    },
+    {
+      "energy_eV": 4.847,
+      "statistical_weight": 1,
+      "thermo_entry": null,
+      "v": 35
+    },
+    {
+      "energy_eV": 4.898,
+      "statistical_weight": 1,
+      "thermo_entry": null,
+      "v": 36
+    },
+    {
+      "energy_eV": 4.938,
+      "statistical_weight": 1,
+      "thermo_entry": null,
+      "v": 37
+    },
+    {
+      "energy_eV": 4.96,
+      "statistical_weight": 1,
+      "thermo_entry": null,
+      "v": 38
+    },
+    {
+      "energy_eV": 4.976,
+      "statistical_weight": 1,
+      "thermo_entry": null,
+      "v": 39
+    },
+    {
+      "energy_eV": 4.987,
+      "statistical_weight": 1,
+      "thermo_entry": null,
+      "v": 40
+    },
+    {
+      "energy_eV": 4.994,
+      "statistical_weight": 1,
+      "thermo_entry": null,
+      "v": 41
+    }
+  ],
+  "molecule": "16O2",
+  "provenance": {
+    "citation": "IST-Lisbon database; V. Laporta, R. Celiberto and J. Tennyson, Plasma Sources Sci. Technol. 22, 025001 (2013), DOI: 10.1088/0963-0252/22/2/025001.",
+    "energy_source": "IST-Lisbon O2(X,v)->O2(X,w) vibrational excitation thresholds, v=0 initial transitions",
+    "independent_check": {
+      "comparison": [
+        {
+          "ist_threshold_eV": 0.0,
+          "nist_dunham_eV": 0.0,
+          "threshold_minus_term_eV": 0.0,
+          "v": 0
+        },
+        {
+          "ist_threshold_eV": 0.196,
+          "nist_dunham_eV": 0.19296702890182268,
+          "threshold_minus_term_eV": 0.003032971098177323,
+          "v": 1
+        },
+        {
+          "ist_threshold_eV": 0.388,
+          "nist_dunham_eV": 0.3830162880681112,
+          "threshold_minus_term_eV": 0.00498371193188879,
+          "v": 2
+        },
+        {
+          "ist_threshold_eV": 0.573,
+          "nist_dunham_eV": 0.5701830386049014,
+          "threshold_minus_term_eV": 0.0028169613950985717,
+          "v": 3
+        },
+        {
+          "ist_threshold_eV": 0.756,
+          "nist_dunham_eV": 0.7545025416182294,
+          "threshold_minus_term_eV": 0.0014974583817706222,
+          "v": 4
+        },
+        {
+          "ist_threshold_eV": 0.937,
+          "nist_dunham_eV": 0.9360100582141307,
+          "threshold_minus_term_eV": 0.0009899417858693083,
+          "v": 5
+        },
+        {
+          "ist_threshold_eV": 1.117,
+          "nist_dunham_eV": 1.1147408494986417,
+          "threshold_minus_term_eV": 0.0022591505013582758,
+          "v": 6
+        },
+        {
+          "ist_threshold_eV": 1.291,
+          "nist_dunham_eV": 1.2907301765777983,
+          "threshold_minus_term_eV": 0.0002698234222016094,
+          "v": 7
+        },
+        {
+          "ist_threshold_eV": 1.461,
+          "nist_dunham_eV": 1.464013300557636,
+          "threshold_minus_term_eV": -0.003013300557635823,
+          "v": 8
+        },
+        {
+          "ist_threshold_eV": 1.629,
+          "nist_dunham_eV": 1.634625482544191,
+          "threshold_minus_term_eV": -0.0056254825441910405,
+          "v": 9
+        },
+        {
+          "ist_threshold_eV": 1.796,
+          "nist_dunham_eV": 1.8026019836434992,
+          "threshold_minus_term_eV": -0.006601983643499176,
+          "v": 10
+        },
+        {
+          "ist_threshold_eV": 1.96,
+          "nist_dunham_eV": 1.9679780649615972,
+          "threshold_minus_term_eV": -0.007978064961597253,
+          "v": 11
+        },
+        {
+          "ist_threshold_eV": 2.122,
+          "nist_dunham_eV": 2.1307889876045194,
+          "threshold_minus_term_eV": -0.008788987604519516,
+          "v": 12
+        },
+        {
+          "ist_threshold_eV": 2.281,
+          "nist_dunham_eV": 2.2910700126783032,
+          "threshold_minus_term_eV": -0.010070012678303097,
+          "v": 13
+        },
+        {
+          "ist_threshold_eV": 2.435,
+          "nist_dunham_eV": 2.4488564012889835,
+          "threshold_minus_term_eV": -0.013856401288983466,
+          "v": 14
+        },
+        {
+          "ist_threshold_eV": 2.587,
+          "nist_dunham_eV": 2.604183414542597,
+          "threshold_minus_term_eV": -0.017183414542596864,
+          "v": 15
+        },
+        {
+          "ist_threshold_eV": 2.735,
+          "nist_dunham_eV": 2.7570863135451793,
+          "threshold_minus_term_eV": -0.022086313545179426,
+          "v": 16
+        },
+        {
+          "ist_threshold_eV": 2.881,
+          "nist_dunham_eV": 2.9076003594027657,
+          "threshold_minus_term_eV": -0.02660035940276595,
+          "v": 17
+        },
+        {
+          "ist_threshold_eV": 3.024,
+          "nist_dunham_eV": 3.0557608132213936,
+          "threshold_minus_term_eV": -0.03176081322139357,
+          "v": 18
+        },
+        {
+          "ist_threshold_eV": 3.164,
+          "nist_dunham_eV": 3.201602936107098,
+          "threshold_minus_term_eV": -0.03760293610709775,
+          "v": 19
+        },
+        {
+          "ist_threshold_eV": 3.301,
+          "nist_dunham_eV": 3.345161989165914,
+          "threshold_minus_term_eV": -0.04416198916591396,
+          "v": 20
+        },
+        {
+          "ist_threshold_eV": 3.436,
+          "nist_dunham_eV": 3.486473233503879,
+          "threshold_minus_term_eV": -0.05047323350387911,
+          "v": 21
+        },
+        {
+          "ist_threshold_eV": 3.568,
+          "nist_dunham_eV": 3.625571930227029,
+          "threshold_minus_term_eV": -0.057571930227029,
+          "v": 22
+        },
+        {
+          "ist_threshold_eV": 3.696,
+          "nist_dunham_eV": 3.7624933404413987,
+          "threshold_minus_term_eV": -0.06649334044139854,
+          "v": 23
+        },
+        {
+          "ist_threshold_eV": 3.821,
+          "nist_dunham_eV": 3.8972727252530244,
+          "threshold_minus_term_eV": -0.0762727252530242,
+          "v": 24
+        },
+        {
+          "ist_threshold_eV": 3.942,
+          "nist_dunham_eV": 4.029945345767943,
+          "threshold_minus_term_eV": -0.08794534576794266,
+          "v": 25
+        },
+        {
+          "ist_threshold_eV": 4.059,
+          "nist_dunham_eV": 4.160546463092189,
+          "threshold_minus_term_eV": -0.10154646309218851,
+          "v": 26
+        },
+        {
+          "ist_threshold_eV": 4.172,
+          "nist_dunham_eV": 4.289111338331798,
+          "threshold_minus_term_eV": -0.11711133833179854,
+          "v": 27
+        },
+        {
+          "ist_threshold_eV": 4.28,
+          "nist_dunham_eV": 4.415675232592809,
+          "threshold_minus_term_eV": -0.135675232592809,
+          "v": 28
+        },
+        {
+          "ist_threshold_eV": 4.382,
+          "nist_dunham_eV": 4.540273406981256,
+          "threshold_minus_term_eV": -0.15827340698125614,
+          "v": 29
+        },
+        {
+          "ist_threshold_eV": 4.476,
+          "nist_dunham_eV": 4.662941122603172,
+          "threshold_minus_term_eV": -0.18694112260317208,
+          "v": 30
+        },
+        {
+          "ist_threshold_eV": 4.565,
+          "nist_dunham_eV": 4.783713640564598,
+          "threshold_minus_term_eV": -0.21871364056459797,
+          "v": 31
+        },
+        {
+          "ist_threshold_eV": 4.651,
+          "nist_dunham_eV": 4.902626221971568,
+          "threshold_minus_term_eV": -0.25162622197156814,
+          "v": 32
+        },
+        {
+          "ist_threshold_eV": 4.73,
+          "nist_dunham_eV": 5.019714127930117,
+          "threshold_minus_term_eV": -0.2897141279301163,
+          "v": 33
+        },
+        {
+          "ist_threshold_eV": 4.794,
+          "nist_dunham_eV": 5.135012619546281,
+          "threshold_minus_term_eV": -0.34101261954628104,
+          "v": 34
+        },
+        {
+          "ist_threshold_eV": 4.847,
+          "nist_dunham_eV": 5.248556957926097,
+          "threshold_minus_term_eV": -0.4015569579260969,
+          "v": 35
+        },
+        {
+          "ist_threshold_eV": 4.898,
+          "nist_dunham_eV": 5.3603824041756,
+          "threshold_minus_term_eV": -0.4623824041756004,
+          "v": 36
+        },
+        {
+          "ist_threshold_eV": 4.938,
+          "nist_dunham_eV": 5.470524219400827,
+          "threshold_minus_term_eV": -0.5325242194008268,
+          "v": 37
+        },
+        {
+          "ist_threshold_eV": 4.96,
+          "nist_dunham_eV": 5.579017664707813,
+          "threshold_minus_term_eV": -0.6190176647078127,
+          "v": 38
+        },
+        {
+          "ist_threshold_eV": 4.976,
+          "nist_dunham_eV": 5.6858980012025935,
+          "threshold_minus_term_eV": -0.7098980012025935,
+          "v": 39
+        },
+        {
+          "ist_threshold_eV": 4.987,
+          "nist_dunham_eV": 5.791200489991205,
+          "threshold_minus_term_eV": -0.8042004899912047,
+          "v": 40
+        },
+        {
+          "ist_threshold_eV": 4.994,
+          "nist_dunham_eV": 5.894960392179685,
+          "threshold_minus_term_eV": -0.9009603921796856,
+          "v": 41
+        }
+      ],
+      "constants_cm-1": {
+        "we": 1580.19,
+        "wexe": 11.98,
+        "weye": 0.0474
+      },
+      "equation": "G(v)=we*(v+1/2)-wexe*(v+1/2)^2+weye*(v+1/2)^3; E_Dunham(v)=(G(v)-G(0))/8065.543937 eV",
+      "interpretation": "The cubic Dunham fit is an independent low-v check and diverges when extrapolated toward dissociation; retain source threshold energies for detailed-balance consistency, and disclose the high-v extrapolation disagreement.",
+      "largest_absolute_disagreement": {
+        "absolute_eV": 0.9009603921796856,
+        "threshold_minus_term_eV": -0.9009603921796856,
+        "v": 41
+      },
+      "source": "NIST Chemistry WebBook SRD 69, Oxygen CAS 7782-44-7, Constants of diatomic molecules, Huber and Herzberg compilation; retrieved 2026-11-04.",
+      "source_file": "spectroscopy/NIST_C7782447_Mask136F.html",
+      "source_sha256": "738b40fa83ca62a54541637b188348bced1501e49b71c8c35ddd12592dc4dc74"
+    },
+    "source_file": "incoming/IST_batch_11.txt",
+    "source_sha256": "536b45fc729720e045f9995d9b4bc4bcdee8e61bc247295c56d9ac77d3842e23",
+    "statistical_weight_source": "Each vibrational eigenstate within the fixed O2(X 3Sigma_g-) electronic state has g_v=1; rotational and electronic degeneracies are not included in the vibrational-level weight.",
+    "threshold_precision_eV": 0.001
+  }
+}

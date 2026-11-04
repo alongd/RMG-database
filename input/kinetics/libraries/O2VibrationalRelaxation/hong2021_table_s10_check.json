@@ -1,0 +1,19 @@
+{
+  "schema": "hong-2021-o2o2-vt-check-table-s10-v1",
+  "citation": "Hong et al., J. Chem. Phys. 154, 064304 (2021), Supplementary Table S10.",
+  "source_file": "/home/alon/Data/vibkin/Hong2021_O2_O2__.zip",
+  "source_sha256": "1ba9ac4383096f19121a80989a6d547e157298f557ca038f36b254c54b36805f",
+  "check_only": true,
+  "rate_units": "cm^3/(molecule*s)",
+  "temperatures_K": [300, 500, 1000],
+  "same_direction_vt": {
+    "1": [8.56e-19, 1.98e-17, 1.13e-15],
+    "2": [2.20e-18, 4.95e-17, 2.71e-15],
+    "3": [4.25e-18, 9.28e-17, 4.84e-15],
+    "4": [7.30e-18, 1.54e-16, 7.68e-15],
+    "5": [1.17e-17, 2.41e-16, 1.14e-14],
+    "6": [1.81e-17, 3.59e-16, 1.63e-14],
+    "8": [3.95e-17, 7.37e-16, 3.04e-14],
+    "10": [8.03e-17, 1.41e-15, 5.29e-14]
+  }
+}

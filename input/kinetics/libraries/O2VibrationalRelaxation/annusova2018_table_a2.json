@@ -1,0 +1,14 @@
+{
+  "schema": "annusova-2018-o2o2-vt-table-a2-v1",
+  "citation": "A. Annušová et al., Kinetics of highly vibrationally excited O2(X) molecules in inductively-coupled oxygen plasmas, Plasma Sources Sci. Technol. 27 045006 (2018), Table A2, doi:10.1088/1361-6595/aab47d.",
+  "source_file": "/home/alon/Data/vibkin/Annusova2018_O2_O2_aab47d.pdf",
+  "source_sha256": "0be2f72d059f5f17e4a1bd60e275b74c549ea98196e7d934f264f093c9ddc811",
+  "retrieval_date": "2026-11-04",
+  "rate_units": "cm^3/(molecule*s)",
+  "temperature_bounds_K": {"minimum": 300, "maximum": 1000, "inclusive": true},
+  "formula_v_1_6": "0.25*exp(((-2.16870e-3*v^3 + 1.02950e-2*v^2 - 9.03306e-2*v + 6.02557)*ln(T)) + (2.78130e-2*v^3 - 2.76608e-1*v^2 + 2.04169*v - 76.0376))",
+  "formula_v_7_32": "0.25*(2.44106e-33*T^6.25015)*exp((1.76911e-7*T^2 - 4.82968e-4*T + 5.40946e-1)*v)",
+  "included_initial_levels": [1, 10],
+  "reaction": "O2(v) + O2(0) -> O2(v-1) + O2(0), V-T/R",
+  "exclusion": "Table A2's v=33..41 polynomial rows are not used by the K=10 library."
+}

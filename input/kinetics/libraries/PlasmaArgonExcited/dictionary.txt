@@ -1,0 +1,50 @@
+Ar
+1 Ar u0 p4 c0
+
+Arp
+1 Ar u1 p3 c+1
+
+e-
+1 e u1 p0 c-1
+
+Ars
+multiplicity 3
+electronicstate 3P2
+1 Ar u2 p3 c0
+
+Ar(1s4)
+multiplicity 3
+electronicstate 3P1
+1 Ar u2 p3 c0
+
+Ar(1s3)
+multiplicity 3
+electronicstate 3P0
+1 Ar u2 p3 c0
+
+Ar(1s2)
+multiplicity 1
+electronicstate 1P1
+1 Ar u0 p4 c0
+
+N2
+1 N u0 p1 c0 {2,T}
+2 N u0 p1 c0 {1,T}
+
+N2A
+multiplicity 3
+electronicstate 3Sigma_u+
+1 N u1 p1 c0 {2,D}
+2 N u1 p1 c0 {1,D}
+
+N2B
+multiplicity 3
+electronicstate 3Pi_g
+1 N u1 p1 c0 {2,D}
+2 N u1 p1 c0 {1,D}
+
+N2C
+multiplicity 3
+electronicstate 3Pi_u
+1 N u1 p1 c0 {2,D}
+2 N u1 p1 c0 {1,D}

@@ -1924,7 +1924,7 @@ def unused_reason(b, src, family_use, development):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument('--gas', choices=('ar', 'no'), default='ar', help='argon (default) or Hayashi NO metadata')
+    parser.add_argument('--gas', choices=('ar', 'no'), default='ar', help='argon (default) or Hayashi NO map')
     parser.add_argument('--check', action='store_true', help='require byte equality with --output; write nothing')
     parser.add_argument('--overlay', required=True, help='the hand-written overlay: class and RMG reaction per collision')
     parser.add_argument('--assembled', help='directory holding the assembled LoKI-B files (required for argon)')
@@ -1937,12 +1937,12 @@ def main():
     args = parser.parse_args()
     if args.gas == 'ar' and not args.assembled:
         parser.error('--assembled is required for argon')
-    if args.gas == 'no' and (args.assembled or len(args.source) != 1):
-        parser.error('NO requires one --source Hayashi.zip and no --assembled')
+    if args.gas == 'no' and (not args.assembled or len(args.source) != 1):
+        parser.error('NO requires --assembled and one --source Hayashi.zip')
     try:
         if args.gas == 'no':
             from gen_no_eedf_channel_map import generate as generate_no
-            text, problems, summary, _ = generate_no(args.overlay, args.source[0], args.database)
+            text, problems, summary, _ = generate_no(args.overlay, args.source[0], args.assembled, args.database)
         else:
             text, problems, summary, _ = generate(args.overlay, args.assembled, args.source, args.database)
     except (ValueError, OSError) as exc:

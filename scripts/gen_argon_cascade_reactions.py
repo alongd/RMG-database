@@ -2,6 +2,7 @@
 """Render state-resolved PlasmaArgon owners from sourced cascade yields."""
 import argparse
 import hashlib
+import math
 from pathlib import Path
 import sys
 
@@ -18,7 +19,7 @@ PRODUCTS = [
     ('Ar(1s3)', 'Ar(1s3)'),
     ('Ar(1s2)', 'Ar(1s2)'),
 ]
-EXPECTED_CHANNELS = list(range(6, 16))
+EXPECTED_CHANNELS = list(range(6, 39))
 
 
 def render(yields_raw):
@@ -31,7 +32,7 @@ def render(yields_raw):
         raise ValueError('cascade yield channels must be a list')
     selected = [row for row in channels if row.get('status') == 'complete_for_E1']
     if [row.get('id') for row in selected] != EXPECTED_CHANNELS:
-        raise ValueError('expected exactly the ten complete E1 channels')
+        raise ValueError('expected exactly channels 6–38 complete for E1')
     if len(document.get('source_sha256', '')) != 64:
         raise ValueError('invalid radiative source digest')
     yield_digest = hashlib.sha256(yields_raw).hexdigest()
@@ -40,8 +41,9 @@ def render(yields_raw):
     for channel in selected:
         yields = channel.get('product_yields')
         if (not isinstance(yields, dict) or set(yields) != {p for p, _ in PRODUCTS}
-                or any(type(value) not in (int, float) or value < 0 for value in yields.values())
-                or abs(sum(yields.values()) - 1.0) > 1e-15):
+                or any(type(value) not in (int, float) or not math.isfinite(value) or value < 0
+                       for value in yields.values())
+                or abs(sum(yields.values()) - 1.0) > 1e-12):
             raise ValueError(f"channel {channel.get('id')}: invalid sourced product yields")
         if not channel.get('transition_ids') or not channel.get('process'):
             raise ValueError(f"channel {channel.get('id')}: missing source identity")
@@ -98,7 +100,7 @@ def main():
             parser.error('generated cascade reactions differ; rerun scripts/gen_argon_cascade_reactions.py')
     else:
         args.reactions.write_text(text)
-    print('argon cascade reactions: ten channels, 40 sourced branch owners')
+    print('argon cascade reactions: 33 channels, 132 sourced branch owners')
     return 0
 
 

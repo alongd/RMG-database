@@ -18,9 +18,9 @@ def test_reproducible_and_literal_branch():
         'Ar(1s5)': 0.7420494699646643, 'Ar(1s4)': 0.2120141342756184,
         'Ar(1s3)': 0.03847663918335296, 'Ar(1s2)': 0.00745975657636435})
     complete = [c for c in doc['channels'] if c['status'] == 'complete_for_E1']
-    assert [c['id'] for c in complete] == list(range(6, 16))
+    assert [c['id'] for c in complete] == list(range(6, 39))
     for c in complete:
-        assert sum(c['product_yields'].values()) == pytest.approx(1, abs=1e-15)
+        assert sum(c['product_yields'].values()) == pytest.approx(1, rel=0, abs=1e-12)
     ch11 = next(c for c in complete if c['id'] == 11)
     assert ch11['product_yields'] == {
         'Ar(1s5)': 0.0, 'Ar(1s4)': 1.0, 'Ar(1s3)': 0.0, 'Ar(1s2)': 0.0}
@@ -33,11 +33,15 @@ def test_reproducible_and_literal_branch():
 
 
 @pytest.mark.parametrize('channel_id', range(16, 39))
-def test_unresolved_refused(channel_id):
+def test_higher_family_has_qualified_vector_and_report(channel_id):
     doc = gen.generate(gen.SOURCE.read_bytes())
-    assert next(c for c in doc['channels'] if c['id'] == channel_id)['product_yields'] is None
-    with pytest.raises(ValueError, match='unresolved'):
-        gen.require_yields(doc, channel_id)
+    row = next(c for c in doc['channels'] if c['id'] == channel_id)
+    assert sum(gen.require_yields(doc, channel_id).values()) == pytest.approx(1, rel=0, abs=1e-12)
+    assert row['missing_transitions'] == []
+    assert 0 <= row['calculated_path_share'] <= 1
+    assert row['omission_interval']['status'] == 'unbounded-omitted'
+    assert all(0 <= b[0] <= b[1] <= 1 for b in row['yield_intervals'].values())
+    assert all(line['upper_estimate'] <= 1e-3 for line in row['ground_lines'])
 
 
 @pytest.mark.parametrize('mutation,match', [
@@ -105,16 +109,23 @@ def test_channel11_upper_bound_source_fails_closed(field, value, match):
 def test_cascade_reaction_generator_projects_only_complete_source_rows():
     document = gen.generate(gen.SOURCE.read_bytes())
     rendered = reaction_gen.render(gen.render(document).encode())
-    assert rendered.count('branch_product = ') == 40
-    assert rendered.count('branch_yield = ') == 40
-    for channel_id in range(6, 16):
+    assert rendered.count('branch_product = ') == 132
+    assert rendered.count('branch_yield = ') == 132
+    for channel_id in range(6, 39):
         assert f'channel {channel_id}; sourced cascade branch' in rendered
-    assert 'channel 16;' not in rendered
+    assert 'channel 38;' in rendered
 
 
 def test_cascade_reaction_generator_refuses_changed_yield_shape():
     document = gen.generate(gen.SOURCE.read_bytes())
     document['channels'][0]['product_yields'].pop('Ar(1s2)')
+    with pytest.raises(ValueError, match='invalid sourced product yields'):
+        reaction_gen.render(gen.render(document).encode())
+
+
+def test_cascade_reaction_generator_refuses_nan_yield():
+    document = gen.generate(gen.SOURCE.read_bytes())
+    document['channels'][-1]['product_yields']['Ar(1s5)'] = float('nan')
     with pytest.raises(ValueError, match='invalid sourced product yields'):
         reaction_gen.render(gen.render(document).encode())
 
@@ -130,3 +141,90 @@ def test_cascade_reaction_generator_preserves_only_marked_region():
         reaction_gen.replace_region('unmarked file', generated)
     with pytest.raises(ValueError, match='marker pair'):
         reaction_gen.replace_region(original + original, generated)
+
+
+def test_higher_5p_closes_with_calculated_provenance():
+    doc = gen.generate(gen.SOURCE.read_bytes())
+    yields = gen.require_yields(doc, 26)
+    channel = next(c for c in doc['channels'] if c['id'] == 26)
+    assert sum(yields.values()) == pytest.approx(1, rel=0, abs=1e-12)
+    assert 0 < channel['calculated_path_share'] <= 1
+    for product, value in yields.items():
+        assert channel['yield_intervals'][product][0] <= value <= channel['yield_intervals'][product][1]
+
+
+def test_non_ground_line_cannot_declare_resonance_trapping():
+    source = yaml.safe_load(gen.SOURCE.read_bytes())
+    row = next(r for r in source['higher_cascade']['transitions']
+               if r['lower_nist_id'] != '018001.000001' and r['status'] == 'numeric')
+    row['convention'] = 'RESONANCE_RADIATION_TRAPPED'
+    with pytest.raises(ValueError, match='non-ground'):
+        gen.generate(yaml.safe_dump(source).encode())
+
+
+@pytest.mark.parametrize('mutation,match', [
+    ('calculated-edge', 'outgoing'), ('omission-edge', 'outgoing'),
+    ('omission-record', 'omission record'), ('escape', 'escape factor'),
+    ('column', 'validity'), ('blend', 'statistical'), ('blend-nan', 'statistical'),
+    ('lifetime', 'contradicts'),
+])
+def test_higher_cascade_refuses_unaccounted_or_invalid_inputs(mutation, match):
+    source = yaml.safe_load(gen.SOURCE.read_bytes())
+    model = source['higher_cascade']
+    if mutation == 'calculated-edge':
+        row = next(r for r in model['transitions'] if r['provenance'] == 'calculated:K11')
+        model['transitions'].remove(row)
+    elif mutation == 'omission-edge':
+        model['transitions'] = [r for r in model['transitions'] if r['status'] != 'unbounded-omitted']
+    elif mutation == 'omission-record':
+        del model['conventions']['CALCULATED_LIST_OMISSION_BOUND']
+    elif mutation == 'escape':
+        row = next(r for r in model['transitions'] if r['lower_nist_id'] == '018001.000001')
+        row['A_s_1'] = 1.0
+    elif mutation == 'column':
+        model['conventions']['RESONANCE_RADIATION_TRAPPED']['pressure_Ar_torr'] = .001
+    elif mutation == 'blend':
+        source['higher_channels'][0]['excitation_weights'] = {'018001.000016': 1.0}
+    elif mutation == 'blend-nan':
+        weights = source['higher_channels'][0]['excitation_weights']
+        weights[next(iter(weights))] = float('nan')
+    elif mutation == 'lifetime':
+        model['lifetimes'][0]['lifetime_ns'] = 1e9
+    with pytest.raises(ValueError, match=match):
+        gen.generate(yaml.safe_dump(source).encode())
+
+
+def test_terminal_omission_interval_tracks_flux_share():
+    source = yaml.safe_load(gen.SOURCE.read_bytes())
+    before = next(c for c in gen.generate(yaml.safe_dump(source).encode())['channels'] if c['id'] == 38)
+    edge = next(r for r in source['higher_cascade']['transitions']
+                if r['upper_nist_id'] == '018001.000062' and r['lower_nist_id'] == '018001.000058')
+    edge['A_s_1'] *= 1000
+    after = next(c for c in gen.generate(yaml.safe_dump(source).encode())['channels'] if c['id'] == 38)
+    assert after['omission_interval']['flux_share'] > before['omission_interval']['flux_share']
+    assert after['omission_interval']['total_variation_radius'] > before['omission_interval']['total_variation_radius']
+    assert after['omission_interval']['endpoints'] != before['omission_interval']['endpoints']
+    assert before['omission_interval']['total_variation_radius'] > 0
+    unaffected = next(c for c in gen.generate(yaml.safe_dump(source).encode())['channels'] if c['id'] == 37)
+    assert unaffected['omission_interval']['flux_share'] == 0
+
+
+def test_higher_intervals_include_nominal_and_unbounded_terminal_endpoint():
+    doc = gen.generate(gen.SOURCE.read_bytes())
+    for c in doc['channels'][10:]:
+        for endpoint in c['omission_interval']['endpoints']:
+            assert sum(endpoint.values()) == pytest.approx(1, rel=0, abs=1e-12)
+            for p, value in endpoint.items():
+                lo, hi = c['yield_intervals'][p]
+                assert lo-1e-14 <= value <= hi+1e-14
+
+
+def test_cascade_owner_indices_are_unique_against_the_library():
+    import ast
+    text = reaction_gen.replace_region(reaction_gen.REACTIONS.read_text(),
+                                       reaction_gen.render(gen.render(gen.generate(gen.SOURCE.read_bytes())).encode()))
+    indices = [ast.literal_eval(k.value) for node in ast.parse(text).body
+               if isinstance(node, ast.Expr) and isinstance(node.value, ast.Call)
+               and getattr(node.value.func, 'id', None) == 'entry'
+               for k in node.value.keywords if k.arg == 'index']
+    assert len(indices) == len(set(indices))

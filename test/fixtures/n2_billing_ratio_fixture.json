@@ -3,1290 +3,1771 @@
     "billing": "Billing1979_*.pdf Table 3/4",
     "record": "Guerra2019_*.pdf Eqs. 12,14,20-23"
   },
-  "billing_scaling_note": "Billing Tables 3 and 4 (pp. 397) print the n=1..9 mantissas and a temperature-row power-of-ten scale in the n=20 column; the n=20 mantissa is separately multiplied by its printed power. Table 3 n=4 at 1000 K reads 7.7 (not the pdftotext OCR 1.7); Table 3 n=20 at 1000 K reads 1900 x 10^-17 cm3/s. Image-checked against the source PDF.",
-  "flag_rule": "ratio outside [0.3,3], recomputed from current rates in the same direction",
+  "billing_scaling_note": "Billing Tables 3 and 4 use temperature-row powers of ten and a separately scaled n=20 column; coefficients remain local and uncommitted. Derived comparisons exclude n=1 V-V identity exchanges.",
+  "flag_rule": "derived ratio outside [0.3,3]; optional source recomputation via N2_BILLING_SOURCE_COEFFICIENTS",
   "points": [
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 300,
       "n": 1,
-      "billing_rate_cm3_molecule_s": 7.999999999999999e-22,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 2.5672551995644954,
+      "flag": false,
+      "reference_ratio": 2.567255199564511
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 300,
       "n": 2,
-      "billing_rate_cm3_molecule_s": 1.8e-21,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 1.8379588463736836,
+      "flag": false,
+      "reference_ratio": 1.8379588463736836
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 300,
       "n": 3,
-      "billing_rate_cm3_molecule_s": 3.0999999999999995e-21,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 1.6593003477737591,
+      "flag": false,
+      "reference_ratio": 1.6593003477737702
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 300,
       "n": 4,
-      "billing_rate_cm3_molecule_s": 5e-21,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 1.530224610785648,
+      "flag": false,
+      "reference_ratio": 1.530224610785647
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 300,
       "n": 5,
-      "billing_rate_cm3_molecule_s": 7.399999999999999e-21,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 1.50100561404141,
+      "flag": false,
+      "reference_ratio": 1.5010056140414192
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 300,
       "n": 6,
-      "billing_rate_cm3_molecule_s": 1.1e-20,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 1.4445253082710698,
+      "flag": false,
+      "reference_ratio": 1.444525308271089
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 300,
       "n": 7,
-      "billing_rate_cm3_molecule_s": 1.6e-20,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 1.4071887981916962,
+      "flag": false,
+      "reference_ratio": 1.407188798191705
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 300,
       "n": 8,
-      "billing_rate_cm3_molecule_s": 2.5999999999999993e-20,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 1.2190636120243188,
+      "flag": false,
+      "reference_ratio": 1.2190636120243183
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 300,
       "n": 9,
-      "billing_rate_cm3_molecule_s": 3.799999999999999e-20,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 1.1688470317781658,
+      "flag": false,
+      "reference_ratio": 1.1688470317781738
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 300,
       "n": 20,
-      "billing_rate_cm3_molecule_s": 1.6e-18,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 1.0363651776679854,
+      "flag": false,
+      "reference_ratio": 1.0363651776679854
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 400,
       "n": 1,
-      "billing_rate_cm3_molecule_s": 6e-21,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 1.1974710738498149,
+      "flag": false,
+      "reference_ratio": 1.1974710738498227
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 400,
       "n": 2,
-      "billing_rate_cm3_molecule_s": 1.5e-20,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 1.1764338221332495,
+      "flag": false,
+      "reference_ratio": 1.1764338221332495
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 400,
       "n": 3,
-      "billing_rate_cm3_molecule_s": 2.6000000000000005e-20,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 1.273782994955344,
+      "flag": false,
+      "reference_ratio": 1.273782994955352
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 400,
       "n": 4,
-      "billing_rate_cm3_molecule_s": 4.7e-20,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 1.1832857037776703,
+      "flag": false,
+      "reference_ratio": 1.183285703777678
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 400,
       "n": 5,
-      "billing_rate_cm3_molecule_s": 7.4e-20,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 1.188480840167507,
+      "flag": false,
+      "reference_ratio": 1.1884808401675149
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 400,
       "n": 6,
-      "billing_rate_cm3_molecule_s": 1.1e-19,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 1.2180602410694192,
+      "flag": false,
+      "reference_ratio": 1.218060241069436
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 400,
       "n": 7,
-      "billing_rate_cm3_molecule_s": 1.6999999999999996e-19,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 1.1708642295752743,
+      "flag": false,
+      "reference_ratio": 1.1708642295752736
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 400,
       "n": 8,
-      "billing_rate_cm3_molecule_s": 2.4999999999999997e-19,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 1.161692095793665,
+      "flag": false,
+      "reference_ratio": 1.1616920957936645
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 400,
       "n": 9,
-      "billing_rate_cm3_molecule_s": 3.699999999999999e-19,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 1.1300415502964214,
+      "flag": false,
+      "reference_ratio": 1.1300415502964287
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 400,
       "n": 20,
-      "billing_rate_cm3_molecule_s": 1.4e-17,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 1.133517272359308,
+      "flag": false,
+      "reference_ratio": 1.133517272359315
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 500,
       "n": 1,
-      "billing_rate_cm3_molecule_s": 4.0000000000000004e-20,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 1.255777550862554,
+      "flag": false,
+      "reference_ratio": 1.2557775508625617
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 500,
       "n": 2,
-      "billing_rate_cm3_molecule_s": 9e-20,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 1.3810943110516796,
+      "flag": false,
+      "reference_ratio": 1.3810943110516796
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 500,
       "n": 3,
-      "billing_rate_cm3_molecule_s": 1.6999999999999999e-19,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 1.37021624540296,
+      "flag": false,
+      "reference_ratio": 1.3702162454029592
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 500,
       "n": 4,
-      "billing_rate_cm3_molecule_s": 3e-19,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 1.2980051977932487,
+      "flag": false,
+      "reference_ratio": 1.2980051977932487
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 500,
       "n": 5,
-      "billing_rate_cm3_molecule_s": 4.7e-19,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 1.3017323874087585,
+      "flag": false,
+      "reference_ratio": 1.3017323874087625
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 500,
       "n": 6,
-      "billing_rate_cm3_molecule_s": 7.100000000000001e-19,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 1.3024049283726995,
+      "flag": false,
+      "reference_ratio": 1.3024049283727082
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 500,
       "n": 7,
-      "billing_rate_cm3_molecule_s": 1e-18,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 1.3612405142090616,
+      "flag": false,
+      "reference_ratio": 1.3612405142090653
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 500,
       "n": 8,
-      "billing_rate_cm3_molecule_s": 1.5e-18,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 1.3107775053160162,
+      "flag": false,
+      "reference_ratio": 1.31077750531602
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 500,
       "n": 9,
-      "billing_rate_cm3_molecule_s": 2.2e-18,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 1.272639736689303,
+      "flag": false,
+      "reference_ratio": 1.2726397366893027
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 500,
       "n": 20,
-      "billing_rate_cm3_molecule_s": 7.800000000000001e-17,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 1.1637341425604042,
+      "flag": false,
+      "reference_ratio": 1.1637341425604122
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 700,
       "n": 1,
-      "billing_rate_cm3_molecule_s": 7e-19,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 1.3047377542563767,
+      "flag": false,
+      "reference_ratio": 1.3047377542563892
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 700,
       "n": 2,
-      "billing_rate_cm3_molecule_s": 1.6000000000000002e-18,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 1.394372442430875,
+      "flag": false,
+      "reference_ratio": 1.3943724424308748
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 700,
       "n": 3,
-      "billing_rate_cm3_molecule_s": 3e-18,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 1.369431509453557,
+      "flag": false,
+      "reference_ratio": 1.3694315094535603
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 700,
       "n": 4,
-      "billing_rate_cm3_molecule_s": 4.900000000000001e-18,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 1.3751412167848165,
+      "flag": false,
+      "reference_ratio": 1.3751412167848247
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 700,
       "n": 5,
-      "billing_rate_cm3_molecule_s": 7.6e-18,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 1.3653159396382823,
+      "flag": false,
+      "reference_ratio": 1.365315939638286
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 700,
       "n": 6,
-      "billing_rate_cm3_molecule_s": 1.0999999999999998e-17,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 1.3963131398998188,
+      "flag": false,
+      "reference_ratio": 1.3963131398998225
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 700,
       "n": 7,
-      "billing_rate_cm3_molecule_s": 1.6999999999999996e-17,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 1.3017346792217637,
+      "flag": false,
+      "reference_ratio": 1.3017346792217677
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 700,
       "n": 8,
-      "billing_rate_cm3_molecule_s": 2.4000000000000002e-17,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 1.3027783378604116,
+      "flag": false,
+      "reference_ratio": 1.3027783378604203
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 700,
       "n": 9,
-      "billing_rate_cm3_molecule_s": 3.3e-17,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 1.319128072425442,
+      "flag": false,
+      "reference_ratio": 1.3191280724254504
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 700,
       "n": 20,
-      "billing_rate_cm3_molecule_s": 1.2999999999999998e-15,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 0.8266859179428312,
+      "flag": false,
+      "reference_ratio": 0.8266859179428309
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 1000,
       "n": 1,
-      "billing_rate_cm3_molecule_s": 1.1000000000000002e-17,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 1.4137167939107336,
+      "flag": false,
+      "reference_ratio": 1.4137167939107376
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 1000,
       "n": 2,
-      "billing_rate_cm3_molecule_s": 2.6000000000000003e-17,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 1.432281790422652,
+      "flag": false,
+      "reference_ratio": 1.4322817904226524
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 1000,
       "n": 3,
-      "billing_rate_cm3_molecule_s": 4.7000000000000024e-17,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 1.4274367589435406,
+      "flag": false,
+      "reference_ratio": 1.42743675894355
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 1000,
       "n": 4,
-      "billing_rate_cm3_molecule_s": 7.7e-17,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 1.3971189170367377,
+      "flag": false,
+      "reference_ratio": 1.3971189170367468
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 1000,
       "n": 5,
-      "billing_rate_cm3_molecule_s": 1.2e-16,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 1.3490473368429559,
+      "flag": false,
+      "reference_ratio": 1.349047336842955
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 1000,
       "n": 6,
-      "billing_rate_cm3_molecule_s": 1.7e-16,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 1.376908427400153,
+      "flag": false,
+      "reference_ratio": 1.3769084274001573
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 1000,
       "n": 7,
-      "billing_rate_cm3_molecule_s": 2.5e-16,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 1.3173044150793896,
+      "flag": false,
+      "reference_ratio": 1.317304415079389
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 1000,
       "n": 8,
-      "billing_rate_cm3_molecule_s": 3.4e-16,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 1.3360057190034305,
+      "flag": false,
+      "reference_ratio": 1.33600571900343
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 1000,
       "n": 9,
-      "billing_rate_cm3_molecule_s": 4.7e-16,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 1.3132388538254411,
+      "flag": false,
+      "reference_ratio": 1.31323885382545
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 1000,
       "n": 20,
-      "billing_rate_cm3_molecule_s": 1.9e-14,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 0.6754437685350194,
+      "flag": false,
+      "reference_ratio": 0.6754437685350205
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 1500,
       "n": 1,
-      "billing_rate_cm3_molecule_s": 2.2e-16,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 1.3143602934157854,
+      "flag": false,
+      "reference_ratio": 1.3143602934157896
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 1500,
       "n": 2,
-      "billing_rate_cm3_molecule_s": 5.299999999999999e-16,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 1.293215228857519,
+      "flag": false,
+      "reference_ratio": 1.2932152288575187
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 1500,
       "n": 3,
-      "billing_rate_cm3_molecule_s": 9.300000000000001e-16,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 1.3121781708140106,
+      "flag": false,
+      "reference_ratio": 1.3121781708140126
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 1500,
       "n": 4,
-      "billing_rate_cm3_molecule_s": 1.4999999999999997e-15,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 1.288142867593334,
+      "flag": false,
+      "reference_ratio": 1.2881428675933335
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 1500,
       "n": 5,
-      "billing_rate_cm3_molecule_s": 2.1e-15,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 1.3662037499151714,
+      "flag": false,
+      "reference_ratio": 1.3662037499151731
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 1500,
       "n": 6,
-      "billing_rate_cm3_molecule_s": 3.0000000000000002e-15,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 1.363516217900022,
+      "flag": false,
+      "reference_ratio": 1.3635162179000295
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 1500,
       "n": 7,
-      "billing_rate_cm3_molecule_s": 4.2e-15,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 1.35027604945174,
+      "flag": false,
+      "reference_ratio": 1.3502760494517443
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 1500,
       "n": 8,
-      "billing_rate_cm3_molecule_s": 5.700000000000001e-15,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 1.3514468168280083,
+      "flag": false,
+      "reference_ratio": 1.3514468168280105
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 1500,
       "n": 9,
-      "billing_rate_cm3_molecule_s": 7.5e-15,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 1.3735162061127133,
+      "flag": false,
+      "reference_ratio": 1.3735162061127155
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 1500,
       "n": 20,
-      "billing_rate_cm3_molecule_s": 1.8e-13,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 0.8571680238061714,
+      "flag": false,
+      "reference_ratio": 0.8571680238061726
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 2000,
       "n": 1,
-      "billing_rate_cm3_molecule_s": 2e-15,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 0.997409976259567,
+      "flag": false,
+      "reference_ratio": 0.9974099762595722
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 2000,
       "n": 2,
-      "billing_rate_cm3_molecule_s": 4.6e-15,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 1.0064985445154762,
+      "flag": false,
+      "reference_ratio": 1.006498544515476
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 2000,
       "n": 3,
-      "billing_rate_cm3_molecule_s": 7.8e-15,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 1.0343655757149925,
+      "flag": false,
+      "reference_ratio": 1.0343655757149945
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 2000,
       "n": 4,
-      "billing_rate_cm3_molecule_s": 1.2000000000000001e-14,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 1.0417896274050753,
+      "flag": false,
+      "reference_ratio": 1.041789627405075
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 2000,
       "n": 5,
-      "billing_rate_cm3_molecule_s": 1.6999999999999997e-14,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 1.068492162341282,
+      "flag": false,
+      "reference_ratio": 1.0684921623412842
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 2000,
       "n": 6,
-      "billing_rate_cm3_molecule_s": 2.4000000000000008e-14,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 1.0558724194728675,
+      "flag": false,
+      "reference_ratio": 1.0558724194728695
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 2000,
       "n": 7,
-      "billing_rate_cm3_molecule_s": 3.200000000000001e-14,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 1.0742371885713955,
+      "flag": false,
+      "reference_ratio": 1.0742371885713975
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 2000,
       "n": 8,
-      "billing_rate_cm3_molecule_s": 4.1e-14,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 1.1142700490584163,
+      "flag": false,
+      "reference_ratio": 1.1142700490584203
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 2000,
       "n": 9,
-      "billing_rate_cm3_molecule_s": 5.4e-14,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 1.1069076248336667,
+      "flag": false,
+      "reference_ratio": 1.106907624833667
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 2000,
       "n": 20,
-      "billing_rate_cm3_molecule_s": 6.500000000000002e-13,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 1.0817282025082788,
+      "flag": false,
+      "reference_ratio": 1.0817282025082786
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 3000,
       "n": 1,
-      "billing_rate_cm3_molecule_s": 2.7000000000000005e-14,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 0.7647133718933288,
+      "flag": false,
+      "reference_ratio": 0.7647133718933301
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 3000,
       "n": 2,
-      "billing_rate_cm3_molecule_s": 6.099999999999999e-14,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 0.7658550270931113,
+      "flag": false,
+      "reference_ratio": 0.7658550270931112
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 3000,
       "n": 3,
-      "billing_rate_cm3_molecule_s": 1.0000000000000002e-13,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 0.7933279786686219,
+      "flag": false,
+      "reference_ratio": 0.7933279786686247
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 3000,
       "n": 4,
-      "billing_rate_cm3_molecule_s": 1.5e-13,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 0.7985163685172662,
+      "flag": false,
+      "reference_ratio": 0.7985163685172659
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 3000,
       "n": 5,
-      "billing_rate_cm3_molecule_s": 2.1e-13,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 0.8074487249635302,
+      "flag": false,
+      "reference_ratio": 0.8074487249635316
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 3000,
       "n": 6,
-      "billing_rate_cm3_molecule_s": 2.799999999999999e-13,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 0.823109974983511,
+      "flag": false,
+      "reference_ratio": 0.8231099749835126
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 3000,
       "n": 7,
-      "billing_rate_cm3_molecule_s": 3.7000000000000004e-13,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 0.8231987412547281,
+      "flag": false,
+      "reference_ratio": 0.8231987412547297
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 3000,
       "n": 8,
-      "billing_rate_cm3_molecule_s": 4.6e-13,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 0.8572799296949278,
+      "flag": false,
+      "reference_ratio": 0.8572799296949277
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 3000,
       "n": 9,
-      "billing_rate_cm3_molecule_s": 5.7e-13,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 0.881810598155225,
+      "flag": false,
+      "reference_ratio": 0.8818105981552263
     },
     {
       "process": "V-T N2-N2",
       "billing_table": 3,
       "T_K": 3000,
       "n": 20,
-      "billing_rate_cm3_molecule_s": 3.5000000000000004e-12,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "n+0 -> (n-1)+0",
+      "ratio": 1.2655198228672324,
+      "flag": false,
+      "reference_ratio": 1.2655198228672349
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 200,
       "n": 1,
-      "billing_rate_cm3_molecule_s": null,
-      "identity_exchange": true
+      "identity_exchange": true,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": null,
+      "flag": false,
+      "reference_ratio": null
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 200,
       "n": 2,
-      "billing_rate_cm3_molecule_s": 8.600000000000001e-15,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": 1.0681474520936896,
+      "flag": false,
+      "reference_ratio": 1.0681476968591503
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 200,
       "n": 3,
-      "billing_rate_cm3_molecule_s": 1.1e-14,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": 1.1151191696521245,
+      "flag": false,
+      "reference_ratio": 1.1151196807101966
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 200,
       "n": 4,
-      "billing_rate_cm3_molecule_s": 1.4e-14,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": 0.9964319933304697,
+      "flag": false,
+      "reference_ratio": 0.9964326718025509
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 200,
       "n": 5,
-      "billing_rate_cm3_molecule_s": 1.4e-14,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": 1.0479112484351274,
+      "flag": false,
+      "reference_ratio": 1.0479122020880216
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 200,
       "n": 6,
-      "billing_rate_cm3_molecule_s": 1.5000000000000002e-14,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": 0.9773690178449568,
+      "flag": false,
+      "reference_ratio": 0.9773701312646447
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 200,
       "n": 7,
-      "billing_rate_cm3_molecule_s": 1.4e-14,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": 1.0183103547664292,
+      "flag": false,
+      "reference_ratio": 1.0183117548391232
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 200,
       "n": 8,
-      "billing_rate_cm3_molecule_s": 1.2000000000000003e-14,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": 1.1233659918495646,
+      "flag": false,
+      "reference_ratio": 1.1233677937821316
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 200,
       "n": 9,
-      "billing_rate_cm3_molecule_s": 1.0000000000000002e-14,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": 1.2554887913864912,
+      "flag": false,
+      "reference_ratio": 1.2554910929454206
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 200,
       "n": 20,
-      "billing_rate_cm3_molecule_s": 5.500000000000002e-16,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": 3.3033724110300673,
+      "flag": true,
+      "reference_ratio": 3.3033871610875303
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 300,
       "n": 1,
-      "billing_rate_cm3_molecule_s": null,
-      "identity_exchange": true
+      "identity_exchange": true,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": null,
+      "flag": false,
+      "reference_ratio": null
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 300,
       "n": 2,
-      "billing_rate_cm3_molecule_s": 1.8e-14,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": 0.931553654955725,
+      "flag": false,
+      "reference_ratio": 0.931553797265759
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 300,
       "n": 3,
-      "billing_rate_cm3_molecule_s": 2.2999999999999997e-14,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": 0.9859374249915701,
+      "flag": false,
+      "reference_ratio": 0.9859377262276796
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 300,
       "n": 4,
-      "billing_rate_cm3_molecule_s": 2.7000000000000002e-14,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": 0.9757211813147966,
+      "flag": false,
+      "reference_ratio": 0.9757216242281184
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 300,
       "n": 5,
-      "billing_rate_cm3_molecule_s": 3e-14,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": 0.9436056477534729,
+      "flag": false,
+      "reference_ratio": 0.9436062202396904
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 300,
       "n": 6,
-      "billing_rate_cm3_molecule_s": 3.2e-14,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": 0.9035391822577526,
+      "flag": false,
+      "reference_ratio": 0.9035398684660667
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 300,
       "n": 7,
-      "billing_rate_cm3_molecule_s": 3.2e-14,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": 0.8959408510136341,
+      "flag": false,
+      "reference_ratio": 0.8959416722315269
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 300,
       "n": 8,
-      "billing_rate_cm3_molecule_s": 2.8999999999999996e-14,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": 0.9544649926180704,
+      "flag": false,
+      "reference_ratio": 0.9544660132893429
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 300,
       "n": 9,
-      "billing_rate_cm3_molecule_s": 2.5e-14,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": 1.0521369277944477,
+      "flag": false,
+      "reference_ratio": 1.052138213643921
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 300,
       "n": 20,
-      "billing_rate_cm3_molecule_s": 2.7e-15,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": 1.6655405885038688,
+      "flag": false,
+      "reference_ratio": 1.6655455464272944
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 400,
       "n": 1,
-      "billing_rate_cm3_molecule_s": null,
-      "identity_exchange": true
+      "identity_exchange": true,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": null,
+      "flag": false,
+      "reference_ratio": null
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 400,
       "n": 2,
-      "billing_rate_cm3_molecule_s": 2.7000000000000002e-14,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": 0.9574707922231602,
+      "flag": false,
+      "reference_ratio": 0.9574709019251333
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 400,
       "n": 3,
-      "billing_rate_cm3_molecule_s": 3.5e-14,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": 1.0113822430147454,
+      "flag": false,
+      "reference_ratio": 1.0113824747724889
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 400,
       "n": 4,
-      "billing_rate_cm3_molecule_s": 4.2000000000000004e-14,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": 0.9968754358186279,
+      "flag": false,
+      "reference_ratio": 0.9968757752055811
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 400,
       "n": 5,
-      "billing_rate_cm3_molecule_s": 4.5999999999999993e-14,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": 0.9966412512229543,
+      "flag": false,
+      "reference_ratio": 0.9966417047201369
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 400,
       "n": 6,
-      "billing_rate_cm3_molecule_s": 5.1e-14,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": 0.9362044314414704,
+      "flag": false,
+      "reference_ratio": 0.936204964703793
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 400,
       "n": 7,
-      "billing_rate_cm3_molecule_s": 5.2e-14,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": 0.9275359382316606,
+      "flag": false,
+      "reference_ratio": 0.9275365758650125
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 400,
       "n": 8,
-      "billing_rate_cm3_molecule_s": 5e-14,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": 0.9494674227804483,
+      "flag": false,
+      "reference_ratio": 0.9494681842756337
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 400,
       "n": 9,
-      "billing_rate_cm3_molecule_s": 4.5999999999999993e-14,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": 0.9995280559126798,
+      "flag": false,
+      "reference_ratio": 0.9995289720784349
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 400,
       "n": 20,
-      "billing_rate_cm3_molecule_s": 8.1e-15,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": 1.1586556917423254,
+      "flag": false,
+      "reference_ratio": 1.1586582785258928
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 500,
       "n": 1,
-      "billing_rate_cm3_molecule_s": null,
-      "identity_exchange": true
+      "identity_exchange": true,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": null,
+      "flag": false,
+      "reference_ratio": null
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 500,
       "n": 2,
-      "billing_rate_cm3_molecule_s": 3.6e-14,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": 1.0067201803899337,
+      "flag": false,
+      "reference_ratio": 1.0067202726656999
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 500,
       "n": 3,
-      "billing_rate_cm3_molecule_s": 4.8e-14,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": 1.0446800611775386,
+      "flag": false,
+      "reference_ratio": 1.0446802526878698
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 500,
       "n": 4,
-      "billing_rate_cm3_molecule_s": 5.7e-14,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": 1.055530289333473,
+      "flag": false,
+      "reference_ratio": 1.0555305768182954
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 500,
       "n": 5,
-      "billing_rate_cm3_molecule_s": 6.3e-14,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": 1.0617988643947045,
+      "flag": false,
+      "reference_ratio": 1.0617992509111331
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 500,
       "n": 6,
-      "billing_rate_cm3_molecule_s": 7.1e-14,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": 0.9969770278487512,
+      "flag": false,
+      "reference_ratio": 0.9969774821514547
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 500,
       "n": 7,
-      "billing_rate_cm3_molecule_s": 7.4e-14,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": 0.9814267524538894,
+      "flag": false,
+      "reference_ratio": 0.9814272921982692
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 500,
       "n": 8,
-      "billing_rate_cm3_molecule_s": 7.4e-14,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": 0.9816694587315539,
+      "flag": false,
+      "reference_ratio": 0.9816700885890833
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 500,
       "n": 9,
-      "billing_rate_cm3_molecule_s": 7.2e-14,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": 0.9928765631793707,
+      "flag": false,
+      "reference_ratio": 0.9928772912345104
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 500,
       "n": 20,
-      "billing_rate_cm3_molecule_s": 1.8e-14,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": 0.9465772291179341,
+      "flag": false,
+      "reference_ratio": 0.9465789197598716
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 700,
       "n": 1,
-      "billing_rate_cm3_molecule_s": null,
-      "identity_exchange": true
+      "identity_exchange": true,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": null,
+      "flag": false,
+      "reference_ratio": null
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 700,
       "n": 2,
-      "billing_rate_cm3_molecule_s": 5.5999999999999995e-14,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": 1.079285077465603,
+      "flag": false,
+      "reference_ratio": 1.079285148127781
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 700,
       "n": 3,
-      "billing_rate_cm3_molecule_s": 7.8e-14,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": 1.0892286315496886,
+      "flag": false,
+      "reference_ratio": 1.0892287741760829
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 700,
       "n": 4,
-      "billing_rate_cm3_molecule_s": 9.300000000000001e-14,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": 1.1194364319734063,
+      "flag": false,
+      "reference_ratio": 1.1194366497522055
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 700,
       "n": 5,
-      "billing_rate_cm3_molecule_s": 1.1e-13,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": 1.0764832431184586,
+      "flag": false,
+      "reference_ratio": 1.076483523019757
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 700,
       "n": 6,
-      "billing_rate_cm3_molecule_s": 1.2e-13,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": 1.069472652833885,
+      "flag": false,
+      "reference_ratio": 1.0694730009320943
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 700,
       "n": 7,
-      "billing_rate_cm3_molecule_s": 1.3e-13,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": 1.0372474740935476,
+      "flag": false,
+      "reference_ratio": 1.0372478815531458
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 700,
       "n": 8,
-      "billing_rate_cm3_molecule_s": 1.4e-13,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": 0.9873882198452405,
+      "flag": false,
+      "reference_ratio": 0.9873886723643375
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 700,
       "n": 9,
-      "billing_rate_cm3_molecule_s": 1.4e-13,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": 0.9958136959142713,
+      "flag": false,
+      "reference_ratio": 0.995814217491986
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 700,
       "n": 20,
-      "billing_rate_cm3_molecule_s": 5.799999999999999e-14,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": 0.7326441296879344,
+      "flag": false,
+      "reference_ratio": 0.7326450643626886
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 1000,
       "n": 1,
-      "billing_rate_cm3_molecule_s": null,
-      "identity_exchange": true
+      "identity_exchange": true,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": null,
+      "flag": false,
+      "reference_ratio": null
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 1000,
       "n": 2,
-      "billing_rate_cm3_molecule_s": 9.7e-14,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": 1.0729450782549321,
+      "flag": false,
+      "reference_ratio": 1.072945127427894
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 1000,
       "n": 3,
-      "billing_rate_cm3_molecule_s": 1.4e-13,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": 1.0618485594891585,
+      "flag": false,
+      "reference_ratio": 1.0618486568179772
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 1000,
       "n": 4,
-      "billing_rate_cm3_molecule_s": 1.7e-13,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": 1.0939525046085474,
+      "flag": false,
+      "reference_ratio": 1.0939526535832926
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 1000,
       "n": 5,
-      "billing_rate_cm3_molecule_s": 2e-13,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": 1.0817984897338249,
+      "flag": false,
+      "reference_ratio": 1.081798686632153
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 1000,
       "n": 6,
-      "billing_rate_cm3_molecule_s": 2.2e-13,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": 1.0917125253376687,
+      "flag": false,
+      "reference_ratio": 1.0917127740735377
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 1000,
       "n": 7,
-      "billing_rate_cm3_molecule_s": 2.4e-13,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": 1.0772260200081551,
+      "flag": false,
+      "reference_ratio": 1.0772263162231346
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 1000,
       "n": 8,
-      "billing_rate_cm3_molecule_s": 2.6e-13,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": 1.0452583548741317,
+      "flag": false,
+      "reference_ratio": 1.045258690202757
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 1000,
       "n": 9,
-      "billing_rate_cm3_molecule_s": 2.8e-13,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": 1.003867582042181,
+      "flag": false,
+      "reference_ratio": 1.0038679500994225
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 1000,
       "n": 20,
-      "billing_rate_cm3_molecule_s": 1.7e-13,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": 0.6540324802463917,
+      "flag": false,
+      "reference_ratio": 0.6540330643161391
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 1500,
       "n": 1,
-      "billing_rate_cm3_molecule_s": null,
-      "identity_exchange": true
+      "identity_exchange": true,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": null,
+      "flag": false,
+      "reference_ratio": null
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 1500,
       "n": 2,
-      "billing_rate_cm3_molecule_s": 1.8000000000000002e-13,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": 1.0729028615981646,
+      "flag": false,
+      "reference_ratio": 1.0729028943788492
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 1500,
       "n": 3,
-      "billing_rate_cm3_molecule_s": 2.7e-13,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": 1.0386327997449665,
+      "flag": false,
+      "reference_ratio": 1.0386328632122173
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 1500,
       "n": 4,
-      "billing_rate_cm3_molecule_s": 3.4e-13,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": 1.0534938849324824,
+      "flag": false,
+      "reference_ratio": 1.053493980575864
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 1500,
       "n": 5,
-      "billing_rate_cm3_molecule_s": 3.9e-13,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": 1.0932130416277566,
+      "flag": false,
+      "reference_ratio": 1.0932131742783449
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 1500,
       "n": 6,
-      "billing_rate_cm3_molecule_s": 4.5e-13,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": 1.0777445097571539,
+      "flag": false,
+      "reference_ratio": 1.077744673459406
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 1500,
       "n": 7,
-      "billing_rate_cm3_molecule_s": 4.9e-13,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": 1.0923906302412476,
+      "flag": false,
+      "reference_ratio": 1.0923908304978662
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 1500,
       "n": 8,
-      "billing_rate_cm3_molecule_s": 5.4e-13,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": 1.0694046382109352,
+      "flag": false,
+      "reference_ratio": 1.06940486692757
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 1500,
       "n": 9,
-      "billing_rate_cm3_molecule_s": 5.8e-13,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": 1.0572396800106225,
+      "flag": false,
+      "reference_ratio": 1.0572399384276425
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 1500,
       "n": 20,
-      "billing_rate_cm3_molecule_s": 5e-13,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": 0.6423261802646663,
+      "flag": false,
+      "reference_ratio": 0.6423265626750666
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 2000,
       "n": 1,
-      "billing_rate_cm3_molecule_s": null,
-      "identity_exchange": true
+      "identity_exchange": true,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": null,
+      "flag": false,
+      "reference_ratio": null
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 2000,
       "n": 2,
-      "billing_rate_cm3_molecule_s": 2.9e-13,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": 1.032375383284712,
+      "flag": false,
+      "reference_ratio": 1.0323754069415405
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 2000,
       "n": 3,
-      "billing_rate_cm3_molecule_s": 4.3e-13,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": 1.0215702364635486,
+      "flag": false,
+      "reference_ratio": 1.0215702832820106
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 2000,
       "n": 4,
-      "billing_rate_cm3_molecule_s": 5.4e-13,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": 1.0524779355689777,
+      "flag": false,
+      "reference_ratio": 1.052478007232337
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 2000,
       "n": 5,
-      "billing_rate_cm3_molecule_s": 6.400000000000001e-13,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": 1.0721414497048045,
+      "flag": false,
+      "reference_ratio": 1.0721415472751263
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 2000,
       "n": 6,
-      "billing_rate_cm3_molecule_s": 7.3e-13,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": 1.0856423051155741,
+      "flag": false,
+      "reference_ratio": 1.085642428791982
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 2000,
       "n": 7,
-      "billing_rate_cm3_molecule_s": 8.1e-13,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": 1.0970135973622532,
+      "flag": false,
+      "reference_ratio": 1.0970137481903244
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 2000,
       "n": 8,
-      "billing_rate_cm3_molecule_s": 8.800000000000001e-13,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": 1.1074105130061351,
+      "flag": false,
+      "reference_ratio": 1.107410690639929
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 2000,
       "n": 9,
-      "billing_rate_cm3_molecule_s": 9.4e-13,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": 1.119432170845156,
+      "flag": false,
+      "reference_ratio": 1.1194323760590181
     },
     {
       "process": "V-V N2-N2",
       "billing_table": 4,
       "T_K": 2000,
       "n": 20,
-      "billing_rate_cm3_molecule_s": 9.9e-13,
-      "identity_exchange": false
+      "identity_exchange": false,
+      "direction": "(n-1)+1 -> n+0",
+      "ratio": 0.6687923748900573,
+      "flag": false,
+      "reference_ratio": 0.668792673515369
     }
   ],
   "vv_direction_convention": "Current library arrow is endothermic n+0 -> (n-1)+1; Billing Table 4 is exothermic (n-1)+1 -> n+0. Tests derive the exothermic current rate with the loaded N2Vibrational equilibrium constant. V-V n=1 points are identity exchanges and are excluded from validation.",
-  "ratio_definition": "For V-V, current RMG exothermic reverse rate divided by the transcribed Billing rate, in cm^3 molecule^-1 s^-1. For V-T, current deactivation rate divided by the Billing deactivation rate."
+  "ratio_definition": "For V-V, current RMG exothermic reverse rate divided by the transcribed Billing rate, in cm^3 molecule^-1 s^-1. For V-T, current deactivation rate divided by the Billing deactivation rate.",
+  "portable_reference": "reference_ratio is the independently reconstructed Guerra formula divided by Billing, in the stated direction, using loaded fixed-v Gibbs energies. Compare live engine/reference rates times this derived ratio with ratio. No source coefficients are committed."
 }

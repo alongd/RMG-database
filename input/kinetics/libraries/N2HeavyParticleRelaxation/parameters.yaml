@@ -60,4 +60,4 @@ billing_check:
   file: Billing1979_*.pdf
   sha256: 0c2c2a70f5873d334406f7097fbca5587d696d5689ca2683a1f13fc8258d483b
   tables: [3, 4]
-  use: "Independent pointwise check only. The derived Guerra/Billing ratios are committed in test/fixtures/n2_billing_ratio_fixture.json; source table payloads are not copied."
+  use: "Independent pointwise check only. Only derived Guerra/Billing ratios are committed in test/fixtures/n2_billing_ratio_fixture.json. Local source coefficients are uncommitted and hashed in vibkin/SHA256SUMS; N2_BILLING_SOURCE_COEFFICIENTS enables the optional live recomputation test."

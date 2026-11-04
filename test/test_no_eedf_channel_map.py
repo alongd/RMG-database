@@ -21,8 +21,12 @@ MAP = ROOT / 'input/eedf/no_channel_map.yaml'
 OVERLAY = ROOT / 'input/eedf/no_channel_overlay.yaml'
 ARCHIVE = os.environ.get('EEDF_NO_HAYASHI', '/home/alon/Data/lxcat/incoming/Hayashi.zip')
 STORE = os.environ.get('EEDF_LXCAT_ASSEMBLED')
+SOURCES = [s for s in os.environ.get('EEDF_LXCAT_SOURCES', '').split(os.pathsep) if s]
+ARGON_STORE = os.environ.get('EEDF_ARGON_LXCAT_ASSEMBLED', STORE)
 needs_store = pytest.mark.skipif(not (STORE and Path(STORE).is_dir()),
                                  reason='NO assembled store is unset (EEDF_LXCAT_ASSEMBLED)')
+needs_argon_store = pytest.mark.skipif(not (ARGON_STORE and Path(ARGON_STORE).is_dir()),
+                                       reason='argon assembled store is unset')
 needs_archive = pytest.mark.skipif(not Path(ARCHIVE).is_file(), reason='local Hayashi archive is unavailable')
 
 
@@ -130,11 +134,24 @@ def test_no_other_plasma_library_has_an_overlapping_no_electron_owner():
     assert not overlaps, 'NO + e- owner overlap would double-count when both libraries load: ' + repr(overlaps)
 
 
+@needs_store
+@needs_argon_store
+@pytest.mark.skipif(not SOURCES, reason='argon LXCat sources are unset (EEDF_LXCAT_SOURCES)')
 def test_argon_and_nitrogen_maps_remain_byte_identical_to_dispatch_base():
-    for relative in ('input/eedf/argon_channel_map.yaml', 'input/eedf/nitrogen_channel_map.yaml'):
-        committed = subprocess.run(['git', 'show', '278793a06:' + relative], cwd=ROOT,
-                                   check=True, capture_output=True).stdout
-        assert (ROOT / relative).read_bytes() == committed
+    relative = 'input/eedf/nitrogen_channel_map.yaml'
+    committed = subprocess.run(['git', 'show', '278793a06:' + relative], cwd=ROOT,
+                               check=True, capture_output=True).stdout
+    assert (ROOT / relative).read_bytes() == committed
+
+    args = [sys.executable, str(ROOT / 'scripts/check_eedf_channel_map.py'),
+            str(ROOT / 'input/eedf/argon_channel_map.yaml'),
+            '--overlay', str(ROOT / 'input/eedf/argon_channel_overlay.yaml'),
+            '--assembled', ARGON_STORE, '--database', str(ROOT / 'input')]
+    for source in SOURCES:
+        args.extend(['--source', source])
+    result = subprocess.run(args, capture_output=True, text=True)
+    assert result.returncode == 0, result.stdout + result.stderr
+    assert 'RESULT: PASS' in result.stdout
 
 
 @needs_archive
@@ -163,6 +180,8 @@ def test_source_hashes_thresholds_and_full_regeneration_match_bytes(doc):
 @needs_archive
 @needs_store
 def test_no_map_cli_check_is_byte_exact_and_non_mutating(tmp_path):
+    argon_map = ROOT / 'input/eedf/argon_channel_map.yaml'
+    argon_before = argon_map.read_bytes()
     output = tmp_path / 'map.yaml'
     args = [sys.executable, str(ROOT / 'scripts/gen_eedf_channel_map.py'), '--gas', 'no',
             '--overlay', str(OVERLAY), '--source', ARCHIVE, '--assembled', STORE,
@@ -174,6 +193,7 @@ def test_no_map_cli_check_is_byte_exact_and_non_mutating(tmp_path):
     result = subprocess.run(args + ['--check'], capture_output=True, text=True)
     assert result.returncode == 0 and 'PASS (byte equality)' in result.stdout
     assert output.read_bytes() == original
+    assert argon_map.read_bytes() == argon_before
 
 
 @needs_archive

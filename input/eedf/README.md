@@ -49,7 +49,8 @@ generated region of `input/kinetics/libraries/PlasmaArgon/reactions.py`; run its
 generation. It does not calculate or hand-type branching fractions.
 
 The generated schema has `radiative_model: E1`, a source digest and channel
-records keyed by frozen ID, exact process and threshold. Ten records have
+records keyed by frozen ID, exact process and threshold. Thirty-three records
+for channels 6–38 have
 `status: complete_for_E1` with four product yields summing to one. Channel 11
 (2p5) uses Wiese's sourced `<1e3 s^-1` upper bound for 018001.000011→018001.000005
 (2p5→1s2) as an effective A of zero for branching. The yield artifact records

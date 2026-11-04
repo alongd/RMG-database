@@ -3,6 +3,7 @@
 import importlib.util
 import json
 import math
+import os
 from pathlib import Path
 
 import pytest
@@ -104,14 +105,14 @@ def test_loKi_cross_check_spots_match_independent_equation_references():
                 (30, 3000, 2.3388945802125197e-11))
     for v, temperature, expected in vt_spots:
         reference = _formula_reference_vt(v, temperature)
-        assert reference == pytest.approx(expected, rel=1e-12)
+        assert reference == pytest.approx(expected, rel=1e-12, abs=0)
         assert GENERATOR.rate_vt(v, temperature, parameters) == pytest.approx(reference, rel=1e-12, abs=0)
     vv_spots = ((1, 0, 300, 8.8043606650341175e-15),
                 (3, 1, 1000, 3.1750453525706054e-13),
                 (20, 19, 2000, 1.1151264053440554e-10))
     for v, partner, temperature, expected in vv_spots:
         reference = _formula_reference_vv(v, partner, temperature)
-        assert reference == pytest.approx(expected, rel=1e-12)
+        assert reference == pytest.approx(expected, rel=1e-12, abs=0)
         # Guerra rounds Eq. (22) to 6.35; LoKI uses 6.354 in its implementation.
         assert GENERATOR.rate_vv(v, partner, temperature, parameters) == pytest.approx(reference, rel=0.001, abs=0)
 
@@ -227,22 +228,67 @@ def test_real_rmg_admission_reverse_and_billing_direction(tmp_path, monkeypatch)
         vv_with_zero.get_rate_coefficient(199.0)
 
     fixture = json.loads(RATIO_FIXTURE.read_text())
-    points = [point for point in fixture['points']
-              if point['process'] == 'V-V N2-N2' and not point['identity_exchange']]
-    ratios = []
-    for point in points:
+    for point in fixture['points']:
+        if point['identity_exchange']:
+            continue
         n, temperature = point['n'], point['T_K']
-        index = 30 + (n - 2) * (n - 1) // 2
-        reaction = admit(index)
-        exothermic = reaction.get_rate_coefficient(temperature) / reaction.get_equilibrium_constant(temperature)
-        ratio = exothermic / 6.02214076e23 * 1e6 / point['billing_rate_cm3_molecule_s']
-        ratios.append((ratio, n, temperature))
-    assert len(ratios) == 72
-    # These are recomputed with the loaded N2Vibrational thermo through RMG's
-    # live Keq path; the previous audit used an independent level-energy estimate.
-    assert min(ratio for ratio, _, _ in ratios) == pytest.approx(0.650216, abs=0.002)
-    assert max(ratio for ratio, _, _ in ratios) == pytest.approx(3.263651, abs=0.002)
-    assert [(n, t) for ratio, n, t in ratios if ratio < 0.3 or ratio > 3] == [(20, 200)]
+        vv = point['process'] == 'V-V N2-N2'
+        reaction = admit(30 + (n - 2) * (n - 1) // 2 if vv else n - 1)
+        current = reaction.get_rate_coefficient(temperature) / 6.02214076e23 * 1e6
+        if vv:
+            current /= reaction.get_equilibrium_constant(temperature)
+            delta_g = (sum(species.thermo.get_free_energy(temperature) for species in reaction.products)
+                       - sum(species.thermo.get_free_energy(temperature) for species in reaction.reactants))
+            reference = _formula_reference_vv(n, 0, temperature) * (6.35 / 6.354)
+            reference *= math.exp(delta_g / (8.31446261815324 * temperature))
+        else:
+            reference = _formula_reference_vt(n, temperature)
+        # Normalize the stored derived comparison by an independent formula.
+        # This is a portable engine-regression check, not a fresh Billing reading.
+        assert point['reference_ratio'] * current / reference == pytest.approx(point['ratio'], rel=1e-7, abs=0)
+        assert point['flag'] == (point['ratio'] < 0.3 or point['ratio'] > 3)
+
+
+def test_live_billing_source_recomputation(monkeypatch):
+    source_path = os.environ.get('N2_BILLING_SOURCE_COEFFICIENTS')
+    if source_path is None:
+        pytest.skip('Set N2_BILLING_SOURCE_COEFFICIENTS to the local, uncommitted Billing coefficients')
+    source = json.loads(Path(source_path).read_text())
+    from rmgpy.data.kinetics.database import KineticsDatabase
+    from rmgpy.data.thermo import ThermoDatabase
+    from rmgpy.rmg.model import CoreEdgeReactionModel
+    from rmgpy.species import Species
+    database = KineticsDatabase()
+    database.load_libraries(str(ROOT / 'input/kinetics/libraries'), ['N2HeavyParticleRelaxation'])
+    thermo = ThermoDatabase()
+    thermo.load_libraries(str(ROOT / 'input/thermo/libraries'), ['N2Vibrational'])
+    import rmgpy.data.rmg as data_module
+    from rmgpy.data.rmg import RMGDatabase
+    hub = RMGDatabase()
+    hub.thermo, hub.kinetics = thermo, database
+    monkeypatch.setattr(data_module, 'database', hub)
+    model = CoreEdgeReactionModel()
+    model.declare_vibrational_manifold(Species(label='N2').from_smiles('N#N'))
+    reactions = database.libraries['N2HeavyParticleRelaxation'].get_library_reactions()
+    records = {(p['process'], p['n'], p['T_K']): p for p in source['points']}
+    checked = 0
+    for point in json.loads(RATIO_FIXTURE.read_text())['points']:
+        if point['identity_exchange']:
+            continue
+        n, temperature = point['n'], point['T_K']
+        vv = point['process'] == 'V-V N2-N2'
+        reaction = reactions[30 + (n - 2) * (n - 1) // 2 if vv else n - 1]
+        for species in reaction.reactants + reaction.products:
+            model._apply_vibrational_manifold(species)
+            species.thermo = thermo.get_thermo_data(species)
+        rate = reaction.get_rate_coefficient(temperature)
+        if vv:
+            rate /= reaction.get_equilibrium_constant(temperature)
+        coefficient = records[(point['process'], n, temperature)]['billing_rate_cm3_molecule_s']
+        assert math.isfinite(coefficient) and coefficient > 0
+        assert rate / 6.02214076e23 * 1e6 / coefficient == pytest.approx(point['ratio'], rel=1e-12, abs=0)
+        checked += 1
+    assert checked == 152
 
 
 def test_generated_reactions_are_reversible_and_use_only_forward_rates():
@@ -270,8 +316,9 @@ def test_billing_ratio_fixture_covers_all_common_temperature_points_and_flags_ou
     assert {p['T_K'] for p in vt} == {300, 400, 500, 700, 1000, 1500, 2000, 3000}
     assert {p['T_K'] for p in vv} == {200, 300, 400, 500, 700, 1000, 1500, 2000}
     for point in points:
-        assert point['billing_rate_cm3_molecule_s'] is None if point['identity_exchange'] else (
-            math.isfinite(point['billing_rate_cm3_molecule_s']) and point['billing_rate_cm3_molecule_s'] > 0)
+        assert 'billing_rate_cm3_molecule_s' not in point
+        assert point['ratio'] is None if point['identity_exchange'] else (
+            math.isfinite(point['ratio']) and point['ratio'] > 0)
     assert all(point['identity_exchange'] for point in vv if point['n'] == 1)
 
 
@@ -289,19 +336,9 @@ def test_short_real_rmg_job_keeps_table_kinetics_and_writes_bounded_exports(tmp_
     """A simple reactor uses KineticsData while Chemkin and both YAML writers emit output fits."""
     from rmgpy import settings
     from rmgpy.kinetics import KineticsData
-    from rmgpy.reaction import Reaction
     from rmgpy.rmg.main import RMG
 
     monkeypatch.setitem(settings, 'database.directory', str(ROOT / 'input'))
-    table_calls = []
-    original_get_rate = Reaction.get_rate_coefficient
-
-    def record_table_evaluation(reaction, temperature, pressure=0.0):
-        if isinstance(reaction.kinetics, KineticsData):
-            table_calls.append((temperature, reaction.kinetics))
-        return original_get_rate(reaction, temperature, pressure)
-
-    monkeypatch.setattr(Reaction, 'get_rate_coefficient', record_table_evaluation)
     deck = tmp_path / 'input.py'
     deck.write_text("""\
 database(thermoLibraries=['primaryThermoLibrary', 'N2Vibrational'],
@@ -325,18 +362,40 @@ options(generateOutputHTML=False, generatePlots=False, saveEdgeSpecies=False,
     job = RMG(input_file=str(deck), output_directory=str(output))
     job.execute()
 
-    assert table_calls, 'simple-reactor solver did not evaluate any KineticsData reaction'
-    core_tables = [reaction.kinetics for reaction in job.reaction_model.core.reactions
-                   if isinstance(reaction.kinetics, KineticsData)]
-    assert core_tables
-    assert all(isinstance(kinetics, KineticsData) for _, kinetics in table_calls)
+    import numpy as np
+    import cantera as ct
+    from rmgpy.chemkin import load_chemkin_file
+    from rmgpy.solver.simple import SimpleReactor
+
+    core = job.reaction_model.core
+    table_indices = [i for i, reaction in enumerate(core.reactions)
+                     if isinstance(reaction.kinetics, KineticsData)]
+    assert table_indices
+    original_solver = job.reaction_systems[0]
+    assert original_solver.t >= 1e-9
+    # Initialize the compiled solver with the completed job's actual core.
+    # Its kf array is the solver-facing boundary; no extension class is patched.
+    solver = SimpleReactor((1000, 'K'), (1, 'bar'), original_solver.initial_mole_fractions)
+    solver.initialize_model(core.species, core.reactions, [], [])
+    expected = np.array([core.reactions[i].kinetics.get_rate_coefficient(1000.) for i in table_indices])
+    assert len(original_solver.kf) == len(core.reactions)
+    np.testing.assert_array_equal(original_solver.kf[table_indices], expected)
+    np.testing.assert_array_equal(solver.kf[table_indices], expected)
+    solver.advance(1e-9)
+    assert solver.t >= 1e-9
+    np.testing.assert_array_equal(solver.kf[table_indices], expected)
     assert (output / 'chemkin' / 'chem.inp').is_file()
     annotated = (output / 'chemkin' / 'chem_annotated.inp').read_text()
     assert 'Output-only modified Arrhenius fit' in annotated
     assert 'The source table is the record' in annotated
+    loaded_species, loaded_reactions = load_chemkin_file(
+        str(output / 'chemkin' / 'chem_annotated.inp'),
+        str(output / 'chemkin' / 'species_dictionary.txt'))
+    assert loaded_species and loaded_reactions
     for writer in ('cantera1', 'cantera2'):
         yaml_output = output / writer / 'chem.yaml'
         assert yaml_output.is_file()
+        assert ct.Solution(str(yaml_output)).n_reactions > 0
         contents = yaml_output.read_text()
         assert 'maximum relative fit error' in contents
         assert 'The source table is the record' in contents
@@ -365,21 +424,3 @@ options(generateOutputHTML=False, generatePlots=False, saveEdgeSpecies=False,
     for temperature in (300.0, 1000.0):
         assert balance_channel.get_rate_coefficient(temperature) / reverse.get_rate_coefficient(temperature) == pytest.approx(
             balance_channel.get_equilibrium_constant(temperature), rel=1e-12, abs=0)
-
-    # Billing Table 4 is exothermic (n-1)+1 -> n+0. Compute its ratio from
-    # current admitted forward rates, the loaded equilibrium constant, and the
-    # transcribed Billing coefficients; exclude identity exchanges at n=1.
-    billing = json.loads(RATIO_FIXTURE.read_text())
-    billing_points = [point for point in billing['points']
-                      if point['process'] == 'V-V N2-N2' and not point['identity_exchange']]
-    corrected_ratios = []
-    for point in billing_points:
-        n, temperature = point['n'], point['T_K']
-        channel = admitted_channel(['N2', f'N2v{n}'], ['N2v1', f'N2v{n - 1}'])
-        exothermic = channel.get_rate_coefficient(temperature) / channel.get_equilibrium_constant(temperature)
-        ratio = (exothermic / 6.02214076e23 * 1e6) / point['billing_rate_cm3_molecule_s']
-        corrected_ratios.append((ratio, n, temperature))
-    assert len(corrected_ratios) == 72
-    assert min(ratio for ratio, _, _ in corrected_ratios) == pytest.approx(0.650216, abs=0.002)
-    assert max(ratio for ratio, _, _ in corrected_ratios) == pytest.approx(3.263651, abs=0.002)
-    assert [(n, t) for ratio, n, t in corrected_ratios if ratio < 0.3 or ratio > 3] == [(20, 200)]

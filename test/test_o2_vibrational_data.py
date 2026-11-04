@@ -11,7 +11,7 @@ import pytest
 
 REPO = Path(__file__).resolve().parents[1]
 DATA = REPO / 'input/eedf/o2_vibrational'
-COMPANION = Path(os.environ.get('RMG_PY_O2_SOURCE', '/home/alon/Code/RMG-Py-i371-o2-domain'))
+COMPANION = Path(os.environ['RMG_PY_O2_SOURCE']) if os.environ.get('RMG_PY_O2_SOURCE') else None
 
 
 def _module(name, path):
@@ -27,11 +27,12 @@ def _manifest():
 
 
 def test_every_upward_ist_pair_is_present_and_both_label_spellings_parse():
-    root = Path(os.environ.get('EEDF_DATA_ROOT', '/home/alon/Data/lxcat'))
+    root = Path(os.environ['EEDF_DATA_ROOT'])
     record = _manifest()
     source = record['sources'][0]
     raw = root / source['path']
     assert hashlib.sha256(raw.read_bytes()).hexdigest() == source['sha256']
+    assert COMPANION is not None, 'set RMG_PY_O2_SOURCE to the companion checkout'
     generator = _module('o2_test_generator', COMPANION / 'rmgpy/tools/eedf/n2_vibrational.py')
     pin = {'source_id': source['source_id'], 'path': str(raw), 'sha256': source['sha256'],
            'citation': source['citation'], 'provenance': 'sourced'}
@@ -45,10 +46,13 @@ def test_every_upward_ist_pair_is_present_and_both_label_spellings_parse():
 
 
 def test_o2_adapter_accepts_the_real_k10_ladder_and_plain_ground_species():
-    root = Path(os.environ.get('EEDF_DATA_ROOT', '/home/alon/Data/lxcat'))
+    root = Path(os.environ['EEDF_DATA_ROOT'])
+    assert COMPANION is not None, 'set RMG_PY_O2_SOURCE to the companion checkout'
     checker = _module('o2_test_checker', REPO / 'scripts/check_o2_vibrational_data.py')
     generator = checker._generator()
     resolved = checker.resolve_generator_manifest(root)
+    expected_digest = json.loads((DATA / 'ladder_k10.sha256.json').read_bytes())['sha256']
+    assert checker.artifact_digest(root) == expected_digest
     # The adapter validates the runtime D6 gate; these explicit test limits
     # exercise that contract without asserting owner production thresholds.
     resolved['D6'].update(top_fraction_limit=1.0, top_leak_share_limit=1.0)

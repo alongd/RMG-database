@@ -10,8 +10,73 @@ LIBRARY = REPO / 'input/kinetics/libraries/O2VibrationalRelaxation'
 A2_PATH = LIBRARY / 'annusova2018_table_a2.json'
 A3_PATH = LIBRARY / 'annusova2018_table_a3.json'
 ESP_PATH = LIBRARY / 'esposito2008_tables_2_4.json'
-LOW_T = list(range(300, 1001))
-ESP_T = list(range(50, 10001))
+ESP_SOURCE_T = (50, 10000)
+O2O2_SOURCE_T = (300, 1000)
+
+
+def _loaded_thermo_domain():
+    """Read admitted O/O2(v=1) thermo limits through the real model path."""
+    from rmgpy.data.rmg import RMGDatabase
+    from rmgpy.data.thermo import ThermoDatabase
+    import rmgpy.data.rmg as rmg_data
+    from rmgpy.molecule import Molecule
+    from rmgpy.rmg.model import CoreEdgeReactionModel
+    from rmgpy.species import Species
+
+    previous = rmg_data.database
+    database = RMGDatabase()
+    database.thermo = ThermoDatabase()
+    database.thermo.load_libraries(str(REPO / 'input/thermo/libraries'),
+                                   ['primaryThermoLibrary', 'O2Vibrational'])
+    rmg_data.database = database
+    try:
+        model = CoreEdgeReactionModel()
+        ground = Species(label='O2', molecule=[Molecule().from_adjacency_list(
+            'multiplicity 3\n1 O u1 p2 c0 {2,S}\n2 O u1 p2 c0 {1,S}')])
+        model.declare_vibrational_manifold(ground)
+        participants = [ground]
+        for level in range(1, 11):
+            participants.append(Species(label=f'O2v{level}', molecule=[Molecule().from_adjacency_list(
+                f'multiplicity 3\nvibrationallevel {level}\n'
+                '1 O u1 p2 c0 {2,S}\n2 O u1 p2 c0 {1,S}')]))
+        participants.append(Species(label='O', molecule=[Molecule().from_adjacency_list(
+            'multiplicity 3\n1 O u2 p2 c0')]))
+        limits = []
+        for species in participants:
+            admitted, _ = model.make_new_species(species)
+            limits.append((float(admitted.thermo.Tmin.value_si),
+                           float(admitted.thermo.Tmax.value_si)))
+        return max(low for low, _ in limits), min(high for _, high in limits)
+    finally:
+        rmg_data.database = previous
+
+
+def _adaptive_nodes(rate, low, high, limit=0.01):
+    """Greedily bisect the interval with greatest scanned log-linear error."""
+    nodes = [low, high]
+    steps = math.ceil((high - low) / 0.5)
+    grid = [min(low + index * 0.5, high) for index in range(steps + 1)]
+    while True:
+        rates = {t: rate(t) for t in nodes}
+        worst = (0.0, None, None)
+        for left, right in zip(nodes, nodes[1:]):
+            lk, rk = math.log(rates[left]), math.log(rates[right])
+            span = right - left
+            for t in grid:
+                if not left < t < right:
+                    continue
+                fraction = (t-left)/span
+                estimate = math.exp(lk + fraction*(rk-lk))
+                error = abs(estimate/rate(t)-1)
+                if error > worst[0]:
+                    worst = (error, t, left)
+        if worst[0] <= limit:
+            return nodes
+        split, left = worst[1], worst[2]
+        if split is None:
+            raise ValueError('cannot refine interpolation interval')
+        nodes.append(split)
+        nodes.sort()
 
 
 def annusova_vt_rate(v, temperature):
@@ -62,6 +127,9 @@ def build_outputs():
     a2 = json.loads(A2_PATH.read_bytes())
     a3 = json.loads(A3_PATH.read_bytes())
     esposito = json.loads(ESP_PATH.read_bytes())
+    thermo_low, thermo_high = _loaded_thermo_domain()
+    o2o2_low = max(O2O2_SOURCE_T[0], thermo_low)
+    o2o2_high = min(O2O2_SOURCE_T[1], thermo_high)
     dictionary = ['O2', _adjacency(0), '']
     dictionary.extend(line for v in range(1, 11) for line in (f'O2v{v}', _adjacency(v), ''))
     dictionary.extend(['O', 'multiplicity 3', '1 O u2 p2 c0', ''])
@@ -84,25 +152,27 @@ def build_outputs():
 
     a3_by_pair = {(row['v'], row['w']): row for row in a3['coefficients']}
     for v in range(1, 11):
-        rates = [annusova_vt_rate(v, T) for T in LOW_T]
+        rate = lambda T, v=v: annusova_vt_rate(v, T)
+        temperatures = _adaptive_nodes(rate, o2o2_low, o2o2_high)
+        rates = [rate(T) for T in temperatures]
         lower_state = 'O2' if v == 1 else f'O2v{v - 1}'
         add(f'O2v{v} + O2 <=> {lower_state} + O2',
-            rates, LOW_T, 'Annušová et al. (2018), Table A2', (300, 1000),
+            rates, temperatures, 'Annušová et al. (2018), Table A2', (o2o2_low, o2o2_high),
             f"Source fit {a2['formula_v_1_6'] if v <= 6 else a2['formula_v_7_32']}; "
             'V-T/R deactivation, 300–1000 K. Source rates use cm^3/(molecule*s).')
 
     for high_v in range(2, 11):
         for partner in range(0, high_v - 1):
             row = a3_by_pair[(partner + 1, high_v)]
-            # Four source-equation nodes are needed by the bounded output-fit adapter.
-            temperatures = [300, 500, 750, 1000]
-            rates = [1.5 * row['A'] * T**row['B'] for T in temperatures]
+            rate = lambda T, row=row: 1.5 * row['A'] * T**row['B']
+            temperatures = _adaptive_nodes(rate, o2o2_low, o2o2_high)
+            rates = [rate(T) for T in temperatures]
             reactant_low = f'O2v{partner + 1}'
             reactant_high = f'O2v{high_v - 1}'
             product_low = 'O2' if partner == 0 else f'O2v{partner}'
             product_high = f'O2v{high_v}'
             add(f'{reactant_low} + {reactant_high} <=> {product_low} + {product_high}',
-                rates, temperatures, 'Annušová et al. (2018), Table A3', (300, 1000),
+                rates, temperatures, 'Annušová et al. (2018), Table A3', (o2o2_low, o2o2_high),
                 f"A3 pair (v={row['v']}, w={row['w']}), k=1.5*A*T^B; source A={row['A']:.12g}, "
                 f"B={row['B']:.12g}. Source direction O2(partner+1)+O2(high_v-1) -> "
                 f"O2(partner)+O2(high_v); reverse from fixed-v detailed balance; "
@@ -111,17 +181,22 @@ def build_outputs():
     for v in range(1, 11):
         for delta_v in range(1, v + 1):
             w = v - delta_v
-            rates = [_esposito_rate(v, delta_v, T, esposito) for T in ESP_T]
+            low, high = max(ESP_SOURCE_T[0], thermo_low), min(ESP_SOURCE_T[1], thermo_high)
+            rate = lambda T, v=v, dv=delta_v: _esposito_rate(v, dv, T, esposito)
+            temperatures = _adaptive_nodes(rate, low, high)
+            rates = [rate(T) for T in temperatures]
             add(f'O2v{v} + O <=> {"O2" if w == 0 else f"O2v{w}"} + O',
-                rates, ESP_T, 'Esposito et al. (2008), Eq. (3a-c), Tables 2-4', (50, 10000),
+                rates, temperatures, 'Esposito et al. (2008), Eq. (3a-c), Tables 2-4', (low, high),
                 f"O2(v={v}) + O -> O2(w={w}) + O, delta-v={delta_v}; "
-                'DegF=1/27 as stated for the paper fit. Source equation sampled at every integer K '
-                'for bounded geometric KineticsData interpolation. Reverse from fixed-v detailed balance.')
+                f'DegF=1/27 as stated for the paper fit. Source valid {ESP_SOURCE_T[0]}–{ESP_SOURCE_T[1]} K; restricted to the '
+                f'thermo-valid range {low:g}–{high:g} K for detailed balance; absences: '
+                f'{ESP_SOURCE_T[0]}–{low:g} K and '
+                f'{high:g}–{ESP_SOURCE_T[1]} K. Adaptive bounded interpolation nodes. Reverse from fixed-v detailed balance.')
 
-    content = '''# ruff: noqa: E501,F821
+    content = f'''# ruff: noqa: E501,F821
 name = "O2VibrationalRelaxation"
 shortDesc = "Sourced O2 heavy-particle V-T and V-V relaxation through v=10."
-longDesc = """O2-O2 V-T/R and V-V from Annušová et al. (2018), Tables A2 and A3; O2-O V-T from Esposito et al. (2008), Eq. (3a-c), Tables 2-4. All entries are reversible; RMG derives reverse rates from loaded fixed-v thermo. O2-O2 bounds are 300-1000 K; O2-O bounds are 50-10000 K. O2-O2 V-V entries cover exactly high_v=2..10 with partner=0..high_v-2 and no identity exchanges. The table fit values use cm^3/(molecule*s), converted by RMG. The Esposito fit is sampled at every integer K so KineticsData refuses outside its stored source interval and interpolation approximates the source formula between adjacent K. No O2(v=42) dissociation rates are included. Source PDF payloads remain in /home/alon/Data/vibkin, outside git."""
+longDesc = """O2-O2 V-T/R and V-V from Annušová et al. (2018), Tables A2 and A3; O2-O V-T from Esposito et al. (2008), Eq. (3a-c), Tables 2-4. All entries are reversible; RMG derives reverse rates from loaded fixed-v thermo. O2-O2 bounds are {o2o2_low:g}-{o2o2_high:g} K; O2-O bounds are the thermo-limited {max(ESP_SOURCE_T[0], thermo_low):g}-{min(ESP_SOURCE_T[1], thermo_high):g} K domain (source valid {ESP_SOURCE_T[0]}-{ESP_SOURCE_T[1]} K; absent {ESP_SOURCE_T[0]}-{max(ESP_SOURCE_T[0], thermo_low):g} K and {min(ESP_SOURCE_T[1], thermo_high):g}-{ESP_SOURCE_T[1]} K). O2-O2 V-V entries cover exactly high_v=2..10 with partner=0..high_v-2 and no identity exchanges. Tables use bounded, adaptively refined KineticsData with maximum 1% scanned source-formula interpolation error; values use cm^3/(molecule*s), converted by RMG. No O2(v=42) dissociation rates are included. Source PDF payloads remain in /home/alon/Data/vibkin, outside git."""
 
 ''' + '\n\n'.join(entries) + '\n'
     return {'dictionary.txt': ('\n'.join(dictionary)).encode(), 'reactions.py': content.encode()}

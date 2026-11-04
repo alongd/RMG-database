@@ -2,7 +2,8 @@
   "absences": [
     "O2-O2 V-V v=42 continuum/dissociation extrapolations from LoKI are excluded.",
     "No O2-O2 channels outside K=10 are emitted by this library.",
-    "Hong 2021 Table S9 v=7 and v=9 check rates are not reported; no rates are inferred."
+    "Hong 2021 Table S9 v=7 and v=9 check rates are not reported; no rates are inferred.",
+    "Esposito O2–O rates at 50–100 K and 5000–10000 K are absent because admitted O and O2(v) thermo is valid only from 100–5000 K."
   ],
   "library_level_domain": {
     "K": 10,
@@ -17,7 +18,7 @@
       "Hong 2021 Table S10",
       "LoKI oxygenMolecularVT.m"
     ],
-    "citation": "Annu\u0161ov\u00e1 et al. 2018, PSST 27 045006, Table A2",
+    "citation": "Annušová et al. 2018, PSST 27 045006, Table A2",
     "sha256": "0be2f72d059f5f17e4a1bd60e275b74c549ea98196e7d934f264f093c9ddc811",
     "source_id": "annusova2018_a2",
     "temperature_K": [
@@ -32,7 +33,7 @@
       "Armenise 2023: no overlapping O2-O2 V-V data found",
       "LoKI oxygenMolecularVV.m"
     ],
-    "citation": "Annu\u0161ov\u00e1 et al. 2018, PSST 27 045006, Table A3",
+    "citation": "Annušová et al. 2018, PSST 27 045006, Table A3",
     "coefficient_pairs_compared_to_loki": 820,
     "coefficient_pairs_transcribed": 820,
     "sha256": "0be2f72d059f5f17e4a1bd60e275b74c549ea98196e7d934f264f093c9ddc811",
@@ -53,9 +54,14 @@
     "sha256": "84498db6bd34b206c089cf654e491849823b9f1e3045d18f56a195fb2f895d0a",
     "source_id": "esposito2008_eq3_tables2_4",
     "temperature_K": [
+      100,
+      5000
+    ],
+    "source_temperature_K": [
       50,
       10000
-    ]
+    ],
+    "thermo_limited_domain": "source valid 50–10000 K; restricted to the thermo-valid range 100–5000 K for detailed balance"
   },
   "schema": "o2-vibrational-relaxation-sources-v1"
 }

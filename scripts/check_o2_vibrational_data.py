@@ -16,7 +16,9 @@ def _sha(path):
 
 
 def _generator():
-    candidate = os.environ.get('RMG_PY_O2_SOURCE', '/home/alon/Code/RMG-Py-i371-o2-domain')
+    candidate = os.environ.get('RMG_PY_O2_SOURCE')
+    if not candidate:
+        raise RuntimeError('set RMG_PY_O2_SOURCE to the companion RMG-Py checkout')
     path = Path(candidate) / 'rmgpy/tools/eedf/n2_vibrational.py'
     if not path.is_file():
         raise RuntimeError('set RMG_PY_O2_SOURCE to the companion RMG-Py checkout')
@@ -71,12 +73,10 @@ def resolve_generator_manifest(data_root):
 def check(data_root):
     module = _generator()
     resolved = resolve_generator_manifest(data_root)
-    artifacts = module.generate(resolved, 10, False, molecule='O2')
+    artifacts = _portable_artifacts(module, resolved, data_root)
     expected = json.loads((REPO / 'input/eedf/o2_vibrational/ladder_k10.sha256.json').read_bytes())
-    digest = hashlib.sha256()
-    for name, content in sorted(artifacts.items()):
-        digest.update(name.encode() + b'\0' + len(content).to_bytes(8, 'big') + content)
-    if digest.hexdigest() != expected['sha256']:
+    actual = _digest(artifacts)
+    if actual != expected['sha256']:
         raise module.LadderError('O2 K=10 artifact digest mismatch')
     try:
         module.generate(resolved, 41, False, molecule='O2')
@@ -86,8 +86,38 @@ def check(data_root):
     else:
         raise module.LadderError('O2 K=41 must refuse uncovered initial v=41')
     print(f'O2 source: {len(module.read_cross_sections(resolved["cross_sections"][0], molecule="O2"))} pairs')
-    print(f'O2 K=10 artifact: {digest.hexdigest()} reproducible')
+    print(f'O2 K=10 artifact: {actual} reproducible')
     print('O2 K=41 refusal: uncovered initial v=41')
+
+
+def _canonicalize(content, replacements):
+    for absolute, stable in replacements.items():
+        content = content.replace(absolute, stable)
+    return content
+
+
+def _portable_artifacts(module, resolved, data_root):
+    """Replace resolver-specific path prefixes before hashing artifacts."""
+    artifacts = module.generate(resolved, 10, False, molecule='O2')
+    root = Path(data_root).expanduser().resolve()
+    replacements = {
+        str(root).encode(): b'EEDF_DATA_ROOT',
+        str(REPO.resolve()).encode(): b'DATABASE_ROOT',
+    }
+    return {name: _canonicalize(content, replacements) for name, content in artifacts.items()}
+
+
+def _digest(artifacts):
+    digest = hashlib.sha256()
+    for name, content in sorted(artifacts.items()):
+        digest.update(name.encode() + b'\0' + len(content).to_bytes(8, 'big') + content)
+    return digest.hexdigest()
+
+
+def artifact_digest(data_root):
+    module = _generator()
+    resolved = resolve_generator_manifest(data_root)
+    return _digest(_portable_artifacts(module, resolved, data_root))
 
 
 def main():

@@ -1,0 +1,32 @@
+{
+  "schema": "hong-2021-o2o2-vv-check-table-s9-v1",
+  "citation": "Hong et al., J. Chem. Phys. 154, 064304 (2021), Supplementary Table S9, present PES.",
+  "source_file": "/home/alon/Data/vibkin/Hong2021_O2_O2__.zip",
+  "source_sha256": "1ba9ac4383096f19121a80989a6d547e157298f557ca038f36b254c54b36805f",
+  "check_only": true,
+  "rate_units": "cm^3/(molecule*s)",
+  "temperatures_K": [100, 300, 500, 1000, 2000, 3000, 4000, 5000],
+  "high_v_partner0_to_1_high_minus1": {
+    "2": [3.04e-13, 1.71e-13, 1.49e-13, 1.41e-13, 1.54e-13, 1.79e-13, 2.27e-13, 3.41e-13],
+    "3": [3.03e-13, 2.13e-13, 1.99e-13, 1.99e-13, 2.19e-13, 2.54e-13, 3.29e-13, 4.91e-13],
+    "4": [2.44e-13, 2.43e-13, 2.40e-13, 2.48e-13, 2.80e-13, 3.27e-13, 4.23e-13, 6.19e-13],
+    "5": [1.61e-13, 2.48e-13, 2.69e-13, 2.91e-13, 3.34e-13, 3.93e-13, 5.07e-13, 7.45e-13],
+    "6": [8.72e-14, 2.28e-13, 2.75e-13, 3.25e-13, 3.85e-13, 4.55e-13, 5.83e-13, 8.17e-13],
+    "8": [1.56e-14, 1.51e-13, 2.43e-13, 3.57e-13, 4.69e-13, 5.67e-13, 7.17e-13, 9.65e-13],
+    "10": [2.58e-15, 8.04e-14, 1.80e-13, 3.50e-13, 5.32e-13, 6.61e-13, 8.28e-13, 1.09e-12]
+  },
+  "table_s4_present_pes_300K_high_v_partner0_to_1_high_minus1": {
+    "2": 1.46e-13,
+    "3": 2.13e-13,
+    "4": 2.43e-13,
+    "5": 2.48e-13,
+    "6": 2.28e-13,
+    "8": 1.51e-13,
+    "9": 1.07e-13,
+    "10": 8.04e-14
+  },
+  "notes": [
+    "Table S9 omits v=7 and v=9; no missing values are inferred.",
+    "For v=2 at 300 K, Tables S4 and S9 differ (1.46e-13 versus 1.71e-13) for the stated same present-PES process; this source-internal discrepancy is preserved."
+  ]
+}

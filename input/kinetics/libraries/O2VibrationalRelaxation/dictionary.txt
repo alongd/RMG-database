@@ -1,0 +1,68 @@
+O2
+multiplicity 3
+1 O u1 p2 c0 {2,S}
+2 O u1 p2 c0 {1,S}
+
+O2v1
+multiplicity 3
+vibrationallevel 1
+1 O u1 p2 c0 {2,S}
+2 O u1 p2 c0 {1,S}
+
+O2v2
+multiplicity 3
+vibrationallevel 2
+1 O u1 p2 c0 {2,S}
+2 O u1 p2 c0 {1,S}
+
+O2v3
+multiplicity 3
+vibrationallevel 3
+1 O u1 p2 c0 {2,S}
+2 O u1 p2 c0 {1,S}
+
+O2v4
+multiplicity 3
+vibrationallevel 4
+1 O u1 p2 c0 {2,S}
+2 O u1 p2 c0 {1,S}
+
+O2v5
+multiplicity 3
+vibrationallevel 5
+1 O u1 p2 c0 {2,S}
+2 O u1 p2 c0 {1,S}
+
+O2v6
+multiplicity 3
+vibrationallevel 6
+1 O u1 p2 c0 {2,S}
+2 O u1 p2 c0 {1,S}
+
+O2v7
+multiplicity 3
+vibrationallevel 7
+1 O u1 p2 c0 {2,S}
+2 O u1 p2 c0 {1,S}
+
+O2v8
+multiplicity 3
+vibrationallevel 8
+1 O u1 p2 c0 {2,S}
+2 O u1 p2 c0 {1,S}
+
+O2v9
+multiplicity 3
+vibrationallevel 9
+1 O u1 p2 c0 {2,S}
+2 O u1 p2 c0 {1,S}
+
+O2v10
+multiplicity 3
+vibrationallevel 10
+1 O u1 p2 c0 {2,S}
+2 O u1 p2 c0 {1,S}
+
+O
+multiplicity 3
+1 O u2 p2 c0

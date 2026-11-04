@@ -1530,9 +1530,9 @@ def test_the_crash_would_fire_before_any_kinetics_quarantine_could_intercept_it(
     orig_thermo = CoreEdgeReactionModel.generate_thermo
     orig_kinetics = CoreEdgeReactionModel.apply_kinetics_to_reaction
 
-    def traced_thermo(self, spc, rename=False):
+    def traced_thermo(self, spc, rename=False, **kwargs):
         order.append('generate_thermo')
-        return orig_thermo(self, spc, rename=rename)
+        return orig_thermo(self, spc, rename=rename, **kwargs)
 
     def traced_kinetics(self, reaction):
         order.append('apply_kinetics_to_reaction')

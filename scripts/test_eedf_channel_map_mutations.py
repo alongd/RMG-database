@@ -345,12 +345,18 @@ def without_resonant_species(database):
     """A scratch library with 1s4 absent, so cascade channel 6 needs that species."""
     folder = os.path.join(database, 'kinetics', 'libraries', gen.LIBRARY)
     for name, pattern in (
-            ('reactions.py', r'(?ms)^entry\(\n    index = 94,\n.*?^\)\n'),
+            # Cascades were added after this fixture was written. Their entries also
+            # need Ar(1s4), so remove the generated block and keep the original test
+            # focused on a library with the resonance entry/species absent.
+            ('reactions.py',
+             r'(?ms)^entry\(\n    index = 94,\n.*?^\)\n'
+             r'|^# BEGIN GENERATED ARGON CASCADE REACTIONS\n'
+             r'.*?^# END GENERATED ARGON CASCADE REACTIONS\n'),
             ('dictionary.txt', r'(?m)^Ar\(1s4\)\n(?:[^\n]+\n)+')):
         path = os.path.join(folder, name)
         text = open(path, encoding='utf-8').read()
         text, count = re.subn(pattern, '', text)
-        assert count == 1, (name, count)
+        assert count == (2 if name == 'reactions.py' else 1), (name, count)
         open(path, 'w', encoding='utf-8').write(text)
 
 
@@ -575,7 +581,7 @@ STATE_EDITS = [
      "species Ar: its reference record has electronic_state '1P1', but it stands for Ar(1S0), the term 1S0"),
     ('copied_metastable_electronic_state_3P1', (ARS_REF, ARS_REF.replace('3P2', '3P1')),
      ('electronicstate 3P2\n', 'electronicstate 3P1\n'),
-     "Unexpected duplicate reaction Ar + e- => Ars + e- in kinetics library PlasmaArgon"),
+     "species Ars: the record PlasmaArgon loads has electronic_state '3P1', but it stands for Ar(3P2), the term 3P2"),
     ('copied_ground_metal_Pt', (GROUND_REF, '  Ar: |\n    metal Pt\n    1 Ar'), ('Ar\n1 Ar', 'Ar\nmetal Pt\n1 Ar'),
      "species Ar: the record PlasmaArgon loads has metal 'Pt', but it stands for a free gas-phase atom"),
     ('copied_ground_vibrational_level_1', (GROUND_REF, '  Ar: |\n    vibrationallevel 1\n    1 Ar'),
@@ -602,7 +608,8 @@ NEAR_EDITS = [
     ('exact_plus_reversed_reversible_copy', [('reverse_copy', 87)], REVERSED_87.format(97)),
     ('only_87_reversible', [('reversible', 87)],
      "entry 87 ('Ar + e- <=> Ars + e-') " + NEAR.format('as a reversible reaction')),
-    ('exact_plus_same_copy', [('same', 87)], "holds 'Ar + e- => Ars + e-' as entries [87, 97]"),
+    ('exact_plus_same_copy', [('same', 87)],
+     "does not identify exactly one owner (matching entries [87, 97])"),
 ]
 
 
@@ -612,12 +619,16 @@ def entry_edit(edits):
     def apply(text):
         for how, index in edits:
             block = re.search(r'entry\(\n    index = %d,\n.*?\n\)\n' % index, text, re.S).group()
+            original = block
             changed = block if how == 'same' else \
                 block.replace('reversible = False,', 'reversible = True,', 1).replace(' => ', ' <=> ', 1)
             if how != 'reversible':
                 # Admit both entries past native duplicate policy to exercise map matching.
-                text = text.replace(block, block.replace('    reversible =', '    duplicate = True,\n    reversible =', 1), 1)
-                changed = changed.replace('    reversible =', '    duplicate = True,\n    reversible =', 1)
+                if '    duplicate = True,' not in block:
+                    block = block.replace('    reversible =', '    duplicate = True,\n    reversible =', 1)
+                if '    duplicate = True,' not in changed:
+                    changed = changed.replace('    reversible =', '    duplicate = True,\n    reversible =', 1)
+                text = text.replace(original, block, 1)
             if how == 'reverse_copy':
                 changed = changed.replace('Ar + e- <=> Ars + e-', 'Ars + e- <=> Ar + e-')
             if how == 'reversible':

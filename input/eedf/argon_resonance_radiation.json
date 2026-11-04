@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "citation": "Kramida et al., NIST ASD v5.12 (2024), doi:10.18434/T4W30F",
+  "query": {
+    "url": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Ar+I&limits_type=0&low_w=&upp_w=&unit=1&de=0&format=3&line_out=0&remove_js=on&no_spaces=on&en_unit=0&output=0&bibrefs=1&page_size=5000&show_obs_wl=1&show_calc_wl=1&order_out=0&max_low_enrg=&show_av=3&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&allowed_out=1&forbid_out=1&conf_out=on&term_out=on&enrg_out=on&J_out=on&g_out=on&ids_out=1",
+    "retrieved_utc": "2026-11-03T00:47:43.036220+00:00",
+    "content_type": "text/plain; charset=UTF-8",
+    "bytes": 83145,
+    "sha256": "015756d4605ff3bd24eed07c12826815d8b1ea3fcacdd1190eb6cfaa22ea36af"
+  },
+  "lines": {
+    "1P1": {
+      "upper_nist_id": "018001.000005",
+      "lower_nist_id": "018001.000001",
+      "paschen": "1s2",
+      "wavelength_m": 1.048219924e-07,
+      "A_s_1": 532000000.0,
+      "g_ratio": 3.0,
+      "accuracy": "AA",
+      "tp_ref": "T7574"
+    },
+    "3P1": {
+      "upper_nist_id": "018001.000003",
+      "lower_nist_id": "018001.000001",
+      "paschen": "1s4",
+      "wavelength_m": 1.0666598650000001e-07,
+      "A_s_1": 132000000.0,
+      "g_ratio": 3.0,
+      "accuracy": "A+",
+      "tp_ref": "T7574"
+    }
+  }
+}

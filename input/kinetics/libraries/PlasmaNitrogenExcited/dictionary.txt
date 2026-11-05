@@ -34,3 +34,9 @@ electronicstate 1Pi_g
 
 Ar
 1 Ar u0 p4 c0
+
+N2w
+multiplicity 1
+electronicstate 1Delta_u
+1 N u0 p1 c0 {2,T}
+2 N u0 p1 c0 {1,T}

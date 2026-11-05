@@ -1,7 +1,8 @@
 # PlasmaNitrogenExcited
 
-Eleven irreversible molecular loss/coupling entries for the existing `N2A`
-(A 3Sigma_u+), `N2ap` (a-prime 1Sigma_u-), and `N2a` (a 1Pi_g) labels.
+Thirteen irreversible molecular loss/coupling entries for the existing `N2A`
+(A 3Sigma_u+), `N2ap` (a-prime 1Sigma_u-), `N2a` (a 1Pi_g),
+and `N2w` (w 1Delta_u) labels.
 Use with `PlasmaNitrogen` and `PlasmaArgonExcited`; the latter owns
 C→B→A radiation. No existing species identity or rate is changed.
 No electron-impact owner is missing for B/C in the pinned nitrogen map:
@@ -31,6 +32,8 @@ prefactors use molar units and N_A=6.02214179e23 mol−1, matching RMG.
 | a → N2 | 18000 | Guerra 2019, N26 | `SINGLET_RADIATIVE_LUMP`; no numerical uncertainty in selected table |
 | a → a′ | 191 | Guerra 2019, N27 | Same convention; exchange, not terminal singlet loss |
 | A → N2 | 1/1.9 | [Lofthus–Krupenie 1977](https://doi.org/10.1063/1.555546), Table 82 | `A_V0_RADIATIVE_LUMP`; v=0 lifetime, no uncertainty in selected row |
+| w → a | 650 | Guerra 2019, Table 5, N28 | `SINGLET_RADIATIVE_LUMP`; adopted manifold rate, no numerical uncertainty supplied |
+| w + N2 → a + N2 | 1e-17 | Guerra 2019, Table 5, N4 | `W_N2_TO_A`; adopted model coefficient, unit a yield, no numerical uncertainty supplied |
 
 Each pooling branch has event rate r=k n_A², gross A removal 2r, and
 post-C/B-cascade net A removal r because one A returns. Do not add a total
@@ -47,6 +50,15 @@ gross a loss is unchanged; exchange alone must not be counted as terminal
 singlet loss. All vibrational ground products are lumped to `N2`; radiation
 is not a gas-heating closure.
 
+The w radiation and N2-collider coefficients are taken from Guerra's reviewed
+model, which attributes them to Fraser et al. (1988) and Sá–Loureiro (1997),
+respectively. Both transfer w to a; neither is a terminal singlet loss.
+They are adopted electronic-manifold rates, not newly verified state-specific
+measurements. The radiation closes w even when its N2 collider is scarce.
+`W_AR_COUPLING_SOURCE_GAP`: no evaluated w+Ar→a+Ar coefficient was verified
+in the reviewed sources. Omit that channel; do not copy the w+N2 coefficient,
+infer a zero upper bound, or substitute data for the distinct triplet W state.
+
 ## Neutral walls
 
 Copy this declaration into the plasma reactor, merging with the companion
@@ -57,13 +69,14 @@ wallNeutralDiffusion = {
     'N2A': {'product': 'N2', 'diffusivity': (4.957867365474875e20, '1/(m*s)')},
     'N2ap': {'product': 'N2', 'diffusivity': (4.957867365474875e20, '1/(m*s)')},
     'N2a': {'product': 'N2', 'diffusivity': (4.957867365474875e20, '1/(m*s)')},
+    'N2w': {'product': 'N2', 'diffusivity': (4.957867365474875e20, '1/(m*s)')},
 }
 ```
 
 [Piper 1982](https://doi.org/10.1063/1.444158), p.2375, gives
 D(A(v=0) in Ar)=153±10 cm2/s at 1 Torr, 298 K (adopting Levron–Phelps).
 This gives the declared constant Dn=4.957867365474875e20 m−1 s−1.
-`N2_COMMON_AR_BATH_DIFFUSION` transfers A transport to both singlets and
+`N2_COMMON_AR_BATH_DIFFUSION` transfers A transport to a-prime, a and w, and
 pure-Ar transport to x_N2≤0.2. The ±6.5% measurement error does not bound
 these transfers or temperature extrapolation. Do not apply the flow-reactor
 0.62 correction to the spatially uniform model. The existing operator returns
@@ -79,7 +92,7 @@ point (10 Torr, x_N2=0.2), removing the bound subtracts 0.19313 s−1 versus
 3.7377 s−1 wall loss (5.17% of wall); all other planning points have a smaller
 ratio. This is about twentyfold below wall, not a guarantee of unchanged n_A.
 
-## Explicit omissions and production gate
+## Explicit source gaps
 
 `A_AR_QUENCH_SOURCE_GAP`: omit A+Ar terminal quenching; no verified evaluated
 coefficient was selected. Ar is generally reported as an inefficient A
@@ -96,28 +109,48 @@ radiative rate: with the chosen a→X rate, its conditional bound corresponds
 to about 63 s−1, not the inverse of the older 23 ms lifetime quoted with an
 80 microsecond a lifetime.
 
-**Atomic-N omission is not yet bounded for production.** The selected nominal
-molecular network has no N source, but that does not prove that real N formation
-is negligible. No atomic N species or wall-recombination engine change belongs
-to this delivery. The required posterior gate uses computed steady n_A at
-x_N2=0.01, 0.05, 0.2 from the production-deck fixed-row runs:
-S_N=2 k_D n_A², k_D=2e-16 m3/s from the explicitly transferred
-[Jans 2021](https://doi.org/10.1088/1361-6595/abcc7c) high-pressure pulsed model;
-n_N=S_N/lambda_N; ratio=4.4e-17 n_N / (total A loss frequency).
-Use net post-cascade A losses as the conservative denominator and also report
-gross losses. Gamma_N=1e-4 must give ratio≤0.1 at every composition;
-also report gamma_N=1e-2. Lambda_N uses Guerra Eq. (33), Chapman–Enskog
-N-in-Ar diffusion and the R=5 cm, L=30 cm cylinder. A failing or unavailable
-gate must remain explicit; a short pure-Ar fixed-row replay cannot certify it.
+## Atomic nitrogen: required, supplied separately
+
+Atomic nitrogen cannot be omitted from the intended physical model. Its N(4S)
+species, atom-conserving wall recombination (N→1/2 N2), A+N quenching and
+dissociative-pooling sensitivity are supplied by a separate change.
+
+The earlier fixed-row diagnostic at x_N2=0.01, 25 Td, Tg=298.15 K, 5 Torr,
+R=5 cm and L=30 cm, with maintained n_e=1e17 m^-3, gave steady
+n_A=4.80105e19 m^-3. With k_D=2e-16 m3/s, S_N=2 k_D n_A²=9.22004e23
+m^-3 s^-1. For gamma_N=1e-4, lambda_N=0.728935 s^-1 and the net
+post-cascade A loss frequency=10906.3 s^-1, the posterior ratio
+4.4e-17 n_N/(A loss frequency)=5102.91, far above 0.05. At gamma_N=1e-2
+the ratio is 401.177. The linear posterior n_N exceeds the nitrogen inventory;
+it diagnoses failure of a small-perturbation omission, not a physical N density.
+The k_D value is a high-pressure model transfer from
+[Jans 2021](https://doi.org/10.1088/1361-6595/abcc7c), not an evaluated
+low-pressure dissociation rate. Lambda_N uses Guerra Eq. (33) with
+Chapman–Enskog N-in-Ar diffusion; it is not an implemented atomic-wall model.
+
+**Forcing caveat:** fixed n_e at 25 Td is not consistent with the proposed
+0.5 W discharge. This replay drives A production of order 1e24 m^-3 s^-1,
+whereas the earlier power-ceiling estimate was at most 2e20 m^-3 s^-1.
+The resulting n_A therefore overstates the intended deck by orders of
+magnitude. These are stress-test numbers, not a power-coupled discharge
+prediction; they do not establish an omission bound. The atomic-N requirement
+is retained rather than attempting to certify omission with this forcing.
 
 ## Worker verification
 
-`test/test_plasma_nitrogen_excited.py` checks all eleven entries, exact species
+`test/test_plasma_nitrogen_excited.py` checks all thirteen entries, exact species
 identities, rates/units, sources/conventions, balance, companion coexistence,
-same-state pooling stoichiometry, and the three nonzero wall residuals.
+same-state pooling stoichiometry, and the four nonzero wall residuals.
+A separate decay test checks the combined w radiation/collisional frequency
+and one-to-one transfer to a.
 Before the companion branch is merged, set `PLASMA_ARGON_EXCITED_ROOT` to that
 checkout. The real-job test reuses its pinned pure-Ar 60 Td EEDF fixture,
 admits all new channels, and runs to 1 ns at x_N2=0.01, 0.05, 0.2 with Chemkin
 and native profiles enabled. This is an admission/integration check, not a
-production EEDF or discharge-sustainment validation. The production steady
-job, loss tables and atomic-N gate are separate evidence requirements.
+production EEDF or discharge-sustainment validation. The steady molecular
+jobs and per-state loss tables are separate evidence requirements.
+The maintained-density forcing subclass stays outside this repository. Accepted
+integration data can be used while the engine's post-integration reverse-rate
+collision audit is fixed separately; they do not imply clean RMG.execute
+completion. The native power-balance binding ambiguity also remains an engine
+issue, separate from this molecular library.

@@ -21,7 +21,7 @@ from rmgpy.data.kinetics.database import KineticsDatabase
 ROOT = Path(__file__).resolve().parents[1]
 LIBRARY = 'PlasmaNitrogenExcited'
 LIBDIR = ROOT / 'input/kinetics/libraries' / LIBRARY
-STATES = ('N2A', 'N2ap', 'N2a')
+STATES = ('N2A', 'N2ap', 'N2a', 'N2w')
 DN = 4.957867365474875e20
 # Independently transcribed particle rates; reverse normalization is checked
 # separately against Piper's spectroscopic factor, not RMG's shifted thermo.
@@ -37,6 +37,8 @@ RATES = {
     'N2a => N2': (1.8e4, 'SINGLET_RADIATIVE_LUMP'),
     'N2a => N2ap': (191., 'SINGLET_RADIATIVE_LUMP'),
     'N2A => N2': (1 / 1.9, 'A_V0_RADIATIVE_LUMP'),
+    'N2w => N2a': (650., 'SINGLET_RADIATIVE_LUMP'),
+    'N2w + N2 => N2a + N2': (1e-17, 'W_N2_TO_A'),
 }
 
 
@@ -82,7 +84,7 @@ def test_library_rates_sources_conventions_balance_and_identity(library):
     argon = load_species_dictionary(str(ROOT / 'input/kinetics/libraries/PlasmaArgon/dictionary.txt'))
     original = dict(nitrogen, **argon)
     dictionary = load_species_dictionary(str(LIBDIR / 'dictionary.txt'))
-    assert set(dictionary) == {'Ar', 'N2', 'N2A', 'N2B', 'N2C', 'N2ap', 'N2a'}
+    assert set(dictionary) == {'Ar', 'N2', 'N2A', 'N2B', 'N2C', 'N2ap', 'N2a', 'N2w'}
     for label, sp in dictionary.items():
         assert sp.is_isomorphic(original[label]), label
     for label, (rate, convention) in RATES.items():
@@ -150,7 +152,7 @@ def test_pooling_is_event_rate_with_two_gross_and_one_cascade_net(library):
 
 
 @pytest.mark.parametrize('x_n2', [.01, .05, .2])
-def test_wall_declaration_returns_all_three_states_to_ground(x_n2, monkeypatch, tmp_path):
+def test_wall_declaration_returns_all_four_states_to_ground(x_n2, monkeypatch, tmp_path):
     from rmgpy.data.rmg import RMGDatabase
     from rmgpy.data.thermo import ThermoDatabase
     from rmgpy.solver.plasma import PlasmaReactor
@@ -278,7 +280,7 @@ def test_short_real_job_admits_every_new_channel(x_n2, monkeypatch, tmp_path, li
     reactor = job.reaction_systems[0]
     assert reactor.t >= 1e-9
     core = job.reaction_model.core
-    assert len(library.entries) == 11
+    assert len(library.entries) == 13
     for entry in library.entries.values():
         matches = [r for r in core.reactions if r.is_isomorphic(entry.item, either_direction=False)]
         assert len(matches) == 1, entry.label
@@ -296,7 +298,7 @@ def test_short_real_job_admits_every_new_channel(x_n2, monkeypatch, tmp_path, li
     volume = reactor.compute_volume(y)
     density = y[:len(core.species)] * constants.Na / volume
     indices = {}
-    for label in ('Ar', 'N2', 'N2A', 'N2ap', 'N2a', 'N2B', 'N2C'):
+    for label in ('Ar', 'N2', 'N2A', 'N2ap', 'N2a', 'N2w', 'N2B', 'N2C'):
         matches = [i for i, sp in enumerate(core.species) if sp.is_isomorphic(dictionary[label])]
         assert len(matches) == 1, label
         indices[label] = matches[0]
@@ -319,10 +321,10 @@ def test_short_real_job_admits_every_new_channel(x_n2, monkeypatch, tmp_path, li
         assert actual == pytest.approx(expected, rel=2e-12, abs=0), entry.label
         if convention == 'POOL_V0_TO_MANIFOLD':
             channel_class = 'pooling'
-        elif convention in ('SINGLET_V0_COUPLING', 'SINGLET_TOTAL_TO_AP', 'SINGLET_SPECTROSCOPIC_REVERSE'):
+        elif convention in ('SINGLET_V0_COUPLING', 'SINGLET_TOTAL_TO_AP', 'SINGLET_SPECTROSCOPIC_REVERSE', 'W_N2_TO_A'):
             channel_class = 'collisional_singlet_exchange'
         elif len(reaction.reactants) == 1:
-            channel_class = 'radiative_exchange' if entry.label == 'N2a => N2ap' else 'radiative_terminal'
+            channel_class = 'radiative_exchange' if entry.label in ('N2a => N2ap', 'N2w => N2a') else 'radiative_terminal'
         else:
             channel_class = 'collisional_quench'
         report['channels'].append({'label': entry.label, 'class': channel_class,
@@ -364,3 +366,27 @@ def test_short_real_job_admits_every_new_channel(x_n2, monkeypatch, tmp_path, li
     charges = np.array([sp.get_net_charge() for sp in core.species])
     assert np.dot(charges, final) == pytest.approx(np.dot(charges, initial), abs=1e-18)
     (tmp_path / 'loss-frequencies.json').write_text(json.dumps(report, indent=2) + '\n')
+
+
+def test_w_loss_channels_integrate_to_a_with_source_decay_frequency(library):
+    """Both w loss paths transfer one singlet to a at the sourced total rate."""
+    from rmgpy.solver.simple import SimpleReactor
+
+    reactions = [r for r in library.get_library_reactions()
+                 if r.entry.label in ('N2w => N2a', 'N2w + N2 => N2a + N2')]
+    assert len(reactions) == 2
+    species = list(dict.fromkeys(sp for r in reactions for sp in r.reactants + r.products))
+    labels = {sp.label: sp for sp in species}
+    initial = {labels['N2w']: 1e-6, labels['N2a']: 0., labels['N2']: 1 - 1e-6}
+    reactor = SimpleReactor((300, 'K'), (666.61184, 'Pa'), initial)
+    reactor.initialize_model(species, reactions, [], [], atol=1e-20, rtol=1e-10)
+    wi, ai, ground = [species.index(labels[s]) for s in ('N2w', 'N2a', 'N2')]
+    initial_w = reactor.y[wi]
+    density_n2 = reactor.y[ground] / reactor.V * constants.Na
+    frequency = 650. + 1e-17 * density_n2
+    reactor.advance(3. / frequency)
+    expected_w = initial_w * math.exp(-frequency * reactor.t)
+    assert reactor.y[wi] == pytest.approx(expected_w, rel=1e-7, abs=0)
+    assert reactor.y[ai] == pytest.approx(initial_w - expected_w, rel=1e-8, abs=0)
+    assert not any('N2w' in e.label and 'Ar' in e.label for e in library.entries.values())
+    assert 'W_AR_COUPLING_SOURCE_GAP' in (LIBDIR / 'README.md').read_text()

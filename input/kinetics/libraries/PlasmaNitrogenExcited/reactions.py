@@ -2,14 +2,14 @@
 # encoding: utf-8
 
 name = "PlasmaNitrogenExcited"
-shortDesc = "Reduced room-temperature N2(A), N2(a-prime), N2(a) molecular losses"
+shortDesc = "Reduced room-temperature N2(A), N2(a-prime), N2(a), N2(w) molecular losses"
 longDesc = """
 Irreversible heavy-particle and radiative channels at 298-300 K for Ar-rich
 N2 mixtures. Room-temperature measurements are transferred to the existing
 electronic manifolds with explicit conventions. The A+N2 coefficient is an
 upper bound, not a central value. No measured 300-600 K temperature law is
-claimed. C->B->A radiation belongs to PlasmaArgonExcited. Atomic-N omission
-requires a separate steady-state bound; see README.md for gaps and the
+claimed. C->B->A radiation belongs to PlasmaArgonExcited. Atomic nitrogen
+is required and supplied separately; see README.md for gaps and the
 neutral-wall declaration. No electron channels or ThirdBody entries.
 """
 
@@ -225,5 +225,49 @@ A_V0_RADIATIVE_LUMP: transfer the v=0 lifetime to the electronic manifold,
 rate 1/1.9 s^-1. No numerical uncertainty is supplied in that row;
 this is not a vibrational average. Ground vibrational products are
 lumped to N2. Photon energy is not gas heating.
+""",
+)
+
+
+entry(
+    index = 12,
+    label = "N2w => N2a",
+    reversible = False,
+    kinetics = Arrhenius(A=(650.0, "s^-1"), n=0, Ea=(0.0, "J/mol"),
+                         Tmin=(298, "K"), Tmax=(300, "K")),
+    shortDesc = "SINGLET_RADIATIVE_LUMP",
+    longDesc = """
+Guerra et al., Plasma Sources Sci. Technol. 28, 073001 (2019),
+Table 5, reaction N28, doi:10.1088/1361-6595/ab252c, 650 s^-1.
+The selected review attributes the transition to Fraser, Rawlins and Miller
+(1988), J. Chem. Phys. 88, 538-544. Use the review's electronic-manifold
+coefficient; no vibrationally resolved lifetime measurement is claimed here.
+SINGLET_RADIATIVE_LUMP: w(1Delta_u)->a(1Pi_g) radiative transfer,
+not terminal singlet loss; no numerical uncertainty is supplied in the
+selected table. Photon energy is not gas heating. Preserve the distinct
+existing N2w and N2a species, with one a produced per w removed.
+""",
+)
+
+entry(
+    index = 13,
+    label = "N2w + N2 => N2a + N2",
+    reversible = False,
+    kinetics = Arrhenius(A=(6022141.79, "m^3/(mol*s)"), n=0, Ea=(0.0, "J/mol"),
+                         Tmin=(298, "K"), Tmax=(300, "K")),
+    shortDesc = "W_N2_TO_A",
+    longDesc = """
+Guerra et al., Plasma Sources Sci. Technol. 28, 073001 (2019),
+Table 5, reaction N4, doi:10.1088/1361-6595/ab252c, 1e-17 m^3/(particle*s).
+The selected review attributes this channel to Sa and Loureiro (1997),
+J. Phys. D: Appl. Phys. 30, 2320-2330. This is the review's adopted
+model coefficient, not a newly established collider-resolved measurement.
+W_N2_TO_A: transfer the tabulated electronic-state coefficient to the
+existing w(1Delta_u) and a(1Pi_g) manifolds with unit a yield; this is
+singlet exchange, not terminal singlet loss. Ground vibrational collider
+states are lumped to N2. No numerical uncertainty is supplied in the
+selected table, and no measured 300-600 K temperature law is claimed.
+Do not transfer this coefficient to Ar without a separate evaluated source.
+A_molar = k_particle * N_A; N_A=6.02214179e23 mol^-1.
 """,
 )

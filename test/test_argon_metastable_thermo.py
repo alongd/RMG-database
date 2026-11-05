@@ -942,6 +942,14 @@ def test_the_only_kinetics_files_that_MENTION_the_metastable_are_the_containment
                                    '1 Ar u2 p3 c0'),
                                   ('kinetics/libraries/PlasmaArgon/dictionary.txt',
                                    '1 Ar u2 p3 c0'),
+                                  # PlasmaArgonExcited's sourced heavy-particle network
+                                  # declares all three triplet 4s states (3P2, 3P1, 3P0).
+                                  ('kinetics/libraries/PlasmaArgonExcited/dictionary.txt',
+                                   '1 Ar u2 p3 c0'),
+                                  ('kinetics/libraries/PlasmaArgonExcited/dictionary.txt',
+                                   '1 Ar u2 p3 c0'),
+                                  ('kinetics/libraries/PlasmaArgonExcited/dictionary.txt',
+                                   '1 Ar u2 p3 c0'),
                                   ('kinetics/libraries/PlasmaArgonDimer/dictionary.txt',
                                    '1 Ar u2 p3 c0'),
                                   ('kinetics/libraries/PlasmaOxygenHeavy/dictionary.txt',

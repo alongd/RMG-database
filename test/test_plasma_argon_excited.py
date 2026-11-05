@@ -252,9 +252,7 @@ def test_short_real_job_admits_every_heavy_channel(tmp_path, monkeypatch, librar
         "simulator(atol=1e-20, rtol=1e-8)",
         "model(toleranceMoveToCore=0.1, toleranceInterruptSimulation=1.0)",
         "options(generateOutputHTML=False, generatePlots=False, saveEdgeSpecies=False, "
-        # Resolved N2(A)'s identifier is 19 characters, beyond Chemkin's 16.
-        # Seed export uses the same identifiers and must also be disabled.
-        "saveSimulationProfiles=True, generateChemkin=False, generateSeedEachIteration=False, "
+        "saveSimulationProfiles=True, generateChemkin=True, generateSeedEachIteration=True, "
         "generateCanteraFromChemkin=False, "
         "generateRMSYAML=False, generateCanteraYAML1=False, generateCanteraYAML2=False)",
     ])
@@ -297,18 +295,131 @@ def test_short_real_job_admits_every_heavy_channel(tmp_path, monkeypatch, librar
     core = job.reaction_model.core
     # Non-vacuous: every one of 27 expected directed channels must reach the core.
     assert len(library.entries) == 27
+    heavy_reactions = {}
     for entry in library.entries.values():
         matches = [reaction for reaction in core.reactions
                    if reaction.is_isomorphic(entry.item, either_direction=False)]
         assert len(matches) == 1, entry.label
         reaction, = matches
+        heavy_reactions[entry.index] = reaction
         assert not reaction.reversible
         assert reaction.is_balanced()
         assert sum(sp.get_net_charge() for sp in reaction.reactants) == sum(
             sp.get_net_charge() for sp in reaction.products)
         assert reaction.kinetics.get_rate_coefficient(298) == pytest.approx(
             entry.data.get_rate_coefficient(298), rel=1e-14, abs=0)
-    assert not job.chemkin_writer_config.enabled
-    assert not (output / 'chemkin/chem.inp').exists()
+    assert job.chemkin_writer_config.enabled
+    assert (output / 'chemkin/chem.inp').is_file()
     profiles = list(output.glob('solver/simulation*'))
     assert profiles
+
+    _check_realized_losses(job, dictionary, heavy_reactions, x_n2, output)
+
+
+def _check_realized_losses(job, dictionary, heavy_reactions, x_n2, output):
+    """Measure gross state-removal frequencies at the final accepted solver state."""
+    import json
+    import numpy as np
+
+    core = job.reaction_model.core
+    reactor = job.reaction_systems[0]
+    y = reactor.y.copy()
+    volume = reactor.compute_volume(y)
+    # Solver rate arrays can hold a Newton trial; refresh them at the accepted y.
+    reactor.residual(reactor.t, y, np.zeros_like(y))
+    indices = {}
+    for label in ('Ar', 'N2') + STATES:
+        matches = [i for i, sp in enumerate(core.species) if sp.is_isomorphic(dictionary[label])]
+        assert len(matches) == 1, label
+        indices[label], = matches
+    densities = {label: float(y[i] * constants.Na / volume) for label, i in indices.items()}
+    assert all(value > 0 for value in densities.values())
+
+    # Conservation of actual integrated inventories, in addition to each reaction.
+    amounts = y[:len(core.species)]
+    initial = reactor.y0[:len(core.species)]
+    for element in ('Ar', 'N'):
+        counts = np.array([sum(atom.element.symbol == element for atom in sp.molecule[0].atoms)
+                           for sp in core.species])
+        assert counts @ initial > 0
+        assert counts @ amounts == pytest.approx(counts @ initial, rel=1e-8, abs=0)
+    charges = np.array([sp.get_net_charge() for sp in core.species])
+    charge_inventory = np.abs(charges) @ initial
+    assert charge_inventory > 0
+    assert charges @ amounts == pytest.approx(charges @ initial, abs=1e-8 * charge_inventory)
+
+    classes = {'N2 transfer': range(1, 9), 'Ar mixing/quench': range(9, 16),
+               'pooling': range(16, 26)}
+    measured = {state: {} for state in STATES}
+    for name, entries in classes.items():
+        for state in STATES:
+            sp = core.species[indices[state]]
+            removal = 0.
+            for entry in entries:
+                reaction = heavy_reactions[entry]
+                net_loss = max(0, reaction.reactants.count(sp) - reaction.products.count(sp))
+                flux = reactor.core_reaction_rates[core.reactions.index(reaction)] * volume
+                assert np.isfinite(flux) and flux > 0
+                removal += net_loss * flux
+            measured[state][name] = float(removal / y[indices[state]])
+
+    wall = reactor.compute_neutral_wall_frequencies(y, volume)
+    radiation = reactor.radiation_manifest()['accepted']
+    lines = {line['state']: line for line in radiation['lines']}
+    assert set(lines) == {'3P1', '1P1'}
+    neutral_density = sum(amounts[i] for i, sp in enumerate(core.species)
+                          if sp.get_net_charge() == 0) * constants.Na / volume
+    expected_wall = 1.7e20 / neutral_density * ((2.405 / .05)**2 + (np.pi / .30)**2)
+    # Independent source coefficients; same-state pooling removes TWO atoms/event.
+    pooling = 1e-15 * np.array([[1.2, 2.1, 4.2, 4.2], [2.1, 2.1, 2.1, 2.1],
+                               [4.2, 2.1, 1.2, 2.1], [4.2, 2.1, 2.1, 2.1]])
+    pooling += np.diag(np.diag(pooling))
+    actual_pooling = pooling @ np.array([densities[state] for state in STATES])
+    n2_rates = (3.6e-17, .8e-17, 1.6e-17, 5.4e-17)
+    ar_binary = (1.75e-20, 1.5e-20, 5.3e-21, 4.76e-20)
+    ar_ternary = (1.3e-44, 1.5e-45, 0., 0.)
+    # Literal plan-table references (rounded there), distinct from the runtime
+    # density evaluation above. Ar sums are A4+A5+A6, A3+A7, A2, A1.
+    plan_n2 = ((58327.85136, 12961.74475, 25923.48949, 87491.77704) if x_n2 == .01
+               else (1166557.0272, 259234.8950, 518469.7899, 1749835.5408))
+    plan_ar = ((401.00398 + 2406.02387 + 334.473, 2406.02387 + 38.5930, 850.12843, 7635.11575)
+               if x_n2 == .01 else
+               (324.04362 + 1944.26171 + 218.409, 1944.26171 + 25.2010, 686.97247, 6169.79050))
+    plan_pooling = (129., 105., 108., 126.)
+    comparison = {}
+    print(f'\nAr(4s) gross loss frequencies at x_N2={x_n2}, t={reactor.t:.9g} s; '
+          'fixed pure-Ar 60 Td replay; all frequencies in s^-1')
+    print('state | class | realized | plan reference')
+    for i, state in enumerate(STATES):
+        values = measured[state]
+        values['wall'] = float(wall[indices[state]])
+        term = core.species[indices[state]].molecule[0].electronic_state
+        values['trapped radiation'] = float(lines[term]['rate_s_1']) if term in lines else 0.
+        if term in lines:
+            assert 0 < lines[term]['g'] < 1
+            assert lines[term]['loss_mol_s'] / y[indices[state]] == pytest.approx(
+                values['trapped radiation'], rel=1e-10)
+        expected = {'N2 transfer': n2_rates[i] * densities['N2'],
+                    'Ar mixing/quench': ar_binary[i] * densities['Ar'] + ar_ternary[i] * densities['Ar']**2,
+                    'pooling': actual_pooling[i], 'wall': expected_wall}
+        plan = {'N2 transfer': plan_n2[i], 'Ar mixing/quench': plan_ar[i],
+                'pooling': plan_pooling[i], 'wall': 2.5461464, 'trapped radiation': None}
+        for name, expected_value in expected.items():
+            assert values[name] == pytest.approx(expected_value, rel=1e-10), (state, name)
+        # The tiny excitation fractions and 1 ns interval leave the bath near the plan.
+        for name in ('N2 transfer', 'Ar mixing/quench'):
+            assert values[name] == pytest.approx(plan[name], rel=1e-5)
+        comparison[state] = {'density_m_3': densities[state], 'realized_s_1': values,
+                             'plan_reference_s_1': plan}
+        for name, value in values.items():
+            reference = 'separate radiation work' if plan[name] is None else f'{plan[name]:.9g}'
+            print(f'{state} | {name} | {value:.9g} | {reference}')
+    print('Plan pooling assumes 1e16 m^-3 per state; realized pooling uses integrated populations. '
+          f'Plan wall assumes Lambda=20.3 mm; this cylinder uses '
+          f'Lambda={1e3 / np.sqrt((2.405 / .05)**2 + (np.pi / .30)**2):.6g} mm. '
+          'Radiation had no numerical plan reference. Mixing losses exclude incoming feeds.')
+    evidence = {'x_N2': x_n2, 'time_s': float(reactor.t), 'volume_m3': float(volume),
+                'qualification': 'fixed pure-Ar 60 Td distribution replay; not mixture-EEDF qualification',
+                'bath_density_m_3': {label: densities[label] for label in ('Ar', 'N2')},
+                'states': comparison, 'radiation': radiation}
+    (output / 'argon-4s-losses.json').write_text(json.dumps(evidence, indent=2) + '\n')

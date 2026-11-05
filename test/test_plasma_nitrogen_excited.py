@@ -5,6 +5,7 @@ explicitly enlarges the model after a nanosecond integration. This checks
 admission through enlargement, not steady-state N omission.
 """
 import ast
+from collections import Counter
 import hashlib
 import json
 import math
@@ -250,21 +251,38 @@ def test_real_job_admits_each_channel_once_after_enlargement(x_n2, monkeypatch, 
 
     def initialize_fixed_row(**kwargs):
         result = initialize(**kwargs)
+        # Derive the expected owners from the loaded libraries, before replacing
+        # their markers. Include side and branch product so missing inverses or
+        # duplicate branches cannot hide behind a process-only set.
+        def owner_key(kinetics):
+            return kinetics.process, kinetics.side, kinetics.branch_product
+
+        expected = Counter(
+            owner_key(entry.data)
+            for loaded in job.database.kinetics.libraries.values()
+            for entry in loaded.entries.values()
+            if isinstance(entry.data, EEDFChannel))
+        assert expected
         seen = set()
-        count = 0
+        admitted = Counter()
+        rates_by_side = {
+            'ine': row['rates_m3_per_particle_s'],
+            'sup': row['superelastic_rates_m3_per_particle_s'],
+        }
         for reaction in job.reaction_model.core.reactions + job.reaction_model.edge.reactions:
             kinetics = reaction.kinetics
             if not isinstance(kinetics, EEDFChannel):
                 continue
-            assert kinetics.side == 'ine'
+            rate = rates_by_side[kinetics.side][kinetics.process]
+            admitted[owner_key(kinetics)] += 1
             weight = kinetics.branch_yield if kinetics.branch_product else 1.
             reaction.kinetics = TwoTemperaturePlasma(
-                A=(row['rates_m3_per_particle_s'][kinetics.process] * weight, 'm^3/(molecule*s)'),
+                A=(rate * weight, 'm^3/(molecule*s)'),
                 n=0., Ea_g=(0., 'J/mol'), Ea_e=(0., 'J/mol'))
-            seen.add(kinetics.process)
-            count += 1
-        assert seen == set(row['rates_m3_per_particle_s'])
-        assert count == 149
+            seen.add((kinetics.process, kinetics.side))
+        assert seen == {(process, side) for side, rates in rates_by_side.items() for process in rates}
+        assert admitted == expected
+        assert sum(admitted.values()) == sum(expected.values())
         return result
 
     monkeypatch.setattr(job, 'initialize', initialize_fixed_row)

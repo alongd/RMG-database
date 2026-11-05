@@ -95,14 +95,11 @@ These are required sourced owners, not a missing-cross-section assumption.
 Their six ordinary owners are entries 12–17. The frozen map in
 `input/eedf/atomic_nitrogen_channel_map.json` pins both local source downloads
 and their six-block solver realization, with an explicit ordinary inverse
-owner for each excitation. Reduced-table qualification remains pending. The N2 dissociation audit found
-that upstream LoKI evaluates the extra dissociation cross sections as
-chemical-rate-only data while its complete N2 collision set already
-contains the 13 eV sing-sup loss. The rate curves are neither identical nor
-a constant branch split. A source-linked rate-only binding is required to
-retain this separation; adding the extras as full energy sinks would double
-count part of the loss. That capability is not implemented here. Do not use
-this incomplete library as a validated physical production mechanism yet.
+owner for each excitation. Atomic midpoint qualification has passed on the
+completed reduced tables. Full production-table qualification remains required.
+Entries 18–19 supply rate-only dissociation, described below; their event curves
+are not identical to sing-sup and do not define a constant branch split.
+Physical discharge validation remains pending.
 
 ## Verification
 
@@ -129,7 +126,7 @@ Atomic ionization remains excluded from this chemistry. Its electron cross secti
 
 The summed threshold-only power estimate is 2.36e-7% .. 0.0586% of field power. This is an order-of-magnitude diagnostic using source thresholds 14.54, 12.149 and 10.972 eV and the existing screened EEDFs; it omits ionization feedback and N+ chemistry. It is not a self-consistent discharge result, a rigorous omission bound, or an assumed electron density. The local source files identify the same Wang et al. DOI above.
 
-N2 dissociation retains the separately approved rate-only role: chemical rates from the two extra cross sections, no new Boltzmann collision or electron energy sink, with explicit complete-N2-loss coverage. That role and its acceptance probe remain under implementation; the older blocker discussion above is historical and does not retract its approval.
+N2 dissociation retains the separately approved rate-only role: chemical rates from the two extra cross sections, no new Boltzmann collision or electron energy sink, with explicit complete-N2-loss coverage. The table records that role structurally; compiled checks and the independent acceptance probe must pass before production use.
 
 
 The spec-only command `python -m rmgpy.tools.eedf.atomic --base-spec BASE
@@ -140,3 +137,25 @@ verifies the frozen source hashes and loaded library identities before
 writing `atomic-spec.json`. The conversion report records source/library
 pins and the production-grid node count. Numerical cross-section downloads
 remain local; the repository contains their pins and process identities.
+
+## Rate-only N2 dissociation
+
+Entries 18 and 19 integrate the separate SS (2 N) and SD (N + N(2D)) curves
+from the pinned IST-Lisbon `N2_LXCat_extra.txt` over the same solved EEDF.
+The source sha256 is `f2d2433c76c6e6667dc843069a53c0d7a7f78a5e8e183300ae967b1f7c63230a`.
+Cosby 1993 (doi:10.1063/1.464385) and Zipf–McLaughlin 1978
+(doi:10.1016/0032-0633(78)90066-1) are the source chain reported by Guerra 2019
+(doi:10.1088/1361-6595/ab252c). The local header says “Check notes”; the branch
+numbers were not independently reconstructed from those publications.
+
+This is a declared complete-N2-energy-inventory approximation. Existing losses,
+including sing-sup, cover the energy; the event curves and thresholds differ
+from sing-sup, so they are not equivalent. The SS/SD thresholds are 10/12 eV
+versus sing-sup at 13 eV. At 14/18/20 eV the SS fractions are respectively
+0.578815, 0.222931 and 0.00711826. A constant branching yield is inappropriate.
+No extra Boltzmann collision or electron energy term is added. Source fingerprints
+are separate from the energy-operator fingerprint, with complete coverage and
+unique chemical owners enforced in the table metadata. Runtime refuses a
+rate-only owner declared as an electron-energy entry. Quantitative branch
+uncertainty is not adopted. Physical N production and pooling sensitivity still
+require the power-consistent discharge calculation.

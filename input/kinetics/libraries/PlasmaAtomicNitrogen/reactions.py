@@ -203,3 +203,57 @@ entry(
     shortDesc = "Resolved atomic nitrogen electron excitation or superelastic owner",
     longDesc = 'Wang, Zatsarinny and Bartschat (2014), doi:10.1103/PhysRevA.89.062714. IST-Lisbon atomic-N data with logarithmic extension to 1 keV; source threshold 1.177 eV, upper/lower degeneracy 0.6. Convention: resolved term populations with source thresholds retained; the reverse rate follows source detailed balance. This is an ordinary Boltzmann collision owner with full electron energy accounting from the table. Do not also declare a separate electron energy term or a thermal reverse. Uncertainty: no numerical cross-section uncertainty adopted; no new validation of the extrapolation. Input cross sections and the collision map must be fingerprinted by the table-generation specification.',
 )
+
+entry(
+    index = 18,
+    label = 'e- + N2 => e- + N + N',
+    reversible = False,
+    kinetics = EEDFChannel(
+        process='e + N2(X,v=0) -> e + N(4S) + N(4S), Excitation',
+        collision_set='IST-Lisbon-N2-dissociation-extra',
+        side='ine',
+        role='rate_only',
+    ),
+    shortDesc = 'Chemical dissociation from the solved EEDF; no additional energy loss',
+    longDesc = """
+Cosby (1993), doi:10.1063/1.464385; Zipf and McLaughlin (1978),
+doi:10.1016/0032-0633(78)90066-1, through the IST-Lisbon N2_LXCat_extra
+branches described by Guerra et al. (2019), doi:10.1088/1361-6595/ab252c.
+Convention: integrate the separate SS/SD event curves over the solved EEDF.
+The source header says Check notes; the numerical branches were not independently
+reconstructed from the papers. Preserve the energy-dependent split, not a
+constant yield. Uncertainty: no quantitative branch uncertainty adopted.
+Energy-coverage approximation: the complete existing N2 collision inventory,
+including sing-sup, carries the loss. The curves and thresholds differ from
+sing-sup and are not equivalent. No Boltzmann collision or electron energy
+entry may be added for this owner. The table pins the extra source separately
+and records both chemical owners in its energy schema.
+""",
+)
+
+entry(
+    index = 19,
+    label = 'e- + N2 => e- + N + N(2D)',
+    reversible = False,
+    kinetics = EEDFChannel(
+        process='e + N2(X,v=0) -> e + N(4S) + N(2D), Excitation',
+        collision_set='IST-Lisbon-N2-dissociation-extra',
+        side='ine',
+        role='rate_only',
+    ),
+    shortDesc = 'Chemical dissociation from the solved EEDF; no additional energy loss',
+    longDesc = """
+Cosby (1993), doi:10.1063/1.464385; Zipf and McLaughlin (1978),
+doi:10.1016/0032-0633(78)90066-1, through the IST-Lisbon N2_LXCat_extra
+branches described by Guerra et al. (2019), doi:10.1088/1361-6595/ab252c.
+Convention: integrate the separate SS/SD event curves over the solved EEDF.
+The source header says Check notes; the numerical branches were not independently
+reconstructed from the papers. Preserve the energy-dependent split, not a
+constant yield. Uncertainty: no quantitative branch uncertainty adopted.
+Energy-coverage approximation: the complete existing N2 collision inventory,
+including sing-sup, carries the loss. The curves and thresholds differ from
+sing-sup and are not equivalent. No Boltzmann collision or electron energy
+entry may be added for this owner. The table pins the extra source separately
+and records both chemical owners in its energy schema.
+""",
+)

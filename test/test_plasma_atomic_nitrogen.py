@@ -138,7 +138,8 @@ def test_readme_wall_declaration_and_resolved_atom_conservation(monkeypatch):
 
 def test_six_ordinary_atomic_electron_owners(library):
     from rmgpy.kinetics import EEDFChannel
-    owners = [entry for entry in library.entries.values() if isinstance(entry.data, EEDFChannel)]
+    owners = [entry for entry in library.entries.values()
+              if isinstance(entry.data, EEDFChannel) and entry.data.role == 'collision']
     assert len(owners) == 6
     pairs = [
         ('N','N(2D)','e + N(4S) <-> e + N(2D), Excitation',2.39071),
@@ -182,3 +183,19 @@ def test_frozen_collision_map_covers_each_ordinary_owner_once(library):
             assert entry.data.collision_set == document['set']
             identities.append(owner['index'])
     assert sorted(identities) == list(range(12, 18))
+
+
+def test_two_rate_only_dissociation_owners(library):
+    from rmgpy.kinetics import EEDFChannel
+    owners = [e for e in library.entries.values()
+              if isinstance(e.data, EEDFChannel) and getattr(e.data, 'role', None) == 'rate_only']
+    assert {e.index for e in owners} == {18, 19}
+    assert {e.label for e in owners} == {'e- + N2 => e- + N + N', 'e- + N2 => e- + N + N(2D)'}
+    for entry in owners:
+        assert entry.item.is_balanced() and not entry.item.reversible
+        assert entry.data.side == 'ine'
+        assert entry.data.branch_product is None
+        assert 'doi:10.1063/1.464385' in entry.long_desc
+        assert 'doi:10.1016/0032-0633(78)90066-1' in entry.long_desc
+        assert 'approximation' in entry.long_desc.lower()
+        assert 'uncertainty' in entry.long_desc.lower()

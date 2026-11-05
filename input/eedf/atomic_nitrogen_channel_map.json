@@ -1,0 +1,103 @@
+{
+  "schema": "eedf-channel-map/2",
+  "set": "IST-Lisbon-N-Wang2014",
+  "source_doi": "10.1103/PhysRevA.89.062714",
+  "convention": "IST-Lisbon logarithmic extension to 1 keV. Source thresholds retained. Atomic ionization excluded by chemistry scope, not absent data.",
+  "sources": {
+    "N_LXCat.txt": "23817a8699bf457819f700a4fabc5e34f7276804cc3064c2bb2f828f2b46f026",
+    "N_LXCat_extra.txt": "a63607b362c65fac469b3dc0e14383deb981e4ec744c3448b8fb845f27e0910e"
+  },
+  "loki_files": {
+    "N-atomic.txt": "ae1ae013192acf8cd97d1da9f018b85146e3ad454c463b1c4f914b7cad5ee93b"
+  },
+  "class_a_gaps": {},
+  "class_counts": {
+    "A": 3,
+    "B": 3,
+    "C": 0,
+    "D": 0
+  },
+  "channels": [
+    {
+      "id": 1,
+      "loki_process": "e + N(4S) -> e + N(4S), Elastic",
+      "lxcat_file": "N-atomic.txt",
+      "threshold_eV": 0.0,
+      "class": "B",
+      "rmg": null
+    },
+    {
+      "id": 2,
+      "loki_process": "e + N(4S) <-> e + N(2D), Excitation",
+      "lxcat_file": "N-atomic.txt",
+      "threshold_eV": 2.39071,
+      "class": "A",
+      "rmg": {
+        "library": "PlasmaAtomicNitrogen",
+        "index": 12,
+        "status": "present",
+        "reaction": "e- + N => e- + N(2D)"
+      },
+      "inverse": {
+        "library": "PlasmaAtomicNitrogen",
+        "index": 13,
+        "status": "paired",
+        "reaction": "e- + N(2D) => e- + N"
+      }
+    },
+    {
+      "id": 3,
+      "loki_process": "e + N(4S) <-> e + N(2P), Excitation",
+      "lxcat_file": "N-atomic.txt",
+      "threshold_eV": 3.5676,
+      "class": "A",
+      "rmg": {
+        "library": "PlasmaAtomicNitrogen",
+        "index": 14,
+        "status": "present",
+        "reaction": "e- + N => e- + N(2P)"
+      },
+      "inverse": {
+        "library": "PlasmaAtomicNitrogen",
+        "index": 15,
+        "status": "paired",
+        "reaction": "e- + N(2P) => e- + N"
+      }
+    },
+    {
+      "id": 4,
+      "loki_process": "e + N(2D) -> e + N(2D), Elastic",
+      "lxcat_file": "N-atomic.txt",
+      "threshold_eV": 0.0,
+      "class": "B",
+      "rmg": null
+    },
+    {
+      "id": 5,
+      "loki_process": "e + N(2P) -> e + N(2P), Elastic",
+      "lxcat_file": "N-atomic.txt",
+      "threshold_eV": 0.0,
+      "class": "B",
+      "rmg": null
+    },
+    {
+      "id": 6,
+      "loki_process": "e + N(2D) <-> e + N(2P), Excitation",
+      "lxcat_file": "N-atomic.txt",
+      "threshold_eV": 1.177,
+      "class": "A",
+      "rmg": {
+        "library": "PlasmaAtomicNitrogen",
+        "index": 16,
+        "status": "present",
+        "reaction": "e- + N(2D) => e- + N(2P)"
+      },
+      "inverse": {
+        "library": "PlasmaAtomicNitrogen",
+        "index": 17,
+        "status": "paired",
+        "reaction": "e- + N(2P) => e- + N(2D)"
+      }
+    }
+  ]
+}

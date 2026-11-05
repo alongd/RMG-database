@@ -500,7 +500,7 @@ def library_text(name, fn):
 
 STALE_ARS = 'Ars\nmultiplicity 1\n1 Ar u0 p4 c0\n'
 # The dictionary's text with a missing 4s level added under a '//' comment, which RMG's reader drops (db-r52)
-COMMENTED_RESONANCE = {m: f'\n\n// resonance species\nAr(1s2)\nmultiplicity {m}\n1 Ar u{u} p{p} c0\n'
+COMMENTED_RESONANCE = {m: f'\n\n// resonance species\nAr(1s2)\nmultiplicity {m}\nelectronicstate 1P1\n1 Ar u{u} p{p} c0\n'
                        for m, u, p in ((1, 0, 4), (3, 2, 3))}
 # The library's files edited as text, each refused by RMG's own loader (db-r51): the case name, the file, the
 # edit, RMG's refusal, and the generator's own reader's refusal of the same file
@@ -541,8 +541,8 @@ BAD_INDICES = [('none', 'None', 'index None is'), ('nonnumeric', '"eighty-seven"
 # A dictionary record given a state field RMG keeps, or an electron's radical dropped (db-r54): the case name,
 # the edit of the dictionary's text, and what the refusal names (the species and the field that differs)
 IDENTITY_EDITS = [
-    ('dictionary_ground_electronic_state_1P1', ('Ar\n1 Ar', 'Ar\nelectronicstate 1P1\n1 Ar'),
-     "species Ar: the record RMG loads is not the overlay's reference (electronic_state '1P1', the reference ''"),
+    ('dictionary_ground_electronic_state_1D2', ('Ar\n1 Ar', 'Ar\nelectronicstate 1D2\n1 Ar'),
+     "species Ar: the record RMG loads is not the overlay's reference (electronic_state '1D2', the reference ''"),
     ('dictionary_ground_electronic_state_3P2', ('Ar\n1 Ar', 'Ar\nelectronicstate 3P2\n1 Ar'),
      "species Ar: the record RMG loads is not the overlay's reference (electronic_state '3P2', the reference ''"),
     ('dictionary_metastable_electronic_state_3P1', ('electronicstate 3P2\n', 'electronicstate 3P1\n'),
@@ -1092,7 +1092,7 @@ CASES += [
     case('overlay_class_invalid_date', 'db-r52 F3', "class '2026-02-30', but",
          overlay=overlay_date('class: A', 'class: 2026-02-30')),
     case('overlay_reaction_invalid_month', 'db-r52 F3', "overlay says '2026-13-01'",
-         overlay=overlay_date("reaction: 'Ar + e- => Ars + e-'", 'reaction: 2026-13-01')),
+         overlay=overlay_date("reaction: Ar + e- => Ars + e-", 'reaction: 2026-13-01')),
 ]
     # db-r53: an argon state is one argon atom; an index is a whole number; overlay text is valid Unicode
 CASES += [
@@ -1108,9 +1108,9 @@ CASES += [
          overlay=overlay_text('collisions:\n',
                               'collisions:\n  "\\uD800": {class: A, reaction: \'Ar + e- => Ars + e-\'}\n')),
     case('overlay_surrogate_class', 'db-r53 F3', 'holds a string that is not valid Unicode text',
-         overlay=overlay_text('{class: B}', '{class: "\\uD800"}')),
+         overlay=overlay_text('class: B', 'class: "\\uD800"')),
     case('overlay_surrogate_reaction', 'db-r53 F3', 'holds a string that is not valid Unicode text',
-         overlay=overlay_text("reaction: 'Ar + e- => Ars + e-'", 'reaction: "A\\uDFFF"')),
+         overlay=overlay_text("reaction: Ar + e- => Ars + e-", 'reaction: "A\\uDFFF"')),
 ]
     # db-r54: a mapped species is RMG's whole loaded record, the electron too; a reaction is its loaded identity
 CASES += [case(name, 'db-r54 F1', expect, database=dictionary_edit(*edit)) for name, edit, expect in IDENTITY_EDITS]

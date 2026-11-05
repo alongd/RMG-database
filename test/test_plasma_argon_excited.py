@@ -276,8 +276,8 @@ def test_short_real_job_admits_every_heavy_channel(tmp_path, monkeypatch, librar
             kinetics = reaction.kinetics
             if not isinstance(kinetics, EEDFChannel):
                 continue
-            assert kinetics.side == 'ine'
-            rate = row['rates_m3_per_particle_s'][kinetics.process]
+            rates = row['rates_m3_per_particle_s'] if kinetics.side == 'ine' else row['superelastic_rates_m3_per_particle_s']
+            rate = rates[kinetics.process]
             weight = kinetics.branch_yield if kinetics.branch_product else 1.
             reaction.kinetics = TwoTemperaturePlasma(
                 A=(rate * weight, 'm^3/(molecule*s)'), n=0.,
@@ -285,7 +285,8 @@ def test_short_real_job_admits_every_heavy_channel(tmp_path, monkeypatch, librar
             seen.add(kinetics.process)
             replayed += 1
         assert seen == set(row['rates_m3_per_particle_s'])
-        assert replayed == 149  # 137 Ar and 12 N2 production owners.
+        assert replayed == 585  # 573 Ar and 12 N2 production owners.
+        assert sum(r.reactants == r.products for r in job.reaction_model.core.reactions + job.reaction_model.edge.reactions) == 104
         return result
 
     monkeypatch.setattr(job, 'initialize', initialize_fixed_row)

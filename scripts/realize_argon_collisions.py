@@ -42,7 +42,12 @@ def collect(assembled):
         files[name] = {'base_sha256': expected, 'sha256': hashlib.sha256(derived).hexdigest()}
     return output, {'schema': 'argon-reversible-realization/1', 'name': 'ar-4s-electron-v1',
                     'files': files, 'descriptor_changes': changes,
-                    'excited_fraction_max': 1e-5, 'argon_elimination_electron_density_max_m3': 1e18}
+                    'argon_4s_population': {'axis': 'f_Ar4s', 'ratio': 'total-4s/ground',
+                        'weights': [5, 3, 1, 3],
+                        'coordinate': 'linear-to-first-positive-then-log',
+                        'first_positive': 1e-7},
+                    'argon_4s_fraction_nodes': [0., 1e-7, 1e-6, 1e-5, 1e-4],
+                    'argon_elimination_electron_density_max_m3': 1e18}
 
 
 def main():

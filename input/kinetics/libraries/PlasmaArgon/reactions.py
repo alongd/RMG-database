@@ -12,8 +12,8 @@ input/eedf/argon_cascade_yields.yaml. Ars is Ar(1s5), 3P2, shared with
 PlasmaArgonDimer and PlasmaOxygenHeavy. Ar(1s4), Ar(1s3), Ar(1s2) are separate
 electronic states. Zero-yield and self-return branches preserve full collision
 accounting. No heavy-particle or radiative-decay rate is added here.
-The eliminated-upper-level inverse bounds and the zero-4s-population EEDF
-validity limits are declared in input/eedf/README.md and the frozen channel map.
+The eliminated-upper-level inverse bounds and total-4s-population EEDF
+axis convention are declared in input/eedf/README.md and the frozen channel map.
 Historical Maxwellian entries 86–93 are preserved in PlasmaArgonLegacy.
 See input/eedf/README.md for the required legacy-deck migration.
 """
@@ -114,6 +114,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 6; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1024, 1025, 1026, 1027)
 Sourced E1 cascade branch for channel 6. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -136,6 +137,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 6; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1024, 1025, 1026, 1027)
 Sourced E1 cascade branch for channel 6. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -158,6 +160,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 6; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1024, 1025, 1026, 1027)
 Sourced E1 cascade branch for channel 6. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -180,6 +183,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 6; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1024, 1025, 1026, 1027)
 Sourced E1 cascade branch for channel 6. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -202,6 +206,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 7; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1028, 1029, 1030, 1031)
 Sourced E1 cascade branch for channel 7. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -224,6 +229,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 7; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1028, 1029, 1030, 1031)
 Sourced E1 cascade branch for channel 7. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -246,6 +252,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 7; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1028, 1029, 1030, 1031)
 Sourced E1 cascade branch for channel 7. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -268,6 +275,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 7; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1028, 1029, 1030, 1031)
 Sourced E1 cascade branch for channel 7. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -290,6 +298,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 8; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1032, 1033, 1034, 1035)
 Sourced E1 cascade branch for channel 8. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -312,6 +321,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 8; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1032, 1033, 1034, 1035)
 Sourced E1 cascade branch for channel 8. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -334,6 +344,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 8; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1032, 1033, 1034, 1035)
 Sourced E1 cascade branch for channel 8. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -356,6 +367,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 8; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1032, 1033, 1034, 1035)
 Sourced E1 cascade branch for channel 8. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -378,6 +390,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 9; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1036, 1037, 1038, 1039)
 Sourced E1 cascade branch for channel 9. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -400,6 +413,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 9; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1036, 1037, 1038, 1039)
 Sourced E1 cascade branch for channel 9. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -422,6 +436,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 9; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1036, 1037, 1038, 1039)
 Sourced E1 cascade branch for channel 9. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -444,6 +459,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 9; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1036, 1037, 1038, 1039)
 Sourced E1 cascade branch for channel 9. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -466,6 +482,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 10; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1040, 1041, 1042, 1043)
 Sourced E1 cascade branch for channel 10. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -488,6 +505,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 10; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1040, 1041, 1042, 1043)
 Sourced E1 cascade branch for channel 10. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -510,6 +528,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 10; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1040, 1041, 1042, 1043)
 Sourced E1 cascade branch for channel 10. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -532,6 +551,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 10; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1040, 1041, 1042, 1043)
 Sourced E1 cascade branch for channel 10. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -554,6 +574,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 11; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1044, 1045, 1046, 1047)
 Sourced E1 cascade branch for channel 11. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -576,6 +597,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 11; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1044, 1045, 1046, 1047)
 Sourced E1 cascade branch for channel 11. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -598,6 +620,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 11; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1044, 1045, 1046, 1047)
 Sourced E1 cascade branch for channel 11. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -620,6 +643,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 11; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1044, 1045, 1046, 1047)
 Sourced E1 cascade branch for channel 11. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -642,6 +666,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 12; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1048, 1049, 1050, 1051)
 Sourced E1 cascade branch for channel 12. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -664,6 +689,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 12; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1048, 1049, 1050, 1051)
 Sourced E1 cascade branch for channel 12. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -686,6 +712,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 12; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1048, 1049, 1050, 1051)
 Sourced E1 cascade branch for channel 12. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -708,6 +735,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 12; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1048, 1049, 1050, 1051)
 Sourced E1 cascade branch for channel 12. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -730,6 +758,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 13; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1052, 1053, 1054, 1055)
 Sourced E1 cascade branch for channel 13. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -752,6 +781,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 13; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1052, 1053, 1054, 1055)
 Sourced E1 cascade branch for channel 13. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -774,6 +804,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 13; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1052, 1053, 1054, 1055)
 Sourced E1 cascade branch for channel 13. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -796,6 +827,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 13; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1052, 1053, 1054, 1055)
 Sourced E1 cascade branch for channel 13. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -818,6 +850,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 14; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1056, 1057, 1058, 1059)
 Sourced E1 cascade branch for channel 14. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -840,6 +873,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 14; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1056, 1057, 1058, 1059)
 Sourced E1 cascade branch for channel 14. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -862,6 +896,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 14; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1056, 1057, 1058, 1059)
 Sourced E1 cascade branch for channel 14. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -884,6 +919,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 14; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1056, 1057, 1058, 1059)
 Sourced E1 cascade branch for channel 14. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -906,6 +942,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 15; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1060, 1061, 1062, 1063)
 Sourced E1 cascade branch for channel 15. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -928,6 +965,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 15; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1060, 1061, 1062, 1063)
 Sourced E1 cascade branch for channel 15. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -950,6 +988,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 15; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1060, 1061, 1062, 1063)
 Sourced E1 cascade branch for channel 15. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -972,6 +1011,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 15; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1060, 1061, 1062, 1063)
 Sourced E1 cascade branch for channel 15. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -994,6 +1034,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 16; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1064, 1065, 1066, 1067)
 Sourced E1 cascade branch for channel 16. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -1016,6 +1057,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 16; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1064, 1065, 1066, 1067)
 Sourced E1 cascade branch for channel 16. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -1038,6 +1080,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 16; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1064, 1065, 1066, 1067)
 Sourced E1 cascade branch for channel 16. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -1060,6 +1103,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 16; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1064, 1065, 1066, 1067)
 Sourced E1 cascade branch for channel 16. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -1082,6 +1126,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 17; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1068, 1069, 1070, 1071)
 Sourced E1 cascade branch for channel 17. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -1104,6 +1149,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 17; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1068, 1069, 1070, 1071)
 Sourced E1 cascade branch for channel 17. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -1126,6 +1172,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 17; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1068, 1069, 1070, 1071)
 Sourced E1 cascade branch for channel 17. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -1148,6 +1195,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 17; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1068, 1069, 1070, 1071)
 Sourced E1 cascade branch for channel 17. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -1170,6 +1218,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 18; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1072, 1073, 1074, 1075)
 Sourced E1 cascade branch for channel 18. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -1192,6 +1241,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 18; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1072, 1073, 1074, 1075)
 Sourced E1 cascade branch for channel 18. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -1214,6 +1264,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 18; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1072, 1073, 1074, 1075)
 Sourced E1 cascade branch for channel 18. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -1236,6 +1287,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 18; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1072, 1073, 1074, 1075)
 Sourced E1 cascade branch for channel 18. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -1258,6 +1310,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 19; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1076, 1077, 1078, 1079)
 Sourced E1 cascade branch for channel 19. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -1280,6 +1333,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 19; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1076, 1077, 1078, 1079)
 Sourced E1 cascade branch for channel 19. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -1302,6 +1356,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 19; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1076, 1077, 1078, 1079)
 Sourced E1 cascade branch for channel 19. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -1324,6 +1379,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 19; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1076, 1077, 1078, 1079)
 Sourced E1 cascade branch for channel 19. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -1346,6 +1402,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 20; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1080, 1081, 1082, 1083)
 Sourced E1 cascade branch for channel 20. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -1368,6 +1425,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 20; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1080, 1081, 1082, 1083)
 Sourced E1 cascade branch for channel 20. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -1390,6 +1448,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 20; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1080, 1081, 1082, 1083)
 Sourced E1 cascade branch for channel 20. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -1412,6 +1471,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 20; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1080, 1081, 1082, 1083)
 Sourced E1 cascade branch for channel 20. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -1434,6 +1494,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 21; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1084, 1085, 1086, 1087)
 Sourced E1 cascade branch for channel 21. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -1456,6 +1517,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 21; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1084, 1085, 1086, 1087)
 Sourced E1 cascade branch for channel 21. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -1478,6 +1540,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 21; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1084, 1085, 1086, 1087)
 Sourced E1 cascade branch for channel 21. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -1500,6 +1563,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 21; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1084, 1085, 1086, 1087)
 Sourced E1 cascade branch for channel 21. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -1522,6 +1586,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 22; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1088, 1089, 1090, 1091)
 Sourced E1 cascade branch for channel 22. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -1544,6 +1609,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 22; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1088, 1089, 1090, 1091)
 Sourced E1 cascade branch for channel 22. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -1566,6 +1632,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 22; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1088, 1089, 1090, 1091)
 Sourced E1 cascade branch for channel 22. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -1588,6 +1655,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 22; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1088, 1089, 1090, 1091)
 Sourced E1 cascade branch for channel 22. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -1610,6 +1678,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 23; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1092, 1093, 1094, 1095)
 Sourced E1 cascade branch for channel 23. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -1632,6 +1701,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 23; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1092, 1093, 1094, 1095)
 Sourced E1 cascade branch for channel 23. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -1654,6 +1724,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 23; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1092, 1093, 1094, 1095)
 Sourced E1 cascade branch for channel 23. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -1676,6 +1747,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 23; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1092, 1093, 1094, 1095)
 Sourced E1 cascade branch for channel 23. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -1698,6 +1770,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 24; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1096, 1097, 1098, 1099)
 Sourced E1 cascade branch for channel 24. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -1720,6 +1793,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 24; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1096, 1097, 1098, 1099)
 Sourced E1 cascade branch for channel 24. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -1742,6 +1816,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 24; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1096, 1097, 1098, 1099)
 Sourced E1 cascade branch for channel 24. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -1764,6 +1839,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 24; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1096, 1097, 1098, 1099)
 Sourced E1 cascade branch for channel 24. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -1786,6 +1862,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 25; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1100, 1101, 1102, 1103)
 Sourced E1 cascade branch for channel 25. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -1808,6 +1885,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 25; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1100, 1101, 1102, 1103)
 Sourced E1 cascade branch for channel 25. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -1830,6 +1908,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 25; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1100, 1101, 1102, 1103)
 Sourced E1 cascade branch for channel 25. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -1852,6 +1931,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 25; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1100, 1101, 1102, 1103)
 Sourced E1 cascade branch for channel 25. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -1874,6 +1954,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 26; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1104, 1105, 1106, 1107)
 Sourced E1 cascade branch for channel 26. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -1896,6 +1977,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 26; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1104, 1105, 1106, 1107)
 Sourced E1 cascade branch for channel 26. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -1918,6 +2000,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 26; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1104, 1105, 1106, 1107)
 Sourced E1 cascade branch for channel 26. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -1940,6 +2023,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 26; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1104, 1105, 1106, 1107)
 Sourced E1 cascade branch for channel 26. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -1962,6 +2046,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 27; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1108, 1109, 1110, 1111)
 Sourced E1 cascade branch for channel 27. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -1984,6 +2069,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 27; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1108, 1109, 1110, 1111)
 Sourced E1 cascade branch for channel 27. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -2006,6 +2092,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 27; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1108, 1109, 1110, 1111)
 Sourced E1 cascade branch for channel 27. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -2028,6 +2115,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 27; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1108, 1109, 1110, 1111)
 Sourced E1 cascade branch for channel 27. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -2050,6 +2138,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 28; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1112, 1113, 1114, 1115)
 Sourced E1 cascade branch for channel 28. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -2072,6 +2161,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 28; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1112, 1113, 1114, 1115)
 Sourced E1 cascade branch for channel 28. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -2094,6 +2184,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 28; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1112, 1113, 1114, 1115)
 Sourced E1 cascade branch for channel 28. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -2116,6 +2207,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 28; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1112, 1113, 1114, 1115)
 Sourced E1 cascade branch for channel 28. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -2138,6 +2230,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 29; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1116, 1117, 1118, 1119)
 Sourced E1 cascade branch for channel 29. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -2160,6 +2253,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 29; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1116, 1117, 1118, 1119)
 Sourced E1 cascade branch for channel 29. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -2182,6 +2276,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 29; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1116, 1117, 1118, 1119)
 Sourced E1 cascade branch for channel 29. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -2204,6 +2299,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 29; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1116, 1117, 1118, 1119)
 Sourced E1 cascade branch for channel 29. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -2226,6 +2322,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 30; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1120, 1121, 1122, 1123)
 Sourced E1 cascade branch for channel 30. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -2248,6 +2345,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 30; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1120, 1121, 1122, 1123)
 Sourced E1 cascade branch for channel 30. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -2270,6 +2368,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 30; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1120, 1121, 1122, 1123)
 Sourced E1 cascade branch for channel 30. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -2292,6 +2391,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 30; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1120, 1121, 1122, 1123)
 Sourced E1 cascade branch for channel 30. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -2314,6 +2414,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 31; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1124, 1125, 1126, 1127)
 Sourced E1 cascade branch for channel 31. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -2336,6 +2437,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 31; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1124, 1125, 1126, 1127)
 Sourced E1 cascade branch for channel 31. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -2358,6 +2460,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 31; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1124, 1125, 1126, 1127)
 Sourced E1 cascade branch for channel 31. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -2380,6 +2483,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 31; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1124, 1125, 1126, 1127)
 Sourced E1 cascade branch for channel 31. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -2402,6 +2506,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 32; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1128, 1129, 1130, 1131)
 Sourced E1 cascade branch for channel 32. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -2424,6 +2529,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 32; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1128, 1129, 1130, 1131)
 Sourced E1 cascade branch for channel 32. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -2446,6 +2552,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 32; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1128, 1129, 1130, 1131)
 Sourced E1 cascade branch for channel 32. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -2468,6 +2575,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 32; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1128, 1129, 1130, 1131)
 Sourced E1 cascade branch for channel 32. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -2490,6 +2598,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 33; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1132, 1133, 1134, 1135)
 Sourced E1 cascade branch for channel 33. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -2512,6 +2621,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 33; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1132, 1133, 1134, 1135)
 Sourced E1 cascade branch for channel 33. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -2534,6 +2644,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 33; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1132, 1133, 1134, 1135)
 Sourced E1 cascade branch for channel 33. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -2556,6 +2667,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 33; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1132, 1133, 1134, 1135)
 Sourced E1 cascade branch for channel 33. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -2578,6 +2690,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 34; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1136, 1137, 1138, 1139)
 Sourced E1 cascade branch for channel 34. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -2600,6 +2713,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 34; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1136, 1137, 1138, 1139)
 Sourced E1 cascade branch for channel 34. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -2622,6 +2736,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 34; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1136, 1137, 1138, 1139)
 Sourced E1 cascade branch for channel 34. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -2644,6 +2759,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 34; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1136, 1137, 1138, 1139)
 Sourced E1 cascade branch for channel 34. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -2666,6 +2782,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 35; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1140, 1141, 1142, 1143)
 Sourced E1 cascade branch for channel 35. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -2688,6 +2805,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 35; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1140, 1141, 1142, 1143)
 Sourced E1 cascade branch for channel 35. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -2710,6 +2828,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 35; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1140, 1141, 1142, 1143)
 Sourced E1 cascade branch for channel 35. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -2732,6 +2851,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 35; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1140, 1141, 1142, 1143)
 Sourced E1 cascade branch for channel 35. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -2754,6 +2874,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 36; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1144, 1145, 1146, 1147)
 Sourced E1 cascade branch for channel 36. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -2776,6 +2897,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 36; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1144, 1145, 1146, 1147)
 Sourced E1 cascade branch for channel 36. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -2798,6 +2920,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 36; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1144, 1145, 1146, 1147)
 Sourced E1 cascade branch for channel 36. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -2820,6 +2943,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 36; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1144, 1145, 1146, 1147)
 Sourced E1 cascade branch for channel 36. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -2842,6 +2966,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 37; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1148, 1149, 1150, 1151)
 Sourced E1 cascade branch for channel 37. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -2864,6 +2989,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 37; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1148, 1149, 1150, 1151)
 Sourced E1 cascade branch for channel 37. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -2886,6 +3012,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 37; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1148, 1149, 1150, 1151)
 Sourced E1 cascade branch for channel 37. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -2908,6 +3035,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 37; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1148, 1149, 1150, 1151)
 Sourced E1 cascade branch for channel 37. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -2930,6 +3058,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 38; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1152, 1153, 1154, 1155)
 Sourced E1 cascade branch for channel 38. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -2952,6 +3081,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 38; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1152, 1153, 1154, 1155)
 Sourced E1 cascade branch for channel 38. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -2974,6 +3104,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 38; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1152, 1153, 1154, 1155)
 Sourced E1 cascade branch for channel 38. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -2996,6 +3127,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 38; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1152, 1153, 1154, 1155)
 Sourced E1 cascade branch for channel 38. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -3018,6 +3150,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 45; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1180, 1181, 1182, 1183)
 Sourced E1 cascade branch for channel 45. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -3040,6 +3173,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 45; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1180, 1181, 1182, 1183)
 Sourced E1 cascade branch for channel 45. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -3062,6 +3196,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 45; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1180, 1181, 1182, 1183)
 Sourced E1 cascade branch for channel 45. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -3084,6 +3219,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 45; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1180, 1181, 1182, 1183)
 Sourced E1 cascade branch for channel 45. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -3106,6 +3242,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 46; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1184, 1185, 1186, 1187)
 Sourced E1 cascade branch for channel 46. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -3128,6 +3265,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 46; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1184, 1185, 1186, 1187)
 Sourced E1 cascade branch for channel 46. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -3150,6 +3288,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 46; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1184, 1185, 1186, 1187)
 Sourced E1 cascade branch for channel 46. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -3172,6 +3311,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 46; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1184, 1185, 1186, 1187)
 Sourced E1 cascade branch for channel 46. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -3194,6 +3334,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 47; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1188, 1189, 1190, 1191)
 Sourced E1 cascade branch for channel 47. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -3216,6 +3357,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 47; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1188, 1189, 1190, 1191)
 Sourced E1 cascade branch for channel 47. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -3238,6 +3380,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 47; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1188, 1189, 1190, 1191)
 Sourced E1 cascade branch for channel 47. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -3260,6 +3403,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 47; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1188, 1189, 1190, 1191)
 Sourced E1 cascade branch for channel 47. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -3282,6 +3426,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 48; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1192, 1193, 1194, 1195)
 Sourced E1 cascade branch for channel 48. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -3304,6 +3449,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 48; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1192, 1193, 1194, 1195)
 Sourced E1 cascade branch for channel 48. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -3326,6 +3472,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 48; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1192, 1193, 1194, 1195)
 Sourced E1 cascade branch for channel 48. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -3348,6 +3495,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 48; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1192, 1193, 1194, 1195)
 Sourced E1 cascade branch for channel 48. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -3370,6 +3518,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 49; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1196, 1197, 1198, 1199)
 Sourced E1 cascade branch for channel 49. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -3392,6 +3541,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 49; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1196, 1197, 1198, 1199)
 Sourced E1 cascade branch for channel 49. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -3414,6 +3564,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 49; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1196, 1197, 1198, 1199)
 Sourced E1 cascade branch for channel 49. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -3436,6 +3587,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 49; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1196, 1197, 1198, 1199)
 Sourced E1 cascade branch for channel 49. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -3458,6 +3610,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 50; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1200, 1201, 1202, 1203)
 Sourced E1 cascade branch for channel 50. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -3480,6 +3633,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 50; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1200, 1201, 1202, 1203)
 Sourced E1 cascade branch for channel 50. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -3502,6 +3656,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 50; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1200, 1201, 1202, 1203)
 Sourced E1 cascade branch for channel 50. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -3524,6 +3679,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 50; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1200, 1201, 1202, 1203)
 Sourced E1 cascade branch for channel 50. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -3546,6 +3702,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 51; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1204, 1205, 1206, 1207)
 Sourced E1 cascade branch for channel 51. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -3568,6 +3725,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 51; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1204, 1205, 1206, 1207)
 Sourced E1 cascade branch for channel 51. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -3590,6 +3748,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 51; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1204, 1205, 1206, 1207)
 Sourced E1 cascade branch for channel 51. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -3612,6 +3771,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 51; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1204, 1205, 1206, 1207)
 Sourced E1 cascade branch for channel 51. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -3634,6 +3794,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 52; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1208, 1209, 1210, 1211)
 Sourced E1 cascade branch for channel 52. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -3656,6 +3817,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 52; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1208, 1209, 1210, 1211)
 Sourced E1 cascade branch for channel 52. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -3678,6 +3840,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 52; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1208, 1209, 1210, 1211)
 Sourced E1 cascade branch for channel 52. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -3700,6 +3863,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 52; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1208, 1209, 1210, 1211)
 Sourced E1 cascade branch for channel 52. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -3722,6 +3886,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 53; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1212, 1213, 1214, 1215)
 Sourced E1 cascade branch for channel 53. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -3744,6 +3909,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 53; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1212, 1213, 1214, 1215)
 Sourced E1 cascade branch for channel 53. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -3766,6 +3932,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 53; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1212, 1213, 1214, 1215)
 Sourced E1 cascade branch for channel 53. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -3788,6 +3955,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 53; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1212, 1213, 1214, 1215)
 Sourced E1 cascade branch for channel 53. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -3810,6 +3978,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 54; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1216, 1217, 1218, 1219)
 Sourced E1 cascade branch for channel 54. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -3832,6 +4001,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 54; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1216, 1217, 1218, 1219)
 Sourced E1 cascade branch for channel 54. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -3854,6 +4024,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 54; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1216, 1217, 1218, 1219)
 Sourced E1 cascade branch for channel 54. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -3876,6 +4047,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 54; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1216, 1217, 1218, 1219)
 Sourced E1 cascade branch for channel 54. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -3898,6 +4070,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 55; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1220, 1221, 1222, 1223)
 Sourced E1 cascade branch for channel 55. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -3920,6 +4093,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 55; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1220, 1221, 1222, 1223)
 Sourced E1 cascade branch for channel 55. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -3942,6 +4116,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 55; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1220, 1221, 1222, 1223)
 Sourced E1 cascade branch for channel 55. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -3964,6 +4139,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 55; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1220, 1221, 1222, 1223)
 Sourced E1 cascade branch for channel 55. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -3986,6 +4162,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 56; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1224, 1225, 1226, 1227)
 Sourced E1 cascade branch for channel 56. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -4008,6 +4185,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 56; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1224, 1225, 1226, 1227)
 Sourced E1 cascade branch for channel 56. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -4030,6 +4208,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 56; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1224, 1225, 1226, 1227)
 Sourced E1 cascade branch for channel 56. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -4052,6 +4231,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 56; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1224, 1225, 1226, 1227)
 Sourced E1 cascade branch for channel 56. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -4074,6 +4254,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 57; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1228, 1229, 1230, 1231)
 Sourced E1 cascade branch for channel 57. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -4096,6 +4277,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 57; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1228, 1229, 1230, 1231)
 Sourced E1 cascade branch for channel 57. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -4118,6 +4300,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 57; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1228, 1229, 1230, 1231)
 Sourced E1 cascade branch for channel 57. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -4140,6 +4323,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 57; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1228, 1229, 1230, 1231)
 Sourced E1 cascade branch for channel 57. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -4162,6 +4346,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 58; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1232, 1233, 1234, 1235)
 Sourced E1 cascade branch for channel 58. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -4184,6 +4369,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 58; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1232, 1233, 1234, 1235)
 Sourced E1 cascade branch for channel 58. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -4206,6 +4392,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 58; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1232, 1233, 1234, 1235)
 Sourced E1 cascade branch for channel 58. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -4228,6 +4415,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 58; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1232, 1233, 1234, 1235)
 Sourced E1 cascade branch for channel 58. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -4250,6 +4438,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 59; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1236, 1237, 1238, 1239)
 Sourced E1 cascade branch for channel 59. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -4272,6 +4461,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 59; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1236, 1237, 1238, 1239)
 Sourced E1 cascade branch for channel 59. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -4294,6 +4484,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 59; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1236, 1237, 1238, 1239)
 Sourced E1 cascade branch for channel 59. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -4316,6 +4507,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 59; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1236, 1237, 1238, 1239)
 Sourced E1 cascade branch for channel 59. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -4338,6 +4530,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 60; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1240, 1241, 1242, 1243)
 Sourced E1 cascade branch for channel 60. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -4360,6 +4553,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 60; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1240, 1241, 1242, 1243)
 Sourced E1 cascade branch for channel 60. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -4382,6 +4576,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 60; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1240, 1241, 1242, 1243)
 Sourced E1 cascade branch for channel 60. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -4404,6 +4599,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 60; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1240, 1241, 1242, 1243)
 Sourced E1 cascade branch for channel 60. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -4426,6 +4622,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 61; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1244, 1245, 1246, 1247)
 Sourced E1 cascade branch for channel 61. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -4448,6 +4645,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 61; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1244, 1245, 1246, 1247)
 Sourced E1 cascade branch for channel 61. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -4470,6 +4668,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 61; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1244, 1245, 1246, 1247)
 Sourced E1 cascade branch for channel 61. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -4492,6 +4691,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 61; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1244, 1245, 1246, 1247)
 Sourced E1 cascade branch for channel 61. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -4514,6 +4714,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 62; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1248, 1249, 1250, 1251)
 Sourced E1 cascade branch for channel 62. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -4536,6 +4737,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 62; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1248, 1249, 1250, 1251)
 Sourced E1 cascade branch for channel 62. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -4558,6 +4760,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 62; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1248, 1249, 1250, 1251)
 Sourced E1 cascade branch for channel 62. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -4580,6 +4783,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 62; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1248, 1249, 1250, 1251)
 Sourced E1 cascade branch for channel 62. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -4602,6 +4806,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 63; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1252, 1253, 1254, 1255)
 Sourced E1 cascade branch for channel 63. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -4624,6 +4829,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 63; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1252, 1253, 1254, 1255)
 Sourced E1 cascade branch for channel 63. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -4646,6 +4852,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 63; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1252, 1253, 1254, 1255)
 Sourced E1 cascade branch for channel 63. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -4668,6 +4875,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 63; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1252, 1253, 1254, 1255)
 Sourced E1 cascade branch for channel 63. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -4690,6 +4898,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 64; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1256, 1257, 1258, 1259)
 Sourced E1 cascade branch for channel 64. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -4712,6 +4921,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 64; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1256, 1257, 1258, 1259)
 Sourced E1 cascade branch for channel 64. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -4734,6 +4944,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 64; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1256, 1257, 1258, 1259)
 Sourced E1 cascade branch for channel 64. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -4756,6 +4967,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 64; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1256, 1257, 1258, 1259)
 Sourced E1 cascade branch for channel 64. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -4778,6 +4990,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 65; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1260, 1261, 1262, 1263)
 Sourced E1 cascade branch for channel 65. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -4800,6 +5013,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 65; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1260, 1261, 1262, 1263)
 Sourced E1 cascade branch for channel 65. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -4822,6 +5036,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 65; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1260, 1261, 1262, 1263)
 Sourced E1 cascade branch for channel 65. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -4844,6 +5059,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 65; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1260, 1261, 1262, 1263)
 Sourced E1 cascade branch for channel 65. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -4866,6 +5082,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 66; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1264, 1265, 1266, 1267)
 Sourced E1 cascade branch for channel 66. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -4888,6 +5105,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 66; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1264, 1265, 1266, 1267)
 Sourced E1 cascade branch for channel 66. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -4910,6 +5128,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 66; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1264, 1265, 1266, 1267)
 Sourced E1 cascade branch for channel 66. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -4932,6 +5151,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 66; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1264, 1265, 1266, 1267)
 Sourced E1 cascade branch for channel 66. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -4954,6 +5174,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 67; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1268, 1269, 1270, 1271)
 Sourced E1 cascade branch for channel 67. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -4976,6 +5197,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 67; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1268, 1269, 1270, 1271)
 Sourced E1 cascade branch for channel 67. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -4998,6 +5220,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 67; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1268, 1269, 1270, 1271)
 Sourced E1 cascade branch for channel 67. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -5020,6 +5243,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 67; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1268, 1269, 1270, 1271)
 Sourced E1 cascade branch for channel 67. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -5042,6 +5266,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 68; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1272, 1273, 1274, 1275)
 Sourced E1 cascade branch for channel 68. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -5064,6 +5289,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 68; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1272, 1273, 1274, 1275)
 Sourced E1 cascade branch for channel 68. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -5086,6 +5312,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 68; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1272, 1273, 1274, 1275)
 Sourced E1 cascade branch for channel 68. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -5108,6 +5335,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 68; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1272, 1273, 1274, 1275)
 Sourced E1 cascade branch for channel 68. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -5130,6 +5358,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 69; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1276, 1277, 1278, 1279)
 Sourced E1 cascade branch for channel 69. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -5152,6 +5381,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 69; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1276, 1277, 1278, 1279)
 Sourced E1 cascade branch for channel 69. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -5174,6 +5404,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 69; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1276, 1277, 1278, 1279)
 Sourced E1 cascade branch for channel 69. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -5196,6 +5427,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 69; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1276, 1277, 1278, 1279)
 Sourced E1 cascade branch for channel 69. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -5218,6 +5450,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 70; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1280, 1281, 1282, 1283)
 Sourced E1 cascade branch for channel 70. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -5240,6 +5473,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 70; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1280, 1281, 1282, 1283)
 Sourced E1 cascade branch for channel 70. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -5262,6 +5496,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 70; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1280, 1281, 1282, 1283)
 Sourced E1 cascade branch for channel 70. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -5284,6 +5519,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 70; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1280, 1281, 1282, 1283)
 Sourced E1 cascade branch for channel 70. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -5306,6 +5542,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 71; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1284, 1285, 1286, 1287)
 Sourced E1 cascade branch for channel 71. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -5328,6 +5565,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 71; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1284, 1285, 1286, 1287)
 Sourced E1 cascade branch for channel 71. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -5350,6 +5588,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 71; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1284, 1285, 1286, 1287)
 Sourced E1 cascade branch for channel 71. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -5372,6 +5611,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 71; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1284, 1285, 1286, 1287)
 Sourced E1 cascade branch for channel 71. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -5394,6 +5634,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 72; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1288, 1289, 1290, 1291)
 Sourced E1 cascade branch for channel 72. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -5416,6 +5657,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 72; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1288, 1289, 1290, 1291)
 Sourced E1 cascade branch for channel 72. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -5438,6 +5680,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 72; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1288, 1289, 1290, 1291)
 Sourced E1 cascade branch for channel 72. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -5460,6 +5703,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 72; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1288, 1289, 1290, 1291)
 Sourced E1 cascade branch for channel 72. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -5482,6 +5726,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 73; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1292, 1293, 1294, 1295)
 Sourced E1 cascade branch for channel 73. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -5504,6 +5749,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 73; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1292, 1293, 1294, 1295)
 Sourced E1 cascade branch for channel 73. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -5526,6 +5772,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 73; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1292, 1293, 1294, 1295)
 Sourced E1 cascade branch for channel 73. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -5548,6 +5795,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 73; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1292, 1293, 1294, 1295)
 Sourced E1 cascade branch for channel 73. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -5570,6 +5818,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 74; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1296, 1297, 1298, 1299)
 Sourced E1 cascade branch for channel 74. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -5592,6 +5841,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 74; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1296, 1297, 1298, 1299)
 Sourced E1 cascade branch for channel 74. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -5614,6 +5864,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 74; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1296, 1297, 1298, 1299)
 Sourced E1 cascade branch for channel 74. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -5636,6 +5887,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 74; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1296, 1297, 1298, 1299)
 Sourced E1 cascade branch for channel 74. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -5658,6 +5910,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 75; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1300, 1301, 1302, 1303)
 Sourced E1 cascade branch for channel 75. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -5680,6 +5933,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 75; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1300, 1301, 1302, 1303)
 Sourced E1 cascade branch for channel 75. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -5702,6 +5956,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 75; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1300, 1301, 1302, 1303)
 Sourced E1 cascade branch for channel 75. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -5724,6 +5979,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 75; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1300, 1301, 1302, 1303)
 Sourced E1 cascade branch for channel 75. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -5746,6 +6002,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 76; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1304, 1305, 1306, 1307)
 Sourced E1 cascade branch for channel 76. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -5768,6 +6025,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 76; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1304, 1305, 1306, 1307)
 Sourced E1 cascade branch for channel 76. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -5790,6 +6048,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 76; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1304, 1305, 1306, 1307)
 Sourced E1 cascade branch for channel 76. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -5812,6 +6071,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 76; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1304, 1305, 1306, 1307)
 Sourced E1 cascade branch for channel 76. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -5834,6 +6094,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 77; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1308, 1309, 1310, 1311)
 Sourced E1 cascade branch for channel 77. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -5856,6 +6117,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 77; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1308, 1309, 1310, 1311)
 Sourced E1 cascade branch for channel 77. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -5878,6 +6140,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 77; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1308, 1309, 1310, 1311)
 Sourced E1 cascade branch for channel 77. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -5900,6 +6163,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 77; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1308, 1309, 1310, 1311)
 Sourced E1 cascade branch for channel 77. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -5922,6 +6186,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 78; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1312, 1313, 1314, 1315)
 Sourced E1 cascade branch for channel 78. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -5944,6 +6209,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 78; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1312, 1313, 1314, 1315)
 Sourced E1 cascade branch for channel 78. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -5966,6 +6232,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 78; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1312, 1313, 1314, 1315)
 Sourced E1 cascade branch for channel 78. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -5988,6 +6255,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 78; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1312, 1313, 1314, 1315)
 Sourced E1 cascade branch for channel 78. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -6010,6 +6278,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 79; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1316, 1317, 1318, 1319)
 Sourced E1 cascade branch for channel 79. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -6032,6 +6301,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 79; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1316, 1317, 1318, 1319)
 Sourced E1 cascade branch for channel 79. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -6054,6 +6324,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 79; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1316, 1317, 1318, 1319)
 Sourced E1 cascade branch for channel 79. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -6076,6 +6347,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 79; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1316, 1317, 1318, 1319)
 Sourced E1 cascade branch for channel 79. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -6098,6 +6370,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 80; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1320, 1321, 1322, 1323)
 Sourced E1 cascade branch for channel 80. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -6120,6 +6393,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 80; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1320, 1321, 1322, 1323)
 Sourced E1 cascade branch for channel 80. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -6142,6 +6416,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 80; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1320, 1321, 1322, 1323)
 Sourced E1 cascade branch for channel 80. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -6164,6 +6439,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 80; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1320, 1321, 1322, 1323)
 Sourced E1 cascade branch for channel 80. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -6186,6 +6462,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 81; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1324, 1325, 1326, 1327)
 Sourced E1 cascade branch for channel 81. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -6208,6 +6485,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 81; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1324, 1325, 1326, 1327)
 Sourced E1 cascade branch for channel 81. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -6230,6 +6508,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 81; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1324, 1325, 1326, 1327)
 Sourced E1 cascade branch for channel 81. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -6252,6 +6531,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 81; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1324, 1325, 1326, 1327)
 Sourced E1 cascade branch for channel 81. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -6274,6 +6554,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 82; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1328, 1329, 1330, 1331)
 Sourced E1 cascade branch for channel 82. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -6296,6 +6577,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 82; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1328, 1329, 1330, 1331)
 Sourced E1 cascade branch for channel 82. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -6318,6 +6600,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 82; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1328, 1329, 1330, 1331)
 Sourced E1 cascade branch for channel 82. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -6340,6 +6623,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 82; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1328, 1329, 1330, 1331)
 Sourced E1 cascade branch for channel 82. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -6362,6 +6646,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 83; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1332, 1333, 1334, 1335)
 Sourced E1 cascade branch for channel 83. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -6384,6 +6669,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 83; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1332, 1333, 1334, 1335)
 Sourced E1 cascade branch for channel 83. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -6406,6 +6692,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 83; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1332, 1333, 1334, 1335)
 Sourced E1 cascade branch for channel 83. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -6428,6 +6715,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 83; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1332, 1333, 1334, 1335)
 Sourced E1 cascade branch for channel 83. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -6450,6 +6738,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 84; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1336, 1337, 1338, 1339)
 Sourced E1 cascade branch for channel 84. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -6472,6 +6761,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 84; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1336, 1337, 1338, 1339)
 Sourced E1 cascade branch for channel 84. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -6494,6 +6784,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 84; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1336, 1337, 1338, 1339)
 Sourced E1 cascade branch for channel 84. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -6516,6 +6807,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 84; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1336, 1337, 1338, 1339)
 Sourced E1 cascade branch for channel 84. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -6538,6 +6830,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 85; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1340, 1341, 1342, 1343)
 Sourced E1 cascade branch for channel 85. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -6560,6 +6853,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 85; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1340, 1341, 1342, 1343)
 Sourced E1 cascade branch for channel 85. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -6582,6 +6876,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 85; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1340, 1341, 1342, 1343)
 Sourced E1 cascade branch for channel 85. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -6604,6 +6899,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 85; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1340, 1341, 1342, 1343)
 Sourced E1 cascade branch for channel 85. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -6626,6 +6922,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 86; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1344, 1345, 1346, 1347)
 Sourced E1 cascade branch for channel 86. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -6648,6 +6945,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 86; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1344, 1345, 1346, 1347)
 Sourced E1 cascade branch for channel 86. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -6670,6 +6968,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 86; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1344, 1345, 1346, 1347)
 Sourced E1 cascade branch for channel 86. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -6692,6 +6991,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 86; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1344, 1345, 1346, 1347)
 Sourced E1 cascade branch for channel 86. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -6714,6 +7014,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 87; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1348, 1349, 1350, 1351)
 Sourced E1 cascade branch for channel 87. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -6736,6 +7037,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 87; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1348, 1349, 1350, 1351)
 Sourced E1 cascade branch for channel 87. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -6758,6 +7060,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 87; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1348, 1349, 1350, 1351)
 Sourced E1 cascade branch for channel 87. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -6780,6 +7083,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 87; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1348, 1349, 1350, 1351)
 Sourced E1 cascade branch for channel 87. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -6802,6 +7106,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 88; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1352, 1353, 1354, 1355)
 Sourced E1 cascade branch for channel 88. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -6824,6 +7129,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 88; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1352, 1353, 1354, 1355)
 Sourced E1 cascade branch for channel 88. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -6846,6 +7152,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 88; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1352, 1353, 1354, 1355)
 Sourced E1 cascade branch for channel 88. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -6868,6 +7175,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 88; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1352, 1353, 1354, 1355)
 Sourced E1 cascade branch for channel 88. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -6890,6 +7198,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 89; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1356, 1357, 1358, 1359)
 Sourced E1 cascade branch for channel 89. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -6912,6 +7221,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 89; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1356, 1357, 1358, 1359)
 Sourced E1 cascade branch for channel 89. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -6934,6 +7244,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 89; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1356, 1357, 1358, 1359)
 Sourced E1 cascade branch for channel 89. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -6956,6 +7267,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 89; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1356, 1357, 1358, 1359)
 Sourced E1 cascade branch for channel 89. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -6978,6 +7290,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 90; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1360, 1361, 1362, 1363)
 Sourced E1 cascade branch for channel 90. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -7000,6 +7313,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 90; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1360, 1361, 1362, 1363)
 Sourced E1 cascade branch for channel 90. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -7022,6 +7336,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 90; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1360, 1361, 1362, 1363)
 Sourced E1 cascade branch for channel 90. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -7044,6 +7359,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 90; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1360, 1361, 1362, 1363)
 Sourced E1 cascade branch for channel 90. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -7066,6 +7382,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 91; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1364, 1365, 1366, 1367)
 Sourced E1 cascade branch for channel 91. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -7088,6 +7405,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 91; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1364, 1365, 1366, 1367)
 Sourced E1 cascade branch for channel 91. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -7110,6 +7428,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 91; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1364, 1365, 1366, 1367)
 Sourced E1 cascade branch for channel 91. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -7132,6 +7451,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 91; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1364, 1365, 1366, 1367)
 Sourced E1 cascade branch for channel 91. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -7154,6 +7474,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 92; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1368, 1369, 1370, 1371)
 Sourced E1 cascade branch for channel 92. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -7176,6 +7497,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 92; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1368, 1369, 1370, 1371)
 Sourced E1 cascade branch for channel 92. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -7198,6 +7520,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 92; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1368, 1369, 1370, 1371)
 Sourced E1 cascade branch for channel 92. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -7220,6 +7543,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 92; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1368, 1369, 1370, 1371)
 Sourced E1 cascade branch for channel 92. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -7242,6 +7566,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 93; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1372, 1373, 1374, 1375)
 Sourced E1 cascade branch for channel 93. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -7264,6 +7589,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 93; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1372, 1373, 1374, 1375)
 Sourced E1 cascade branch for channel 93. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -7286,6 +7612,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 93; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1372, 1373, 1374, 1375)
 Sourced E1 cascade branch for channel 93. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -7308,6 +7635,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 93; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1372, 1373, 1374, 1375)
 Sourced E1 cascade branch for channel 93. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -7330,6 +7658,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 94; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1376, 1377, 1378, 1379)
 Sourced E1 cascade branch for channel 94. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -7352,6 +7681,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 94; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1376, 1377, 1378, 1379)
 Sourced E1 cascade branch for channel 94. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -7374,6 +7704,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 94; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1376, 1377, 1378, 1379)
 Sourced E1 cascade branch for channel 94. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -7396,6 +7727,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 94; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1376, 1377, 1378, 1379)
 Sourced E1 cascade branch for channel 94. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -7418,6 +7750,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 95; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1380, 1381, 1382, 1383)
 Sourced E1 cascade branch for channel 95. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -7440,6 +7773,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 95; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1380, 1381, 1382, 1383)
 Sourced E1 cascade branch for channel 95. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -7462,6 +7796,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 95; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1380, 1381, 1382, 1383)
 Sourced E1 cascade branch for channel 95. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -7484,6 +7819,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 95; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1380, 1381, 1382, 1383)
 Sourced E1 cascade branch for channel 95. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -7506,6 +7842,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 96; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1384, 1385, 1386, 1387)
 Sourced E1 cascade branch for channel 96. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -7528,6 +7865,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 96; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1384, 1385, 1386, 1387)
 Sourced E1 cascade branch for channel 96. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -7550,6 +7888,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 96; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1384, 1385, 1386, 1387)
 Sourced E1 cascade branch for channel 96. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -7572,6 +7911,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 96; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1384, 1385, 1386, 1387)
 Sourced E1 cascade branch for channel 96. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -7594,6 +7934,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 99; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1396, 1397, 1398, 1399)
 Sourced E1 cascade branch for channel 99. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -7616,6 +7957,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 99; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1396, 1397, 1398, 1399)
 Sourced E1 cascade branch for channel 99. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -7638,6 +7980,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 99; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1396, 1397, 1398, 1399)
 Sourced E1 cascade branch for channel 99. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -7660,6 +8003,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 99; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1396, 1397, 1398, 1399)
 Sourced E1 cascade branch for channel 99. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -7682,6 +8026,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 100; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1400, 1401, 1402, 1403)
 Sourced E1 cascade branch for channel 100. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -7704,6 +8049,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 100; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1400, 1401, 1402, 1403)
 Sourced E1 cascade branch for channel 100. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -7726,6 +8072,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 100; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1400, 1401, 1402, 1403)
 Sourced E1 cascade branch for channel 100. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -7748,6 +8095,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 100; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1400, 1401, 1402, 1403)
 Sourced E1 cascade branch for channel 100. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -7770,6 +8118,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 101; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1404, 1405, 1406, 1407)
 Sourced E1 cascade branch for channel 101. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -7792,6 +8141,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 101; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1404, 1405, 1406, 1407)
 Sourced E1 cascade branch for channel 101. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -7814,6 +8164,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 101; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1404, 1405, 1406, 1407)
 Sourced E1 cascade branch for channel 101. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -7836,6 +8187,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 101; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1404, 1405, 1406, 1407)
 Sourced E1 cascade branch for channel 101. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -7858,6 +8210,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 102; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1408, 1409, 1410, 1411)
 Sourced E1 cascade branch for channel 102. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -7880,6 +8233,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 102; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1408, 1409, 1410, 1411)
 Sourced E1 cascade branch for channel 102. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -7902,6 +8256,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 102; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1408, 1409, 1410, 1411)
 Sourced E1 cascade branch for channel 102. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -7924,6 +8279,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 102; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1408, 1409, 1410, 1411)
 Sourced E1 cascade branch for channel 102. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -7946,6 +8302,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 103; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1412, 1413, 1414, 1415)
 Sourced E1 cascade branch for channel 103. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -7968,6 +8325,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 103; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1412, 1413, 1414, 1415)
 Sourced E1 cascade branch for channel 103. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -7990,6 +8348,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 103; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1412, 1413, 1414, 1415)
 Sourced E1 cascade branch for channel 103. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -8012,6 +8371,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 103; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1412, 1413, 1414, 1415)
 Sourced E1 cascade branch for channel 103. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -8034,6 +8394,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 104; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1416, 1417, 1418, 1419)
 Sourced E1 cascade branch for channel 104. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -8056,6 +8417,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 104; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1416, 1417, 1418, 1419)
 Sourced E1 cascade branch for channel 104. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -8078,6 +8440,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 104; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1416, 1417, 1418, 1419)
 Sourced E1 cascade branch for channel 104. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -8100,6 +8463,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 104; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1416, 1417, 1418, 1419)
 Sourced E1 cascade branch for channel 104. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -8122,6 +8486,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 105; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1420, 1421, 1422, 1423)
 Sourced E1 cascade branch for channel 105. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -8144,6 +8509,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 105; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1420, 1421, 1422, 1423)
 Sourced E1 cascade branch for channel 105. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -8166,6 +8532,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 105; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1420, 1421, 1422, 1423)
 Sourced E1 cascade branch for channel 105. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -8188,6 +8555,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 105; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1420, 1421, 1422, 1423)
 Sourced E1 cascade branch for channel 105. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -8210,6 +8578,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 106; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1424, 1425, 1426, 1427)
 Sourced E1 cascade branch for channel 106. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -8232,6 +8601,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 106; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1424, 1425, 1426, 1427)
 Sourced E1 cascade branch for channel 106. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -8254,6 +8624,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 106; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1424, 1425, 1426, 1427)
 Sourced E1 cascade branch for channel 106. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -8276,6 +8647,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 106; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1424, 1425, 1426, 1427)
 Sourced E1 cascade branch for channel 106. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -8298,6 +8670,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 107; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1428, 1429, 1430, 1431)
 Sourced E1 cascade branch for channel 107. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -8320,6 +8693,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 107; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1428, 1429, 1430, 1431)
 Sourced E1 cascade branch for channel 107. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -8342,6 +8716,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 107; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1428, 1429, 1430, 1431)
 Sourced E1 cascade branch for channel 107. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -8364,6 +8739,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 107; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1428, 1429, 1430, 1431)
 Sourced E1 cascade branch for channel 107. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -8386,6 +8762,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 108; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1432, 1433, 1434, 1435)
 Sourced E1 cascade branch for channel 108. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -8408,6 +8785,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 108; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1432, 1433, 1434, 1435)
 Sourced E1 cascade branch for channel 108. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -8430,6 +8808,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 108; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1432, 1433, 1434, 1435)
 Sourced E1 cascade branch for channel 108. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -8452,6 +8831,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 108; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1432, 1433, 1434, 1435)
 Sourced E1 cascade branch for channel 108. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -8474,6 +8854,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 109; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1436, 1437, 1438, 1439)
 Sourced E1 cascade branch for channel 109. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -8496,6 +8877,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 109; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1436, 1437, 1438, 1439)
 Sourced E1 cascade branch for channel 109. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -8518,6 +8900,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 109; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1436, 1437, 1438, 1439)
 Sourced E1 cascade branch for channel 109. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -8540,6 +8923,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 109; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1436, 1437, 1438, 1439)
 Sourced E1 cascade branch for channel 109. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -8562,6 +8946,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 110; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1440, 1441, 1442, 1443)
 Sourced E1 cascade branch for channel 110. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -8584,6 +8969,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 110; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1440, 1441, 1442, 1443)
 Sourced E1 cascade branch for channel 110. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -8606,6 +8992,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 110; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1440, 1441, 1442, 1443)
 Sourced E1 cascade branch for channel 110. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -8628,6 +9015,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 110; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1440, 1441, 1442, 1443)
 Sourced E1 cascade branch for channel 110. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -8650,6 +9038,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 111; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1444, 1445, 1446, 1447)
 Sourced E1 cascade branch for channel 111. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -8672,6 +9061,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 111; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1444, 1445, 1446, 1447)
 Sourced E1 cascade branch for channel 111. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -8694,6 +9084,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 111; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1444, 1445, 1446, 1447)
 Sourced E1 cascade branch for channel 111. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -8716,6 +9107,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 111; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1444, 1445, 1446, 1447)
 Sourced E1 cascade branch for channel 111. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -8738,6 +9130,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 112; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1448, 1449, 1450, 1451)
 Sourced E1 cascade branch for channel 112. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -8760,6 +9153,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 112; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1448, 1449, 1450, 1451)
 Sourced E1 cascade branch for channel 112. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -8782,6 +9176,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 112; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1448, 1449, 1450, 1451)
 Sourced E1 cascade branch for channel 112. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -8804,6 +9199,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 112; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1448, 1449, 1450, 1451)
 Sourced E1 cascade branch for channel 112. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -8826,6 +9222,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 113; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1452, 1453, 1454, 1455)
 Sourced E1 cascade branch for channel 113. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -8848,6 +9245,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 113; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1452, 1453, 1454, 1455)
 Sourced E1 cascade branch for channel 113. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -8870,6 +9268,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 113; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1452, 1453, 1454, 1455)
 Sourced E1 cascade branch for channel 113. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -8892,6 +9291,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 113; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1452, 1453, 1454, 1455)
 Sourced E1 cascade branch for channel 113. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -8914,6 +9314,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 114; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1456, 1457, 1458, 1459)
 Sourced E1 cascade branch for channel 114. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -8936,6 +9337,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 114; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1456, 1457, 1458, 1459)
 Sourced E1 cascade branch for channel 114. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -8958,6 +9360,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 114; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1456, 1457, 1458, 1459)
 Sourced E1 cascade branch for channel 114. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -8980,6 +9383,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 114; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1456, 1457, 1458, 1459)
 Sourced E1 cascade branch for channel 114. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -9002,6 +9406,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 115; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1460, 1461, 1462, 1463)
 Sourced E1 cascade branch for channel 115. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -9024,6 +9429,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 115; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1460, 1461, 1462, 1463)
 Sourced E1 cascade branch for channel 115. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -9046,6 +9452,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 115; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1460, 1461, 1462, 1463)
 Sourced E1 cascade branch for channel 115. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -9068,6 +9475,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 115; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1460, 1461, 1462, 1463)
 Sourced E1 cascade branch for channel 115. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -9090,6 +9498,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 116; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1464, 1465, 1466, 1467)
 Sourced E1 cascade branch for channel 116. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -9112,6 +9521,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 116; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1464, 1465, 1466, 1467)
 Sourced E1 cascade branch for channel 116. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -9134,6 +9544,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 116; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1464, 1465, 1466, 1467)
 Sourced E1 cascade branch for channel 116. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -9156,6 +9567,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 116; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1464, 1465, 1466, 1467)
 Sourced E1 cascade branch for channel 116. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -9178,6 +9590,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 117; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1468, 1469, 1470, 1471)
 Sourced E1 cascade branch for channel 117. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -9200,6 +9613,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 117; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1468, 1469, 1470, 1471)
 Sourced E1 cascade branch for channel 117. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -9222,6 +9636,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 117; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1468, 1469, 1470, 1471)
 Sourced E1 cascade branch for channel 117. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -9244,6 +9659,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 117; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1468, 1469, 1470, 1471)
 Sourced E1 cascade branch for channel 117. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -9266,6 +9682,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 118; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1472, 1473, 1474, 1475)
 Sourced E1 cascade branch for channel 118. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -9288,6 +9705,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 118; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1472, 1473, 1474, 1475)
 Sourced E1 cascade branch for channel 118. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -9310,6 +9728,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 118; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1472, 1473, 1474, 1475)
 Sourced E1 cascade branch for channel 118. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -9332,6 +9751,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 118; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1472, 1473, 1474, 1475)
 Sourced E1 cascade branch for channel 118. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -9354,6 +9774,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 119; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1476, 1477, 1478, 1479)
 Sourced E1 cascade branch for channel 119. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -9376,6 +9797,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 119; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1476, 1477, 1478, 1479)
 Sourced E1 cascade branch for channel 119. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -9398,6 +9820,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 119; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1476, 1477, 1478, 1479)
 Sourced E1 cascade branch for channel 119. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -9420,6 +9843,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 119; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1476, 1477, 1478, 1479)
 Sourced E1 cascade branch for channel 119. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -9442,6 +9866,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 120; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1480, 1481, 1482, 1483)
 Sourced E1 cascade branch for channel 120. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -9464,6 +9889,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 120; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1480, 1481, 1482, 1483)
 Sourced E1 cascade branch for channel 120. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -9486,6 +9912,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 120; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1480, 1481, 1482, 1483)
 Sourced E1 cascade branch for channel 120. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -9508,6 +9935,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 120; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1480, 1481, 1482, 1483)
 Sourced E1 cascade branch for channel 120. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -9530,6 +9958,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 121; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1484, 1485, 1486, 1487)
 Sourced E1 cascade branch for channel 121. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -9552,6 +9981,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 121; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1484, 1485, 1486, 1487)
 Sourced E1 cascade branch for channel 121. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -9574,6 +10004,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 121; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1484, 1485, 1486, 1487)
 Sourced E1 cascade branch for channel 121. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -9596,6 +10027,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 121; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1484, 1485, 1486, 1487)
 Sourced E1 cascade branch for channel 121. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -9618,6 +10050,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 122; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1488, 1489, 1490, 1491)
 Sourced E1 cascade branch for channel 122. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -9640,6 +10073,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 122; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1488, 1489, 1490, 1491)
 Sourced E1 cascade branch for channel 122. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -9662,6 +10096,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 122; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1488, 1489, 1490, 1491)
 Sourced E1 cascade branch for channel 122. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -9684,6 +10119,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 122; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1488, 1489, 1490, 1491)
 Sourced E1 cascade branch for channel 122. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -9706,6 +10142,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 123; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1492, 1493, 1494, 1495)
 Sourced E1 cascade branch for channel 123. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -9728,6 +10165,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 123; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1492, 1493, 1494, 1495)
 Sourced E1 cascade branch for channel 123. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -9750,6 +10188,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 123; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1492, 1493, 1494, 1495)
 Sourced E1 cascade branch for channel 123. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -9772,6 +10211,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 123; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1492, 1493, 1494, 1495)
 Sourced E1 cascade branch for channel 123. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -9794,6 +10234,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 124; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1496, 1497, 1498, 1499)
 Sourced E1 cascade branch for channel 124. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -9816,6 +10257,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 124; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1496, 1497, 1498, 1499)
 Sourced E1 cascade branch for channel 124. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -9838,6 +10280,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 124; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1496, 1497, 1498, 1499)
 Sourced E1 cascade branch for channel 124. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -9860,6 +10303,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 124; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1496, 1497, 1498, 1499)
 Sourced E1 cascade branch for channel 124. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -9882,6 +10326,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 128; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1512, 1513, 1514, 1515)
 Sourced E1 cascade branch for channel 128. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -9904,6 +10349,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 128; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1512, 1513, 1514, 1515)
 Sourced E1 cascade branch for channel 128. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -9926,6 +10372,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 128; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1512, 1513, 1514, 1515)
 Sourced E1 cascade branch for channel 128. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -9948,6 +10395,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 128; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1512, 1513, 1514, 1515)
 Sourced E1 cascade branch for channel 128. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -9970,6 +10418,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 129; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1516, 1517, 1518, 1519)
 Sourced E1 cascade branch for channel 129. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -9992,6 +10441,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 129; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1516, 1517, 1518, 1519)
 Sourced E1 cascade branch for channel 129. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -10014,6 +10464,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 129; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1516, 1517, 1518, 1519)
 Sourced E1 cascade branch for channel 129. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -10036,6 +10487,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 129; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1516, 1517, 1518, 1519)
 Sourced E1 cascade branch for channel 129. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -10058,6 +10510,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 130; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1520, 1521, 1522, 1523)
 Sourced E1 cascade branch for channel 130. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -10080,6 +10533,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 130; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1520, 1521, 1522, 1523)
 Sourced E1 cascade branch for channel 130. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -10102,6 +10556,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 130; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1520, 1521, 1522, 1523)
 Sourced E1 cascade branch for channel 130. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -10124,6 +10579,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 130; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1520, 1521, 1522, 1523)
 Sourced E1 cascade branch for channel 130. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -10146,6 +10602,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 131; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1524, 1525, 1526, 1527)
 Sourced E1 cascade branch for channel 131. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -10168,6 +10625,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 131; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1524, 1525, 1526, 1527)
 Sourced E1 cascade branch for channel 131. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -10190,6 +10648,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 131; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1524, 1525, 1526, 1527)
 Sourced E1 cascade branch for channel 131. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -10212,6 +10671,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 131; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1524, 1525, 1526, 1527)
 Sourced E1 cascade branch for channel 131. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -10234,6 +10694,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 132; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1528, 1529, 1530, 1531)
 Sourced E1 cascade branch for channel 132. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -10256,6 +10717,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 132; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1528, 1529, 1530, 1531)
 Sourced E1 cascade branch for channel 132. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -10278,6 +10740,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 132; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1528, 1529, 1530, 1531)
 Sourced E1 cascade branch for channel 132. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -10300,6 +10763,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 132; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1528, 1529, 1530, 1531)
 Sourced E1 cascade branch for channel 132. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -10322,6 +10786,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 133; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1532, 1533, 1534, 1535)
 Sourced E1 cascade branch for channel 133. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -10344,6 +10809,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 133; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1532, 1533, 1534, 1535)
 Sourced E1 cascade branch for channel 133. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -10366,6 +10832,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 133; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1532, 1533, 1534, 1535)
 Sourced E1 cascade branch for channel 133. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -10388,6 +10855,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 133; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1532, 1533, 1534, 1535)
 Sourced E1 cascade branch for channel 133. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -10410,6 +10878,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 134; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1536, 1537, 1538, 1539)
 Sourced E1 cascade branch for channel 134. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -10432,6 +10901,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 134; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1536, 1537, 1538, 1539)
 Sourced E1 cascade branch for channel 134. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -10454,6 +10924,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 134; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1536, 1537, 1538, 1539)
 Sourced E1 cascade branch for channel 134. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -10476,6 +10947,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 134; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1536, 1537, 1538, 1539)
 Sourced E1 cascade branch for channel 134. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -10498,6 +10970,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 135; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1540, 1541, 1542, 1543)
 Sourced E1 cascade branch for channel 135. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -10520,6 +10993,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 135; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1540, 1541, 1542, 1543)
 Sourced E1 cascade branch for channel 135. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -10542,6 +11016,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 135; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1540, 1541, 1542, 1543)
 Sourced E1 cascade branch for channel 135. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -10564,6 +11039,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 135; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1540, 1541, 1542, 1543)
 Sourced E1 cascade branch for channel 135. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -10586,6 +11062,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 136; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1544, 1545, 1546, 1547)
 Sourced E1 cascade branch for channel 136. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -10608,6 +11085,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 136; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1544, 1545, 1546, 1547)
 Sourced E1 cascade branch for channel 136. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -10630,6 +11108,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 136; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1544, 1545, 1546, 1547)
 Sourced E1 cascade branch for channel 136. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -10652,6 +11131,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 136; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1544, 1545, 1546, 1547)
 Sourced E1 cascade branch for channel 136. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -10674,6 +11154,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 137; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1548, 1549, 1550, 1551)
 Sourced E1 cascade branch for channel 137. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -10696,6 +11177,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 137; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1548, 1549, 1550, 1551)
 Sourced E1 cascade branch for channel 137. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -10718,6 +11200,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 137; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1548, 1549, 1550, 1551)
 Sourced E1 cascade branch for channel 137. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -10740,6 +11223,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 137; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1548, 1549, 1550, 1551)
 Sourced E1 cascade branch for channel 137. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -10762,6 +11246,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 138; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1552, 1553, 1554, 1555)
 Sourced E1 cascade branch for channel 138. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -10784,6 +11269,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 138; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1552, 1553, 1554, 1555)
 Sourced E1 cascade branch for channel 138. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -10806,6 +11292,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 138; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1552, 1553, 1554, 1555)
 Sourced E1 cascade branch for channel 138. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -10828,6 +11315,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 138; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1552, 1553, 1554, 1555)
 Sourced E1 cascade branch for channel 138. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -10850,6 +11338,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 139; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1556, 1557, 1558, 1559)
 Sourced E1 cascade branch for channel 139. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -10872,6 +11361,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 139; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1556, 1557, 1558, 1559)
 Sourced E1 cascade branch for channel 139. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -10894,6 +11384,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 139; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1556, 1557, 1558, 1559)
 Sourced E1 cascade branch for channel 139. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -10916,6 +11407,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 139; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1556, 1557, 1558, 1559)
 Sourced E1 cascade branch for channel 139. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -10938,6 +11430,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 140; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1560, 1561, 1562, 1563)
 Sourced E1 cascade branch for channel 140. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -10960,6 +11453,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 140; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1560, 1561, 1562, 1563)
 Sourced E1 cascade branch for channel 140. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -10982,6 +11476,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 140; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1560, 1561, 1562, 1563)
 Sourced E1 cascade branch for channel 140. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -11004,6 +11499,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 140; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1560, 1561, 1562, 1563)
 Sourced E1 cascade branch for channel 140. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -11026,6 +11522,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 141; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1564, 1565, 1566, 1567)
 Sourced E1 cascade branch for channel 141. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -11048,6 +11545,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 141; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1564, 1565, 1566, 1567)
 Sourced E1 cascade branch for channel 141. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -11070,6 +11568,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 141; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1564, 1565, 1566, 1567)
 Sourced E1 cascade branch for channel 141. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -11092,6 +11591,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 141; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1564, 1565, 1566, 1567)
 Sourced E1 cascade branch for channel 141. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -11114,6 +11614,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 142; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1568, 1569, 1570, 1571)
 Sourced E1 cascade branch for channel 142. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -11136,6 +11637,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 142; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1568, 1569, 1570, 1571)
 Sourced E1 cascade branch for channel 142. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -11158,6 +11660,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 142; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1568, 1569, 1570, 1571)
 Sourced E1 cascade branch for channel 142. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -11180,6 +11683,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 142; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1568, 1569, 1570, 1571)
 Sourced E1 cascade branch for channel 142. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -11202,6 +11706,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 143; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1572, 1573, 1574, 1575)
 Sourced E1 cascade branch for channel 143. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -11224,6 +11729,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 143; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1572, 1573, 1574, 1575)
 Sourced E1 cascade branch for channel 143. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -11246,6 +11752,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 143; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1572, 1573, 1574, 1575)
 Sourced E1 cascade branch for channel 143. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -11268,6 +11775,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 143; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1572, 1573, 1574, 1575)
 Sourced E1 cascade branch for channel 143. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -11290,6 +11798,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 144; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1576, 1577, 1578, 1579)
 Sourced E1 cascade branch for channel 144. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -11312,6 +11821,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 144; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1576, 1577, 1578, 1579)
 Sourced E1 cascade branch for channel 144. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -11334,6 +11844,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 144; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1576, 1577, 1578, 1579)
 Sourced E1 cascade branch for channel 144. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -11356,6 +11867,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 144; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1576, 1577, 1578, 1579)
 Sourced E1 cascade branch for channel 144. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -11378,6 +11890,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 145; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1580, 1581, 1582, 1583)
 Sourced E1 cascade branch for channel 145. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -11400,6 +11913,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 145; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1580, 1581, 1582, 1583)
 Sourced E1 cascade branch for channel 145. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -11422,6 +11936,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 145; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1580, 1581, 1582, 1583)
 Sourced E1 cascade branch for channel 145. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -11444,6 +11959,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 145; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1580, 1581, 1582, 1583)
 Sourced E1 cascade branch for channel 145. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -11466,6 +11982,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 146; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1584, 1585, 1586, 1587)
 Sourced E1 cascade branch for channel 146. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -11488,6 +12005,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 146; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1584, 1585, 1586, 1587)
 Sourced E1 cascade branch for channel 146. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -11510,6 +12028,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 146; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1584, 1585, 1586, 1587)
 Sourced E1 cascade branch for channel 146. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -11532,6 +12051,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 146; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1584, 1585, 1586, 1587)
 Sourced E1 cascade branch for channel 146. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -11554,6 +12074,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 147; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1588, 1589, 1590, 1591)
 Sourced E1 cascade branch for channel 147. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -11576,6 +12097,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 147; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1588, 1589, 1590, 1591)
 Sourced E1 cascade branch for channel 147. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -11598,6 +12120,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 147; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1588, 1589, 1590, 1591)
 Sourced E1 cascade branch for channel 147. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -11620,6 +12143,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 147; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1588, 1589, 1590, 1591)
 Sourced E1 cascade branch for channel 147. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -11642,6 +12166,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 148; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1592, 1593, 1594, 1595)
 Sourced E1 cascade branch for channel 148. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -11664,6 +12189,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 148; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1592, 1593, 1594, 1595)
 Sourced E1 cascade branch for channel 148. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -11686,6 +12212,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 148; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1592, 1593, 1594, 1595)
 Sourced E1 cascade branch for channel 148. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -11708,6 +12235,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 148; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1592, 1593, 1594, 1595)
 Sourced E1 cascade branch for channel 148. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -11730,6 +12258,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 149; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1596, 1597, 1598, 1599)
 Sourced E1 cascade branch for channel 149. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -11752,6 +12281,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 149; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1596, 1597, 1598, 1599)
 Sourced E1 cascade branch for channel 149. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -11774,6 +12304,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 149; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1596, 1597, 1598, 1599)
 Sourced E1 cascade branch for channel 149. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -11796,6 +12327,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 149; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1596, 1597, 1598, 1599)
 Sourced E1 cascade branch for channel 149. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -11818,6 +12350,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 150; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1600, 1601, 1602, 1603)
 Sourced E1 cascade branch for channel 150. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -11840,6 +12373,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 150; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1600, 1601, 1602, 1603)
 Sourced E1 cascade branch for channel 150. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -11862,6 +12396,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 150; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1600, 1601, 1602, 1603)
 Sourced E1 cascade branch for channel 150. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -11884,6 +12419,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 150; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1600, 1601, 1602, 1603)
 Sourced E1 cascade branch for channel 150. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -11906,6 +12442,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 151; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1604, 1605, 1606, 1607)
 Sourced E1 cascade branch for channel 151. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -11928,6 +12465,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 151; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1604, 1605, 1606, 1607)
 Sourced E1 cascade branch for channel 151. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -11950,6 +12488,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 151; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1604, 1605, 1606, 1607)
 Sourced E1 cascade branch for channel 151. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -11972,6 +12511,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 151; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1604, 1605, 1606, 1607)
 Sourced E1 cascade branch for channel 151. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -11994,6 +12534,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 152; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1608, 1609, 1610, 1611)
 Sourced E1 cascade branch for channel 152. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -12016,6 +12557,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 152; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1608, 1609, 1610, 1611)
 Sourced E1 cascade branch for channel 152. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -12038,6 +12580,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 152; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1608, 1609, 1610, 1611)
 Sourced E1 cascade branch for channel 152. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -12060,6 +12603,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 152; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1608, 1609, 1610, 1611)
 Sourced E1 cascade branch for channel 152. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -12082,6 +12626,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 153; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1612, 1613, 1614, 1615)
 Sourced E1 cascade branch for channel 153. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -12104,6 +12649,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 153; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1612, 1613, 1614, 1615)
 Sourced E1 cascade branch for channel 153. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -12126,6 +12672,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 153; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1612, 1613, 1614, 1615)
 Sourced E1 cascade branch for channel 153. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
@@ -12148,6 +12695,7 @@ entry(
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 153; sourced cascade branch",
     longDesc = """
+EEDF branch family = (1612, 1613, 1614, 1615)
 Sourced E1 cascade branch for channel 153. Product fractions are generated
 from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
 are recorded in argon_radiative_data.yaml. Branch fractions partition the existing

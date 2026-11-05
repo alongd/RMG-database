@@ -103,13 +103,43 @@ the worst screened node is 4 Td. A fresh solve at that population gives
 2276.076 W/m^3 of omitted upper-to-4s superelastic return versus
 659599.881 W/m^3 field power: **0.345069%**, below the 1% bound.
 
-Production tables retain zero 4s populations and no 4s coordinate. Their
-fingerprinted manifest declares `excited_fraction_max: 1e-5` (sum of all
-four neutral 4s states divided by neutral Ar ground) and
-`argon_elimination_electron_density_max_m3: 1e18`. The reactor checks both
-at initialization and every accepted step. A missing declaration retains
-backward compatibility. These bounds do not qualify a table: the table
-owner must regenerate and independently qualify its production artifact.
+Production tables include `f_Ar4s = total neutral Ar(4s) / neutral Ar ground`
+at nodes **0, 1e-7, 1e-6, 1e-5, 1e-4**. The frozen
+`argon_4s_population` convention splits the total by weights (5, 3, 1, 3)/12
+across 1s5, 1s4, 1s3, 1s2. Ground is 1/(1+f), and each excited population
+is f/(1+f) times its weight. Tensor PCHIP uses the coordinate f/1e-7 below
+the first positive node, and 1+ln(f/1e-7) above it; the coordinate and its
+first derivative are continuous at 1e-7. This replaces the earlier
+zero-population fraction-limit premise.
+
+The reactor derives f from molecular identities at every evaluation, including
+the ground-denominator chain rule in electron energy storage. Accepted states
+above the top node 1e-4 refuse. The independent eliminated-level declaration
+`argon_elimination_electron_density_max_m3: 1e18` remains enforced.
+Legacy tables retain their declared guards. A missing declaration does not
+confer production qualification. The spec freezes T10 mobility and field-power
+criteria at rtol=0.01, atol=0 and includes off-centre points on every f interval.
+These are initial nodes, not an accuracy guarantee: refinement can add nodes
+while retaining all five base nodes and the coordinate transition at 1e-7.
+
+The pinned LoKI solver (`Operators.cpp:578`) nests inverse assembly inside
+`targetDensity != 0`: an exact-zero target with a populated reverse source
+would silently lose its inverse operator. Spec refresh checks all production
+population nodes and refuses this case. Statistical-split nodes are safe:
+all four states are positive for f>0 and all are zero for f=0. The extreme-split
+sensitivity probe uses a vanishing weight 1e-20 for nominally absent states,
+keeping total f fixed. At f=1e-5, 4 and 25 Td, pure Ar and 1% N2, all eight
+solves pass power balance; the largest transport/power change is 0.464755%.
+Two checks at floor 1e-16 agree within 1.1e-13 relative. This bounds the tested
+split sensitivity, not production interpolation error or arbitrary populations.
+
+All 104 sourced self-return branches remain explicit reactions. They have zero
+net species balance but carry their share of collision energy and photon flux.
+Each branch's `EEDF branch family = (...)` declaration lists its four source
+entry indices. Normal admission preserves a self-return only when the complete
+family, molecular products, markers and source digest agree. Ordinary symmetric
+reactions remain rejected; runtime table binding still validates the sourced family.
+
 The requested 60 Td point checks demonstrate rate ownership and power
 accounting; the eliminated-level bounds above were established over
 4–25 Td, not at 60 Td.
@@ -135,7 +165,7 @@ python scripts/realize_argon_collisions.py --assembled /path/to/ar-v1 --output /
 ```
 
 From the matching RMG-Py checkout, refresh an existing pure-Ar or Ar/N2 spec
-without changing its grid or nitrogen data:
+preserving its field/composition grid and nitrogen data while adding the 4s axis:
 
 ```sh
 python -m rmgpy.tools.eedf.argon --base-spec /path/to/current-spec.json --database /path/to/RMG-database --realization /path/to/ar-4s-electron-v1 --output /path/to/new-conversion

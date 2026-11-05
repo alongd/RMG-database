@@ -72,6 +72,7 @@ def render(yields_raw):
                 '    ),',
                 f'    shortDesc = "IST-Lisbon-Ar-2021 channel {channel["id"]}; sourced cascade branch",',
                 '    longDesc = """',
+                f"EEDF branch family = {tuple(1000 + channel['id'] * 4 + i for i in range(4))!r}",
                 f"Sourced E1 cascade branch for channel {channel['id']}. Product fractions are generated",
                 'from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities',
                 'are recorded in argon_radiative_data.yaml. Branch fractions partition the existing',

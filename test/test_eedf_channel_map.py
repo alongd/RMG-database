@@ -161,7 +161,7 @@ class TestOverlayLoader:
         ("collisions:\n  'x': {class: !!str B}\n", 'explicit tags'),
         (b'\xff\xfecollisions: {}\n', 'cannot be read as UTF-8'),
         ("collisions:\n  'x': {class: [A]}\n", 'is not a string'),
-        ("collisions:\n  'x': {class: A, reaction: 'Ar + e- => Ars + e-', index: 87}\n", 'and nothing else'),
+        ("collisions:\n  'x': {class: A, reaction: Ar + e- => Ars + e-, index: 87}\n", 'and nothing else'),
         ("channels: {}\n", "the key 'collisions'"),
         ("collisions: {}\nspecies: {Ar: [1]}\n", 'is not a string'),
     ])
@@ -214,6 +214,8 @@ class TestReactionOwnerResolution:
 def plain(loaded):
     """load_library()'s result with each RMG species as its adjacency list, so two loads can be compared."""
     reactions, species, problems = loaded
+    reactions = {k: v._replace(entry=(v.entry.index, repr(v.entry.data), v.entry.long_desc)
+                    if v.entry is not None else None) for k, v in (reactions or {}).items()}
     return reactions, {k: v.molecule[0].to_adjacency_list() for k, v in (species or {}).items()}, problems
 
 
@@ -426,7 +428,7 @@ class TestInputsAndOutput:
         assert "RMG's own loader refuses it" in gen.load_library(database, gen.LIBRARY)[2][0]
 
     @pytest.mark.parametrize('old, new, value', [('class: A', 'class: 2026-02-30', '2026-02-30'),
-                                                 ("reaction: 'Ar + e- => Ars + e-'", 'reaction: 2026-13-01',
+                                                 ("reaction: Ar + e- => Ars + e-", 'reaction: 2026-13-01',
                                                   '2026-13-01')])
     def test_an_overlay_date_is_its_text_not_a_date(self, tmp_path, old, new, value):
         """An unquoted date in the overlay is not constructed, so a malformed one is no traceback (db-r52)."""
@@ -467,8 +469,8 @@ class TestInputsAndOutput:
 
     @pytest.mark.parametrize('old, new', [
         ('collisions:\n', 'collisions:\n  "\\uD800": {class: A}\n'),
-        ('{class: B}', '{class: "\\uD800"}'),
-        ("reaction: 'Ar + e- => Ars + e-'", 'reaction: "A\\uDFFF"')])
+        ('class: B', 'class: "\\uD800"'),
+        ("reaction: Ar + e- => Ars + e-", 'reaction: "A\\uDFFF"')])
     def test_an_overlay_string_that_is_not_unicode_is_a_reason(self, tmp_path, old, new):
         """A YAML escape can write a lone surrogate; it is refused where the overlay is read, and the checker
         and generator print every diagnostic, whatever it holds (db-r53 finding 3)."""
@@ -816,7 +818,7 @@ class TestAgainstTheStore:
             out['overlay'] = written('overlay.yaml', overlay.replace(b'class: A', b'class: 2026-02-30', 1))
         elif row == 'overlay_reaction_date':
             out['overlay'] = written('overlay.yaml', overlay.replace(
-                b"reaction: 'Ar + e- => Ars + e-'", b'reaction: 2026-13-01', 1))
+                b"reaction: Ar + e- => Ars + e-", b'reaction: 2026-13-01', 1))
         elif row == 'map_field_date':
             out['map'] = written('map.yaml', committed.replace(b'class: A', b'class: 2026-02-30', 1))
         elif row.startswith('overlay_'):

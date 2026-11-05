@@ -1,14 +1,13 @@
 """Targeted checks for the reduced, room-temperature nitrogen loss library.
 
-The real-job test needs PlasmaArgonExcited and its fixed-row fixture. Before
-that companion branch is merged, set PLASMA_ARGON_EXCITED_ROOT to its checkout.
-A nanosecond replay proves admission/integration, not steady-state N omission.
+The real-job test uses the local PlasmaArgonExcited fixed-row fixture and
+explicitly enlarges the model after a nanosecond integration. This checks
+admission through enlargement, not steady-state N omission.
 """
 import ast
 import hashlib
 import json
 import math
-import os
 from pathlib import Path
 
 import numpy as np
@@ -68,13 +67,6 @@ def configure_database(monkeypatch, tmp_path):
     monkeypatch.setattr(data_module, 'database', None)
 
 
-def companion_root():
-    root = Path(os.environ.get('PLASMA_ARGON_EXCITED_ROOT', str(ROOT)))
-    assert (root / 'input/kinetics/libraries/PlasmaArgonExcited/reactions.py').is_file(), (
-        'PlasmaArgonExcited is required; set PLASMA_ARGON_EXCITED_ROOT to its checkout')
-    return root
-
-
 def test_library_rates_sources_conventions_balance_and_identity(library):
     from rmgpy.kinetics import Arrhenius
 
@@ -110,7 +102,7 @@ def test_no_overlap_with_existing_or_companion_channels(library):
     db = KineticsDatabase()
     db.load_libraries(str(ROOT / 'input/kinetics/libraries'), libraries=[
         'PlasmaArgon', 'PlasmaNitrogen', 'PlasmaRadiativeRecombination',
-        str(companion_root() / 'input/kinetics/libraries/PlasmaArgonExcited')])
+        str(ROOT / 'input/kinetics/libraries/PlasmaArgonExcited')])
     for entry in library.entries.values():
         for old_library in db.libraries.values():
             assert not any(entry.item.is_isomorphic(old.item, either_direction=False)
@@ -141,7 +133,7 @@ def test_pooling_is_event_rate_with_two_gross_and_one_cascade_net(library):
         # The companion's C->B->A cascade returns exactly one A per event.
         db = KineticsDatabase()
         db.load_libraries(str(ROOT / 'input/kinetics/libraries'), libraries=[
-            str(companion_root() / 'input/kinetics/libraries/PlasmaArgonExcited')])
+            str(ROOT / 'input/kinetics/libraries/PlasmaArgonExcited')])
         cascade = {e.label: e.item for lib in db.libraries.values() for e in lib.entries.values()}
         steps = [cascade['N2B => N2A']]
         if product == 'N2C':
@@ -205,11 +197,11 @@ def test_wall_declaration_returns_all_four_states_to_ground(x_n2, monkeypatch, t
 
 
 @pytest.mark.parametrize('x_n2', [.01, .05, .2])
-def test_short_real_job_admits_every_new_channel(x_n2, monkeypatch, tmp_path, library):
+def test_real_job_admits_each_channel_once_after_enlargement(x_n2, monkeypatch, tmp_path, library):
     from rmgpy.rmg.main import RMG
     from rmgpy.kinetics import EEDFChannel, TwoTemperaturePlasma
 
-    companion = companion_root()
+    companion = ROOT
     row = json.loads((companion / 'test/fixtures/argon_60Td_fixed_row.json').read_text())
     assert row['converged'] and row['EN_Td'] == pytest.approx(60.)
     for path, digest in row['production_sha256'].items():
@@ -303,7 +295,7 @@ def test_short_real_job_admits_every_new_channel(x_n2, monkeypatch, tmp_path, li
         assert len(matches) == 1, label
         indices[label] = matches[0]
     assert all(density[indices[state]] > 0 for state in STATES)
-    report = {'purpose': '1 ns admission/integration only; NOT steady-state N omission',
+    report = {'purpose': '1 ns integration followed by explicit enlargement; NOT steady-state N omission',
               'x_N2_initial': x_n2, 'time_s': reactor.t,
               'T_K': 300., 'n_m3': {label: float(density[i]) for label, i in indices.items()},
               'classes_s-1': {state: {} for state in STATES}, 'channels': []}
@@ -366,6 +358,19 @@ def test_short_real_job_admits_every_new_channel(x_n2, monkeypatch, tmp_path, li
     charges = np.array([sp.get_net_charge() for sp in core.species])
     assert np.dot(charges, final) == pytest.approx(np.dot(charges, initial), abs=1e-18)
     (tmp_path / 'loss-frequencies.json').write_text(json.dumps(report, indent=2) + '\n')
+
+    # Seeded channels may also be waiting on the edge from reaction-library
+    # admission. Promote a real edge species so that all now-core reactions
+    # move too: a short integration alone never exercised this path.
+    model = job.reaction_model
+    assert model.edge.species, 'Need an edge species to exercise enlargement'
+    promoted = model.edge.species[0]
+    model.enlarge(promoted)
+    assert promoted in model.core.species and promoted not in model.edge.species
+    admitted = model.core.reactions + model.edge.reactions
+    for entry in library.entries.values():
+        matches = [r for r in admitted if r.is_isomorphic(entry.item, either_direction=False)]
+        assert len(matches) == 1, (entry.label, len(matches))
 
 
 def test_w_loss_channels_integrate_to_a_with_source_decay_frequency(library):

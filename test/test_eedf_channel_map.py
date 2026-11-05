@@ -272,6 +272,13 @@ class TestLibraryReader:
         ('entry(1, index = 1, label = "a => b", kinetics = None)\n', "gives 'index' twice"),
         ('entry(1, "a => b", None, label = "c => d")\n', "gives 'label' twice"),
         ('entry(index = 1, label = "a => b", kinetics = None, rate = 2)\n', "gives 'rate', which load_entry"),
+        ('entry(index = 1, label = "a => b", kinetics = None, sourceIdentity = None)\n',
+         'seed-only parameter(s) sourceIdentity'),
+        ('entry(index = 1, label = "a => b", kinetics = None, sourceProvenance = None)\n',
+         'seed-only parameter(s) sourceProvenance'),
+        ('entry(1, "a => b", None, None, None, None, None, None, None, None, None, None, None, None, None, None, '
+         'None)\n',
+         'seed-only parameter(s) sourceIdentity'),
         ('entry(index = 1, label = "a => b")\n', 'does not give kinetics'),
     ])
     def test_refuses(self, tmp_path, text, reason):

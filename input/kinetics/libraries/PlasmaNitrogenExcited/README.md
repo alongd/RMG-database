@@ -40,8 +40,8 @@ post-C/B-cascade net A removal r because one A returns. Do not add a total
 pooling coefficient on top of these branches. HIR and other unlisted products
 are **not covered**. The reverse singlet factor uses 1212 cm−1 and Pi degeneracy
 2; deriving it from RMG's shifted ground-state entropy would implement a
-different model. Opposite irreversible singlet entries are marked duplicate
-for library duplicate bookkeeping; both physical directions remain explicit.
+different model. Opposite irreversible singlet entries are distinct directions
+and carry no duplicate flag; each physical direction is admitted exactly once.
 
 For the Ar singlet branching sensitivity, let f range from 0 to 1: keep total
 a removal 1.3e-17 fixed, route f to a′ and 1−f to N2, and scale the Ar reverse
@@ -143,8 +143,7 @@ identities, rates/units, sources/conventions, balance, companion coexistence,
 same-state pooling stoichiometry, and the four nonzero wall residuals.
 A separate decay test checks the combined w radiation/collisional frequency
 and one-to-one transfer to a.
-Before the companion branch is merged, set `PLASMA_ARGON_EXCITED_ROOT` to that
-checkout. The real-job test reuses its pinned pure-Ar 60 Td EEDF fixture,
+The real-job test uses the PlasmaArgonExcited library in this checkout. It reuses that library's pinned pure-Ar 60 Td EEDF fixture,
 admits all new channels, and runs to 1 ns at x_N2=0.01, 0.05, 0.2 with Chemkin
 and native profiles enabled. This is an admission/integration check, not a
 production EEDF or discharge-sustainment validation. The steady molecular

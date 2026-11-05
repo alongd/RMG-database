@@ -128,7 +128,7 @@ def test_radiative_closure_and_library_coexistence(library):
 
 
 @pytest.mark.parametrize('x_n2', [.01, .2])
-def test_documented_diffusion_declaration_is_consumed_by_wall_operator(x_n2, monkeypatch):
+def test_documented_diffusion_declaration_is_consumed_by_wall_operator(x_n2, monkeypatch, tmp_path):
     import ast
     import numpy as np
     from rmgpy.chemkin import load_species_dictionary
@@ -137,6 +137,14 @@ def test_documented_diffusion_declaration_is_consumed_by_wall_operator(x_n2, mon
     import rmgpy.data.rmg as data_module
     from rmgpy.data.rmg import RMGDatabase
 
+    from rmgpy import settings
+
+    monkeypatch.setitem(settings, 'database.directory', str(ROOT / 'input'))
+    monkeypatch.setattr(settings, 'filename', settings.filename)
+    monkeypatch.setattr(settings, 'sources', dict(settings.sources))
+    configuration = tmp_path / 'rmgrc'
+    configuration.write_text(f'database.directory: {ROOT / "input"}\n')
+    settings.load(str(configuration))
     readme = (ROOT / 'input/kinetics/libraries' / LIBRARY / 'README.md').read_text()
     snippet = readme.split('```python\n', 1)[1].split('```', 1)[0]
     assignment, = ast.parse(snippet).body
@@ -167,7 +175,9 @@ def test_documented_diffusion_declaration_is_consumed_by_wall_operator(x_n2, mon
                                 # on/off subtraction isolates the neutral declarations.
                                 wall_single_bath_approximation=True,
                                 wall_neutralization_products={'Arp': 'Ar'},
-                                wall_neutral_diffusion=declared)
+                                wall_neutral_diffusion=declared,
+                                resonance_radiation={'model': 'complete', 'geometryModel': 'slab'},
+                                radiation_chamber_geometry={'shape': 'slab', 'gap': 0.1})
         reactor.initialize_model(species, [], [], [])
         reactors.append(reactor)
     on, off = reactors
@@ -190,15 +200,24 @@ def test_documented_diffusion_declaration_is_consumed_by_wall_operator(x_n2, mon
 
 @pytest.mark.parametrize('x_n2', [.01, .2])
 def test_short_real_job_admits_every_heavy_channel(tmp_path, monkeypatch, library, x_n2):
-    """Real generation and integration, with electron chemistry deliberately inactive."""
-    import os
+    """Real generation and integration with a fixed pure-Ar 60 Td EEDF replay."""
+    import ast
+    import hashlib
+    import json
     from rmgpy import settings
     from rmgpy.chemkin import load_species_dictionary
     from rmgpy.rmg.main import RMG
     import rmgpy.data.rmg as data_module
 
-    # Optional read-only cascade integration checkout; never substitute the new library.
-    evidence_database = Path(os.environ.get('ARGON_EXCITED_EVIDENCE_DATABASE', ROOT / 'input'))
+    evidence_database = ROOT / 'input'
+    row = json.loads((ROOT / 'test/fixtures/argon_60Td_fixed_row.json').read_text())
+    assert row['converged'] and row['EN_Td'] == pytest.approx(60.)
+    for path, digest in row['production_sha256'].items():
+        assert hashlib.sha256((ROOT / path).read_bytes()).hexdigest() == digest
+    te = 2 * row['mean_energy_eV'] * constants.e / (3 * constants.kB)
+    readme = (ROOT / 'input/kinetics/libraries' / LIBRARY / 'README.md').read_text()
+    snippet = readme.split('```python\n', 1)[1].split('```', 1)[0]
+    diffusion = ast.literal_eval(ast.parse(snippet).body[0].value)
     monkeypatch.setitem(settings, 'database.directory', str(evidence_database))
     monkeypatch.setattr(settings, 'filename', settings.filename)
     monkeypatch.setattr(settings, 'sources', dict(settings.sources))
@@ -211,22 +230,32 @@ def test_short_real_job_admits_every_heavy_channel(tmp_path, monkeypatch, librar
     libraries = ['PlasmaArgon', 'PlasmaArgonDimer', 'PlasmaNitrogen', str(library_path)]
     lines = [f"database(thermoLibraries=['PlasmaExcitedNeutralThermo', 'primaryThermoLibrary', "
              f"'PlasmaThermo', 'electrocatThermo'], reactionLibraries={libraries!r}, "
-             "seedMechanisms=[], kineticsDepositories=[], kineticsFamilies='none', kineticsEstimator='rate rules')"]
+             f"seedMechanisms={[str(library_path)]!r}, kineticsDepositories=[], "
+             "kineticsFamilies='none', kineticsEstimator='rate rules')"]
     for label, sp in dictionary.items():
-        # These are still integrated products; reactive=False prevents generation
-        # of electron/ion-reactant channels in this heavy-particle admission check.
+        # The four 4s states enter together through the heavy-network seed above,
+        # before cascade families are admitted. Electron library feeds still run.
         lines.append(f"species(label={label!r}, reactive={label not in ('e-', 'Arp')!r}, "
                      f"structure=adjacencyList({sp.molecule[0].to_adjacency_list()!r}))")
     fractions = {label: 1e-8 for label in STATES + ('N2A', 'N2B', 'N2C')}
-    fractions.update({'e-': 0., 'Arp': 0., 'N2': x_n2})
+    fractions.update({'e-': 1e-10, 'Arp': 1e-10, 'N2': x_n2})
     fractions['Ar'] = 1 - sum(fractions.values())
     lines.extend([
-        f"simpleReactor(temperature=(298, 'K'), pressure=(5 * 101325 / 760, 'Pa'), "
-        f"initialMoleFractions={fractions!r}, terminationTime=(1e-9, 's'))",
+        f"plasmaReactor(temperature=(298, 'K'), pressure=(5 * 101325 / 760, 'Pa'), "
+        f"initialMoleFractions={fractions!r}, electronTemperature=({te!r}, 'K'), "
+        "chamberGeometry={'shape': 'cylinder', 'radius': (5, 'cm'), 'length': (30, 'cm')}, "
+        "ionReducedMobility=(1.535e-4, 'm^2/(V*s)'), wallSingleBathApproximation=True, "
+        "wallNeutralizationProducts={'Arp': 'Ar'}, "
+        f"wallNeutralDiffusion={diffusion!r}, "
+        "resonanceRadiation={'model': 'holsteinWalsh', 'geometryModel': 'infiniteCylinder'}, "
+        "terminationTime=(1e-9, 's'))",
         "simulator(atol=1e-20, rtol=1e-8)",
         "model(toleranceMoveToCore=0.1, toleranceInterruptSimulation=1.0)",
         "options(generateOutputHTML=False, generatePlots=False, saveEdgeSpecies=False, "
-        "saveSimulationProfiles=True, generateChemkin=True, generateCanteraFromChemkin=False, "
+        # Resolved N2(A)'s identifier is 19 characters, beyond Chemkin's 16.
+        # Seed export uses the same identifiers and must also be disabled.
+        "saveSimulationProfiles=True, generateChemkin=False, generateSeedEachIteration=False, "
+        "generateCanteraFromChemkin=False, "
         "generateRMSYAML=False, generateCanteraYAML1=False, generateCanteraYAML2=False)",
     ])
     deck = tmp_path / 'input.py'
@@ -234,6 +263,34 @@ def test_short_real_job_admits_every_heavy_channel(tmp_path, monkeypatch, librar
     output = tmp_path / 'job'
     output.mkdir()
     job = RMG(input_file=str(deck), output_directory=str(output))
+    initialize = job.initialize
+
+    def initialize_fixed_row(**kwargs):
+        # Keep production admission and cascade-family guards intact. Only after
+        # model assembly replay EEDF rates as constant two-temperature carriers,
+        # as in the trapped-decay evidence; no engine or database file is changed.
+        from rmgpy.kinetics import EEDFChannel, TwoTemperaturePlasma
+
+        result = initialize(**kwargs)
+        seen = set()
+        replayed = 0
+        for reaction in job.reaction_model.core.reactions + job.reaction_model.edge.reactions:
+            kinetics = reaction.kinetics
+            if not isinstance(kinetics, EEDFChannel):
+                continue
+            assert kinetics.side == 'ine'
+            rate = row['rates_m3_per_particle_s'][kinetics.process]
+            weight = kinetics.branch_yield if kinetics.branch_product else 1.
+            reaction.kinetics = TwoTemperaturePlasma(
+                A=(rate * weight, 'm^3/(molecule*s)'), n=0.,
+                Ea_g=(0., 'J/mol'), Ea_e=(0., 'J/mol'))
+            seen.add(kinetics.process)
+            replayed += 1
+        assert seen == set(row['rates_m3_per_particle_s'])
+        assert replayed == 149  # 137 Ar and 12 N2 production owners.
+        return result
+
+    monkeypatch.setattr(job, 'initialize', initialize_fixed_row)
     job.execute()
     assert set(libraries[:3] + [LIBRARY]) <= set(job.database.kinetics.libraries)
     assert job.reaction_systems[0].t >= 1e-9
@@ -251,6 +308,7 @@ def test_short_real_job_admits_every_heavy_channel(tmp_path, monkeypatch, librar
             sp.get_net_charge() for sp in reaction.products)
         assert reaction.kinetics.get_rate_coefficient(298) == pytest.approx(
             entry.data.get_rate_coefficient(298), rel=1e-14, abs=0)
-    assert (output / 'chemkin/chem.inp').is_file()
+    assert not job.chemkin_writer_config.enabled
+    assert not (output / 'chemkin/chem.inp').exists()
     profiles = list(output.glob('solver/simulation*'))
     assert profiles

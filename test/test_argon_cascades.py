@@ -12,13 +12,14 @@ import gen_argon_cascade_reactions as reaction_gen
 
 
 def test_reproducible_and_literal_branch():
-    doc = gen.generate(gen.SOURCE.read_bytes())
+    doc = gen.generate(gen.SOURCE.read_bytes(), gen.CHANNEL_MAP.read_bytes())
     assert gen.render(doc) == gen.OUTPUT.read_text()
     assert gen.require_yields(doc, 6) == pytest.approx({
         'Ar(1s5)': 0.7420494699646643, 'Ar(1s4)': 0.2120141342756184,
         'Ar(1s3)': 0.03847663918335296, 'Ar(1s2)': 0.00745975657636435})
     complete = [c for c in doc['channels'] if c['status'] == 'complete_for_E1']
-    assert [c['id'] for c in complete] == list(range(6, 39))
+    assert [c['id'] for c in complete] == (list(range(6, 39)) + list(range(45, 97))
+                                            + list(range(99, 125)) + list(range(128, 154)))
     for c in complete:
         assert sum(c['product_yields'].values()) == pytest.approx(1, rel=0, abs=1e-12)
     ch11 = next(c for c in complete if c['id'] == 11)
@@ -228,3 +229,27 @@ def test_cascade_owner_indices_are_unique_against_the_library():
                and getattr(node.value.func, 'id', None) == 'entry'
                for k in node.value.keywords if k.arg == 'index']
     assert len(indices) == len(set(indices))
+
+
+def test_four_s_sources_have_per_collision_singleton_cascades():
+    frozen = (gen.ROOT / 'input/eedf/argon_channel_map.yaml').read_bytes()
+    doc = gen.generate(gen.SOURCE.read_bytes(), frozen)
+    added = [c for c in doc['channels'] if c['id'] >= 44]
+    assert len(added) == 104
+    assert len({c['upper_nist_ids'][0] for c in added}) == 26
+    assert all(len(c['upper_nist_ids']) == 1 for c in added)
+    assert gen.require_yields(doc, 71) == pytest.approx({
+        'Ar(1s5)': 0.7420494699646643, 'Ar(1s4)': 0.2120141342756184,
+        'Ar(1s3)': 0.03847663918335296, 'Ar(1s2)': 0.00745975657636435})
+    rendered = reaction_gen.render(gen.render(doc).encode())
+    assert rendered.count('branch_product = ') == 548
+    assert 'label = "Ar(1s2) + e- => Ars + e-"' in rendered
+    assert 'label = "Ar(1s2) + e- => Ar(1s2) + e-"' in rendered
+
+
+def test_four_s_cascade_unknown_upper_state_refuses():
+    frozen = yaml.safe_load((gen.ROOT / 'input/eedf/argon_channel_map.yaml').read_bytes())
+    row = next(c for c in frozen['channels'] if c['id'] == 71)
+    row['loki_process'] = row['loki_process'].replace('Ar(4p[1/2]1)', 'Ar(unknown)')
+    with pytest.raises(ValueError, match='upper level'):
+        gen.generate(gen.SOURCE.read_bytes(), yaml.safe_dump(frozen).encode())

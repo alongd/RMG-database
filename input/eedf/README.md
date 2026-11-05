@@ -1,11 +1,9 @@
 # Argon EEDF database tranche A
 
-**PlasmaArgon remains unrunnable for reacting EEDF.** It now owns the four distinct
-4s excitations (channels 2→87, 3→94, 4→95, 5→96) and ground ionisation (39→86),
-all with EEDFChannel markers for IST-Lisbon-Ar-2021. The pure-Ar converter still
-refuses exactly channels 6–38 (33 missing owners), with no shared owners.
-No channel class, threshold, collision ID or cross-section hash has changed.
-Cascade execution and Holstein–Walsh trapped decay require separate engine work.
+**PlasmaArgon owns every class-A electron collision in the frozen argon map.**
+Reacting EEDF runs require a regenerated, qualified table with the versioned
+reversible collision realization described below. Upper-level inverse omissions
+are reported explicitly under their reviewed elimination conventions.
 
 Ars is explicitly electronicstate 3P2 (1s5) in PlasmaArgon, PlasmaArgonLegacy,
 PlasmaArgonDimer and PlasmaOxygenHeavy, with the existing 1s5 thermo and transport
@@ -14,14 +12,11 @@ their numerical laws but now apply to **1s5 only**; no rate is silently copied t
 1s3. The other three 4s levels are separate species with exact-state thermo and
 explicit ground-argon transport proxies.
 
-| New state | Loss processes absent in this tranche |
-|---|---|
-| Ar(1s4), 3P1 | radiative/trapped decay; quenching; diffusion; mixing; stepwise ionisation; dimer formation |
-| Ar(1s3), 3P0 | radiative/trapped decay; quenching; diffusion; mixing; stepwise ionisation; dimer formation |
-| Ar(1s2), 1P1 | radiative/trapped decay; quenching; diffusion; mixing; stepwise ionisation; dimer formation |
-
-The metastable 1s3 has no allowed E1 resonance decay; the table records absent
-loss implementations, not an assertion that it has an E1 decay to ground.
+All four 4s states now have electron mixing, stepwise ionisation, ground
+superelastic return and upward cascade routes. Heavy-particle quenching,
+diffusion and dimer chemistry are outside this electron library. Radiative
+decay is supplied by the reactor radiation operator; 1s3 has no allowed E1
+resonance decay to ground.
 
 ## Historical Maxwellian decks
 
@@ -49,8 +44,8 @@ generated region of `input/kinetics/libraries/PlasmaArgon/reactions.py`; run its
 generation. It does not calculate or hand-type branching fractions.
 
 The generated schema has `radiative_model: E1`, a source digest and channel
-records keyed by frozen ID, exact process and threshold. Thirty-three records
-for channels 6–38 have
+records keyed by frozen ID, exact process and threshold. The 33 ground-source
+records for channels 6–38 and 104 4s-source records have
 `status: complete_for_E1` with four product yields summing to one. Channel 11
 (2p5) uses Wiese's sourced `<1e3 s^-1` upper bound for 018001.000011→018001.000005
 (2p5→1s2) as an effective A of zero for branching. The yield artifact records
@@ -65,6 +60,96 @@ reported as intervals), trapped ground-resonance lines
 `unbounded-omitted`. Partial A matrices are never normalized. Higher multipoles are outside this E1 model. Branch reaction owners
 are generated only for complete vectors; their fractions partition the existing
 EEDF collision rate, with photon energy accounted once in products.
+
+## Complete electron ownership and validity
+
+PlasmaArgon contains 573 irreversible EEDF owners: 25 ordinary directional
+entries and 548 branches for 137 cascade collisions. All 152 class-A map rows
+are present. The 25 ordinary entries comprise four ground excitations, four
+ground superelastic returns, twelve mixing directions, ground ionisation and
+four stepwise ionisations. Each mixing or ground-excitation pair uses separate
+`ine` and `sup` coefficients from the same LoKI collision; no thermodynamic
+reverse rate is substituted. Stepwise ionisation retains the source's 4.2 eV
+threshold for each 4s level and produces one net electron and one ion.
+
+The 104 new cascade collisions resolve to singleton sourced upper levels:
+40 into 4p (160 branch entries) and 64 into higher levels (256 entries).
+The existing radiative DAG computes their four product yields. Zero-yield
+and self-return branches remain explicit, so the full collision rate and
+energy are counted once. Molecular electronic-state identity, rather than
+the display label, validates every source and product.
+
+The inverse of an eliminated upper level remains an explicit reviewed
+exception in `missing_owners`, never a claim of an empty list. There are
+33 `eliminated-upper-level` ground-route exceptions and 104
+`eliminated-upper-level-4s-redistribution` collision-route exceptions covering
+26 distinct upper levels. The overlay records each upper level's radiative
+A sum, maximum superelastic coefficient, maximizing field node and ratio,
+plus the numerical probe digest. Bounds use 33 field nodes over 4–25 Td
+and electron density at most 1e18 m^-3.
+
+For return to ground, max(n_e k_sup/A) over all 50 upper levels is
+7.2544e-5, below the 1e-3 loss bound. For return to 4s, the error changes
+the distribution within the 4s manifold: the largest sum over the four
+superelastic routes is 0.0166349 at 1e18 m^-3. Each level records that
+ratio divided by electron density as a slope. At 1e17 m^-3 the largest
+redistribution bound is 0.00166349. Radiative A sums retain the sourced
+trapped-ground-resonance convention.
+
+The separate energy check solves the radiative steady-state population
+balance including direct and cascade feeding and conservatively omits
+collisional depletion. At total Ar(4s)/Ar ground = 1e-5 and n_e = 1e18 m^-3,
+the worst screened node is 4 Td. A fresh solve at that population gives
+2276.076 W/m^3 of omitted upper-to-4s superelastic return versus
+659599.881 W/m^3 field power: **0.345069%**, below the 1% bound.
+
+Production tables retain zero 4s populations and no 4s coordinate. Their
+fingerprinted manifest declares `excited_fraction_max: 1e-5` (sum of all
+four neutral 4s states divided by neutral Ar ground) and
+`argon_elimination_electron_density_max_m3: 1e18`. The reactor checks both
+at initialization and every accepted step. A missing declaration retains
+backward compatibility. These bounds do not qualify a table: the table
+owner must regenerate and independently qualify its production artifact.
+The requested 60 Td point checks demonstrate rate ownership and power
+accounting; the eliminated-level bounds above were established over
+4–25 Td, not at 60 Td.
+
+### Local collision realization and production-spec refresh
+
+`scripts/realize_argon_collisions.py` reads the pinned original ar-v1 files
+and writes `ar-4s-electron-v1` to a separate local directory. Only the four
+ground-to-4s descriptor arrows change from `->` to `<->`; every other byte,
+including numeric cross sections and line endings, is preserved. The
+original store is unchanged. The generated map retains `base_loki_files`
+and the derived `collision_realization`; its `loki_files` pins are:
+
+| File | Realization SHA-256 |
+|---|---|
+| Ar_LXCat.txt | a069cce20a567784a694a9bee263748695965916129df2c2f7d287dbb4b4d7a0 |
+| Ar4s_assembled.txt | 5acea64cfb2ff9a5fd38aa222107a690eb809eda69ca242138fd9a1de4b8e395 |
+
+Create the realization locally with rmg_env Python:
+
+```sh
+python scripts/realize_argon_collisions.py --assembled /path/to/ar-v1 --output /path/to/ar-4s-electron-v1
+```
+
+From the matching RMG-Py checkout, refresh an existing pure-Ar or Ar/N2 spec
+without changing its grid or nitrogen data:
+
+```sh
+python -m rmgpy.tools.eedf.argon --base-spec /path/to/current-spec.json --database /path/to/RMG-database --realization /path/to/ar-4s-electron-v1 --output /path/to/new-conversion
+```
+
+The output includes the new physical channel map, generation spec and a
+conversion report listing ten paired owners and all 137 reviewed exceptions.
+The tool caps max_parallel at five (or the explicitly requested lower
+limit), records this change, and refuses an existing output directory.
+It generates no table and makes no acceptance claim.
+`gen_argon_cascades.py`, `gen_argon_cascade_reactions.py`,
+`gen_argon_electron_owners.py`, and `gen_eedf_channel_map.py` are the
+collectors for the corresponding repository artifacts.
+
 
 # Electron-collision channel maps for the LoKI-B electron kinetics
 
@@ -155,7 +240,7 @@ Each collision's family is derived from the source-verified process, not from th
 |---|---|---|
 | elastic | B | none |
 | ionization | A | `<target species> + e- => <ion species> + e- + e-` |
-| excitation into 4s (a load-bearing level, ruling C3) | A | `<target species> + e- => <product species> + e-`, `<=>` when the collision is `<->` |
+| excitation into 4s (a load-bearing level, ruling C3) | A | `<target species> + e- => <product species> + e-`; paired irreversible ine/sup owners for a reversible collision |
 | excitation above 4s | A or B, one class for the whole family | `<target species> + e- => Ar(1s_i) + e- + hv`, a radiative-cascade placeholder |
 
 The above-4s families are ground->4p, ground->above 4p, 4s->4p and 4s->above 4p. Across the whole
@@ -199,8 +284,9 @@ quotes results from them. Above all, it covers `ELASTIC_REUSE_GROUND`, which is 
 data for the excited state. A table manifest that drops a convention is not a faithful description
 of the table.
 
-The ground-state descriptors stay `->` as in the development file. Owner ruling C3 needs the 1s4/1s2
-superelastic inverse, so this is flagged per entry (`superelastic_required`) rather than changed here.
+The original ground-state store keeps its development descriptors. The versioned
+local realization changes the four ground-to-4s descriptors to `<->` and records
+both original and derived hashes. Both directional rates have explicit owners.
 
 The map does not carry electron-power shares. They are outputs of a LoKI-B solve, not something the
 files determine; the I-341 run report holds them.

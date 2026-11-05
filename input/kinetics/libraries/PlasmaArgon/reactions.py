@@ -4,16 +4,16 @@
 name = "PlasmaArgon"
 shortDesc = "State-resolved argon EEDF excitation and ionisation owners"
 longDesc = """
-Five ordinary IST-Lisbon-Ar-2021 collision owners plus sourced branched owners
-for every class-A cascade channel (6–38): the 2p levels and the higher
-3d/5s/5p/4d/6s levels, whose yields and declared conventions are generated in
-input/eedf/argon_cascade_yields.yaml. Ars is Ar(1s5), 3P2,
-shared with PlasmaArgonDimer and PlasmaOxygenHeavy. Ar(1s4), Ar(1s3), Ar(1s2)
-are separate electronic states. Channel 11 uses the sourced Wiese upper
-bound as an effective zero branch. The three new states have
-production but no loss: no radiative/trapped decay, quenching, diffusion,
-mixing, stepwise ionisation or dimer formation. No cascade or trapped-decay
-rate is added here.
+Twenty-five directional EEDF owners (ground excitation/ionisation, ground
+superelastic return, 4s mixing pairs and stepwise ionisation) plus 548 sourced
+branches for 137 cascade collisions from ground and all four 4s states.
+The 2p and higher 3d/5s/5p/4d/6s yields and conventions are generated in
+input/eedf/argon_cascade_yields.yaml. Ars is Ar(1s5), 3P2, shared with
+PlasmaArgonDimer and PlasmaOxygenHeavy. Ar(1s4), Ar(1s3), Ar(1s2) are separate
+electronic states. Zero-yield and self-return branches preserve full collision
+accounting. No heavy-particle or radiative-decay rate is added here.
+The eliminated-upper-level inverse bounds and the zero-4s-population EEDF
+validity limits are declared in input/eedf/README.md and the frozen channel map.
 Historical Maxwellian entries 86–93 are preserved in PlasmaArgonLegacy.
 See input/eedf/README.md for the required legacy-deck migration.
 """
@@ -39,7 +39,7 @@ entry(
     reversible = False,
     duplicate = True,
     kinetics = EEDFChannel(
-        process = 'e + Ar(1S0) -> e + Ar(3P2), Excitation',
+        process = 'e + Ar(1S0) <-> e + Ar(3P2), Excitation',
         collision_set = "IST-Lisbon-Ar-2021",
         side = "ine",
     ),
@@ -55,7 +55,7 @@ entry(
     reversible = False,
     duplicate = True,
     kinetics = EEDFChannel(
-        process = 'e + Ar(1S0) -> e + Ar(3P1), Excitation',
+        process = 'e + Ar(1S0) <-> e + Ar(3P1), Excitation',
         collision_set = "IST-Lisbon-Ar-2021",
         side = "ine",
     ),
@@ -71,7 +71,7 @@ entry(
     reversible = False,
     duplicate = True,
     kinetics = EEDFChannel(
-        process = 'e + Ar(1S0) -> e + Ar(3P0), Excitation',
+        process = 'e + Ar(1S0) <-> e + Ar(3P0), Excitation',
         collision_set = "IST-Lisbon-Ar-2021",
         side = "ine",
     ),
@@ -87,7 +87,7 @@ entry(
     reversible = False,
     duplicate = True,
     kinetics = EEDFChannel(
-        process = 'e + Ar(1S0) -> e + Ar(1P1), Excitation',
+        process = 'e + Ar(1S0) <-> e + Ar(1P1), Excitation',
         collision_set = "IST-Lisbon-Ar-2021",
         side = "ine",
     ),
@@ -110,7 +110,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s5)',
         branch_yield = 0.7420494699646644,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 6; sourced cascade branch",
     longDesc = """
@@ -132,7 +132,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s4)',
         branch_yield = 0.21201413427561838,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 6; sourced cascade branch",
     longDesc = """
@@ -154,7 +154,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s3)',
         branch_yield = 0.038476639183352965,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 6; sourced cascade branch",
     longDesc = """
@@ -176,7 +176,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s2)',
         branch_yield = 0.00745975657636435,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 6; sourced cascade branch",
     longDesc = """
@@ -198,7 +198,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s5)',
         branch_yield = 1.0,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 7; sourced cascade branch",
     longDesc = """
@@ -220,7 +220,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s4)',
         branch_yield = 0.0,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 7; sourced cascade branch",
     longDesc = """
@@ -242,7 +242,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s3)',
         branch_yield = 0.0,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 7; sourced cascade branch",
     longDesc = """
@@ -264,7 +264,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s2)',
         branch_yield = 0.0,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 7; sourced cascade branch",
     longDesc = """
@@ -286,7 +286,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s5)',
         branch_yield = 0.28819336845367216,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 8; sourced cascade branch",
     longDesc = """
@@ -308,7 +308,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s4)',
         branch_yield = 0.6662534862101023,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 8; sourced cascade branch",
     longDesc = """
@@ -330,7 +330,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s3)',
         branch_yield = 0.0,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 8; sourced cascade branch",
     longDesc = """
@@ -352,7 +352,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s2)',
         branch_yield = 0.0455531453362256,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 8; sourced cascade branch",
     longDesc = """
@@ -374,7 +374,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s5)',
         branch_yield = 0.1543484713564856,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 9; sourced cascade branch",
     longDesc = """
@@ -396,7 +396,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s4)',
         branch_yield = 0.7420599584446423,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 9; sourced cascade branch",
     longDesc = """
@@ -418,7 +418,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s3)',
         branch_yield = 0.07212822796081923,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 9; sourced cascade branch",
     longDesc = """
@@ -440,7 +440,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s2)',
         branch_yield = 0.03146334223805283,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 9; sourced cascade branch",
     longDesc = """
@@ -462,7 +462,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s5)',
         branch_yield = 0.7122093023255814,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 10; sourced cascade branch",
     longDesc = """
@@ -484,7 +484,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s4)',
         branch_yield = 0.14244186046511628,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 10; sourced cascade branch",
     longDesc = """
@@ -506,7 +506,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s3)',
         branch_yield = 0.0,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 10; sourced cascade branch",
     longDesc = """
@@ -528,7 +528,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s2)',
         branch_yield = 0.14534883720930233,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 10; sourced cascade branch",
     longDesc = """
@@ -550,7 +550,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s5)',
         branch_yield = 0.0,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 11; sourced cascade branch",
     longDesc = """
@@ -572,7 +572,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s4)',
         branch_yield = 1.0,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 11; sourced cascade branch",
     longDesc = """
@@ -594,7 +594,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s3)',
         branch_yield = 0.0,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 11; sourced cascade branch",
     longDesc = """
@@ -616,7 +616,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s2)',
         branch_yield = 0.0,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 11; sourced cascade branch",
     longDesc = """
@@ -638,7 +638,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s5)',
         branch_yield = 0.01900337837837838,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 12; sourced cascade branch",
     longDesc = """
@@ -660,7 +660,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s4)',
         branch_yield = 0.0006636100386100386,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 12; sourced cascade branch",
     longDesc = """
@@ -682,7 +682,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s3)',
         branch_yield = 0.5610521235521235,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 12; sourced cascade branch",
     longDesc = """
@@ -704,7 +704,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s2)',
         branch_yield = 0.41928088803088803,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 12; sourced cascade branch",
     longDesc = """
@@ -726,7 +726,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s5)',
         branch_yield = 0.10982658959537572,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 13; sourced cascade branch",
     longDesc = """
@@ -748,7 +748,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s4)',
         branch_yield = 0.24566473988439305,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 13; sourced cascade branch",
     longDesc = """
@@ -770,7 +770,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s3)',
         branch_yield = 0.0,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 13; sourced cascade branch",
     longDesc = """
@@ -792,7 +792,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s2)',
         branch_yield = 0.6445086705202312,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 13; sourced cascade branch",
     longDesc = """
@@ -814,7 +814,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s5)',
         branch_yield = 0.1816633550950894,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 14; sourced cascade branch",
     longDesc = """
@@ -836,7 +836,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s4)',
         branch_yield = 0.05194436559750213,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 14; sourced cascade branch",
     longDesc = """
@@ -858,7 +858,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s3)',
         branch_yield = 0.33210332103321033,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 14; sourced cascade branch",
     longDesc = """
@@ -880,7 +880,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s2)',
         branch_yield = 0.4342889582741981,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 14; sourced cascade branch",
     longDesc = """
@@ -902,7 +902,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s5)',
         branch_yield = 0.0,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 15; sourced cascade branch",
     longDesc = """
@@ -924,7 +924,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s4)',
         branch_yield = 0.005217083738615262,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 15; sourced cascade branch",
     longDesc = """
@@ -946,7 +946,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s3)',
         branch_yield = 0.0,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 15; sourced cascade branch",
     longDesc = """
@@ -968,7 +968,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s2)',
         branch_yield = 0.9947829162613847,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 15; sourced cascade branch",
     longDesc = """
@@ -990,7 +990,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s5)',
         branch_yield = 0.6528895654506393,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 16; sourced cascade branch",
     longDesc = """
@@ -1012,7 +1012,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s4)',
         branch_yield = 0.2628670450225776,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 16; sourced cascade branch",
     longDesc = """
@@ -1034,7 +1034,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s3)',
         branch_yield = 0.0427856365388511,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 16; sourced cascade branch",
     longDesc = """
@@ -1056,7 +1056,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s2)',
         branch_yield = 0.041457752987932285,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 16; sourced cascade branch",
     longDesc = """
@@ -1078,7 +1078,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s5)',
         branch_yield = 0.6628004734416516,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 17; sourced cascade branch",
     longDesc = """
@@ -1100,7 +1100,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s4)',
         branch_yield = 0.21019305957628312,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 17; sourced cascade branch",
     longDesc = """
@@ -1122,7 +1122,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s3)',
         branch_yield = 0.036621743474735735,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 17; sourced cascade branch",
     longDesc = """
@@ -1144,7 +1144,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s2)',
         branch_yield = 0.09038472350732961,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 17; sourced cascade branch",
     longDesc = """
@@ -1166,7 +1166,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s5)',
         branch_yield = 1.0,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 18; sourced cascade branch",
     longDesc = """
@@ -1188,7 +1188,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s4)',
         branch_yield = 0.0,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 18; sourced cascade branch",
     longDesc = """
@@ -1210,7 +1210,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s3)',
         branch_yield = 0.0,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 18; sourced cascade branch",
     longDesc = """
@@ -1232,7 +1232,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s2)',
         branch_yield = 0.0,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 18; sourced cascade branch",
     longDesc = """
@@ -1254,7 +1254,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s5)',
         branch_yield = 0.42750082388093896,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 19; sourced cascade branch",
     longDesc = """
@@ -1276,7 +1276,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s4)',
         branch_yield = 0.528810865203049,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 19; sourced cascade branch",
     longDesc = """
@@ -1298,7 +1298,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s3)',
         branch_yield = 0.0,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 19; sourced cascade branch",
     longDesc = """
@@ -1320,7 +1320,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s2)',
         branch_yield = 0.043688310916012024,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 19; sourced cascade branch",
     longDesc = """
@@ -1342,7 +1342,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s5)',
         branch_yield = 0.5195299235244069,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 20; sourced cascade branch",
     longDesc = """
@@ -1364,7 +1364,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s4)',
         branch_yield = 0.38381546095040653,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 20; sourced cascade branch",
     longDesc = """
@@ -1386,7 +1386,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s3)',
         branch_yield = 0.044277036442971957,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 20; sourced cascade branch",
     longDesc = """
@@ -1408,7 +1408,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s2)',
         branch_yield = 0.05237757908221467,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 20; sourced cascade branch",
     longDesc = """
@@ -1430,7 +1430,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s5)',
         branch_yield = 0.6020989310342992,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 21; sourced cascade branch",
     longDesc = """
@@ -1452,7 +1452,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s4)',
         branch_yield = 0.28826606289167284,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 21; sourced cascade branch",
     longDesc = """
@@ -1474,7 +1474,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s3)',
         branch_yield = 0.010016634530398394,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 21; sourced cascade branch",
     longDesc = """
@@ -1496,7 +1496,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s2)',
         branch_yield = 0.09961837154362942,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 21; sourced cascade branch",
     longDesc = """
@@ -1518,7 +1518,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s5)',
         branch_yield = 0.10661529252532245,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 22; sourced cascade branch",
     longDesc = """
@@ -1540,7 +1540,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s4)',
         branch_yield = 0.6830111167619378,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 22; sourced cascade branch",
     longDesc = """
@@ -1562,7 +1562,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s3)',
         branch_yield = 0.06806417104728463,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 22; sourced cascade branch",
     longDesc = """
@@ -1584,7 +1584,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s2)',
         branch_yield = 0.1423094196654553,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 22; sourced cascade branch",
     longDesc = """
@@ -1606,7 +1606,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s5)',
         branch_yield = 0.06526622919931016,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 23; sourced cascade branch",
     longDesc = """
@@ -1628,7 +1628,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s4)',
         branch_yield = 0.10901503322328669,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 23; sourced cascade branch",
     longDesc = """
@@ -1650,7 +1650,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s3)',
         branch_yield = 0.4251772331223881,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 23; sourced cascade branch",
     longDesc = """
@@ -1672,7 +1672,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s2)',
         branch_yield = 0.40054150445501513,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 23; sourced cascade branch",
     longDesc = """
@@ -1694,7 +1694,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s5)',
         branch_yield = 0.273473260467054,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 24; sourced cascade branch",
     longDesc = """
@@ -1716,7 +1716,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s4)',
         branch_yield = 0.17668961029781355,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 24; sourced cascade branch",
     longDesc = """
@@ -1738,7 +1738,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s3)',
         branch_yield = 0.09900686235657598,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 24; sourced cascade branch",
     longDesc = """
@@ -1760,7 +1760,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s2)',
         branch_yield = 0.45083026687855643,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 24; sourced cascade branch",
     longDesc = """
@@ -1782,7 +1782,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s5)',
         branch_yield = 0.09849268689985227,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 25; sourced cascade branch",
     longDesc = """
@@ -1804,7 +1804,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s4)',
         branch_yield = 0.0812013508241652,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 25; sourced cascade branch",
     longDesc = """
@@ -1826,7 +1826,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s3)',
         branch_yield = 0.2613652608067601,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 25; sourced cascade branch",
     longDesc = """
@@ -1848,7 +1848,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s2)',
         branch_yield = 0.5589407014692225,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 25; sourced cascade branch",
     longDesc = """
@@ -1870,7 +1870,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s5)',
         branch_yield = 0.6870073198598112,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 26; sourced cascade branch",
     longDesc = """
@@ -1892,7 +1892,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s4)',
         branch_yield = 0.20909356384261682,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 26; sourced cascade branch",
     longDesc = """
@@ -1914,7 +1914,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s3)',
         branch_yield = 0.04170889480331087,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 26; sourced cascade branch",
     longDesc = """
@@ -1936,7 +1936,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s2)',
         branch_yield = 0.06219022149426114,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 26; sourced cascade branch",
     longDesc = """
@@ -1958,7 +1958,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s5)',
         branch_yield = 0.8518391759160372,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 27; sourced cascade branch",
     longDesc = """
@@ -1980,7 +1980,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s4)',
         branch_yield = 0.10477172236188315,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 27; sourced cascade branch",
     longDesc = """
@@ -2002,7 +2002,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s3)',
         branch_yield = 0.01117131177789698,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 27; sourced cascade branch",
     longDesc = """
@@ -2024,7 +2024,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s2)',
         branch_yield = 0.03221778994418268,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 27; sourced cascade branch",
     longDesc = """
@@ -2046,7 +2046,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s5)',
         branch_yield = 0.44144266018098,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 28; sourced cascade branch",
     longDesc = """
@@ -2068,7 +2068,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s4)',
         branch_yield = 0.4741449519820217,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 28; sourced cascade branch",
     longDesc = """
@@ -2090,7 +2090,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s3)',
         branch_yield = 0.02341245848489619,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 28; sourced cascade branch",
     longDesc = """
@@ -2112,7 +2112,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s2)',
         branch_yield = 0.06099992935210203,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 28; sourced cascade branch",
     longDesc = """
@@ -2134,7 +2134,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s5)',
         branch_yield = 0.3490788957154747,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 29; sourced cascade branch",
     longDesc = """
@@ -2156,7 +2156,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s4)',
         branch_yield = 0.5257806659693235,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 29; sourced cascade branch",
     longDesc = """
@@ -2178,7 +2178,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s3)',
         branch_yield = 0.046652938140346135,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 29; sourced cascade branch",
     longDesc = """
@@ -2200,7 +2200,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s2)',
         branch_yield = 0.07848750017485549,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 29; sourced cascade branch",
     longDesc = """
@@ -2222,7 +2222,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s5)',
         branch_yield = 0.7006778701805106,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 30; sourced cascade branch",
     longDesc = """
@@ -2244,7 +2244,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s4)',
         branch_yield = 0.21323737063369283,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 30; sourced cascade branch",
     longDesc = """
@@ -2266,7 +2266,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s3)',
         branch_yield = 0.0205826453192599,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 30; sourced cascade branch",
     longDesc = """
@@ -2288,7 +2288,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s2)',
         branch_yield = 0.06550211386653675,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 30; sourced cascade branch",
     longDesc = """
@@ -2310,7 +2310,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s5)',
         branch_yield = 0.21346608289605373,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 31; sourced cascade branch",
     longDesc = """
@@ -2332,7 +2332,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s4)',
         branch_yield = 0.5829249917058877,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 31; sourced cascade branch",
     longDesc = """
@@ -2354,7 +2354,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s3)',
         branch_yield = 0.031045499015481422,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 31; sourced cascade branch",
     longDesc = """
@@ -2376,7 +2376,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s2)',
         branch_yield = 0.17256342638257735,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 31; sourced cascade branch",
     longDesc = """
@@ -2398,7 +2398,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s5)',
         branch_yield = 0.1494162364299983,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 32; sourced cascade branch",
     longDesc = """
@@ -2420,7 +2420,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s4)',
         branch_yield = 0.20198918714495578,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 32; sourced cascade branch",
     longDesc = """
@@ -2442,7 +2442,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s3)',
         branch_yield = 0.30128099214555304,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 32; sourced cascade branch",
     longDesc = """
@@ -2464,7 +2464,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s2)',
         branch_yield = 0.347313584279493,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 32; sourced cascade branch",
     longDesc = """
@@ -2486,7 +2486,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s5)',
         branch_yield = 0.2778176167249639,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 33; sourced cascade branch",
     longDesc = """
@@ -2508,7 +2508,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s4)',
         branch_yield = 0.13067508283280213,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 33; sourced cascade branch",
     longDesc = """
@@ -2530,7 +2530,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s3)',
         branch_yield = 0.2373346598691178,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 33; sourced cascade branch",
     longDesc = """
@@ -2552,7 +2552,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s2)',
         branch_yield = 0.35417264057311604,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 33; sourced cascade branch",
     longDesc = """
@@ -2574,7 +2574,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s5)',
         branch_yield = 0.25149019311380744,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 34; sourced cascade branch",
     longDesc = """
@@ -2596,7 +2596,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s4)',
         branch_yield = 0.22592134485191623,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 34; sourced cascade branch",
     longDesc = """
@@ -2618,7 +2618,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s3)',
         branch_yield = 0.0689444008924506,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 34; sourced cascade branch",
     longDesc = """
@@ -2640,7 +2640,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s2)',
         branch_yield = 0.45364406114182565,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 34; sourced cascade branch",
     longDesc = """
@@ -2662,7 +2662,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s5)',
         branch_yield = 0.11471649080530245,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 35; sourced cascade branch",
     longDesc = """
@@ -2684,7 +2684,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s4)',
         branch_yield = 0.14364014819721868,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 35; sourced cascade branch",
     longDesc = """
@@ -2706,7 +2706,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s3)',
         branch_yield = 0.08720952980743388,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 35; sourced cascade branch",
     longDesc = """
@@ -2728,7 +2728,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s2)',
         branch_yield = 0.6544338311900452,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 35; sourced cascade branch",
     longDesc = """
@@ -2750,7 +2750,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s5)',
         branch_yield = 0.5939497681501911,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 36; sourced cascade branch",
     longDesc = """
@@ -2772,7 +2772,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s4)',
         branch_yield = 0.285584460698244,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 36; sourced cascade branch",
     longDesc = """
@@ -2794,7 +2794,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s3)',
         branch_yield = 0.03263386556517485,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 36; sourced cascade branch",
     longDesc = """
@@ -2816,7 +2816,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s2)',
         branch_yield = 0.0878319055863901,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 36; sourced cascade branch",
     longDesc = """
@@ -2838,7 +2838,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s5)',
         branch_yield = 0.6124928726752685,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 37; sourced cascade branch",
     longDesc = """
@@ -2860,7 +2860,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s4)',
         branch_yield = 0.29732810472737503,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 37; sourced cascade branch",
     longDesc = """
@@ -2882,7 +2882,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s3)',
         branch_yield = 0.02823154532130811,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 37; sourced cascade branch",
     longDesc = """
@@ -2904,7 +2904,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s2)',
         branch_yield = 0.06194747727604841,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 37; sourced cascade branch",
     longDesc = """
@@ -2926,7 +2926,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s5)',
         branch_yield = 0.32605507761176916,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 38; sourced cascade branch",
     longDesc = """
@@ -2948,7 +2948,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s4)',
         branch_yield = 0.2147125806161314,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 38; sourced cascade branch",
     longDesc = """
@@ -2970,7 +2970,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s3)',
         branch_yield = 0.12533124896639247,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 38; sourced cascade branch",
     longDesc = """
@@ -2992,7 +2992,7 @@ entry(
         collision_set = "IST-Lisbon-Ar-2021",
         branch_product = 'Ar(1s2)',
         branch_yield = 0.3339010928057071,
-        yield_table_sha256 = 'cf57783c7b94530cc522658d3c84685374994401a964775ea76cd47701f5b0b9',
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
     ),
     shortDesc = "IST-Lisbon-Ar-2021 channel 38; sourced cascade branch",
     longDesc = """
@@ -3004,4 +3004,9441 @@ Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018
 """,
 )
 
+entry(
+    index = 1180,
+    label = "Ar(1s3) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P0) -> e + Ar(4p[1/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.7420494699646644,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 45; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 45. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005.
+""",
+)
+
+entry(
+    index = 1181,
+    label = "Ar(1s3) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P0) -> e + Ar(4p[1/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.21201413427561838,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 45; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 45. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005.
+""",
+)
+
+entry(
+    index = 1182,
+    label = "Ar(1s3) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P0) -> e + Ar(4p[1/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.038476639183352965,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 45; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 45. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005.
+""",
+)
+
+entry(
+    index = 1183,
+    label = "Ar(1s3) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P0) -> e + Ar(4p[1/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.00745975657636435,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 45; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 45. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005.
+""",
+)
+
+entry(
+    index = 1184,
+    label = "Ar(1s3) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P0) -> e + Ar(4p[5/2]3), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 1.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 46; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 46. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002.
+""",
+)
+
+entry(
+    index = 1185,
+    label = "Ar(1s3) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P0) -> e + Ar(4p[5/2]3), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 46; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 46. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002.
+""",
+)
+
+entry(
+    index = 1186,
+    label = "Ar(1s3) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P0) -> e + Ar(4p[5/2]3), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 46; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 46. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002.
+""",
+)
+
+entry(
+    index = 1187,
+    label = "Ar(1s3) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P0) -> e + Ar(4p[5/2]3), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 46; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 46. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002.
+""",
+)
+
+entry(
+    index = 1188,
+    label = "Ar(1s3) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P0) -> e + Ar(4p[5/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.28819336845367216,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 47; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 47. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005.
+""",
+)
+
+entry(
+    index = 1189,
+    label = "Ar(1s3) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P0) -> e + Ar(4p[5/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.6662534862101023,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 47; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 47. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005.
+""",
+)
+
+entry(
+    index = 1190,
+    label = "Ar(1s3) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P0) -> e + Ar(4p[5/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 47; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 47. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005.
+""",
+)
+
+entry(
+    index = 1191,
+    label = "Ar(1s3) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P0) -> e + Ar(4p[5/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.0455531453362256,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 47; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 47. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005.
+""",
+)
+
+entry(
+    index = 1192,
+    label = "Ar(1s3) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P0) -> e + Ar(4p[3/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.1543484713564856,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 48; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 48. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005.
+""",
+)
+
+entry(
+    index = 1193,
+    label = "Ar(1s3) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P0) -> e + Ar(4p[3/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.7420599584446423,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 48; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 48. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005.
+""",
+)
+
+entry(
+    index = 1194,
+    label = "Ar(1s3) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P0) -> e + Ar(4p[3/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.07212822796081923,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 48; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 48. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005.
+""",
+)
+
+entry(
+    index = 1195,
+    label = "Ar(1s3) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P0) -> e + Ar(4p[3/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.03146334223805283,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 48; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 48. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005.
+""",
+)
+
+entry(
+    index = 1196,
+    label = "Ar(1s3) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P0) -> e + Ar(4p[3/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.7122093023255814,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 49; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 49. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005.
+""",
+)
+
+entry(
+    index = 1197,
+    label = "Ar(1s3) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P0) -> e + Ar(4p[3/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.14244186046511628,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 49; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 49. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005.
+""",
+)
+
+entry(
+    index = 1198,
+    label = "Ar(1s3) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P0) -> e + Ar(4p[3/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 49; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 49. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005.
+""",
+)
+
+entry(
+    index = 1199,
+    label = "Ar(1s3) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P0) -> e + Ar(4p[3/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.14534883720930233,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 49; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 49. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005.
+""",
+)
+
+entry(
+    index = 1200,
+    label = "Ar(1s3) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P0) -> e + Ar(4p[1/2]0), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 50; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 50. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000011->018001.000003, 018001.000011->018001.000005.
+""",
+)
+
+entry(
+    index = 1201,
+    label = "Ar(1s3) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P0) -> e + Ar(4p[1/2]0), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 1.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 50; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 50. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000011->018001.000003, 018001.000011->018001.000005.
+""",
+)
+
+entry(
+    index = 1202,
+    label = "Ar(1s3) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P0) -> e + Ar(4p[1/2]0), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 50; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 50. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000011->018001.000003, 018001.000011->018001.000005.
+""",
+)
+
+entry(
+    index = 1203,
+    label = "Ar(1s3) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P0) -> e + Ar(4p[1/2]0), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 50; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 50. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000011->018001.000003, 018001.000011->018001.000005.
+""",
+)
+
+entry(
+    index = 1204,
+    label = "Ar(1s3) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P0) -> e + Ar(4p'[3/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.01900337837837838,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 51; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 51. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005.
+""",
+)
+
+entry(
+    index = 1205,
+    label = "Ar(1s3) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P0) -> e + Ar(4p'[3/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.0006636100386100386,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 51; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 51. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005.
+""",
+)
+
+entry(
+    index = 1206,
+    label = "Ar(1s3) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P0) -> e + Ar(4p'[3/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.5610521235521235,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 51; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 51. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005.
+""",
+)
+
+entry(
+    index = 1207,
+    label = "Ar(1s3) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P0) -> e + Ar(4p'[3/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.41928088803088803,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 51; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 51. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005.
+""",
+)
+
+entry(
+    index = 1208,
+    label = "Ar(1s3) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P0) -> e + Ar(4p'[3/2]2), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.10982658959537572,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 52; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 52. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005.
+""",
+)
+
+entry(
+    index = 1209,
+    label = "Ar(1s3) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P0) -> e + Ar(4p'[3/2]2), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.24566473988439305,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 52; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 52. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005.
+""",
+)
+
+entry(
+    index = 1210,
+    label = "Ar(1s3) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P0) -> e + Ar(4p'[3/2]2), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 52; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 52. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005.
+""",
+)
+
+entry(
+    index = 1211,
+    label = "Ar(1s3) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P0) -> e + Ar(4p'[3/2]2), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.6445086705202312,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 52; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 52. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005.
+""",
+)
+
+entry(
+    index = 1212,
+    label = "Ar(1s3) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P0) -> e + Ar(4p'[1/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.1816633550950894,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 53; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 53. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005.
+""",
+)
+
+entry(
+    index = 1213,
+    label = "Ar(1s3) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P0) -> e + Ar(4p'[1/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.05194436559750213,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 53; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 53. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005.
+""",
+)
+
+entry(
+    index = 1214,
+    label = "Ar(1s3) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P0) -> e + Ar(4p'[1/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.33210332103321033,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 53; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 53. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005.
+""",
+)
+
+entry(
+    index = 1215,
+    label = "Ar(1s3) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P0) -> e + Ar(4p'[1/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.4342889582741981,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 53; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 53. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005.
+""",
+)
+
+entry(
+    index = 1216,
+    label = "Ar(1s3) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P0) -> e + Ar(4p'[1/2]0), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 54; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 54. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000015->018001.000003, 018001.000015->018001.000005.
+""",
+)
+
+entry(
+    index = 1217,
+    label = "Ar(1s3) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P0) -> e + Ar(4p'[1/2]0), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.005217083738615262,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 54; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 54. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000015->018001.000003, 018001.000015->018001.000005.
+""",
+)
+
+entry(
+    index = 1218,
+    label = "Ar(1s3) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P0) -> e + Ar(4p'[1/2]0), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 54; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 54. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000015->018001.000003, 018001.000015->018001.000005.
+""",
+)
+
+entry(
+    index = 1219,
+    label = "Ar(1s3) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P0) -> e + Ar(4p'[1/2]0), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.9947829162613847,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 54; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 54. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000015->018001.000003, 018001.000015->018001.000005.
+""",
+)
+
+entry(
+    index = 1220,
+    label = "Ar(1s3) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P0) -> e + Ar(3d[1/2]0), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.6485914423629693,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 55; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 55. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000016->018001.000006, 018001.000016->018001.000009, 018001.000016->018001.000012, 018001.000016->018001.000014.
+""",
+)
+
+entry(
+    index = 1221,
+    label = "Ar(1s3) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P0) -> e + Ar(3d[1/2]0), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.26062431169809147,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 55; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 55. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000016->018001.000006, 018001.000016->018001.000009, 018001.000016->018001.000012, 018001.000016->018001.000014.
+""",
+)
+
+entry(
+    index = 1222,
+    label = "Ar(1s3) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P0) -> e + Ar(3d[1/2]0), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.05961966751625672,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 55; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 55. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000016->018001.000006, 018001.000016->018001.000009, 018001.000016->018001.000012, 018001.000016->018001.000014.
+""",
+)
+
+entry(
+    index = 1223,
+    label = "Ar(1s3) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P0) -> e + Ar(3d[1/2]0), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.031164578422682675,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 55; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 55. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000016->018001.000006, 018001.000016->018001.000009, 018001.000016->018001.000012, 018001.000016->018001.000014.
+""",
+)
+
+entry(
+    index = 1224,
+    label = "Ar(1s3) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P0) -> e + Ar(3d[1/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.6543222731465291,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 56; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 56. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000017->018001.000001, 018001.000017->018001.000006, 018001.000017->018001.000008, 018001.000017->018001.000009, 018001.000017->018001.000010, 018001.000017->018001.000011, 018001.000017->018001.000012, 018001.000017->018001.000013, 018001.000017->018001.000014, 018001.000017->018001.000015.
+""",
+)
+
+entry(
+    index = 1225,
+    label = "Ar(1s3) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P0) -> e + Ar(3d[1/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.2636146227974063,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 56; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 56. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000017->018001.000001, 018001.000017->018001.000006, 018001.000017->018001.000008, 018001.000017->018001.000009, 018001.000017->018001.000010, 018001.000017->018001.000011, 018001.000017->018001.000012, 018001.000017->018001.000013, 018001.000017->018001.000014, 018001.000017->018001.000015.
+""",
+)
+
+entry(
+    index = 1226,
+    label = "Ar(1s3) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P0) -> e + Ar(3d[1/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.03717429287971589,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 56; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 56. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000017->018001.000001, 018001.000017->018001.000006, 018001.000017->018001.000008, 018001.000017->018001.000009, 018001.000017->018001.000010, 018001.000017->018001.000011, 018001.000017->018001.000012, 018001.000017->018001.000013, 018001.000017->018001.000014, 018001.000017->018001.000015.
+""",
+)
+
+entry(
+    index = 1227,
+    label = "Ar(1s3) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P0) -> e + Ar(3d[1/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.044888811176348825,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 56; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 56. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000017->018001.000001, 018001.000017->018001.000006, 018001.000017->018001.000008, 018001.000017->018001.000009, 018001.000017->018001.000010, 018001.000017->018001.000011, 018001.000017->018001.000012, 018001.000017->018001.000013, 018001.000017->018001.000014, 018001.000017->018001.000015.
+""",
+)
+
+entry(
+    index = 1228,
+    label = "Ar(1s3) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P0) -> e + Ar(3d[3/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.6628004734416516,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 57; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 57. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000018->018001.000006, 018001.000018->018001.000007, 018001.000018->018001.000008, 018001.000018->018001.000009, 018001.000018->018001.000010, 018001.000018->018001.000012, 018001.000018->018001.000013, 018001.000018->018001.000014.
+""",
+)
+
+entry(
+    index = 1229,
+    label = "Ar(1s3) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P0) -> e + Ar(3d[3/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.21019305957628312,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 57; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 57. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000018->018001.000006, 018001.000018->018001.000007, 018001.000018->018001.000008, 018001.000018->018001.000009, 018001.000018->018001.000010, 018001.000018->018001.000012, 018001.000018->018001.000013, 018001.000018->018001.000014.
+""",
+)
+
+entry(
+    index = 1230,
+    label = "Ar(1s3) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P0) -> e + Ar(3d[3/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.036621743474735735,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 57; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 57. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000018->018001.000006, 018001.000018->018001.000007, 018001.000018->018001.000008, 018001.000018->018001.000009, 018001.000018->018001.000010, 018001.000018->018001.000012, 018001.000018->018001.000013, 018001.000018->018001.000014.
+""",
+)
+
+entry(
+    index = 1231,
+    label = "Ar(1s3) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P0) -> e + Ar(3d[3/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.09038472350732961,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 57; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 57. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000018->018001.000006, 018001.000018->018001.000007, 018001.000018->018001.000008, 018001.000018->018001.000009, 018001.000018->018001.000010, 018001.000018->018001.000012, 018001.000018->018001.000013, 018001.000018->018001.000014.
+""",
+)
+
+entry(
+    index = 1232,
+    label = "Ar(1s3) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P0) -> e + Ar(3d[7/2]4), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 1.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 58; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 58. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002, 018001.000019->018001.000007.
+""",
+)
+
+entry(
+    index = 1233,
+    label = "Ar(1s3) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P0) -> e + Ar(3d[7/2]4), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 58; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 58. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002, 018001.000019->018001.000007.
+""",
+)
+
+entry(
+    index = 1234,
+    label = "Ar(1s3) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P0) -> e + Ar(3d[7/2]4), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 58; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 58. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002, 018001.000019->018001.000007.
+""",
+)
+
+entry(
+    index = 1235,
+    label = "Ar(1s3) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P0) -> e + Ar(3d[7/2]4), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 58; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 58. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002, 018001.000019->018001.000007.
+""",
+)
+
+entry(
+    index = 1236,
+    label = "Ar(1s3) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P0) -> e + Ar(5s[3/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.8209780287439195,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 59; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 59. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000022->018001.000006, 018001.000022->018001.000007, 018001.000022->018001.000008, 018001.000022->018001.000009, 018001.000022->018001.000010, 018001.000022->018001.000012, 018001.000022->018001.000013, 018001.000022->018001.000014.
+""",
+)
+
+entry(
+    index = 1237,
+    label = "Ar(1s3) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P0) -> e + Ar(5s[3/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.12371290358674257,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 59; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 59. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000022->018001.000006, 018001.000022->018001.000007, 018001.000022->018001.000008, 018001.000022->018001.000009, 018001.000022->018001.000010, 018001.000022->018001.000012, 018001.000022->018001.000013, 018001.000022->018001.000014.
+""",
+)
+
+entry(
+    index = 1238,
+    label = "Ar(1s3) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P0) -> e + Ar(5s[3/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.0168369627592017,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 59; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 59. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000022->018001.000006, 018001.000022->018001.000007, 018001.000022->018001.000008, 018001.000022->018001.000009, 018001.000022->018001.000010, 018001.000022->018001.000012, 018001.000022->018001.000013, 018001.000022->018001.000014.
+""",
+)
+
+entry(
+    index = 1239,
+    label = "Ar(1s3) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P0) -> e + Ar(5s[3/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.03847210491013634,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 59; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 59. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000022->018001.000006, 018001.000022->018001.000007, 018001.000022->018001.000008, 018001.000022->018001.000009, 018001.000022->018001.000010, 018001.000022->018001.000012, 018001.000022->018001.000013, 018001.000022->018001.000014.
+""",
+)
+
+entry(
+    index = 1240,
+    label = "Ar(1s3) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P0) -> e + Ar(3d[7/2]3), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.42750082388093896,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 60; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 60. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000020->018001.000007, 018001.000020->018001.000008, 018001.000020->018001.000010, 018001.000020->018001.000013.
+""",
+)
+
+entry(
+    index = 1241,
+    label = "Ar(1s3) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P0) -> e + Ar(3d[7/2]3), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.528810865203049,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 60; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 60. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000020->018001.000007, 018001.000020->018001.000008, 018001.000020->018001.000010, 018001.000020->018001.000013.
+""",
+)
+
+entry(
+    index = 1242,
+    label = "Ar(1s3) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P0) -> e + Ar(3d[7/2]3), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 60; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 60. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000020->018001.000007, 018001.000020->018001.000008, 018001.000020->018001.000010, 018001.000020->018001.000013.
+""",
+)
+
+entry(
+    index = 1243,
+    label = "Ar(1s3) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P0) -> e + Ar(3d[7/2]3), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.043688310916012024,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 60; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 60. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000020->018001.000007, 018001.000020->018001.000008, 018001.000020->018001.000010, 018001.000020->018001.000013.
+""",
+)
+
+entry(
+    index = 1244,
+    label = "Ar(1s3) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P0) -> e + Ar(5s[3/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.34090330256158746,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 61; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 61. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000023->018001.000001, 018001.000023->018001.000006, 018001.000023->018001.000008, 018001.000023->018001.000009, 018001.000023->018001.000010, 018001.000023->018001.000011, 018001.000023->018001.000012, 018001.000023->018001.000013, 018001.000023->018001.000014, 018001.000023->018001.000015.
+""",
+)
+
+entry(
+    index = 1245,
+    label = "Ar(1s3) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P0) -> e + Ar(5s[3/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.5606703534059738,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 61; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 61. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000023->018001.000001, 018001.000023->018001.000006, 018001.000023->018001.000008, 018001.000023->018001.000009, 018001.000023->018001.000010, 018001.000023->018001.000011, 018001.000023->018001.000012, 018001.000023->018001.000013, 018001.000023->018001.000014, 018001.000023->018001.000015.
+""",
+)
+
+entry(
+    index = 1246,
+    label = "Ar(1s3) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P0) -> e + Ar(5s[3/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.033388781767994646,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 61; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 61. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000023->018001.000001, 018001.000023->018001.000006, 018001.000023->018001.000008, 018001.000023->018001.000009, 018001.000023->018001.000010, 018001.000023->018001.000011, 018001.000023->018001.000012, 018001.000023->018001.000013, 018001.000023->018001.000014, 018001.000023->018001.000015.
+""",
+)
+
+entry(
+    index = 1247,
+    label = "Ar(1s3) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P0) -> e + Ar(5s[3/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.06503756226444418,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 61; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 61. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000023->018001.000001, 018001.000023->018001.000006, 018001.000023->018001.000008, 018001.000023->018001.000009, 018001.000023->018001.000010, 018001.000023->018001.000011, 018001.000023->018001.000012, 018001.000023->018001.000013, 018001.000023->018001.000014, 018001.000023->018001.000015.
+""",
+)
+
+entry(
+    index = 1248,
+    label = "Ar(1s3) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P0) -> e + Ar(3d[5/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.21808181830489426,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 62; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 62. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000021->018001.000006, 018001.000021->018001.000007, 018001.000021->018001.000008, 018001.000021->018001.000009, 018001.000021->018001.000010, 018001.000021->018001.000012, 018001.000021->018001.000013, 018001.000021->018001.000014.
+""",
+)
+
+entry(
+    index = 1249,
+    label = "Ar(1s3) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P0) -> e + Ar(3d[5/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.6439180183140705,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 62; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 62. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000021->018001.000006, 018001.000021->018001.000007, 018001.000021->018001.000008, 018001.000021->018001.000009, 018001.000021->018001.000010, 018001.000021->018001.000012, 018001.000021->018001.000013, 018001.000021->018001.000014.
+""",
+)
+
+entry(
+    index = 1250,
+    label = "Ar(1s3) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P0) -> e + Ar(3d[5/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.07171711012674221,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 62; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 62. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000021->018001.000006, 018001.000021->018001.000007, 018001.000021->018001.000008, 018001.000021->018001.000009, 018001.000021->018001.000010, 018001.000021->018001.000012, 018001.000021->018001.000013, 018001.000021->018001.000014.
+""",
+)
+
+entry(
+    index = 1251,
+    label = "Ar(1s3) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P0) -> e + Ar(3d[5/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.06628305325429301,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 62; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 62. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000021->018001.000006, 018001.000021->018001.000007, 018001.000021->018001.000008, 018001.000021->018001.000009, 018001.000021->018001.000010, 018001.000021->018001.000012, 018001.000021->018001.000013, 018001.000021->018001.000014.
+""",
+)
+
+entry(
+    index = 1252,
+    label = "Ar(1s3) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P0) -> e + Ar(3d[5/2]3), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.7140399146654615,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 63; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 63. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000024->018001.000007, 018001.000024->018001.000008, 018001.000024->018001.000010, 018001.000024->018001.000013.
+""",
+)
+
+entry(
+    index = 1253,
+    label = "Ar(1s3) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P0) -> e + Ar(3d[5/2]3), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.17152136695697243,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 63; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 63. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000024->018001.000007, 018001.000024->018001.000008, 018001.000024->018001.000010, 018001.000024->018001.000013.
+""",
+)
+
+entry(
+    index = 1254,
+    label = "Ar(1s3) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P0) -> e + Ar(3d[5/2]3), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 63; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 63. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000024->018001.000007, 018001.000024->018001.000008, 018001.000024->018001.000010, 018001.000024->018001.000013.
+""",
+)
+
+entry(
+    index = 1255,
+    label = "Ar(1s3) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P0) -> e + Ar(3d[5/2]3), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.11443871837756595,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 63; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 63. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000024->018001.000007, 018001.000024->018001.000008, 018001.000024->018001.000010, 018001.000024->018001.000013.
+""",
+)
+
+entry(
+    index = 1256,
+    label = "Ar(1s3) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P0) -> e + Ar(3d[3/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.10661529252532245,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 64; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 64. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000025->018001.000001, 018001.000025->018001.000006, 018001.000025->018001.000008, 018001.000025->018001.000009, 018001.000025->018001.000010, 018001.000025->018001.000011, 018001.000025->018001.000012, 018001.000025->018001.000013, 018001.000025->018001.000014, 018001.000025->018001.000015.
+""",
+)
+
+entry(
+    index = 1257,
+    label = "Ar(1s3) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P0) -> e + Ar(3d[3/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.6830111167619378,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 64; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 64. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000025->018001.000001, 018001.000025->018001.000006, 018001.000025->018001.000008, 018001.000025->018001.000009, 018001.000025->018001.000010, 018001.000025->018001.000011, 018001.000025->018001.000012, 018001.000025->018001.000013, 018001.000025->018001.000014, 018001.000025->018001.000015.
+""",
+)
+
+entry(
+    index = 1258,
+    label = "Ar(1s3) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P0) -> e + Ar(3d[3/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.06806417104728463,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 64; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 64. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000025->018001.000001, 018001.000025->018001.000006, 018001.000025->018001.000008, 018001.000025->018001.000009, 018001.000025->018001.000010, 018001.000025->018001.000011, 018001.000025->018001.000012, 018001.000025->018001.000013, 018001.000025->018001.000014, 018001.000025->018001.000015.
+""",
+)
+
+entry(
+    index = 1259,
+    label = "Ar(1s3) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P0) -> e + Ar(3d[3/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.1423094196654553,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 64; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 64. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000025->018001.000001, 018001.000025->018001.000006, 018001.000025->018001.000008, 018001.000025->018001.000009, 018001.000025->018001.000010, 018001.000025->018001.000011, 018001.000025->018001.000012, 018001.000025->018001.000013, 018001.000025->018001.000014, 018001.000025->018001.000015.
+""",
+)
+
+entry(
+    index = 1260,
+    label = "Ar(1s3) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P0) -> e + Ar(5s'[1/2]0), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.18844760803036653,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 65; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 65. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000029->018001.000006, 018001.000029->018001.000009, 018001.000029->018001.000012, 018001.000029->018001.000014.
+""",
+)
+
+entry(
+    index = 1261,
+    label = "Ar(1s3) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P0) -> e + Ar(5s'[1/2]0), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.12682660594844428,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 65; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 65. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000029->018001.000006, 018001.000029->018001.000009, 018001.000029->018001.000012, 018001.000029->018001.000014.
+""",
+)
+
+entry(
+    index = 1262,
+    label = "Ar(1s3) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P0) -> e + Ar(5s'[1/2]0), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.3687952712634285,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 65; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 65. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000029->018001.000006, 018001.000029->018001.000009, 018001.000029->018001.000012, 018001.000029->018001.000014.
+""",
+)
+
+entry(
+    index = 1263,
+    label = "Ar(1s3) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P0) -> e + Ar(5s'[1/2]0), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.31593051475776074,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 65; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 65. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000029->018001.000006, 018001.000029->018001.000009, 018001.000029->018001.000012, 018001.000029->018001.000014.
+""",
+)
+
+entry(
+    index = 1264,
+    label = "Ar(1s3) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P0) -> e + Ar(5s'[1/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.1994478233533313,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 66; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 66. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000030->018001.000001, 018001.000030->018001.000006, 018001.000030->018001.000008, 018001.000030->018001.000009, 018001.000030->018001.000010, 018001.000030->018001.000011, 018001.000030->018001.000012, 018001.000030->018001.000013, 018001.000030->018001.000014, 018001.000030->018001.000015.
+""",
+)
+
+entry(
+    index = 1265,
+    label = "Ar(1s3) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P0) -> e + Ar(5s'[1/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.1816565672612965,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 66; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 66. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000030->018001.000001, 018001.000030->018001.000006, 018001.000030->018001.000008, 018001.000030->018001.000009, 018001.000030->018001.000010, 018001.000030->018001.000011, 018001.000030->018001.000012, 018001.000030->018001.000013, 018001.000030->018001.000014, 018001.000030->018001.000015.
+""",
+)
+
+entry(
+    index = 1266,
+    label = "Ar(1s3) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P0) -> e + Ar(5s'[1/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.11568597069282358,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 66; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 66. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000030->018001.000001, 018001.000030->018001.000006, 018001.000030->018001.000008, 018001.000030->018001.000009, 018001.000030->018001.000010, 018001.000030->018001.000011, 018001.000030->018001.000012, 018001.000030->018001.000013, 018001.000030->018001.000014, 018001.000030->018001.000015.
+""",
+)
+
+entry(
+    index = 1267,
+    label = "Ar(1s3) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P0) -> e + Ar(5s'[1/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.5032096386925485,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 66; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 66. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000030->018001.000001, 018001.000030->018001.000006, 018001.000030->018001.000008, 018001.000030->018001.000009, 018001.000030->018001.000010, 018001.000030->018001.000011, 018001.000030->018001.000012, 018001.000030->018001.000013, 018001.000030->018001.000014, 018001.000030->018001.000015.
+""",
+)
+
+entry(
+    index = 1268,
+    label = "Ar(1s3) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P0) -> e + Ar(3d'[5/2]2), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.06526622919931016,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 67; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 67. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000026->018001.000006, 018001.000026->018001.000007, 018001.000026->018001.000008, 018001.000026->018001.000009, 018001.000026->018001.000010, 018001.000026->018001.000012, 018001.000026->018001.000013, 018001.000026->018001.000014.
+""",
+)
+
+entry(
+    index = 1269,
+    label = "Ar(1s3) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P0) -> e + Ar(3d'[5/2]2), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.10901503322328669,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 67; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 67. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000026->018001.000006, 018001.000026->018001.000007, 018001.000026->018001.000008, 018001.000026->018001.000009, 018001.000026->018001.000010, 018001.000026->018001.000012, 018001.000026->018001.000013, 018001.000026->018001.000014.
+""",
+)
+
+entry(
+    index = 1270,
+    label = "Ar(1s3) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P0) -> e + Ar(3d'[5/2]2), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.4251772331223881,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 67; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 67. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000026->018001.000006, 018001.000026->018001.000007, 018001.000026->018001.000008, 018001.000026->018001.000009, 018001.000026->018001.000010, 018001.000026->018001.000012, 018001.000026->018001.000013, 018001.000026->018001.000014.
+""",
+)
+
+entry(
+    index = 1271,
+    label = "Ar(1s3) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P0) -> e + Ar(3d'[5/2]2), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.40054150445501513,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 67; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 67. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000026->018001.000006, 018001.000026->018001.000007, 018001.000026->018001.000008, 018001.000026->018001.000009, 018001.000026->018001.000010, 018001.000026->018001.000012, 018001.000026->018001.000013, 018001.000026->018001.000014.
+""",
+)
+
+entry(
+    index = 1272,
+    label = "Ar(1s3) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P0) -> e + Ar(3d'[3/2]2), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.36490459112091733,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 68; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 68. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000027->018001.000006, 018001.000027->018001.000007, 018001.000027->018001.000008, 018001.000027->018001.000009, 018001.000027->018001.000010, 018001.000027->018001.000012, 018001.000027->018001.000013, 018001.000027->018001.000014.
+""",
+)
+
+entry(
+    index = 1273,
+    label = "Ar(1s3) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P0) -> e + Ar(3d'[3/2]2), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.1364237511835537,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 68; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 68. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000027->018001.000006, 018001.000027->018001.000007, 018001.000027->018001.000008, 018001.000027->018001.000009, 018001.000027->018001.000010, 018001.000027->018001.000012, 018001.000027->018001.000013, 018001.000027->018001.000014.
+""",
+)
+
+entry(
+    index = 1274,
+    label = "Ar(1s3) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P0) -> e + Ar(3d'[3/2]2), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.1736513228726633,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 68; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 68. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000027->018001.000006, 018001.000027->018001.000007, 018001.000027->018001.000008, 018001.000027->018001.000009, 018001.000027->018001.000010, 018001.000027->018001.000012, 018001.000027->018001.000013, 018001.000027->018001.000014.
+""",
+)
+
+entry(
+    index = 1275,
+    label = "Ar(1s3) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P0) -> e + Ar(3d'[3/2]2), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.32502033482286563,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 68; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 68. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000027->018001.000006, 018001.000027->018001.000007, 018001.000027->018001.000008, 018001.000027->018001.000009, 018001.000027->018001.000010, 018001.000027->018001.000012, 018001.000027->018001.000013, 018001.000027->018001.000014.
+""",
+)
+
+entry(
+    index = 1276,
+    label = "Ar(1s3) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P0) -> e + Ar(3d'[5/2]3), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.2520368762539881,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 69; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 69. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000028->018001.000007, 018001.000028->018001.000008, 018001.000028->018001.000010, 018001.000028->018001.000013.
+""",
+)
+
+entry(
+    index = 1277,
+    label = "Ar(1s3) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P0) -> e + Ar(3d'[5/2]3), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.2104455287307021,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 69; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 69. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000028->018001.000007, 018001.000028->018001.000008, 018001.000028->018001.000010, 018001.000028->018001.000013.
+""",
+)
+
+entry(
+    index = 1278,
+    label = "Ar(1s3) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P0) -> e + Ar(3d'[5/2]3), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 69; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 69. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000028->018001.000007, 018001.000028->018001.000008, 018001.000028->018001.000010, 018001.000028->018001.000013.
+""",
+)
+
+entry(
+    index = 1279,
+    label = "Ar(1s3) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P0) -> e + Ar(3d'[5/2]3), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.5375175950153098,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 69; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 69. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000028->018001.000007, 018001.000028->018001.000008, 018001.000028->018001.000010, 018001.000028->018001.000013.
+""",
+)
+
+entry(
+    index = 1280,
+    label = "Ar(1s3) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P0) -> e + Ar(3d'[3/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.09849268689985227,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 70; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 70. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000031->018001.000001, 018001.000031->018001.000006, 018001.000031->018001.000008, 018001.000031->018001.000009, 018001.000031->018001.000010, 018001.000031->018001.000011, 018001.000031->018001.000012, 018001.000031->018001.000013, 018001.000031->018001.000014, 018001.000031->018001.000015.
+""",
+)
+
+entry(
+    index = 1281,
+    label = "Ar(1s3) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P0) -> e + Ar(3d'[3/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.0812013508241652,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 70; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 70. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000031->018001.000001, 018001.000031->018001.000006, 018001.000031->018001.000008, 018001.000031->018001.000009, 018001.000031->018001.000010, 018001.000031->018001.000011, 018001.000031->018001.000012, 018001.000031->018001.000013, 018001.000031->018001.000014, 018001.000031->018001.000015.
+""",
+)
+
+entry(
+    index = 1282,
+    label = "Ar(1s3) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P0) -> e + Ar(3d'[3/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.2613652608067601,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 70; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 70. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000031->018001.000001, 018001.000031->018001.000006, 018001.000031->018001.000008, 018001.000031->018001.000009, 018001.000031->018001.000010, 018001.000031->018001.000011, 018001.000031->018001.000012, 018001.000031->018001.000013, 018001.000031->018001.000014, 018001.000031->018001.000015.
+""",
+)
+
+entry(
+    index = 1283,
+    label = "Ar(1s3) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P0) -> e + Ar(3d'[3/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.5589407014692225,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 70; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 70. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000031->018001.000001, 018001.000031->018001.000006, 018001.000031->018001.000008, 018001.000031->018001.000009, 018001.000031->018001.000010, 018001.000031->018001.000011, 018001.000031->018001.000012, 018001.000031->018001.000013, 018001.000031->018001.000014, 018001.000031->018001.000015.
+""",
+)
+
+entry(
+    index = 1284,
+    label = "Ar(1s2) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1P1) -> e + Ar(4p[1/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.7420494699646644,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 71; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 71. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005.
+""",
+)
+
+entry(
+    index = 1285,
+    label = "Ar(1s2) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1P1) -> e + Ar(4p[1/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.21201413427561838,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 71; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 71. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005.
+""",
+)
+
+entry(
+    index = 1286,
+    label = "Ar(1s2) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1P1) -> e + Ar(4p[1/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.038476639183352965,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 71; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 71. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005.
+""",
+)
+
+entry(
+    index = 1287,
+    label = "Ar(1s2) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1P1) -> e + Ar(4p[1/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.00745975657636435,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 71; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 71. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005.
+""",
+)
+
+entry(
+    index = 1288,
+    label = "Ar(1s2) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1P1) -> e + Ar(4p[5/2]3), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 1.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 72; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 72. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002.
+""",
+)
+
+entry(
+    index = 1289,
+    label = "Ar(1s2) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1P1) -> e + Ar(4p[5/2]3), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 72; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 72. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002.
+""",
+)
+
+entry(
+    index = 1290,
+    label = "Ar(1s2) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1P1) -> e + Ar(4p[5/2]3), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 72; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 72. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002.
+""",
+)
+
+entry(
+    index = 1291,
+    label = "Ar(1s2) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1P1) -> e + Ar(4p[5/2]3), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 72; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 72. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002.
+""",
+)
+
+entry(
+    index = 1292,
+    label = "Ar(1s2) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1P1) -> e + Ar(4p[5/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.28819336845367216,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 73; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 73. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005.
+""",
+)
+
+entry(
+    index = 1293,
+    label = "Ar(1s2) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1P1) -> e + Ar(4p[5/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.6662534862101023,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 73; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 73. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005.
+""",
+)
+
+entry(
+    index = 1294,
+    label = "Ar(1s2) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1P1) -> e + Ar(4p[5/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 73; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 73. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005.
+""",
+)
+
+entry(
+    index = 1295,
+    label = "Ar(1s2) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1P1) -> e + Ar(4p[5/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.0455531453362256,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 73; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 73. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005.
+""",
+)
+
+entry(
+    index = 1296,
+    label = "Ar(1s2) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1P1) -> e + Ar(4p[3/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.1543484713564856,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 74; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 74. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005.
+""",
+)
+
+entry(
+    index = 1297,
+    label = "Ar(1s2) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1P1) -> e + Ar(4p[3/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.7420599584446423,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 74; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 74. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005.
+""",
+)
+
+entry(
+    index = 1298,
+    label = "Ar(1s2) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1P1) -> e + Ar(4p[3/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.07212822796081923,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 74; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 74. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005.
+""",
+)
+
+entry(
+    index = 1299,
+    label = "Ar(1s2) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1P1) -> e + Ar(4p[3/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.03146334223805283,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 74; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 74. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005.
+""",
+)
+
+entry(
+    index = 1300,
+    label = "Ar(1s2) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1P1) -> e + Ar(4p[3/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.7122093023255814,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 75; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 75. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005.
+""",
+)
+
+entry(
+    index = 1301,
+    label = "Ar(1s2) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1P1) -> e + Ar(4p[3/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.14244186046511628,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 75; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 75. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005.
+""",
+)
+
+entry(
+    index = 1302,
+    label = "Ar(1s2) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1P1) -> e + Ar(4p[3/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 75; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 75. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005.
+""",
+)
+
+entry(
+    index = 1303,
+    label = "Ar(1s2) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1P1) -> e + Ar(4p[3/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.14534883720930233,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 75; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 75. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005.
+""",
+)
+
+entry(
+    index = 1304,
+    label = "Ar(1s2) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1P1) -> e + Ar(4p[1/2]0), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 76; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 76. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000011->018001.000003, 018001.000011->018001.000005.
+""",
+)
+
+entry(
+    index = 1305,
+    label = "Ar(1s2) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1P1) -> e + Ar(4p[1/2]0), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 1.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 76; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 76. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000011->018001.000003, 018001.000011->018001.000005.
+""",
+)
+
+entry(
+    index = 1306,
+    label = "Ar(1s2) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1P1) -> e + Ar(4p[1/2]0), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 76; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 76. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000011->018001.000003, 018001.000011->018001.000005.
+""",
+)
+
+entry(
+    index = 1307,
+    label = "Ar(1s2) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1P1) -> e + Ar(4p[1/2]0), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 76; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 76. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000011->018001.000003, 018001.000011->018001.000005.
+""",
+)
+
+entry(
+    index = 1308,
+    label = "Ar(1s2) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(1P1) -> e + Ar(4p'[3/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.01900337837837838,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 77; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 77. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005.
+""",
+)
+
+entry(
+    index = 1309,
+    label = "Ar(1s2) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(1P1) -> e + Ar(4p'[3/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.0006636100386100386,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 77; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 77. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005.
+""",
+)
+
+entry(
+    index = 1310,
+    label = "Ar(1s2) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(1P1) -> e + Ar(4p'[3/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.5610521235521235,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 77; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 77. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005.
+""",
+)
+
+entry(
+    index = 1311,
+    label = "Ar(1s2) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(1P1) -> e + Ar(4p'[3/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.41928088803088803,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 77; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 77. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005.
+""",
+)
+
+entry(
+    index = 1312,
+    label = "Ar(1s2) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(1P1) -> e + Ar(4p'[3/2]2), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.10982658959537572,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 78; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 78. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005.
+""",
+)
+
+entry(
+    index = 1313,
+    label = "Ar(1s2) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(1P1) -> e + Ar(4p'[3/2]2), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.24566473988439305,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 78; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 78. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005.
+""",
+)
+
+entry(
+    index = 1314,
+    label = "Ar(1s2) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(1P1) -> e + Ar(4p'[3/2]2), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 78; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 78. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005.
+""",
+)
+
+entry(
+    index = 1315,
+    label = "Ar(1s2) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(1P1) -> e + Ar(4p'[3/2]2), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.6445086705202312,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 78; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 78. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005.
+""",
+)
+
+entry(
+    index = 1316,
+    label = "Ar(1s2) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(1P1) -> e + Ar(4p'[1/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.1816633550950894,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 79; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 79. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005.
+""",
+)
+
+entry(
+    index = 1317,
+    label = "Ar(1s2) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(1P1) -> e + Ar(4p'[1/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.05194436559750213,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 79; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 79. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005.
+""",
+)
+
+entry(
+    index = 1318,
+    label = "Ar(1s2) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(1P1) -> e + Ar(4p'[1/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.33210332103321033,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 79; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 79. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005.
+""",
+)
+
+entry(
+    index = 1319,
+    label = "Ar(1s2) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(1P1) -> e + Ar(4p'[1/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.4342889582741981,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 79; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 79. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005.
+""",
+)
+
+entry(
+    index = 1320,
+    label = "Ar(1s2) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(1P1) -> e + Ar(4p'[1/2]0), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 80; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 80. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000015->018001.000003, 018001.000015->018001.000005.
+""",
+)
+
+entry(
+    index = 1321,
+    label = "Ar(1s2) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(1P1) -> e + Ar(4p'[1/2]0), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.005217083738615262,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 80; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 80. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000015->018001.000003, 018001.000015->018001.000005.
+""",
+)
+
+entry(
+    index = 1322,
+    label = "Ar(1s2) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(1P1) -> e + Ar(4p'[1/2]0), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 80; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 80. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000015->018001.000003, 018001.000015->018001.000005.
+""",
+)
+
+entry(
+    index = 1323,
+    label = "Ar(1s2) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(1P1) -> e + Ar(4p'[1/2]0), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.9947829162613847,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 80; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 80. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000015->018001.000003, 018001.000015->018001.000005.
+""",
+)
+
+entry(
+    index = 1324,
+    label = "Ar(1s2) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1P1) -> e + Ar(3d[1/2]0), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.6485914423629693,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 81; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 81. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000016->018001.000006, 018001.000016->018001.000009, 018001.000016->018001.000012, 018001.000016->018001.000014.
+""",
+)
+
+entry(
+    index = 1325,
+    label = "Ar(1s2) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1P1) -> e + Ar(3d[1/2]0), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.26062431169809147,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 81; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 81. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000016->018001.000006, 018001.000016->018001.000009, 018001.000016->018001.000012, 018001.000016->018001.000014.
+""",
+)
+
+entry(
+    index = 1326,
+    label = "Ar(1s2) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1P1) -> e + Ar(3d[1/2]0), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.05961966751625672,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 81; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 81. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000016->018001.000006, 018001.000016->018001.000009, 018001.000016->018001.000012, 018001.000016->018001.000014.
+""",
+)
+
+entry(
+    index = 1327,
+    label = "Ar(1s2) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1P1) -> e + Ar(3d[1/2]0), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.031164578422682675,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 81; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 81. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000016->018001.000006, 018001.000016->018001.000009, 018001.000016->018001.000012, 018001.000016->018001.000014.
+""",
+)
+
+entry(
+    index = 1328,
+    label = "Ar(1s2) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1P1) -> e + Ar(3d[1/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.6543222731465291,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 82; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 82. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000017->018001.000001, 018001.000017->018001.000006, 018001.000017->018001.000008, 018001.000017->018001.000009, 018001.000017->018001.000010, 018001.000017->018001.000011, 018001.000017->018001.000012, 018001.000017->018001.000013, 018001.000017->018001.000014, 018001.000017->018001.000015.
+""",
+)
+
+entry(
+    index = 1329,
+    label = "Ar(1s2) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1P1) -> e + Ar(3d[1/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.2636146227974063,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 82; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 82. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000017->018001.000001, 018001.000017->018001.000006, 018001.000017->018001.000008, 018001.000017->018001.000009, 018001.000017->018001.000010, 018001.000017->018001.000011, 018001.000017->018001.000012, 018001.000017->018001.000013, 018001.000017->018001.000014, 018001.000017->018001.000015.
+""",
+)
+
+entry(
+    index = 1330,
+    label = "Ar(1s2) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1P1) -> e + Ar(3d[1/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.03717429287971589,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 82; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 82. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000017->018001.000001, 018001.000017->018001.000006, 018001.000017->018001.000008, 018001.000017->018001.000009, 018001.000017->018001.000010, 018001.000017->018001.000011, 018001.000017->018001.000012, 018001.000017->018001.000013, 018001.000017->018001.000014, 018001.000017->018001.000015.
+""",
+)
+
+entry(
+    index = 1331,
+    label = "Ar(1s2) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1P1) -> e + Ar(3d[1/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.044888811176348825,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 82; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 82. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000017->018001.000001, 018001.000017->018001.000006, 018001.000017->018001.000008, 018001.000017->018001.000009, 018001.000017->018001.000010, 018001.000017->018001.000011, 018001.000017->018001.000012, 018001.000017->018001.000013, 018001.000017->018001.000014, 018001.000017->018001.000015.
+""",
+)
+
+entry(
+    index = 1332,
+    label = "Ar(1s2) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1P1) -> e + Ar(3d[3/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.6628004734416516,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 83; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 83. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000018->018001.000006, 018001.000018->018001.000007, 018001.000018->018001.000008, 018001.000018->018001.000009, 018001.000018->018001.000010, 018001.000018->018001.000012, 018001.000018->018001.000013, 018001.000018->018001.000014.
+""",
+)
+
+entry(
+    index = 1333,
+    label = "Ar(1s2) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1P1) -> e + Ar(3d[3/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.21019305957628312,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 83; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 83. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000018->018001.000006, 018001.000018->018001.000007, 018001.000018->018001.000008, 018001.000018->018001.000009, 018001.000018->018001.000010, 018001.000018->018001.000012, 018001.000018->018001.000013, 018001.000018->018001.000014.
+""",
+)
+
+entry(
+    index = 1334,
+    label = "Ar(1s2) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1P1) -> e + Ar(3d[3/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.036621743474735735,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 83; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 83. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000018->018001.000006, 018001.000018->018001.000007, 018001.000018->018001.000008, 018001.000018->018001.000009, 018001.000018->018001.000010, 018001.000018->018001.000012, 018001.000018->018001.000013, 018001.000018->018001.000014.
+""",
+)
+
+entry(
+    index = 1335,
+    label = "Ar(1s2) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1P1) -> e + Ar(3d[3/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.09038472350732961,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 83; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 83. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000018->018001.000006, 018001.000018->018001.000007, 018001.000018->018001.000008, 018001.000018->018001.000009, 018001.000018->018001.000010, 018001.000018->018001.000012, 018001.000018->018001.000013, 018001.000018->018001.000014.
+""",
+)
+
+entry(
+    index = 1336,
+    label = "Ar(1s2) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1P1) -> e + Ar(3d[7/2]4), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 1.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 84; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 84. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002, 018001.000019->018001.000007.
+""",
+)
+
+entry(
+    index = 1337,
+    label = "Ar(1s2) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1P1) -> e + Ar(3d[7/2]4), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 84; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 84. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002, 018001.000019->018001.000007.
+""",
+)
+
+entry(
+    index = 1338,
+    label = "Ar(1s2) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1P1) -> e + Ar(3d[7/2]4), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 84; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 84. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002, 018001.000019->018001.000007.
+""",
+)
+
+entry(
+    index = 1339,
+    label = "Ar(1s2) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1P1) -> e + Ar(3d[7/2]4), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 84; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 84. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002, 018001.000019->018001.000007.
+""",
+)
+
+entry(
+    index = 1340,
+    label = "Ar(1s2) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1P1) -> e + Ar(5s[3/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.8209780287439195,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 85; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 85. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000022->018001.000006, 018001.000022->018001.000007, 018001.000022->018001.000008, 018001.000022->018001.000009, 018001.000022->018001.000010, 018001.000022->018001.000012, 018001.000022->018001.000013, 018001.000022->018001.000014.
+""",
+)
+
+entry(
+    index = 1341,
+    label = "Ar(1s2) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1P1) -> e + Ar(5s[3/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.12371290358674257,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 85; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 85. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000022->018001.000006, 018001.000022->018001.000007, 018001.000022->018001.000008, 018001.000022->018001.000009, 018001.000022->018001.000010, 018001.000022->018001.000012, 018001.000022->018001.000013, 018001.000022->018001.000014.
+""",
+)
+
+entry(
+    index = 1342,
+    label = "Ar(1s2) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1P1) -> e + Ar(5s[3/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.0168369627592017,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 85; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 85. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000022->018001.000006, 018001.000022->018001.000007, 018001.000022->018001.000008, 018001.000022->018001.000009, 018001.000022->018001.000010, 018001.000022->018001.000012, 018001.000022->018001.000013, 018001.000022->018001.000014.
+""",
+)
+
+entry(
+    index = 1343,
+    label = "Ar(1s2) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1P1) -> e + Ar(5s[3/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.03847210491013634,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 85; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 85. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000022->018001.000006, 018001.000022->018001.000007, 018001.000022->018001.000008, 018001.000022->018001.000009, 018001.000022->018001.000010, 018001.000022->018001.000012, 018001.000022->018001.000013, 018001.000022->018001.000014.
+""",
+)
+
+entry(
+    index = 1344,
+    label = "Ar(1s2) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1P1) -> e + Ar(3d[7/2]3), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.42750082388093896,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 86; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 86. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000020->018001.000007, 018001.000020->018001.000008, 018001.000020->018001.000010, 018001.000020->018001.000013.
+""",
+)
+
+entry(
+    index = 1345,
+    label = "Ar(1s2) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1P1) -> e + Ar(3d[7/2]3), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.528810865203049,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 86; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 86. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000020->018001.000007, 018001.000020->018001.000008, 018001.000020->018001.000010, 018001.000020->018001.000013.
+""",
+)
+
+entry(
+    index = 1346,
+    label = "Ar(1s2) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1P1) -> e + Ar(3d[7/2]3), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 86; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 86. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000020->018001.000007, 018001.000020->018001.000008, 018001.000020->018001.000010, 018001.000020->018001.000013.
+""",
+)
+
+entry(
+    index = 1347,
+    label = "Ar(1s2) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1P1) -> e + Ar(3d[7/2]3), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.043688310916012024,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 86; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 86. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000020->018001.000007, 018001.000020->018001.000008, 018001.000020->018001.000010, 018001.000020->018001.000013.
+""",
+)
+
+entry(
+    index = 1348,
+    label = "Ar(1s2) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1P1) -> e + Ar(5s[3/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.34090330256158746,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 87; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 87. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000023->018001.000001, 018001.000023->018001.000006, 018001.000023->018001.000008, 018001.000023->018001.000009, 018001.000023->018001.000010, 018001.000023->018001.000011, 018001.000023->018001.000012, 018001.000023->018001.000013, 018001.000023->018001.000014, 018001.000023->018001.000015.
+""",
+)
+
+entry(
+    index = 1349,
+    label = "Ar(1s2) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1P1) -> e + Ar(5s[3/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.5606703534059738,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 87; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 87. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000023->018001.000001, 018001.000023->018001.000006, 018001.000023->018001.000008, 018001.000023->018001.000009, 018001.000023->018001.000010, 018001.000023->018001.000011, 018001.000023->018001.000012, 018001.000023->018001.000013, 018001.000023->018001.000014, 018001.000023->018001.000015.
+""",
+)
+
+entry(
+    index = 1350,
+    label = "Ar(1s2) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1P1) -> e + Ar(5s[3/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.033388781767994646,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 87; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 87. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000023->018001.000001, 018001.000023->018001.000006, 018001.000023->018001.000008, 018001.000023->018001.000009, 018001.000023->018001.000010, 018001.000023->018001.000011, 018001.000023->018001.000012, 018001.000023->018001.000013, 018001.000023->018001.000014, 018001.000023->018001.000015.
+""",
+)
+
+entry(
+    index = 1351,
+    label = "Ar(1s2) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1P1) -> e + Ar(5s[3/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.06503756226444418,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 87; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 87. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000023->018001.000001, 018001.000023->018001.000006, 018001.000023->018001.000008, 018001.000023->018001.000009, 018001.000023->018001.000010, 018001.000023->018001.000011, 018001.000023->018001.000012, 018001.000023->018001.000013, 018001.000023->018001.000014, 018001.000023->018001.000015.
+""",
+)
+
+entry(
+    index = 1352,
+    label = "Ar(1s2) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1P1) -> e + Ar(3d[5/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.21808181830489426,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 88; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 88. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000021->018001.000006, 018001.000021->018001.000007, 018001.000021->018001.000008, 018001.000021->018001.000009, 018001.000021->018001.000010, 018001.000021->018001.000012, 018001.000021->018001.000013, 018001.000021->018001.000014.
+""",
+)
+
+entry(
+    index = 1353,
+    label = "Ar(1s2) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1P1) -> e + Ar(3d[5/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.6439180183140705,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 88; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 88. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000021->018001.000006, 018001.000021->018001.000007, 018001.000021->018001.000008, 018001.000021->018001.000009, 018001.000021->018001.000010, 018001.000021->018001.000012, 018001.000021->018001.000013, 018001.000021->018001.000014.
+""",
+)
+
+entry(
+    index = 1354,
+    label = "Ar(1s2) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1P1) -> e + Ar(3d[5/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.07171711012674221,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 88; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 88. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000021->018001.000006, 018001.000021->018001.000007, 018001.000021->018001.000008, 018001.000021->018001.000009, 018001.000021->018001.000010, 018001.000021->018001.000012, 018001.000021->018001.000013, 018001.000021->018001.000014.
+""",
+)
+
+entry(
+    index = 1355,
+    label = "Ar(1s2) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1P1) -> e + Ar(3d[5/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.06628305325429301,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 88; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 88. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000021->018001.000006, 018001.000021->018001.000007, 018001.000021->018001.000008, 018001.000021->018001.000009, 018001.000021->018001.000010, 018001.000021->018001.000012, 018001.000021->018001.000013, 018001.000021->018001.000014.
+""",
+)
+
+entry(
+    index = 1356,
+    label = "Ar(1s2) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1P1) -> e + Ar(3d[5/2]3), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.7140399146654615,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 89; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 89. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000024->018001.000007, 018001.000024->018001.000008, 018001.000024->018001.000010, 018001.000024->018001.000013.
+""",
+)
+
+entry(
+    index = 1357,
+    label = "Ar(1s2) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1P1) -> e + Ar(3d[5/2]3), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.17152136695697243,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 89; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 89. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000024->018001.000007, 018001.000024->018001.000008, 018001.000024->018001.000010, 018001.000024->018001.000013.
+""",
+)
+
+entry(
+    index = 1358,
+    label = "Ar(1s2) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1P1) -> e + Ar(3d[5/2]3), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 89; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 89. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000024->018001.000007, 018001.000024->018001.000008, 018001.000024->018001.000010, 018001.000024->018001.000013.
+""",
+)
+
+entry(
+    index = 1359,
+    label = "Ar(1s2) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1P1) -> e + Ar(3d[5/2]3), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.11443871837756595,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 89; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 89. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000024->018001.000007, 018001.000024->018001.000008, 018001.000024->018001.000010, 018001.000024->018001.000013.
+""",
+)
+
+entry(
+    index = 1360,
+    label = "Ar(1s2) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1P1) -> e + Ar(3d[3/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.10661529252532245,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 90; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 90. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000025->018001.000001, 018001.000025->018001.000006, 018001.000025->018001.000008, 018001.000025->018001.000009, 018001.000025->018001.000010, 018001.000025->018001.000011, 018001.000025->018001.000012, 018001.000025->018001.000013, 018001.000025->018001.000014, 018001.000025->018001.000015.
+""",
+)
+
+entry(
+    index = 1361,
+    label = "Ar(1s2) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1P1) -> e + Ar(3d[3/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.6830111167619378,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 90; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 90. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000025->018001.000001, 018001.000025->018001.000006, 018001.000025->018001.000008, 018001.000025->018001.000009, 018001.000025->018001.000010, 018001.000025->018001.000011, 018001.000025->018001.000012, 018001.000025->018001.000013, 018001.000025->018001.000014, 018001.000025->018001.000015.
+""",
+)
+
+entry(
+    index = 1362,
+    label = "Ar(1s2) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1P1) -> e + Ar(3d[3/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.06806417104728463,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 90; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 90. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000025->018001.000001, 018001.000025->018001.000006, 018001.000025->018001.000008, 018001.000025->018001.000009, 018001.000025->018001.000010, 018001.000025->018001.000011, 018001.000025->018001.000012, 018001.000025->018001.000013, 018001.000025->018001.000014, 018001.000025->018001.000015.
+""",
+)
+
+entry(
+    index = 1363,
+    label = "Ar(1s2) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1P1) -> e + Ar(3d[3/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.1423094196654553,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 90; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 90. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000025->018001.000001, 018001.000025->018001.000006, 018001.000025->018001.000008, 018001.000025->018001.000009, 018001.000025->018001.000010, 018001.000025->018001.000011, 018001.000025->018001.000012, 018001.000025->018001.000013, 018001.000025->018001.000014, 018001.000025->018001.000015.
+""",
+)
+
+entry(
+    index = 1364,
+    label = "Ar(1s2) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(1P1) -> e + Ar(5s'[1/2]0), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.18844760803036653,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 91; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 91. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000029->018001.000006, 018001.000029->018001.000009, 018001.000029->018001.000012, 018001.000029->018001.000014.
+""",
+)
+
+entry(
+    index = 1365,
+    label = "Ar(1s2) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(1P1) -> e + Ar(5s'[1/2]0), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.12682660594844428,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 91; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 91. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000029->018001.000006, 018001.000029->018001.000009, 018001.000029->018001.000012, 018001.000029->018001.000014.
+""",
+)
+
+entry(
+    index = 1366,
+    label = "Ar(1s2) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(1P1) -> e + Ar(5s'[1/2]0), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.3687952712634285,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 91; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 91. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000029->018001.000006, 018001.000029->018001.000009, 018001.000029->018001.000012, 018001.000029->018001.000014.
+""",
+)
+
+entry(
+    index = 1367,
+    label = "Ar(1s2) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(1P1) -> e + Ar(5s'[1/2]0), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.31593051475776074,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 91; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 91. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000029->018001.000006, 018001.000029->018001.000009, 018001.000029->018001.000012, 018001.000029->018001.000014.
+""",
+)
+
+entry(
+    index = 1368,
+    label = "Ar(1s2) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(1P1) -> e + Ar(5s'[1/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.1994478233533313,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 92; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 92. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000030->018001.000001, 018001.000030->018001.000006, 018001.000030->018001.000008, 018001.000030->018001.000009, 018001.000030->018001.000010, 018001.000030->018001.000011, 018001.000030->018001.000012, 018001.000030->018001.000013, 018001.000030->018001.000014, 018001.000030->018001.000015.
+""",
+)
+
+entry(
+    index = 1369,
+    label = "Ar(1s2) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(1P1) -> e + Ar(5s'[1/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.1816565672612965,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 92; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 92. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000030->018001.000001, 018001.000030->018001.000006, 018001.000030->018001.000008, 018001.000030->018001.000009, 018001.000030->018001.000010, 018001.000030->018001.000011, 018001.000030->018001.000012, 018001.000030->018001.000013, 018001.000030->018001.000014, 018001.000030->018001.000015.
+""",
+)
+
+entry(
+    index = 1370,
+    label = "Ar(1s2) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(1P1) -> e + Ar(5s'[1/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.11568597069282358,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 92; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 92. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000030->018001.000001, 018001.000030->018001.000006, 018001.000030->018001.000008, 018001.000030->018001.000009, 018001.000030->018001.000010, 018001.000030->018001.000011, 018001.000030->018001.000012, 018001.000030->018001.000013, 018001.000030->018001.000014, 018001.000030->018001.000015.
+""",
+)
+
+entry(
+    index = 1371,
+    label = "Ar(1s2) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(1P1) -> e + Ar(5s'[1/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.5032096386925485,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 92; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 92. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000030->018001.000001, 018001.000030->018001.000006, 018001.000030->018001.000008, 018001.000030->018001.000009, 018001.000030->018001.000010, 018001.000030->018001.000011, 018001.000030->018001.000012, 018001.000030->018001.000013, 018001.000030->018001.000014, 018001.000030->018001.000015.
+""",
+)
+
+entry(
+    index = 1372,
+    label = "Ar(1s2) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(1P1) -> e + Ar(3d'[5/2]2), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.06526622919931016,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 93; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 93. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000026->018001.000006, 018001.000026->018001.000007, 018001.000026->018001.000008, 018001.000026->018001.000009, 018001.000026->018001.000010, 018001.000026->018001.000012, 018001.000026->018001.000013, 018001.000026->018001.000014.
+""",
+)
+
+entry(
+    index = 1373,
+    label = "Ar(1s2) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(1P1) -> e + Ar(3d'[5/2]2), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.10901503322328669,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 93; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 93. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000026->018001.000006, 018001.000026->018001.000007, 018001.000026->018001.000008, 018001.000026->018001.000009, 018001.000026->018001.000010, 018001.000026->018001.000012, 018001.000026->018001.000013, 018001.000026->018001.000014.
+""",
+)
+
+entry(
+    index = 1374,
+    label = "Ar(1s2) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(1P1) -> e + Ar(3d'[5/2]2), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.4251772331223881,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 93; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 93. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000026->018001.000006, 018001.000026->018001.000007, 018001.000026->018001.000008, 018001.000026->018001.000009, 018001.000026->018001.000010, 018001.000026->018001.000012, 018001.000026->018001.000013, 018001.000026->018001.000014.
+""",
+)
+
+entry(
+    index = 1375,
+    label = "Ar(1s2) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(1P1) -> e + Ar(3d'[5/2]2), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.40054150445501513,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 93; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 93. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000026->018001.000006, 018001.000026->018001.000007, 018001.000026->018001.000008, 018001.000026->018001.000009, 018001.000026->018001.000010, 018001.000026->018001.000012, 018001.000026->018001.000013, 018001.000026->018001.000014.
+""",
+)
+
+entry(
+    index = 1376,
+    label = "Ar(1s2) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(1P1) -> e + Ar(3d'[3/2]2), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.36490459112091733,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 94; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 94. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000027->018001.000006, 018001.000027->018001.000007, 018001.000027->018001.000008, 018001.000027->018001.000009, 018001.000027->018001.000010, 018001.000027->018001.000012, 018001.000027->018001.000013, 018001.000027->018001.000014.
+""",
+)
+
+entry(
+    index = 1377,
+    label = "Ar(1s2) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(1P1) -> e + Ar(3d'[3/2]2), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.1364237511835537,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 94; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 94. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000027->018001.000006, 018001.000027->018001.000007, 018001.000027->018001.000008, 018001.000027->018001.000009, 018001.000027->018001.000010, 018001.000027->018001.000012, 018001.000027->018001.000013, 018001.000027->018001.000014.
+""",
+)
+
+entry(
+    index = 1378,
+    label = "Ar(1s2) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(1P1) -> e + Ar(3d'[3/2]2), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.1736513228726633,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 94; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 94. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000027->018001.000006, 018001.000027->018001.000007, 018001.000027->018001.000008, 018001.000027->018001.000009, 018001.000027->018001.000010, 018001.000027->018001.000012, 018001.000027->018001.000013, 018001.000027->018001.000014.
+""",
+)
+
+entry(
+    index = 1379,
+    label = "Ar(1s2) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(1P1) -> e + Ar(3d'[3/2]2), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.32502033482286563,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 94; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 94. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000027->018001.000006, 018001.000027->018001.000007, 018001.000027->018001.000008, 018001.000027->018001.000009, 018001.000027->018001.000010, 018001.000027->018001.000012, 018001.000027->018001.000013, 018001.000027->018001.000014.
+""",
+)
+
+entry(
+    index = 1380,
+    label = "Ar(1s2) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(1P1) -> e + Ar(3d'[5/2]3), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.2520368762539881,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 95; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 95. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000028->018001.000007, 018001.000028->018001.000008, 018001.000028->018001.000010, 018001.000028->018001.000013.
+""",
+)
+
+entry(
+    index = 1381,
+    label = "Ar(1s2) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(1P1) -> e + Ar(3d'[5/2]3), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.2104455287307021,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 95; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 95. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000028->018001.000007, 018001.000028->018001.000008, 018001.000028->018001.000010, 018001.000028->018001.000013.
+""",
+)
+
+entry(
+    index = 1382,
+    label = "Ar(1s2) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(1P1) -> e + Ar(3d'[5/2]3), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 95; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 95. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000028->018001.000007, 018001.000028->018001.000008, 018001.000028->018001.000010, 018001.000028->018001.000013.
+""",
+)
+
+entry(
+    index = 1383,
+    label = "Ar(1s2) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(1P1) -> e + Ar(3d'[5/2]3), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.5375175950153098,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 95; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 95. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000028->018001.000007, 018001.000028->018001.000008, 018001.000028->018001.000010, 018001.000028->018001.000013.
+""",
+)
+
+entry(
+    index = 1384,
+    label = "Ar(1s2) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(1P1) -> e + Ar(3d'[3/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.09849268689985227,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 96; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 96. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000031->018001.000001, 018001.000031->018001.000006, 018001.000031->018001.000008, 018001.000031->018001.000009, 018001.000031->018001.000010, 018001.000031->018001.000011, 018001.000031->018001.000012, 018001.000031->018001.000013, 018001.000031->018001.000014, 018001.000031->018001.000015.
+""",
+)
+
+entry(
+    index = 1385,
+    label = "Ar(1s2) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(1P1) -> e + Ar(3d'[3/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.0812013508241652,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 96; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 96. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000031->018001.000001, 018001.000031->018001.000006, 018001.000031->018001.000008, 018001.000031->018001.000009, 018001.000031->018001.000010, 018001.000031->018001.000011, 018001.000031->018001.000012, 018001.000031->018001.000013, 018001.000031->018001.000014, 018001.000031->018001.000015.
+""",
+)
+
+entry(
+    index = 1386,
+    label = "Ar(1s2) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(1P1) -> e + Ar(3d'[3/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.2613652608067601,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 96; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 96. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000031->018001.000001, 018001.000031->018001.000006, 018001.000031->018001.000008, 018001.000031->018001.000009, 018001.000031->018001.000010, 018001.000031->018001.000011, 018001.000031->018001.000012, 018001.000031->018001.000013, 018001.000031->018001.000014, 018001.000031->018001.000015.
+""",
+)
+
+entry(
+    index = 1387,
+    label = "Ar(1s2) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(1P1) -> e + Ar(3d'[3/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.5589407014692225,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 96; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 96. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000031->018001.000001, 018001.000031->018001.000006, 018001.000031->018001.000008, 018001.000031->018001.000009, 018001.000031->018001.000010, 018001.000031->018001.000011, 018001.000031->018001.000012, 018001.000031->018001.000013, 018001.000031->018001.000014, 018001.000031->018001.000015.
+""",
+)
+
+entry(
+    index = 1396,
+    label = "Ar(1s4) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P1) -> e + Ar(4p[1/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.7420494699646644,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 99; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 99. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005.
+""",
+)
+
+entry(
+    index = 1397,
+    label = "Ar(1s4) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P1) -> e + Ar(4p[1/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.21201413427561838,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 99; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 99. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005.
+""",
+)
+
+entry(
+    index = 1398,
+    label = "Ar(1s4) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P1) -> e + Ar(4p[1/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.038476639183352965,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 99; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 99. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005.
+""",
+)
+
+entry(
+    index = 1399,
+    label = "Ar(1s4) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P1) -> e + Ar(4p[1/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.00745975657636435,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 99; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 99. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005.
+""",
+)
+
+entry(
+    index = 1400,
+    label = "Ar(1s4) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P1) -> e + Ar(4p[5/2]3), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 1.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 100; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 100. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002.
+""",
+)
+
+entry(
+    index = 1401,
+    label = "Ar(1s4) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P1) -> e + Ar(4p[5/2]3), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 100; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 100. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002.
+""",
+)
+
+entry(
+    index = 1402,
+    label = "Ar(1s4) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P1) -> e + Ar(4p[5/2]3), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 100; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 100. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002.
+""",
+)
+
+entry(
+    index = 1403,
+    label = "Ar(1s4) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P1) -> e + Ar(4p[5/2]3), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 100; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 100. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002.
+""",
+)
+
+entry(
+    index = 1404,
+    label = "Ar(1s4) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P1) -> e + Ar(4p[5/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.28819336845367216,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 101; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 101. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005.
+""",
+)
+
+entry(
+    index = 1405,
+    label = "Ar(1s4) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P1) -> e + Ar(4p[5/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.6662534862101023,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 101; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 101. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005.
+""",
+)
+
+entry(
+    index = 1406,
+    label = "Ar(1s4) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P1) -> e + Ar(4p[5/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 101; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 101. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005.
+""",
+)
+
+entry(
+    index = 1407,
+    label = "Ar(1s4) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P1) -> e + Ar(4p[5/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.0455531453362256,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 101; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 101. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005.
+""",
+)
+
+entry(
+    index = 1408,
+    label = "Ar(1s4) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P1) -> e + Ar(4p[3/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.1543484713564856,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 102; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 102. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005.
+""",
+)
+
+entry(
+    index = 1409,
+    label = "Ar(1s4) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P1) -> e + Ar(4p[3/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.7420599584446423,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 102; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 102. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005.
+""",
+)
+
+entry(
+    index = 1410,
+    label = "Ar(1s4) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P1) -> e + Ar(4p[3/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.07212822796081923,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 102; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 102. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005.
+""",
+)
+
+entry(
+    index = 1411,
+    label = "Ar(1s4) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P1) -> e + Ar(4p[3/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.03146334223805283,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 102; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 102. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005.
+""",
+)
+
+entry(
+    index = 1412,
+    label = "Ar(1s4) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P1) -> e + Ar(4p[3/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.7122093023255814,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 103; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 103. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005.
+""",
+)
+
+entry(
+    index = 1413,
+    label = "Ar(1s4) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P1) -> e + Ar(4p[3/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.14244186046511628,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 103; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 103. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005.
+""",
+)
+
+entry(
+    index = 1414,
+    label = "Ar(1s4) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P1) -> e + Ar(4p[3/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 103; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 103. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005.
+""",
+)
+
+entry(
+    index = 1415,
+    label = "Ar(1s4) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P1) -> e + Ar(4p[3/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.14534883720930233,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 103; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 103. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005.
+""",
+)
+
+entry(
+    index = 1416,
+    label = "Ar(1s4) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P1) -> e + Ar(4p[1/2]0), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 104; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 104. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000011->018001.000003, 018001.000011->018001.000005.
+""",
+)
+
+entry(
+    index = 1417,
+    label = "Ar(1s4) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P1) -> e + Ar(4p[1/2]0), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 1.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 104; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 104. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000011->018001.000003, 018001.000011->018001.000005.
+""",
+)
+
+entry(
+    index = 1418,
+    label = "Ar(1s4) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P1) -> e + Ar(4p[1/2]0), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 104; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 104. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000011->018001.000003, 018001.000011->018001.000005.
+""",
+)
+
+entry(
+    index = 1419,
+    label = "Ar(1s4) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P1) -> e + Ar(4p[1/2]0), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 104; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 104. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000011->018001.000003, 018001.000011->018001.000005.
+""",
+)
+
+entry(
+    index = 1420,
+    label = "Ar(1s4) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P1) -> e + Ar(4p'[3/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.01900337837837838,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 105; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 105. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005.
+""",
+)
+
+entry(
+    index = 1421,
+    label = "Ar(1s4) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P1) -> e + Ar(4p'[3/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.0006636100386100386,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 105; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 105. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005.
+""",
+)
+
+entry(
+    index = 1422,
+    label = "Ar(1s4) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P1) -> e + Ar(4p'[3/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.5610521235521235,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 105; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 105. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005.
+""",
+)
+
+entry(
+    index = 1423,
+    label = "Ar(1s4) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P1) -> e + Ar(4p'[3/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.41928088803088803,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 105; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 105. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005.
+""",
+)
+
+entry(
+    index = 1424,
+    label = "Ar(1s4) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P1) -> e + Ar(4p'[3/2]2), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.10982658959537572,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 106; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 106. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005.
+""",
+)
+
+entry(
+    index = 1425,
+    label = "Ar(1s4) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P1) -> e + Ar(4p'[3/2]2), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.24566473988439305,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 106; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 106. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005.
+""",
+)
+
+entry(
+    index = 1426,
+    label = "Ar(1s4) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P1) -> e + Ar(4p'[3/2]2), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 106; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 106. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005.
+""",
+)
+
+entry(
+    index = 1427,
+    label = "Ar(1s4) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P1) -> e + Ar(4p'[3/2]2), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.6445086705202312,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 106; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 106. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005.
+""",
+)
+
+entry(
+    index = 1428,
+    label = "Ar(1s4) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P1) -> e + Ar(4p'[1/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.1816633550950894,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 107; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 107. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005.
+""",
+)
+
+entry(
+    index = 1429,
+    label = "Ar(1s4) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P1) -> e + Ar(4p'[1/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.05194436559750213,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 107; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 107. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005.
+""",
+)
+
+entry(
+    index = 1430,
+    label = "Ar(1s4) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P1) -> e + Ar(4p'[1/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.33210332103321033,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 107; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 107. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005.
+""",
+)
+
+entry(
+    index = 1431,
+    label = "Ar(1s4) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P1) -> e + Ar(4p'[1/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.4342889582741981,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 107; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 107. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005.
+""",
+)
+
+entry(
+    index = 1432,
+    label = "Ar(1s4) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P1) -> e + Ar(4p'[1/2]0), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 108; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 108. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000015->018001.000003, 018001.000015->018001.000005.
+""",
+)
+
+entry(
+    index = 1433,
+    label = "Ar(1s4) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P1) -> e + Ar(4p'[1/2]0), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.005217083738615262,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 108; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 108. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000015->018001.000003, 018001.000015->018001.000005.
+""",
+)
+
+entry(
+    index = 1434,
+    label = "Ar(1s4) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P1) -> e + Ar(4p'[1/2]0), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 108; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 108. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000015->018001.000003, 018001.000015->018001.000005.
+""",
+)
+
+entry(
+    index = 1435,
+    label = "Ar(1s4) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P1) -> e + Ar(4p'[1/2]0), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.9947829162613847,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 108; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 108. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000015->018001.000003, 018001.000015->018001.000005.
+""",
+)
+
+entry(
+    index = 1436,
+    label = "Ar(1s4) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P1) -> e + Ar(3d[1/2]0), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.6485914423629693,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 109; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 109. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000016->018001.000006, 018001.000016->018001.000009, 018001.000016->018001.000012, 018001.000016->018001.000014.
+""",
+)
+
+entry(
+    index = 1437,
+    label = "Ar(1s4) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P1) -> e + Ar(3d[1/2]0), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.26062431169809147,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 109; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 109. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000016->018001.000006, 018001.000016->018001.000009, 018001.000016->018001.000012, 018001.000016->018001.000014.
+""",
+)
+
+entry(
+    index = 1438,
+    label = "Ar(1s4) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P1) -> e + Ar(3d[1/2]0), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.05961966751625672,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 109; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 109. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000016->018001.000006, 018001.000016->018001.000009, 018001.000016->018001.000012, 018001.000016->018001.000014.
+""",
+)
+
+entry(
+    index = 1439,
+    label = "Ar(1s4) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P1) -> e + Ar(3d[1/2]0), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.031164578422682675,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 109; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 109. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000016->018001.000006, 018001.000016->018001.000009, 018001.000016->018001.000012, 018001.000016->018001.000014.
+""",
+)
+
+entry(
+    index = 1440,
+    label = "Ar(1s4) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P1) -> e + Ar(3d[1/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.6543222731465291,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 110; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 110. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000017->018001.000001, 018001.000017->018001.000006, 018001.000017->018001.000008, 018001.000017->018001.000009, 018001.000017->018001.000010, 018001.000017->018001.000011, 018001.000017->018001.000012, 018001.000017->018001.000013, 018001.000017->018001.000014, 018001.000017->018001.000015.
+""",
+)
+
+entry(
+    index = 1441,
+    label = "Ar(1s4) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P1) -> e + Ar(3d[1/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.2636146227974063,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 110; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 110. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000017->018001.000001, 018001.000017->018001.000006, 018001.000017->018001.000008, 018001.000017->018001.000009, 018001.000017->018001.000010, 018001.000017->018001.000011, 018001.000017->018001.000012, 018001.000017->018001.000013, 018001.000017->018001.000014, 018001.000017->018001.000015.
+""",
+)
+
+entry(
+    index = 1442,
+    label = "Ar(1s4) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P1) -> e + Ar(3d[1/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.03717429287971589,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 110; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 110. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000017->018001.000001, 018001.000017->018001.000006, 018001.000017->018001.000008, 018001.000017->018001.000009, 018001.000017->018001.000010, 018001.000017->018001.000011, 018001.000017->018001.000012, 018001.000017->018001.000013, 018001.000017->018001.000014, 018001.000017->018001.000015.
+""",
+)
+
+entry(
+    index = 1443,
+    label = "Ar(1s4) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P1) -> e + Ar(3d[1/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.044888811176348825,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 110; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 110. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000017->018001.000001, 018001.000017->018001.000006, 018001.000017->018001.000008, 018001.000017->018001.000009, 018001.000017->018001.000010, 018001.000017->018001.000011, 018001.000017->018001.000012, 018001.000017->018001.000013, 018001.000017->018001.000014, 018001.000017->018001.000015.
+""",
+)
+
+entry(
+    index = 1444,
+    label = "Ar(1s4) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P1) -> e + Ar(3d[3/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.6628004734416516,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 111; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 111. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000018->018001.000006, 018001.000018->018001.000007, 018001.000018->018001.000008, 018001.000018->018001.000009, 018001.000018->018001.000010, 018001.000018->018001.000012, 018001.000018->018001.000013, 018001.000018->018001.000014.
+""",
+)
+
+entry(
+    index = 1445,
+    label = "Ar(1s4) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P1) -> e + Ar(3d[3/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.21019305957628312,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 111; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 111. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000018->018001.000006, 018001.000018->018001.000007, 018001.000018->018001.000008, 018001.000018->018001.000009, 018001.000018->018001.000010, 018001.000018->018001.000012, 018001.000018->018001.000013, 018001.000018->018001.000014.
+""",
+)
+
+entry(
+    index = 1446,
+    label = "Ar(1s4) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P1) -> e + Ar(3d[3/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.036621743474735735,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 111; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 111. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000018->018001.000006, 018001.000018->018001.000007, 018001.000018->018001.000008, 018001.000018->018001.000009, 018001.000018->018001.000010, 018001.000018->018001.000012, 018001.000018->018001.000013, 018001.000018->018001.000014.
+""",
+)
+
+entry(
+    index = 1447,
+    label = "Ar(1s4) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P1) -> e + Ar(3d[3/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.09038472350732961,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 111; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 111. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000018->018001.000006, 018001.000018->018001.000007, 018001.000018->018001.000008, 018001.000018->018001.000009, 018001.000018->018001.000010, 018001.000018->018001.000012, 018001.000018->018001.000013, 018001.000018->018001.000014.
+""",
+)
+
+entry(
+    index = 1448,
+    label = "Ar(1s4) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P1) -> e + Ar(3d[7/2]4), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 1.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 112; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 112. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002, 018001.000019->018001.000007.
+""",
+)
+
+entry(
+    index = 1449,
+    label = "Ar(1s4) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P1) -> e + Ar(3d[7/2]4), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 112; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 112. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002, 018001.000019->018001.000007.
+""",
+)
+
+entry(
+    index = 1450,
+    label = "Ar(1s4) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P1) -> e + Ar(3d[7/2]4), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 112; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 112. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002, 018001.000019->018001.000007.
+""",
+)
+
+entry(
+    index = 1451,
+    label = "Ar(1s4) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P1) -> e + Ar(3d[7/2]4), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 112; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 112. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002, 018001.000019->018001.000007.
+""",
+)
+
+entry(
+    index = 1452,
+    label = "Ar(1s4) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P1) -> e + Ar(5s[3/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.8209780287439195,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 113; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 113. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000022->018001.000006, 018001.000022->018001.000007, 018001.000022->018001.000008, 018001.000022->018001.000009, 018001.000022->018001.000010, 018001.000022->018001.000012, 018001.000022->018001.000013, 018001.000022->018001.000014.
+""",
+)
+
+entry(
+    index = 1453,
+    label = "Ar(1s4) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P1) -> e + Ar(5s[3/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.12371290358674257,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 113; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 113. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000022->018001.000006, 018001.000022->018001.000007, 018001.000022->018001.000008, 018001.000022->018001.000009, 018001.000022->018001.000010, 018001.000022->018001.000012, 018001.000022->018001.000013, 018001.000022->018001.000014.
+""",
+)
+
+entry(
+    index = 1454,
+    label = "Ar(1s4) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P1) -> e + Ar(5s[3/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.0168369627592017,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 113; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 113. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000022->018001.000006, 018001.000022->018001.000007, 018001.000022->018001.000008, 018001.000022->018001.000009, 018001.000022->018001.000010, 018001.000022->018001.000012, 018001.000022->018001.000013, 018001.000022->018001.000014.
+""",
+)
+
+entry(
+    index = 1455,
+    label = "Ar(1s4) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P1) -> e + Ar(5s[3/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.03847210491013634,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 113; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 113. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000022->018001.000006, 018001.000022->018001.000007, 018001.000022->018001.000008, 018001.000022->018001.000009, 018001.000022->018001.000010, 018001.000022->018001.000012, 018001.000022->018001.000013, 018001.000022->018001.000014.
+""",
+)
+
+entry(
+    index = 1456,
+    label = "Ar(1s4) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P1) -> e + Ar(3d[7/2]3), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.42750082388093896,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 114; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 114. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000020->018001.000007, 018001.000020->018001.000008, 018001.000020->018001.000010, 018001.000020->018001.000013.
+""",
+)
+
+entry(
+    index = 1457,
+    label = "Ar(1s4) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P1) -> e + Ar(3d[7/2]3), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.528810865203049,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 114; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 114. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000020->018001.000007, 018001.000020->018001.000008, 018001.000020->018001.000010, 018001.000020->018001.000013.
+""",
+)
+
+entry(
+    index = 1458,
+    label = "Ar(1s4) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P1) -> e + Ar(3d[7/2]3), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 114; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 114. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000020->018001.000007, 018001.000020->018001.000008, 018001.000020->018001.000010, 018001.000020->018001.000013.
+""",
+)
+
+entry(
+    index = 1459,
+    label = "Ar(1s4) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P1) -> e + Ar(3d[7/2]3), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.043688310916012024,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 114; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 114. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000020->018001.000007, 018001.000020->018001.000008, 018001.000020->018001.000010, 018001.000020->018001.000013.
+""",
+)
+
+entry(
+    index = 1460,
+    label = "Ar(1s4) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P1) -> e + Ar(5s[3/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.34090330256158746,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 115; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 115. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000023->018001.000001, 018001.000023->018001.000006, 018001.000023->018001.000008, 018001.000023->018001.000009, 018001.000023->018001.000010, 018001.000023->018001.000011, 018001.000023->018001.000012, 018001.000023->018001.000013, 018001.000023->018001.000014, 018001.000023->018001.000015.
+""",
+)
+
+entry(
+    index = 1461,
+    label = "Ar(1s4) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P1) -> e + Ar(5s[3/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.5606703534059738,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 115; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 115. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000023->018001.000001, 018001.000023->018001.000006, 018001.000023->018001.000008, 018001.000023->018001.000009, 018001.000023->018001.000010, 018001.000023->018001.000011, 018001.000023->018001.000012, 018001.000023->018001.000013, 018001.000023->018001.000014, 018001.000023->018001.000015.
+""",
+)
+
+entry(
+    index = 1462,
+    label = "Ar(1s4) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P1) -> e + Ar(5s[3/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.033388781767994646,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 115; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 115. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000023->018001.000001, 018001.000023->018001.000006, 018001.000023->018001.000008, 018001.000023->018001.000009, 018001.000023->018001.000010, 018001.000023->018001.000011, 018001.000023->018001.000012, 018001.000023->018001.000013, 018001.000023->018001.000014, 018001.000023->018001.000015.
+""",
+)
+
+entry(
+    index = 1463,
+    label = "Ar(1s4) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P1) -> e + Ar(5s[3/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.06503756226444418,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 115; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 115. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000023->018001.000001, 018001.000023->018001.000006, 018001.000023->018001.000008, 018001.000023->018001.000009, 018001.000023->018001.000010, 018001.000023->018001.000011, 018001.000023->018001.000012, 018001.000023->018001.000013, 018001.000023->018001.000014, 018001.000023->018001.000015.
+""",
+)
+
+entry(
+    index = 1464,
+    label = "Ar(1s4) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P1) -> e + Ar(3d[5/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.21808181830489426,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 116; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 116. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000021->018001.000006, 018001.000021->018001.000007, 018001.000021->018001.000008, 018001.000021->018001.000009, 018001.000021->018001.000010, 018001.000021->018001.000012, 018001.000021->018001.000013, 018001.000021->018001.000014.
+""",
+)
+
+entry(
+    index = 1465,
+    label = "Ar(1s4) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P1) -> e + Ar(3d[5/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.6439180183140705,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 116; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 116. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000021->018001.000006, 018001.000021->018001.000007, 018001.000021->018001.000008, 018001.000021->018001.000009, 018001.000021->018001.000010, 018001.000021->018001.000012, 018001.000021->018001.000013, 018001.000021->018001.000014.
+""",
+)
+
+entry(
+    index = 1466,
+    label = "Ar(1s4) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P1) -> e + Ar(3d[5/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.07171711012674221,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 116; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 116. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000021->018001.000006, 018001.000021->018001.000007, 018001.000021->018001.000008, 018001.000021->018001.000009, 018001.000021->018001.000010, 018001.000021->018001.000012, 018001.000021->018001.000013, 018001.000021->018001.000014.
+""",
+)
+
+entry(
+    index = 1467,
+    label = "Ar(1s4) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P1) -> e + Ar(3d[5/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.06628305325429301,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 116; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 116. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000021->018001.000006, 018001.000021->018001.000007, 018001.000021->018001.000008, 018001.000021->018001.000009, 018001.000021->018001.000010, 018001.000021->018001.000012, 018001.000021->018001.000013, 018001.000021->018001.000014.
+""",
+)
+
+entry(
+    index = 1468,
+    label = "Ar(1s4) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P1) -> e + Ar(3d[5/2]3), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.7140399146654615,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 117; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 117. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000024->018001.000007, 018001.000024->018001.000008, 018001.000024->018001.000010, 018001.000024->018001.000013.
+""",
+)
+
+entry(
+    index = 1469,
+    label = "Ar(1s4) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P1) -> e + Ar(3d[5/2]3), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.17152136695697243,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 117; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 117. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000024->018001.000007, 018001.000024->018001.000008, 018001.000024->018001.000010, 018001.000024->018001.000013.
+""",
+)
+
+entry(
+    index = 1470,
+    label = "Ar(1s4) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P1) -> e + Ar(3d[5/2]3), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 117; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 117. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000024->018001.000007, 018001.000024->018001.000008, 018001.000024->018001.000010, 018001.000024->018001.000013.
+""",
+)
+
+entry(
+    index = 1471,
+    label = "Ar(1s4) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P1) -> e + Ar(3d[5/2]3), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.11443871837756595,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 117; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 117. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000024->018001.000007, 018001.000024->018001.000008, 018001.000024->018001.000010, 018001.000024->018001.000013.
+""",
+)
+
+entry(
+    index = 1472,
+    label = "Ar(1s4) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P1) -> e + Ar(3d[3/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.10661529252532245,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 118; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 118. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000025->018001.000001, 018001.000025->018001.000006, 018001.000025->018001.000008, 018001.000025->018001.000009, 018001.000025->018001.000010, 018001.000025->018001.000011, 018001.000025->018001.000012, 018001.000025->018001.000013, 018001.000025->018001.000014, 018001.000025->018001.000015.
+""",
+)
+
+entry(
+    index = 1473,
+    label = "Ar(1s4) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P1) -> e + Ar(3d[3/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.6830111167619378,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 118; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 118. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000025->018001.000001, 018001.000025->018001.000006, 018001.000025->018001.000008, 018001.000025->018001.000009, 018001.000025->018001.000010, 018001.000025->018001.000011, 018001.000025->018001.000012, 018001.000025->018001.000013, 018001.000025->018001.000014, 018001.000025->018001.000015.
+""",
+)
+
+entry(
+    index = 1474,
+    label = "Ar(1s4) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P1) -> e + Ar(3d[3/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.06806417104728463,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 118; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 118. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000025->018001.000001, 018001.000025->018001.000006, 018001.000025->018001.000008, 018001.000025->018001.000009, 018001.000025->018001.000010, 018001.000025->018001.000011, 018001.000025->018001.000012, 018001.000025->018001.000013, 018001.000025->018001.000014, 018001.000025->018001.000015.
+""",
+)
+
+entry(
+    index = 1475,
+    label = "Ar(1s4) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P1) -> e + Ar(3d[3/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.1423094196654553,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 118; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 118. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000025->018001.000001, 018001.000025->018001.000006, 018001.000025->018001.000008, 018001.000025->018001.000009, 018001.000025->018001.000010, 018001.000025->018001.000011, 018001.000025->018001.000012, 018001.000025->018001.000013, 018001.000025->018001.000014, 018001.000025->018001.000015.
+""",
+)
+
+entry(
+    index = 1476,
+    label = "Ar(1s4) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P1) -> e + Ar(5s'[1/2]0), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.18844760803036653,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 119; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 119. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000029->018001.000006, 018001.000029->018001.000009, 018001.000029->018001.000012, 018001.000029->018001.000014.
+""",
+)
+
+entry(
+    index = 1477,
+    label = "Ar(1s4) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P1) -> e + Ar(5s'[1/2]0), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.12682660594844428,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 119; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 119. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000029->018001.000006, 018001.000029->018001.000009, 018001.000029->018001.000012, 018001.000029->018001.000014.
+""",
+)
+
+entry(
+    index = 1478,
+    label = "Ar(1s4) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P1) -> e + Ar(5s'[1/2]0), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.3687952712634285,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 119; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 119. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000029->018001.000006, 018001.000029->018001.000009, 018001.000029->018001.000012, 018001.000029->018001.000014.
+""",
+)
+
+entry(
+    index = 1479,
+    label = "Ar(1s4) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P1) -> e + Ar(5s'[1/2]0), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.31593051475776074,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 119; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 119. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000029->018001.000006, 018001.000029->018001.000009, 018001.000029->018001.000012, 018001.000029->018001.000014.
+""",
+)
+
+entry(
+    index = 1480,
+    label = "Ar(1s4) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P1) -> e + Ar(5s'[1/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.1994478233533313,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 120; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 120. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000030->018001.000001, 018001.000030->018001.000006, 018001.000030->018001.000008, 018001.000030->018001.000009, 018001.000030->018001.000010, 018001.000030->018001.000011, 018001.000030->018001.000012, 018001.000030->018001.000013, 018001.000030->018001.000014, 018001.000030->018001.000015.
+""",
+)
+
+entry(
+    index = 1481,
+    label = "Ar(1s4) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P1) -> e + Ar(5s'[1/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.1816565672612965,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 120; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 120. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000030->018001.000001, 018001.000030->018001.000006, 018001.000030->018001.000008, 018001.000030->018001.000009, 018001.000030->018001.000010, 018001.000030->018001.000011, 018001.000030->018001.000012, 018001.000030->018001.000013, 018001.000030->018001.000014, 018001.000030->018001.000015.
+""",
+)
+
+entry(
+    index = 1482,
+    label = "Ar(1s4) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P1) -> e + Ar(5s'[1/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.11568597069282358,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 120; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 120. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000030->018001.000001, 018001.000030->018001.000006, 018001.000030->018001.000008, 018001.000030->018001.000009, 018001.000030->018001.000010, 018001.000030->018001.000011, 018001.000030->018001.000012, 018001.000030->018001.000013, 018001.000030->018001.000014, 018001.000030->018001.000015.
+""",
+)
+
+entry(
+    index = 1483,
+    label = "Ar(1s4) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P1) -> e + Ar(5s'[1/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.5032096386925485,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 120; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 120. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000030->018001.000001, 018001.000030->018001.000006, 018001.000030->018001.000008, 018001.000030->018001.000009, 018001.000030->018001.000010, 018001.000030->018001.000011, 018001.000030->018001.000012, 018001.000030->018001.000013, 018001.000030->018001.000014, 018001.000030->018001.000015.
+""",
+)
+
+entry(
+    index = 1484,
+    label = "Ar(1s4) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P1) -> e + Ar(3d'[5/2]2), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.06526622919931016,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 121; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 121. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000026->018001.000006, 018001.000026->018001.000007, 018001.000026->018001.000008, 018001.000026->018001.000009, 018001.000026->018001.000010, 018001.000026->018001.000012, 018001.000026->018001.000013, 018001.000026->018001.000014.
+""",
+)
+
+entry(
+    index = 1485,
+    label = "Ar(1s4) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P1) -> e + Ar(3d'[5/2]2), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.10901503322328669,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 121; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 121. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000026->018001.000006, 018001.000026->018001.000007, 018001.000026->018001.000008, 018001.000026->018001.000009, 018001.000026->018001.000010, 018001.000026->018001.000012, 018001.000026->018001.000013, 018001.000026->018001.000014.
+""",
+)
+
+entry(
+    index = 1486,
+    label = "Ar(1s4) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P1) -> e + Ar(3d'[5/2]2), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.4251772331223881,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 121; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 121. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000026->018001.000006, 018001.000026->018001.000007, 018001.000026->018001.000008, 018001.000026->018001.000009, 018001.000026->018001.000010, 018001.000026->018001.000012, 018001.000026->018001.000013, 018001.000026->018001.000014.
+""",
+)
+
+entry(
+    index = 1487,
+    label = "Ar(1s4) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P1) -> e + Ar(3d'[5/2]2), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.40054150445501513,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 121; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 121. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000026->018001.000006, 018001.000026->018001.000007, 018001.000026->018001.000008, 018001.000026->018001.000009, 018001.000026->018001.000010, 018001.000026->018001.000012, 018001.000026->018001.000013, 018001.000026->018001.000014.
+""",
+)
+
+entry(
+    index = 1488,
+    label = "Ar(1s4) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P1) -> e + Ar(3d'[3/2]2), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.36490459112091733,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 122; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 122. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000027->018001.000006, 018001.000027->018001.000007, 018001.000027->018001.000008, 018001.000027->018001.000009, 018001.000027->018001.000010, 018001.000027->018001.000012, 018001.000027->018001.000013, 018001.000027->018001.000014.
+""",
+)
+
+entry(
+    index = 1489,
+    label = "Ar(1s4) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P1) -> e + Ar(3d'[3/2]2), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.1364237511835537,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 122; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 122. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000027->018001.000006, 018001.000027->018001.000007, 018001.000027->018001.000008, 018001.000027->018001.000009, 018001.000027->018001.000010, 018001.000027->018001.000012, 018001.000027->018001.000013, 018001.000027->018001.000014.
+""",
+)
+
+entry(
+    index = 1490,
+    label = "Ar(1s4) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P1) -> e + Ar(3d'[3/2]2), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.1736513228726633,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 122; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 122. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000027->018001.000006, 018001.000027->018001.000007, 018001.000027->018001.000008, 018001.000027->018001.000009, 018001.000027->018001.000010, 018001.000027->018001.000012, 018001.000027->018001.000013, 018001.000027->018001.000014.
+""",
+)
+
+entry(
+    index = 1491,
+    label = "Ar(1s4) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P1) -> e + Ar(3d'[3/2]2), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.32502033482286563,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 122; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 122. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000027->018001.000006, 018001.000027->018001.000007, 018001.000027->018001.000008, 018001.000027->018001.000009, 018001.000027->018001.000010, 018001.000027->018001.000012, 018001.000027->018001.000013, 018001.000027->018001.000014.
+""",
+)
+
+entry(
+    index = 1492,
+    label = "Ar(1s4) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P1) -> e + Ar(3d'[5/2]3), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.2520368762539881,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 123; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 123. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000028->018001.000007, 018001.000028->018001.000008, 018001.000028->018001.000010, 018001.000028->018001.000013.
+""",
+)
+
+entry(
+    index = 1493,
+    label = "Ar(1s4) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P1) -> e + Ar(3d'[5/2]3), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.2104455287307021,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 123; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 123. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000028->018001.000007, 018001.000028->018001.000008, 018001.000028->018001.000010, 018001.000028->018001.000013.
+""",
+)
+
+entry(
+    index = 1494,
+    label = "Ar(1s4) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P1) -> e + Ar(3d'[5/2]3), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 123; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 123. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000028->018001.000007, 018001.000028->018001.000008, 018001.000028->018001.000010, 018001.000028->018001.000013.
+""",
+)
+
+entry(
+    index = 1495,
+    label = "Ar(1s4) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P1) -> e + Ar(3d'[5/2]3), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.5375175950153098,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 123; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 123. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000028->018001.000007, 018001.000028->018001.000008, 018001.000028->018001.000010, 018001.000028->018001.000013.
+""",
+)
+
+entry(
+    index = 1496,
+    label = "Ar(1s4) + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P1) -> e + Ar(3d'[3/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.09849268689985227,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 124; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 124. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000031->018001.000001, 018001.000031->018001.000006, 018001.000031->018001.000008, 018001.000031->018001.000009, 018001.000031->018001.000010, 018001.000031->018001.000011, 018001.000031->018001.000012, 018001.000031->018001.000013, 018001.000031->018001.000014, 018001.000031->018001.000015.
+""",
+)
+
+entry(
+    index = 1497,
+    label = "Ar(1s4) + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P1) -> e + Ar(3d'[3/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.0812013508241652,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 124; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 124. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000031->018001.000001, 018001.000031->018001.000006, 018001.000031->018001.000008, 018001.000031->018001.000009, 018001.000031->018001.000010, 018001.000031->018001.000011, 018001.000031->018001.000012, 018001.000031->018001.000013, 018001.000031->018001.000014, 018001.000031->018001.000015.
+""",
+)
+
+entry(
+    index = 1498,
+    label = "Ar(1s4) + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P1) -> e + Ar(3d'[3/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.2613652608067601,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 124; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 124. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000031->018001.000001, 018001.000031->018001.000006, 018001.000031->018001.000008, 018001.000031->018001.000009, 018001.000031->018001.000010, 018001.000031->018001.000011, 018001.000031->018001.000012, 018001.000031->018001.000013, 018001.000031->018001.000014, 018001.000031->018001.000015.
+""",
+)
+
+entry(
+    index = 1499,
+    label = "Ar(1s4) + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P1) -> e + Ar(3d'[3/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.5589407014692225,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 124; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 124. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000031->018001.000001, 018001.000031->018001.000006, 018001.000031->018001.000008, 018001.000031->018001.000009, 018001.000031->018001.000010, 018001.000031->018001.000011, 018001.000031->018001.000012, 018001.000031->018001.000013, 018001.000031->018001.000014, 018001.000031->018001.000015.
+""",
+)
+
+entry(
+    index = 1512,
+    label = "Ars + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P2) -> e + Ar(4p[1/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.7420494699646644,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 128; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 128. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005.
+""",
+)
+
+entry(
+    index = 1513,
+    label = "Ars + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P2) -> e + Ar(4p[1/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.21201413427561838,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 128; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 128. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005.
+""",
+)
+
+entry(
+    index = 1514,
+    label = "Ars + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P2) -> e + Ar(4p[1/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.038476639183352965,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 128; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 128. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005.
+""",
+)
+
+entry(
+    index = 1515,
+    label = "Ars + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P2) -> e + Ar(4p[1/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.00745975657636435,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 128; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 128. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005.
+""",
+)
+
+entry(
+    index = 1516,
+    label = "Ars + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P2) -> e + Ar(4p[5/2]3), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 1.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 129; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 129. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002.
+""",
+)
+
+entry(
+    index = 1517,
+    label = "Ars + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P2) -> e + Ar(4p[5/2]3), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 129; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 129. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002.
+""",
+)
+
+entry(
+    index = 1518,
+    label = "Ars + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P2) -> e + Ar(4p[5/2]3), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 129; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 129. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002.
+""",
+)
+
+entry(
+    index = 1519,
+    label = "Ars + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P2) -> e + Ar(4p[5/2]3), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 129; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 129. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002.
+""",
+)
+
+entry(
+    index = 1520,
+    label = "Ars + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P2) -> e + Ar(4p[5/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.28819336845367216,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 130; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 130. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005.
+""",
+)
+
+entry(
+    index = 1521,
+    label = "Ars + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P2) -> e + Ar(4p[5/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.6662534862101023,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 130; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 130. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005.
+""",
+)
+
+entry(
+    index = 1522,
+    label = "Ars + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P2) -> e + Ar(4p[5/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 130; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 130. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005.
+""",
+)
+
+entry(
+    index = 1523,
+    label = "Ars + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P2) -> e + Ar(4p[5/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.0455531453362256,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 130; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 130. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005.
+""",
+)
+
+entry(
+    index = 1524,
+    label = "Ars + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P2) -> e + Ar(4p[3/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.1543484713564856,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 131; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 131. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005.
+""",
+)
+
+entry(
+    index = 1525,
+    label = "Ars + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P2) -> e + Ar(4p[3/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.7420599584446423,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 131; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 131. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005.
+""",
+)
+
+entry(
+    index = 1526,
+    label = "Ars + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P2) -> e + Ar(4p[3/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.07212822796081923,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 131; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 131. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005.
+""",
+)
+
+entry(
+    index = 1527,
+    label = "Ars + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P2) -> e + Ar(4p[3/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.03146334223805283,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 131; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 131. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005.
+""",
+)
+
+entry(
+    index = 1528,
+    label = "Ars + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P2) -> e + Ar(4p[3/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.7122093023255814,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 132; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 132. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005.
+""",
+)
+
+entry(
+    index = 1529,
+    label = "Ars + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P2) -> e + Ar(4p[3/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.14244186046511628,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 132; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 132. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005.
+""",
+)
+
+entry(
+    index = 1530,
+    label = "Ars + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P2) -> e + Ar(4p[3/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 132; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 132. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005.
+""",
+)
+
+entry(
+    index = 1531,
+    label = "Ars + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P2) -> e + Ar(4p[3/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.14534883720930233,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 132; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 132. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005.
+""",
+)
+
+entry(
+    index = 1532,
+    label = "Ars + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P2) -> e + Ar(4p[1/2]0), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 133; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 133. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000011->018001.000003, 018001.000011->018001.000005.
+""",
+)
+
+entry(
+    index = 1533,
+    label = "Ars + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P2) -> e + Ar(4p[1/2]0), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 1.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 133; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 133. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000011->018001.000003, 018001.000011->018001.000005.
+""",
+)
+
+entry(
+    index = 1534,
+    label = "Ars + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P2) -> e + Ar(4p[1/2]0), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 133; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 133. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000011->018001.000003, 018001.000011->018001.000005.
+""",
+)
+
+entry(
+    index = 1535,
+    label = "Ars + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P2) -> e + Ar(4p[1/2]0), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 133; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 133. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000011->018001.000003, 018001.000011->018001.000005.
+""",
+)
+
+entry(
+    index = 1536,
+    label = "Ars + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P2) -> e + Ar(4p'[3/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.01900337837837838,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 134; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 134. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005.
+""",
+)
+
+entry(
+    index = 1537,
+    label = "Ars + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P2) -> e + Ar(4p'[3/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.0006636100386100386,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 134; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 134. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005.
+""",
+)
+
+entry(
+    index = 1538,
+    label = "Ars + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P2) -> e + Ar(4p'[3/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.5610521235521235,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 134; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 134. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005.
+""",
+)
+
+entry(
+    index = 1539,
+    label = "Ars + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P2) -> e + Ar(4p'[3/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.41928088803088803,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 134; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 134. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005.
+""",
+)
+
+entry(
+    index = 1540,
+    label = "Ars + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P2) -> e + Ar(4p'[3/2]2), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.10982658959537572,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 135; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 135. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005.
+""",
+)
+
+entry(
+    index = 1541,
+    label = "Ars + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P2) -> e + Ar(4p'[3/2]2), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.24566473988439305,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 135; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 135. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005.
+""",
+)
+
+entry(
+    index = 1542,
+    label = "Ars + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P2) -> e + Ar(4p'[3/2]2), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 135; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 135. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005.
+""",
+)
+
+entry(
+    index = 1543,
+    label = "Ars + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P2) -> e + Ar(4p'[3/2]2), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.6445086705202312,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 135; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 135. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005.
+""",
+)
+
+entry(
+    index = 1544,
+    label = "Ars + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P2) -> e + Ar(4p'[1/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.1816633550950894,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 136; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 136. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005.
+""",
+)
+
+entry(
+    index = 1545,
+    label = "Ars + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P2) -> e + Ar(4p'[1/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.05194436559750213,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 136; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 136. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005.
+""",
+)
+
+entry(
+    index = 1546,
+    label = "Ars + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P2) -> e + Ar(4p'[1/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.33210332103321033,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 136; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 136. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005.
+""",
+)
+
+entry(
+    index = 1547,
+    label = "Ars + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P2) -> e + Ar(4p'[1/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.4342889582741981,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 136; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 136. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005.
+""",
+)
+
+entry(
+    index = 1548,
+    label = "Ars + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P2) -> e + Ar(4p'[1/2]0), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 137; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 137. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000015->018001.000003, 018001.000015->018001.000005.
+""",
+)
+
+entry(
+    index = 1549,
+    label = "Ars + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P2) -> e + Ar(4p'[1/2]0), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.005217083738615262,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 137; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 137. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000015->018001.000003, 018001.000015->018001.000005.
+""",
+)
+
+entry(
+    index = 1550,
+    label = "Ars + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P2) -> e + Ar(4p'[1/2]0), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 137; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 137. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000015->018001.000003, 018001.000015->018001.000005.
+""",
+)
+
+entry(
+    index = 1551,
+    label = "Ars + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P2) -> e + Ar(4p'[1/2]0), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.9947829162613847,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 137; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 137. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000015->018001.000003, 018001.000015->018001.000005.
+""",
+)
+
+entry(
+    index = 1552,
+    label = "Ars + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P2) -> e + Ar(3d[1/2]0), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.6485914423629693,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 138; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 138. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000016->018001.000006, 018001.000016->018001.000009, 018001.000016->018001.000012, 018001.000016->018001.000014.
+""",
+)
+
+entry(
+    index = 1553,
+    label = "Ars + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P2) -> e + Ar(3d[1/2]0), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.26062431169809147,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 138; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 138. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000016->018001.000006, 018001.000016->018001.000009, 018001.000016->018001.000012, 018001.000016->018001.000014.
+""",
+)
+
+entry(
+    index = 1554,
+    label = "Ars + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P2) -> e + Ar(3d[1/2]0), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.05961966751625672,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 138; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 138. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000016->018001.000006, 018001.000016->018001.000009, 018001.000016->018001.000012, 018001.000016->018001.000014.
+""",
+)
+
+entry(
+    index = 1555,
+    label = "Ars + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P2) -> e + Ar(3d[1/2]0), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.031164578422682675,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 138; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 138. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000016->018001.000006, 018001.000016->018001.000009, 018001.000016->018001.000012, 018001.000016->018001.000014.
+""",
+)
+
+entry(
+    index = 1556,
+    label = "Ars + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P2) -> e + Ar(3d[1/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.6543222731465291,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 139; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 139. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000017->018001.000001, 018001.000017->018001.000006, 018001.000017->018001.000008, 018001.000017->018001.000009, 018001.000017->018001.000010, 018001.000017->018001.000011, 018001.000017->018001.000012, 018001.000017->018001.000013, 018001.000017->018001.000014, 018001.000017->018001.000015.
+""",
+)
+
+entry(
+    index = 1557,
+    label = "Ars + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P2) -> e + Ar(3d[1/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.2636146227974063,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 139; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 139. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000017->018001.000001, 018001.000017->018001.000006, 018001.000017->018001.000008, 018001.000017->018001.000009, 018001.000017->018001.000010, 018001.000017->018001.000011, 018001.000017->018001.000012, 018001.000017->018001.000013, 018001.000017->018001.000014, 018001.000017->018001.000015.
+""",
+)
+
+entry(
+    index = 1558,
+    label = "Ars + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P2) -> e + Ar(3d[1/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.03717429287971589,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 139; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 139. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000017->018001.000001, 018001.000017->018001.000006, 018001.000017->018001.000008, 018001.000017->018001.000009, 018001.000017->018001.000010, 018001.000017->018001.000011, 018001.000017->018001.000012, 018001.000017->018001.000013, 018001.000017->018001.000014, 018001.000017->018001.000015.
+""",
+)
+
+entry(
+    index = 1559,
+    label = "Ars + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P2) -> e + Ar(3d[1/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.044888811176348825,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 139; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 139. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000017->018001.000001, 018001.000017->018001.000006, 018001.000017->018001.000008, 018001.000017->018001.000009, 018001.000017->018001.000010, 018001.000017->018001.000011, 018001.000017->018001.000012, 018001.000017->018001.000013, 018001.000017->018001.000014, 018001.000017->018001.000015.
+""",
+)
+
+entry(
+    index = 1560,
+    label = "Ars + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P2) -> e + Ar(3d[3/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.6628004734416516,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 140; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 140. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000018->018001.000006, 018001.000018->018001.000007, 018001.000018->018001.000008, 018001.000018->018001.000009, 018001.000018->018001.000010, 018001.000018->018001.000012, 018001.000018->018001.000013, 018001.000018->018001.000014.
+""",
+)
+
+entry(
+    index = 1561,
+    label = "Ars + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P2) -> e + Ar(3d[3/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.21019305957628312,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 140; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 140. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000018->018001.000006, 018001.000018->018001.000007, 018001.000018->018001.000008, 018001.000018->018001.000009, 018001.000018->018001.000010, 018001.000018->018001.000012, 018001.000018->018001.000013, 018001.000018->018001.000014.
+""",
+)
+
+entry(
+    index = 1562,
+    label = "Ars + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P2) -> e + Ar(3d[3/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.036621743474735735,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 140; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 140. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000018->018001.000006, 018001.000018->018001.000007, 018001.000018->018001.000008, 018001.000018->018001.000009, 018001.000018->018001.000010, 018001.000018->018001.000012, 018001.000018->018001.000013, 018001.000018->018001.000014.
+""",
+)
+
+entry(
+    index = 1563,
+    label = "Ars + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P2) -> e + Ar(3d[3/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.09038472350732961,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 140; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 140. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000018->018001.000006, 018001.000018->018001.000007, 018001.000018->018001.000008, 018001.000018->018001.000009, 018001.000018->018001.000010, 018001.000018->018001.000012, 018001.000018->018001.000013, 018001.000018->018001.000014.
+""",
+)
+
+entry(
+    index = 1564,
+    label = "Ars + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P2) -> e + Ar(3d[7/2]4), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 1.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 141; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 141. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002, 018001.000019->018001.000007.
+""",
+)
+
+entry(
+    index = 1565,
+    label = "Ars + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P2) -> e + Ar(3d[7/2]4), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 141; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 141. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002, 018001.000019->018001.000007.
+""",
+)
+
+entry(
+    index = 1566,
+    label = "Ars + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P2) -> e + Ar(3d[7/2]4), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 141; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 141. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002, 018001.000019->018001.000007.
+""",
+)
+
+entry(
+    index = 1567,
+    label = "Ars + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P2) -> e + Ar(3d[7/2]4), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 141; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 141. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002, 018001.000019->018001.000007.
+""",
+)
+
+entry(
+    index = 1568,
+    label = "Ars + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P2) -> e + Ar(5s[3/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.8209780287439195,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 142; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 142. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000022->018001.000006, 018001.000022->018001.000007, 018001.000022->018001.000008, 018001.000022->018001.000009, 018001.000022->018001.000010, 018001.000022->018001.000012, 018001.000022->018001.000013, 018001.000022->018001.000014.
+""",
+)
+
+entry(
+    index = 1569,
+    label = "Ars + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P2) -> e + Ar(5s[3/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.12371290358674257,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 142; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 142. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000022->018001.000006, 018001.000022->018001.000007, 018001.000022->018001.000008, 018001.000022->018001.000009, 018001.000022->018001.000010, 018001.000022->018001.000012, 018001.000022->018001.000013, 018001.000022->018001.000014.
+""",
+)
+
+entry(
+    index = 1570,
+    label = "Ars + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P2) -> e + Ar(5s[3/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.0168369627592017,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 142; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 142. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000022->018001.000006, 018001.000022->018001.000007, 018001.000022->018001.000008, 018001.000022->018001.000009, 018001.000022->018001.000010, 018001.000022->018001.000012, 018001.000022->018001.000013, 018001.000022->018001.000014.
+""",
+)
+
+entry(
+    index = 1571,
+    label = "Ars + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P2) -> e + Ar(5s[3/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.03847210491013634,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 142; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 142. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000022->018001.000006, 018001.000022->018001.000007, 018001.000022->018001.000008, 018001.000022->018001.000009, 018001.000022->018001.000010, 018001.000022->018001.000012, 018001.000022->018001.000013, 018001.000022->018001.000014.
+""",
+)
+
+entry(
+    index = 1572,
+    label = "Ars + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P2) -> e + Ar(3d[7/2]3), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.42750082388093896,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 143; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 143. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000020->018001.000007, 018001.000020->018001.000008, 018001.000020->018001.000010, 018001.000020->018001.000013.
+""",
+)
+
+entry(
+    index = 1573,
+    label = "Ars + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P2) -> e + Ar(3d[7/2]3), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.528810865203049,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 143; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 143. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000020->018001.000007, 018001.000020->018001.000008, 018001.000020->018001.000010, 018001.000020->018001.000013.
+""",
+)
+
+entry(
+    index = 1574,
+    label = "Ars + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P2) -> e + Ar(3d[7/2]3), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 143; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 143. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000020->018001.000007, 018001.000020->018001.000008, 018001.000020->018001.000010, 018001.000020->018001.000013.
+""",
+)
+
+entry(
+    index = 1575,
+    label = "Ars + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P2) -> e + Ar(3d[7/2]3), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.043688310916012024,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 143; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 143. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000020->018001.000007, 018001.000020->018001.000008, 018001.000020->018001.000010, 018001.000020->018001.000013.
+""",
+)
+
+entry(
+    index = 1576,
+    label = "Ars + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P2) -> e + Ar(5s[3/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.34090330256158746,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 144; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 144. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000023->018001.000001, 018001.000023->018001.000006, 018001.000023->018001.000008, 018001.000023->018001.000009, 018001.000023->018001.000010, 018001.000023->018001.000011, 018001.000023->018001.000012, 018001.000023->018001.000013, 018001.000023->018001.000014, 018001.000023->018001.000015.
+""",
+)
+
+entry(
+    index = 1577,
+    label = "Ars + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P2) -> e + Ar(5s[3/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.5606703534059738,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 144; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 144. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000023->018001.000001, 018001.000023->018001.000006, 018001.000023->018001.000008, 018001.000023->018001.000009, 018001.000023->018001.000010, 018001.000023->018001.000011, 018001.000023->018001.000012, 018001.000023->018001.000013, 018001.000023->018001.000014, 018001.000023->018001.000015.
+""",
+)
+
+entry(
+    index = 1578,
+    label = "Ars + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P2) -> e + Ar(5s[3/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.033388781767994646,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 144; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 144. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000023->018001.000001, 018001.000023->018001.000006, 018001.000023->018001.000008, 018001.000023->018001.000009, 018001.000023->018001.000010, 018001.000023->018001.000011, 018001.000023->018001.000012, 018001.000023->018001.000013, 018001.000023->018001.000014, 018001.000023->018001.000015.
+""",
+)
+
+entry(
+    index = 1579,
+    label = "Ars + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P2) -> e + Ar(5s[3/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.06503756226444418,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 144; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 144. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000023->018001.000001, 018001.000023->018001.000006, 018001.000023->018001.000008, 018001.000023->018001.000009, 018001.000023->018001.000010, 018001.000023->018001.000011, 018001.000023->018001.000012, 018001.000023->018001.000013, 018001.000023->018001.000014, 018001.000023->018001.000015.
+""",
+)
+
+entry(
+    index = 1580,
+    label = "Ars + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P2) -> e + Ar(3d[5/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.21808181830489426,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 145; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 145. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000021->018001.000006, 018001.000021->018001.000007, 018001.000021->018001.000008, 018001.000021->018001.000009, 018001.000021->018001.000010, 018001.000021->018001.000012, 018001.000021->018001.000013, 018001.000021->018001.000014.
+""",
+)
+
+entry(
+    index = 1581,
+    label = "Ars + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P2) -> e + Ar(3d[5/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.6439180183140705,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 145; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 145. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000021->018001.000006, 018001.000021->018001.000007, 018001.000021->018001.000008, 018001.000021->018001.000009, 018001.000021->018001.000010, 018001.000021->018001.000012, 018001.000021->018001.000013, 018001.000021->018001.000014.
+""",
+)
+
+entry(
+    index = 1582,
+    label = "Ars + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P2) -> e + Ar(3d[5/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.07171711012674221,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 145; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 145. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000021->018001.000006, 018001.000021->018001.000007, 018001.000021->018001.000008, 018001.000021->018001.000009, 018001.000021->018001.000010, 018001.000021->018001.000012, 018001.000021->018001.000013, 018001.000021->018001.000014.
+""",
+)
+
+entry(
+    index = 1583,
+    label = "Ars + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P2) -> e + Ar(3d[5/2]2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.06628305325429301,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 145; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 145. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000021->018001.000006, 018001.000021->018001.000007, 018001.000021->018001.000008, 018001.000021->018001.000009, 018001.000021->018001.000010, 018001.000021->018001.000012, 018001.000021->018001.000013, 018001.000021->018001.000014.
+""",
+)
+
+entry(
+    index = 1584,
+    label = "Ars + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P2) -> e + Ar(3d[5/2]3), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.7140399146654615,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 146; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 146. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000024->018001.000007, 018001.000024->018001.000008, 018001.000024->018001.000010, 018001.000024->018001.000013.
+""",
+)
+
+entry(
+    index = 1585,
+    label = "Ars + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P2) -> e + Ar(3d[5/2]3), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.17152136695697243,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 146; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 146. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000024->018001.000007, 018001.000024->018001.000008, 018001.000024->018001.000010, 018001.000024->018001.000013.
+""",
+)
+
+entry(
+    index = 1586,
+    label = "Ars + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P2) -> e + Ar(3d[5/2]3), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 146; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 146. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000024->018001.000007, 018001.000024->018001.000008, 018001.000024->018001.000010, 018001.000024->018001.000013.
+""",
+)
+
+entry(
+    index = 1587,
+    label = "Ars + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P2) -> e + Ar(3d[5/2]3), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.11443871837756595,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 146; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 146. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000024->018001.000007, 018001.000024->018001.000008, 018001.000024->018001.000010, 018001.000024->018001.000013.
+""",
+)
+
+entry(
+    index = 1588,
+    label = "Ars + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P2) -> e + Ar(3d[3/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.10661529252532245,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 147; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 147. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000025->018001.000001, 018001.000025->018001.000006, 018001.000025->018001.000008, 018001.000025->018001.000009, 018001.000025->018001.000010, 018001.000025->018001.000011, 018001.000025->018001.000012, 018001.000025->018001.000013, 018001.000025->018001.000014, 018001.000025->018001.000015.
+""",
+)
+
+entry(
+    index = 1589,
+    label = "Ars + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P2) -> e + Ar(3d[3/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.6830111167619378,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 147; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 147. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000025->018001.000001, 018001.000025->018001.000006, 018001.000025->018001.000008, 018001.000025->018001.000009, 018001.000025->018001.000010, 018001.000025->018001.000011, 018001.000025->018001.000012, 018001.000025->018001.000013, 018001.000025->018001.000014, 018001.000025->018001.000015.
+""",
+)
+
+entry(
+    index = 1590,
+    label = "Ars + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P2) -> e + Ar(3d[3/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.06806417104728463,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 147; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 147. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000025->018001.000001, 018001.000025->018001.000006, 018001.000025->018001.000008, 018001.000025->018001.000009, 018001.000025->018001.000010, 018001.000025->018001.000011, 018001.000025->018001.000012, 018001.000025->018001.000013, 018001.000025->018001.000014, 018001.000025->018001.000015.
+""",
+)
+
+entry(
+    index = 1591,
+    label = "Ars + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P2) -> e + Ar(3d[3/2]1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.1423094196654553,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 147; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 147. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000025->018001.000001, 018001.000025->018001.000006, 018001.000025->018001.000008, 018001.000025->018001.000009, 018001.000025->018001.000010, 018001.000025->018001.000011, 018001.000025->018001.000012, 018001.000025->018001.000013, 018001.000025->018001.000014, 018001.000025->018001.000015.
+""",
+)
+
+entry(
+    index = 1592,
+    label = "Ars + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P2) -> e + Ar(5s'[1/2]0), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.18844760803036653,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 148; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 148. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000029->018001.000006, 018001.000029->018001.000009, 018001.000029->018001.000012, 018001.000029->018001.000014.
+""",
+)
+
+entry(
+    index = 1593,
+    label = "Ars + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P2) -> e + Ar(5s'[1/2]0), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.12682660594844428,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 148; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 148. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000029->018001.000006, 018001.000029->018001.000009, 018001.000029->018001.000012, 018001.000029->018001.000014.
+""",
+)
+
+entry(
+    index = 1594,
+    label = "Ars + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P2) -> e + Ar(5s'[1/2]0), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.3687952712634285,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 148; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 148. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000029->018001.000006, 018001.000029->018001.000009, 018001.000029->018001.000012, 018001.000029->018001.000014.
+""",
+)
+
+entry(
+    index = 1595,
+    label = "Ars + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P2) -> e + Ar(5s'[1/2]0), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.31593051475776074,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 148; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 148. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000029->018001.000006, 018001.000029->018001.000009, 018001.000029->018001.000012, 018001.000029->018001.000014.
+""",
+)
+
+entry(
+    index = 1596,
+    label = "Ars + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P2) -> e + Ar(5s'[1/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.1994478233533313,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 149; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 149. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000030->018001.000001, 018001.000030->018001.000006, 018001.000030->018001.000008, 018001.000030->018001.000009, 018001.000030->018001.000010, 018001.000030->018001.000011, 018001.000030->018001.000012, 018001.000030->018001.000013, 018001.000030->018001.000014, 018001.000030->018001.000015.
+""",
+)
+
+entry(
+    index = 1597,
+    label = "Ars + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P2) -> e + Ar(5s'[1/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.1816565672612965,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 149; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 149. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000030->018001.000001, 018001.000030->018001.000006, 018001.000030->018001.000008, 018001.000030->018001.000009, 018001.000030->018001.000010, 018001.000030->018001.000011, 018001.000030->018001.000012, 018001.000030->018001.000013, 018001.000030->018001.000014, 018001.000030->018001.000015.
+""",
+)
+
+entry(
+    index = 1598,
+    label = "Ars + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P2) -> e + Ar(5s'[1/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.11568597069282358,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 149; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 149. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000030->018001.000001, 018001.000030->018001.000006, 018001.000030->018001.000008, 018001.000030->018001.000009, 018001.000030->018001.000010, 018001.000030->018001.000011, 018001.000030->018001.000012, 018001.000030->018001.000013, 018001.000030->018001.000014, 018001.000030->018001.000015.
+""",
+)
+
+entry(
+    index = 1599,
+    label = "Ars + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P2) -> e + Ar(5s'[1/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.5032096386925485,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 149; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 149. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000030->018001.000001, 018001.000030->018001.000006, 018001.000030->018001.000008, 018001.000030->018001.000009, 018001.000030->018001.000010, 018001.000030->018001.000011, 018001.000030->018001.000012, 018001.000030->018001.000013, 018001.000030->018001.000014, 018001.000030->018001.000015.
+""",
+)
+
+entry(
+    index = 1600,
+    label = "Ars + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P2) -> e + Ar(3d'[5/2]2), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.06526622919931016,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 150; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 150. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000026->018001.000006, 018001.000026->018001.000007, 018001.000026->018001.000008, 018001.000026->018001.000009, 018001.000026->018001.000010, 018001.000026->018001.000012, 018001.000026->018001.000013, 018001.000026->018001.000014.
+""",
+)
+
+entry(
+    index = 1601,
+    label = "Ars + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P2) -> e + Ar(3d'[5/2]2), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.10901503322328669,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 150; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 150. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000026->018001.000006, 018001.000026->018001.000007, 018001.000026->018001.000008, 018001.000026->018001.000009, 018001.000026->018001.000010, 018001.000026->018001.000012, 018001.000026->018001.000013, 018001.000026->018001.000014.
+""",
+)
+
+entry(
+    index = 1602,
+    label = "Ars + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P2) -> e + Ar(3d'[5/2]2), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.4251772331223881,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 150; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 150. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000026->018001.000006, 018001.000026->018001.000007, 018001.000026->018001.000008, 018001.000026->018001.000009, 018001.000026->018001.000010, 018001.000026->018001.000012, 018001.000026->018001.000013, 018001.000026->018001.000014.
+""",
+)
+
+entry(
+    index = 1603,
+    label = "Ars + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P2) -> e + Ar(3d'[5/2]2), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.40054150445501513,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 150; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 150. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000026->018001.000006, 018001.000026->018001.000007, 018001.000026->018001.000008, 018001.000026->018001.000009, 018001.000026->018001.000010, 018001.000026->018001.000012, 018001.000026->018001.000013, 018001.000026->018001.000014.
+""",
+)
+
+entry(
+    index = 1604,
+    label = "Ars + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P2) -> e + Ar(3d'[3/2]2), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.36490459112091733,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 151; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 151. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000027->018001.000006, 018001.000027->018001.000007, 018001.000027->018001.000008, 018001.000027->018001.000009, 018001.000027->018001.000010, 018001.000027->018001.000012, 018001.000027->018001.000013, 018001.000027->018001.000014.
+""",
+)
+
+entry(
+    index = 1605,
+    label = "Ars + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P2) -> e + Ar(3d'[3/2]2), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.1364237511835537,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 151; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 151. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000027->018001.000006, 018001.000027->018001.000007, 018001.000027->018001.000008, 018001.000027->018001.000009, 018001.000027->018001.000010, 018001.000027->018001.000012, 018001.000027->018001.000013, 018001.000027->018001.000014.
+""",
+)
+
+entry(
+    index = 1606,
+    label = "Ars + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P2) -> e + Ar(3d'[3/2]2), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.1736513228726633,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 151; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 151. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000027->018001.000006, 018001.000027->018001.000007, 018001.000027->018001.000008, 018001.000027->018001.000009, 018001.000027->018001.000010, 018001.000027->018001.000012, 018001.000027->018001.000013, 018001.000027->018001.000014.
+""",
+)
+
+entry(
+    index = 1607,
+    label = "Ars + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P2) -> e + Ar(3d'[3/2]2), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.32502033482286563,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 151; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 151. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000027->018001.000006, 018001.000027->018001.000007, 018001.000027->018001.000008, 018001.000027->018001.000009, 018001.000027->018001.000010, 018001.000027->018001.000012, 018001.000027->018001.000013, 018001.000027->018001.000014.
+""",
+)
+
+entry(
+    index = 1608,
+    label = "Ars + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P2) -> e + Ar(3d'[5/2]3), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.2520368762539881,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 152; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 152. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000028->018001.000007, 018001.000028->018001.000008, 018001.000028->018001.000010, 018001.000028->018001.000013.
+""",
+)
+
+entry(
+    index = 1609,
+    label = "Ars + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P2) -> e + Ar(3d'[5/2]3), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.2104455287307021,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 152; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 152. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000028->018001.000007, 018001.000028->018001.000008, 018001.000028->018001.000010, 018001.000028->018001.000013.
+""",
+)
+
+entry(
+    index = 1610,
+    label = "Ars + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P2) -> e + Ar(3d'[5/2]3), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.0,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 152; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 152. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000028->018001.000007, 018001.000028->018001.000008, 018001.000028->018001.000010, 018001.000028->018001.000013.
+""",
+)
+
+entry(
+    index = 1611,
+    label = "Ars + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P2) -> e + Ar(3d'[5/2]3), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.5375175950153098,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 152; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 152. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000007->018001.000002, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000028->018001.000007, 018001.000028->018001.000008, 018001.000028->018001.000010, 018001.000028->018001.000013.
+""",
+)
+
+entry(
+    index = 1612,
+    label = "Ars + e- => Ars + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P2) -> e + Ar(3d'[3/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s5)',
+        branch_yield = 0.09849268689985227,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 153; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 153. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000031->018001.000001, 018001.000031->018001.000006, 018001.000031->018001.000008, 018001.000031->018001.000009, 018001.000031->018001.000010, 018001.000031->018001.000011, 018001.000031->018001.000012, 018001.000031->018001.000013, 018001.000031->018001.000014, 018001.000031->018001.000015.
+""",
+)
+
+entry(
+    index = 1613,
+    label = "Ars + e- => Ar(1s4) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P2) -> e + Ar(3d'[3/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s4)',
+        branch_yield = 0.0812013508241652,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 153; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 153. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000031->018001.000001, 018001.000031->018001.000006, 018001.000031->018001.000008, 018001.000031->018001.000009, 018001.000031->018001.000010, 018001.000031->018001.000011, 018001.000031->018001.000012, 018001.000031->018001.000013, 018001.000031->018001.000014, 018001.000031->018001.000015.
+""",
+)
+
+entry(
+    index = 1614,
+    label = "Ars + e- => Ar(1s3) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P2) -> e + Ar(3d'[3/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s3)',
+        branch_yield = 0.2613652608067601,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 153; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 153. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000031->018001.000001, 018001.000031->018001.000006, 018001.000031->018001.000008, 018001.000031->018001.000009, 018001.000031->018001.000010, 018001.000031->018001.000011, 018001.000031->018001.000012, 018001.000031->018001.000013, 018001.000031->018001.000014, 018001.000031->018001.000015.
+""",
+)
+
+entry(
+    index = 1615,
+    label = "Ars + e- => Ar(1s2) + e-",
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = "e + Ar(3P2) -> e + Ar(3d'[3/2]1), Excitation",
+        collision_set = "IST-Lisbon-Ar-2021",
+        branch_product = 'Ar(1s2)',
+        branch_yield = 0.5589407014692225,
+        yield_table_sha256 = 'b202ac0776ab6228d1b02b3a8f79c6c0d32f16d6fd771b0b30fdecf0af5b8548',
+    ),
+    shortDesc = "IST-Lisbon-Ar-2021 channel 153; sourced cascade branch",
+    longDesc = """
+Sourced E1 cascade branch for channel 153. Product fractions are generated
+from argon_cascade_yields.yaml. Transition A values, citations and NIST row identities
+are recorded in argon_radiative_data.yaml. Branch fractions partition the existing
+electron collision rate; photon energy is accounted for once through branch products.
+Transition rows: 018001.000006->018001.000002, 018001.000006->018001.000003, 018001.000006->018001.000004, 018001.000006->018001.000005, 018001.000008->018001.000002, 018001.000008->018001.000003, 018001.000008->018001.000005, 018001.000009->018001.000002, 018001.000009->018001.000003, 018001.000009->018001.000004, 018001.000009->018001.000005, 018001.000010->018001.000002, 018001.000010->018001.000003, 018001.000010->018001.000005, 018001.000011->018001.000003, 018001.000011->018001.000005, 018001.000012->018001.000002, 018001.000012->018001.000003, 018001.000012->018001.000004, 018001.000012->018001.000005, 018001.000013->018001.000002, 018001.000013->018001.000003, 018001.000013->018001.000005, 018001.000014->018001.000002, 018001.000014->018001.000003, 018001.000014->018001.000004, 018001.000014->018001.000005, 018001.000015->018001.000003, 018001.000015->018001.000005, 018001.000031->018001.000001, 018001.000031->018001.000006, 018001.000031->018001.000008, 018001.000031->018001.000009, 018001.000031->018001.000010, 018001.000031->018001.000011, 018001.000031->018001.000012, 018001.000031->018001.000013, 018001.000031->018001.000014, 018001.000031->018001.000015.
+""",
+)
+
 # END GENERATED ARGON CASCADE REACTIONS
+
+# BEGIN GENERATED ARGON DIRECTIONAL REACTIONS
+# Generated by scripts/gen_argon_electron_owners.py; do not edit.
+
+entry(
+    index = 2005,
+    label = 'Ars + e- => Ar + e-',
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1S0) <-> e + Ar(3P2), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        side = 'sup',
+    ),
+    shortDesc = "channel 2; ground inverse; sup",
+    longDesc = 'Rate supplied by the named ine/sup EEDF column of the versioned reversible collision realization. No thermal equilibrium reverse rate is used.',
+)
+
+entry(
+    index = 2007,
+    label = 'Ar(1s4) + e- => Ar + e-',
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1S0) <-> e + Ar(3P1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        side = 'sup',
+    ),
+    shortDesc = "channel 3; ground inverse; sup",
+    longDesc = 'Rate supplied by the named ine/sup EEDF column of the versioned reversible collision realization. No thermal equilibrium reverse rate is used.',
+)
+
+entry(
+    index = 2009,
+    label = 'Ar(1s3) + e- => Ar + e-',
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1S0) <-> e + Ar(3P0), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        side = 'sup',
+    ),
+    shortDesc = "channel 4; ground inverse; sup",
+    longDesc = 'Rate supplied by the named ine/sup EEDF column of the versioned reversible collision realization. No thermal equilibrium reverse rate is used.',
+)
+
+entry(
+    index = 2011,
+    label = 'Ar(1s2) + e- => Ar + e-',
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1S0) <-> e + Ar(1P1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        side = 'sup',
+    ),
+    shortDesc = "channel 5; ground inverse; sup",
+    longDesc = 'Rate supplied by the named ine/sup EEDF column of the versioned reversible collision realization. No thermal equilibrium reverse rate is used.',
+)
+
+entry(
+    index = 2088,
+    label = 'Ar(1s3) + e- => Ar(1s2) + e-',
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P0) <-> e + Ar(1P1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        side = 'ine',
+    ),
+    shortDesc = "channel 44; 4s mixing; ine",
+    longDesc = 'Rate supplied by the named ine/sup EEDF column of the versioned reversible collision realization. No thermal equilibrium reverse rate is used.',
+)
+
+entry(
+    index = 2089,
+    label = 'Ar(1s2) + e- => Ar(1s3) + e-',
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P0) <-> e + Ar(1P1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        side = 'sup',
+    ),
+    shortDesc = "channel 44; 4s mixing; sup",
+    longDesc = 'Rate supplied by the named ine/sup EEDF column of the versioned reversible collision realization. No thermal equilibrium reverse rate is used.',
+)
+
+entry(
+    index = 2194,
+    label = 'Ar(1s4) + e- => Ar(1s3) + e-',
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P1) <-> e + Ar(3P0), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        side = 'ine',
+    ),
+    shortDesc = "channel 97; 4s mixing; ine",
+    longDesc = 'Rate supplied by the named ine/sup EEDF column of the versioned reversible collision realization. No thermal equilibrium reverse rate is used.',
+)
+
+entry(
+    index = 2195,
+    label = 'Ar(1s3) + e- => Ar(1s4) + e-',
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P1) <-> e + Ar(3P0), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        side = 'sup',
+    ),
+    shortDesc = "channel 97; 4s mixing; sup",
+    longDesc = 'Rate supplied by the named ine/sup EEDF column of the versioned reversible collision realization. No thermal equilibrium reverse rate is used.',
+)
+
+entry(
+    index = 2196,
+    label = 'Ar(1s4) + e- => Ar(1s2) + e-',
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P1) <-> e + Ar(1P1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        side = 'ine',
+    ),
+    shortDesc = "channel 98; 4s mixing; ine",
+    longDesc = 'Rate supplied by the named ine/sup EEDF column of the versioned reversible collision realization. No thermal equilibrium reverse rate is used.',
+)
+
+entry(
+    index = 2197,
+    label = 'Ar(1s2) + e- => Ar(1s4) + e-',
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P1) <-> e + Ar(1P1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        side = 'sup',
+    ),
+    shortDesc = "channel 98; 4s mixing; sup",
+    longDesc = 'Rate supplied by the named ine/sup EEDF column of the versioned reversible collision realization. No thermal equilibrium reverse rate is used.',
+)
+
+entry(
+    index = 2250,
+    label = 'Ars + e- => Ar(1s4) + e-',
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P2) <-> e + Ar(3P1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        side = 'ine',
+    ),
+    shortDesc = "channel 125; 4s mixing; ine",
+    longDesc = 'Rate supplied by the named ine/sup EEDF column of the versioned reversible collision realization. No thermal equilibrium reverse rate is used.',
+)
+
+entry(
+    index = 2251,
+    label = 'Ar(1s4) + e- => Ars + e-',
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P2) <-> e + Ar(3P1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        side = 'sup',
+    ),
+    shortDesc = "channel 125; 4s mixing; sup",
+    longDesc = 'Rate supplied by the named ine/sup EEDF column of the versioned reversible collision realization. No thermal equilibrium reverse rate is used.',
+)
+
+entry(
+    index = 2252,
+    label = 'Ars + e- => Ar(1s3) + e-',
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P2) <-> e + Ar(3P0), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        side = 'ine',
+    ),
+    shortDesc = "channel 126; 4s mixing; ine",
+    longDesc = 'Rate supplied by the named ine/sup EEDF column of the versioned reversible collision realization. No thermal equilibrium reverse rate is used.',
+)
+
+entry(
+    index = 2253,
+    label = 'Ar(1s3) + e- => Ars + e-',
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P2) <-> e + Ar(3P0), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        side = 'sup',
+    ),
+    shortDesc = "channel 126; 4s mixing; sup",
+    longDesc = 'Rate supplied by the named ine/sup EEDF column of the versioned reversible collision realization. No thermal equilibrium reverse rate is used.',
+)
+
+entry(
+    index = 2254,
+    label = 'Ars + e- => Ar(1s2) + e-',
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P2) <-> e + Ar(1P1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        side = 'ine',
+    ),
+    shortDesc = "channel 127; 4s mixing; ine",
+    longDesc = 'Rate supplied by the named ine/sup EEDF column of the versioned reversible collision realization. No thermal equilibrium reverse rate is used.',
+)
+
+entry(
+    index = 2255,
+    label = 'Ar(1s2) + e- => Ars + e-',
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P2) <-> e + Ar(1P1), Excitation',
+        collision_set = "IST-Lisbon-Ar-2021",
+        side = 'sup',
+    ),
+    shortDesc = "channel 127; 4s mixing; sup",
+    longDesc = 'Rate supplied by the named ine/sup EEDF column of the versioned reversible collision realization. No thermal equilibrium reverse rate is used.',
+)
+
+entry(
+    index = 2308,
+    label = 'Ars + e- => Arp + e- + e-',
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P2) -> e + e + Ar(+,gnd), Ionization',
+        collision_set = "IST-Lisbon-Ar-2021",
+        side = 'ine',
+    ),
+    shortDesc = "channel 154; stepwise ionization; ine",
+    longDesc = 'TRINITI 4.2 eV threshold retained for every 4s level. Consumes one electron and produces two: net electron +1 and total charge conserved.',
+)
+
+entry(
+    index = 2310,
+    label = 'Ar(1s4) + e- => Arp + e- + e-',
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P1) -> e + e + Ar(+,gnd), Ionization',
+        collision_set = "IST-Lisbon-Ar-2021",
+        side = 'ine',
+    ),
+    shortDesc = "channel 155; stepwise ionization; ine",
+    longDesc = 'TRINITI 4.2 eV threshold retained for every 4s level. Consumes one electron and produces two: net electron +1 and total charge conserved.',
+)
+
+entry(
+    index = 2312,
+    label = 'Ar(1s3) + e- => Arp + e- + e-',
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(3P0) -> e + e + Ar(+,gnd), Ionization',
+        collision_set = "IST-Lisbon-Ar-2021",
+        side = 'ine',
+    ),
+    shortDesc = "channel 156; stepwise ionization; ine",
+    longDesc = 'TRINITI 4.2 eV threshold retained for every 4s level. Consumes one electron and produces two: net electron +1 and total charge conserved.',
+)
+
+entry(
+    index = 2314,
+    label = 'Ar(1s2) + e- => Arp + e- + e-',
+    reversible = False,
+    duplicate = True,
+    kinetics = EEDFChannel(
+        process = 'e + Ar(1P1) -> e + e + Ar(+,gnd), Ionization',
+        collision_set = "IST-Lisbon-Ar-2021",
+        side = 'ine',
+    ),
+    shortDesc = "channel 157; stepwise ionization; ine",
+    longDesc = 'TRINITI 4.2 eV threshold retained for every 4s level. Consumes one electron and produces two: net electron +1 and total charge conserved.',
+)
+
+# END GENERATED ARGON DIRECTIONAL REACTIONS

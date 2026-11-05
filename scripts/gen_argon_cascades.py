@@ -2,6 +2,7 @@
 """Generate E1 yields from sourced A values; never normalize an incomplete decay set."""
 import argparse
 from decimal import Decimal
+from copy import deepcopy
 import hashlib
 import math
 from pathlib import Path
@@ -13,6 +14,8 @@ import yaml
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / 'input/eedf/argon_radiative_data.yaml'
 OUTPUT = ROOT / 'input/eedf/argon_cascade_yields.yaml'
+CHANNEL_MAP = ROOT / 'input/eedf/argon_channel_map.yaml'
+FOUR_S_CHANNEL_IDS = list(range(45, 97)) + list(range(99, 125)) + list(range(128, 154))
 
 
 def weighted_extreme(values, bounds, maximum=False):
@@ -251,7 +254,46 @@ def derive_higher(data, anchors):
     return output
 
 
-def generate(raw):
+def derive_four_s(data, anchors, channel_map_raw):
+    """Resolve each 4s collision to one sourced upper level, never a blended group."""
+    frozen = yaml.safe_load(channel_map_raw)
+    selected = [c for c in frozen['channels'] if 'from 4s via' in c['family']]
+    if [c['id'] for c in selected] != FOUR_S_CHANNEL_IDS:
+        raise ValueError('expected exactly 104 4s cascade collisions')
+    catalog = {}
+    for level in data['higher_cascade']['levels']:
+        term = re.search(r'\[([^]]+)\]', level['term'])
+        if term is None:
+            continue
+        orbital = level['configuration'].rsplit('.', 1)[1]
+        prime = "'" if '<1/2>' in level['configuration'] else ''
+        label = f'Ar({orbital}{prime}[{term[1]}]{level["J"]})'
+        if label in catalog:
+            raise ValueError('ambiguous sourced upper level: ' + label)
+        catalog[label] = level['nist_id']
+    base = {c['upper_nist_id']: c for c in anchors}
+    extended = deepcopy(data)
+    output = []
+    for row in selected:
+        match = re.fullmatch(r'e \+ Ar\((3P2|3P1|3P0|1P1)\) -> e \+ (Ar\(.+\)), Excitation', row['loki_process'])
+        if match is None or match[2] not in catalog:
+            raise ValueError('unknown 4s collision source or upper level: ' + row['loki_process'])
+        uid = catalog[match[2]]
+        identity = dict(id=row['id'], process=row['loki_process'], threshold_eV=row['threshold_eV'],
+                        upper_nist_ids=[uid], excitation_weights={uid: 1.})
+        if uid in base:
+            channel = deepcopy(base[uid])
+            channel.update(identity)
+            output.append(channel)
+        else:
+            extended['higher_channels'].append(identity)
+    output.extend(c for c in derive_higher(extended, anchors) if c['id'] in FOUR_S_CHANNEL_IDS)
+    if len(output) != 104 or sum(c['upper_nist_ids'][0] in base for c in output) != 40:
+        raise ValueError('expected 40 4p and 64 higher singleton cascades')
+    return sorted(output, key=lambda c: c['id'])
+
+
+def generate(raw, channel_map_raw=None):
     """Validate a single source snapshot and return deterministic, non-runtime data."""
     data = yaml.safe_load(raw)
     if data['schema_version'] != 1 or data['radiative_model'] != 'E1':
@@ -360,6 +402,8 @@ def generate(raw):
             or audit.get('upper_bound_A', 0) != len(upper_bound_rows)):
         raise ValueError('completeness audit counts differ from measured and upper-bound A rows')
     output.extend(derive_higher(data, output))
+    if channel_map_raw is not None:
+        output.extend(derive_four_s(data, output[:10], channel_map_raw))
     return dict(schema_version=1, radiative_model='E1', source_sha256=hashlib.sha256(raw).hexdigest(), channels=output)
 
 
@@ -379,15 +423,17 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--source', type=Path, default=SOURCE)
     parser.add_argument('--output', type=Path, default=OUTPUT)
+    parser.add_argument('--channel-map', type=Path, default=CHANNEL_MAP)
     parser.add_argument('--check', action='store_true')
     args = parser.parse_args()
-    text = render(generate(args.source.read_bytes()))
+    document = generate(args.source.read_bytes(), args.channel_map.read_bytes())
+    text = render(document)
     if args.check:
         if not args.output.exists() or args.output.read_text() != text:
             parser.error('generated yields differ; regenerate with scripts/gen_argon_cascades.py')
     else:
         args.output.write_text(text)
-    print('argon E1 yields: 33 complete channels; higher-family uncertainty intervals reported')
+    print(f'argon E1 yields: {len(document["channels"])} complete channels; higher-family uncertainty intervals reported')
     return 0
 
 

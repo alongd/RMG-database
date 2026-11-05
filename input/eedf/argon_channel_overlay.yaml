@@ -1,190 +1,2643 @@
-# Hand-written overlay for argon_channel_map.yaml (I-341): the class and the RMG reaction of each collision
-# LoKI-B reads from ar-v1, keyed by the label LoKI-B prints. This is the only hand-maintained part of the map;
-# everything else is derived by scripts/gen_eedf_channel_map.py. Classes follow owner ruling 2026-10-02
-# section 6 and ruling C3; the policy each class and reaction must satisfy is POLICY in that script. Only
-# class A carries a reaction: Ar(1s_i) + hv is the radiative-cascade placeholder, and a 4s level missing from
-# PlasmaArgon is named Ar(<Paschen name>). Under 'species', each species the reactions name, the electron
-# included, is given the RMG dictionary record it stands for; the record PlasmaArgon's dictionary holds under
-# that label must be the same species by RMG's own comparison (structure, electrons, multiplicity and every
-# state field RMG keeps). Each 4s record carries its exact term/J token.
+# Reviewed directional ownership and eliminated-level inverse bounds.
 species:
-  Ar: |
-    1 Ar u0 p4 c0
-  Ars: |
-    multiplicity 3
+  Ar: '1 Ar u0 p4 c0
+
+    '
+  Ars: 'multiplicity 3
+
     electronicstate 3P2
+
     1 Ar u2 p3 c0
-  Arp: |
-    1 Ar u1 p3 c+1
-  e-: |
-    1 e u1 p0 c-1
-  Ar(1s2): |
-    multiplicity 1
+
+    '
+  Arp: '1 Ar u1 p3 c+1
+
+    '
+  e-: '1 e u1 p0 c-1
+
+    '
+  Ar(1s2): 'multiplicity 1
+
     electronicstate 1P1
+
     1 Ar u0 p4 c0
-  Ar(1s4): |
-    multiplicity 3
+
+    '
+  Ar(1s4): 'multiplicity 3
+
     electronicstate 3P1
+
     1 Ar u2 p3 c0
-  Ar(1s3): |
-    multiplicity 3
+
+    '
+  Ar(1s3): 'multiplicity 3
+
     electronicstate 3P0
+
     1 Ar u2 p3 c0
+
+    '
 collisions:
-  'e + Ar(1S0) -> e + Ar(1S0), Elastic': {class: B}
-  'e + Ar(1S0) -> e + Ar(3P2), Excitation': {class: A, reaction: 'Ar + e- => Ars + e-'}
-  'e + Ar(1S0) -> e + Ar(3P1), Excitation': {class: A, reaction: 'Ar + e- => Ar(1s4) + e-'}
-  'e + Ar(1S0) -> e + Ar(3P0), Excitation': {class: A, reaction: 'Ar + e- => Ar(1s3) + e-'}
-  'e + Ar(1S0) -> e + Ar(1P1), Excitation': {class: A, reaction: 'Ar + e- => Ar(1s2) + e-'}
-  'e + Ar(1S0) -> e + Ar(4p[1/2]1), Excitation': {class: A, reaction: 'Ar + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(1S0) -> e + Ar(4p[5/2]3), Excitation': {class: A, reaction: 'Ar + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(1S0) -> e + Ar(4p[5/2]2), Excitation': {class: A, reaction: 'Ar + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(1S0) -> e + Ar(4p[3/2]1), Excitation': {class: A, reaction: 'Ar + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(1S0) -> e + Ar(4p[3/2]2), Excitation': {class: A, reaction: 'Ar + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(1S0) -> e + Ar(4p[1/2]0), Excitation': {class: A, reaction: 'Ar + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(1S0) -> e + Ar(4p''[3/2]1), Excitation': {class: A, reaction: 'Ar + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(1S0) -> e + Ar(4p''[3/2]2), Excitation': {class: A, reaction: 'Ar + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(1S0) -> e + Ar(4p''[1/2]1), Excitation': {class: A, reaction: 'Ar + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(1S0) -> e + Ar(4p''[1/2]0), Excitation': {class: A, reaction: 'Ar + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(1S0) -> e + Ar(3d[1/2]0+3d[1/2]1), Excitation': {class: A, reaction: 'Ar + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(1S0) -> e + Ar(3d[3/2]2), Excitation': {class: A, reaction: 'Ar + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(1S0) -> e + Ar(3d[7/2]4), Excitation': {class: A, reaction: 'Ar + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(1S0) -> e + Ar(3d[7/2]3), Excitation': {class: A, reaction: 'Ar + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(1S0) -> e + Ar(3d[5/2]2+5s[3/2]2), Excitation': {class: A, reaction: 'Ar + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(1S0) -> e + Ar(3d[5/2]3+5s[3/2]1), Excitation': {class: A, reaction: 'Ar + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(1S0) -> e + Ar(3d[3/2]1), Excitation': {class: A, reaction: 'Ar + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(1S0) -> e + Ar(3d''[5/2]2), Excitation': {class: A, reaction: 'Ar + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(1S0) -> e + Ar(3d''[5/2or3/2]3or2+5s''[1/2]0or1), Excitation': {class: A, reaction: 'Ar + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(1S0) -> e + Ar(3d''[3/2]1), Excitation': {class: A, reaction: 'Ar + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(1S0) -> e + Ar(5p[1/2]1), Excitation': {class: A, reaction: 'Ar + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(1S0) -> e + Ar(5p[5/2]3), Excitation': {class: A, reaction: 'Ar + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(1S0) -> e + Ar(5p[5/2]2), Excitation': {class: A, reaction: 'Ar + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(1S0) -> e + Ar(5p[3/2]1), Excitation': {class: A, reaction: 'Ar + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(1S0) -> e + Ar(5p[3/2]2), Excitation': {class: A, reaction: 'Ar + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(1S0) -> e + Ar(5p[1/2]0), Excitation': {class: A, reaction: 'Ar + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(1S0) -> e + Ar(5p''[3/2]1), Excitation': {class: A, reaction: 'Ar + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(1S0) -> e + Ar(5p''[1/2]1), Excitation': {class: A, reaction: 'Ar + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(1S0) -> e + Ar(5p''[3/2]2), Excitation': {class: A, reaction: 'Ar + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(1S0) -> e + Ar(5p''[1/2]0), Excitation': {class: A, reaction: 'Ar + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(1S0) -> e + Ar(4d), Excitation': {class: A, reaction: 'Ar + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(1S0) -> e + Ar(6s), Excitation': {class: A, reaction: 'Ar + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(1S0) -> e + Ar(4d''), Excitation': {class: A, reaction: 'Ar + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(1S0) -> e + e + Ar(+,gnd), Ionization': {class: A, reaction: 'Ar + e- => Arp + e- + e-'}
-  'e + Ar(3P2) -> e + Ar(3P2), Elastic': {class: B}
-  'e + Ar(3P1) -> e + Ar(3P1), Elastic': {class: B}
-  'e + Ar(3P0) -> e + Ar(3P0), Elastic': {class: B}
-  'e + Ar(1P1) -> e + Ar(1P1), Elastic': {class: B}
-  'e + Ar(3P0) <-> e + Ar(1P1), Excitation': {class: A, reaction: 'Ar(1s3) + e- <=> Ar(1s2) + e-'}
-  'e + Ar(3P0) -> e + Ar(4p[1/2]1), Excitation': {class: A, reaction: 'Ar(1s3) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P0) -> e + Ar(4p[5/2]3), Excitation': {class: A, reaction: 'Ar(1s3) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P0) -> e + Ar(4p[5/2]2), Excitation': {class: A, reaction: 'Ar(1s3) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P0) -> e + Ar(4p[3/2]1), Excitation': {class: A, reaction: 'Ar(1s3) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P0) -> e + Ar(4p[3/2]2), Excitation': {class: A, reaction: 'Ar(1s3) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P0) -> e + Ar(4p[1/2]0), Excitation': {class: A, reaction: 'Ar(1s3) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P0) -> e + Ar(4p''[3/2]1), Excitation': {class: A, reaction: 'Ar(1s3) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P0) -> e + Ar(4p''[3/2]2), Excitation': {class: A, reaction: 'Ar(1s3) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P0) -> e + Ar(4p''[1/2]1), Excitation': {class: A, reaction: 'Ar(1s3) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P0) -> e + Ar(4p''[1/2]0), Excitation': {class: A, reaction: 'Ar(1s3) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P0) -> e + Ar(3d[1/2]0), Excitation': {class: A, reaction: 'Ar(1s3) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P0) -> e + Ar(3d[1/2]1), Excitation': {class: A, reaction: 'Ar(1s3) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P0) -> e + Ar(3d[3/2]2), Excitation': {class: A, reaction: 'Ar(1s3) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P0) -> e + Ar(3d[7/2]4), Excitation': {class: A, reaction: 'Ar(1s3) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P0) -> e + Ar(5s[3/2]2), Excitation': {class: A, reaction: 'Ar(1s3) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P0) -> e + Ar(3d[7/2]3), Excitation': {class: A, reaction: 'Ar(1s3) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P0) -> e + Ar(5s[3/2]1), Excitation': {class: A, reaction: 'Ar(1s3) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P0) -> e + Ar(3d[5/2]2), Excitation': {class: A, reaction: 'Ar(1s3) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P0) -> e + Ar(3d[5/2]3), Excitation': {class: A, reaction: 'Ar(1s3) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P0) -> e + Ar(3d[3/2]1), Excitation': {class: A, reaction: 'Ar(1s3) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P0) -> e + Ar(5s''[1/2]0), Excitation': {class: A, reaction: 'Ar(1s3) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P0) -> e + Ar(5s''[1/2]1), Excitation': {class: A, reaction: 'Ar(1s3) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P0) -> e + Ar(3d''[5/2]2), Excitation': {class: A, reaction: 'Ar(1s3) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P0) -> e + Ar(3d''[3/2]2), Excitation': {class: A, reaction: 'Ar(1s3) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P0) -> e + Ar(3d''[5/2]3), Excitation': {class: A, reaction: 'Ar(1s3) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P0) -> e + Ar(3d''[3/2]1), Excitation': {class: A, reaction: 'Ar(1s3) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(1P1) -> e + Ar(4p[1/2]1), Excitation': {class: A, reaction: 'Ar(1s2) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(1P1) -> e + Ar(4p[5/2]3), Excitation': {class: A, reaction: 'Ar(1s2) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(1P1) -> e + Ar(4p[5/2]2), Excitation': {class: A, reaction: 'Ar(1s2) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(1P1) -> e + Ar(4p[3/2]1), Excitation': {class: A, reaction: 'Ar(1s2) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(1P1) -> e + Ar(4p[3/2]2), Excitation': {class: A, reaction: 'Ar(1s2) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(1P1) -> e + Ar(4p[1/2]0), Excitation': {class: A, reaction: 'Ar(1s2) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(1P1) -> e + Ar(4p''[3/2]1), Excitation': {class: A, reaction: 'Ar(1s2) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(1P1) -> e + Ar(4p''[3/2]2), Excitation': {class: A, reaction: 'Ar(1s2) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(1P1) -> e + Ar(4p''[1/2]1), Excitation': {class: A, reaction: 'Ar(1s2) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(1P1) -> e + Ar(4p''[1/2]0), Excitation': {class: A, reaction: 'Ar(1s2) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(1P1) -> e + Ar(3d[1/2]0), Excitation': {class: A, reaction: 'Ar(1s2) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(1P1) -> e + Ar(3d[1/2]1), Excitation': {class: A, reaction: 'Ar(1s2) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(1P1) -> e + Ar(3d[3/2]2), Excitation': {class: A, reaction: 'Ar(1s2) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(1P1) -> e + Ar(3d[7/2]4), Excitation': {class: A, reaction: 'Ar(1s2) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(1P1) -> e + Ar(5s[3/2]2), Excitation': {class: A, reaction: 'Ar(1s2) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(1P1) -> e + Ar(3d[7/2]3), Excitation': {class: A, reaction: 'Ar(1s2) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(1P1) -> e + Ar(5s[3/2]1), Excitation': {class: A, reaction: 'Ar(1s2) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(1P1) -> e + Ar(3d[5/2]2), Excitation': {class: A, reaction: 'Ar(1s2) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(1P1) -> e + Ar(3d[5/2]3), Excitation': {class: A, reaction: 'Ar(1s2) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(1P1) -> e + Ar(3d[3/2]1), Excitation': {class: A, reaction: 'Ar(1s2) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(1P1) -> e + Ar(5s''[1/2]0), Excitation': {class: A, reaction: 'Ar(1s2) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(1P1) -> e + Ar(5s''[1/2]1), Excitation': {class: A, reaction: 'Ar(1s2) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(1P1) -> e + Ar(3d''[5/2]2), Excitation': {class: A, reaction: 'Ar(1s2) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(1P1) -> e + Ar(3d''[3/2]2), Excitation': {class: A, reaction: 'Ar(1s2) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(1P1) -> e + Ar(3d''[5/2]3), Excitation': {class: A, reaction: 'Ar(1s2) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(1P1) -> e + Ar(3d''[3/2]1), Excitation': {class: A, reaction: 'Ar(1s2) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P1) <-> e + Ar(3P0), Excitation': {class: A, reaction: 'Ar(1s4) + e- <=> Ar(1s3) + e-'}
-  'e + Ar(3P1) <-> e + Ar(1P1), Excitation': {class: A, reaction: 'Ar(1s4) + e- <=> Ar(1s2) + e-'}
-  'e + Ar(3P1) -> e + Ar(4p[1/2]1), Excitation': {class: A, reaction: 'Ar(1s4) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P1) -> e + Ar(4p[5/2]3), Excitation': {class: A, reaction: 'Ar(1s4) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P1) -> e + Ar(4p[5/2]2), Excitation': {class: A, reaction: 'Ar(1s4) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P1) -> e + Ar(4p[3/2]1), Excitation': {class: A, reaction: 'Ar(1s4) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P1) -> e + Ar(4p[3/2]2), Excitation': {class: A, reaction: 'Ar(1s4) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P1) -> e + Ar(4p[1/2]0), Excitation': {class: A, reaction: 'Ar(1s4) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P1) -> e + Ar(4p''[3/2]1), Excitation': {class: A, reaction: 'Ar(1s4) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P1) -> e + Ar(4p''[3/2]2), Excitation': {class: A, reaction: 'Ar(1s4) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P1) -> e + Ar(4p''[1/2]1), Excitation': {class: A, reaction: 'Ar(1s4) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P1) -> e + Ar(4p''[1/2]0), Excitation': {class: A, reaction: 'Ar(1s4) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P1) -> e + Ar(3d[1/2]0), Excitation': {class: A, reaction: 'Ar(1s4) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P1) -> e + Ar(3d[1/2]1), Excitation': {class: A, reaction: 'Ar(1s4) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P1) -> e + Ar(3d[3/2]2), Excitation': {class: A, reaction: 'Ar(1s4) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P1) -> e + Ar(3d[7/2]4), Excitation': {class: A, reaction: 'Ar(1s4) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P1) -> e + Ar(5s[3/2]2), Excitation': {class: A, reaction: 'Ar(1s4) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P1) -> e + Ar(3d[7/2]3), Excitation': {class: A, reaction: 'Ar(1s4) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P1) -> e + Ar(5s[3/2]1), Excitation': {class: A, reaction: 'Ar(1s4) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P1) -> e + Ar(3d[5/2]2), Excitation': {class: A, reaction: 'Ar(1s4) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P1) -> e + Ar(3d[5/2]3), Excitation': {class: A, reaction: 'Ar(1s4) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P1) -> e + Ar(3d[3/2]1), Excitation': {class: A, reaction: 'Ar(1s4) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P1) -> e + Ar(5s''[1/2]0), Excitation': {class: A, reaction: 'Ar(1s4) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P1) -> e + Ar(5s''[1/2]1), Excitation': {class: A, reaction: 'Ar(1s4) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P1) -> e + Ar(3d''[5/2]2), Excitation': {class: A, reaction: 'Ar(1s4) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P1) -> e + Ar(3d''[3/2]2), Excitation': {class: A, reaction: 'Ar(1s4) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P1) -> e + Ar(3d''[5/2]3), Excitation': {class: A, reaction: 'Ar(1s4) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P1) -> e + Ar(3d''[3/2]1), Excitation': {class: A, reaction: 'Ar(1s4) + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P2) <-> e + Ar(3P1), Excitation': {class: A, reaction: 'Ars + e- <=> Ar(1s4) + e-'}
-  'e + Ar(3P2) <-> e + Ar(3P0), Excitation': {class: A, reaction: 'Ars + e- <=> Ar(1s3) + e-'}
-  'e + Ar(3P2) <-> e + Ar(1P1), Excitation': {class: A, reaction: 'Ars + e- <=> Ar(1s2) + e-'}
-  'e + Ar(3P2) -> e + Ar(4p[1/2]1), Excitation': {class: A, reaction: 'Ars + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P2) -> e + Ar(4p[5/2]3), Excitation': {class: A, reaction: 'Ars + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P2) -> e + Ar(4p[5/2]2), Excitation': {class: A, reaction: 'Ars + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P2) -> e + Ar(4p[3/2]1), Excitation': {class: A, reaction: 'Ars + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P2) -> e + Ar(4p[3/2]2), Excitation': {class: A, reaction: 'Ars + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P2) -> e + Ar(4p[1/2]0), Excitation': {class: A, reaction: 'Ars + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P2) -> e + Ar(4p''[3/2]1), Excitation': {class: A, reaction: 'Ars + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P2) -> e + Ar(4p''[3/2]2), Excitation': {class: A, reaction: 'Ars + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P2) -> e + Ar(4p''[1/2]1), Excitation': {class: A, reaction: 'Ars + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P2) -> e + Ar(4p''[1/2]0), Excitation': {class: A, reaction: 'Ars + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P2) -> e + Ar(3d[1/2]0), Excitation': {class: A, reaction: 'Ars + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P2) -> e + Ar(3d[1/2]1), Excitation': {class: A, reaction: 'Ars + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P2) -> e + Ar(3d[3/2]2), Excitation': {class: A, reaction: 'Ars + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P2) -> e + Ar(3d[7/2]4), Excitation': {class: A, reaction: 'Ars + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P2) -> e + Ar(5s[3/2]2), Excitation': {class: A, reaction: 'Ars + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P2) -> e + Ar(3d[7/2]3), Excitation': {class: A, reaction: 'Ars + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P2) -> e + Ar(5s[3/2]1), Excitation': {class: A, reaction: 'Ars + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P2) -> e + Ar(3d[5/2]2), Excitation': {class: A, reaction: 'Ars + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P2) -> e + Ar(3d[5/2]3), Excitation': {class: A, reaction: 'Ars + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P2) -> e + Ar(3d[3/2]1), Excitation': {class: A, reaction: 'Ars + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P2) -> e + Ar(5s''[1/2]0), Excitation': {class: A, reaction: 'Ars + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P2) -> e + Ar(5s''[1/2]1), Excitation': {class: A, reaction: 'Ars + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P2) -> e + Ar(3d''[5/2]2), Excitation': {class: A, reaction: 'Ars + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P2) -> e + Ar(3d''[3/2]2), Excitation': {class: A, reaction: 'Ars + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P2) -> e + Ar(3d''[5/2]3), Excitation': {class: A, reaction: 'Ars + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P2) -> e + Ar(3d''[3/2]1), Excitation': {class: A, reaction: 'Ars + e- => Ar(1s_i) + e- + hv'}
-  'e + Ar(3P2) -> e + e + Ar(+,gnd), Ionization': {class: A, reaction: 'Ars + e- => Arp + e- + e-'}
-  'e + Ar(3P1) -> e + e + Ar(+,gnd), Ionization': {class: A, reaction: 'Ar(1s4) + e- => Arp + e- + e-'}
-  'e + Ar(3P0) -> e + e + Ar(+,gnd), Ionization': {class: A, reaction: 'Ar(1s3) + e- => Arp + e- + e-'}
-  'e + Ar(1P1) -> e + e + Ar(+,gnd), Ionization': {class: A, reaction: 'Ar(1s2) + e- => Arp + e- + e-'}
+  e + Ar(1S0) -> e + Ar(1S0), Elastic:
+    class: B
+  e + Ar(1S0) -> e + Ar(3P2), Excitation:
+    class: A
+    reaction: Ar + e- => Ars + e-
+    inverse:
+      status: paired
+      reaction: Ars + e- => Ar + e-
+  e + Ar(1S0) -> e + Ar(3P1), Excitation:
+    class: A
+    reaction: Ar + e- => Ar(1s4) + e-
+    inverse:
+      status: paired
+      reaction: Ar(1s4) + e- => Ar + e-
+  e + Ar(1S0) -> e + Ar(3P0), Excitation:
+    class: A
+    reaction: Ar + e- => Ar(1s3) + e-
+    inverse:
+      status: paired
+      reaction: Ar(1s3) + e- => Ar + e-
+  e + Ar(1S0) -> e + Ar(1P1), Excitation:
+    class: A
+    reaction: Ar + e- => Ar(1s2) + e-
+    inverse:
+      status: paired
+      reaction: Ar(1s2) + e- => Ar + e-
+  e + Ar(1S0) -> e + Ar(4p[1/2]1), Excitation:
+    class: A
+    reaction: Ar + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000006':
+          A_total_s_1: 25470000.0
+          k_sup_max_m3_s: 5.50515558679795e-16
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 2.1614273996065762e-05
+  e + Ar(1S0) -> e + Ar(4p[5/2]3), Excitation:
+    class: A
+    reaction: Ar + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000007':
+          A_total_s_1: 33000000.0
+          k_sup_max_m3_s: 2.20234864888113e-16
+          EN_Td_at_max: 5.640108966206418
+          ratio_at_ne_max: 6.673783784488272e-06
+  e + Ar(1S0) -> e + Ar(4p[5/2]2), Excitation:
+    class: A
+    reaction: Ar + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000008':
+          A_total_s_1: 32270000.0
+          k_sup_max_m3_s: 3.79282190671431e-16
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 1.1753399153127704e-05
+  e + Ar(1S0) -> e + Ar(4p[3/2]1), Excitation:
+    class: A
+    reaction: Ar + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000009':
+          A_total_s_1: 33690000.0
+          k_sup_max_m3_s: 3.0935531830496e-16
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 9.182407785840308e-06
+  e + Ar(1S0) -> e + Ar(4p[3/2]2), Excitation:
+    class: A
+    reaction: Ar + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000010':
+          A_total_s_1: 34400000.0
+          k_sup_max_m3_s: 2.30178264572544e-16
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 6.6912286212948835e-06
+  e + Ar(1S0) -> e + Ar(4p[1/2]0), Excitation:
+    class: A
+    reaction: Ar + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000011':
+          A_total_s_1: 40000000.0
+          k_sup_max_m3_s: 7.00377140501111e-16
+          EN_Td_at_max: 5.029733718731742
+          ratio_at_ne_max: 1.7509428512527777e-05
+  e + Ar(1S0) -> e + Ar(4p'[3/2]1), Excitation:
+    class: A
+    reaction: Ar + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000012':
+          A_total_s_1: 33152000.0
+          k_sup_max_m3_s: 2.70373385285334e-16
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 8.155567847651242e-06
+  e + Ar(1S0) -> e + Ar(4p'[3/2]2), Excitation:
+    class: A
+    reaction: Ar + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000013':
+          A_total_s_1: 34600000.0
+          k_sup_max_m3_s: 2.07593872235991e-16
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 5.99982289699396e-06
+  e + Ar(1S0) -> e + Ar(4p'[1/2]1), Excitation:
+    class: A
+    reaction: Ar + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000014':
+          A_total_s_1: 35230000.0
+          k_sup_max_m3_s: 1.64881286913792e-16
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 4.680138714555549e-06
+  e + Ar(1S0) -> e + Ar(4p'[1/2]0), Excitation:
+    class: A
+    reaction: Ar + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000015':
+          A_total_s_1: 45236000.0
+          k_sup_max_m3_s: 1.7002276576066e-15
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 3.7585720612047925e-05
+  e + Ar(1S0) -> e + Ar(3d[1/2]0+3d[1/2]1), Excitation:
+    class: A
+    reaction: Ar + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000016':
+          A_total_s_1: 9618690.228479564
+          k_sup_max_m3_s: 6.97777119396657e-16
+          EN_Td_at_max: 4.4854135678805545
+          ratio_at_ne_max: 7.254388100893808e-05
+        '018001.000017':
+          A_total_s_1: 10093751.776389563
+          k_sup_max_m3_s: 6.97777119396657e-16
+          EN_Td_at_max: 4.4854135678805545
+          ratio_at_ne_max: 6.912960956983678e-05
+  e + Ar(1S0) -> e + Ar(3d[3/2]2), Excitation:
+    class: A
+    reaction: Ar + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000018':
+          A_total_s_1: 8418257.505976114
+          k_sup_max_m3_s: 4.49138285968582e-16
+          EN_Td_at_max: 4.749782717643584
+          ratio_at_ne_max: 5.335288040900853e-05
+  e + Ar(1S0) -> e + Ar(3d[7/2]4), Excitation:
+    class: A
+    reaction: Ar + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000019':
+          A_total_s_1: 17949021.44775623
+          k_sup_max_m3_s: 2.42141474269109e-16
+          EN_Td_at_max: 4.235758995920592
+          ratio_at_ne_max: 1.3490511166522596e-05
+  e + Ar(1S0) -> e + Ar(3d[7/2]3), Excitation:
+    class: A
+    reaction: Ar + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000020':
+          A_total_s_1: 13951644.453535283
+          k_sup_max_m3_s: 1.41040871929789e-16
+          EN_Td_at_max: 4.0
+          ratio_at_ne_max: 1.0109265069039934e-05
+  e + Ar(1S0) -> e + Ar(3d[5/2]2+5s[3/2]2), Excitation:
+    class: A
+    reaction: Ar + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000021':
+          A_total_s_1: 14406405.532807786
+          k_sup_max_m3_s: 1.51471524221875e-16
+          EN_Td_at_max: 4.0
+          ratio_at_ne_max: 1.0514178840580884e-05
+        '018001.000022':
+          A_total_s_1: 21249000.0
+          k_sup_max_m3_s: 1.51471524221875e-16
+          EN_Td_at_max: 4.0
+          ratio_at_ne_max: 7.128407182543884e-06
+  e + Ar(1S0) -> e + Ar(3d[5/2]3+5s[3/2]1), Excitation:
+    class: A
+    reaction: Ar + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000024':
+          A_total_s_1: 20876044.386669062
+          k_sup_max_m3_s: 5.48309096566967e-17
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 2.626498997660227e-06
+        '018001.000023':
+          A_total_s_1: 20609000.0
+          k_sup_max_m3_s: 5.48309096566967e-17
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 2.6605322750592797e-06
+  e + Ar(1S0) -> e + Ar(3d[3/2]1), Excitation:
+    class: A
+    reaction: Ar + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000025':
+          A_total_s_1: 19215127.2458574
+          k_sup_max_m3_s: 3.46965556311234e-16
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 1.8056896104397985e-05
+  e + Ar(1S0) -> e + Ar(3d'[5/2]2), Excitation:
+    class: A
+    reaction: Ar + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000026':
+          A_total_s_1: 17352279.72693032
+          k_sup_max_m3_s: 2.10851856612076e-16
+          EN_Td_at_max: 5.029733718731742
+          ratio_at_ne_max: 1.2151248131669926e-05
+  e + Ar(1S0) -> e + Ar(3d'[5/2or3/2]3or2+5s'[1/2]0or1), Excitation:
+    class: A
+    reaction: Ar + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000027':
+          A_total_s_1: 12038517.71920618
+          k_sup_max_m3_s: 6.98909822125587e-17
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 5.805613601503036e-06
+        '018001.000028':
+          A_total_s_1: 18144033.185286045
+          k_sup_max_m3_s: 6.98909822125587e-17
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 3.852009170113126e-06
+        '018001.000029':
+          A_total_s_1: 20580000.0
+          k_sup_max_m3_s: 6.98909822125587e-17
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 3.3960632756345343e-06
+        '018001.000030':
+          A_total_s_1: 20220000.0
+          k_sup_max_m3_s: 6.98909822125587e-17
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 3.4565273102155644e-06
+  e + Ar(1S0) -> e + Ar(3d'[3/2]1), Excitation:
+    class: A
+    reaction: Ar + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000031':
+          A_total_s_1: 18862358.4595159
+          k_sup_max_m3_s: 3.12167564738775e-16
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 1.6549763138516176e-05
+  e + Ar(1S0) -> e + Ar(5p[1/2]1), Excitation:
+    class: A
+    reaction: Ar + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000032':
+          A_total_s_1: 7657186.847934492
+          k_sup_max_m3_s: 1.96822314073129e-16
+          EN_Td_at_max: 4.0
+          ratio_at_ne_max: 2.5704259015988538e-05
+  e + Ar(1S0) -> e + Ar(5p[5/2]3), Excitation:
+    class: A
+    reaction: Ar + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000033':
+          A_total_s_1: 6859805.528466006
+          k_sup_max_m3_s: 1.26109573857357e-16
+          EN_Td_at_max: 4.749782717643584
+          ratio_at_ne_max: 1.838384096080311e-05
+  e + Ar(1S0) -> e + Ar(5p[5/2]2), Excitation:
+    class: A
+    reaction: Ar + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000034':
+          A_total_s_1: 7509973.159940425
+          k_sup_max_m3_s: 2.58935649535876e-16
+          EN_Td_at_max: 4.0
+          ratio_at_ne_max: 3.44789047871817e-05
+  e + Ar(1S0) -> e + Ar(5p[3/2]1), Excitation:
+    class: A
+    reaction: Ar + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000035':
+          A_total_s_1: 8202858.657379191
+          k_sup_max_m3_s: 1.10372295011444e-16
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 1.3455345218237357e-05
+  e + Ar(1S0) -> e + Ar(5p[3/2]2), Excitation:
+    class: A
+    reaction: Ar + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000036':
+          A_total_s_1: 9570233.277512874
+          k_sup_max_m3_s: 1.00309087455556e-16
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 1.0481362841097271e-05
+  e + Ar(1S0) -> e + Ar(5p[1/2]0), Excitation:
+    class: A
+    reaction: Ar + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000037':
+          A_total_s_1: 10770952.534059295
+          k_sup_max_m3_s: 2.30281293338479e-16
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 2.137984478255721e-05
+  e + Ar(1S0) -> e + Ar(5p'[3/2]1), Excitation:
+    class: A
+    reaction: Ar + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000038':
+          A_total_s_1: 8610979.945196554
+          k_sup_max_m3_s: 1.48833265627478e-16
+          EN_Td_at_max: 4.235758995920592
+          ratio_at_ne_max: 1.728412637989029e-05
+  e + Ar(1S0) -> e + Ar(5p'[1/2]1), Excitation:
+    class: A
+    reaction: Ar + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000039':
+          A_total_s_1: 8312661.185839332
+          k_sup_max_m3_s: 9.47050499684268e-17
+          EN_Td_at_max: 4.0
+          ratio_at_ne_max: 1.1392867801439737e-05
+  e + Ar(1S0) -> e + Ar(5p'[3/2]2), Excitation:
+    class: A
+    reaction: Ar + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000040':
+          A_total_s_1: 8649595.396721471
+          k_sup_max_m3_s: 8.16277271472374e-17
+          EN_Td_at_max: 4.0
+          ratio_at_ne_max: 9.437172885355706e-06
+  e + Ar(1S0) -> e + Ar(5p'[1/2]0), Excitation:
+    class: A
+    reaction: Ar + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000043':
+          A_total_s_1: 10379261.035891784
+          k_sup_max_m3_s: 3.76634042849993e-16
+          EN_Td_at_max: 5.029733718731742
+          ratio_at_ne_max: 3.628717319543093e-05
+  e + Ar(1S0) -> e + Ar(4d), Excitation:
+    class: A
+    reaction: Ar + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000041':
+          A_total_s_1: 6684188.976469773
+          k_sup_max_m3_s: 2.05908479372984e-17
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 3.0805304891564228e-06
+        '018001.000042':
+          A_total_s_1: 6859554.626266658
+          k_sup_max_m3_s: 2.05908479372984e-17
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 3.001776217139779e-06
+        '018001.000044':
+          A_total_s_1: 6697605.9415885415
+          k_sup_max_m3_s: 2.05908479372984e-17
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 3.074359422885762e-06
+        '018001.000045':
+          A_total_s_1: 3712993.216162445
+          k_sup_max_m3_s: 2.05908479372984e-17
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 5.545619595443274e-06
+        '018001.000046':
+          A_total_s_1: 3543133.761825226
+          k_sup_max_m3_s: 2.05908479372984e-17
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 5.811479137240119e-06
+        '018001.000047':
+          A_total_s_1: 3050900.9967950843
+          k_sup_max_m3_s: 2.05908479372984e-17
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 6.7491039397636005e-06
+        '018001.000048':
+          A_total_s_1: 3014830.445872079
+          k_sup_max_m3_s: 2.05908479372984e-17
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 6.8298527253801255e-06
+        '018001.000051':
+          A_total_s_1: 4451707.824793167
+          k_sup_max_m3_s: 2.05908479372984e-17
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 4.625381706908197e-06
+  e + Ar(1S0) -> e + Ar(6s), Excitation:
+    class: A
+    reaction: Ar + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000049':
+          A_total_s_1: 11041697.190779757
+          k_sup_max_m3_s: 1.67370390136954e-17
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 1.5158031165418548e-06
+        '018001.000050':
+          A_total_s_1: 10595507.902784683
+          k_sup_max_m3_s: 1.67370390136954e-17
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 1.5796353669177685e-06
+  e + Ar(1S0) -> e + Ar(4d'), Excitation:
+    class: A
+    reaction: Ar + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000060':
+          A_total_s_1: 4508037.572573037
+          k_sup_max_m3_s: 2.43150069358992e-17
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 5.393701038303683e-06
+        '018001.000061':
+          A_total_s_1: 3875130.8670323724
+          k_sup_max_m3_s: 2.43150069358992e-17
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 6.274628591968034e-06
+        '018001.000062':
+          A_total_s_1: 3169778.992956362
+          k_sup_max_m3_s: 2.43150069358992e-17
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 7.670883992205807e-06
+        '018001.000063':
+          A_total_s_1: 5028219.472459784
+          k_sup_max_m3_s: 2.43150069358992e-17
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 4.835709154915707e-06
+  e + Ar(1S0) -> e + e + Ar(+,gnd), Ionization:
+    class: A
+    reaction: Ar + e- => Arp + e- + e-
+  e + Ar(3P2) -> e + Ar(3P2), Elastic:
+    class: B
+  e + Ar(3P1) -> e + Ar(3P1), Elastic:
+    class: B
+  e + Ar(3P0) -> e + Ar(3P0), Elastic:
+    class: B
+  e + Ar(1P1) -> e + Ar(1P1), Elastic:
+    class: B
+  e + Ar(3P0) <-> e + Ar(1P1), Excitation:
+    class: A
+    reaction: Ar(1s3) + e- => Ar(1s2) + e-
+    inverse:
+      status: paired
+      reaction: Ar(1s2) + e- => Ar(1s3) + e-
+  e + Ar(3P0) -> e + Ar(4p[1/2]1), Excitation:
+    class: A
+    reaction: Ar(1s3) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000006':
+          A_total_s_1: 25470000.0
+          k_sup_max_m3_s: 4.2369027833504525e-13
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 0.01663487547448156
+          ratio_per_electron_density_m3: 1.6634875474481557e-20
+  e + Ar(3P0) -> e + Ar(4p[5/2]3), Excitation:
+    class: A
+    reaction: Ar(1s3) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000007':
+          A_total_s_1: 33000000.0
+          k_sup_max_m3_s: 3.0793330572317594e-13
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 0.009331312294641694
+          ratio_per_electron_density_m3: 9.331312294641695e-21
+  e + Ar(3P0) -> e + Ar(4p[5/2]2), Excitation:
+    class: A
+    reaction: Ar(1s3) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000008':
+          A_total_s_1: 32270000.0
+          k_sup_max_m3_s: 3.2283874043543715e-13
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 0.010004299362734339
+          ratio_per_electron_density_m3: 1.0004299362734339e-20
+  e + Ar(3P0) -> e + Ar(4p[3/2]1), Excitation:
+    class: A
+    reaction: Ar(1s3) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000009':
+          A_total_s_1: 33690000.0
+          k_sup_max_m3_s: 2.768602624493112e-13
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 0.008217876593924346
+          ratio_per_electron_density_m3: 8.217876593924346e-21
+  e + Ar(3P0) -> e + Ar(4p[3/2]2), Excitation:
+    class: A
+    reaction: Ar(1s3) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000010':
+          A_total_s_1: 34400000.0
+          k_sup_max_m3_s: 2.894221063672979e-13
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 0.008413433324630753
+          ratio_per_electron_density_m3: 8.413433324630752e-21
+  e + Ar(3P0) -> e + Ar(4p[1/2]0), Excitation:
+    class: A
+    reaction: Ar(1s3) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000011':
+          A_total_s_1: 40000000.0
+          k_sup_max_m3_s: 2.463098520442791e-13
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 0.006157746301106977
+          ratio_per_electron_density_m3: 6.157746301106978e-21
+  e + Ar(3P0) -> e + Ar(4p'[3/2]1), Excitation:
+    class: A
+    reaction: Ar(1s3) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000012':
+          A_total_s_1: 33152000.0
+          k_sup_max_m3_s: 2.600957981374249e-13
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 0.007845553756558425
+          ratio_per_electron_density_m3: 7.845553756558426e-21
+  e + Ar(3P0) -> e + Ar(4p'[3/2]2), Excitation:
+    class: A
+    reaction: Ar(1s3) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000013':
+          A_total_s_1: 34600000.0
+          k_sup_max_m3_s: 2.507893565525917e-13
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 0.007248247299207853
+          ratio_per_electron_density_m3: 7.248247299207853e-21
+  e + Ar(3P0) -> e + Ar(4p'[1/2]1), Excitation:
+    class: A
+    reaction: Ar(1s3) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000014':
+          A_total_s_1: 35230000.0
+          k_sup_max_m3_s: 2.787102346540286e-13
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 0.007911161926029765
+          ratio_per_electron_density_m3: 7.911161926029765e-21
+  e + Ar(3P0) -> e + Ar(4p'[1/2]0), Excitation:
+    class: A
+    reaction: Ar(1s3) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000015':
+          A_total_s_1: 45236000.0
+          k_sup_max_m3_s: 2.54027338223345e-13
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 0.005615601251731918
+          ratio_per_electron_density_m3: 5.615601251731918e-21
+  e + Ar(3P0) -> e + Ar(3d[1/2]0), Excitation:
+    class: A
+    reaction: Ar(1s3) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000016':
+          A_total_s_1: 9618690.228479564
+          k_sup_max_m3_s: 4.905591628855531e-14
+          EN_Td_at_max: 4.0
+          ratio_at_ne_max: 0.005100061975518015
+          ratio_per_electron_density_m3: 5.100061975518015e-21
+  e + Ar(3P0) -> e + Ar(3d[1/2]1), Excitation:
+    class: A
+    reaction: Ar(1s3) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000017':
+          A_total_s_1: 10093751.776389563
+          k_sup_max_m3_s: 4.770888052843776e-14
+          EN_Td_at_max: 4.0
+          ratio_at_ne_max: 0.004726575567276607
+          ratio_per_electron_density_m3: 4.726575567276607e-21
+  e + Ar(3P0) -> e + Ar(3d[3/2]2), Excitation:
+    class: A
+    reaction: Ar(1s3) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000018':
+          A_total_s_1: 8418257.505976114
+          k_sup_max_m3_s: 4.483685047704962e-14
+          EN_Td_at_max: 4.0
+          ratio_at_ne_max: 0.00532614385402442
+          ratio_per_electron_density_m3: 5.32614385402442e-21
+  e + Ar(3P0) -> e + Ar(3d[7/2]4), Excitation:
+    class: A
+    reaction: Ar(1s3) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000019':
+          A_total_s_1: 17949021.44775623
+          k_sup_max_m3_s: 4.3547383974078553e-14
+          EN_Td_at_max: 8.917795292374963
+          ratio_at_ne_max: 0.0024261703681635704
+          ratio_per_electron_density_m3: 2.4261703681635703e-21
+  e + Ar(3P0) -> e + Ar(5s[3/2]2), Excitation:
+    class: A
+    reaction: Ar(1s3) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000022':
+          A_total_s_1: 21249000.0
+          k_sup_max_m3_s: 3.9507496103176314e-14
+          EN_Td_at_max: 4.0
+          ratio_at_ne_max: 0.0018592637819745078
+          ratio_per_electron_density_m3: 1.859263781974508e-21
+  e + Ar(3P0) -> e + Ar(3d[7/2]3), Excitation:
+    class: A
+    reaction: Ar(1s3) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000020':
+          A_total_s_1: 13951644.453535283
+          k_sup_max_m3_s: 4.541023474468466e-14
+          EN_Td_at_max: 10.0
+          ratio_at_ne_max: 0.0032548302743751405
+          ratio_per_electron_density_m3: 3.2548302743751406e-21
+  e + Ar(3P0) -> e + Ar(5s[3/2]1), Excitation:
+    class: A
+    reaction: Ar(1s3) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000023':
+          A_total_s_1: 20609000.0
+          k_sup_max_m3_s: 4.603879955140449e-14
+          EN_Td_at_max: 4.0
+          ratio_at_ne_max: 0.0022339171988647916
+          ratio_per_electron_density_m3: 2.2339171988647918e-21
+  e + Ar(3P0) -> e + Ar(3d[5/2]2), Excitation:
+    class: A
+    reaction: Ar(1s3) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000021':
+          A_total_s_1: 14406405.532807786
+          k_sup_max_m3_s: 3.850146504064135e-14
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 0.0026725240347400853
+          ratio_per_electron_density_m3: 2.6725240347400853e-21
+  e + Ar(3P0) -> e + Ar(3d[5/2]3), Excitation:
+    class: A
+    reaction: Ar(1s3) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000024':
+          A_total_s_1: 20876044.386669062
+          k_sup_max_m3_s: 4.120545591655512e-14
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 0.0019738153049180104
+          ratio_per_electron_density_m3: 1.9738153049180104e-21
+  e + Ar(3P0) -> e + Ar(3d[3/2]1), Excitation:
+    class: A
+    reaction: Ar(1s3) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000025':
+          A_total_s_1: 19215127.2458574
+          k_sup_max_m3_s: 4.019791454291105e-14
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 0.002091993148345002
+          ratio_per_electron_density_m3: 2.091993148345002e-21
+  e + Ar(3P0) -> e + Ar(5s'[1/2]0), Excitation:
+    class: A
+    reaction: Ar(1s3) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000029':
+          A_total_s_1: 20580000.0
+          k_sup_max_m3_s: 4.2099926613779714e-14
+          EN_Td_at_max: 4.0
+          ratio_at_ne_max: 0.0020456718471224353
+          ratio_per_electron_density_m3: 2.0456718471224353e-21
+  e + Ar(3P0) -> e + Ar(5s'[1/2]1), Excitation:
+    class: A
+    reaction: Ar(1s3) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000030':
+          A_total_s_1: 20220000.0
+          k_sup_max_m3_s: 4.418698460548753e-14
+          EN_Td_at_max: 4.0
+          ratio_at_ne_max: 0.0021853108113495316
+          ratio_per_electron_density_m3: 2.1853108113495318e-21
+  e + Ar(3P0) -> e + Ar(3d'[5/2]2), Excitation:
+    class: A
+    reaction: Ar(1s3) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000026':
+          A_total_s_1: 17352279.72693032
+          k_sup_max_m3_s: 4.083095341177948e-14
+          EN_Td_at_max: 15.811388300841896
+          ratio_at_ne_max: 0.0023530598892093023
+          ratio_per_electron_density_m3: 2.3530598892093022e-21
+  e + Ar(3P0) -> e + Ar(3d'[3/2]2), Excitation:
+    class: A
+    reaction: Ar(1s3) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000027':
+          A_total_s_1: 12038517.71920618
+          k_sup_max_m3_s: 4.113631534844274e-14
+          EN_Td_at_max: 10.58939748980148
+          ratio_at_ne_max: 0.003417058171772602
+          ratio_per_electron_density_m3: 3.4170581717726016e-21
+  e + Ar(3P0) -> e + Ar(3d'[5/2]3), Excitation:
+    class: A
+    reaction: Ar(1s3) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000028':
+          A_total_s_1: 18144033.185286045
+          k_sup_max_m3_s: 2.959483209798681e-14
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 0.0016311054877251228
+          ratio_per_electron_density_m3: 1.6311054877251227e-21
+  e + Ar(3P0) -> e + Ar(3d'[3/2]1), Excitation:
+    class: A
+    reaction: Ar(1s3) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000031':
+          A_total_s_1: 18862358.4595159
+          k_sup_max_m3_s: 4.288932307421374e-14
+          EN_Td_at_max: 4.0
+          ratio_at_ne_max: 0.0022738048991204724
+          ratio_per_electron_density_m3: 2.2738048991204725e-21
+  e + Ar(1P1) -> e + Ar(4p[1/2]1), Excitation:
+    class: A
+    reaction: Ar(1s2) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000006':
+          A_total_s_1: 25470000.0
+          k_sup_max_m3_s: 4.2369027833504525e-13
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 0.01663487547448156
+          ratio_per_electron_density_m3: 1.6634875474481557e-20
+  e + Ar(1P1) -> e + Ar(4p[5/2]3), Excitation:
+    class: A
+    reaction: Ar(1s2) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000007':
+          A_total_s_1: 33000000.0
+          k_sup_max_m3_s: 3.0793330572317594e-13
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 0.009331312294641694
+          ratio_per_electron_density_m3: 9.331312294641695e-21
+  e + Ar(1P1) -> e + Ar(4p[5/2]2), Excitation:
+    class: A
+    reaction: Ar(1s2) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000008':
+          A_total_s_1: 32270000.0
+          k_sup_max_m3_s: 3.2283874043543715e-13
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 0.010004299362734339
+          ratio_per_electron_density_m3: 1.0004299362734339e-20
+  e + Ar(1P1) -> e + Ar(4p[3/2]1), Excitation:
+    class: A
+    reaction: Ar(1s2) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000009':
+          A_total_s_1: 33690000.0
+          k_sup_max_m3_s: 2.768602624493112e-13
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 0.008217876593924346
+          ratio_per_electron_density_m3: 8.217876593924346e-21
+  e + Ar(1P1) -> e + Ar(4p[3/2]2), Excitation:
+    class: A
+    reaction: Ar(1s2) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000010':
+          A_total_s_1: 34400000.0
+          k_sup_max_m3_s: 2.894221063672979e-13
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 0.008413433324630753
+          ratio_per_electron_density_m3: 8.413433324630752e-21
+  e + Ar(1P1) -> e + Ar(4p[1/2]0), Excitation:
+    class: A
+    reaction: Ar(1s2) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000011':
+          A_total_s_1: 40000000.0
+          k_sup_max_m3_s: 2.463098520442791e-13
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 0.006157746301106977
+          ratio_per_electron_density_m3: 6.157746301106978e-21
+  e + Ar(1P1) -> e + Ar(4p'[3/2]1), Excitation:
+    class: A
+    reaction: Ar(1s2) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000012':
+          A_total_s_1: 33152000.0
+          k_sup_max_m3_s: 2.600957981374249e-13
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 0.007845553756558425
+          ratio_per_electron_density_m3: 7.845553756558426e-21
+  e + Ar(1P1) -> e + Ar(4p'[3/2]2), Excitation:
+    class: A
+    reaction: Ar(1s2) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000013':
+          A_total_s_1: 34600000.0
+          k_sup_max_m3_s: 2.507893565525917e-13
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 0.007248247299207853
+          ratio_per_electron_density_m3: 7.248247299207853e-21
+  e + Ar(1P1) -> e + Ar(4p'[1/2]1), Excitation:
+    class: A
+    reaction: Ar(1s2) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000014':
+          A_total_s_1: 35230000.0
+          k_sup_max_m3_s: 2.787102346540286e-13
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 0.007911161926029765
+          ratio_per_electron_density_m3: 7.911161926029765e-21
+  e + Ar(1P1) -> e + Ar(4p'[1/2]0), Excitation:
+    class: A
+    reaction: Ar(1s2) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000015':
+          A_total_s_1: 45236000.0
+          k_sup_max_m3_s: 2.54027338223345e-13
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 0.005615601251731918
+          ratio_per_electron_density_m3: 5.615601251731918e-21
+  e + Ar(1P1) -> e + Ar(3d[1/2]0), Excitation:
+    class: A
+    reaction: Ar(1s2) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000016':
+          A_total_s_1: 9618690.228479564
+          k_sup_max_m3_s: 4.905591628855531e-14
+          EN_Td_at_max: 4.0
+          ratio_at_ne_max: 0.005100061975518015
+          ratio_per_electron_density_m3: 5.100061975518015e-21
+  e + Ar(1P1) -> e + Ar(3d[1/2]1), Excitation:
+    class: A
+    reaction: Ar(1s2) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000017':
+          A_total_s_1: 10093751.776389563
+          k_sup_max_m3_s: 4.770888052843776e-14
+          EN_Td_at_max: 4.0
+          ratio_at_ne_max: 0.004726575567276607
+          ratio_per_electron_density_m3: 4.726575567276607e-21
+  e + Ar(1P1) -> e + Ar(3d[3/2]2), Excitation:
+    class: A
+    reaction: Ar(1s2) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000018':
+          A_total_s_1: 8418257.505976114
+          k_sup_max_m3_s: 4.483685047704962e-14
+          EN_Td_at_max: 4.0
+          ratio_at_ne_max: 0.00532614385402442
+          ratio_per_electron_density_m3: 5.32614385402442e-21
+  e + Ar(1P1) -> e + Ar(3d[7/2]4), Excitation:
+    class: A
+    reaction: Ar(1s2) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000019':
+          A_total_s_1: 17949021.44775623
+          k_sup_max_m3_s: 4.3547383974078553e-14
+          EN_Td_at_max: 8.917795292374963
+          ratio_at_ne_max: 0.0024261703681635704
+          ratio_per_electron_density_m3: 2.4261703681635703e-21
+  e + Ar(1P1) -> e + Ar(5s[3/2]2), Excitation:
+    class: A
+    reaction: Ar(1s2) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000022':
+          A_total_s_1: 21249000.0
+          k_sup_max_m3_s: 3.9507496103176314e-14
+          EN_Td_at_max: 4.0
+          ratio_at_ne_max: 0.0018592637819745078
+          ratio_per_electron_density_m3: 1.859263781974508e-21
+  e + Ar(1P1) -> e + Ar(3d[7/2]3), Excitation:
+    class: A
+    reaction: Ar(1s2) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000020':
+          A_total_s_1: 13951644.453535283
+          k_sup_max_m3_s: 4.541023474468466e-14
+          EN_Td_at_max: 10.0
+          ratio_at_ne_max: 0.0032548302743751405
+          ratio_per_electron_density_m3: 3.2548302743751406e-21
+  e + Ar(1P1) -> e + Ar(5s[3/2]1), Excitation:
+    class: A
+    reaction: Ar(1s2) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000023':
+          A_total_s_1: 20609000.0
+          k_sup_max_m3_s: 4.603879955140449e-14
+          EN_Td_at_max: 4.0
+          ratio_at_ne_max: 0.0022339171988647916
+          ratio_per_electron_density_m3: 2.2339171988647918e-21
+  e + Ar(1P1) -> e + Ar(3d[5/2]2), Excitation:
+    class: A
+    reaction: Ar(1s2) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000021':
+          A_total_s_1: 14406405.532807786
+          k_sup_max_m3_s: 3.850146504064135e-14
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 0.0026725240347400853
+          ratio_per_electron_density_m3: 2.6725240347400853e-21
+  e + Ar(1P1) -> e + Ar(3d[5/2]3), Excitation:
+    class: A
+    reaction: Ar(1s2) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000024':
+          A_total_s_1: 20876044.386669062
+          k_sup_max_m3_s: 4.120545591655512e-14
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 0.0019738153049180104
+          ratio_per_electron_density_m3: 1.9738153049180104e-21
+  e + Ar(1P1) -> e + Ar(3d[3/2]1), Excitation:
+    class: A
+    reaction: Ar(1s2) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000025':
+          A_total_s_1: 19215127.2458574
+          k_sup_max_m3_s: 4.019791454291105e-14
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 0.002091993148345002
+          ratio_per_electron_density_m3: 2.091993148345002e-21
+  e + Ar(1P1) -> e + Ar(5s'[1/2]0), Excitation:
+    class: A
+    reaction: Ar(1s2) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000029':
+          A_total_s_1: 20580000.0
+          k_sup_max_m3_s: 4.2099926613779714e-14
+          EN_Td_at_max: 4.0
+          ratio_at_ne_max: 0.0020456718471224353
+          ratio_per_electron_density_m3: 2.0456718471224353e-21
+  e + Ar(1P1) -> e + Ar(5s'[1/2]1), Excitation:
+    class: A
+    reaction: Ar(1s2) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000030':
+          A_total_s_1: 20220000.0
+          k_sup_max_m3_s: 4.418698460548753e-14
+          EN_Td_at_max: 4.0
+          ratio_at_ne_max: 0.0021853108113495316
+          ratio_per_electron_density_m3: 2.1853108113495318e-21
+  e + Ar(1P1) -> e + Ar(3d'[5/2]2), Excitation:
+    class: A
+    reaction: Ar(1s2) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000026':
+          A_total_s_1: 17352279.72693032
+          k_sup_max_m3_s: 4.083095341177948e-14
+          EN_Td_at_max: 15.811388300841896
+          ratio_at_ne_max: 0.0023530598892093023
+          ratio_per_electron_density_m3: 2.3530598892093022e-21
+  e + Ar(1P1) -> e + Ar(3d'[3/2]2), Excitation:
+    class: A
+    reaction: Ar(1s2) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000027':
+          A_total_s_1: 12038517.71920618
+          k_sup_max_m3_s: 4.113631534844274e-14
+          EN_Td_at_max: 10.58939748980148
+          ratio_at_ne_max: 0.003417058171772602
+          ratio_per_electron_density_m3: 3.4170581717726016e-21
+  e + Ar(1P1) -> e + Ar(3d'[5/2]3), Excitation:
+    class: A
+    reaction: Ar(1s2) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000028':
+          A_total_s_1: 18144033.185286045
+          k_sup_max_m3_s: 2.959483209798681e-14
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 0.0016311054877251228
+          ratio_per_electron_density_m3: 1.6311054877251227e-21
+  e + Ar(1P1) -> e + Ar(3d'[3/2]1), Excitation:
+    class: A
+    reaction: Ar(1s2) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000031':
+          A_total_s_1: 18862358.4595159
+          k_sup_max_m3_s: 4.288932307421374e-14
+          EN_Td_at_max: 4.0
+          ratio_at_ne_max: 0.0022738048991204724
+          ratio_per_electron_density_m3: 2.2738048991204725e-21
+  e + Ar(3P1) <-> e + Ar(3P0), Excitation:
+    class: A
+    reaction: Ar(1s4) + e- => Ar(1s3) + e-
+    inverse:
+      status: paired
+      reaction: Ar(1s3) + e- => Ar(1s4) + e-
+  e + Ar(3P1) <-> e + Ar(1P1), Excitation:
+    class: A
+    reaction: Ar(1s4) + e- => Ar(1s2) + e-
+    inverse:
+      status: paired
+      reaction: Ar(1s2) + e- => Ar(1s4) + e-
+  e + Ar(3P1) -> e + Ar(4p[1/2]1), Excitation:
+    class: A
+    reaction: Ar(1s4) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000006':
+          A_total_s_1: 25470000.0
+          k_sup_max_m3_s: 4.2369027833504525e-13
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 0.01663487547448156
+          ratio_per_electron_density_m3: 1.6634875474481557e-20
+  e + Ar(3P1) -> e + Ar(4p[5/2]3), Excitation:
+    class: A
+    reaction: Ar(1s4) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000007':
+          A_total_s_1: 33000000.0
+          k_sup_max_m3_s: 3.0793330572317594e-13
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 0.009331312294641694
+          ratio_per_electron_density_m3: 9.331312294641695e-21
+  e + Ar(3P1) -> e + Ar(4p[5/2]2), Excitation:
+    class: A
+    reaction: Ar(1s4) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000008':
+          A_total_s_1: 32270000.0
+          k_sup_max_m3_s: 3.2283874043543715e-13
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 0.010004299362734339
+          ratio_per_electron_density_m3: 1.0004299362734339e-20
+  e + Ar(3P1) -> e + Ar(4p[3/2]1), Excitation:
+    class: A
+    reaction: Ar(1s4) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000009':
+          A_total_s_1: 33690000.0
+          k_sup_max_m3_s: 2.768602624493112e-13
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 0.008217876593924346
+          ratio_per_electron_density_m3: 8.217876593924346e-21
+  e + Ar(3P1) -> e + Ar(4p[3/2]2), Excitation:
+    class: A
+    reaction: Ar(1s4) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000010':
+          A_total_s_1: 34400000.0
+          k_sup_max_m3_s: 2.894221063672979e-13
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 0.008413433324630753
+          ratio_per_electron_density_m3: 8.413433324630752e-21
+  e + Ar(3P1) -> e + Ar(4p[1/2]0), Excitation:
+    class: A
+    reaction: Ar(1s4) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000011':
+          A_total_s_1: 40000000.0
+          k_sup_max_m3_s: 2.463098520442791e-13
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 0.006157746301106977
+          ratio_per_electron_density_m3: 6.157746301106978e-21
+  e + Ar(3P1) -> e + Ar(4p'[3/2]1), Excitation:
+    class: A
+    reaction: Ar(1s4) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000012':
+          A_total_s_1: 33152000.0
+          k_sup_max_m3_s: 2.600957981374249e-13
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 0.007845553756558425
+          ratio_per_electron_density_m3: 7.845553756558426e-21
+  e + Ar(3P1) -> e + Ar(4p'[3/2]2), Excitation:
+    class: A
+    reaction: Ar(1s4) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000013':
+          A_total_s_1: 34600000.0
+          k_sup_max_m3_s: 2.507893565525917e-13
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 0.007248247299207853
+          ratio_per_electron_density_m3: 7.248247299207853e-21
+  e + Ar(3P1) -> e + Ar(4p'[1/2]1), Excitation:
+    class: A
+    reaction: Ar(1s4) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000014':
+          A_total_s_1: 35230000.0
+          k_sup_max_m3_s: 2.787102346540286e-13
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 0.007911161926029765
+          ratio_per_electron_density_m3: 7.911161926029765e-21
+  e + Ar(3P1) -> e + Ar(4p'[1/2]0), Excitation:
+    class: A
+    reaction: Ar(1s4) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000015':
+          A_total_s_1: 45236000.0
+          k_sup_max_m3_s: 2.54027338223345e-13
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 0.005615601251731918
+          ratio_per_electron_density_m3: 5.615601251731918e-21
+  e + Ar(3P1) -> e + Ar(3d[1/2]0), Excitation:
+    class: A
+    reaction: Ar(1s4) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000016':
+          A_total_s_1: 9618690.228479564
+          k_sup_max_m3_s: 4.905591628855531e-14
+          EN_Td_at_max: 4.0
+          ratio_at_ne_max: 0.005100061975518015
+          ratio_per_electron_density_m3: 5.100061975518015e-21
+  e + Ar(3P1) -> e + Ar(3d[1/2]1), Excitation:
+    class: A
+    reaction: Ar(1s4) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000017':
+          A_total_s_1: 10093751.776389563
+          k_sup_max_m3_s: 4.770888052843776e-14
+          EN_Td_at_max: 4.0
+          ratio_at_ne_max: 0.004726575567276607
+          ratio_per_electron_density_m3: 4.726575567276607e-21
+  e + Ar(3P1) -> e + Ar(3d[3/2]2), Excitation:
+    class: A
+    reaction: Ar(1s4) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000018':
+          A_total_s_1: 8418257.505976114
+          k_sup_max_m3_s: 4.483685047704962e-14
+          EN_Td_at_max: 4.0
+          ratio_at_ne_max: 0.00532614385402442
+          ratio_per_electron_density_m3: 5.32614385402442e-21
+  e + Ar(3P1) -> e + Ar(3d[7/2]4), Excitation:
+    class: A
+    reaction: Ar(1s4) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000019':
+          A_total_s_1: 17949021.44775623
+          k_sup_max_m3_s: 4.3547383974078553e-14
+          EN_Td_at_max: 8.917795292374963
+          ratio_at_ne_max: 0.0024261703681635704
+          ratio_per_electron_density_m3: 2.4261703681635703e-21
+  e + Ar(3P1) -> e + Ar(5s[3/2]2), Excitation:
+    class: A
+    reaction: Ar(1s4) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000022':
+          A_total_s_1: 21249000.0
+          k_sup_max_m3_s: 3.9507496103176314e-14
+          EN_Td_at_max: 4.0
+          ratio_at_ne_max: 0.0018592637819745078
+          ratio_per_electron_density_m3: 1.859263781974508e-21
+  e + Ar(3P1) -> e + Ar(3d[7/2]3), Excitation:
+    class: A
+    reaction: Ar(1s4) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000020':
+          A_total_s_1: 13951644.453535283
+          k_sup_max_m3_s: 4.541023474468466e-14
+          EN_Td_at_max: 10.0
+          ratio_at_ne_max: 0.0032548302743751405
+          ratio_per_electron_density_m3: 3.2548302743751406e-21
+  e + Ar(3P1) -> e + Ar(5s[3/2]1), Excitation:
+    class: A
+    reaction: Ar(1s4) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000023':
+          A_total_s_1: 20609000.0
+          k_sup_max_m3_s: 4.603879955140449e-14
+          EN_Td_at_max: 4.0
+          ratio_at_ne_max: 0.0022339171988647916
+          ratio_per_electron_density_m3: 2.2339171988647918e-21
+  e + Ar(3P1) -> e + Ar(3d[5/2]2), Excitation:
+    class: A
+    reaction: Ar(1s4) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000021':
+          A_total_s_1: 14406405.532807786
+          k_sup_max_m3_s: 3.850146504064135e-14
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 0.0026725240347400853
+          ratio_per_electron_density_m3: 2.6725240347400853e-21
+  e + Ar(3P1) -> e + Ar(3d[5/2]3), Excitation:
+    class: A
+    reaction: Ar(1s4) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000024':
+          A_total_s_1: 20876044.386669062
+          k_sup_max_m3_s: 4.120545591655512e-14
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 0.0019738153049180104
+          ratio_per_electron_density_m3: 1.9738153049180104e-21
+  e + Ar(3P1) -> e + Ar(3d[3/2]1), Excitation:
+    class: A
+    reaction: Ar(1s4) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000025':
+          A_total_s_1: 19215127.2458574
+          k_sup_max_m3_s: 4.019791454291105e-14
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 0.002091993148345002
+          ratio_per_electron_density_m3: 2.091993148345002e-21
+  e + Ar(3P1) -> e + Ar(5s'[1/2]0), Excitation:
+    class: A
+    reaction: Ar(1s4) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000029':
+          A_total_s_1: 20580000.0
+          k_sup_max_m3_s: 4.2099926613779714e-14
+          EN_Td_at_max: 4.0
+          ratio_at_ne_max: 0.0020456718471224353
+          ratio_per_electron_density_m3: 2.0456718471224353e-21
+  e + Ar(3P1) -> e + Ar(5s'[1/2]1), Excitation:
+    class: A
+    reaction: Ar(1s4) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000030':
+          A_total_s_1: 20220000.0
+          k_sup_max_m3_s: 4.418698460548753e-14
+          EN_Td_at_max: 4.0
+          ratio_at_ne_max: 0.0021853108113495316
+          ratio_per_electron_density_m3: 2.1853108113495318e-21
+  e + Ar(3P1) -> e + Ar(3d'[5/2]2), Excitation:
+    class: A
+    reaction: Ar(1s4) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000026':
+          A_total_s_1: 17352279.72693032
+          k_sup_max_m3_s: 4.083095341177948e-14
+          EN_Td_at_max: 15.811388300841896
+          ratio_at_ne_max: 0.0023530598892093023
+          ratio_per_electron_density_m3: 2.3530598892093022e-21
+  e + Ar(3P1) -> e + Ar(3d'[3/2]2), Excitation:
+    class: A
+    reaction: Ar(1s4) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000027':
+          A_total_s_1: 12038517.71920618
+          k_sup_max_m3_s: 4.113631534844274e-14
+          EN_Td_at_max: 10.58939748980148
+          ratio_at_ne_max: 0.003417058171772602
+          ratio_per_electron_density_m3: 3.4170581717726016e-21
+  e + Ar(3P1) -> e + Ar(3d'[5/2]3), Excitation:
+    class: A
+    reaction: Ar(1s4) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000028':
+          A_total_s_1: 18144033.185286045
+          k_sup_max_m3_s: 2.959483209798681e-14
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 0.0016311054877251228
+          ratio_per_electron_density_m3: 1.6311054877251227e-21
+  e + Ar(3P1) -> e + Ar(3d'[3/2]1), Excitation:
+    class: A
+    reaction: Ar(1s4) + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000031':
+          A_total_s_1: 18862358.4595159
+          k_sup_max_m3_s: 4.288932307421374e-14
+          EN_Td_at_max: 4.0
+          ratio_at_ne_max: 0.0022738048991204724
+          ratio_per_electron_density_m3: 2.2738048991204725e-21
+  e + Ar(3P2) <-> e + Ar(3P1), Excitation:
+    class: A
+    reaction: Ars + e- => Ar(1s4) + e-
+    inverse:
+      status: paired
+      reaction: Ar(1s4) + e- => Ars + e-
+  e + Ar(3P2) <-> e + Ar(3P0), Excitation:
+    class: A
+    reaction: Ars + e- => Ar(1s3) + e-
+    inverse:
+      status: paired
+      reaction: Ar(1s3) + e- => Ars + e-
+  e + Ar(3P2) <-> e + Ar(1P1), Excitation:
+    class: A
+    reaction: Ars + e- => Ar(1s2) + e-
+    inverse:
+      status: paired
+      reaction: Ar(1s2) + e- => Ars + e-
+  e + Ar(3P2) -> e + Ar(4p[1/2]1), Excitation:
+    class: A
+    reaction: Ars + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000006':
+          A_total_s_1: 25470000.0
+          k_sup_max_m3_s: 4.2369027833504525e-13
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 0.01663487547448156
+          ratio_per_electron_density_m3: 1.6634875474481557e-20
+  e + Ar(3P2) -> e + Ar(4p[5/2]3), Excitation:
+    class: A
+    reaction: Ars + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000007':
+          A_total_s_1: 33000000.0
+          k_sup_max_m3_s: 3.0793330572317594e-13
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 0.009331312294641694
+          ratio_per_electron_density_m3: 9.331312294641695e-21
+  e + Ar(3P2) -> e + Ar(4p[5/2]2), Excitation:
+    class: A
+    reaction: Ars + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000008':
+          A_total_s_1: 32270000.0
+          k_sup_max_m3_s: 3.2283874043543715e-13
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 0.010004299362734339
+          ratio_per_electron_density_m3: 1.0004299362734339e-20
+  e + Ar(3P2) -> e + Ar(4p[3/2]1), Excitation:
+    class: A
+    reaction: Ars + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000009':
+          A_total_s_1: 33690000.0
+          k_sup_max_m3_s: 2.768602624493112e-13
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 0.008217876593924346
+          ratio_per_electron_density_m3: 8.217876593924346e-21
+  e + Ar(3P2) -> e + Ar(4p[3/2]2), Excitation:
+    class: A
+    reaction: Ars + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000010':
+          A_total_s_1: 34400000.0
+          k_sup_max_m3_s: 2.894221063672979e-13
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 0.008413433324630753
+          ratio_per_electron_density_m3: 8.413433324630752e-21
+  e + Ar(3P2) -> e + Ar(4p[1/2]0), Excitation:
+    class: A
+    reaction: Ars + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000011':
+          A_total_s_1: 40000000.0
+          k_sup_max_m3_s: 2.463098520442791e-13
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 0.006157746301106977
+          ratio_per_electron_density_m3: 6.157746301106978e-21
+  e + Ar(3P2) -> e + Ar(4p'[3/2]1), Excitation:
+    class: A
+    reaction: Ars + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000012':
+          A_total_s_1: 33152000.0
+          k_sup_max_m3_s: 2.600957981374249e-13
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 0.007845553756558425
+          ratio_per_electron_density_m3: 7.845553756558426e-21
+  e + Ar(3P2) -> e + Ar(4p'[3/2]2), Excitation:
+    class: A
+    reaction: Ars + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000013':
+          A_total_s_1: 34600000.0
+          k_sup_max_m3_s: 2.507893565525917e-13
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 0.007248247299207853
+          ratio_per_electron_density_m3: 7.248247299207853e-21
+  e + Ar(3P2) -> e + Ar(4p'[1/2]1), Excitation:
+    class: A
+    reaction: Ars + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000014':
+          A_total_s_1: 35230000.0
+          k_sup_max_m3_s: 2.787102346540286e-13
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 0.007911161926029765
+          ratio_per_electron_density_m3: 7.911161926029765e-21
+  e + Ar(3P2) -> e + Ar(4p'[1/2]0), Excitation:
+    class: A
+    reaction: Ars + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000015':
+          A_total_s_1: 45236000.0
+          k_sup_max_m3_s: 2.54027338223345e-13
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 0.005615601251731918
+          ratio_per_electron_density_m3: 5.615601251731918e-21
+  e + Ar(3P2) -> e + Ar(3d[1/2]0), Excitation:
+    class: A
+    reaction: Ars + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000016':
+          A_total_s_1: 9618690.228479564
+          k_sup_max_m3_s: 4.905591628855531e-14
+          EN_Td_at_max: 4.0
+          ratio_at_ne_max: 0.005100061975518015
+          ratio_per_electron_density_m3: 5.100061975518015e-21
+  e + Ar(3P2) -> e + Ar(3d[1/2]1), Excitation:
+    class: A
+    reaction: Ars + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000017':
+          A_total_s_1: 10093751.776389563
+          k_sup_max_m3_s: 4.770888052843776e-14
+          EN_Td_at_max: 4.0
+          ratio_at_ne_max: 0.004726575567276607
+          ratio_per_electron_density_m3: 4.726575567276607e-21
+  e + Ar(3P2) -> e + Ar(3d[3/2]2), Excitation:
+    class: A
+    reaction: Ars + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000018':
+          A_total_s_1: 8418257.505976114
+          k_sup_max_m3_s: 4.483685047704962e-14
+          EN_Td_at_max: 4.0
+          ratio_at_ne_max: 0.00532614385402442
+          ratio_per_electron_density_m3: 5.32614385402442e-21
+  e + Ar(3P2) -> e + Ar(3d[7/2]4), Excitation:
+    class: A
+    reaction: Ars + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000019':
+          A_total_s_1: 17949021.44775623
+          k_sup_max_m3_s: 4.3547383974078553e-14
+          EN_Td_at_max: 8.917795292374963
+          ratio_at_ne_max: 0.0024261703681635704
+          ratio_per_electron_density_m3: 2.4261703681635703e-21
+  e + Ar(3P2) -> e + Ar(5s[3/2]2), Excitation:
+    class: A
+    reaction: Ars + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000022':
+          A_total_s_1: 21249000.0
+          k_sup_max_m3_s: 3.9507496103176314e-14
+          EN_Td_at_max: 4.0
+          ratio_at_ne_max: 0.0018592637819745078
+          ratio_per_electron_density_m3: 1.859263781974508e-21
+  e + Ar(3P2) -> e + Ar(3d[7/2]3), Excitation:
+    class: A
+    reaction: Ars + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000020':
+          A_total_s_1: 13951644.453535283
+          k_sup_max_m3_s: 4.541023474468466e-14
+          EN_Td_at_max: 10.0
+          ratio_at_ne_max: 0.0032548302743751405
+          ratio_per_electron_density_m3: 3.2548302743751406e-21
+  e + Ar(3P2) -> e + Ar(5s[3/2]1), Excitation:
+    class: A
+    reaction: Ars + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000023':
+          A_total_s_1: 20609000.0
+          k_sup_max_m3_s: 4.603879955140449e-14
+          EN_Td_at_max: 4.0
+          ratio_at_ne_max: 0.0022339171988647916
+          ratio_per_electron_density_m3: 2.2339171988647918e-21
+  e + Ar(3P2) -> e + Ar(3d[5/2]2), Excitation:
+    class: A
+    reaction: Ars + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000021':
+          A_total_s_1: 14406405.532807786
+          k_sup_max_m3_s: 3.850146504064135e-14
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 0.0026725240347400853
+          ratio_per_electron_density_m3: 2.6725240347400853e-21
+  e + Ar(3P2) -> e + Ar(3d[5/2]3), Excitation:
+    class: A
+    reaction: Ars + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000024':
+          A_total_s_1: 20876044.386669062
+          k_sup_max_m3_s: 4.120545591655512e-14
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 0.0019738153049180104
+          ratio_per_electron_density_m3: 1.9738153049180104e-21
+  e + Ar(3P2) -> e + Ar(3d[3/2]1), Excitation:
+    class: A
+    reaction: Ars + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000025':
+          A_total_s_1: 19215127.2458574
+          k_sup_max_m3_s: 4.019791454291105e-14
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 0.002091993148345002
+          ratio_per_electron_density_m3: 2.091993148345002e-21
+  e + Ar(3P2) -> e + Ar(5s'[1/2]0), Excitation:
+    class: A
+    reaction: Ars + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000029':
+          A_total_s_1: 20580000.0
+          k_sup_max_m3_s: 4.2099926613779714e-14
+          EN_Td_at_max: 4.0
+          ratio_at_ne_max: 0.0020456718471224353
+          ratio_per_electron_density_m3: 2.0456718471224353e-21
+  e + Ar(3P2) -> e + Ar(5s'[1/2]1), Excitation:
+    class: A
+    reaction: Ars + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000030':
+          A_total_s_1: 20220000.0
+          k_sup_max_m3_s: 4.418698460548753e-14
+          EN_Td_at_max: 4.0
+          ratio_at_ne_max: 0.0021853108113495316
+          ratio_per_electron_density_m3: 2.1853108113495318e-21
+  e + Ar(3P2) -> e + Ar(3d'[5/2]2), Excitation:
+    class: A
+    reaction: Ars + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000026':
+          A_total_s_1: 17352279.72693032
+          k_sup_max_m3_s: 4.083095341177948e-14
+          EN_Td_at_max: 15.811388300841896
+          ratio_at_ne_max: 0.0023530598892093023
+          ratio_per_electron_density_m3: 2.3530598892093022e-21
+  e + Ar(3P2) -> e + Ar(3d'[3/2]2), Excitation:
+    class: A
+    reaction: Ars + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000027':
+          A_total_s_1: 12038517.71920618
+          k_sup_max_m3_s: 4.113631534844274e-14
+          EN_Td_at_max: 10.58939748980148
+          ratio_at_ne_max: 0.003417058171772602
+          ratio_per_electron_density_m3: 3.4170581717726016e-21
+  e + Ar(3P2) -> e + Ar(3d'[5/2]3), Excitation:
+    class: A
+    reaction: Ars + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000028':
+          A_total_s_1: 18144033.185286045
+          k_sup_max_m3_s: 2.959483209798681e-14
+          EN_Td_at_max: 25.0
+          ratio_at_ne_max: 0.0016311054877251228
+          ratio_per_electron_density_m3: 1.6311054877251227e-21
+  e + Ar(3P2) -> e + Ar(3d'[3/2]1), Excitation:
+    class: A
+    reaction: Ars + e- => Ar(1s_i) + e- + hv
+    inverse:
+      status: eliminated-upper-level-4s-redistribution
+      electron_density_max_m3: 1.0e+18
+      field_range_Td:
+      - 4.0
+      - 25.0
+      field_node_count: 33
+      bounds_sha256: 266d022b6581077c13da6242528ae715349f8e2a42ae139a104062cefd1f02a0
+      levels:
+        '018001.000031':
+          A_total_s_1: 18862358.4595159
+          k_sup_max_m3_s: 4.288932307421374e-14
+          EN_Td_at_max: 4.0
+          ratio_at_ne_max: 0.0022738048991204724
+          ratio_per_electron_density_m3: 2.2738048991204725e-21
+  e + Ar(3P2) -> e + e + Ar(+,gnd), Ionization:
+    class: A
+    reaction: Ars + e- => Arp + e- + e-
+  e + Ar(3P1) -> e + e + Ar(+,gnd), Ionization:
+    class: A
+    reaction: Ar(1s4) + e- => Arp + e- + e-
+  e + Ar(3P0) -> e + e + Ar(+,gnd), Ionization:
+    class: A
+    reaction: Ar(1s3) + e- => Arp + e- + e-
+  e + Ar(1P1) -> e + e + Ar(+,gnd), Ionization:
+    class: A
+    reaction: Ar(1s2) + e- => Arp + e- + e-

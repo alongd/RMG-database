@@ -49,9 +49,13 @@ def state_species(library, index):
 
 def test_literal_owners_and_distinct_states(database):
     lib = database.libraries['PlasmaArgon']
-    cascade_ids = {1000 + channel * 4 + offset for channel in range(6, 39)
-                   for offset in range(4)}
-    assert set(lib.entries) == {86, 87, 94, 95, 96} | cascade_ids
+    cascade_channels = list(range(6, 39)) + list(range(45, 97)) + list(range(99, 125)) + list(range(128, 154))
+    cascade_ids = {1000 + channel * 4 + offset for channel in cascade_channels for offset in range(4)}
+    directional = {2000 + 2 * channel + side for channel in (44, 97, 98, 125, 126, 127) for side in (0, 1)}
+    directional |= {2000 + 2 * channel + 1 for channel in (2, 3, 4, 5)}
+    directional |= {2000 + 2 * channel for channel in (154, 155, 156, 157)}
+    assert set(lib.entries) == {86, 87, 94, 95, 96} | cascade_ids | directional
+    assert len(lib.entries) == 573
     frozen = yaml.safe_load((DATA / 'eedf/argon_channel_map.yaml').read_text())
     assert frozen['class_counts'] == {'A': 152, 'B': 5, 'C': 0, 'D': 0}
     yields = yaml.safe_load((DATA / 'eedf/argon_cascade_yields.yaml').read_text())
@@ -69,7 +73,7 @@ def test_literal_owners_and_distinct_states(database):
         assert entry.data.collision_set == 'IST-Lisbon-Ar-2021' and entry.data.side == 'ine'
         assert not entry.item.reversible
     assert lib.entries[94].label == 'Ar + e- => Ar(1s4) + e-'
-    assert lib.entries[94].data.process == 'e + Ar(1S0) -> e + Ar(3P1), Excitation'
+    assert lib.entries[94].data.process == 'e + Ar(1S0) <-> e + Ar(3P1), Excitation'
     species = [state_species(lib, row[0]) for row in STATES]
     for i, (s, (_, label, term, mult, _, _)) in enumerate(zip(species, STATES)):
         assert s.label == label and s.molecule[0].electronic_state == term
@@ -77,7 +81,8 @@ def test_literal_owners_and_distinct_states(database):
         assert not s.molecule[0].is_isomorphic(Molecule().from_adjacency_list('1 Ar u0 p4 c0'))
         for other in species[i+1:]:
             assert not s.is_isomorphic(other)
-    assert [c['id'] for c in frozen['channels'][:39] if c.get('rmg', {}).get('status') == 'absent'] == list(range(6, 39))
+    assert frozen['class_a_gaps'] == {}
+    assert all(c['rmg']['status'] == 'present' for c in frozen['channels'] if c['class'] == 'A')
     absent = deepcopy(lib)
     del absent.entries[94]
     assert _owner_problem(next(c for c in frozen['channels'] if c['id'] == 3), absent)
@@ -125,10 +130,18 @@ def test_exact_state_thermo_and_transport(database):
         assert tr.polarizability.value_si == pytest.approx(1.64e-30, abs=1e-40)
 
 
-def test_new_states_have_no_loss(database):
-    for label in ['Ar(1s4)', 'Ar(1s3)', 'Ar(1s2)']:
-        assert any(s.label == label for e in database.libraries['PlasmaArgon'].entries.values() for s in e.item.products)
-        assert not any(s.label == label for lib in database.libraries.values() for e in lib.entries.values() for s in e.item.reactants)
+def test_four_s_states_have_eedf_loss_and_charge_conservation(database):
+    library = database.libraries['PlasmaArgon']
+    for label in ['Ars', 'Ar(1s4)', 'Ar(1s3)', 'Ar(1s2)']:
+        losses = [e for e in library.entries.values() if any(s.label == label for s in e.item.reactants)]
+        assert losses
+        assert any(e.data.side == 'sup' for e in losses)
+        assert any('Ionization' in e.data.process for e in losses)
+        for entry in losses:
+            assert entry.data.uses_eedf and not entry.item.reversible
+            assert any(s.is_electron() for s in entry.item.reactants)
+            assert sum(s.molecule[0].get_net_charge() for s in entry.item.reactants) == sum(
+                s.molecule[0].get_net_charge() for s in entry.item.products)
 
 
 def test_converter_refuses_removed_resonant_owner(database):
@@ -147,13 +160,14 @@ def test_converter_refuses_removed_resonant_owner(database):
         DATA / 'eedf/argon_cascade_yields.yaml', DATA / 'eedf/argon_radiative_data.yaml')
     converted, report = convert_channel_map(
         spec, frozen, library, 'IST-Lisbon-Ar-2021', cascade_yields)
-    assert len(converted) == 39  # One row per physical collision, including elastic
-    assert report['missing_owners'] == []
+    assert len(converted) == 157  # One row per physical collision, including elastic
+    assert len(report['missing_owners']) == 137
+    assert all(row['ruled_exception'] for row in report['missing_owners'])
     assert report['shared_owners'] == []
     del library.entries[94]
     with pytest.raises(MissingOwners) as caught:
         convert_channel_map(spec, frozen, library, 'IST-Lisbon-Ar-2021', cascade_yields)
-    assert [row['id'] for row in caught.value.report['missing_owners']] == [3]
+    assert [row['id'] for row in caught.value.report['missing_owners'] if not row.get('ruled_exception')] == [3]
     assert caught.value.report['shared_owners'] == []
 
 
@@ -162,8 +176,8 @@ def test_cascade_library_owners_are_one_sourced_family_per_channel(database):
     lib = database.libraries['PlasmaArgon']
     snapshot = load_cascade_yields(
         DATA / 'eedf/argon_cascade_yields.yaml', DATA / 'eedf/argon_radiative_data.yaml')
-    for channel_id in range(6, 39):
-        row = next(item for item in snapshot['channels'] if item['id'] == channel_id)
+    for row in snapshot['channels']:
+        channel_id = row['id']
         reactions = [lib.entries[1000 + channel_id * 4 + offset].item for offset in range(4)]
         owners = [('PlasmaArgon', 1000 + channel_id * 4 + offset,
                    reaction, lib.entries[1000 + channel_id * 4 + offset].data)

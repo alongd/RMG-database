@@ -46,6 +46,7 @@ only when the store is named in the environment, and is skipped otherwise:
 """
 
 import ast
+from pathlib import Path
 import hashlib
 import inspect
 import json
@@ -111,9 +112,9 @@ class TestCommittedMap:
         """Every collision is in the overlay once, and the map's class and reaction are the overlay's."""
         _, doc = committed
         assert [c['loki_process'] for c in doc['channels']] and \
-            sorted(c['loki_process'] for c in doc['channels']) == sorted(overlay)
+            sorted(c['loki_process'].replace(' <-> ', ' -> ') if c['id'] in (2, 3, 4, 5) else c['loki_process'] for c in doc['channels']) == sorted(overlay)
         for c in doc['channels']:
-            entry = overlay[c['loki_process']]
+            entry = overlay[c['loki_process'].replace(' <-> ', ' -> ')] if c['id'] in (2, 3, 4, 5) else overlay[c['loki_process']]
             assert c['class'] == entry['class'], c['id']
             assert (c.get('rmg') or {}).get('reaction') == entry['reaction'], c['id']
 
@@ -133,9 +134,14 @@ class TestCommittedMap:
             rmg = c.get('rmg')
             if not rmg:
                 continue
+            if 'branch_indices' in rmg:
+                assert len(rmg['branch_indices']) == 4
+                assert all(reactions[i].eedf_process == c['loki_process'] for i in rmg['branch_indices'])
+                assert rmg['index'] in rmg['branch_indices']
+                continue
             lhs, arrow, rhs = gen.parse_reaction(rmg['reaction'])
             index = next((i for i, r in reactions.items() if (r.reactants, r.products, r.reversible) == (
-                tuple(sorted(lhs)), tuple(sorted(rhs)), arrow == '<=>')), None)
+                tuple(sorted(lhs)), tuple(sorted(rhs)), arrow == '<=>') and r.eedf_process == c['loki_process']), None)
             assert rmg['index'] == (None if rmg['status'] == 'lumped_internal' else index), c['id']
             assert (rmg['status'] in ('present', 'present_lumped')) == (rmg['index'] is not None), c['id']
             for name in rmg.get('species_needed', []):
@@ -226,7 +232,11 @@ CASCADE_INDICES = {
     if isinstance(node, ast.Expr) and isinstance(node.value, ast.Call)
     for keyword in node.value.keywords if keyword.arg == 'index'
 }
-LIBRARY_INDICES = {86, 87, 94, 95, 96} | CASCADE_INDICES
+import gen_argon_electron_owners as electron_owners
+DIRECTIONAL_INDICES = {ast.literal_eval(k.value) for n in ast.parse(electron_owners.render(yaml.safe_load(Path(MAP).read_bytes()))).body
+                       if isinstance(n, ast.Expr) and isinstance(n.value, ast.Call)
+                       for k in n.value.keywords if k.arg == 'index'}
+LIBRARY_INDICES = {86, 87, 94, 95, 96} | CASCADE_INDICES | DIRECTIONAL_INDICES
 LIBRARY_EDITS = [
     (None, LIBRARY_INDICES),
     (mutations.disable_library_entry, LIBRARY_INDICES - {87}),

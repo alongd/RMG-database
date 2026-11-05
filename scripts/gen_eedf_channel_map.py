@@ -557,7 +557,8 @@ def as_text(data):
 STATE_FIELDS = ('multiplicity', 'electronic_state', 'vibrational_level', 'metal', 'facet')
 # A reaction as RMG loaded it, including the EEDF marker that can distinguish equal reaction equations.
 LoadedReaction = collections.namedtuple(
-    'LoadedReaction', 'label reactants products reversible eedf_process eedf_collision_set has_eedf_marker')
+    'LoadedReaction', 'label reactants products reversible eedf_process eedf_collision_set has_eedf_marker entry',
+    defaults=(None,))
 
 
 def identity_problem(loaded, reference):
@@ -710,7 +711,7 @@ def load_library(database, library):
         reactions[index] = LoadedReaction(
             entry.label, tuple(sorted(who[:n])), tuple(sorted(who[n:])), bool(reaction.reversible),
             getattr(marker, 'process', None) if has_eedf_marker else None,
-            getattr(marker, 'collision_set', None) if has_eedf_marker else None, has_eedf_marker)
+            getattr(marker, 'collision_set', None) if has_eedf_marker else None, has_eedf_marker, entry)
     problems += reconcile_library(library, {i: x.label for i, x in loaded.entries.items()}, species,
                                   as_text(content), as_text(dictionary))
     return (None, None, problems) if problems else (reactions, species, [])
@@ -991,8 +992,8 @@ def load_overlay_document(path):
                             f"each itself a mapping"]
     problems, out = [], {}
     for label, entry in doc['collisions'].items():
-        if not isinstance(entry, dict) or not set(entry) <= {'class', 'reaction'} or 'class' not in entry:
-            problems.append(f"{where}: {label!r}: needs 'class' and, optionally, 'reaction', and nothing else")
+        if not isinstance(entry, dict) or not set(entry) <= {'class', 'reaction', 'inverse'} or 'class' not in entry:
+            problems.append(f"{where}: {label!r}: needs 'class' and, optionally, 'reaction' and 'inverse', and nothing else")
             continue
         if not isinstance(entry['class'], str):
             problems.append(f"{where}: {label!r}: class {entry['class']!r} is not a string")
@@ -1001,6 +1002,8 @@ def load_overlay_document(path):
             problems.append(f"{where}: {label!r}: reaction {entry['reaction']!r} is not a string")
             continue
         out[label] = {'class': entry['class'], 'reaction': entry.get('reaction')}
+        if 'inverse' in entry:
+            out[label]['inverse'] = entry['inverse']
     references = {}
     for label, record in (doc.get('species') or {}).items():
         if not isinstance(record, str):
@@ -1540,6 +1543,16 @@ def generate(overlay_path, assembled, source_paths, database):
         if not library_problems:              # any record or state field is read
             problems.append(f'library {LIBRARY} not found under {database}')
         return None, problems, '', [c['label'] for c in collisions]
+    cascade_snapshot, radiative = None, None
+    if any(getattr(getattr(r.entry, 'data', None), 'branch_product', None) is not None
+           for r in reactions.values()) or any('inverse' in r for r in overlay.values()):
+        from pathlib import Path
+        from argon_owner_accounting import load_owner_sources
+        try:
+            eedf = Path(database) / 'eedf'
+            cascade_snapshot, radiative = load_owner_sources(eedf)
+        except (ValueError, OSError) as error:
+            problems.append('cascade source: ' + str(error))
     records, reference_problems = reference_records(references or {})
     problems.extend(reference_problems)
     for label in sorted(records):  # a mapped species the library holds must be the one its reference means
@@ -1561,6 +1574,10 @@ def generate(overlay_path, assembled, source_paths, database):
                 problems.append(f"UNMAPPED collision, not in the overlay: {c['label']}")
             continue
         c['class'], c['reaction'] = entry['class'], entry['reaction']
+        c['inverse'] = entry.get('inverse')
+        paired = isinstance(c['inverse'], dict) and c['inverse'].get('status') == 'paired'
+        c['owner_process'] = c['label'].replace(' -> ', ' <-> ') if paired else c['label']
+        c['cascade_snapshot'] = cascade_snapshot
         policy = POLICY[c['family']]
         if c['class'] not in policy['classes']:
             problems.append(f"{c['label']}: class {c['class']!r}, but {c['family']} allows only "
@@ -1617,6 +1634,11 @@ def generate(overlay_path, assembled, source_paths, database):
     for c in linked:
         if c.get('class') == 'A' and c.get('reaction') is not None:
             c['rmg'] = rmg_mapping(c, reactions, species, species_of, holds, problems)
+            from argon_owner_accounting import checked_inverse
+            try:
+                c['checked_inverse'] = checked_inverse(c, reactions, cascade_snapshot, radiative, parse_reaction)
+            except (ValueError, TypeError, KeyError, StopIteration) as error:
+                problems.append(f"{c['label']}: inverse ownership: {error}")
     families = collections.defaultdict(lambda: collections.defaultdict(list))
     for c in linked:
         if 'cascade' in c and 'class' in c:
@@ -1656,6 +1678,15 @@ def generate(overlay_path, assembled, source_paths, database):
     doc['rules'] = RULES
     doc['data_policy'] = DATA_POLICY
     doc['loki_files'] = {name: digest for _, name, _, digest, _ in files}
+    if any((c.get('inverse') or {}).get('status') == 'paired' and c['id'] in (2, 3, 4, 5) for c in linked):
+        from realize_argon_collisions import collect
+        try:
+            _, realization = collect(assembled)
+            doc['base_loki_files'] = dict(doc['loki_files'])
+            doc['loki_files'] = {name: item['sha256'] for name, item in realization['files'].items()}
+            doc['collision_realization'] = realization
+        except (ValueError, OSError) as error:
+            problems.append('reversible realization: ' + str(error))
     doc['assembled_directory'] = inventory
     doc['sources'] = collections.OrderedDict()
     for fname, src in sources.items():
@@ -1719,7 +1750,7 @@ def expected_shape(c):
     if c['family'] == 'ionization':
         return [None, ELECTRON_SPECIES], '=>', [None, ELECTRON_SPECIES, ELECTRON_SPECIES]
     if c['family'] == 'excitation into 4s':
-        return [None, ELECTRON_SPECIES], '<=>' if c['reverse'] else '=>', [None, ELECTRON_SPECIES]
+        return [None, ELECTRON_SPECIES], '<=>' if c['reverse'] and not (c.get('inverse') or {}).get('status') == 'paired' else '=>', [None, ELECTRON_SPECIES]
     if c['family'] == 'excitation above 4s':
         return [None, ELECTRON_SPECIES], '=>', [CASCADE_PRODUCT, ELECTRON_SPECIES, PHOTON]
     return None
@@ -1762,6 +1793,14 @@ def rmg_mapping(c, reactions, species, species_of, holds, problems):
     found by its label's text; an entry holding the same species another way (the other way round when either
     side is reversible, or with the other direction) cannot be matched reliably and is refused, even beside an
     entry that holds it exactly, and so is a reaction several entries hold, since the map names one index."""
+    if 'cascade' in c:
+        from argon_owner_accounting import cascade_owner
+        try:
+            owner = cascade_owner(c, reactions, c.get('cascade_snapshot'))
+            if owner is not None:
+                return owner
+        except (ValueError, KeyError, TypeError) as error:
+            problems.append(f"{c['label']}: cascade ownership: {error}")
     lhs, arrow, rhs = parse_reaction(c['reaction'])
     out = collections.OrderedDict([('reaction', c['reaction']), ('library', LIBRARY), ('index', None)])
     want = (tuple(sorted(lhs)), tuple(sorted(rhs)), arrow == '<=>')
@@ -1770,7 +1809,8 @@ def rmg_mapping(c, reactions, species, species_of, holds, problems):
     owner_problem = None
     if len(same_equation) > 1 or any(reactions[i].has_eedf_marker for i in same_equation):
         marked = [i for i in same_equation if reactions[i].has_eedf_marker
-                  and reactions[i].eedf_process == c['label']
+                  and reactions[i].eedf_process == c.get('owner_process', c['label'])
+                  and getattr(getattr(reactions[i].entry, 'data', None), 'side', 'ine') == 'ine'
                   and isinstance(reactions[i].eedf_collision_set, str)
                   and reactions[i].eedf_collision_set.strip()]
         if len(marked) == 1:
@@ -1828,7 +1868,7 @@ def channel(c):
     asm, src = c['asm'], c['src']
     entry = collections.OrderedDict()
     entry['id'] = c['id']
-    entry['loki_process'] = c['label']
+    entry['loki_process'] = c.get('owner_process', c['label'])
     entry['lxcat_file'] = c['file']
     entry['source'] = collections.OrderedDict([
         ('database', c['src_file']['database']), ('file', c['src_file']['file']),
@@ -1836,7 +1876,7 @@ def channel(c):
         ('block_sha256', src['sha256'])])
     entry['source_process'] = src['process']
     entry['threshold_eV'] = float(asm['threshold'])
-    entry['superelastic_in_set'] = c['reverse']
+    entry['superelastic_in_set'] = c['reverse'] or (c.get('inverse') or {}).get('status') == 'paired'
     entry['family'] = c['family'] + (f" from {c['cascade'][0]} via {c['cascade'][1]}" if 'cascade' in c else '')
     if 'class' in c:
         entry['class'] = c['class']
@@ -1844,7 +1884,9 @@ def channel(c):
         entry['conventions'] = sorted(c['need'], key=CONVENTIONS.index)
     if 'rmg' in c:
         entry['rmg'] = c['rmg']
-    if c['target'] == GROUND and c['product'] in LEVELS_1S and c['type'] == 'Excitation' and not c['reverse']:
+    if c.get('checked_inverse') is not None:
+        entry['inverse'] = c['checked_inverse']
+    if c['target'] == GROUND and c['product'] in LEVELS_1S and c['type'] == 'Excitation' and not entry['superelastic_in_set']:
         entry['superelastic_required'] = ("C3 section 3 requires the inverse; the development descriptor is '->' "
                                           "and the ground set is kept unchanged, so the superelastic is NOT in the "
                                           "set (reported, not changed)")

@@ -41,4 +41,3 @@ electronicstate 2P
 e-
 multiplicity 2
 1 e u1 p0 c-1
-

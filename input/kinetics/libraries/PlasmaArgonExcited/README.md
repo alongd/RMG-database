@@ -243,11 +243,9 @@ matching `rmgpy.constants.Na` in the target engine. Molar coefficients scale
 as N_A^(reaction_order-1). Tests separately evaluate 298 and 300 K,
 both mixture points, all matrix cells, event stoichiometry, dictionary/thermo
 loading, atom and charge conservation, coexistence, and the actual wall residual.
-The short real model-generation test loads all four plasma libraries, seeds all
-four 4s states together, and integrates at both nitrogen fractions with a fixed
-pure-Ar 60 Td EEDF replay, wall diffusion, and trapped resonance radiation.
-Production Ar rates and N2 cross-section integrals against that same distribution
-feed the compiled plasma reactor; this is not a mixture-EEDF or steady-state
-discharge validation. Chemkin output and native profiles remain enabled.
-The test prints realized gross loss frequencies by class against the plan above,
-using integrated populations for pooling and the declared cylinder for wall loss.
+The real-job integration check runs through RMG.execute with a reduced atomic
+EEDF artifact supplied by EEDF_ATOMIC_ARTIFACT. It loads the argon and nitrogen
+libraries normally, exercises energy binding by original library-entry identity,
+and checks each newly added atomic channel once in the final core model. The
+reduced artifact is test evidence only, not accepted production data or a
+steady-state discharge validation.

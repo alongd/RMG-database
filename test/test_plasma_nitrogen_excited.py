@@ -1,12 +1,10 @@
-"""Targeted checks for the reduced, room-temperature nitrogen loss library.
+"""Targeted checks for the nitrogen loss library and real RMG job admission.
 
-The real-job test uses the local PlasmaArgonExcited fixed-row fixture and
-explicitly enlarges the model after a nanosecond integration. This checks
-admission through enlargement, not steady-state N omission.
+The RMG.execute check uses a reduced atomic EEDF artifact supplied through
+EEDF_ATOMIC_ARTIFACT; it is an integration fixture, not physical validation.
 """
 import ast
 from collections import Counter
-import hashlib
 import json
 import math
 from pathlib import Path
@@ -197,198 +195,272 @@ def test_wall_declaration_returns_all_four_states_to_ground(x_n2, monkeypatch, t
     assert delta[0] == delta[2] == delta[3] == 0
 
 
-@pytest.mark.parametrize('x_n2', [.01, .05, .2])
-def test_real_job_admits_each_channel_once_after_enlargement(x_n2, monkeypatch, tmp_path, library):
-    from rmgpy.rmg.main import RMG
-    from rmgpy.kinetics import EEDFChannel, TwoTemperaturePlasma
+def test_real_execute_binds_atomic_channels_once(tmp_path, monkeypatch, library):
+    """Use RMG.execute and a reduced EEDF artifact; exercise source-identity binding."""
+    import os
 
-    companion = ROOT
-    row = json.loads((companion / 'test/fixtures/argon_60Td_fixed_row.json').read_text())
-    assert row['converged'] and row['EN_Td'] == pytest.approx(60.)
-    for path, digest in row['production_sha256'].items():
-        assert hashlib.sha256((ROOT / path).read_bytes()).hexdigest() == digest
+    from rmgpy.rmg.main import RMG
+    from rmgpy.kinetics import EEDFChannel
+    from rmgpy.solver.eedf_provider import _development_unqualified_table_route
+    from rmgpy.tools.eedf.schema import _file_hash
+
+    artifact = os.environ.get('EEDF_ATOMIC_ARTIFACT')
+    if not artifact:
+        pytest.skip('requires the reduced atomic EEDF artifact from the dispatch run')
+    artifact = Path(artifact)
+    manifest = json.loads((artifact / 'manifest.json').read_text())
+    assert manifest['accepted'] is False
+    assert (artifact / 'table.h5').is_file()
+
     configure_database(monkeypatch, tmp_path)
-    ar_lib = companion / 'input/kinetics/libraries/PlasmaArgonExcited'
-    dictionary = load_species_dictionary(str(ar_lib / 'dictionary.txt'))
-    dictionary.update(load_species_dictionary(str(LIBDIR / 'dictionary.txt')))
-    readme = (ar_lib / 'README.md').read_text()
-    ar_diffusion = ast.literal_eval(ast.parse(readme.split('```python\n', 1)[1].split('```', 1)[0]).body[0].value)
-    diffusion = dict(ar_diffusion, **diffusion_declaration())
-    libraries = ['PlasmaArgon', 'PlasmaArgonDimer', 'PlasmaNitrogen', str(ar_lib), str(LIBDIR)]
-    lines = [f"database(thermoLibraries=['PlasmaExcitedNeutralThermo', 'primaryThermoLibrary', "
-             f"'PlasmaThermo', 'electrocatThermo'], reactionLibraries={libraries!r}, "
-             f"seedMechanisms={[str(ar_lib), str(LIBDIR)]!r}, kineticsDepositories=[], "
-             "kineticsFamilies='none', kineticsEstimator='rate rules')"]
-    for label, sp in dictionary.items():
+    library_root = ROOT / 'input/kinetics/libraries'
+    names = (
+        'PlasmaArgon', 'PlasmaArgonDimer', 'PlasmaRadiativeRecombination',
+        'PlasmaNitrogen', 'PlasmaArgonExcited', 'PlasmaNitrogenExcited',
+        'PlasmaAtomicNitrogen', 'PlasmaNitrogenDissociativePooling',
+    )
+    paths = [library_root / name for name in names]
+    reaction_libraries = names
+    dictionaries = {}
+    structures_by_label = {}
+    for path in paths:
+        loaded = load_species_dictionary(str(path / 'dictionary.txt'))
+        for label, species in loaded.items():
+            dictionaries[label] = species
+            structures_by_label[label] = species.molecule[0]
+
+    # Several libraries can repeat a label, but one molecular structure must
+    # have one input-deck label. The argon dictionaries use bracketed aliases
+    # for Ar and Arp; the deck declarations below use the unbracketed labels.
+    unique_structures = []
+    labels_by_structure = []
+    for label, molecule in structures_by_label.items():
+        group = next((i for i, structure in enumerate(unique_structures)
+                      if molecule.is_isomorphic(structure)), None)
+        if group is None:
+            unique_structures.append(molecule)
+            labels_by_structure.append({label})
+        else:
+            labels_by_structure[group].add(label)
+    duplicate_label_groups = [labels for labels in labels_by_structure if len(labels) > 1]
+    assert {frozenset(labels) for labels in duplicate_label_groups} == {
+        frozenset(('Ar', '[Ar]')), frozenset(('Arp', '[Arp]')),
+    }
+    dictionaries.pop('[Ar]')
+    dictionaries.pop('[Arp]')
+
+    def declaration(path):
+        fence = chr(96) * 3
+        snippet = (path / 'README.md').read_text().split(fence + 'python\n', 1)[1].split(fence, 1)[0]
+        return ast.literal_eval(ast.parse(snippet).body[0].value)
+
+    diffusion = declaration(paths[4])
+    diffusion.update(declaration(LIBDIR))
+    diffusion.update(declaration(paths[6]))
+    seeds = ['PlasmaArgonExcited', 'PlasmaNitrogenExcited',
+             'PlasmaAtomicNitrogen', 'PlasmaNitrogenDissociativePooling']
+    lines = [f"database(thermoLibraries=['PlasmaAtomicNitrogenThermo', 'PlasmaExcitedNeutralThermo', "
+             f"'primaryThermoLibrary', 'PlasmaThermo', 'electrocatThermo'], "
+             f"reactionLibraries={list(reaction_libraries)!r}, seedMechanisms={seeds!r}, "
+             "kineticsDepositories=[], kineticsFamilies='none', kineticsEstimator='rate rules')"]
+    initial_labels = ('Ar', 'Arp', 'Ar2p', 'e-', 'N2', 'N', 'N(2P)', 'N(2D)')
+    wall_labels = set(diffusion)
+    wall_labels.update(value['product'] for value in diffusion.values())
+    declared_labels = set(initial_labels) | wall_labels
+    for label in sorted(declared_labels):
+        sp = dictionaries[label]
         lines.append(f"species(label={label!r}, reactive={label not in ('e-', 'Arp')!r}, "
                      f"structure=adjacencyList({sp.molecule[0].to_adjacency_list()!r}))")
-    fractions = {label: 1e-8 for label in tuple(ar_diffusion) + STATES + ('N2B', 'N2C')}
-    fractions.update({'e-': 1e-10, 'Arp': 1e-10, 'N2': x_n2})
+
+    # Start the plasma bath and zero-abundance Ar2p wall target. Other species
+    # are created by normally admitted library reactions; initializing every
+    # library dictionary would place unrelated ions in the core.
+    fractions = {'e-': 1e-10, 'Arp': 1e-10, 'N2': .05,
+                 'Ar2p': 0.0, 'N': 1e-18, 'N(2P)': 1e-18, 'N(2D)': 1e-18}
     fractions['Ar'] = 1 - sum(fractions.values())
-    te = 2 * row['mean_energy_eV'] * constants.e / (3 * constants.kB)
+    levels = {
+        16: 7.336, 17: 7.412, 18: 7.511, 19: 7.616, 20: 7.488,
+        21: 7.587, 22: 7.692, 23: 7.686, 24: 7.791, 25: 7.896,
+    }
+    electron_energies = {f'PlasmaArgonExcited:{i}': (v, 'eV') for i, v in levels.items()}
+    electron_energies.update({
+        'PlasmaArgonDimer:1': (0.0, 'eV'),
+        'PlasmaArgonDimer:2': (2.94092, 'eV'),
+        'PlasmaRadiativeRecombination:1': (0.0, 'eV'),
+    })
+    empirical_laws = {
+        'PlasmaArgonDimer:1': {
+            'evaluate_at': 'Te_eff', 'class': 'C', 'sensitivity': True,
+            'basis': 'Shiu & Biondi (1978), Phys. Rev. A 17, 868, Eq. (3), p. 868, Table I/Fig. 2',
+        },
+        'PlasmaArgonDimer:2': {
+            'evaluate_at': 'Te_eff', 'class': 'C', 'sensitivity': True,
+            'basis': 'Kemaneci et al. (2017), J. Phys. D, Table III row 29',
+        },
+        'PlasmaRadiativeRecombination:1': {
+            'evaluate_at': 'Te_eff', 'class': 'C', 'sensitivity': True,
+            'basis': 'Shull & Van Steenberg (1982), ApJS 48, 95, Table 2 row AR1',
+        },
+    }
+    eedf = {'provider': 'loki-table',
+            'table': (str(artifact / 'table.h5'), _file_hash(artifact / 'table.h5')),
+            'branch': 'branch_0', 'initialReducedField': (17., 'Td'),
+            'empiricalLaws': empirical_laws}
     lines.extend([
-        f"plasmaReactor(temperature=(300, 'K'), pressure=(5 * 101325 / 760, 'Pa'), "
-        f"initialMoleFractions={fractions!r}, electronTemperature=({te!r}, 'K'), "
+        "# Ar-bath zero-field K0: Ar+ 1.535 cm^2/(V*s), Ellis et al. (1976); "
+        "Ar2+ 1.833 cm^2/(V*s), McDaniel & Mason (1973) as quoted by Petrov & Ferreira (2013), sec. 2.",
+        f"plasmaReactor(temperature=(298.15, 'K'), pressure=(666.61184, 'Pa'), "
+        f"initialMoleFractions={fractions!r}, "
         "chamberGeometry={'shape': 'cylinder', 'radius': (5, 'cm'), 'length': (30, 'cm')}, "
-        "ionReducedMobility=(1.535e-4, 'm^2/(V*s)'), wallSingleBathApproximation=True, "
-        "wallNeutralizationProducts={'Arp': 'Ar'}, "
+        "ionReducedMobilities={'Arp': (1.535e-4, 'm^2/(V*s)'), "
+        "'Ar2p': (1.833e-4, 'm^2/(V*s)')}, wallSingleBathApproximation=True, "
+        "wallNeutralizationProducts={'Arp': 'Ar', 'Ar2p': ('Ar', 2)}, "
         f"wallNeutralDiffusion={diffusion!r}, "
         "resonanceRadiation={'model': 'holsteinWalsh', 'geometryModel': 'infiniteCylinder'}, "
-        "terminationTime=(1e-9, 's'))",
+        f"electronEnergyBalance={{'absorbedPower': (0.5, 'W'), 'sheath': 'floatingWall', "
+        f"'electronEnergies': {electron_energies!r}}}, electronKinetics={eedf!r}, "
+        "terminationTime=(1e-12, 's'))",
         "simulator(atol=1e-20, rtol=1e-8)",
         "model(toleranceMoveToCore=0.1, toleranceInterruptSimulation=1.0)",
         "options(generateOutputHTML=False, generatePlots=False, saveEdgeSpecies=False, "
-        "saveSimulationProfiles=True, generateChemkin=True, "
-        "generateCanteraFromChemkin=False, generateRMSYAML=False, "
-        "generateCanteraYAML1=False, generateCanteraYAML2=False)",
+        "saveSimulationProfiles=True, generateChemkin=False, generateCanteraFromChemkin=False, "
+        "generateRMSYAML=False, generateCanteraYAML1=False, generateCanteraYAML2=False)",
     ])
     deck = tmp_path / 'input.py'
     deck.write_text('\n'.join(lines) + '\n')
     output = tmp_path / 'job'
     output.mkdir()
     job = RMG(input_file=str(deck), output_directory=str(output))
-    initialize = job.initialize
-
-    def initialize_fixed_row(**kwargs):
-        result = initialize(**kwargs)
-        # Derive the expected owners from the loaded libraries, before replacing
-        # their markers. Include side and branch product so missing inverses or
-        # duplicate branches cannot hide behind a process-only set.
-        def owner_key(kinetics):
-            return kinetics.process, kinetics.side, kinetics.branch_product
-
-        expected = Counter(
-            owner_key(entry.data)
-            for loaded in job.database.kinetics.libraries.values()
-            for entry in loaded.entries.values()
-            if isinstance(entry.data, EEDFChannel))
-        assert expected
-        seen = set()
-        admitted = Counter()
-        rates_by_side = {
-            'ine': row['rates_m3_per_particle_s'],
-            'sup': row['superelastic_rates_m3_per_particle_s'],
+    with _development_unqualified_table_route():
+        job.initialize()
+        assert set(job.database.kinetics.libraries) == set(names)
+        # Compare against every loaded empirical Te law, including entries that
+        # have not yet been admitted. Native Badnell/Voronov models use Te too,
+        # but are typed rate laws rather than electronKinetics empiricalLaws.
+        te_laws = {
+            f'{library_name}:{entry.index}'
+            for library_name, library in job.database.kinetics.libraries.items()
+            for entry in library.entries.values()
+            if getattr(entry.data, 'uses_electron_temperature', False)
+            and entry.data.__class__.__name__ not in {'BadnellRRArrhenius', 'VoronovEIArrhenius'}
         }
-        for reaction in job.reaction_model.core.reactions + job.reaction_model.edge.reactions:
-            kinetics = reaction.kinetics
-            if not isinstance(kinetics, EEDFChannel):
-                continue
-            rate = rates_by_side[kinetics.side][kinetics.process]
-            admitted[owner_key(kinetics)] += 1
-            weight = kinetics.branch_yield if kinetics.branch_product else 1.
-            reaction.kinetics = TwoTemperaturePlasma(
-                A=(rate * weight, 'm^3/(molecule*s)'),
-                n=0., Ea_g=(0., 'J/mol'), Ea_e=(0., 'J/mol'))
-            seen.add((kinetics.process, kinetics.side))
-        assert seen == {(process, side) for side, rates in rates_by_side.items() for process in rates}
-        assert admitted == expected
-        assert sum(admitted.values()) == sum(expected.values())
-        return result
+        assert set(empirical_laws) == te_laws
+        job.execute(initialize=False)
 
-    monkeypatch.setattr(job, 'initialize', initialize_fixed_row)
-    job.execute()
+    assert job.reaction_systems[0].t >= 1e-12
+    source_counts = Counter(r.source_identity for r in job.reaction_model.core.reactions)
+    expected = set()
+    for name in ('PlasmaAtomicNitrogen', 'PlasmaNitrogenDissociativePooling'):
+        expected.update((name, entry.index)
+                        for entry in job.database.kinetics.libraries[name].entries.values())
+    for entry in job.database.kinetics.libraries['PlasmaNitrogen'].entries.values():
+        if isinstance(entry.data, EEDFChannel) and getattr(entry.data, 'role', 'collision') == 'rate_only':
+            expected.add(('PlasmaNitrogen', entry.index))
+    assert expected
+    for source in expected:
+        assert source_counts[source] == 1, source
+
+    # Record the final-state N budget from the normally admitted channels.
+    # This is intentionally a reduced-table integration result, not a power-
+    # balanced discharge budget.
+    import os
+    import numpy as np
+
     reactor = job.reaction_systems[0]
-    assert reactor.t >= 1e-9
+    final_y = reactor.y.copy()
+    reactor.residual(reactor.t, final_y, np.zeros_like(final_y))
     core = job.reaction_model.core
-    assert len(library.entries) == 13
-    for entry in library.entries.values():
-        matches = [r for r in core.reactions if r.is_isomorphic(entry.item, either_direction=False)]
-        assert len(matches) == 1, entry.label
-        reaction, = matches
-        assert not reaction.reversible and reaction.is_balanced()
-        assert reaction.kinetics.get_rate_coefficient(300) == pytest.approx(entry.data.get_rate_coefficient(300), rel=1e-14, abs=0)
-    assert job.chemkin_writer_config.enabled
-    assert (output / 'chemkin/chem.inp').is_file()
-    assert list(output.glob('solver/simulation*'))
+    volume = reactor.compute_volume(final_y)
+    n_species = [i for i, sp in enumerate(core.species) if sp.label == 'N']
+    assert len(n_species) == 1
+    n_density = float(final_y[n_species[0]] * constants.Na / volume)
+    ion_balance = []
+    for label in ('Arp', 'Ar2p'):
+        indices = [i for i, sp in enumerate(core.species) if sp.label == label]
+        assert len(indices) == 1
+        i = indices[0]
+        ion = core.species[i]
+        chemistry_net = 0.0
+        for j, reaction in enumerate(core.reactions):
+            stoich = reaction.products.count(ion) - reaction.reactants.count(ion)
+            chemistry_net += stoich * float(reactor.core_reaction_rates[j] * constants.Na)
+        wall_loss = float(-reactor.wall_loss_rates[i] * constants.Na / volume)
+        ion_balance.append((label, ion.get_net_charge(), chemistry_net, wall_loss,
+                            chemistry_net - wall_loss))
+    chemistry_charge_rate = 0.0
+    for j, reaction in enumerate(core.reactions):
+        charge_delta = sum(
+            (reaction.products.count(sp) - reaction.reactants.count(sp)) * sp.get_net_charge()
+            for sp in set(reaction.reactants + reaction.products)
+        )
+        chemistry_charge_rate += charge_delta * float(reactor.core_reaction_rates[j] * constants.Na)
+    wall_charge_outflow = sum(
+        core.species[i].get_net_charge() * float(-reactor.wall_loss_rates[i] * constants.Na / volume)
+        for i in range(len(core.species))
+        if core.species[i].get_net_charge() != 0
+    )
+    channels = []
+    for source in sorted(expected):
+        matches = [i for i, reaction in enumerate(core.reactions)
+                   if reaction.source_identity == source]
+        assert len(matches) == 1, source
+        reaction_index, = matches
+        reaction = core.reactions[reaction_index]
+        # Count ground-state atomic N, not all nitrogen nuclei (whose
+        # difference is identically zero for every balanced reaction).
+        atomic_n = core.species[n_species[0]]
+        n_delta = reaction.products.count(atomic_n) - reaction.reactants.count(atomic_n)
+        event_rate = float(reactor.core_reaction_rates[reaction_index] * constants.Na)
+        channels.append((source[0], source[1], reaction, event_rate, n_delta * event_rate))
+    wall_frequency = float(reactor.compute_neutral_wall_frequencies(final_y, volume)[n_species[0]])
+    wall_loss = wall_frequency * n_density
+    channels.append(('wallNeutralDiffusion', 'N', 'N => 0.5 N2', wall_loss, -wall_loss))
+    assert np.isfinite(n_density)
+    assert all(np.isfinite(event_rate) and np.isfinite(n_rate)
+               for _, _, _, event_rate, n_rate in channels)
+    assert all(np.isfinite(value) for row in ion_balance for value in row[1:])
+    assert np.isfinite(chemistry_charge_rate) and np.isfinite(wall_charge_outflow)
+    report_path = Path(os.environ['ATOMIC_NITROGEN_BUDGET']) if 'ATOMIC_NITROGEN_BUDGET' in os.environ \
+        else tmp_path / 'physical-budget.md'
+    report_path.parent.mkdir(parents=True, exist_ok=True)
+    rows = [
+        '# Atomic nitrogen budget', '',
+        '**reduced-table integration job, not a power-balanced discharge**', '',
+        f'- Final time: `{reactor.t:.9g} s`',
+        f'- Final atomic nitrogen density: `{n_density:.9g} molecule/m^3`',
+        f'- Source artifact SHA-256: `{_file_hash(artifact / "table.h5")}`',
+        '',
+        '| Library | Entry | Reaction | Event rate (molecule m^-3 s^-1) | N production (+) / loss (-) (atom m^-3 s^-1) |',
+        '|---|---:|---|---:|---:|',
+    ]
+    for library_name, entry_index, reaction, event_rate, n_rate in channels:
+        rows.append(f'| {library_name} | {entry_index} | `{reaction}` | '
+                    f'{event_rate:.9g} | {n_rate:.9g} |')
+    rows.extend([
+        '', '## Cation and charge balance', '',
+        '| Ion | Charge (+e) | Chemistry net (ions m^-3 s^-1) | Wall loss (ions m^-3 s^-1) | Net after wall (ions m^-3 s^-1) | Charge removed by wall (+e m^-3 s^-1) |',
+        '|---|---:|---:|---:|---:|---:|',
+    ])
+    for label, charge, chemistry_net, wall_loss, net in ion_balance:
+        rows.append(f'| {label} | {charge} | {chemistry_net:.9g} | {wall_loss:.9g} | '
+                    f'{net:.9g} | {charge * wall_loss:.9g} |')
+    rows.extend([
+        '', f'- Net chemistry charge rate: `{chemistry_charge_rate:.9g} elementary charges/m^3/s`',
+        f'- Net charged-particle wall charge outflow: `{wall_charge_outflow:.9g} elementary charges/m^3/s`',
+    ])
+    report_path.write_text('\n'.join(rows) + '\n')
 
-    # Evaluate accepted final state explicitly: cached rates can belong to a
-    # Newton trial. Report gross consumption and signed net loss separately.
-    y = reactor.y.copy()
-    reactor.residual(reactor.t, y, np.zeros_like(y))
-    volume = reactor.compute_volume(y)
-    density = y[:len(core.species)] * constants.Na / volume
-    indices = {}
-    for label in ('Ar', 'N2', 'N2A', 'N2ap', 'N2a', 'N2w', 'N2B', 'N2C'):
-        matches = [i for i, sp in enumerate(core.species) if sp.is_isomorphic(dictionary[label])]
-        assert len(matches) == 1, label
-        indices[label] = matches[0]
-    assert all(density[indices[state]] > 0 for state in STATES)
-    report = {'purpose': '1 ns integration followed by explicit enlargement; NOT steady-state N omission',
-              'x_N2_initial': x_n2, 'time_s': reactor.t,
-              'T_K': 300., 'n_m3': {label: float(density[i]) for label, i in indices.items()},
-              'classes_s-1': {state: {} for state in STATES}, 'channels': []}
-    for entry in library.entries.values():
-        j, = [j for j, r in enumerate(core.reactions) if r.is_isomorphic(entry.item, either_direction=False)]
-        reaction = core.reactions[j]
-        reference, convention = RATES[entry.label]
-        if convention == 'SINGLET_SPECTROSCOPIC_REVERSE':
-            reference *= math.exp(-1743.797574924 / 300.)
-        expected = reference
-        for sp in reaction.reactants:
-            expected *= density[core.species.index(sp)]
-        actual = reactor.core_reaction_rates[j] * constants.Na
-        assert expected > 0
-        assert actual == pytest.approx(expected, rel=2e-12, abs=0), entry.label
-        if convention == 'POOL_V0_TO_MANIFOLD':
-            channel_class = 'pooling'
-        elif convention in ('SINGLET_V0_COUPLING', 'SINGLET_TOTAL_TO_AP', 'SINGLET_SPECTROSCOPIC_REVERSE', 'W_N2_TO_A'):
-            channel_class = 'collisional_singlet_exchange'
-        elif len(reaction.reactants) == 1:
-            channel_class = 'radiative_exchange' if entry.label in ('N2a => N2ap', 'N2w => N2a') else 'radiative_terminal'
-        else:
-            channel_class = 'collisional_quench'
-        report['channels'].append({'label': entry.label, 'class': channel_class,
-                                   'actual_event_m3_s': float(actual),
-                                   'source_formula_event_m3_s': float(expected)})
-        for state in STATES:
-            sp = core.species[indices[state]]
-            consumed, produced = reaction.reactants.count(sp), reaction.products.count(sp)
-            if not (consumed or produced):
-                continue
-            item = report['classes_s-1'][state].setdefault(channel_class, {'gross': 0., 'returned': 0., 'net': 0.})
-            item['gross'] += float(consumed * actual / density[indices[state]])
-            item['returned'] += float(produced * actual / density[indices[state]])
-            item['net'] = item['gross'] - item['returned']
-    frequencies = reactor.compute_neutral_wall_frequencies(y, volume)
-    # Neutral transport uses neutral, not electron/ion, density in this EOS.
-    neutral_density = sum(density[i] for i, sp in enumerate(core.species) if sp.get_net_charge() == 0)
-    # Match the cylinder input operator: its first Bessel zero is rounded to 2.405.
-    lambda_squared_inverse = (2.405 / .05)**2 + (math.pi / .30)**2
-    expected_wall = DN / neutral_density * lambda_squared_inverse
-    for state in STATES:
-        wall = float(frequencies[indices[state]])
-        assert wall > 0
-        assert wall == pytest.approx(expected_wall, rel=1e-8)
-        report['classes_s-1'][state]['wall'] = {'gross': wall, 'returned': 0., 'net': wall}
-    gross_pooling = report['classes_s-1']['N2A']['pooling']['gross']
-    assert gross_pooling == pytest.approx(2 * (1.5e-16 + 7.7e-17) * density[indices['N2A']], rel=2e-12)
-    report['post_cascade_A_pooling_net_s-1'] = gross_pooling / 2
-    report['geometry'] = {'radius_m': .05, 'length_m': .30,
-                          'Lambda_m': lambda_squared_inverse**-.5,
-                          'planning_Lambda_m': .0203,
-                          'actual_over_planning_wall': lambda_squared_inverse * .0203**2}
-    # Integration conserves each element and charge, including neutral walls.
-    initial = reactor.y0[:len(core.species)]
-    final = y[:len(core.species)]
-    for element in ('Ar', 'N'):
-        counts = np.array([sp.molecule[0].get_element_count().get(element, 0) for sp in core.species])
-        assert np.dot(counts, final) == pytest.approx(np.dot(counts, initial), rel=1e-9, abs=1e-20)
-    charges = np.array([sp.get_net_charge() for sp in core.species])
-    assert np.dot(charges, final) == pytest.approx(np.dot(charges, initial), abs=1e-18)
-    (tmp_path / 'loss-frequencies.json').write_text(json.dumps(report, indent=2) + '\n')
+    # The two legacy entries share identical kinetics but keep separate identities.
+    argon_entries = job.database.kinetics.libraries['PlasmaArgonExcited'].entries
+    assert argon_entries[16].data.is_identical_to(argon_entries[23].data)
+    energy_by_key = dict(zip(job.reaction_systems[0].energy_reaction_keys,
+                             job.reaction_systems[0].energy_threshold))
+    for index, expected_eV in ((16, 7.336), (23, 7.686)):
+        key = f'PlasmaArgonExcited:{index}'
+        assert key in energy_by_key
+        assert energy_by_key[key] / (constants.Na * constants.e) == pytest.approx(expected_eV)
 
-    # Seeded channels may also be waiting on the edge from reaction-library
-    # admission. Promote a real edge species so that all now-core reactions
-    # move too: a short integration alone never exercised this path.
-    model = job.reaction_model
-    assert model.edge.species, 'Need an edge species to exercise enlargement'
-    promoted = model.edge.species[0]
-    model.enlarge(promoted)
-    assert promoted in model.core.species and promoted not in model.edge.species
-    admitted = model.core.reactions + model.edge.reactions
-    for entry in library.entries.values():
-        matches = [r for r in admitted if r.is_isomorphic(entry.item, either_direction=False)]
-        assert len(matches) == 1, (entry.label, len(matches))
+
 
 
 def test_w_loss_channels_integrate_to_a_with_source_decay_frequency(library):

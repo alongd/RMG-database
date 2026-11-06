@@ -388,17 +388,25 @@ def test_real_execute_binds_atomic_channels_once(tmp_path, monkeypatch, library)
         ion_balance.append((label, ion.get_net_charge(), chemistry_net, wall_loss,
                             chemistry_net - wall_loss))
     chemistry_charge_rate = 0.0
+    gross_charge_terms = []
+    resolved_reactions = reactor._resolve_electron_placements(
+        core.reactions, core.species, [])
     for j, reaction in enumerate(core.reactions):
+        resolved = resolved_reactions[j]
         charge_delta = sum(
-            (reaction.products.count(sp) - reaction.reactants.count(sp)) * sp.get_net_charge()
-            for sp in set(reaction.reactants + reaction.products)
+            (resolved.products.count(sp) - resolved.reactants.count(sp)) * sp.get_net_charge()
+            for sp in set(resolved.reactants + resolved.products)
         )
-        chemistry_charge_rate += charge_delta * float(reactor.core_reaction_rates[j] * constants.Na)
-    wall_charge_outflow = sum(
+        charge_rate = charge_delta * float(reactor.core_reaction_rates[j] * constants.Na)
+        chemistry_charge_rate += charge_rate
+        gross_charge_terms.append(abs(charge_rate))
+    wall_charge_terms = [
         core.species[i].get_net_charge() * float(-reactor.wall_loss_rates[i] * constants.Na / volume)
         for i in range(len(core.species))
         if core.species[i].get_net_charge() != 0
-    )
+    ]
+    wall_charge_outflow = sum(wall_charge_terms)
+    gross_charge_terms.extend(abs(term) for term in wall_charge_terms)
     channels = []
     for source in sorted(expected):
         matches = [i for i, reaction in enumerate(core.reactions)
@@ -419,7 +427,10 @@ def test_real_execute_binds_atomic_channels_once(tmp_path, monkeypatch, library)
     assert all(np.isfinite(event_rate) and np.isfinite(n_rate)
                for _, _, _, event_rate, n_rate in channels)
     assert all(np.isfinite(value) for row in ion_balance for value in row[1:])
-    assert np.isfinite(chemistry_charge_rate) and np.isfinite(wall_charge_outflow)
+    largest_gross_charge_term = max(gross_charge_terms)
+    # Require the net charge rate to be at most 1e-9 of the largest single
+    # gross charge contribution, so cancellation cannot hide a material defect.
+    assert abs(chemistry_charge_rate - wall_charge_outflow) <= 1e-9 * largest_gross_charge_term
     report_path = Path(os.environ['ATOMIC_NITROGEN_BUDGET']) if 'ATOMIC_NITROGEN_BUDGET' in os.environ \
         else tmp_path / 'physical-budget.md'
     report_path.parent.mkdir(parents=True, exist_ok=True)
@@ -438,6 +449,8 @@ def test_real_execute_binds_atomic_channels_once(tmp_path, monkeypatch, library)
                     f'{event_rate:.9g} | {n_rate:.9g} |')
     rows.extend([
         '', '## Cation and charge balance', '',
+        'Per-ion rates are instantaneous diagnostics at the final transient state; '
+        'the deck does not require each ion to be at steady state.', '',
         '| Ion | Charge (+e) | Chemistry net (ions m^-3 s^-1) | Wall loss (ions m^-3 s^-1) | Net after wall (ions m^-3 s^-1) | Charge removed by wall (+e m^-3 s^-1) |',
         '|---|---:|---:|---:|---:|---:|',
     ])
@@ -447,6 +460,9 @@ def test_real_execute_binds_atomic_channels_once(tmp_path, monkeypatch, library)
     rows.extend([
         '', f'- Net chemistry charge rate: `{chemistry_charge_rate:.9g} elementary charges/m^3/s`',
         f'- Net charged-particle wall charge outflow: `{wall_charge_outflow:.9g} elementary charges/m^3/s`',
+        f'- Net charge production after wall losses: `{chemistry_charge_rate - wall_charge_outflow:.9g} elementary charges/m^3/s`',
+        f'- Largest gross charge term: `{largest_gross_charge_term:.9g} elementary charges/m^3/s`',
+        '- Closure tolerance: `1e-9` of the largest gross charge term',
     ])
     report_path.write_text('\n'.join(rows) + '\n')
 

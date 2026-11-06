@@ -4,7 +4,7 @@ source_file: N2_LXCat.txt
 source_sha256: d7299f42250e6a8897f93f81acb9d2a4eaafc0bea684bddfa92d79ad43647e1a
 channels:
 - id: 1
-  process: E + N2 -> E + N2, Effective
+  process: e + N2(X) -> e + N2(X), Effective
   class: B
   owner_index: null
   owner_library: null
@@ -13,7 +13,7 @@ channels:
   reason: Momentum-transfer/effective collision retained for energy/momentum accounting;
     no chemical state owner
 - id: 2
-  process: E + N2 -> E + N2 (v=0 - v=1), Excitation
+  process: e + N2(X,v=0) <-> e + N2(X,v=1), Vibrational
   class: B
   owner_index: null
   owner_library: null
@@ -22,7 +22,7 @@ channels:
   reason: N2(X,v) channels belong to parallel vibrational data branch; energy-only
     here
 - id: 3
-  process: E + N2 -> E + N2 (v=0 - v=2), Excitation
+  process: e + N2(X,v=0) <-> e + N2(X,v=2), Vibrational
   class: B
   owner_index: null
   owner_library: null
@@ -31,7 +31,7 @@ channels:
   reason: N2(X,v) channels belong to parallel vibrational data branch; energy-only
     here
 - id: 4
-  process: E + N2 -> E + N2 (v=0 - v=3), Excitation
+  process: e + N2(X,v=0) <-> e + N2(X,v=3), Vibrational
   class: B
   owner_index: null
   owner_library: null
@@ -40,7 +40,7 @@ channels:
   reason: N2(X,v) channels belong to parallel vibrational data branch; energy-only
     here
 - id: 5
-  process: E + N2 -> E + N2 (v=0 - v=4), Excitation
+  process: e + N2(X,v=0) <-> e + N2(X,v=4), Vibrational
   class: B
   owner_index: null
   owner_library: null
@@ -49,7 +49,7 @@ channels:
   reason: N2(X,v) channels belong to parallel vibrational data branch; energy-only
     here
 - id: 6
-  process: E + N2 -> E + N2 (v=0 - v=5), Excitation
+  process: e + N2(X,v=0) <-> e + N2(X,v=5), Vibrational
   class: B
   owner_index: null
   owner_library: null
@@ -58,7 +58,7 @@ channels:
   reason: N2(X,v) channels belong to parallel vibrational data branch; energy-only
     here
 - id: 7
-  process: E + N2 -> E + N2 (v=0 - v=6), Excitation
+  process: e + N2(X,v=0) <-> e + N2(X,v=6), Vibrational
   class: B
   owner_index: null
   owner_library: null
@@ -67,7 +67,7 @@ channels:
   reason: N2(X,v) channels belong to parallel vibrational data branch; energy-only
     here
 - id: 8
-  process: E + N2 -> E + N2 (v=0 - v=7), Excitation
+  process: e + N2(X,v=0) <-> e + N2(X,v=7), Vibrational
   class: B
   owner_index: null
   owner_library: null
@@ -76,7 +76,7 @@ channels:
   reason: N2(X,v) channels belong to parallel vibrational data branch; energy-only
     here
 - id: 9
-  process: E + N2 -> E + N2 (v=0 - v=8), Excitation
+  process: e + N2(X,v=0) <-> e + N2(X,v=8), Vibrational
   class: B
   owner_index: null
   owner_library: null
@@ -85,7 +85,7 @@ channels:
   reason: N2(X,v) channels belong to parallel vibrational data branch; energy-only
     here
 - id: 10
-  process: E + N2 -> E + N2 (v=0 - v=9), Excitation
+  process: e + N2(X,v=0) <-> e + N2(X,v=9), Vibrational
   class: B
   owner_index: null
   owner_library: null
@@ -94,7 +94,7 @@ channels:
   reason: N2(X,v) channels belong to parallel vibrational data branch; energy-only
     here
 - id: 11
-  process: E + N2 -> E + N2 (v=0 - v=10), Excitation
+  process: e + N2(X,v=0) <-> e + N2(X,v=10), Vibrational
   class: B
   owner_index: null
   owner_library: null
@@ -103,7 +103,7 @@ channels:
   reason: N2(X,v) channels belong to parallel vibrational data branch; energy-only
     here
 - id: 12
-  process: E + N2 -> E + N2[A3Su+(v=0-4)], Excitation
+  process: e + N2(X) -> e + N2(A3Su+,v=0-4), Excitation
   class: A
   owner_index: 1
   owner_library: PlasmaNitrogen
@@ -111,7 +111,7 @@ channels:
   threshold_eV: 6.2
   reason: A-band v=0–4; full 6.2 eV threshold; threshold excess recorded in leak ledger
 - id: 13
-  process: E + N2 -> E + N2 [A3Su+(v=5-9)], Excitation
+  process: e + N2(X) -> e + N2(A3Su+,v=5-9), Excitation
   class: A
   owner_index: 2
   owner_library: PlasmaNitrogen
@@ -119,7 +119,7 @@ channels:
   threshold_eV: 7.0
   reason: A-band v=5–9; full 7.0 eV threshold; threshold excess recorded in leak ledger
 - id: 14
-  process: E + N2 -> E + N2(B3Pg), Excitation
+  process: e + N2(X) -> e + N2(B3Pg), Excitation
   class: A
   owner_index: 3
   owner_library: PlasmaNitrogen
@@ -127,7 +127,7 @@ channels:
   threshold_eV: 7.4
   reason: Resolved B state
 - id: 15
-  process: E + N2 -> E + N2(W3Du), Excitation
+  process: e + N2(X) -> e + N2(W3Du), Excitation
   class: A
   owner_index: 4
   owner_library: PlasmaNitrogen
@@ -136,7 +136,7 @@ channels:
   reason: W→B infrared fluorescence, Fraser et al. 1988 cited as Guerra 2019 ref.
     210; primary paper not locally retrieved
 - id: 16
-  process: E + N2 -> E + N2 [A3Su+(v=10+)], Excitation
+  process: e + N2(X) -> e + N2(A3Su+,v=10+), Excitation
   class: A
   owner_index: 5
   owner_library: PlasmaNitrogen
@@ -144,7 +144,7 @@ channels:
   threshold_eV: 7.8
   reason: A-band v=10+; full 7.8 eV threshold; threshold excess recorded in leak ledger
 - id: 17
-  process: E + N2 -> E + N2(B3Su-), Excitation
+  process: e + N2(X) -> e + N2(B3Su-), Excitation
   class: A
   owner_index: 6
   owner_library: PlasmaNitrogen
@@ -152,7 +152,7 @@ channels:
   threshold_eV: 8.2
   reason: B′→B radiative coupling; Guerra 2019 Table 5 N24, ref. 207
 - id: 18
-  process: E + N2 -> E + N2(a1Su-), Excitation
+  process: e + N2(X) -> e + N2(a1Su-), Excitation
   class: A
   owner_index: 7
   owner_library: PlasmaNitrogen
@@ -160,7 +160,7 @@ channels:
   threshold_eV: 8.4
   reason: Resolved a′ state
 - id: 19
-  process: E + N2 -> E + N2(a1Pg), Excitation
+  process: e + N2(X) -> e + N2(a1Pg), Excitation
   class: A
   owner_index: 8
   owner_library: PlasmaNitrogen
@@ -168,7 +168,7 @@ channels:
   threshold_eV: 8.6
   reason: Resolved a state
 - id: 20
-  process: E + N2 -> E + N2(w1Du), Excitation
+  process: e + N2(X) -> e + N2(w1Du), Excitation
   class: A
   owner_index: 9
   owner_library: PlasmaNitrogen
@@ -176,7 +176,7 @@ channels:
   threshold_eV: 8.9
   reason: Resolved w state
 - id: 21
-  process: E + N2 -> E + N2(C3Pu), Excitation
+  process: e + N2(X) -> e + N2(C3Pu), Excitation
   class: A
   owner_index: 10
   owner_library: PlasmaNitrogen
@@ -184,7 +184,7 @@ channels:
   threshold_eV: 11.0
   reason: Resolved C state
 - id: 22
-  process: E + N2 -> E + N2(E3Sg+), Excitation
+  process: e + N2(X) -> e + N2(E3Sg+), Excitation
   class: B
   owner_index: null
   owner_library: null
@@ -192,7 +192,7 @@ channels:
   threshold_eV: 11.8
   reason: LoKI-GM scheme treats E as energy-loss only; no resolved species/owner
 - id: 23
-  process: E + N2 -> E + N2(a1Sg+), Excitation
+  process: e + N2(X) -> e + N2(a1Sg+), Excitation
   class: B
   owner_index: null
   owner_library: null
@@ -200,7 +200,7 @@ channels:
   threshold_eV: 12.2
   reason: LoKI-GM scheme treats a″ as energy-loss only; no resolved species/owner
 - id: 24
-  process: E + N2 -> E + N2(sing-sup), Excitation
+  process: e + N2(X) -> e + N2(sing-sup), Excitation
   class: B
   owner_index: null
   owner_library: null
@@ -208,7 +208,7 @@ channels:
   threshold_eV: 13.0
   reason: LoKI-GM scheme treats sing-sup as energy-loss only; no resolved species/owner
 - id: 25
-  process: E + N2 -> E + E + N2+(X), Ionization
+  process: e + N2(X) -> e + e + N2(+,X), Ionization
   class: A
   owner_index: 11
   owner_library: PlasmaNitrogen
@@ -216,7 +216,7 @@ channels:
   threshold_eV: 15.6
   reason: Existing N2p (N2+(X)) state
 - id: 26
-  process: E + N2 -> E + E + N2+(B), Ionization
+  process: e + N2(X) -> e + e + N2(+,B), Ionization
   class: A
   owner_index: 12
   owner_library: PlasmaNitrogen

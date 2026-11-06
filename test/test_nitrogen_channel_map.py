@@ -57,13 +57,15 @@ def _synthetic_overlay_files(tmp_path, owner_overrides=None, duplicate=False):
         'owner_library', 'owner_label', 'reason')}
     channel.update(owner_overrides or {})
     source = tmp_path / 'source.txt'
-    source.write_text('Excitation\nheader\n5.0\nPROCESS: test process\n')
+    source.write_text('EXCITATION\nheader\n5.0\nPARAM.: E = 5.0 eV\n'
+                      '[N2(X) + e -> N2(A3Su+,v=0-4) + e, Excitation]\n'
+                      '-----\n5 0\n6 1e-22\n-----\n')
     overlay = tmp_path / 'overlay.yaml'
     payload = {
         'schema': 'eedf-channel-overlay/1',
-        'collision_set': 'synthetic-test-set',
+        'collision_set': frozen['set'],
         'source_sha256': hashlib.sha256(source.read_bytes()).hexdigest(),
-        'channels': [{**channel, 'id': 1, 'process': 'test process',
+        'channels': [{**channel, 'id': 1, 'process': owner['process'],
                       'threshold_eV': 5.0}],
     }
     text = yaml.safe_dump(payload, sort_keys=False)
@@ -115,7 +117,7 @@ def test_every_class_a_row_loads_with_exact_edf_metadata():
         assert entry.data.side == 'ine'
         assert not entry.item.reversible
         process = row['process']
-        if 'N2+(B)' in process:
+        if 'N2(+,B)' in process:
             product_label, expected_state = 'N2pB', '2Sigma_u+'
         elif 'A3Su+' in process:
             product_label, expected_state = 'N2A', '3Sigma_u+'
@@ -130,7 +132,7 @@ def test_every_class_a_row_loads_with_exact_edf_metadata():
             product_label, expected_state = 'N2a', '1Pi_g'
         elif '(w1Du)' in process:
             product_label, expected_state = 'N2w', '1Delta_u'
-        elif 'N2+(X)' in process:
+        elif 'N2(+,X)' in process:
             product_label, expected_state = 'N2p', None
         else:
             raise AssertionError(f'unexpected class-A process {process}')
@@ -237,3 +239,20 @@ def test_sample_owners_admit_with_real_thermo_and_arrhenius_rates():
                    for r in admitted)
     finally:
         rmg_data_module.database = previous
+
+
+@pytest.mark.parametrize('field', ['process', 'collision_set'])
+def test_generator_rejects_owner_collision_identity_mismatch(tmp_path, field):
+    source, overlay = _synthetic_overlay_files(tmp_path)
+    payload = yaml.safe_load(overlay.read_text())
+    if field == 'process':
+        # Keep source/overlay consistent while choosing a different collision
+        # for the same structurally identical N2A owner.
+        source.write_text(source.read_text().replace('v=0-4', 'v=5-9'))
+        payload['channels'][0]['process'] = payload['channels'][0]['process'].replace('v=0-4', 'v=5-9')
+        payload['source_sha256'] = hashlib.sha256(source.read_bytes()).hexdigest()
+    else:
+        payload['collision_set'] = 'wrong-set'
+    overlay.write_text(yaml.safe_dump(payload))
+    with pytest.raises(ValueError, match='different collision identity'):
+        generator.generate(source, overlay)

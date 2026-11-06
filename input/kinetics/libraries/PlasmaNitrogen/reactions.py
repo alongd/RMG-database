@@ -4,6 +4,9 @@
 name = "PlasmaNitrogen"
 shortDesc = "State-resolved N2 electron-impact owner reactions"
 longDesc = """Owner library for class-A channels in IST-Lisbon N2_LXCat.txt.
+Processes use the canonical PARAM/bracket block identity consumed by LoKI, rather than the older
+PROCESS display aliases. The nitrogen map generator checks each process and collision set
+against its loaded owner. Existing EEDF tables must be regenerated after this metadata change.
 The channel map and energy leaks retain full source thresholds; no cross sections are stored.
 """
 
@@ -13,12 +16,12 @@ entry(
     reversible = False,
     duplicate = True,
     kinetics = EEDFChannel(
-        process = 'E + N2 -> E + N2[A3Su+(v=0-4)], Excitation',
+        process = 'e + N2(X) -> e + N2(A3Su+,v=0-4), Excitation',
         collision_set = "IST-Lisbon-N2-2022",
         side = "ine",
     ),
     shortDesc = "IST-Lisbon-N2-2022 class-A owner",
-    longDesc = """Owner for `E + N2 -> E + N2[A3Su+(v=0-4)], Excitation`. Exact LoKI block and full threshold are recorded in nitrogen_channel_map.yaml.
+    longDesc = """Owner for `e + N2(X) -> e + N2(A3Su+,v=0-4), Excitation`. Exact LoKI block and full threshold are recorded in nitrogen_channel_map.yaml.
 """,
 )
 
@@ -28,12 +31,12 @@ entry(
     reversible = False,
     duplicate = True,
     kinetics = EEDFChannel(
-        process = 'E + N2 -> E + N2 [A3Su+(v=5-9)], Excitation',
+        process = 'e + N2(X) -> e + N2(A3Su+,v=5-9), Excitation',
         collision_set = "IST-Lisbon-N2-2022",
         side = "ine",
     ),
     shortDesc = "IST-Lisbon-N2-2022 class-A owner",
-    longDesc = """Owner for `E + N2 -> E + N2 [A3Su+(v=5-9)], Excitation`. Exact LoKI block and full threshold are recorded in nitrogen_channel_map.yaml.
+    longDesc = """Owner for `e + N2(X) -> e + N2(A3Su+,v=5-9), Excitation`. Exact LoKI block and full threshold are recorded in nitrogen_channel_map.yaml.
 """,
 )
 
@@ -43,12 +46,12 @@ entry(
     reversible = False,
     duplicate = True,
     kinetics = EEDFChannel(
-        process = 'E + N2 -> E + N2(B3Pg), Excitation',
+        process = 'e + N2(X) -> e + N2(B3Pg), Excitation',
         collision_set = "IST-Lisbon-N2-2022",
         side = "ine",
     ),
     shortDesc = "IST-Lisbon-N2-2022 class-A owner",
-    longDesc = """Owner for `E + N2 -> E + N2(B3Pg), Excitation`. Exact LoKI block and full threshold are recorded in nitrogen_channel_map.yaml.
+    longDesc = """Owner for `e + N2(X) -> e + N2(B3Pg), Excitation`. Exact LoKI block and full threshold are recorded in nitrogen_channel_map.yaml.
 """,
 )
 
@@ -58,12 +61,12 @@ entry(
     reversible = False,
     duplicate = True,
     kinetics = EEDFChannel(
-        process = 'E + N2 -> E + N2(W3Du), Excitation',
+        process = 'e + N2(X) -> e + N2(W3Du), Excitation',
         collision_set = "IST-Lisbon-N2-2022",
         side = "ine",
     ),
     shortDesc = "IST-Lisbon-N2-2022 class-A owner",
-    longDesc = """Owner for `E + N2 -> E + N2(W3Du), Excitation`. Exact LoKI block and full threshold are recorded in nitrogen_channel_map.yaml.
+    longDesc = """Owner for `e + N2(X) -> e + N2(W3Du), Excitation`. Exact LoKI block and full threshold are recorded in nitrogen_channel_map.yaml.
 """,
 )
 
@@ -73,12 +76,12 @@ entry(
     reversible = False,
     duplicate = True,
     kinetics = EEDFChannel(
-        process = 'E + N2 -> E + N2 [A3Su+(v=10+)], Excitation',
+        process = 'e + N2(X) -> e + N2(A3Su+,v=10+), Excitation',
         collision_set = "IST-Lisbon-N2-2022",
         side = "ine",
     ),
     shortDesc = "IST-Lisbon-N2-2022 class-A owner",
-    longDesc = """Owner for `E + N2 -> E + N2 [A3Su+(v=10+)], Excitation`. Exact LoKI block and full threshold are recorded in nitrogen_channel_map.yaml.
+    longDesc = """Owner for `e + N2(X) -> e + N2(A3Su+,v=10+), Excitation`. Exact LoKI block and full threshold are recorded in nitrogen_channel_map.yaml.
 """,
 )
 
@@ -88,12 +91,12 @@ entry(
     reversible = False,
     duplicate = True,
     kinetics = EEDFChannel(
-        process = 'E + N2 -> E + N2(B3Su-), Excitation',
+        process = 'e + N2(X) -> e + N2(B3Su-), Excitation',
         collision_set = "IST-Lisbon-N2-2022",
         side = "ine",
     ),
     shortDesc = "IST-Lisbon-N2-2022 class-A owner",
-    longDesc = """Owner for `E + N2 -> E + N2(B3Su-), Excitation`. Exact LoKI block and full threshold are recorded in nitrogen_channel_map.yaml.
+    longDesc = """Owner for `e + N2(X) -> e + N2(B3Su-), Excitation`. Exact LoKI block and full threshold are recorded in nitrogen_channel_map.yaml.
 """,
 )
 
@@ -103,12 +106,12 @@ entry(
     reversible = False,
     duplicate = True,
     kinetics = EEDFChannel(
-        process = 'E + N2 -> E + N2(a1Su-), Excitation',
+        process = 'e + N2(X) -> e + N2(a1Su-), Excitation',
         collision_set = "IST-Lisbon-N2-2022",
         side = "ine",
     ),
     shortDesc = "IST-Lisbon-N2-2022 class-A owner",
-    longDesc = """Owner for `E + N2 -> E + N2(a1Su-), Excitation`. Exact LoKI block and full threshold are recorded in nitrogen_channel_map.yaml.
+    longDesc = """Owner for `e + N2(X) -> e + N2(a1Su-), Excitation`. Exact LoKI block and full threshold are recorded in nitrogen_channel_map.yaml.
 """,
 )
 
@@ -118,12 +121,12 @@ entry(
     reversible = False,
     duplicate = True,
     kinetics = EEDFChannel(
-        process = 'E + N2 -> E + N2(a1Pg), Excitation',
+        process = 'e + N2(X) -> e + N2(a1Pg), Excitation',
         collision_set = "IST-Lisbon-N2-2022",
         side = "ine",
     ),
     shortDesc = "IST-Lisbon-N2-2022 class-A owner",
-    longDesc = """Owner for `E + N2 -> E + N2(a1Pg), Excitation`. Exact LoKI block and full threshold are recorded in nitrogen_channel_map.yaml.
+    longDesc = """Owner for `e + N2(X) -> e + N2(a1Pg), Excitation`. Exact LoKI block and full threshold are recorded in nitrogen_channel_map.yaml.
 """,
 )
 
@@ -133,12 +136,12 @@ entry(
     reversible = False,
     duplicate = True,
     kinetics = EEDFChannel(
-        process = 'E + N2 -> E + N2(w1Du), Excitation',
+        process = 'e + N2(X) -> e + N2(w1Du), Excitation',
         collision_set = "IST-Lisbon-N2-2022",
         side = "ine",
     ),
     shortDesc = "IST-Lisbon-N2-2022 class-A owner",
-    longDesc = """Owner for `E + N2 -> E + N2(w1Du), Excitation`. Exact LoKI block and full threshold are recorded in nitrogen_channel_map.yaml.
+    longDesc = """Owner for `e + N2(X) -> e + N2(w1Du), Excitation`. Exact LoKI block and full threshold are recorded in nitrogen_channel_map.yaml.
 """,
 )
 
@@ -148,12 +151,12 @@ entry(
     reversible = False,
     duplicate = True,
     kinetics = EEDFChannel(
-        process = 'E + N2 -> E + N2(C3Pu), Excitation',
+        process = 'e + N2(X) -> e + N2(C3Pu), Excitation',
         collision_set = "IST-Lisbon-N2-2022",
         side = "ine",
     ),
     shortDesc = "IST-Lisbon-N2-2022 class-A owner",
-    longDesc = """Owner for `E + N2 -> E + N2(C3Pu), Excitation`. Exact LoKI block and full threshold are recorded in nitrogen_channel_map.yaml.
+    longDesc = """Owner for `e + N2(X) -> e + N2(C3Pu), Excitation`. Exact LoKI block and full threshold are recorded in nitrogen_channel_map.yaml.
 """,
 )
 
@@ -163,12 +166,12 @@ entry(
     reversible = False,
     duplicate = True,
     kinetics = EEDFChannel(
-        process = 'E + N2 -> E + E + N2+(X), Ionization',
+        process = 'e + N2(X) -> e + e + N2(+,X), Ionization',
         collision_set = "IST-Lisbon-N2-2022",
         side = "ine",
     ),
     shortDesc = "IST-Lisbon-N2-2022 class-A owner",
-    longDesc = """Owner for `E + N2 -> E + E + N2+(X), Ionization`. Exact LoKI block and full threshold are recorded in nitrogen_channel_map.yaml.
+    longDesc = """Owner for `e + N2(X) -> e + e + N2(+,X), Ionization`. Exact LoKI block and full threshold are recorded in nitrogen_channel_map.yaml.
 """,
 )
 
@@ -178,11 +181,11 @@ entry(
     reversible = False,
     duplicate = True,
     kinetics = EEDFChannel(
-        process = 'E + N2 -> E + E + N2+(B), Ionization',
+        process = 'e + N2(X) -> e + e + N2(+,B), Ionization',
         collision_set = "IST-Lisbon-N2-2022",
         side = "ine",
     ),
     shortDesc = "IST-Lisbon-N2-2022 class-A owner",
-    longDesc = """Owner for `E + N2 -> E + E + N2+(B), Ionization`. Exact LoKI block and full threshold are recorded in nitrogen_channel_map.yaml.
+    longDesc = """Owner for `e + N2(X) -> e + e + N2(+,B), Ionization`. Exact LoKI block and full threshold are recorded in nitrogen_channel_map.yaml.
 """,
 )

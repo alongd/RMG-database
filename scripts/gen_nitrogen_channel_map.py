@@ -12,7 +12,6 @@ from rmgpy.data.kinetics.database import KineticsDatabase
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_OVERLAY = ROOT / 'input/eedf/nitrogen_channel_overlay.yaml'
 DEFAULT_OUTPUT = ROOT / 'input/eedf/nitrogen_channel_map.yaml'
-TYPES = {'Elastic', 'Effective', 'Excitation', 'Ionization', 'Attachment'}
 
 
 class UniqueKeyLoader(yaml.SafeLoader):
@@ -40,7 +39,7 @@ def load_yaml(path):
         return yaml.load(stream, Loader=UniqueKeyLoader)
 
 
-def validate_owner_metadata(channel, library_dir, cache=None):
+def validate_owner_metadata(channel, library_dir, cache=None, collision_set=None):
     """Require a class-A owner to name the exact loadable library entry."""
     owner = channel.get('owner_index')
     library = channel.get('owner_library')
@@ -62,34 +61,26 @@ def validate_owner_metadata(channel, library_dir, cache=None):
         raise ValueError(
             f'class A owner {library}[{owner}] does not load as label {label!r}')
 
+    from rmgpy.kinetics import EEDFChannel
+    marker = entry.data
+    if (not isinstance(marker, EEDFChannel) or marker.process != channel['process']
+            or marker.collision_set != collision_set or marker.side != 'ine'):
+        raise ValueError(f'class A owner {library}[{owner}] has a different collision identity')
+
+
 
 def parse_source(path):
-    """Read process labels and thresholds without retaining cross sections."""
-    lines = Path(path).read_text(encoding='utf-8').splitlines()
-    rows = []
-    for i, line in enumerate(lines):
-        kind = line.strip().title()
-        if kind not in TYPES:
-            continue
-        if i + 2 >= len(lines):
-            raise ValueError(f'{path}:{i + 1}: truncated collision header')
-        process = next(
-            (x.split(':', 1)[1].strip()
-             for x in lines[i + 3:i + 20] if x.startswith('PROCESS:')),
-            None,
-        )
-        if process is None:
-            process = f'E + N2 -> E + N2, {kind}'
-        parameter = lines[i + 2].strip().split()
-        try:
-            threshold = float(parameter[0]) if kind not in {
-                'Elastic', 'Effective'} else 0.0
-        except (ValueError, IndexError):
-            raise ValueError(
-                f'{path}:{i + 3}: malformed threshold/parameter line')
-        rows.append(
-            {'process': process, 'threshold_eV': threshold, 'type': kind})
-    return rows
+    """Use the solved PARAM/bracket identity, not the PROCESS display alias.
+
+    Share the converter parser so the map and physical columns cannot drift.
+    Only process/threshold metadata is retained in the generated YAML.
+    """
+    from rmgpy.tools.eedf.channels import _classic_sections
+    from rmgpy.tools.eedf.schema import _file_hash
+    return [{'process': row['description'], 'threshold_eV': row['threshold_eV'],
+             'type': row['kind'].title()}
+            for row in _classic_sections(str(path), _file_hash(path))]
+
 
 
 def generate(source, overlay_path, library_dir=None):
@@ -135,7 +126,7 @@ def generate(source, overlay_path, library_dir=None):
         if cls == 'A':
             validate_owner_metadata(
                 channel, library_dir or ROOT / 'input/kinetics/libraries',
-                owner_cache)
+                owner_cache, overlay['collision_set'])
         if cls != 'A' and any(v is not None for v in (owner, library, label)):
             raise ValueError(
                 f'channel {i}: non-A class cannot name a reaction owner')

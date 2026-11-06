@@ -134,9 +134,11 @@ def test_no_other_plasma_library_has_an_overlapping_no_electron_owner():
     assert not overlaps, 'NO + e- owner overlap would double-count when both libraries load: ' + repr(overlaps)
 
 
-def test_nitrogen_map_remains_byte_identical_to_dispatch_base():
+def test_nitrogen_map_remains_byte_identical_to_canonical_base():
     relative = 'input/eedf/nitrogen_channel_map.yaml'
-    committed = subprocess.run(['git', 'show', '278793a06:' + relative], cwd=ROOT,
+    # The N2 owner identity was canonicalized in this branch; that audited map
+    # change is recorded in channel-identity-audit.md.
+    committed = subprocess.run(['git', 'show', '747cb0352:' + relative], cwd=ROOT,
                                check=True, capture_output=True).stdout
     assert (ROOT / relative).read_bytes() == committed
 
